@@ -89,12 +89,20 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="什么是红黑树？"><a href="#什么是红黑树？" class="headerlink" title="什么是红黑树？"></a>什么是红黑树？</h1><p>红黑树首先是一棵二叉搜索树（BST），具有良好的平衡性质</p>
-<h1 id="为什么要使用红黑树？"><a href="#为什么要使用红黑树？" class="headerlink" title="为什么要使用红黑树？"></a>为什么要使用红黑树？</h1><h1 id="红黑树的具体实现"><a href="#红黑树的具体实现" class="headerlink" title="红黑树的具体实现"></a>红黑树的具体实现</h1><p>这里会介绍两种方式，分别参考 《算法（第四版）》和《Computer Algorithms: Introduction to Design And Analysis》</p>
+<h1 id="为什么要使用红黑树？"><a href="#为什么要使用红黑树？" class="headerlink" title="为什么要使用红黑树？"></a>为什么要使用红黑树？</h1><h2 id="C-中的-map"><a href="#C-中的-map" class="headerlink" title="C++ 中的 map"></a>C++ 中的 <code>map</code></h2><p>我们知道 <code>HashMap</code> 的平均时间复杂度为 O(1)（可以参考《算法导论》的相关分析），<code>map</code> 的平均时间复杂度为 $O(\lg n)$ 的，实践上是不是 <code>HashMap</code> 一定优于 <code>map</code> 呢？这里面有几个因素要考虑：</p>
+<ol>
+<li><code>HashMap</code> 内存效率比 <code>map</code> 差，这是显而易见的；</li>
+<li><code>map</code> 的查找效率实践上是非常高的，如在 1M 数据中查找一个元素，仅需要 20次 比较；</li>
+<li><code>map</code> 的查找效率比 <code>HashMap</code> 稳定，hash 最坏的情况为 $O(n)$（个人观点：无论使用什么 hash 函数，总能够找到最坏情况的键序列，虽然可以使用全域哈希的方法，但也并不是完全能够避免最坏情况，而且 hash 函数一不小心就会…，相比之下，红黑树的 $O(\lg n)$ 很稳，而且在可以接受的范围内）；</li>
+<li><code>HashMap</code> 查找时候要算 hash，这个最坏时间复杂度是 $O(m)$（M是key字符串的长度），如果你的 key 非常非常非常非常非常非常……长，基于比较的 <code>map</code> 通常只使用头几个字符进行比较，而 <code>HashMap</code> 要 $O(M)$ 地算出 hash；</li>
+<li>内存布局会影响内存局部性，对性能会有影响。</li>
+</ol>
+<h1 id="红黑树的具体实现"><a href="#红黑树的具体实现" class="headerlink" title="红黑树的具体实现"></a>红黑树的具体实现</h1><p>这里会介绍两种方式，分别参考 《算法（第四版）》和《Computer Algorithms: Introduction to Design And Analysis》</p>
 <h2 id="《算法》"><a href="#《算法》" class="headerlink" title="《算法》"></a>《算法》</h2><h2 id="《Computer-Algorithms》"><a href="#《Computer-Algorithms》" class="headerlink" title="《Computer Algorithms》"></a>《Computer Algorithms》</h2><h1 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h1><h1 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h1>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/12/04/red-black-tree/" data-id="cjp8pz53k0001y4uphum9kml2" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/12/04/red-black-tree/" data-id="cjp8qgce00001wgupffdpuua1" class="article-share-link">Share</a>
       
       
     </footer>
@@ -139,7 +147,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/12/04/hello-world/" data-id="cjp8pz53g0000y4up3zkjommh" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/12/04/hello-world/" data-id="cjp8qgcdw0000wgupf86ynybo" class="article-share-link">Share</a>
       
       
     </footer>
