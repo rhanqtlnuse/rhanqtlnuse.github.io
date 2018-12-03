@@ -79,17 +79,20 @@
 
 
 
-<meta name="description" content="什么是红黑树？红黑树首先是一棵二叉搜索树（BST），具有良好的平衡性质 为什么要使用红黑树？C++ 中的 map我们知道 HashMap 的平均时间复杂度为 O(1)（可以参考《算法导论》的相关分析），map 的平均时间复杂度为 $O(\lg n)$ 的，实践上是不是 HashMap 一定优于 map 呢？这里面有几个因素要考虑：  HashMap 内存效率比 map 差，这是显而易见的； map">
+<meta name="description" content="NP 完备性 NP-完备问题是 NP 问题中最难的问题 如果一个问题 P 在集合 NP 中，并且如果存在一个 P 的算法，使得 NP 中的所有问题都能够在有限的额外工作的情况下解决，那么决策问题 P 就是 NP-完备的 说人话：NP-完备问题就是说，某个 NP 问题 $P$ 有一个算法，对于 NP 问题集合中的其他问题，我们能够通过在这个算法中增加一些有限的额外工作令其得到解决，那么这个问题 P">
 <meta property="og:type" content="article">
-<meta property="og:title" content="算法设计与分析：红黑树">
-<meta property="og:url" content="http://yoursite.com/2018/12/04/red-black-tree/index.html">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/2018/12/04/np-completeness/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="什么是红黑树？红黑树首先是一棵二叉搜索树（BST），具有良好的平衡性质 为什么要使用红黑树？C++ 中的 map我们知道 HashMap 的平均时间复杂度为 O(1)（可以参考《算法导论》的相关分析），map 的平均时间复杂度为 $O(\lg n)$ 的，实践上是不是 HashMap 一定优于 map 呢？这里面有几个因素要考虑：  HashMap 内存效率比 map 差，这是显而易见的； map">
+<meta property="og:description" content="NP 完备性 NP-完备问题是 NP 问题中最难的问题 如果一个问题 P 在集合 NP 中，并且如果存在一个 P 的算法，使得 NP 中的所有问题都能够在有限的额外工作的情况下解决，那么决策问题 P 就是 NP-完备的 说人话：NP-完备问题就是说，某个 NP 问题 $P$ 有一个算法，对于 NP 问题集合中的其他问题，我们能够通过在这个算法中增加一些有限的额外工作令其得到解决，那么这个问题 P">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-12-03T20:16:06.925Z">
+<meta property="og:image" content="http://yoursite.com/2018/12/04/np-completeness/p-np-decidable.png">
+<meta property="og:image" content="http://yoursite.com/2018/12/04/np-completeness/p-np-npc.png">
+<meta property="og:updated_time" content="2018-11-30T08:43:16.653Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="算法设计与分析：红黑树">
-<meta name="twitter:description" content="什么是红黑树？红黑树首先是一棵二叉搜索树（BST），具有良好的平衡性质 为什么要使用红黑树？C++ 中的 map我们知道 HashMap 的平均时间复杂度为 O(1)（可以参考《算法导论》的相关分析），map 的平均时间复杂度为 $O(\lg n)$ 的，实践上是不是 HashMap 一定优于 map 呢？这里面有几个因素要考虑：  HashMap 内存效率比 map 差，这是显而易见的； map">
+<meta name="twitter:title" content="Hexo">
+<meta name="twitter:description" content="NP 完备性 NP-完备问题是 NP 问题中最难的问题 如果一个问题 P 在集合 NP 中，并且如果存在一个 P 的算法，使得 NP 中的所有问题都能够在有限的额外工作的情况下解决，那么决策问题 P 就是 NP-完备的 说人话：NP-完备问题就是说，某个 NP 问题 $P$ 有一个算法，对于 NP 问题集合中的其他问题，我们能够通过在这个算法中增加一些有限的额外工作令其得到解决，那么这个问题 P">
+<meta name="twitter:image" content="http://yoursite.com/2018/12/04/np-completeness/p-np-decidable.png">
 
 
 
@@ -119,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/12/04/red-black-tree/">
+  <link rel="canonical" href="http://yoursite.com/2018/12/04/np-completeness/">
 
 
 
 
 
-  <title>算法设计与分析：红黑树 | Hexo</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> | Hexo</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -232,7 +235,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/04/red-black-tree/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/04/np-completeness/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Han Qi">
@@ -249,7 +252,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">算法设计与分析：红黑树</h1>
+          <h1 class="post-title" itemprop="name headline"></h1>
         
 
         <div class="post-meta">
@@ -261,7 +264,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-04T03:22:31+08:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-04T04:21:29+08:00">
                 2018-12-04
               </time>
             
@@ -271,28 +274,6 @@
             
           </span>
 
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Algorithms/" itemprop="url" rel="index">
-                    <span itemprop="name">Algorithms</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -321,17 +302,30 @@
       
 
       
-        <h1 id="什么是红黑树？"><a href="#什么是红黑树？" class="headerlink" title="什么是红黑树？"></a>什么是红黑树？</h1><p>红黑树首先是一棵二叉搜索树（BST），具有良好的平衡性质</p>
-<h1 id="为什么要使用红黑树？"><a href="#为什么要使用红黑树？" class="headerlink" title="为什么要使用红黑树？"></a>为什么要使用红黑树？</h1><h2 id="C-中的-map"><a href="#C-中的-map" class="headerlink" title="C++ 中的 map"></a>C++ 中的 <code>map</code></h2><p>我们知道 <code>HashMap</code> 的平均时间复杂度为 O(1)（可以参考《算法导论》的相关分析），<code>map</code> 的平均时间复杂度为 $O(\lg n)$ 的，实践上是不是 <code>HashMap</code> 一定优于 <code>map</code> 呢？这里面有几个因素要考虑：</p>
+        <h1 id="NP-完备性"><a href="#NP-完备性" class="headerlink" title="NP 完备性"></a>NP 完备性</h1><p><img src="p-np-decidable.png" width="300"></p>
+<p>NP-完备问题是 NP 问题中最难的问题</p>
+<p>如果一个问题 P 在集合 NP 中，并且如果存在一个 P 的算法，使得 NP 中的所有问题都能够在有限的额外工作的情况下解决，那么决策问题 P 就是 NP-完备的</p>
+<p>说人话：NP-完备问题就是说，某个 NP 问题 $P$ 有一个算法，对于 NP 问题集合中的其他问题，我们能够通过在这个算法中增加一些<strong>有限</strong>的额外工作令其得到解决，那么这个问题 P 就叫做 NP-完备问题。</p>
+<p>也就是说，如果我们对于问题 P 有一个算法，并且我们知道如何将问题 Q 的实例转化为问题 P 的实例，我们也就得到了解决问题 Q 的算法！</p>
+<p><img src="p-np-npc.png" width="300"></p>
+<p>多项式规约</p>
+<p>如果如下条件：</p>
+<ul>
+<li>T 可以在多项式时间内计算完成（取决于输入的长度）</li>
+<li>输入 x 是 Q 的 “yes” 输入当且仅当 T(x) 是 P 的 “yes” 输入</li>
+</ul>
+<p>成立，那么T 是一个从 Q 到 P 的多项式规约</p>
+<p>Q 是多项式可规约到 P 的：$Q \le_P P$</p>
+<p>P 至少与 Q 一样难</p>
+<p>NP-完备问题的另一种定义：如果一个问题 P 在集合 NP 中，并且对于 NP 集合中的每一个问题 Q，他是多项式可规约到 P 的，那么决策问题 P 就是 NP-完备的</p>
+<h2 id="NP-完备和-NP-难"><a href="#NP-完备和-NP-难" class="headerlink" title="NP-完备和 NP 难"></a>NP-完备和 NP 难</h2><p>如果对于一个决策问题 P 而言，NP 中的每一个问题 Q 都能够多项式规约为 P，那么 P 就是 NP 难的</p>
+<p>NP-难问题是至少与 NP 中最难的问题一样难的问题。一个决策问题 P 是 NP-完备的，如果它既是 NP 的又是 NP-难的</p>
+<p>一旦我们找到一个第一个 NP-完备的问题，那么找到其他 NP-完备问题就容易得多了：</p>
 <ol>
-<li><code>HashMap</code> 内存效率比 <code>map</code> 差，这是显而易见的；</li>
-<li><code>map</code> 的查找效率实践上是非常高的，如在 1M 数据中查找一个元素，仅需要 20次 比较；</li>
-<li><code>map</code> 的查找效率比 <code>HashMap</code> 稳定，hash 最坏的情况为 $O(n)$（个人观点：无论使用什么 hash 函数，总能够找到最坏情况的键序列，虽然可以使用全域哈希的方法，但也并不是完全能够避免最坏情况，而且 hash 函数一不小心就会…，相比之下，红黑树的 $O(\lg n)$ 很稳，而且在可以接受的范围内）；</li>
-<li><code>HashMap</code> 查找时候要算 hash，这个最坏时间复杂度是 $O(m)$（M是key字符串的长度），如果你的 key 非常非常非常非常非常非常……长，基于比较的 <code>map</code> 通常只使用头几个字符进行比较，而 <code>HashMap</code> 要 $O(M)$ 地算出 hash；</li>
-<li>内存布局会影响内存局部性，对性能会有影响。</li>
+<li>首先找到一个 NP-完备问题 P</li>
+<li>NP 中所有的问题 Q 都可以多项式规约为 P</li>
 </ol>
-<h1 id="红黑树的具体实现"><a href="#红黑树的具体实现" class="headerlink" title="红黑树的具体实现"></a>红黑树的具体实现</h1><p>这里会介绍两种方式，分别参考 《算法（第四版）》和《Computer Algorithms: Introduction to Design And Analysis》</p>
-<h2 id="《算法》"><a href="#《算法》" class="headerlink" title="《算法》"></a>《算法》</h2><h2 id="《Computer-Algorithms》"><a href="#《Computer-Algorithms》" class="headerlink" title="《Computer Algorithms》"></a>《Computer Algorithms》</h2><h1 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h1><h1 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h1>
+
       
     </div>
     
@@ -355,8 +349,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/12/04/getting-started/" rel="next" title="Getting Started Guide">
-                <i class="fa fa-chevron-left"></i> Getting Started Guide
+              <a href="/2018/12/04/graph-traversal/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
               </a>
             
           </div>
@@ -365,8 +359,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/12/04/algo-design-foundation/" rel="prev" title="算法设计与分析：算法设计基础">
-                算法设计与分析：算法设计基础 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/12/04/p-and-np/" rel="prev" title="">
+                 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -490,7 +484,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是红黑树？"><span class="nav-number">1.</span> <span class="nav-text">什么是红黑树？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#为什么要使用红黑树？"><span class="nav-number">2.</span> <span class="nav-text">为什么要使用红黑树？</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#C-中的-map"><span class="nav-number">2.1.</span> <span class="nav-text">C++ 中的 map</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#红黑树的具体实现"><span class="nav-number">3.</span> <span class="nav-text">红黑树的具体实现</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#《算法》"><span class="nav-number">3.1.</span> <span class="nav-text">《算法》</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#《Computer-Algorithms》"><span class="nav-number">3.2.</span> <span class="nav-text">《Computer Algorithms》</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#分析"><span class="nav-number">4.</span> <span class="nav-text">分析</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#性质"><span class="nav-number">5.</span> <span class="nav-text">性质</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#NP-完备性"><span class="nav-number">1.</span> <span class="nav-text">NP 完备性</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#NP-完备和-NP-难"><span class="nav-number">1.1.</span> <span class="nav-text">NP-完备和 NP 难</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -637,7 +631,24 @@
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 
 
 
@@ -690,43 +701,6 @@
   
 
   
-  
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
-      });
-    </script>
-
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-      });
-    </script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
   
 
 

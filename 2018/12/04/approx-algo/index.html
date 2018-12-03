@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="什么是红黑树？红黑树首先是一棵二叉搜索树（BST），具有良好的平衡性质 为什么要使用红黑树？C++ 中的 map我们知道 HashMap 的平均时间复杂度为 O(1)（可以参考《算法导论》的相关分析），map 的平均时间复杂度为 $O(\lg n)$ 的，实践上是不是 HashMap 一定优于 map 呢？这里面有几个因素要考虑：  HashMap 内存效率比 map 差，这是显而易见的； map">
+<meta name="description" content="渐进算法很多优化问题是 NP 难的，相应的决策问题是 NP 完备的，而我们并不总是需要精确的答案，所以可以使用高效的渐进算法。 渐进比率（Approximation Ratio） sol$_A$(I) 是 A 在输入 I 上返回的解 val(SOL) 表示解 SOL 的值 opt(I) 是在输入 I 上最优的值  渐进比率为：$\max \limits_{I} \dfrac{val(sol_A(I">
 <meta property="og:type" content="article">
-<meta property="og:title" content="算法设计与分析：红黑树">
-<meta property="og:url" content="http://yoursite.com/2018/12/04/red-black-tree/index.html">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/2018/12/04/approx-algo/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="什么是红黑树？红黑树首先是一棵二叉搜索树（BST），具有良好的平衡性质 为什么要使用红黑树？C++ 中的 map我们知道 HashMap 的平均时间复杂度为 O(1)（可以参考《算法导论》的相关分析），map 的平均时间复杂度为 $O(\lg n)$ 的，实践上是不是 HashMap 一定优于 map 呢？这里面有几个因素要考虑：  HashMap 内存效率比 map 差，这是显而易见的； map">
+<meta property="og:description" content="渐进算法很多优化问题是 NP 难的，相应的决策问题是 NP 完备的，而我们并不总是需要精确的答案，所以可以使用高效的渐进算法。 渐进比率（Approximation Ratio） sol$_A$(I) 是 A 在输入 I 上返回的解 val(SOL) 表示解 SOL 的值 opt(I) 是在输入 I 上最优的值  渐进比率为：$\max \limits_{I} \dfrac{val(sol_A(I">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-12-03T20:16:06.925Z">
+<meta property="og:updated_time" content="2018-11-30T03:53:55.125Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="算法设计与分析：红黑树">
-<meta name="twitter:description" content="什么是红黑树？红黑树首先是一棵二叉搜索树（BST），具有良好的平衡性质 为什么要使用红黑树？C++ 中的 map我们知道 HashMap 的平均时间复杂度为 O(1)（可以参考《算法导论》的相关分析），map 的平均时间复杂度为 $O(\lg n)$ 的，实践上是不是 HashMap 一定优于 map 呢？这里面有几个因素要考虑：  HashMap 内存效率比 map 差，这是显而易见的； map">
+<meta name="twitter:title" content="Hexo">
+<meta name="twitter:description" content="渐进算法很多优化问题是 NP 难的，相应的决策问题是 NP 完备的，而我们并不总是需要精确的答案，所以可以使用高效的渐进算法。 渐进比率（Approximation Ratio） sol$_A$(I) 是 A 在输入 I 上返回的解 val(SOL) 表示解 SOL 的值 opt(I) 是在输入 I 上最优的值  渐进比率为：$\max \limits_{I} \dfrac{val(sol_A(I">
 
 
 
@@ -119,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/12/04/red-black-tree/">
+  <link rel="canonical" href="http://yoursite.com/2018/12/04/approx-algo/">
 
 
 
 
 
-  <title>算法设计与分析：红黑树 | Hexo</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> | Hexo</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -232,7 +232,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/04/red-black-tree/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/04/approx-algo/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Han Qi">
@@ -249,7 +249,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">算法设计与分析：红黑树</h1>
+          <h1 class="post-title" itemprop="name headline"></h1>
         
 
         <div class="post-meta">
@@ -261,7 +261,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-04T03:22:31+08:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-04T04:21:29+08:00">
                 2018-12-04
               </time>
             
@@ -271,28 +271,6 @@
             
           </span>
 
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Algorithms/" itemprop="url" rel="index">
-                    <span itemprop="name">Algorithms</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -321,17 +299,32 @@
       
 
       
-        <h1 id="什么是红黑树？"><a href="#什么是红黑树？" class="headerlink" title="什么是红黑树？"></a>什么是红黑树？</h1><p>红黑树首先是一棵二叉搜索树（BST），具有良好的平衡性质</p>
-<h1 id="为什么要使用红黑树？"><a href="#为什么要使用红黑树？" class="headerlink" title="为什么要使用红黑树？"></a>为什么要使用红黑树？</h1><h2 id="C-中的-map"><a href="#C-中的-map" class="headerlink" title="C++ 中的 map"></a>C++ 中的 <code>map</code></h2><p>我们知道 <code>HashMap</code> 的平均时间复杂度为 O(1)（可以参考《算法导论》的相关分析），<code>map</code> 的平均时间复杂度为 $O(\lg n)$ 的，实践上是不是 <code>HashMap</code> 一定优于 <code>map</code> 呢？这里面有几个因素要考虑：</p>
-<ol>
-<li><code>HashMap</code> 内存效率比 <code>map</code> 差，这是显而易见的；</li>
-<li><code>map</code> 的查找效率实践上是非常高的，如在 1M 数据中查找一个元素，仅需要 20次 比较；</li>
-<li><code>map</code> 的查找效率比 <code>HashMap</code> 稳定，hash 最坏的情况为 $O(n)$（个人观点：无论使用什么 hash 函数，总能够找到最坏情况的键序列，虽然可以使用全域哈希的方法，但也并不是完全能够避免最坏情况，而且 hash 函数一不小心就会…，相比之下，红黑树的 $O(\lg n)$ 很稳，而且在可以接受的范围内）；</li>
-<li><code>HashMap</code> 查找时候要算 hash，这个最坏时间复杂度是 $O(m)$（M是key字符串的长度），如果你的 key 非常非常非常非常非常非常……长，基于比较的 <code>map</code> 通常只使用头几个字符进行比较，而 <code>HashMap</code> 要 $O(M)$ 地算出 hash；</li>
-<li>内存布局会影响内存局部性，对性能会有影响。</li>
-</ol>
-<h1 id="红黑树的具体实现"><a href="#红黑树的具体实现" class="headerlink" title="红黑树的具体实现"></a>红黑树的具体实现</h1><p>这里会介绍两种方式，分别参考 《算法（第四版）》和《Computer Algorithms: Introduction to Design And Analysis》</p>
-<h2 id="《算法》"><a href="#《算法》" class="headerlink" title="《算法》"></a>《算法》</h2><h2 id="《Computer-Algorithms》"><a href="#《Computer-Algorithms》" class="headerlink" title="《Computer Algorithms》"></a>《Computer Algorithms》</h2><h1 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h1><h1 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h1>
+        <h1 id="渐进算法"><a href="#渐进算法" class="headerlink" title="渐进算法"></a>渐进算法</h1><p>很多优化问题是 NP 难的，相应的决策问题是 NP 完备的，而我们并不总是需要精确的答案，所以可以使用高效的渐进算法。</p>
+<h2 id="渐进比率（Approximation-Ratio）"><a href="#渐进比率（Approximation-Ratio）" class="headerlink" title="渐进比率（Approximation Ratio）"></a>渐进比率（Approximation Ratio）</h2><ul>
+<li>sol$_A$(I) 是 A 在输入 I 上返回的解</li>
+<li>val(SOL) 表示解 SOL 的值</li>
+<li>opt(I) 是在输入 I 上最优的值</li>
+</ul>
+<p>渐进比率为：$\max \limits_{I} \dfrac{val(sol_A(I))}{opt(I)}$</p>
+<h2 id="背包问题"><a href="#背包问题" class="headerlink" title="背包问题"></a>背包问题</h2><h3 id="最先适应（First-Fit）"><a href="#最先适应（First-Fit）" class="headerlink" title="最先适应（First Fit）"></a>最先适应（First Fit）</h3><p>如果我们使用 l 个背包，那么至少有 l - 1 个背包装满一半以上（more than half full）</p>
+<p>假设第 k 个和 k’ 个背包至多装了一半，那么实际上我们压根就不会打开 k’（因为背包 k 完全能够装下 k’ 中的项）</p>
+<p>那么 $\sum\limits<em>{i=1}^{n} s_i \gt \dfrac{l-1}{2}$，又有 $\sum\limits</em>{i=1}^{n} \le$ OPT，所以 $l \lt 2\ \cdot$ OPT</p>
+<h3 id="降序最先适应"><a href="#降序最先适应" class="headerlink" title="降序最先适应"></a>降序最先适应</h3><p>先将所有的项按照非升序进行排序。</p>
+<p>引理 1：假设最优解使用了 $l$ 个背包，SOL 使用了 $l’$ 个背包，那么背包 $l$ + 1 到 $l’$ 中的项的大小一定不大于 1/3</p>
+<p>证明：令 s$_i$ 是 SOL 中第一个被放进背包 $l$ + 1 的项，我们只需证明 s$_i$ 不大于 1/3</p>
+<p>假设 s$_i\gt$ 1/3，那么 SOL 中背包 1 到 $l$ 每个最多装 2 项</p>
+<p>事实上，在 SOL 中背包 1 到 $l$ 可以被分成两部分：</p>
+<ul>
+<li>背包 1 到 $k$ 每个都包含 1 项</li>
+<li>背包 $k$ + 1 到 l 每个都包含 2 项</li>
+</ul>
+<p>在 OPT 中，一定有 k 个背包不包含 s$_{k+1}$，…，s$_i$，设他们是前 k 个背包（因为在 OPT 中，s$_1$，…，s$_k$ 一定每个单独占据一个背包）</p>
+<p>由于  s$_{k+1}$，…，s$_i$ 中每个的大小都大于 1/3，在 OPT 中，背包 k + 1 到 $l$ 最多能装其中的两个，那么 OPT 不能将 s$_1$，…，s$_i$ 装进 $l$ 个背包，产生矛盾</p>
+<h2 id="不可渐进性"><a href="#不可渐进性" class="headerlink" title="不可渐进性"></a>不可渐进性</h2><ul>
+<li>有些问题的渐进比率有上界</li>
+<li>有些问题很难找到渐进算法</li>
+</ul>
+
       
     </div>
     
@@ -355,8 +348,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/12/04/getting-started/" rel="next" title="Getting Started Guide">
-                <i class="fa fa-chevron-left"></i> Getting Started Guide
+              <a href="/2018/12/04/algo-design-foundation/" rel="next" title="算法设计与分析：算法设计基础">
+                <i class="fa fa-chevron-left"></i> 算法设计与分析：算法设计基础
               </a>
             
           </div>
@@ -365,8 +358,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/12/04/algo-design-foundation/" rel="prev" title="算法设计与分析：算法设计基础">
-                算法设计与分析：算法设计基础 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/12/04/correctness-verification/" rel="prev" title="算法设计与分析：算法正确性验证">
+                算法设计与分析：算法正确性验证 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -490,7 +483,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是红黑树？"><span class="nav-number">1.</span> <span class="nav-text">什么是红黑树？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#为什么要使用红黑树？"><span class="nav-number">2.</span> <span class="nav-text">为什么要使用红黑树？</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#C-中的-map"><span class="nav-number">2.1.</span> <span class="nav-text">C++ 中的 map</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#红黑树的具体实现"><span class="nav-number">3.</span> <span class="nav-text">红黑树的具体实现</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#《算法》"><span class="nav-number">3.1.</span> <span class="nav-text">《算法》</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#《Computer-Algorithms》"><span class="nav-number">3.2.</span> <span class="nav-text">《Computer Algorithms》</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#分析"><span class="nav-number">4.</span> <span class="nav-text">分析</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#性质"><span class="nav-number">5.</span> <span class="nav-text">性质</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#渐进算法"><span class="nav-number">1.</span> <span class="nav-text">渐进算法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#渐进比率（Approximation-Ratio）"><span class="nav-number">1.1.</span> <span class="nav-text">渐进比率（Approximation Ratio）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#背包问题"><span class="nav-number">1.2.</span> <span class="nav-text">背包问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#最先适应（First-Fit）"><span class="nav-number">1.2.1.</span> <span class="nav-text">最先适应（First Fit）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#降序最先适应"><span class="nav-number">1.2.2.</span> <span class="nav-text">降序最先适应</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#不可渐进性"><span class="nav-number">1.3.</span> <span class="nav-text">不可渐进性</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -637,7 +630,24 @@
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 
 
 
@@ -690,43 +700,6 @@
   
 
   
-  
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
-      });
-    </script>
-
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-      });
-    </script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
   
 
 
