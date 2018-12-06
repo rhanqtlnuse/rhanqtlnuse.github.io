@@ -79,22 +79,19 @@
 
 
 
-<meta name="description" content="图遍历算法的应用有向无环图（DAG）一个有向无环图一定至少有一个顶点没有入边，有一个顶点没有出边 判断有向图环路的方法：如果有回边（Back Edge），那么一定有环路 拓扑排序一个 DAG 可以有多个不同的拓扑排序。 有两种思路：  将当前顶点排好序，再对后代进行排序 利用入度（BFS） 快速找到入度为 0 的顶点：队列，当某个顶点入度为 0 时，将其入队 当某个顶点的入度减到 0 之后，就不会">
+<meta name="description" content="并查集分析这里分析使用 weighted union 和 path compression find 的情况。 迭代对数$H(i) = 2^{H(i-1)}$，并且 $ H(0) = 1$     i 0 1 2 3 4 5     $H(i)$ 1 2 4 16 65536 $2^{65536}$     可以看到，这个函数增长的很快（宇宙中原子个数有 $10^{80}$ 个，而 $2^{655">
 <meta property="og:type" content="article">
-<meta property="og:title" content="算法设计与分析：图遍历算法的应用 —— DAG 和 SCC">
-<meta property="og:url" content="http://yoursite.com/2018/12/04/dag-scc/index.html">
+<meta property="og:title" content="并查集">
+<meta property="og:url" content="http://yoursite.com/2018/12/05/union-find/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="图遍历算法的应用有向无环图（DAG）一个有向无环图一定至少有一个顶点没有入边，有一个顶点没有出边 判断有向图环路的方法：如果有回边（Back Edge），那么一定有环路 拓扑排序一个 DAG 可以有多个不同的拓扑排序。 有两种思路：  将当前顶点排好序，再对后代进行排序 利用入度（BFS） 快速找到入度为 0 的顶点：队列，当某个顶点入度为 0 时，将其入队 当某个顶点的入度减到 0 之后，就不会">
+<meta property="og:description" content="并查集分析这里分析使用 weighted union 和 path compression find 的情况。 迭代对数$H(i) = 2^{H(i-1)}$，并且 $ H(0) = 1$     i 0 1 2 3 4 5     $H(i)$ 1 2 4 16 65536 $2^{65536}$     可以看到，这个函数增长的很快（宇宙中原子个数有 $10^{80}$ 个，而 $2^{655">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://yoursite.com/2018/12/04/dag-scc/graph.png">
-<meta property="og:image" content="http://yoursite.com/2018/12/04/dag-scc/abstract-graph.png">
-<meta property="og:image" content="http://yoursite.com/2018/12/04/dag-scc/traversal-tree.png">
-<meta property="og:image" content="http://yoursite.com/2018/12/04/dag-scc/abstract-graph.png">
-<meta property="og:updated_time" content="2018-12-03T20:25:32.955Z">
+<meta property="og:image" content="http://yoursite.com/2018/12/05/union-find/union-find-analysis-bucket.jpg">
+<meta property="og:updated_time" content="2018-12-06T12:44:20.909Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="算法设计与分析：图遍历算法的应用 —— DAG 和 SCC">
-<meta name="twitter:description" content="图遍历算法的应用有向无环图（DAG）一个有向无环图一定至少有一个顶点没有入边，有一个顶点没有出边 判断有向图环路的方法：如果有回边（Back Edge），那么一定有环路 拓扑排序一个 DAG 可以有多个不同的拓扑排序。 有两种思路：  将当前顶点排好序，再对后代进行排序 利用入度（BFS） 快速找到入度为 0 的顶点：队列，当某个顶点入度为 0 时，将其入队 当某个顶点的入度减到 0 之后，就不会">
-<meta name="twitter:image" content="http://yoursite.com/2018/12/04/dag-scc/graph.png">
+<meta name="twitter:title" content="并查集">
+<meta name="twitter:description" content="并查集分析这里分析使用 weighted union 和 path compression find 的情况。 迭代对数$H(i) = 2^{H(i-1)}$，并且 $ H(0) = 1$     i 0 1 2 3 4 5     $H(i)$ 1 2 4 16 65536 $2^{65536}$     可以看到，这个函数增长的很快（宇宙中原子个数有 $10^{80}$ 个，而 $2^{655">
+<meta name="twitter:image" content="http://yoursite.com/2018/12/05/union-find/union-find-analysis-bucket.jpg">
 
 
 
@@ -124,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/12/04/dag-scc/">
+  <link rel="canonical" href="http://yoursite.com/2018/12/05/union-find/">
 
 
 
 
 
-  <title>算法设计与分析：图遍历算法的应用 —— DAG 和 SCC | Hexo</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>并查集 | Hexo</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -237,7 +234,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/04/dag-scc/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/05/union-find/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Han Qi">
@@ -254,7 +251,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">算法设计与分析：图遍历算法的应用 —— DAG 和 SCC</h1>
+          <h1 class="post-title" itemprop="name headline">并查集</h1>
         
 
         <div class="post-meta">
@@ -266,8 +263,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-04T04:21:29+08:00">
-                2018-12-04
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-05T20:00:00+08:00">
+                2018-12-05
               </time>
             
 
@@ -326,130 +323,92 @@
       
 
       
-        <h1 id="图遍历算法的应用"><a href="#图遍历算法的应用" class="headerlink" title="图遍历算法的应用"></a>图遍历算法的应用</h1><h2 id="有向无环图（DAG）"><a href="#有向无环图（DAG）" class="headerlink" title="有向无环图（DAG）"></a>有向无环图（DAG）</h2><p>一个有向无环图一定至少有一个顶点没有入边，有一个顶点没有出边</p>
-<p>判断有向图环路的方法：如果有回边（Back Edge），那么一定有环路</p>
-<h3 id="拓扑排序"><a href="#拓扑排序" class="headerlink" title="拓扑排序"></a>拓扑排序</h3><p>一个 DAG 可以有多个不同的拓扑排序。</p>
-<p>有两种思路：</p>
-<ul>
-<li>将当前顶点排好序，再对后代进行排序<ul>
-<li>利用入度（BFS）<ul>
-<li>快速找到入度为 0 的顶点：队列，当某个顶点入度为 0 时，将其入队</li>
-<li>当某个顶点的入度减到 0 之后，就不会再减小</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>递归地将后代排好序，然后当前顶点自然就排好了（DFS）</li>
-</ul>
-<h3 id="任务调度"><a href="#任务调度" class="headerlink" title="任务调度"></a>任务调度</h3><p>关键路径（Critical Path）</p>
-<h2 id="强连通分量"><a href="#强连通分量" class="headerlink" title="强连通分量"></a>强连通分量</h2><p>定义：是原图的一个子图，其中的每一个顶点都能够到达子图中其他的顶点。</p>
-<p>对于如下的有向图：</p>
-<p><img src="graph.png" alt=""></p>
-<p>强连通分量为：ABDF、C、EG</p>
-<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>我们先介绍两个概念：</p>
-<ul>
-<li>强连通分量的 “Leader”：一个强连通分量的 Leader 是整个强连通分量中第一个被访问到的顶点；</li>
-<li>反图：有向图中所有的边都反向得到的图</li>
-</ul>
-<p>我们将有向图的每一个连通分量看作一个顶点（这样得到的图必然是一个 DAG），如下：</p>
-<p><img src="abstract-graph.png" alt=""></p>
-<p>我们希望能够找到每一个连通分量中所有的顶点。直觉上来看，可以先从 C3/C4 开始，然后是 C2，最后是 C1，这实际上就是一个逆拓扑序。</p>
-<p>但是有一个问题：我们必须首先找到 C3 的 Leader，而这个问题没办法解决（要么从头（C1）的 Leader 开始遍历，要么随机选择一个顶点，但是这两种方式都没办法确定一个顶点是不是 C3 的 Leader）。</p>
-<p>所以我们还可以这样想：先找出 C1 中的所有顶点，然后是 C2/C4，最后是 C3。那么问题来了，由于强连通分量之间存在边，所以访问并不一定是先访问完某一个强连通分量中的顶点，然后才去访问其他强连通分量中的顶点，而很有可能是访问了当前强连通分量中的部分顶点之后，转而访问其他强连通分量。</p>
-<p>下面我们假设从 C1 的 Leader 开始进行 DFS（假设我们知道如何确定一个顶点是否是 Leader），我们的访问顺序可能是这样：</p>
-<ol>
-<li>C1 的 Leader</li>
-<li>C1 的部分顶点</li>
-<li>C4 的 Leader</li>
-<li>C4 的全部顶点</li>
-<li>C1 的部分顶点</li>
-<li>C2 的 Leader</li>
-<li>C2 的部分顶点</li>
-<li>C3 的 Leader</li>
-<li>C3 的全部顶点</li>
-<li>C2 的部分顶点</li>
-<li>C1 的部分顶点</li>
-</ol>
-<p>由于我们做的是 DFS，所以对应上面的过程，访问的结束（顶点变为完成状态）顺序应该是这样：</p>
-<ol>
-<li>C1 的部分顶点</li>
-<li>C4 的全部顶点</li>
-<li>C4 的 Leader</li>
-<li>C1 的部分顶点</li>
-<li>C2 的部分顶点</li>
-<li>C3 的全部顶点</li>
-<li>C3 的 Leader</li>
-<li>C2 的部分顶点</li>
-<li>C2 的 Leader</li>
-<li>C1 的部分顶点</li>
-<li>C1 的 Leader</li>
-</ol>
-<p>画一个表格，更清晰一点：</p>
+        <h1 id="并查集"><a href="#并查集" class="headerlink" title="并查集"></a>并查集</h1><h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>这里分析使用 weighted union 和 path compression find 的情况。</p>
+<h3 id="迭代对数"><a href="#迭代对数" class="headerlink" title="迭代对数"></a>迭代对数</h3><p>$H(i) = 2^{H(i-1)}$，并且 $ H(0) = 1$</p>
 <div class="table-container">
 <table>
 <thead>
 <tr>
-<th style="text-align:center">发现顺序</th>
-<th style="text-align:center">结束顺序</th>
+<th style="text-align:center">i</th>
+<th style="text-align:center">0</th>
+<th style="text-align:center">1</th>
+<th style="text-align:center">2</th>
+<th style="text-align:center">3</th>
+<th style="text-align:center">4</th>
+<th style="text-align:center">5</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:center">C1 的 Leader</td>
-<td style="text-align:center">C1 的部分顶点</td>
-</tr>
-<tr>
-<td style="text-align:center">C1 的部分顶点</td>
-<td style="text-align:center">C4 的全部顶点</td>
-</tr>
-<tr>
-<td style="text-align:center">C4 的 Leader</td>
-<td style="text-align:center">C4 的 Leader</td>
-</tr>
-<tr>
-<td style="text-align:center">C4 的全部顶点</td>
-<td style="text-align:center">C1 的部分顶点</td>
-</tr>
-<tr>
-<td style="text-align:center">C1 的部分顶点</td>
-<td style="text-align:center">C2 的部分顶点</td>
-</tr>
-<tr>
-<td style="text-align:center">C2 的 Leader</td>
-<td style="text-align:center">C3 的全部顶点</td>
-</tr>
-<tr>
-<td style="text-align:center">C2 的部分顶点</td>
-<td style="text-align:center">C3 的 Leader</td>
-</tr>
-<tr>
-<td style="text-align:center">C3 的 Leader</td>
-<td style="text-align:center">C2 的部分顶点</td>
-</tr>
-<tr>
-<td style="text-align:center">C3 的全部顶点</td>
-<td style="text-align:center">C2 的 Leader</td>
-</tr>
-<tr>
-<td style="text-align:center">C2 的部分顶点</td>
-<td style="text-align:center">C1 的部分顶点</td>
-</tr>
-<tr>
-<td style="text-align:center">C1 的部分顶点</td>
-<td style="text-align:center">C1 的 Leader</td>
+<td style="text-align:center">$H(i)$</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">16</td>
+<td style="text-align:center">65536</td>
+<td style="text-align:center">$2^{65536}$</td>
 </tr>
 </tbody>
 </table>
 </div>
-<p>注意到一个问题：不管是发现顺序还是结束顺序， C3/C4 的 Leader 和全部顶点都是一起出现的，将 C3 和 C4 拿掉之后，C2 的 Leader 和全部顶点又出现在了一起，再将 C2 拿掉，最终 C1 的 Leader 和全部顶点也出现在了一起。</p>
-<p>下面是遍历树：</p>
-<p><img src="traversal-tree.png" alt=""></p>
-<p>上面的发现顺序/结束顺序表其实就是树的先序遍历/后序遍历。每个遍历树只能含有一个或多个<strong>完整</strong>的强连通分量。</p>
-<p>注意到不管是发现顺序还是结束顺序，每个强连通分量中的顶点总数是相同的，这意味着我们可以用一个容器将发现顺序保存起来，每当我们完成一个 Leader 的访问时（这意味着这个 Leader 对应的强连通分量已经完成了），就开始从容器中删除顶点，直到将容器中的相同的 Leader 删除，这时候我们就找到了一个强连通分量。</p>
-<h4 id="确定-Leader"><a href="#确定-Leader" class="headerlink" title="确定 Leader"></a>确定 Leader</h4><p>有了上面的算法，我们还需要解决一个很早就提出的问题：如何确定一个顶点是 Leader。</p>
-<p>再来看我们的抽象强连通分量图：</p>
-<p><img src="abstract-graph.png" alt=""></p>
-<p>每一条边所指的顶点就是对应强连通分量的 Leader。很容易发现一个问题：两个存在边的强连通分量之间只有单向的路径。也就是说，一个强连通分量内部可能有很多回边（Back Edge），但是绝不会指向遍历树中比 Leader 更高层的顶点。这就是我们确定 Leader 的依据。</p>
+<p>可以看到，这个函数增长的很快（宇宙中原子个数有 $10^{80}$ 个，而 $2^{65536}$ 比 $10^{80}$ 还要大，所以通常情况下 $i$ 最多为 5）。我们要使用的函数是其反函数：</p>
+<p>$log^*(n) = \min{\ i\ |\ H(i) \ge n\ } = \min{\ i\ | \log_2\log_2\cdots\log_2n \le 1\ }$，其中 $\log$ 有 $i$ 次，“迭代对数”的名字也因此而来。</p>
+<h3 id="结点的分组"><a href="#结点的分组" class="headerlink" title="结点的分组"></a>结点的分组</h3><p>我们依据 $H(i)$（或 $log^*(n)$）将结点分为如下的组：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">组号</th>
+<th style="text-align:center">0</th>
+<th style="text-align:center">1</th>
+<th style="text-align:center">2</th>
+<th style="text-align:center">3</th>
+<th style="text-align:center">4</th>
+<th style="text-align:center">5</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">所在层数</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">2 ~ 3</td>
+<td style="text-align:center">4 ~ 15</td>
+<td style="text-align:center">16 ~ 65535</td>
+<td style="text-align:center">65536 ~ $2^{65536}-1$</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>其中，第 0 组只有根结点，第 1 组是根结点的直接子结点。</p>
+<p>下面是来自维基百科的一幅图，将每个分组看作一个桶（Bucket）：</p>
+<p><img src="union-find-analysis-bucket.jpg" alt=""></p>
+<p>对于某一次 Find 操作 $A_i$，将结点到根的路径上的所有结点作为一个集合 $X_i$，将集合 $X_i$ 分为如下三组：</p>
+<p>$Y_i = {\ \mu \in X_i\ |\ \mu\ 为根或根的直接子结点\ }$</p>
+<p>$Z_i = {\ \mu \in X_i - Y_i\ |\ g(\mu) \lt g(p_i(\mu))\ }$</p>
+<p>$W_i = {\ \mu \in X_i - Y_i\ |\ g(\mu) = g(p_i(\mu))\ }$</p>
+<p>某次 Find 操作的代价是上面三个集合中每个点的代价的总和。</p>
+<p>那么我们可以得到如下的分析：</p>
+<ul>
+<li>对于 $Y_i$，虽然每次可能要换桶，但是由于此集合中是根结点或者根结点的直接子结点，我们可以保证换桶的次数在常数时间内，故时间复杂度为 $O(m)$；</li>
+<li>对于 $Z_i$，对于一棵有 n 个结点的树，最多有 $\log^<em>(n)$ 个不同的组，所以某条路径上能够属于 $Z_i$ 的结点最多有 $\log^</em>(n)$ 个，那么换桶的次数最多为 $\log^<em>(n)$ 次，故时间复杂度为 $O(m\log^</em>(n))$；</li>
+<li>对于 $W_i$，不需要换桶，所以时间复杂度正比于其中点的个数。</li>
+</ul>
+<p>下面有两个引理来辅助 $W_i$ 中点的个数的计算：</p>
+<ul>
+<li>Level Census Lemma：第 $l$ 层最多有 $n / 2^{l-1}$ 个结点<ul>
+<li>证明：假设第 $l$ 层有 $p$ 个结点，这些结点共有 $s$ 棵子树。我们知道，高度为 $h$ 的树（这里的树是 Union-Find 树）至少有 $2^h$ 个结点，那么高度为 $l-1$ 的 $s$ 棵子树共有 $s \cdot 2^{l-1}$ 个结点，同时必有 $s \cdot 2^{l-1} \le n$，也就是 $s \le n/2^{l-1}$，又 $p \le s$，所以 $p \le n/2^{l-1}$。</li>
+</ul>
+</li>
+<li>Group Census Lemma：编号为 $g$ 的组中最多有 $2n/H(g)$ 个结点<ul>
+<li>证明：编号为 $g$ 的组包括树的第 $H(g-1) + 1$ 到第 $H(g)$ 层，由上面的 Level Census 引理，我们有：$\sum_{l=H(g-1)+1}^{H(g)} \dfrac{n}{2^{l-1}} = \dfrac{n}{2^{H(g-1)}} + \dfrac{n}{2^{H(g-1)}\cdot 2} + \cdots + \dfrac{n}{2^{H(g-1)}\cdot 2^{H(g)-H(g-1)}}\le \dfrac{n\cdot(1 + \frac{1}{2} + \cdots)}{2^{H(g-1)}} = \dfrac{2n}{H(g)}$</li>
+</ul>
+</li>
+</ul>
+<p>同时，我们知道同一个桶中，某个结点改变其父结点的次数最多为 $H(g) - H(g-1) - 1​$ 次。接下来我们就可以计算 $W_i​$ 中结点总数：</p>
+<script type="math/tex; mode=display">\sum_{g=0}^{\log^*(n)} \dfrac{2n}{H(g)}(H(g) - H(g-1) - 1) \le \sum_{g=0}^{\log^*(n)}2n = 2n(1+\log^*(n))</script><p>综上，总的时间复杂度为 $O(m) + O(m\log^<em>(n)) + O(2n(1+\log^</em>(n))​$，由于我们假设 $m \ge n​$，所以最终得到使用带权合并和路径压缩的 Union-Find 程序的时间复杂度为 $O(m\log^*(n))​$</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://en.wikipedia.org/wiki/Proof_of_O(log*n" target="_blank" rel="noopener">维基百科：Union-Find 程序的复杂度分析</a>_time_complexity_of_union%E2%80%93find)</p>
+<p><a href="https://www2.cs.duke.edu/courses/fall08/cps230/Lectures/L-16.pdf" target="_blank" rel="noopener">Duke - Lecture Note：Union-Find</a></p>
 
       
     </div>
@@ -474,8 +433,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/12/04/approx-algo/" rel="next" title="">
-                <i class="fa fa-chevron-left"></i> 
+              <a href="/2018/12/05/correctness-verification/" rel="next" title="算法设计与分析：算法正确性验证">
+                <i class="fa fa-chevron-left"></i> 算法设计与分析：算法正确性验证
               </a>
             
           </div>
@@ -484,8 +443,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/12/04/graph-traversal/" rel="prev" title="">
-                 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/12/06/位运算奇技淫巧/" rel="prev" title="位运算奇技淫巧">
+                位运算奇技淫巧 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -618,7 +577,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#图遍历算法的应用"><span class="nav-number">1.</span> <span class="nav-text">图遍历算法的应用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#有向无环图（DAG）"><span class="nav-number">1.1.</span> <span class="nav-text">有向无环图（DAG）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#拓扑排序"><span class="nav-number">1.1.1.</span> <span class="nav-text">拓扑排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#任务调度"><span class="nav-number">1.1.2.</span> <span class="nav-text">任务调度</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#强连通分量"><span class="nav-number">1.2.</span> <span class="nav-text">强连通分量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#思路"><span class="nav-number">1.2.1.</span> <span class="nav-text">思路</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#确定-Leader"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">确定 Leader</span></a></li></ol></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#并查集"><span class="nav-number">1.</span> <span class="nav-text">并查集</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#分析"><span class="nav-number">1.1.</span> <span class="nav-text">分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#迭代对数"><span class="nav-number">1.1.1.</span> <span class="nav-text">迭代对数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结点的分组"><span class="nav-number">1.1.2.</span> <span class="nav-text">结点的分组</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">1.2.</span> <span class="nav-text">参考</span></a></li></ol></li></ol></div>
             
 
           </div>
