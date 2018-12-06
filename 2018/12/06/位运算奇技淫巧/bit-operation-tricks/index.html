@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="Bit Operation,">
 
 
 
@@ -79,17 +79,18 @@
 
 
 
-<meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="description" content="位运算奇技淫巧Copyright @ 韩琦 转载请注明出处 技巧 1：n &amp;amp; (n - 1)位运算有很多很有意思的技巧，有一个比较常见的就是求一个整数二进制表示中 1 的个数： 12345678int countOnes(int num) &amp;#123;    int count = 0;    while (num) &amp;#123;        num = num &amp;amp; (num -">
+<meta name="keywords" content="Bit Operation">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Getting Started Guide">
-<meta property="og:url" content="http://yoursite.com/2018/12/04/getting-started/index.html">
+<meta property="og:title" content="位运算奇技淫巧">
+<meta property="og:url" content="http://yoursite.com/2018/12/06/位运算奇技淫巧/bit-operation-tricks/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="位运算奇技淫巧Copyright @ 韩琦 转载请注明出处 技巧 1：n &amp;amp; (n - 1)位运算有很多很有意思的技巧，有一个比较常见的就是求一个整数二进制表示中 1 的个数： 12345678int countOnes(int num) &amp;#123;    int count = 0;    while (num) &amp;#123;        num = num &amp;amp; (num -">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-12-03T20:21:57.753Z">
+<meta property="og:updated_time" content="2018-12-06T04:30:46.393Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Getting Started Guide">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="twitter:title" content="位运算奇技淫巧">
+<meta name="twitter:description" content="位运算奇技淫巧Copyright @ 韩琦 转载请注明出处 技巧 1：n &amp;amp; (n - 1)位运算有很多很有意思的技巧，有一个比较常见的就是求一个整数二进制表示中 1 的个数： 12345678int countOnes(int num) &amp;#123;    int count = 0;    while (num) &amp;#123;        num = num &amp;amp; (num -">
 
 
 
@@ -119,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/12/04/getting-started/">
+  <link rel="canonical" href="http://yoursite.com/2018/12/06/位运算奇技淫巧/bit-operation-tricks/">
 
 
 
 
 
-  <title>Getting Started Guide | Hexo</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>位运算奇技淫巧 | Hexo</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -232,7 +233,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/04/getting-started/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/06/位运算奇技淫巧/bit-operation-tricks/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Han Qi">
@@ -249,7 +250,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Getting Started Guide</h1>
+          <h1 class="post-title" itemprop="name headline">位运算奇技淫巧</h1>
         
 
         <div class="post-meta">
@@ -261,8 +262,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-04T03:10:24+08:00">
-                2018-12-04
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-06T11:57:18+08:00">
+                2018-12-06
               </time>
             
 
@@ -271,6 +272,28 @@
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Programming/" itemprop="url" rel="index">
+                    <span itemprop="name">Programming</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -299,16 +322,38 @@
       
 
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
+        <h1 id="位运算奇技淫巧"><a href="#位运算奇技淫巧" class="headerlink" title="位运算奇技淫巧"></a>位运算奇技淫巧</h1><p>Copyright @ 韩琦</p>
+<p><strong>转载请注明出处</strong></p>
+<h2 id="技巧-1：n-amp-n-1"><a href="#技巧-1：n-amp-n-1" class="headerlink" title="技巧 1：n &amp; (n - 1)"></a>技巧 1：<code>n &amp; (n - 1)</code></h2><p>位运算有很多很有意思的技巧，有一个比较常见的就是求一个整数二进制表示中 1 的个数：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">countOnes</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (num) &#123;</span><br><span class="line">        num = num &amp; (num - <span class="number">1</span>);</span><br><span class="line">        count++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> count;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其中，<code>num &amp; (num - 1)</code> 中 1 的个数比 <code>num</code> 少 1。</p>
+<p>至于这个方法的正确性，可以直观的解释一下。分两种情况：</p>
+<ul>
+<li><code>num</code> 最低位为 1。假设有：<code>num = 1010 0010 1101 0111b</code>，那么 <code>num - 1</code> 的结果为 <code>1010 0010 1101 0110b</code>，<code>num &amp; (num - 1)</code>：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">  1010 0010 1101 0111  // num</span><br><span class="line">&amp; 1010 0010 1101 0110  // num - 1</span><br><span class="line">---------------------</span><br><span class="line">  1010 0010 1101 0110  // num &amp; (num - 1)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>num</code> 最低位为 0。假设有：<code>num = 1010 1000 0000 0000b</code>，那么 <code>num - 1</code> 的结果为 <code>1010 0111 1111 1111</code>，<code>num &amp; (num - 1)</code>：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">  1010 1000 0000 0000  // num</span><br><span class="line">&amp; 1010 0111 1111 1111  // num - 1</span><br><span class="line">---------------------</span><br><span class="line">  1010 0000 0000 0000  // num &amp; (num - 1)</span><br></pre></td></tr></table></figure>
+<p><strong>例</strong>（LeetCode 338：Counting Bits）：</p>
+<p>Given a non negative integer number <strong>num</strong>. For every numbers <strong>i</strong> in the range <strong>0 ≤ i ≤ num</strong> calculate the number of 1’s in their binary representation and return them as an array.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: 2</span><br><span class="line">Output: [0,1,1]</span><br></pre></td></tr></table></figure>
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: 5</span><br><span class="line">Output: [0,1,1,2,1,2]</span><br></pre></td></tr></table></figure>
+<p><strong>Follow up:</strong></p>
+<ul>
+<li>It is very easy to come up with a solution with run time <strong>O(n*sizeof(integer))</strong>. But can you do it in linear time <strong>O(n)</strong>/possibly in a single pass?</li>
+<li>Space complexity should be <strong>O(n)</strong>.</li>
+<li>Can you do it like a boss? Do it without using any builtin function like <code>__builtin_popcount</code> in C++ or in any other language.</li>
+</ul>
+<p>思路：可以采用规约的方式，一个数 i 中 1 的个数等于比 i 少 1 的数中 1 的个数加上 1</p>
+<p>代码：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; countBits(<span class="keyword">int</span> num) &#123;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; res(num + <span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line">    <span class="comment">// 可以直接确定的是，0 中 1 的个数为 0，所以直接从 i = 1 开始</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= num; i++) &#123;</span><br><span class="line">        res[i] = res[i &amp; (i - <span class="number">1</span>)] + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其实这个问题在同样的思路下还有另一种解法：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; countBits(<span class="keyword">int</span> num) &#123;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; res(num + <span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= num; i++) &#123;</span><br><span class="line">        res[i] = res[i &gt;&gt; <span class="number">1</span>] + (i &amp; <span class="number">0x01</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="技巧-2："><a href="#技巧-2：" class="headerlink" title="技巧 2："></a>技巧 2：</h2>
       
     </div>
     
@@ -323,6 +368,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/Bit-Operation/" rel="tag"># Bit Operation</a>
+          
+        </div>
+      
 
       
       
@@ -332,15 +383,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2018/12/06/位运算奇技淫巧/" rel="next" title="位运算奇技淫巧">
+                <i class="fa fa-chevron-left"></i> 位运算奇技淫巧
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/12/04/red-black-tree/" rel="prev" title="算法设计与分析：红黑树">
-                算法设计与分析：红黑树 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -472,7 +523,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#位运算奇技淫巧"><span class="nav-number">1.</span> <span class="nav-text">位运算奇技淫巧</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#技巧-1：n-amp-n-1"><span class="nav-number">1.1.</span> <span class="nav-text">技巧 1：n &amp; (n - 1)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#技巧-2："><span class="nav-number">1.2.</span> <span class="nav-text">技巧 2：</span></a></li></ol></li></ol></div>
             
 
           </div>

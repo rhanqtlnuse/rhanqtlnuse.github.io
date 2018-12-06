@@ -1,0 +1,69 @@
+<hr>
+<p>title: 位运算奇技淫巧<br>tags: Bit Operation</p>
+<h2 id="categories-Programming"><a href="#categories-Programming" class="headerlink" title="categories: Programming"></a>categories: Programming</h2><h1 id="位运算奇技淫巧"><a href="#位运算奇技淫巧" class="headerlink" title="位运算奇技淫巧"></a>位运算奇技淫巧</h1><p>Copyright @ 韩琦</p>
+<p><strong>转载请注明出处</strong></p>
+<h2 id="技巧-1：n-amp-n-1"><a href="#技巧-1：n-amp-n-1" class="headerlink" title="技巧 1：n &amp; (n - 1)"></a>技巧 1：<code>n &amp; (n - 1)</code></h2><p>位运算有很多很有意思的技巧，有一个比较常见的就是求一个整数二进制表示中 1 的个数：</p>
+<pre><code class="lang-C">int countOnes(int num) {
+    int count = 0;
+    while (num) {
+        num = num &amp; (num - 1);
+        count++;
+    }
+    return count;
+}
+</code></pre>
+<p>其中，<code>num &amp; (num - 1)</code> 中 1 的个数比 <code>num</code> 少 1。</p>
+<p>至于这个方法的正确性，可以直观的解释一下。分两种情况：</p>
+<ul>
+<li><code>num</code> 最低位为 1。假设有：<code>num = 1010 0010 1101 0111b</code>，那么 <code>num - 1</code> 的结果为 <code>1010 0010 1101 0110b</code>，<code>num &amp; (num - 1)</code>：</li>
+</ul>
+<pre><code class="lang-Plai">  1010 0010 1101 0111  // num
+&amp; 1010 0010 1101 0110  // num - 1
+---------------------
+  1010 0010 1101 0110  // num &amp; (num - 1)
+</code></pre>
+<ul>
+<li><code>num</code> 最低位为 0。假设有：<code>num = 1010 1000 0000 0000b</code>，那么 <code>num - 1</code> 的结果为 <code>1010 0111 1111 1111</code>，<code>num &amp; (num - 1)</code>：</li>
+</ul>
+<pre><code class="lang-Pla">  1010 1000 0000 0000  // num
+&amp; 1010 0111 1111 1111  // num - 1
+---------------------
+  1010 0000 0000 0000  // num &amp; (num - 1)
+</code></pre>
+<p><strong>例</strong>（LeetCode 338：Counting Bits）：</p>
+<p>Given a non negative integer number <strong>num</strong>. For every numbers <strong>i</strong> in the range <strong>0 ≤ i ≤ num</strong> calculate the number of 1’s in their binary representation and return them as an array.</p>
+<p><strong>Example 1:</strong></p>
+<pre><code class="lang-Plai">Input: 2
+Output: [0,1,1]
+</code></pre>
+<p><strong>Example 2:</strong></p>
+<pre><code class="lang-Plai">Input: 5
+Output: [0,1,1,2,1,2]
+</code></pre>
+<p><strong>Follow up:</strong></p>
+<ul>
+<li>It is very easy to come up with a solution with run time <strong>O(n*sizeof(integer))</strong>. But can you do it in linear time <strong>O(n)</strong>/possibly in a single pass?</li>
+<li>Space complexity should be <strong>O(n)</strong>.</li>
+<li>Can you do it like a boss? Do it without using any builtin function like <code>__builtin_popcount</code> in C++ or in any other language.</li>
+</ul>
+<p>思路：可以采用规约的方式，一个数 i 中 1 的个数等于比 i 少 1 的数中 1 的个数加上 1</p>
+<p>代码：</p>
+<pre><code class="lang-C++">vector&lt;int&gt; countBits(int num) {
+    vector&lt;int&gt; res(num + 1, 0);
+    // 可以直接确定的是，0 中 1 的个数为 0，所以直接从 i = 1 开始
+    for (int i = 1; i &lt;= num; i++) {
+        res[i] = res[i &amp; (i - 1)] + 1;
+    }
+    return res;
+}
+</code></pre>
+<p>其实这个问题在同样的思路下还有另一种解法：</p>
+<pre><code class="lang-C++">vector&lt;int&gt; countBits(int num) {
+    vector&lt;int&gt; res(num + 1, 0);
+    for (int i = 1; i &lt;= num; i++) {
+        res[i] = res[i &gt;&gt; 1] + (i &amp; 0x01);
+    }
+    return res;
+}
+</code></pre>
+<h2 id="技巧-2："><a href="#技巧-2：" class="headerlink" title="技巧 2："></a>技巧 2：</h2>

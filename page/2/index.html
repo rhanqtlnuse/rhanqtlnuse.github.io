@@ -229,6 +229,299 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/04/p-and-np/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/12/04/p-and-np/" itemprop="url">Untitled</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-04T04:21:29+08:00">
+                2018-12-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="P-和-NP"><a href="#P-和-NP" class="headerlink" title="P 和 NP"></a>P 和 NP</h1><p>决策问题/优化问题：如果能找到决策问题的解，那么通常也能找到优化问题的解，反之成立。</p>
+<h2 id="图灵机"><a href="#图灵机" class="headerlink" title="图灵机"></a>图灵机</h2><ul>
+<li>无限长的纸带</li>
+<li>读头：读/写</li>
+<li>状态寄存器：保存当前状态</li>
+<li>（有限的）状态转换表：根据当前状态和输入进行相应动作：<ul>
+<li>写/擦</li>
+<li>移动读头</li>
+</ul>
+</li>
+</ul>
+<h2 id="停机问题"><a href="#停机问题" class="headerlink" title="停机问题"></a>停机问题</h2><p>根据任意的计算机程序的描述和相应的输入，确定这个程序是否能停机</p>
+<p>不存在对任意的程序都有效的算法。</p>
+<p>假设存在这样一个算法 halts，能够确定任意的程序是否能够停机。那么有一个程序 g：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">g</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">if</span> halts(g):</span><br><span class="line">        loop_forever()</span><br></pre></td></tr></table></figure>
+<h2 id="P-和-NP-1"><a href="#P-和-NP-1" class="headerlink" title="P 和 NP"></a>P 和 NP</h2><p>P：考虑一个决策问题 P，I 是 P 的一个实例，令 |I| 表示 I 在二进制编码下的长度。如果对于所有的 I，P 的一个算法 A 的运行时间为 (|I|)$^{O(1)}$，那么 A 就是多项式边界的。</p>
+<ul>
+<li>P 是有多项式边界的算法的决策问题的集合</li>
+<li>P 是可以在多项式时间内<strong>解决</strong>的决策问题的集合</li>
+<li>注意：在集合 P 中不代表有高效的算法，比如 $\Theta(n^{100})​$</li>
+<li>不在 P 中的问题解决代价很高，P 中的问题有闭包属性，在 P 中的性质独立于计算模型</li>
+</ul>
+<h3 id="NP"><a href="#NP" class="headerlink" title="NP"></a>NP</h3><p>NP（Non-deterministic Polynomial Time）：非确定性图灵机。如果对于问题 P 的每一个实例，NTM 在 T(|I|) 步内正确地返回了 yes 或 no，我们就说 NTM 在 T(n) 时间内解决一个决策问题 P</p>
+<ul>
+<li>NP 是所有能够被 NTM 在多项式时间内<strong>验证</strong>的问题的集合。</li>
+</ul>
+<p>算法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">NonDeterministicAlgo(x):</span><br><span class="line">    cer = GenRndCertFree()</span><br><span class="line">    flag = Verify(cer, x)</span><br><span class="line">    if (flag == 1)</span><br><span class="line">        Output &quot;yes&quot;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Verify 这一步是确定性的</li>
+</ul>
+<p>P $\subset$ NP</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/04/np-completeness/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/12/04/np-completeness/" itemprop="url">Untitled</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-04T04:21:29+08:00">
+                2018-12-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="NP-完备性"><a href="#NP-完备性" class="headerlink" title="NP 完备性"></a>NP 完备性</h1><p><img src="p-np-decidable.png" width="300"></p>
+<p>NP-完备问题是 NP 问题中最难的问题</p>
+<p>如果一个问题 P 在集合 NP 中，并且如果存在一个 P 的算法，使得 NP 中的所有问题都能够在有限的额外工作的情况下解决，那么决策问题 P 就是 NP-完备的</p>
+<p>说人话：NP-完备问题就是说，某个 NP 问题 $P$ 有一个算法，对于 NP 问题集合中的其他问题，我们能够通过在这个算法中增加一些<strong>有限</strong>的额外工作令其得到解决，那么这个问题 P 就叫做 NP-完备问题。</p>
+<p>也就是说，如果我们对于问题 P 有一个算法，并且我们知道如何将问题 Q 的实例转化为问题 P 的实例，我们也就得到了解决问题 Q 的算法！</p>
+<p><img src="p-np-npc.png" width="300"></p>
+<p>多项式规约</p>
+<p>如果如下条件：</p>
+<ul>
+<li>T 可以在多项式时间内计算完成（取决于输入的长度）</li>
+<li>输入 x 是 Q 的 “yes” 输入当且仅当 T(x) 是 P 的 “yes” 输入</li>
+</ul>
+<p>成立，那么T 是一个从 Q 到 P 的多项式规约</p>
+<p>Q 是多项式可规约到 P 的：$Q \le_P P$</p>
+<p>P 至少与 Q 一样难</p>
+<p>NP-完备问题的另一种定义：如果一个问题 P 在集合 NP 中，并且对于 NP 集合中的每一个问题 Q，他是多项式可规约到 P 的，那么决策问题 P 就是 NP-完备的</p>
+<h2 id="NP-完备和-NP-难"><a href="#NP-完备和-NP-难" class="headerlink" title="NP-完备和 NP 难"></a>NP-完备和 NP 难</h2><p>如果对于一个决策问题 P 而言，NP 中的每一个问题 Q 都能够多项式规约为 P，那么 P 就是 NP 难的</p>
+<p>NP-难问题是至少与 NP 中最难的问题一样难的问题。一个决策问题 P 是 NP-完备的，如果它既是 NP 的又是 NP-难的</p>
+<p>一旦我们找到一个第一个 NP-完备的问题，那么找到其他 NP-完备问题就容易得多了：</p>
+<ol>
+<li>首先找到一个 NP-完备问题 P</li>
+<li>NP 中所有的问题 Q 都可以多项式规约为 P</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/04/graph-traversal/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1497,7 +1790,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -1508,12 +1801,21 @@
               
               <div class="site-state-item site-state-categories">
                 
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">categories</span>
                 
               </div>
             
 
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
             
 
           </nav>
