@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="图遍历算法及其性质图 G 中一个结点的三种状态：  未被发现：白色 被发现：灰色 完成：黑色  对于无向图而言，一个黑色的顶点不会再被访问；对于有向图而言，一个黑色的顶点可能再被访问。 白路径定理（White Path Theorem）：顶点 w 是顶点 v 的后代，当且仅当顶点 v 被发现时，从顶点 v 到顶点 w 的路径上所有的顶点都是白色的。 图遍历算法骨架DFS12345678910111">
+<meta name="description" content="函数调用在 Haskell 中拥有最高的优先级，所以 succ 9 * 10 的结果为 100，而不是所期望的 91 Haskell 中 if 语句（实际上是一个表达式）的 else 不可省略：if-then-else，也就是说，必须返回一个值 编写一些简单的函数（抽象），将其组合，形成更高级的抽象 有两个参数的函数可以使用中缀形式：div 9 3 等价于 9 `div` 3，注意使用反引号将函数">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/2018/12/04/graph-traversal/index.html">
+<meta property="og:title" content="Haskell 入门">
+<meta property="og:url" content="http://yoursite.com/2018/12/08/Haskell-入门/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="图遍历算法及其性质图 G 中一个结点的三种状态：  未被发现：白色 被发现：灰色 完成：黑色  对于无向图而言，一个黑色的顶点不会再被访问；对于有向图而言，一个黑色的顶点可能再被访问。 白路径定理（White Path Theorem）：顶点 w 是顶点 v 的后代，当且仅当顶点 v 被发现时，从顶点 v 到顶点 w 的路径上所有的顶点都是白色的。 图遍历算法骨架DFS12345678910111">
+<meta property="og:description" content="函数调用在 Haskell 中拥有最高的优先级，所以 succ 9 * 10 的结果为 100，而不是所期望的 91 Haskell 中 if 语句（实际上是一个表达式）的 else 不可省略：if-then-else，也就是说，必须返回一个值 编写一些简单的函数（抽象），将其组合，形成更高级的抽象 有两个参数的函数可以使用中缀形式：div 9 3 等价于 9 `div` 3，注意使用反引号将函数">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-11-11T11:30:40.273Z">
+<meta property="og:updated_time" content="2018-12-08T06:50:46.872Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
-<meta name="twitter:description" content="图遍历算法及其性质图 G 中一个结点的三种状态：  未被发现：白色 被发现：灰色 完成：黑色  对于无向图而言，一个黑色的顶点不会再被访问；对于有向图而言，一个黑色的顶点可能再被访问。 白路径定理（White Path Theorem）：顶点 w 是顶点 v 的后代，当且仅当顶点 v 被发现时，从顶点 v 到顶点 w 的路径上所有的顶点都是白色的。 图遍历算法骨架DFS12345678910111">
+<meta name="twitter:title" content="Haskell 入门">
+<meta name="twitter:description" content="函数调用在 Haskell 中拥有最高的优先级，所以 succ 9 * 10 的结果为 100，而不是所期望的 91 Haskell 中 if 语句（实际上是一个表达式）的 else 不可省略：if-then-else，也就是说，必须返回一个值 编写一些简单的函数（抽象），将其组合，形成更高级的抽象 有两个参数的函数可以使用中缀形式：div 9 3 等价于 9 `div` 3，注意使用反引号将函数">
 
 
 
@@ -119,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/12/04/graph-traversal/">
+  <link rel="canonical" href="http://yoursite.com/2018/12/08/Haskell-入门/">
 
 
 
 
 
-  <title> | Hexo</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>Haskell 入门 | Hexo</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -232,7 +232,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/04/graph-traversal/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/08/Haskell-入门/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Han Qi">
@@ -249,7 +249,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline"></h1>
+          <h1 class="post-title" itemprop="name headline">Haskell 入门</h1>
         
 
         <div class="post-meta">
@@ -261,8 +261,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-04T04:21:29+08:00">
-                2018-12-04
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-08T14:49:32+08:00">
+                2018-12-08
               </time>
             
 
@@ -271,6 +271,28 @@
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/FP-Haskell/" itemprop="url" rel="index">
+                    <span itemprop="name">FP, Haskell</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -299,27 +321,45 @@
       
 
       
-        <h1 id="图遍历算法及其性质"><a href="#图遍历算法及其性质" class="headerlink" title="图遍历算法及其性质"></a>图遍历算法及其性质</h1><p>图 G 中一个结点的三种状态：</p>
+        <p>函数调用在 Haskell 中拥有最高的优先级，所以 <code>succ 9 * 10</code> 的结果为 100，而不是所期望的 91</p>
+<p>Haskell 中 <code>if</code> 语句（实际上是一个表达式）的 <code>else</code> 不可省略：<code>if-then-else</code>，也就是说，必须返回一个值</p>
+<p>编写一些简单的函数（抽象），将其组合，形成更高级的抽象</p>
+<p>有两个参数的函数可以使用中缀形式：<code>div 9 3</code> 等价于 <code>9 `div` 3</code>，注意使用<strong>反引号</strong>将函数名括起来和参数的顺序</p>
+<p>变量的值不可修改！！！（更像数学中的变量，而不是编程中的变量），但可以对变量重新赋值</p>
+<p>Haskell 中<strong>不允许</strong>首字母大写的函数</p>
+<p>常量定义：<code>let &lt;var_name&gt; = &lt;value&gt;</code> 或 <code>&lt;var_name&gt; = &lt;value&gt;</code>，注意 <code>&lt;var_name&gt;</code> 首字母<strong>小写</strong>！</p>
+<h1 id="List"><a href="#List" class="headerlink" title="List"></a>List</h1><p><strong>单类型</strong>数据数据结构</p>
+<p>空 List：<code>[]</code></p>
+<h2 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h2><p>列表连接：<code>&lt;list1&gt; ++ &lt;list2&gt;</code></p>
+<p>字符串实际上是字符数组，所以可以使用 <code>&quot;hello&quot; ++ &quot; &quot; ++ &quot;world&quot;</code></p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">ghci</span>&gt; str1 = ['h', 'e', 'l', 'l', 'o']</span><br><span class="line"><span class="title">ghci</span>&gt; str2 = ['w', 'o', 'r', 'l', 'd']</span><br><span class="line"><span class="title">ghci</span>&gt; str1 ++ <span class="string">" "</span> ++ str2</span><br><span class="line"><span class="string">"hello world"</span></span><br></pre></td></tr></table></figure>
+<p>可以使用 <code>：</code> 将一个元素连接到 List 的头部（Lisp 的 <code>cons &lt;elem&gt; &lt;list&gt;</code>），<code>[1, 2, 3]</code> 实际上是 <code>1：2：3：[]</code> 的语法糖</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">ghci</span>&gt; 'h':'e':'l':'l':'o':[]</span><br><span class="line"><span class="string">"hello"</span></span><br></pre></td></tr></table></figure>
+<p>通过下标访问：<code>!!</code>，下标从 0 开始，超出范围会报错</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">ghci</span>&gt; [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>] !! <span class="number">3</span></span><br><span class="line"><span class="number">4</span></span><br></pre></td></tr></table></figure>
+<h3 id="比较大小"><a href="#比较大小" class="headerlink" title="比较大小"></a>比较大小</h3><p>当 List 中装有<strong>可比较</strong>的元素时，可以使用关系运算符比较列表的大小。从第一个元素开始比较如果能够决定结果，直接返回，否则继续向后比较。</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">ghci</span>&gt; [<span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>] &gt; [<span class="number">2</span>, <span class="number">1</span>, <span class="number">0</span>]</span><br><span class="line"><span class="type">True</span></span><br><span class="line"><span class="title">ghci</span>&gt; [<span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>] &gt; [<span class="number">2</span>, <span class="number">10</span>, <span class="number">100</span>]</span><br><span class="line"><span class="type">True</span></span><br><span class="line"><span class="title">ghci</span>&gt; [<span class="number">3</span>, <span class="number">4</span>, <span class="number">2</span>] &gt; [<span class="number">3</span>, <span class="number">4</span>]</span><br><span class="line"><span class="type">True</span></span><br><span class="line"><span class="title">ghci</span>&gt; [<span class="number">3</span>, <span class="number">4</span>, <span class="number">2</span>] &gt; [<span class="number">2</span>, <span class="number">4</span>]</span><br><span class="line"><span class="type">True</span></span><br><span class="line"><span class="title">ghci</span>&gt; [<span class="number">3</span>, <span class="number">4</span>, <span class="number">2</span>] == [<span class="number">3</span>, <span class="number">4</span>, <span class="number">2</span>]</span><br><span class="line"><span class="type">True</span></span><br></pre></td></tr></table></figure>
+<h3 id="其他常用函数"><a href="#其他常用函数" class="headerlink" title="其他常用函数"></a>其他常用函数</h3><p><code>head</code>：返回 List 的首个元素（Lisp 的 <code>car</code>）</p>
+<p><code>tail</code>：返回 List 的去除首个元素的部分（Lisp 的 <code>cdr</code>）</p>
+<p><code>last</code>：返回 List 的最后一个元素</p>
+<p><code>init</code>：返回 List 去除最后一个元素的部分</p>
+<p>注意：对空 List 使用这些函数会在运行期产生异常</p>
+<p><code>length</code></p>
+<p><code>null</code>：检查一个列表是否为空</p>
 <ul>
-<li>未被发现：白色</li>
-<li>被发现：灰色</li>
-<li>完成：黑色</li>
+<li>避免使用 <code>xs == []</code></li>
 </ul>
-<p>对于无向图而言，一个黑色的顶点不会再被访问；对于有向图而言，一个黑色的顶点可能再被访问。</p>
-<p>白路径定理（White Path Theorem）：顶点 w 是顶点 v 的后代，当且仅当顶点 v 被发现时，从顶点 v 到顶点 w 的路径上所有的顶点都是白色的。</p>
-<h2 id="图遍历算法骨架"><a href="#图遍历算法骨架" class="headerlink" title="图遍历算法骨架"></a>图遍历算法骨架</h2><h3 id="DFS"><a href="#DFS" class="headerlink" title="DFS"></a>DFS</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">dfs(graph, v, color, ...) // 可以增加参数</span><br><span class="line">    adj &lt;- graph.adjs[v]</span><br><span class="line">    color[v] &lt;- GRAY</span><br><span class="line">    // 此处可以对顶点进行处理 pre-order</span><br><span class="line">    while adj != NIL</span><br><span class="line">        w &lt;- first(adj)</span><br><span class="line">        if color[w] = WHITE</span><br><span class="line">            // 此处可以对边 vw 进行一次处理</span><br><span class="line">            ret &lt;- dfs(graph, w, color, ...)</span><br><span class="line">            // 此处可以利用 ret 对 vw 进行处理</span><br><span class="line">        else</span><br><span class="line">            check edge vw</span><br><span class="line">            // 此处可以对边 vw 进行处理</span><br><span class="line">        adj &lt;- rest(adj)</span><br><span class="line">    color[v] &lt;- BLACK</span><br><span class="line">    // 此处可以对顶点进行处理 post-order</span><br></pre></td></tr></table></figure>
-<h3 id="BFS"><a href="#BFS" class="headerlink" title="BFS"></a>BFS</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">bfs(graph, start, color, ...)</span><br><span class="line">   queue.enqueue(start)</span><br><span class="line">   while queue is not empty</span><br><span class="line">       v &lt;- queue.dequeue()</span><br><span class="line">       color[v] &lt;- GRAY</span><br><span class="line">       for w in graph.adjs(v)</span><br><span class="line">           if color[w] = WHITE</span><br><span class="line">               queue.enqueue(w)</span><br><span class="line">       color[v] = BLACK</span><br><span class="line">       // 此处可以对顶点 v 进行处理</span><br></pre></td></tr></table></figure>
-<h2 id="活动区间"><a href="#活动区间" class="headerlink" title="活动区间"></a>活动区间</h2><p>活动区间是指一个顶点从被发现到完成（保持灰色）的时间。</p>
-<h3 id="活动区间的性质"><a href="#活动区间的性质" class="headerlink" title="活动区间的性质"></a>活动区间的性质</h3><p>如果顶点 w 是顶点 v 的后代，那么 w 的活动区间真包含于 v 的活动区间，反之成立。</p>
-<h2 id="图遍历过程中的几种边"><a href="#图遍历过程中的几种边" class="headerlink" title="图遍历过程中的几种边"></a>图遍历过程中的几种边</h2><ul>
-<li>树边（Tree Edge）：如果边 vw 是一条树边，那么 w 的活动区间真包含于 v 的活动区间，且不存在中间顶点 x，有 w 的活动区间真包含于 x 的活动区间，x 的活动区间真包含于 v 的活动区间。</li>
-<li>后代边（Descendant Edge）：如果边 vw 是一条后代边，那么一定存在某一中间顶点 x，有w 的活动区间真包含于 x 的活动区间，x 的活动区间真包含于 v 的活动区间</li>
-<li>回边（Back Edge）：如果边 vw 是一条回边，那么 v 的活动区间真包含于 w 的活动区间</li>
-<li>交叉边（Cross Edge）：如果边 vw 是一条交叉边，那么 w 的活动区间在 v 的活动区间之前，且二者不相交（注意顺序）<ul>
-<li>如果 v 的活动区间在 w 的活动区间之前，那么边 vw 就变成了一条树边</li>
+<p><code>reverse</code>：将 List 反转</p>
+<p><code>take &lt;count&gt; &lt;list&gt;</code>：取出列表的前 count 个元素</p>
+<ul>
+<li>也可以使用中缀形式：<code>3 `take` [1, 2, 3, 4, 5, 6]</code></li>
+<li>如果 <code>count == 0</code>，那么返回 <code>[]</code></li>
+<li>如果 <code>count &gt;= length</code>，那么返回原 List</li>
 </ul>
-</li>
-</ul>
+<p><code>drop &lt;count&gt; &lt;list&gt;</code>：删除 List 的前 count 个元素，与 <code>take</code> 大体相同</p>
+<p><code>maximum</code> 和 <code>minimum</code></p>
+<p><code>sum</code> 和 <code>product</code></p>
+<p><code>elem</code>：判断一个元素是否在 List 中，通常以中缀形式使用</p>
 
       
     </div>
@@ -344,8 +384,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/12/04/dag-scc/" rel="next" title="算法设计与分析：图遍历算法的应用 —— DAG 和 SCC">
-                <i class="fa fa-chevron-left"></i> 算法设计与分析：图遍历算法的应用 —— DAG 和 SCC
+              <a href="/2018/12/06/位运算奇技淫巧/" rel="next" title="位运算奇技淫巧">
+                <i class="fa fa-chevron-left"></i> 位运算奇技淫巧
               </a>
             
           </div>
@@ -353,10 +393,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/12/04/np-completeness/" rel="prev" title="">
-                 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -488,7 +524,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#图遍历算法及其性质"><span class="nav-number">1.</span> <span class="nav-text">图遍历算法及其性质</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#图遍历算法骨架"><span class="nav-number">1.1.</span> <span class="nav-text">图遍历算法骨架</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#DFS"><span class="nav-number">1.1.1.</span> <span class="nav-text">DFS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BFS"><span class="nav-number">1.1.2.</span> <span class="nav-text">BFS</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#活动区间"><span class="nav-number">1.2.</span> <span class="nav-text">活动区间</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#活动区间的性质"><span class="nav-number">1.2.1.</span> <span class="nav-text">活动区间的性质</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图遍历过程中的几种边"><span class="nav-number">1.3.</span> <span class="nav-text">图遍历过程中的几种边</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#List"><span class="nav-number">1.</span> <span class="nav-text">List</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#操作"><span class="nav-number">1.1.</span> <span class="nav-text">操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#比较大小"><span class="nav-number">1.1.1.</span> <span class="nav-text">比较大小</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他常用函数"><span class="nav-number">1.1.2.</span> <span class="nav-text">其他常用函数</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>

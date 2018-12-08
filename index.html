@@ -229,6 +229,186 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/08/Haskell-入门/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/12/08/Haskell-入门/" itemprop="url">Haskell 入门</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-08T14:49:32+08:00">
+                2018-12-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/FP-Haskell/" itemprop="url" rel="index">
+                    <span itemprop="name">FP, Haskell</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>函数调用在 Haskell 中拥有最高的优先级，所以 <code>succ 9 * 10</code> 的结果为 100，而不是所期望的 91</p>
+<p>Haskell 中 <code>if</code> 语句（实际上是一个表达式）的 <code>else</code> 不可省略：<code>if-then-else</code>，也就是说，必须返回一个值</p>
+<p>编写一些简单的函数（抽象），将其组合，形成更高级的抽象</p>
+<p>有两个参数的函数可以使用中缀形式：<code>div 9 3</code> 等价于 <code>9 `div` 3</code>，注意使用<strong>反引号</strong>将函数名括起来和参数的顺序</p>
+<p>变量的值不可修改！！！（更像数学中的变量，而不是编程中的变量），但可以对变量重新赋值</p>
+<p>Haskell 中<strong>不允许</strong>首字母大写的函数</p>
+<p>常量定义：<code>let &lt;var_name&gt; = &lt;value&gt;</code> 或 <code>&lt;var_name&gt; = &lt;value&gt;</code>，注意 <code>&lt;var_name&gt;</code> 首字母<strong>小写</strong>！</p>
+<h1 id="List"><a href="#List" class="headerlink" title="List"></a>List</h1><p><strong>单类型</strong>数据数据结构</p>
+<p>空 List：<code>[]</code></p>
+<h2 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h2><p>列表连接：<code>&lt;list1&gt; ++ &lt;list2&gt;</code></p>
+<p>字符串实际上是字符数组，所以可以使用 <code>&quot;hello&quot; ++ &quot; &quot; ++ &quot;world&quot;</code></p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">ghci</span>&gt; str1 = ['h', 'e', 'l', 'l', 'o']</span><br><span class="line"><span class="title">ghci</span>&gt; str2 = ['w', 'o', 'r', 'l', 'd']</span><br><span class="line"><span class="title">ghci</span>&gt; str1 ++ <span class="string">" "</span> ++ str2</span><br><span class="line"><span class="string">"hello world"</span></span><br></pre></td></tr></table></figure>
+<p>可以使用 <code>：</code> 将一个元素连接到 List 的头部（Lisp 的 <code>cons &lt;elem&gt; &lt;list&gt;</code>），<code>[1, 2, 3]</code> 实际上是 <code>1：2：3：[]</code> 的语法糖</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">ghci</span>&gt; 'h':'e':'l':'l':'o':[]</span><br><span class="line"><span class="string">"hello"</span></span><br></pre></td></tr></table></figure>
+<p>通过下标访问：<code>!!</code>，下标从 0 开始，超出范围会报错</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">ghci</span>&gt; [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>] !! <span class="number">3</span></span><br><span class="line"><span class="number">4</span></span><br></pre></td></tr></table></figure>
+<h3 id="比较大小"><a href="#比较大小" class="headerlink" title="比较大小"></a>比较大小</h3><p>当 List 中装有<strong>可比较</strong>的元素时，可以使用关系运算符比较列表的大小。从第一个元素开始比较如果能够决定结果，直接返回，否则继续向后比较。</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">ghci</span>&gt; [<span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>] &gt; [<span class="number">2</span>, <span class="number">1</span>, <span class="number">0</span>]</span><br><span class="line"><span class="type">True</span></span><br><span class="line"><span class="title">ghci</span>&gt; [<span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>] &gt; [<span class="number">2</span>, <span class="number">10</span>, <span class="number">100</span>]</span><br><span class="line"><span class="type">True</span></span><br><span class="line"><span class="title">ghci</span>&gt; [<span class="number">3</span>, <span class="number">4</span>, <span class="number">2</span>] &gt; [<span class="number">3</span>, <span class="number">4</span>]</span><br><span class="line"><span class="type">True</span></span><br><span class="line"><span class="title">ghci</span>&gt; [<span class="number">3</span>, <span class="number">4</span>, <span class="number">2</span>] &gt; [<span class="number">2</span>, <span class="number">4</span>]</span><br><span class="line"><span class="type">True</span></span><br><span class="line"><span class="title">ghci</span>&gt; [<span class="number">3</span>, <span class="number">4</span>, <span class="number">2</span>] == [<span class="number">3</span>, <span class="number">4</span>, <span class="number">2</span>]</span><br><span class="line"><span class="type">True</span></span><br></pre></td></tr></table></figure>
+<h3 id="其他常用函数"><a href="#其他常用函数" class="headerlink" title="其他常用函数"></a>其他常用函数</h3><p><code>head</code>：返回 List 的首个元素（Lisp 的 <code>car</code>）</p>
+<p><code>tail</code>：返回 List 的去除首个元素的部分（Lisp 的 <code>cdr</code>）</p>
+<p><code>last</code>：返回 List 的最后一个元素</p>
+<p><code>init</code>：返回 List 去除最后一个元素的部分</p>
+<p>注意：对空 List 使用这些函数会在运行期产生异常</p>
+<p><code>length</code></p>
+<p><code>null</code>：检查一个列表是否为空</p>
+<ul>
+<li>避免使用 <code>xs == []</code></li>
+</ul>
+<p><code>reverse</code>：将 List 反转</p>
+<p><code>take &lt;count&gt; &lt;list&gt;</code>：取出列表的前 count 个元素</p>
+<ul>
+<li>也可以使用中缀形式：<code>3 `take` [1, 2, 3, 4, 5, 6]</code></li>
+<li>如果 <code>count == 0</code>，那么返回 <code>[]</code></li>
+<li>如果 <code>count &gt;= length</code>，那么返回原 List</li>
+</ul>
+<p><code>drop &lt;count&gt; &lt;list&gt;</code>：删除 List 的前 count 个元素，与 <code>take</code> 大体相同</p>
+<p><code>maximum</code> 和 <code>minimum</code></p>
+<p><code>sum</code> 和 <code>product</code></p>
+<p><code>elem</code>：判断一个元素是否在 List 中，通常以中缀形式使用</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/06/位运算奇技淫巧/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1673,148 +1853,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/04/np-completeness/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/12/04/np-completeness/" itemprop="url">Untitled</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-04T04:21:29+08:00">
-                2018-12-04
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="NP-完备性"><a href="#NP-完备性" class="headerlink" title="NP 完备性"></a>NP 完备性</h1><p><img src="p-np-decidable.png" width="300"></p>
-<p>NP-完备问题是 NP 问题中最难的问题</p>
-<p>如果一个问题 P 在集合 NP 中，并且如果存在一个 P 的算法，使得 NP 中的所有问题都能够在有限的额外工作的情况下解决，那么决策问题 P 就是 NP-完备的</p>
-<p>说人话：NP-完备问题就是说，某个 NP 问题 $P$ 有一个算法，对于 NP 问题集合中的其他问题，我们能够通过在这个算法中增加一些<strong>有限</strong>的额外工作令其得到解决，那么这个问题 P 就叫做 NP-完备问题。</p>
-<p>也就是说，如果我们对于问题 P 有一个算法，并且我们知道如何将问题 Q 的实例转化为问题 P 的实例，我们也就得到了解决问题 Q 的算法！</p>
-<p><img src="p-np-npc.png" width="300"></p>
-<p>多项式规约</p>
-<p>如果如下条件：</p>
-<ul>
-<li>T 可以在多项式时间内计算完成（取决于输入的长度）</li>
-<li>输入 x 是 Q 的 “yes” 输入当且仅当 T(x) 是 P 的 “yes” 输入</li>
-</ul>
-<p>成立，那么T 是一个从 Q 到 P 的多项式规约</p>
-<p>Q 是多项式可规约到 P 的：$Q \le_P P$</p>
-<p>P 至少与 Q 一样难</p>
-<p>NP-完备问题的另一种定义：如果一个问题 P 在集合 NP 中，并且对于 NP 集合中的每一个问题 Q，他是多项式可规约到 P 的，那么决策问题 P 就是 NP-完备的</p>
-<h2 id="NP-完备和-NP-难"><a href="#NP-完备和-NP-难" class="headerlink" title="NP-完备和 NP 难"></a>NP-完备和 NP 难</h2><p>如果对于一个决策问题 P 而言，NP 中的每一个问题 Q 都能够多项式规约为 P，那么 P 就是 NP 难的</p>
-<p>NP-难问题是至少与 NP 中最难的问题一样难的问题。一个决策问题 P 是 NP-完备的，如果它既是 NP 的又是 NP-难的</p>
-<p>一旦我们找到一个第一个 NP-完备的问题，那么找到其他 NP-完备问题就容易得多了：</p>
-<ol>
-<li>首先找到一个 NP-完备问题 P</li>
-<li>NP 中所有的问题 Q 都可以多项式规约为 P</li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1865,7 +1903,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -1876,7 +1914,7 @@
               
               <div class="site-state-item site-state-categories">
                 
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">categories</span>
                 
               </div>
