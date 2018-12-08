@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="什么是红黑树？红黑树首先是一棵二叉搜索树（BST），具有良好的平衡性质 为什么要使用红黑树？C++ 中的 map我们知道 HashMap 的平均时间复杂度为 O(1)（可以参考《算法导论》的相关分析），map 的平均时间复杂度为 $O(\lg n)$ 的，实践上是不是 HashMap 一定优于 map 呢？这里面有几个因素要考虑：  HashMap 内存效率比 map 差，这是显而易见的； map">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-12-03T20:16:06.925Z">
+<meta property="og:updated_time" content="2018-12-08T07:12:33.621Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="算法设计与分析：红黑树">
 <meta name="twitter:description" content="什么是红黑树？红黑树首先是一棵二叉搜索树（BST），具有良好的平衡性质 为什么要使用红黑树？C++ 中的 map我们知道 HashMap 的平均时间复杂度为 O(1)（可以参考《算法导论》的相关分析），map 的平均时间复杂度为 $O(\lg n)$ 的，实践上是不是 HashMap 一定优于 map 呢？这里面有几个因素要考虑：  HashMap 内存效率比 map 差，这是显而易见的； map">
@@ -330,8 +330,8 @@
 <li><code>HashMap</code> 查找时候要算 hash，这个最坏时间复杂度是 $O(m)$（M是key字符串的长度），如果你的 key 非常非常非常非常非常非常……长，基于比较的 <code>map</code> 通常只使用头几个字符进行比较，而 <code>HashMap</code> 要 $O(M)$ 地算出 hash；</li>
 <li>内存布局会影响内存局部性，对性能会有影响。</li>
 </ol>
-<h1 id="红黑树的具体实现"><a href="#红黑树的具体实现" class="headerlink" title="红黑树的具体实现"></a>红黑树的具体实现</h1><p>这里会介绍两种方式，分别参考 《算法（第四版）》和《Computer Algorithms: Introduction to Design And Analysis》</p>
-<h2 id="《算法》"><a href="#《算法》" class="headerlink" title="《算法》"></a>《算法》</h2><h2 id="《Computer-Algorithms》"><a href="#《Computer-Algorithms》" class="headerlink" title="《Computer Algorithms》"></a>《Computer Algorithms》</h2><h1 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h1><h1 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h1>
+<h1 id="红黑树的具体实现"><a href="#红黑树的具体实现" class="headerlink" title="红黑树的具体实现"></a>红黑树的具体实现</h1><p>这里会介绍三种方式，命令式视角：参考<a href="https://www.amazon.cn/dp/B009OCFQ0O/ref=sr_1_1?ie=UTF8&amp;qid=1544252889&amp;sr=8-1&amp;keywords=%E7%AE%97%E6%B3%95" target="_blank" rel="noopener">《算法（第 4 版）》</a>、<a href="https://www.amazon.com/Computer-Algorithms-Introduction-Design-Analysis/dp/0201612445" target="_blank" rel="noopener">《Computer Algorithms: Introduction to Design And Analysis》</a>（以下简称《Computer Algorithms》），函数式视角：参考刘新宇老师的<a href="https://www.amazon.cn/dp/B01N9JOTF6/ref=sr_1_1?ie=UTF8&amp;qid=1544252865&amp;sr=8-1&amp;keywords=%E7%AE%97%E6%B3%95%E6%96%B0%E8%A7%A3" target="_blank" rel="noopener">《算法新解》</a></p>
+<h2 id="命令式视角"><a href="#命令式视角" class="headerlink" title="命令式视角"></a>命令式视角</h2><h3 id="旋转（来自《算法》）"><a href="#旋转（来自《算法》）" class="headerlink" title="旋转（来自《算法》）"></a>旋转（来自《算法》）</h3><h3 id="直接调整（来自《Computer-Algorithms》）"><a href="#直接调整（来自《Computer-Algorithms》）" class="headerlink" title="直接调整（来自《Computer Algorithms》）"></a>直接调整（来自《Computer Algorithms》）</h3><h2 id="函数式视角"><a href="#函数式视角" class="headerlink" title="函数式视角"></a>函数式视角</h2><h1 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h1><h1 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h1>
       
     </div>
     
@@ -455,7 +455,7 @@
               
               <div class="site-state-item site-state-categories">
                 
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">categories</span>
                 
               </div>
@@ -499,7 +499,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是红黑树？"><span class="nav-number">1.</span> <span class="nav-text">什么是红黑树？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#为什么要使用红黑树？"><span class="nav-number">2.</span> <span class="nav-text">为什么要使用红黑树？</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#C-中的-map"><span class="nav-number">2.1.</span> <span class="nav-text">C++ 中的 map</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#红黑树的具体实现"><span class="nav-number">3.</span> <span class="nav-text">红黑树的具体实现</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#《算法》"><span class="nav-number">3.1.</span> <span class="nav-text">《算法》</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#《Computer-Algorithms》"><span class="nav-number">3.2.</span> <span class="nav-text">《Computer Algorithms》</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#分析"><span class="nav-number">4.</span> <span class="nav-text">分析</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#性质"><span class="nav-number">5.</span> <span class="nav-text">性质</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是红黑树？"><span class="nav-number">1.</span> <span class="nav-text">什么是红黑树？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#为什么要使用红黑树？"><span class="nav-number">2.</span> <span class="nav-text">为什么要使用红黑树？</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#C-中的-map"><span class="nav-number">2.1.</span> <span class="nav-text">C++ 中的 map</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#红黑树的具体实现"><span class="nav-number">3.</span> <span class="nav-text">红黑树的具体实现</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#命令式视角"><span class="nav-number">3.1.</span> <span class="nav-text">命令式视角</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#旋转（来自《算法》）"><span class="nav-number">3.1.1.</span> <span class="nav-text">旋转（来自《算法》）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#直接调整（来自《Computer-Algorithms》）"><span class="nav-number">3.1.2.</span> <span class="nav-text">直接调整（来自《Computer Algorithms》）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数式视角"><span class="nav-number">3.2.</span> <span class="nav-text">函数式视角</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#分析"><span class="nav-number">4.</span> <span class="nav-text">分析</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#性质"><span class="nav-number">5.</span> <span class="nav-text">性质</span></a></li></ol></div>
             
 
           </div>
