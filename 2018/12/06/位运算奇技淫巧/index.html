@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="位运算奇技淫巧Copyright @ 韩琦 转载请注明出处 技巧 1：n &amp;amp; (n - 1)位运算有很多很有意思的技巧，有一个比较常见的就是求一个整数二进制表示中 1 的个数： 12345678int countOnes(int num) &amp;#123;    int count = 0;    while (num) &amp;#123;        num = num &amp;amp; (num -">
+<meta name="description" content="Copyright @韩琦 转载请注明出处  技巧 0：n &amp;amp; 0x01这个方法就是用来判断 n 的奇偶性，但是需要注意的一点是，这个方式与 n % 2 的结果不太一样：n &amp;amp; 0x01 总是返回 0 或 1，而当 n 为负数时，n % 2 可能返回 -1。因为 -(a % b) == (-a) % b 对任何 a，b（b $\ne$ 0）都成立 技巧 1：n &amp;amp; (n">
 <meta name="keywords" content="Bit Operation">
 <meta property="og:type" content="article">
 <meta property="og:title" content="位运算奇技淫巧">
 <meta property="og:url" content="http://yoursite.com/2018/12/06/位运算奇技淫巧/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="位运算奇技淫巧Copyright @ 韩琦 转载请注明出处 技巧 1：n &amp;amp; (n - 1)位运算有很多很有意思的技巧，有一个比较常见的就是求一个整数二进制表示中 1 的个数： 12345678int countOnes(int num) &amp;#123;    int count = 0;    while (num) &amp;#123;        num = num &amp;amp; (num -">
+<meta property="og:description" content="Copyright @韩琦 转载请注明出处  技巧 0：n &amp;amp; 0x01这个方法就是用来判断 n 的奇偶性，但是需要注意的一点是，这个方式与 n % 2 的结果不太一样：n &amp;amp; 0x01 总是返回 0 或 1，而当 n 为负数时，n % 2 可能返回 -1。因为 -(a % b) == (-a) % b 对任何 a，b（b $\ne$ 0）都成立 技巧 1：n &amp;amp; (n">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-12-06T12:38:25.210Z">
+<meta property="og:updated_time" content="2018-12-08T12:03:26.739Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="位运算奇技淫巧">
-<meta name="twitter:description" content="位运算奇技淫巧Copyright @ 韩琦 转载请注明出处 技巧 1：n &amp;amp; (n - 1)位运算有很多很有意思的技巧，有一个比较常见的就是求一个整数二进制表示中 1 的个数： 12345678int countOnes(int num) &amp;#123;    int count = 0;    while (num) &amp;#123;        num = num &amp;amp; (num -">
+<meta name="twitter:description" content="Copyright @韩琦 转载请注明出处  技巧 0：n &amp;amp; 0x01这个方法就是用来判断 n 的奇偶性，但是需要注意的一点是，这个方式与 n % 2 的结果不太一样：n &amp;amp; 0x01 总是返回 0 或 1，而当 n 为负数时，n % 2 可能返回 -1。因为 -(a % b) == (-a) % b 对任何 a，b（b $\ne$ 0）都成立 技巧 1：n &amp;amp; (n">
 
 
 
@@ -322,8 +322,11 @@
       
 
       
-        <h1 id="位运算奇技淫巧"><a href="#位运算奇技淫巧" class="headerlink" title="位运算奇技淫巧"></a>位运算奇技淫巧</h1><p>Copyright @ 韩琦</p>
+        <blockquote>
+<p>Copyright @韩琦</p>
 <p><strong>转载请注明出处</strong></p>
+</blockquote>
+<h2 id="技巧-0：n-amp-0x01"><a href="#技巧-0：n-amp-0x01" class="headerlink" title="技巧 0：n &amp; 0x01"></a>技巧 0：<code>n &amp; 0x01</code></h2><p>这个方法就是用来判断 <code>n</code> 的奇偶性，但是需要注意的一点是，这个方式与 <code>n % 2</code> 的结果不太一样：<code>n &amp; 0x01</code> 总是返回 <code>0</code> 或 <code>1</code>，而当 <code>n</code> 为负数时，<code>n % 2</code> 可能返回 <code>-1</code>。因为 <code>-(a % b) == (-a) % b</code> 对任何 a，b（b $\ne$ 0）都成立</p>
 <h2 id="技巧-1：n-amp-n-1"><a href="#技巧-1：n-amp-n-1" class="headerlink" title="技巧 1：n &amp; (n - 1)"></a>技巧 1：<code>n &amp; (n - 1)</code></h2><p>位运算有很多很有意思的技巧，有一个比较常见的就是求一个整数二进制表示中 1 的个数：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">countOnes</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (num) &#123;</span><br><span class="line">        num = num &amp; (num - <span class="number">1</span>);</span><br><span class="line">        count++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> count;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>其中，<code>num &amp; (num - 1)</code> 中 1 的个数比 <code>num</code> 少 1。</p>
@@ -383,8 +386,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/12/05/correctness-verification/" rel="next" title="算法设计与分析：算法正确性验证">
-                <i class="fa fa-chevron-left"></i> 算法设计与分析：算法正确性验证
+              <a href="/2018/12/05/union-find/" rel="next" title="并查集">
+                <i class="fa fa-chevron-left"></i> 并查集
               </a>
             
           </div>
@@ -527,7 +530,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#位运算奇技淫巧"><span class="nav-number">1.</span> <span class="nav-text">位运算奇技淫巧</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#技巧-1：n-amp-n-1"><span class="nav-number">1.1.</span> <span class="nav-text">技巧 1：n &amp; (n - 1)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#技巧-2："><span class="nav-number">1.2.</span> <span class="nav-text">技巧 2：</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#技巧-0：n-amp-0x01"><span class="nav-number">1.</span> <span class="nav-text">技巧 0：n &amp; 0x01</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#技巧-1：n-amp-n-1"><span class="nav-number">2.</span> <span class="nav-text">技巧 1：n &amp; (n - 1)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#技巧-2："><span class="nav-number">3.</span> <span class="nav-text">技巧 2：</span></a></li></ol></div>
             
 
           </div>
@@ -674,24 +677,7 @@
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
 
 
 
@@ -744,6 +730,43 @@
   
 
   
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
   
 
 
