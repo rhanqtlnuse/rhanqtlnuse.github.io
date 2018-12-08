@@ -86,12 +86,12 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="并查集分析这里分析使用 weighted union 和 path compression find 的情况。 迭代对数$H(i) = 2^{H(i-1)}$，并且 $ H(0) = 1$     i 0 1 2 3 4 5     $H(i)$ 1 2 4 16 65536 $2^{65536}$     可以看到，这个函数增长的很快（宇宙中原子个数有 $10^{80}$ 个，而 $2^{655">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://yoursite.com/2018/12/05/union-find/union-find-analysis-bucket.jpg">
-<meta property="og:updated_time" content="2018-12-06T12:44:20.909Z">
+<meta property="og:image" content="http://yoursite.com/union-find-analysis-bucket.jpg">
+<meta property="og:updated_time" content="2018-12-08T06:53:25.793Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="并查集">
 <meta name="twitter:description" content="并查集分析这里分析使用 weighted union 和 path compression find 的情况。 迭代对数$H(i) = 2^{H(i-1)}$，并且 $ H(0) = 1$     i 0 1 2 3 4 5     $H(i)$ 1 2 4 16 65536 $2^{65536}$     可以看到，这个函数增长的很快（宇宙中原子个数有 $10^{80}$ 个，而 $2^{655">
-<meta name="twitter:image" content="http://yoursite.com/2018/12/05/union-find/union-find-analysis-bucket.jpg">
+<meta name="twitter:image" content="http://yoursite.com/union-find-analysis-bucket.jpg">
 
 
 
@@ -382,7 +382,7 @@
 </div>
 <p>其中，第 0 组只有根结点，第 1 组是根结点的直接子结点。</p>
 <p>下面是来自维基百科的一幅图，将每个分组看作一个桶（Bucket）：</p>
-<p><img src="union-find-analysis-bucket.jpg" alt=""></p>
+<p><img src="/union-find-analysis-bucket.jpg" alt=""></p>
 <p>对于某一次 Find 操作 $A_i$，将结点到根的路径上的所有结点作为一个集合 $X_i$，将集合 $X_i$ 分为如下三组：</p>
 <p>$Y_i = \{ \mu \in X_i | \mu 为根或根的直接子结点 \}$</p>
 <p>$Z_i = \{ \mu \in X_i - Y_i | g(\mu) \lt g(p_i(\mu)) \}$</p>
