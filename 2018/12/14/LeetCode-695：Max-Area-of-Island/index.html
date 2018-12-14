@@ -79,17 +79,14 @@
 
 
 
-<meta name="description" content="算法正确性验证递归迭代">
 <meta property="og:type" content="article">
-<meta property="og:title" content="算法设计与分析：算法正确性验证">
-<meta property="og:url" content="http://yoursite.com/2018/12/05/correctness-verification/index.html">
+<meta property="og:title" content="LeetCode 695：Max Area of Island">
+<meta property="og:url" content="http://yoursite.com/2018/12/14/LeetCode-695：Max-Area-of-Island/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="算法正确性验证递归迭代">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-12-06T12:41:52.737Z">
+<meta property="og:updated_time" content="2018-12-14T08:19:59.256Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="算法设计与分析：算法正确性验证">
-<meta name="twitter:description" content="算法正确性验证递归迭代">
+<meta name="twitter:title" content="LeetCode 695：Max Area of Island">
 
 
 
@@ -119,13 +116,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/12/05/correctness-verification/">
+  <link rel="canonical" href="http://yoursite.com/2018/12/14/LeetCode-695：Max-Area-of-Island/">
 
 
 
 
 
-  <title>算法设计与分析：算法正确性验证 | Hexo</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>LeetCode 695：Max Area of Island | Hexo</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -232,7 +229,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/05/correctness-verification/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/14/LeetCode-695：Max-Area-of-Island/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Han Qi">
@@ -249,7 +246,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">算法设计与分析：算法正确性验证</h1>
+          <h1 class="post-title" itemprop="name headline">LeetCode 695：Max Area of Island</h1>
         
 
         <div class="post-meta">
@@ -261,8 +258,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-05T20:00:00+08:00">
-                2018-12-05
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-14T16:19:59+08:00">
+                2018-12-14
               </time>
             
 
@@ -271,28 +268,6 @@
             
           </span>
 
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Algorithms/" itemprop="url" rel="index">
-                    <span itemprop="name">Algorithms</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -321,7 +296,7 @@
       
 
       
-        <h1 id="算法正确性验证"><a href="#算法正确性验证" class="headerlink" title="算法正确性验证"></a>算法正确性验证</h1><h2 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h2><h2 id="迭代"><a href="#迭代" class="headerlink" title="迭代"></a>迭代</h2>
+        
       
     </div>
     
@@ -345,8 +320,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/12/05/union-find/" rel="next" title="并查集">
-                <i class="fa fa-chevron-left"></i> 并查集
+              <a href="/2018/12/14/LeetCode-567：Permutation-in-String/" rel="next" title="LeetCode 567：Permutation in String">
+                <i class="fa fa-chevron-left"></i> LeetCode 567：Permutation in String
               </a>
             
           </div>
@@ -355,8 +330,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/12/06/位运算奇技淫巧/" rel="prev" title="位运算奇技淫巧">
-                位运算奇技淫巧 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/12/14/LeetCode-142：Linked-List-Cycle-II/" rel="prev" title="LeetCode 142：Linked List Cycle II">
+                LeetCode 142：Linked List Cycle II <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -409,17 +384,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -479,22 +445,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#算法正确性验证"><span class="nav-number">1.</span> <span class="nav-text">算法正确性验证</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#递归"><span class="nav-number">1.1.</span> <span class="nav-text">递归</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#迭代"><span class="nav-number">1.2.</span> <span class="nav-text">迭代</span></a></li></ol></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
@@ -636,7 +586,24 @@
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 
 
 
@@ -689,43 +656,6 @@
   
 
   
-  
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
-      });
-    </script>
-
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-      });
-    </script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
   
 
 
