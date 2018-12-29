@@ -229,6 +229,175 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/29/动手学深度学习-基础篇：Softmax-回归/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/12/29/动手学深度学习-基础篇：Softmax-回归/" itemprop="url">动手学深度学习 - 基础篇：Softmax 回归</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-29T21:46:11+08:00">
+                2018-12-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Deep-Learning/" itemprop="url" rel="index">
+                    <span itemprop="name">Deep Learning</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Deep-Learning/Basics/" itemprop="url" rel="index">
+                    <span itemprop="name">Basics</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Softmax-回归"><a href="#Softmax-回归" class="headerlink" title="Softmax 回归"></a>Softmax 回归</h1><h2 id="分类问题"><a href="#分类问题" class="headerlink" title="分类问题"></a>分类问题</h2><p>虽然可以使用回归模型建模，并且将预测值就近定点化到分类标签，但是这种连续值到离散值的转化通常会影响到分类质量，因此我们一般使用更加适合离散值输出的模型来解决分类问题。</p>
+<h2 id="Softmax-回归模型"><a href="#Softmax-回归模型" class="headerlink" title="Softmax 回归模型"></a>Softmax 回归模型</h2><p>Softmax 回归也是一个单层的神经网络，但是有多个输出神经元，并且其输出层是一个全连接层：</p>
+<img src="/2018/12/29/动手学深度学习-基础篇：Softmax-回归/softmaxreg.svg" title="Softmax 回归是一个单层神经网络">
+<h3 id="Softmax-运算"><a href="#Softmax-运算" class="headerlink" title="Softmax 运算"></a>Softmax 运算</h3><p>一种直接的办法是直接将输出 $o_i$ 当作类别 $i$ 的置信度，但是存在两个问题：</p>
+<ul>
+<li>输出层的输出值的范围不确定，难以直观地判断这些值的意义<ul>
+<li>比如 $o_1$ = 0.1，$o_2$ = 10，$o_3$ = 0.1，并不能确定较大的值就是最可信的</li>
+</ul>
+</li>
+<li>真实标签是离散值，这些离散值与不确定范围的输出值之间的误差难以衡量</li>
+</ul>
+<p>Softmax 运算符：将输出值变换成值为正且和为 1 的概率分布</p>
+<script type="math/tex; mode=display">\hat{y_1},\hat{y_2},\hat{y_3} = \rm{softmax}(o_1,o_2,o_3)</script><p>其中</p>
+<script type="math/tex; mode=display">\hat{y}_1=\dfrac{exp(o_1)}{\sum_{i=1}^3\exp(o_i)},\hat{y}_2=\dfrac{\exp(o_2)}{\sum_{i=1}^3\exp(o_i)},\hat{y}_3=\dfrac{exp(o_3)}{\sum_{i=1}^3exp(o_i)}</script><p>正确性：</p>
+<script type="math/tex; mode=display">\arg\max\limits_i \hat{y}_i = \arg\max\limits_i \exp(o_i) = \arg\max\limits_i o_i</script><h3 id="计算表达式"><a href="#计算表达式" class="headerlink" title="计算表达式"></a>计算表达式</h3><h4 id="单样本分类的矢量计算表达式"><a href="#单样本分类的矢量计算表达式" class="headerlink" title="单样本分类的矢量计算表达式"></a>单样本分类的矢量计算表达式</h4><script type="math/tex; mode=display">o_1=x_1w_{11}+x_2w_{21} + x_3w_{31} + x_4w_{41} + b_1</script><script type="math/tex; mode=display">o_2=x_1w_{12}+x_2w_{22} + x_3w_{32} + x_4w_{42} + b_2</script><script type="math/tex; mode=display">o_3=x_1w_{13}+x_2w_{23} + x_3w_{33} + x_4w_{43} + b_3</script><script type="math/tex; mode=display">W = \left[\begin{matrix}w_{11} &w_{12}&w_{13} \\ w_{21} &w_{22}&w_{23}\\ w_{31} &w_{32}&w_{33}\\ x_{41}&x_{42}&x_{43}\end{matrix}\right],\ b = [b_1, b_2, b_3]</script><script type="math/tex; mode=display">x^{(i)} = \left[\begin{matrix} x_1^{(i)} & x_2^{(i)} & x_3^{(i)} & x_4^{(i)}\end{matrix}\right]</script><p>输出层输出为</p>
+<script type="math/tex; mode=display">o^{(i)} = \left[\begin{matrix}o_1^{(i)} & o_2^{(i)} & o_3^{(i)}\end{matrix}\right]</script><p>预测概率分布为</p>
+<script type="math/tex; mode=display">\hat{y}^{(i)} = \left[\begin{matrix}\hat{y}_1^{(i)} & \hat{y}_2^{(i)} & \hat{y}_3^{(i)}\end{matrix}\right]</script><p>Softmax 回归对样本 $i$ 分类的矢量计算表达式为</p>
+<script type="math/tex; mode=display">o^{(i)} = x^{(i)}W + b</script><script type="math/tex; mode=display">\hat{y}^{(i)} = {\rm{softmax}}(o^{(i)})</script><h4 id="小样本分类的矢量计算表达式"><a href="#小样本分类的矢量计算表达式" class="headerlink" title="小样本分类的矢量计算表达式"></a>小样本分类的矢量计算表达式</h4>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/29/Git-内部原理/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -343,7 +512,7 @@
 </ul>
 <h2 id="Git-对象（objects）"><a href="#Git-对象（objects）" class="headerlink" title="Git 对象（objects）"></a>Git 对象（<code>objects</code>）</h2><p>Git 是一套内容寻址的文件系统，核心上来看不过是简单地存储键值对（key-value），允许插入任意类型的内容，并且会返回一个键值，通过该键值可以在任何时候再取出该内容。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">objects/</span><br><span class="line">├── info/</span><br><span class="line">└── pack/</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> <span class="string">'test content'</span> | git <span class="built_in">hash</span>-object -w --stdin</span><br><span class="line">d670460b4b4aece5915caf5c68d12f560a9fe3e4</span><br><span class="line">$ find ./objects</span><br><span class="line">./objects</span><br><span class="line">./objects/d6</span><br><span class="line">./objects/d6/70460b4b4aece5915caf5c68d12f560a9fe3e4</span><br><span class="line">./objects/info</span><br><span class="line">./objects/pack</span><br><span class="line">$ <span class="built_in">echo</span> <span class="string">'test content 2'</span> | git <span class="built_in">hash</span>-object --stdio</span><br><span class="line">b13c288e945d00a4d16f195b33bf003b53d73dac</span><br><span class="line">$ find ./objects</span><br><span class="line">./objects</span><br><span class="line">./objects/d6</span><br><span class="line">./objects/d6/70460b4b4aece5915caf5c68d12f560a9fe3e4</span><br><span class="line">./objects/info</span><br><span class="line">./objects/pack</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> <span class="string">'test content'</span> | git <span class="built_in">hash</span>-object -w --stdin</span><br><span class="line">d670460b4b4aece5915caf5c68d12f560a9fe3e4</span><br><span class="line"></span><br><span class="line">$ find ./objects</span><br><span class="line">./objects</span><br><span class="line">./objects/d6</span><br><span class="line">./objects/d6/70460b4b4aece5915caf5c68d12f560a9fe3e4</span><br><span class="line">./objects/info</span><br><span class="line">./objects/pack</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">echo</span> <span class="string">'test content 2'</span> | git <span class="built_in">hash</span>-object --stdio</span><br><span class="line">b13c288e945d00a4d16f195b33bf003b53d73dac</span><br><span class="line"></span><br><span class="line">$ find ./objects</span><br><span class="line">./objects</span><br><span class="line">./objects/d6</span><br><span class="line">./objects/d6/70460b4b4aece5915caf5c68d12f560a9fe3e4</span><br><span class="line">./objects/info</span><br><span class="line">./objects/pack</span><br></pre></td></tr></table></figure>
 <ul>
 <li><code>hash-object</code> 命令<ul>
 <li><code>-w</code> 参数指示 <code>hash-object</code> 命令存储数据对象，如果没有这个参数，只返回键值而不存储数据对象</li>
@@ -355,7 +524,7 @@
 </ul>
 </li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ git cat-file -p d670460b4b4aece5915caf5c68d12f560a9fe3e4</span><br><span class="line"><span class="built_in">test</span> content</span><br><span class="line">$ git cat-file -t d670460b4b4aece5915caf5c68d12f560a9fe3e4</span><br><span class="line">blob</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ git cat-file -p d670460b4b4aece5915caf5c68d12f560a9fe3e4</span><br><span class="line"><span class="built_in">test</span> content</span><br><span class="line"></span><br><span class="line">$ git cat-file -t d670460b4b4aece5915caf5c68d12f560a9fe3e4</span><br><span class="line">blob</span><br></pre></td></tr></table></figure>
 <ul>
 <li><code>cat-file</code> 命令<ul>
 <li>主要参数为对象的校验和（文件名）</li>
@@ -370,6 +539,22 @@
 <h3 id="tree-对象"><a href="#tree-对象" class="headerlink" title="tree 对象"></a>tree 对象</h3><p>tree 对象可以存储文件名，也可以存储一组文件。Git 以一种类似 UNIX 文件系统但更简单的方式来存储内容，所有内容以 tree 或 blob 对象存储，tree 对象对应于 UNIX 中的目录，blob 对象则大致对应于 inode 或文件内容。一个单独的 tree 对象包含一条或多条 tree 记录，每一条记录含有一个指向 blob 或子 tree 对象的 SHA-1 指针，并附有该对象的权限模式（mode）、类型和文件名信息。</p>
 <img src="/2018/12/29/Git-内部原理/git-object-model.png" title="Git 对象模型的简化版">
 <p>通常 Git 根据暂存区域（<code>index</code>    ）来创建并写入一个 tree。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">$ git status</span><br><span class="line">On branch master</span><br><span class="line"></span><br><span class="line">No commits yet</span><br><span class="line"></span><br><span class="line">Untracked files:</span><br><span class="line">  (use <span class="string">"git add &lt;file&gt;..."</span> to include <span class="keyword">in</span> what will be committed)</span><br><span class="line"></span><br><span class="line">        test.txt</span><br><span class="line"></span><br><span class="line">nothing added to commit but untracked files present (use <span class="string">"git add"</span> to track)</span><br><span class="line"></span><br><span class="line">$ git update-index --add --cacheinfo 100644 \</span><br><span class="line">&gt; 83baae61804e65cc73a7201a7252750c76066a30 test.txt</span><br><span class="line"></span><br><span class="line">$ git status</span><br><span class="line">On branch master</span><br><span class="line"></span><br><span class="line">No commits yet</span><br><span class="line"></span><br><span class="line">Changes to be committed:</span><br><span class="line">  (use <span class="string">"git rm --cached &lt;file&gt;..."</span> to unstage)</span><br><span class="line"></span><br><span class="line">        new file:   test.txt</span><br><span class="line"></span><br><span class="line">Changes not staged <span class="keyword">for</span> commit:</span><br><span class="line">  (use <span class="string">"git add &lt;file&gt;..."</span> to update what will be committed)</span><br><span class="line">  (use <span class="string">"git checkout -- &lt;file&gt;..."</span> to discard changes <span class="keyword">in</span> working directory)</span><br><span class="line"></span><br><span class="line">        modified:   test.txt</span><br></pre></td></tr></table></figure>
+<ul>
+<li>文件模式<ul>
+<li><code>100644</code> 表明 <code>test.txt</code> 是普通文件</li>
+<li><code>100755</code> 表示可执行文件</li>
+<li><code>120000</code> 表示符号链接</li>
+<li>注意这三种模式仅对 Git 中的文件（Blob）有效</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">$ git write-tree</span><br><span class="line">d8329fc1cc938780ffdd9f94e0d364e0ea74f579</span><br><span class="line"></span><br><span class="line">$ git cat-file -p d8329fc1cc938780ffdd9f94e0d364e0ea74f579</span><br><span class="line">100644 blob 83baae61804e65cc73a7201a7252750c76066a30    test.txt</span><br><span class="line"></span><br><span class="line">$ git cat-file -t d8329fc1cc938780ffdd9f94e0d364e0ea74f579</span><br><span class="line">tree</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">echo</span> <span class="string">'new file'</span> &gt; new.txt</span><br><span class="line">$ git update-index test.txt</span><br><span class="line">$ git update-index --add new.txt</span><br><span class="line"></span><br><span class="line">$ git write-tree</span><br><span class="line">0155eb4229851634a0f03eb265b69f5a2d56f341</span><br><span class="line"></span><br><span class="line">$ git cat-file -p 0155eb4229851634a0f03eb265b69f5a2d56f341</span><br><span class="line">100644 blob fa49b077972391ad58037050f2a75f74e3671e92      new.txt</span><br><span class="line">100644 blob 1f7a7a472abf3dd9643fd615f6da379c4acb3e3a      test.txt</span><br></pre></td></tr></table></figure>
+<ul>
+<li>如果目标 tree 不存在，调用 <code>write-tree</code> 会自动根据 <code>index</code> 状态创建一个 tree 对象</li>
+<li>注意第一个 <code>cat-file</code> 命令，作为 <code>cat-file</code> 参数的校验和与打印出来的 <code>test.txt</code> 的校验和不同，作为参数的校验和是 tree 对象的校验和</li>
+<li>注意添加完 <code>new.txt</code> 后 <code>car-file</code> 时 <code>test.txt</code> 的校验和（<code>1f7a7a</code>）与之前不同（<code>83baae</code>）</li>
+</ul>
 
           
         
@@ -1640,197 +1825,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/08/Haskell-入门/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/12/08/Haskell-入门/" itemprop="url">Haskell 入门</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-08T14:49:32+08:00">
-                2018-12-08
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/FP/" itemprop="url" rel="index">
-                    <span itemprop="name">FP</span>
-                  </a>
-                </span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/FP/Haskell/" itemprop="url" rel="index">
-                    <span itemprop="name">Haskell</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>函数调用在 Haskell 中拥有最高的优先级，所以 <code>succ 9 * 10</code> 的结果为 100，而不是所期望的 91</p>
-<p>Haskell 中 <code>if</code> 语句（实际上是一个表达式）的 <code>else</code> 不可省略：<code>if-then-else</code>，也就是说，必须返回一个值</p>
-<p>编写一些简单的函数（抽象），将其组合，形成更高级的抽象</p>
-<p>有两个参数的函数可以使用中缀形式：<code>div 9 3</code> 等价于 <code>9 `div` 3</code>，注意使用<strong>反引号</strong>将函数名括起来和参数的顺序</p>
-<p>变量的值不可修改！！！（更像数学中的变量，而不是编程中的变量），但可以对变量重新赋值</p>
-<p>Haskell 中<strong>不允许</strong>首字母大写的函数</p>
-<p>常量定义：<code>let &lt;var_name&gt; = &lt;value&gt;</code> 或 <code>&lt;var_name&gt; = &lt;value&gt;</code>，注意 <code>&lt;var_name&gt;</code> 首字母<strong>小写</strong>！</p>
-<h1 id="List"><a href="#List" class="headerlink" title="List"></a>List</h1><p><strong>单类型</strong>数据数据结构</p>
-<p>空 List：<code>[]</code></p>
-<h2 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h2><p>列表连接：<code>&lt;list1&gt; ++ &lt;list2&gt;</code></p>
-<p>字符串实际上是字符数组，所以可以使用 <code>&quot;hello&quot; ++ &quot; &quot; ++ &quot;world&quot;</code></p>
-<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">ghci</span>&gt; str1 = ['h', 'e', 'l', 'l', 'o']</span><br><span class="line"><span class="title">ghci</span>&gt; str2 = ['w', 'o', 'r', 'l', 'd']</span><br><span class="line"><span class="title">ghci</span>&gt; str1 ++ <span class="string">" "</span> ++ str2</span><br><span class="line"><span class="string">"hello world"</span></span><br></pre></td></tr></table></figure>
-<p>可以使用 <code>：</code> 将一个元素连接到 List 的头部（Lisp 的 <code>cons &lt;elem&gt; &lt;list&gt;</code>），<code>[1, 2, 3]</code> 实际上是 <code>1：2：3：[]</code> 的语法糖</p>
-<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">ghci</span>&gt; 'h':'e':'l':'l':'o':[]</span><br><span class="line"><span class="string">"hello"</span></span><br></pre></td></tr></table></figure>
-<p>通过下标访问：<code>!!</code>，下标从 0 开始，超出范围会报错</p>
-<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">ghci</span>&gt; [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>] !! <span class="number">3</span></span><br><span class="line"><span class="number">4</span></span><br></pre></td></tr></table></figure>
-<h3 id="比较大小"><a href="#比较大小" class="headerlink" title="比较大小"></a>比较大小</h3><p>当 List 中装有<strong>可比较</strong>的元素时，可以使用关系运算符比较列表的大小。从第一个元素开始比较如果能够决定结果，直接返回，否则继续向后比较。</p>
-<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">ghci</span>&gt; [<span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>] &gt; [<span class="number">2</span>, <span class="number">1</span>, <span class="number">0</span>]</span><br><span class="line"><span class="type">True</span></span><br><span class="line"><span class="title">ghci</span>&gt; [<span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>] &gt; [<span class="number">2</span>, <span class="number">10</span>, <span class="number">100</span>]</span><br><span class="line"><span class="type">True</span></span><br><span class="line"><span class="title">ghci</span>&gt; [<span class="number">3</span>, <span class="number">4</span>, <span class="number">2</span>] &gt; [<span class="number">3</span>, <span class="number">4</span>]</span><br><span class="line"><span class="type">True</span></span><br><span class="line"><span class="title">ghci</span>&gt; [<span class="number">3</span>, <span class="number">4</span>, <span class="number">2</span>] &gt; [<span class="number">2</span>, <span class="number">4</span>]</span><br><span class="line"><span class="type">True</span></span><br><span class="line"><span class="title">ghci</span>&gt; [<span class="number">3</span>, <span class="number">4</span>, <span class="number">2</span>] == [<span class="number">3</span>, <span class="number">4</span>, <span class="number">2</span>]</span><br><span class="line"><span class="type">True</span></span><br></pre></td></tr></table></figure>
-<h3 id="其他常用函数"><a href="#其他常用函数" class="headerlink" title="其他常用函数"></a>其他常用函数</h3><p><code>head</code>：返回 List 的首个元素（Lisp 的 <code>car</code>）</p>
-<p><code>tail</code>：返回 List 的去除首个元素的部分（Lisp 的 <code>cdr</code>）</p>
-<p><code>last</code>：返回 List 的最后一个元素</p>
-<p><code>init</code>：返回 List 去除最后一个元素的部分</p>
-<p>注意：对空 List 使用这些函数会在运行期产生异常</p>
-<p><code>length</code></p>
-<p><code>null</code>：检查一个列表是否为空</p>
-<ul>
-<li>避免使用 <code>xs == []</code></li>
-</ul>
-<p><code>reverse</code>：将 List 反转</p>
-<p><code>take &lt;count&gt; &lt;list&gt;</code>：取出列表的前 count 个元素</p>
-<ul>
-<li>也可以使用中缀形式：<code>3 `take` [1, 2, 3, 4, 5, 6]</code></li>
-<li>如果 <code>count == 0</code>，那么返回 <code>[]</code></li>
-<li>如果 <code>count &gt;= length</code>，那么返回原 List</li>
-</ul>
-<p><code>drop &lt;count&gt; &lt;list&gt;</code>：删除 List 的前 count 个元素，与 <code>take</code> 大体相同</p>
-<p><code>maximum</code> 和 <code>minimum</code></p>
-<p><code>sum</code> 和 <code>product</code></p>
-<p><code>elem</code>：判断一个元素是否在 List 中，通常以中缀形式使用</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1881,7 +1875,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-count">27</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -1892,7 +1886,7 @@
               
               <div class="site-state-item site-state-categories">
                 
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">categories</span>
                 
               </div>
