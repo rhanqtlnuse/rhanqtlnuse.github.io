@@ -229,6 +229,801 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/29/Git-内部原理/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/12/29/Git-内部原理/" itemprop="url">Git 内部原理</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-29T08:28:24+08:00">
+                2018-12-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Git/" itemprop="url" rel="index">
+                    <span itemprop="name">Git</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Git-内部原理"><a href="#Git-内部原理" class="headerlink" title="Git 内部原理"></a>Git 内部原理</h1><p>由于 Git 一开始被设计成共 VCS 使用的工具集而不是一整套用户友好的 VCS，所以实际上它还包含了许多底层命令（Plumbing），像 <code>checkout</code> <code>remote</code> <code>branch</code> 这样的命令被称为 “Porcelain”。</p>
+<p><code>git init</code> 产生的 <code>.git</code> 目录结构：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">hooks/</span><br><span class="line">info/</span><br><span class="line">objects/</span><br><span class="line">  info/</span><br><span class="line">  pack/</span><br><span class="line">refs/</span><br><span class="line">  heads/</span><br><span class="line">  tags/</span><br><span class="line">config</span><br><span class="line">description</span><br><span class="line">HEAD</span><br><span class="line">index</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>description</code> 文件仅供 GitWeb 程序使用</li>
+<li><code>config</code> 文件包含了<strong>项目特有</strong>的配置选项</li>
+<li><code>info</code> 目录保存了一份不希望在 <code>.gitignore</code> 文件中管理的忽略模式（ignored patterns）的全局可执行文件<ul>
+<li><code>exclude</code> 文件</li>
+</ul>
+</li>
+<li><code>hooks</code> 目录保存了客户端或服务端的钩子脚本</li>
+<li>重要的文件和目录：<code>HEAD</code> <code>index</code> <code>objects</code> <code>refs</code><ul>
+<li><code>objects</code> 目录存储所有的数据内容</li>
+<li><code>refs</code> 目录存储指向数据（分支）的提交对象的指针</li>
+<li><code>HEAD</code> 文件指向当前分支</li>
+<li><code>index</code> 文件保存了暂存区信息</li>
+</ul>
+</li>
+</ul>
+<h2 id="Git-对象（objects）"><a href="#Git-对象（objects）" class="headerlink" title="Git 对象（objects）"></a>Git 对象（<code>objects</code>）</h2><p>Git 是一套内容寻址的文件系统，核心上来看不过是简单地存储键值对（key-value），允许插入任意类型的内容，并且会返回一个键值，通过该键值可以在任何时候再取出该内容。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">objects/</span><br><span class="line">|-- info/</span><br><span class="line">|-- pack/</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> <span class="string">'test content'</span> | git <span class="built_in">hash</span>-object -w --stdin</span><br><span class="line">d670460b4b4aece5915caf5c68d12f560a9fe3e4</span><br><span class="line">$ find ./objects</span><br><span class="line">./objects</span><br><span class="line">./objects/d6</span><br><span class="line">./objects/d6/70460b4b4aece5915caf5c68d12f560a9fe3e4</span><br><span class="line">./objects/info</span><br><span class="line">./objects/pack</span><br><span class="line">$ <span class="built_in">echo</span> <span class="string">'test content 2'</span> | git <span class="built_in">hash</span>-object --stdio</span><br><span class="line">b13c288e945d00a4d16f195b33bf003b53d73dac</span><br><span class="line">$ find ./objects</span><br><span class="line">./objects</span><br><span class="line">./objects/d6</span><br><span class="line">./objects/d6/70460b4b4aece5915caf5c68d12f560a9fe3e4</span><br><span class="line">./objects/info</span><br><span class="line">./objects/pack</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>hash-object</code> 命令<ul>
+<li><code>-w</code> 参数指示 <code>hash-object</code> 命令存储数据对象，如果没有这个参数，只返回键值而不存储数据对象</li>
+<li><code>--stdin</code> 指定从 <code>stdin</code> 读取内容，若不指定则需要指定一个要存储的文件的路径</li>
+<li>返回的键值是一个长度为 40 个字符的 SHA-1 校验和，Git 用前 2 个字符为目录名创建一个目录，用剩下的 38 个字符作为文件名在这个目录下创建一个文件<ul>
+<li>如果前两个字符相同怎么办？</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ git cat-file -p d670460b4b4aece5915caf5c68d12f560a9fe3e4</span><br><span class="line"><span class="built_in">test</span> content</span><br><span class="line">$ git cat-file -t d670460b4b4aece5915caf5c68d12f560a9fe3e4</span><br><span class="line">blob</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>cat-file</code> 命令<ul>
+<li>主要参数为对象的校验和（文件名）</li>
+<li><code>-t</code> 参数输出对象的类型，这里是 <code>blob</code><ul>
+<li>BLOB：Binary Large OBject</li>
+</ul>
+</li>
+<li><code>-p</code> 参数指定美观打印</li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/21/LeetCode-148：Sort-List/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/12/21/LeetCode-148：Sort-List/" itemprop="url">LeetCode 148：Sort List</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-21T19:24:08+08:00">
+                2018-12-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/18/LintCode-692：Sliding-Window-Unique-Elements-Sum/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/12/18/LintCode-692：Sliding-Window-Unique-Elements-Sum/" itemprop="url">LintCode 692：Sliding Window Unique Elements Sum</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-18T20:15:05+08:00">
+                2018-12-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithms/" itemprop="url" rel="index">
+                    <span itemprop="name">Algorithms</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithms/OJ/" itemprop="url" rel="index">
+                    <span itemprop="name">OJ</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithms/OJ/LintCode/" itemprop="url" rel="index">
+                    <span itemprop="name">LintCode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>描述</p>
+<p>题目描述：</p>
+<p>给一个数组和一个滑动窗口的大小, 求每一个窗口内唯一元素的个数和</p>
+<p>您在真实的面试中是否遇到过这个题？  是</p>
+<p>题目纠错</p>
+<p>样例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">给一个数组 nums = [1, 2, 1, 3, 3] 和 k = 3</span><br><span class="line">第一个窗口为 [1, 2, 1], 只有 2 是唯一的, 计数为 1</span><br><span class="line">第二个窗口为 [2, 1, 3], 所有的元素都是唯一的, 计数为 3</span><br><span class="line">第三个窗口为 [1, 3, 3], 只有 1 是唯一的, 计数为 1</span><br><span class="line">总数为 1 + 3 + 1 = 5</span><br><span class="line">返回 5</span><br></pre></td></tr></table></figure>
+<p>不用说，这道题的第一反应一定是枚举每一个窗口，收集其中的元素，并判断。但是可以有更好的解法。</p>
+<p>“滑动窗口” 一个重要的点在于：窗口的每次滑动会导致原来的第一个元素出界，并在窗口的末尾新增一个元素。由此我们可以得到下面的代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">slidingWindowUniqueElementsSum</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">    Map&lt;Integer, Integer&gt; counter = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>, n = nums.length; i &lt; n; i++) &#123;</span><br><span class="line">        <span class="comment">// nums[i - k] 是出界的元素</span></span><br><span class="line">        <span class="keyword">if</span> (i - k &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">for</span> (Integer e : counter.values()) &#123;</span><br><span class="line">                <span class="keyword">if</span> (e == <span class="number">1</span>) &#123;</span><br><span class="line">                    count++;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            counter.put(nums[i - k], counter.get(nums[i - k]) - <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        counter.put(nums[i], counter.getOrDefault(nums[i], <span class="number">0</span>) + <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (Integer e : counter.values()) &#123;</span><br><span class="line">        <span class="keyword">if</span> (e == <span class="number">1</span>) &#123;</span><br><span class="line">            count++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> count;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>但是这个方案有一个问题：每次需要对 <code>Map</code> 进行遍历，这样会很消耗时间，而其实每一次滑动窗口，只引起 <code>Map</code> 的局部变化，遍历是多余的。那么该怎么办呢？思路如下：</p>
+<ul>
+<li>每一次循环都可以在上一次循环 count 增量（下面叫做 <code>delta</code>）的基础上进行增/减</li>
+<li>对于出界的元素<ul>
+<li>如果个数为 1，那么当前唯一的元素就比上一次少 1，即 <code>delta = delta - 1</code></li>
+<li>如果个数为 2，那么由于出界了一个，所以这个元素就变成了唯一的元素，<code>delta = delta + 1</code> </li>
+<li>将出界元素的数量更新（减 1），如果变为 0，则删除</li>
+</ul>
+</li>
+<li>对于新增的元素<ul>
+<li>如果当前的 <code>Map</code> 中不包含这个键，那么他是一个唯一的元素，<code>delta = delta + 1</code></li>
+<li>如果当前的 <code>Map</code> 中已经包含这个键，并且数量为 1（也就是说当初我们把它当作了唯一的元素），那么唯一元素的个数少 1，即 <code>delta = delta - 1</code></li>
+<li>如果当前的 <code>Map</code> 中已经包含这个键，并且数量大于 1，无视</li>
+<li>更新新增元素对应的个数</li>
+</ul>
+</li>
+<li>把 <code>delta</code> 加到 <code>count</code> 上</li>
+<li>需要注意的是，第一个滑动窗口没有上一次增加的结果，所以采用直接的方法即可</li>
+</ul>
+<p>代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">slidingWindowUniqueElementsSum</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 如果滑动窗口的长度为 1，那么每个窗口里的元素一定是唯一的元素</span></span><br><span class="line">    <span class="keyword">if</span> (k == <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> nums.length;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">    Map&lt;Integer, Integer&gt; counter = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">final</span> <span class="keyword">int</span> n = nums.length;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 实际上只有第一次需要对 Map 进行遍历</span></span><br><span class="line">    <span class="keyword">for</span> (; i &lt; n &amp;&amp; i &lt; k; i++) &#123;</span><br><span class="line">        counter.put(nums[i], counter.getOrDefault(nums[i], <span class="number">0</span>) + <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (Integer e : counter.values()) &#123;</span><br><span class="line">        <span class="keyword">if</span> (e == <span class="number">1</span>) &#123;</span><br><span class="line">            count++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> lastCount = count;</span><br><span class="line">    <span class="keyword">for</span> (; i &lt; n; i++) &#123;</span><br><span class="line">        <span class="comment">// 处理窗口滑动之后出界的元素</span></span><br><span class="line">        <span class="keyword">int</span> c = counter.get(nums[i - k]);</span><br><span class="line">        <span class="keyword">if</span> (c == <span class="number">1</span>) &#123;</span><br><span class="line">            counter.remove(nums[i-k]);</span><br><span class="line">            lastCount--;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            counter.put(nums[i - k], counter.get(nums[i - k]) - <span class="number">1</span>);</span><br><span class="line">            <span class="keyword">if</span> (c == <span class="number">2</span>) &#123;</span><br><span class="line">                lastCount++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 处理窗口滑动之后新增的元素</span></span><br><span class="line">        <span class="keyword">if</span> (counter.containsKey(nums[i])) &#123;</span><br><span class="line">            <span class="keyword">if</span> (counter.get(nums[i]) == <span class="number">1</span>) &#123;</span><br><span class="line">                lastCount--;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            lastCount++;</span><br><span class="line">        &#125;</span><br><span class="line">        counter.put(nums[i], counter.getOrDefault(nums[i], <span class="number">0</span>) + <span class="number">1</span>);</span><br><span class="line">        count += lastCount;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> count;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/17/LeetCode-128：Longest-Consecutive-Sequence/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/12/17/LeetCode-128：Longest-Consecutive-Sequence/" itemprop="url">LeetCode 128：Longest Consecutive Sequence</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-17T21:00:40+08:00">
+                2018-12-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <font color="red">Hard</font>
+
+<p>题目描述：</p>
+<p>给定一个未排序的整数数组，找出最长连续序列的长度。</p>
+<p>要求算法的时间复杂度为 <strong>O(n)</strong>。</p>
+<p><strong>示例：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入: [100, 4, 200, 1, 3, 2]</span><br><span class="line">输出: 4</span><br><span class="line">解释: 最长连续序列是 [1, 2, 3, 4]。它的长度为 4。</span><br></pre></td></tr></table></figure>
+<p>这道题如果不限制时间复杂度，是很简单的，排个序，扫描一遍，结束。</p>
+<p>但是限制了时间复杂度，就有点难办了。</p>
+<p>通常 “时间复杂度为 O(n)” 意味着扫描 1 遍整个数组。</p>
+<p>对于示例，考虑这样一个过程：</p>
+<ol>
+<li>遇到 100，没有相邻的数，直接加入容器中</li>
+<li>遇到 4</li>
+<li>遇到 200</li>
+<li>遇到 1</li>
+<li>遇到 3，发现与 4 相邻，建立二者之间的联系</li>
+<li>遇到 2，发现与 1 和 3 相邻，建立联系，这样我们就有了一个关系链：1-2-3-4，它的长度也就是我们要求的结果</li>
+</ol>
+<p>图示：</p>
+<img src="/2018/12/17/LeetCode-128：Longest-Consecutive-Sequence/dynamic.png">
+<p>这样的关系叫做 “动态等价关系”，而动态等价关系一个很经典的实现就是并查集（Union-Find）（关于动态等价关系和并查集，见 <a href="">动态等价关系：并查集</a>）</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/17/动态规划入门/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/12/17/动态规划入门/" itemprop="url">动态规划入门</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-17T10:25:06+08:00">
+                2018-12-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Dynamic-Programming/" itemprop="url" rel="index">
+                    <span itemprop="name">Dynamic Programming</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Dynamic Programming，其中的 “Programming” 并不是 “编程” 的意思，而是 “规划” 的意思。</p>
+<p>动态规划是分治法（Divide and Conquer）的延伸。简单来说就是由于子问题一而再、再而三地出现（recurrence），所以使用表格来记录中间结果，以空间换时间。</p>
+<p>动态规划的过程，就是反复进行 “读取数据 $\rightarrow$ 计算数据 $\rightarrow$ 存储数据”</p>
+<p>需要做的决策：</p>
+<ul>
+<li>计算顺序</li>
+<li>状态空间（总共有哪些问题）</li>
+<li>初始值、计算范围</li>
+</ul>
+<p>主要有两种方式：自顶向下、自底向上</p>
+<p>动态规划的问题有两类：</p>
+<ul>
+<li>计数问题</li>
+<li>极值问题</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/14/LeetCode-142：Linked-List-Cycle-II/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1033,810 +1828,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/06/位运算奇技淫巧/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/12/06/位运算奇技淫巧/" itemprop="url">位运算奇技淫巧</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-06T20:30:00+08:00">
-                2018-12-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Programming/" itemprop="url" rel="index">
-                    <span itemprop="name">Programming</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p>Copyright @韩琦</p>
-<p><strong>转载请注明出处</strong></p>
-</blockquote>
-<h2 id="技巧-0：n-amp-0x01"><a href="#技巧-0：n-amp-0x01" class="headerlink" title="技巧 0：n &amp; 0x01"></a>技巧 0：<code>n &amp; 0x01</code></h2><p>这个方法就是用来判断 <code>n</code> 的奇偶性，但是需要注意的一点是，这个方式与 <code>n % 2</code> 的结果不太一样：<code>n &amp; 0x01</code> 总是返回 <code>0</code> 或 <code>1</code>，而当 <code>n</code> 为负数时，<code>n % 2</code> 可能返回 <code>-1</code>。因为 <code>-(a % b) == (-a) % b</code> 对任何 a，b（b $\ne$ 0）都成立</p>
-<h2 id="技巧-1：n-amp-n-1"><a href="#技巧-1：n-amp-n-1" class="headerlink" title="技巧 1：n &amp; (n - 1)"></a>技巧 1：<code>n &amp; (n - 1)</code></h2><p>位运算有很多很有意思的技巧，有一个比较常见的就是求一个整数二进制表示中 1 的个数：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">countOnes</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (num) &#123;</span><br><span class="line">        num = num &amp; (num - <span class="number">1</span>);</span><br><span class="line">        count++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> count;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>其中，<code>num &amp; (num - 1)</code> 中 1 的个数比 <code>num</code> 少 1。</p>
-<p>至于这个方法的正确性，可以直观的解释一下。分两种情况：</p>
-<ul>
-<li><code>num</code> 最低位为 1。假设有：<code>num = 1010 0010 1101 0111b</code>，那么 <code>num - 1</code> 的结果为 <code>1010 0010 1101 0110b</code>，<code>num &amp; (num - 1)</code>：</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">  1010 0010 1101 0111  // num</span><br><span class="line">&amp; 1010 0010 1101 0110  // num - 1</span><br><span class="line">---------------------</span><br><span class="line">  1010 0010 1101 0110  // num &amp; (num - 1)</span><br></pre></td></tr></table></figure>
-<ul>
-<li><code>num</code> 最低位为 0。假设有：<code>num = 1010 1000 0000 0000b</code>，那么 <code>num - 1</code> 的结果为 <code>1010 0111 1111 1111</code>，<code>num &amp; (num - 1)</code>：</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">  1010 1000 0000 0000  // num</span><br><span class="line">&amp; 1010 0111 1111 1111  // num - 1</span><br><span class="line">---------------------</span><br><span class="line">  1010 0000 0000 0000  // num &amp; (num - 1)</span><br></pre></td></tr></table></figure>
-<p><strong>例</strong>（LeetCode 338：Counting Bits）：</p>
-<p>Given a non negative integer number <strong>num</strong>. For every numbers <strong>i</strong> in the range <strong>0 ≤ i ≤ num</strong> calculate the number of 1’s in their binary representation and return them as an array.</p>
-<p><strong>Example 1:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: 2</span><br><span class="line">Output: [0,1,1]</span><br></pre></td></tr></table></figure>
-<p><strong>Example 2:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: 5</span><br><span class="line">Output: [0,1,1,2,1,2]</span><br></pre></td></tr></table></figure>
-<p><strong>Follow up:</strong></p>
-<ul>
-<li>It is very easy to come up with a solution with run time <strong>O(n*sizeof(integer))</strong>. But can you do it in linear time <strong>O(n)</strong>/possibly in a single pass?</li>
-<li>Space complexity should be <strong>O(n)</strong>.</li>
-<li>Can you do it like a boss? Do it without using any builtin function like <code>__builtin_popcount</code> in C++ or in any other language.</li>
-</ul>
-<p>思路：可以采用规约的方式，一个数 i 中 1 的个数等于比 i 少 1 的数中 1 的个数加上 1</p>
-<p>代码：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; countBits(<span class="keyword">int</span> num) &#123;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; res(num + <span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line">    <span class="comment">// 可以直接确定的是，0 中 1 的个数为 0，所以直接从 i = 1 开始</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= num; i++) &#123;</span><br><span class="line">        res[i] = res[i &amp; (i - <span class="number">1</span>)] + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>其实这个问题在同样的思路下还有另一种解法：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; countBits(<span class="keyword">int</span> num) &#123;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; res(num + <span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= num; i++) &#123;</span><br><span class="line">        res[i] = res[i &gt;&gt; <span class="number">1</span>] + (i &amp; <span class="number">0x01</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="技巧-2："><a href="#技巧-2：" class="headerlink" title="技巧 2："></a>技巧 2：</h2>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/05/correctness-verification/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/12/05/correctness-verification/" itemprop="url">算法设计与分析：算法正确性验证</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-05T20:00:00+08:00">
-                2018-12-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Algorithms/" itemprop="url" rel="index">
-                    <span itemprop="name">Algorithms</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="算法正确性验证"><a href="#算法正确性验证" class="headerlink" title="算法正确性验证"></a>算法正确性验证</h1><h2 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h2><h2 id="迭代"><a href="#迭代" class="headerlink" title="迭代"></a>迭代</h2>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/05/union-find/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/12/05/union-find/" itemprop="url">并查集</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-05T20:00:00+08:00">
-                2018-12-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Algorithms/" itemprop="url" rel="index">
-                    <span itemprop="name">Algorithms</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="并查集"><a href="#并查集" class="headerlink" title="并查集"></a>并查集</h1><h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>这里分析使用 weighted union 和 path compression find 的情况。</p>
-<h3 id="迭代对数"><a href="#迭代对数" class="headerlink" title="迭代对数"></a>迭代对数</h3><p>$H(i) = 2^{H(i-1)}$，并且 $ H(0) = 1$</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th style="text-align:center">i</th>
-<th style="text-align:center">0</th>
-<th style="text-align:center">1</th>
-<th style="text-align:center">2</th>
-<th style="text-align:center">3</th>
-<th style="text-align:center">4</th>
-<th style="text-align:center">5</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">$H(i)$</td>
-<td style="text-align:center">1</td>
-<td style="text-align:center">2</td>
-<td style="text-align:center">4</td>
-<td style="text-align:center">16</td>
-<td style="text-align:center">65536</td>
-<td style="text-align:center">$2^{65536}$</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>可以看到，这个函数增长的很快（宇宙中原子个数有 $10^{80}$ 个，而 $2^{65536}$ 比 $10^{80}$ 还要大，所以通常情况下 $i$ 最多为 5）。我们要使用的函数是其反函数：</p>
-<p>$log^*(n) = \min\{ i | H(i) \ge n \} = \min\{ i | \log_2\log_2\cdots\log_2n \le 1 \}$，其中 $\log$ 有 $i$ 次，“迭代对数”的名字也因此而来。</p>
-<h3 id="结点的分组"><a href="#结点的分组" class="headerlink" title="结点的分组"></a>结点的分组</h3><p>我们依据 $H(i)$（或 $log^*(n)$）将结点分为如下的组：</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th style="text-align:center">组号</th>
-<th style="text-align:center">0</th>
-<th style="text-align:center">1</th>
-<th style="text-align:center">2</th>
-<th style="text-align:center">3</th>
-<th style="text-align:center">4</th>
-<th style="text-align:center">5</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">所在层数</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">1</td>
-<td style="text-align:center">2 ~ 3</td>
-<td style="text-align:center">4 ~ 15</td>
-<td style="text-align:center">16 ~ 65535</td>
-<td style="text-align:center">65536 ~ $2^{65536}-1$</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>其中，第 0 组只有根结点，第 1 组是根结点的直接子结点。</p>
-<p>下面是来自维基百科的一幅图，将每个分组看作一个桶（Bucket）：</p>
-<p><img src="/union-find-analysis-bucket.jpg" alt=""></p>
-<p>对于某一次 Find 操作 $A_i$，将结点到根的路径上的所有结点作为一个集合 $X_i$，将集合 $X_i$ 分为如下三组：</p>
-<p>$Y_i = \{ \mu \in X_i | \mu 为根或根的直接子结点 \}$</p>
-<p>$Z_i = \{ \mu \in X_i - Y_i | g(\mu) \lt g(p_i(\mu)) \}$</p>
-<p>$W_i = \{ \mu \in X_i - Y_i | g(\mu) = g(p_i(\mu)) \}$</p>
-<p>某次 Find 操作的代价是上面三个集合中每个点的代价的总和。</p>
-<p>那么我们可以得到如下的分析：</p>
-<ul>
-<li>对于 $Y_i$，虽然每次可能要换桶，但是由于此集合中是根结点或者根结点的直接子结点，我们可以保证换桶的次数在常数时间内，故时间复杂度为 $O(m)$；</li>
-<li>对于 $Z_i$，对于一棵有 n 个结点的树，最多有 $\log^<em>(n)$ 个不同的组，所以某条路径上能够属于 $Z_i$ 的结点最多有 $\log^</em>(n)$ 个，那么换桶的次数最多为 $\log^<em>(n)$ 次，故时间复杂度为 $O(m\log^</em>(n))$；</li>
-<li>对于 $W_i$，不需要换桶，所以时间复杂度正比于其中点的个数。</li>
-</ul>
-<p>下面有两个引理来辅助 $W_i$ 中点的个数的计算：</p>
-<ul>
-<li>Level Census Lemma：第 $l$ 层最多有 $n / 2^{l-1}$ 个结点<ul>
-<li>证明：假设第 $l$ 层有 $p$ 个结点，这些结点共有 $s$ 棵子树。我们知道，高度为 $h$ 的树（这里的树是 Union-Find 树）至少有 $2^h$ 个结点，那么高度为 $l-1$ 的 $s$ 棵子树共有 $s \cdot 2^{l-1}$ 个结点，同时必有 $s \cdot 2^{l-1} \le n$，也就是 $s \le n/2^{l-1}$，又 $p \le s$，所以 $p \le n/2^{l-1}$。</li>
-</ul>
-</li>
-<li>Group Census Lemma：编号为 $g$ 的组中最多有 $2n/H(g)$ 个结点<ul>
-<li>证明：编号为 $g$ 的组包括树的第 $H(g-1) + 1$ 到第 $H(g)$ 层，由上面的 Level Census 引理，我们有：$\sum_{l=H(g-1)+1}^{H(g)} \dfrac{n}{2^{l-1}} = \dfrac{n}{2^{H(g-1)}} + \dfrac{n}{2^{H(g-1)}\cdot 2} + \cdots + \dfrac{n}{2^{H(g-1)}\cdot 2^{H(g)-H(g-1)}}\le \dfrac{n\cdot(1 + \frac{1}{2} + \cdots)}{2^{H(g-1)}} = \dfrac{2n}{H(g)}$</li>
-</ul>
-</li>
-</ul>
-<p>同时，我们知道同一个桶中，某个结点改变其父结点的次数最多为 $H(g) - H(g-1) - 1​$ 次。接下来我们就可以计算 $W_i​$ 中结点总数：</p>
-<script type="math/tex; mode=display">\sum_{g=0}^{\log^*(n)} \dfrac{2n}{H(g)}(H(g) - H(g-1) - 1) \le \sum_{g=0}^{\log^*(n)}2n = 2n(1+\log^*(n))</script><p>综上，总的时间复杂度为 $O(m) + O(m\log^<em>(n)) + O(2n(1+\log^</em>(n))​$，由于我们假设 $m \ge n​$，所以最终得到使用带权合并和路径压缩的 Union-Find 程序的时间复杂度为 $O(m\log^*(n))​$</p>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://en.wikipedia.org/wiki/Proof_of_O(log*n" target="_blank" rel="noopener">维基百科：Union-Find 程序的复杂度分析</a>_time_complexity_of_union%E2%80%93find)</p>
-<p><a href="https://www2.cs.duke.edu/courses/fall08/cps230/Lectures/L-16.pdf" target="_blank" rel="noopener">Duke - Lecture Note：Union-Find</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/04/MapReduce/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/12/04/MapReduce/" itemprop="url">MapReduce</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-04T21:16:45+08:00">
-                2018-12-04
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/04/Markdown-内嵌-Latex-数学公式相关/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/12/04/Markdown-内嵌-Latex-数学公式相关/" itemprop="url">Markdown 内嵌 Latex 数学公式相关</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-04T21:03:50+08:00">
-                2018-12-04
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Markdown 中通常使用 <code>$...$</code>（行内公式）或 <code>$$...$$</code>（行间公式）或 <code>\[...\]</code> 来标明 Latex 的使用</p>
-<h1 id="符号"><a href="#符号" class="headerlink" title="符号"></a>符号</h1><p>上标：<code>^{}</code>，当为单个符号时可省略 <code>{}</code></p>
-<p>下标：<code>_{}</code>，当为单个符号时可省略 <code>{}</code></p>
-<p>求和：<code>\sum</code></p>
-<ul>
-<li>默认情况下是上标/下标的形式，可以使用 <code>\limits</code> 来变成上/下<ul>
-<li>默认情况：<code>\sum_{i=0}^n i</code>：$\sum_{i=0}^n i$</li>
-<li>使用 <code>\limits</code>：<code>\sum \limits_{i=0}^n i</code>：$\sum \limits_{i=0}^n i$</li>
-</ul>
-</li>
-</ul>
-<p>点</p>
-<ul>
-<li><code>\cdot</code>：$\cdot$</li>
-<li><code>\cdots</code>：$\cdots$</li>
-<li><code>\vdots</code>：$\vdots$</li>
-</ul>
-<h2 id="希腊字母"><a href="#希腊字母" class="headerlink" title="希腊字母"></a>希腊字母</h2><h2 id="集合运算"><a href="#集合运算" class="headerlink" title="集合运算"></a>集合运算</h2><h2 id="分式"><a href="#分式" class="headerlink" title="分式"></a>分式</h2><p><code>\dfrac</code></p>
-<p><code>\frac</code></p>
-<h1 id="矩阵"><a href="#矩阵" class="headerlink" title="矩阵"></a>矩阵</h1><p>\begin{matrix}…\end{matrix}</p>
-<p>矩阵一行的元素使用 <code>&amp;</code> 分隔，使用 <code>\\</code> 换行</p>
-<p>示例：<code>$\begin{matrix} 1 &amp; 2 \\ 3 &amp; 4 \end{matrix}$</code>：$\begin{matrix} 1 &amp; 2 \ 3 &amp; 4 \end{matrix}$</p>
-<p>带括号：使用 <code>\left...\right</code></p>
-<h1 id="公式对齐"><a href="#公式对齐" class="headerlink" title="公式对齐"></a>公式对齐</h1>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1887,7 +1878,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-count">26</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -1898,7 +1889,7 @@
               
               <div class="site-state-item site-state-categories">
                 
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">categories</span>
                 
               </div>

@@ -79,20 +79,14 @@
 
 
 
-<meta name="description" content="题目描述： 给定一个链表，返回链表开始入环的第一个节点。 如果链表无环，则返回 null。 说明：  不允许修改给定的链表 你是否可以不用额外空间解决此题？  示意图：  有环：   无环：    这道题如果使用额外空间的话，是很好做的：用一个容器装所有访问过的结点，如果出现重复，就说明有环。但是如果不使用额外空间呢？ 快慢指针！ 原理是这样的：设环的长度为 $r$，快慢两个指针相遇时走过的长度分">
 <meta property="og:type" content="article">
-<meta property="og:title" content="LeetCode 142：Linked List Cycle II">
-<meta property="og:url" content="http://yoursite.com/2018/12/14/LeetCode-142：Linked-List-Cycle-II/index.html">
+<meta property="og:title" content="LeetCode 148：Sort List">
+<meta property="og:url" content="http://yoursite.com/2018/12/21/LeetCode-148：Sort-List/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="题目描述： 给定一个链表，返回链表开始入环的第一个节点。 如果链表无环，则返回 null。 说明：  不允许修改给定的链表 你是否可以不用额外空间解决此题？  示意图：  有环：   无环：    这道题如果使用额外空间的话，是很好做的：用一个容器装所有访问过的结点，如果出现重复，就说明有环。但是如果不使用额外空间呢？ 快慢指针！ 原理是这样的：设环的长度为 $r$，快慢两个指针相遇时走过的长度分">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://yoursite.com/2018/12/14/LeetCode-142：Linked-List-Cycle-II/circular-linked-list.png">
-<meta property="og:image" content="http://yoursite.com/2018/12/14/LeetCode-142：Linked-List-Cycle-II/no-cycle.png">
-<meta property="og:updated_time" content="2018-12-14T12:10:52.157Z">
+<meta property="og:updated_time" content="2018-12-21T11:24:09.531Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="LeetCode 142：Linked List Cycle II">
-<meta name="twitter:description" content="题目描述： 给定一个链表，返回链表开始入环的第一个节点。 如果链表无环，则返回 null。 说明：  不允许修改给定的链表 你是否可以不用额外空间解决此题？  示意图：  有环：   无环：    这道题如果使用额外空间的话，是很好做的：用一个容器装所有访问过的结点，如果出现重复，就说明有环。但是如果不使用额外空间呢？ 快慢指针！ 原理是这样的：设环的长度为 $r$，快慢两个指针相遇时走过的长度分">
-<meta name="twitter:image" content="http://yoursite.com/2018/12/14/LeetCode-142：Linked-List-Cycle-II/circular-linked-list.png">
+<meta name="twitter:title" content="LeetCode 148：Sort List">
 
 
 
@@ -122,13 +116,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/12/14/LeetCode-142：Linked-List-Cycle-II/">
+  <link rel="canonical" href="http://yoursite.com/2018/12/21/LeetCode-148：Sort-List/">
 
 
 
 
 
-  <title>LeetCode 142：Linked List Cycle II | Hexo</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>LeetCode 148：Sort List | Hexo</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -235,7 +229,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/14/LeetCode-142：Linked-List-Cycle-II/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/21/LeetCode-148：Sort-List/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Han Qi">
@@ -252,7 +246,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">LeetCode 142：Linked List Cycle II</h1>
+          <h1 class="post-title" itemprop="name headline">LeetCode 148：Sort List</h1>
         
 
         <div class="post-meta">
@@ -264,8 +258,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-14T19:43:28+08:00">
-                2018-12-14
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-21T19:24:08+08:00">
+                2018-12-21
               </time>
             
 
@@ -302,31 +296,7 @@
       
 
       
-        <p><strong>题目描述：</strong></p>
-<p>给定一个链表，返回链表开始入环的第一个节点。 如果链表无环，则返回 <code>null</code>。</p>
-<p><strong>说明：</strong></p>
-<ul>
-<li>不允许修改给定的链表</li>
-<li>你是否可以不用额外空间解决此题？</li>
-</ul>
-<p><strong>示意图：</strong></p>
-<ul>
-<li><p>有环：</p>
-<img src="/2018/12/14/LeetCode-142：Linked-List-Cycle-II/circular-linked-list.png">
-</li>
-<li><p>无环：</p>
-<img src="/2018/12/14/LeetCode-142：Linked-List-Cycle-II/no-cycle.png">
-</li>
-</ul>
-<p>这道题如果使用额外空间的话，是很好做的：用一个容器装所有访问过的结点，如果出现重复，就说明有环。但是如果不使用额外空间呢？</p>
-<p>快慢指针！</p>
-<p>原理是这样的：设环的长度为 $r$，快慢两个指针相遇时走过的长度分别为 $2k$ 和 $k$，那么有 $2k - k = n \cdot r \Rightarrow k = n \cdot r$。假设链表的 <code>head</code> 与环的第一个结点距离为 $s$，链表的 <code>head</code> 与快慢指针相遇点的距离为 $k$，那么环的第一个结点与相遇点的距离为 $m = k - s$，带入，有</p>
-<script type="math/tex; mode=display">s = n \cdot r - m = (n-1) \cdot r + (r-m)</script><p>令 $n = 1$，则有 $s = r - m$，此时快（慢）指针到环的第一个结点的距离与 <code>head</code> 到第一个结点的距离相等，那么二者走同样的步数，相遇点就是环的第一个结点。</p>
-<p>代码：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> ListNode <span class="title">detectCycle</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (head == <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    ListNode slow = head;</span><br><span class="line">    ListNode fast = head;</span><br><span class="line">    <span class="keyword">while</span> (fast.next != <span class="keyword">null</span> &amp;&amp; fast.next.next != <span class="keyword">null</span>) &#123;</span><br><span class="line">        slow = slow.next;</span><br><span class="line">        fast = fast.next.next;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (slow == fast) &#123;</span><br><span class="line">            ListNode p = head;</span><br><span class="line">            <span class="keyword">while</span> (p != fast) &#123;</span><br><span class="line">                fast = fast.next;</span><br><span class="line">                p = p.next;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> p;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="另外"><a href="#另外" class="headerlink" title="另外"></a>另外</h1><p>快慢指针其实还可以做一些其他的事情，就目前的知识，快慢指针还能够找到<strong>单</strong>链表的中点（当然并不会改善复杂度）：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> ListNode <span class="title">mid</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (head == <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (head.next == <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> head;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    ListNode fast = head;</span><br><span class="line">    ListNode slow = head;</span><br><span class="line">    <span class="keyword">while</span> (fast.next != <span class="keyword">null</span> &amp;&amp; fast.next.next != <span class="keyword">null</span>) &#123;</span><br><span class="line">        slow = slow.next;</span><br><span class="line">        fast = fast.next.next;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> slow;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+        
       
     </div>
     
@@ -350,8 +320,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/12/14/LeetCode-695：Max-Area-of-Island/" rel="next" title="LeetCode 695：Max Area of Island">
-                <i class="fa fa-chevron-left"></i> LeetCode 695：Max Area of Island
+              <a href="/2018/12/18/LintCode-692：Sliding-Window-Unique-Elements-Sum/" rel="next" title="LintCode 692：Sliding Window Unique Elements Sum">
+                <i class="fa fa-chevron-left"></i> LintCode 692：Sliding Window Unique Elements Sum
               </a>
             
           </div>
@@ -360,8 +330,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/12/17/动态规划入门/" rel="prev" title="动态规划入门">
-                动态规划入门 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/12/29/Git-内部原理/" rel="prev" title="Git 内部原理">
+                Git 内部原理 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -414,17 +384,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -484,22 +445,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#另外"><span class="nav-number">1.</span> <span class="nav-text">另外</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
