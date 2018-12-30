@@ -79,14 +79,22 @@
 
 
 
+<meta name="description" content="邻接（表）模型 嵌套集合模型  物化路径模型参考参考[1] Storing Hierarchical Data in a Database">
 <meta property="og:type" content="article">
-<meta property="og:title" content="LeetCode 148：Sort List">
-<meta property="og:url" content="http://yoursite.com/2018/12/21/LeetCode-148：Sort-List/index.html">
+<meta property="og:title" content="在数据库中存储层次结构数据">
+<meta property="og:url" content="http://yoursite.com/2018/12/30/在数据库中存储层次结构数据/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="邻接（表）模型 嵌套集合模型  物化路径模型参考参考[1] Storing Hierarchical Data in a Database">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-12-21T11:24:09.531Z">
+<meta property="og:image" content="http://yoursite.com/2018/12/30/在数据库中存储层次结构数据/bug-report-comments-example.png">
+<meta property="og:image" content="http://yoursite.com/2018/12/30/在数据库中存储层次结构数据/database-adjacency.png">
+<meta property="og:image" content="http://yoursite.com/2018/12/30/在数据库中存储层次结构数据/nested-sets-model.png">
+<meta property="og:image" content="http://yoursite.com/2018/12/30/在数据库中存储层次结构数据/nested-sets-model-insert.png">
+<meta property="og:updated_time" content="2018-12-30T07:43:13.628Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="LeetCode 148：Sort List">
+<meta name="twitter:title" content="在数据库中存储层次结构数据">
+<meta name="twitter:description" content="邻接（表）模型 嵌套集合模型  物化路径模型参考参考[1] Storing Hierarchical Data in a Database">
+<meta name="twitter:image" content="http://yoursite.com/2018/12/30/在数据库中存储层次结构数据/bug-report-comments-example.png">
 
 
 
@@ -116,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/12/21/LeetCode-148：Sort-List/">
+  <link rel="canonical" href="http://yoursite.com/2018/12/30/在数据库中存储层次结构数据/">
 
 
 
 
 
-  <title>LeetCode 148：Sort List | Hexo</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>在数据库中存储层次结构数据 | Hexo</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -229,7 +237,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/21/LeetCode-148：Sort-List/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/30/在数据库中存储层次结构数据/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Han Qi">
@@ -246,7 +254,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">LeetCode 148：Sort List</h1>
+          <h1 class="post-title" itemprop="name headline">在数据库中存储层次结构数据</h1>
         
 
         <div class="post-meta">
@@ -258,8 +266,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-21T19:24:08+08:00">
-                2018-12-21
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-30T15:37:15+08:00">
+                2018-12-30
               </time>
             
 
@@ -296,7 +304,12 @@
       
 
       
-        
+        <img src="/2018/12/30/在数据库中存储层次结构数据/bug-report-comments-example.png">
+<h1 id="邻接（表）模型"><a href="#邻接（表）模型" class="headerlink" title="邻接（表）模型"></a>邻接（表）模型</h1><img src="/2018/12/30/在数据库中存储层次结构数据/database-adjacency.png">
+<h1 id="嵌套集合模型"><a href="#嵌套集合模型" class="headerlink" title="嵌套集合模型"></a>嵌套集合模型</h1><img src="/2018/12/30/在数据库中存储层次结构数据/nested-sets-model.png">
+<img src="/2018/12/30/在数据库中存储层次结构数据/nested-sets-model-insert.png">
+<h1 id="物化路径模型"><a href="#物化路径模型" class="headerlink" title="物化路径模型"></a>物化路径模型</h1><h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><h1 id="参考-1"><a href="#参考-1" class="headerlink" title="参考"></a>参考</h1><p>[1] <a href="https://www.grayboxpdx.com/blog/post/storing-hierarchical-data-in-a-database" target="_blank" rel="noopener">Storing Hierarchical Data in a Database</a></p>
+
       
     </div>
     
@@ -320,8 +333,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/12/18/LintCode-692：Sliding-Window-Unique-Elements-Sum/" rel="next" title="LintCode 692：Sliding Window Unique Elements Sum">
-                <i class="fa fa-chevron-left"></i> LintCode 692：Sliding Window Unique Elements Sum
+              <a href="/2018/12/30/机器学习数学基础-概率统计：MLE/" rel="next" title="机器学习数学基础 - 概率统计：MLE">
+                <i class="fa fa-chevron-left"></i> 机器学习数学基础 - 概率统计：MLE
               </a>
             
           </div>
@@ -329,10 +342,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/12/29/Git-内部原理/" rel="prev" title="Git 内部原理">
-                Git 内部原理 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -384,8 +393,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -445,6 +463,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#邻接（表）模型"><span class="nav-number">1.</span> <span class="nav-text">邻接（表）模型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#嵌套集合模型"><span class="nav-number">2.</span> <span class="nav-text">嵌套集合模型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#物化路径模型"><span class="nav-number">3.</span> <span class="nav-text">物化路径模型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">4.</span> <span class="nav-text">参考</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考-1"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
