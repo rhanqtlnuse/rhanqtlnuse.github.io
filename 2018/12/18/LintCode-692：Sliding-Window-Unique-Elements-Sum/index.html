@@ -40,7 +40,7 @@
 
   
   
-  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -48,21 +48,21 @@
 
 
 
-<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
 
 
-  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
 
 
 
@@ -82,7 +82,7 @@
 <meta name="description" content="描述 题目描述： 给一个数组和一个滑动窗口的大小, 求每一个窗口内唯一元素的个数和 您在真实的面试中是否遇到过这个题？  是 题目纠错 样例： 123456给一个数组 nums = [1, 2, 1, 3, 3] 和 k = 3第一个窗口为 [1, 2, 1], 只有 2 是唯一的, 计数为 1第二个窗口为 [2, 1, 3], 所有的元素都是唯一的, 计数为 3第三个窗口为 [1, 3, 3],">
 <meta property="og:type" content="article">
 <meta property="og:title" content="LintCode 692：Sliding Window Unique Elements Sum">
-<meta property="og:url" content="http://rhanqtl.com/2018/12/18/LintCode-692：Sliding-Window-Unique-Elements-Sum/index.html">
+<meta property="og:url" content="http://yoursite.com/2018/12/18/LintCode-692：Sliding-Window-Unique-Elements-Sum/index.html">
 <meta property="og:site_name" content="RHANQTL">
 <meta property="og:description" content="描述 题目描述： 给一个数组和一个滑动窗口的大小, 求每一个窗口内唯一元素的个数和 您在真实的面试中是否遇到过这个题？  是 题目纠错 样例： 123456给一个数组 nums = [1, 2, 1, 3, 3] 和 k = 3第一个窗口为 [1, 2, 1], 只有 2 是唯一的, 计数为 1第二个窗口为 [2, 1, 3], 所有的元素都是唯一的, 计数为 3第三个窗口为 [1, 3, 3],">
 <meta property="og:locale" content="zh-Hans">
@@ -96,7 +96,7 @@
 <script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
-    root: '/blog/',
+    root: '/',
     scheme: 'Muse',
     version: '5.1.4',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
@@ -119,7 +119,7 @@
 
 
 
-  <link rel="canonical" href="http://rhanqtl.com/2018/12/18/LintCode-692：Sliding-Window-Unique-Elements-Sum/">
+  <link rel="canonical" href="http://yoursite.com/2018/12/18/LintCode-692：Sliding-Window-Unique-Elements-Sum/">
 
 
 
@@ -153,7 +153,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/blog/" class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">RHANQTL</span>
         <span class="logo-line-after"><i></i></span>
@@ -181,7 +181,7 @@
       
         
         <li class="menu-item menu-item-home">
-          <a href="/blog/" rel="section">
+          <a href="/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
@@ -191,7 +191,7 @@
       
         
         <li class="menu-item menu-item-archives">
-          <a href="/blog/archives/" rel="section">
+          <a href="/archives/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
@@ -232,12 +232,12 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://rhanqtl.com/blog/2018/12/18/LintCode-692：Sliding-Window-Unique-Elements-Sum/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/18/LintCode-692：Sliding-Window-Unique-Elements-Sum/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Han Qi">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
@@ -284,7 +284,7 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/blog/categories/Algorithms/" itemprop="url" rel="index">
+                  <a href="/categories/Algorithms/" itemprop="url" rel="index">
                     <span itemprop="name">Algorithms</span>
                   </a>
                 </span>
@@ -295,7 +295,7 @@
                 
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/blog/categories/Algorithms/OJ/" itemprop="url" rel="index">
+                  <a href="/categories/Algorithms/OJ/" itemprop="url" rel="index">
                     <span itemprop="name">OJ</span>
                   </a>
                 </span>
@@ -306,7 +306,7 @@
                 
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/blog/categories/Algorithms/OJ/LintCode/" itemprop="url" rel="index">
+                  <a href="/categories/Algorithms/OJ/LintCode/" itemprop="url" rel="index">
                     <span itemprop="name">LintCode</span>
                   </a>
                 </span>
@@ -397,7 +397,7 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/2018/12/17/LeetCode-128：Longest-Consecutive-Sequence/" rel="next" title="LeetCode 128：Longest Consecutive Sequence">
+              <a href="/2018/12/17/LeetCode-128：Longest-Consecutive-Sequence/" rel="next" title="LeetCode 128：Longest Consecutive Sequence">
                 <i class="fa fa-chevron-left"></i> LeetCode 128：Longest Consecutive Sequence
               </a>
             
@@ -407,7 +407,7 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/blog/2018/12/21/LeetCode-148：Sort-List/" rel="prev" title="LeetCode 148：Sort List">
+              <a href="/2018/12/21/LeetCode-148：Sort-List/" rel="prev" title="LeetCode 148：Sort List">
                 LeetCode 148：Sort List <i class="fa fa-chevron-right"></i>
               </a>
             
@@ -475,7 +475,7 @@
             
               <div class="site-state-item site-state-posts">
               
-                <a href="/blog/archives/">
+                <a href="/archives/">
               
                   <span class="site-state-item-count">29</span>
                   <span class="site-state-item-name">日志</span>
@@ -613,57 +613,57 @@
 
   
   
-    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
   
 
   
   
-    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
   
 
   
   
-    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
   
 
   
   
-    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
   
 
   
   
-    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
   
 
   
   
-    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
   
-
-
-  
-
-
-  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
-
 
 
   
 
 
-  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
 </script>
