@@ -1387,7 +1387,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/05/union-find/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/05/并查集/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Han Qi">
@@ -1407,7 +1407,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2018/12/05/union-find/" class="post-title-link" itemprop="url">并查集</a>
+                <a href="/2018/12/05/并查集/" class="post-title-link" itemprop="url">并查集</a>
               
             
           </h1>
@@ -1531,7 +1531,7 @@
 </table>
 </div>
 <p>可以看到，这个函数增长的很快（宇宙中原子个数有 $10^{80}$ 个，而 $2^{65536}$ 比 $10^{80}$ 还要大，所以通常情况下 $i$ 最多为 5）。我们要使用的函数是其反函数：</p>
-<p>$log^*(n) = \min\{ i | H(i) \ge n \} = \min\{ i | \log_2\log_2\cdots\log_2n \le 1 \}$，其中 $\log$ 有 $i$ 次，“迭代对数”的名字也因此而来。</p>
+<p>$log^*(n) = \min\{\ i\ |\ H(i) \ge n\ \} = \min\{\ i\ | \log_2\log_2\cdots\log_2n \le 1\ \}$，其中 $\log$ 有 $i$ 次，“迭代对数”的名字也因此而来。</p>
 <h3 id="结点的分组"><a href="#结点的分组" class="headerlink" title="结点的分组"></a>结点的分组</h3><p>我们依据 $H(i)$（或 $log^*(n)$）将结点分为如下的组：</p>
 <div class="table-container">
 <table>
@@ -1563,9 +1563,9 @@
 <p>下面是来自维基百科的一幅图，将每个分组看作一个桶（Bucket）：</p>
 <p><img src="/union-find-analysis-bucket.jpg" alt=""></p>
 <p>对于某一次 Find 操作 $A_i$，将结点到根的路径上的所有结点作为一个集合 $X_i$，将集合 $X_i$ 分为如下三组：</p>
-<p>$Y_i = \{ \mu \in X_i | \mu 为根或根的直接子结点 \}$</p>
-<p>$Z_i = \{ \mu \in X_i - Y_i | g(\mu) \lt g(p_i(\mu)) \}$</p>
-<p>$W_i = \{ \mu \in X_i - Y_i | g(\mu) = g(p_i(\mu)) \}$</p>
+<p>$Y_i = \{\ \mu \in X_i\ |\ \mu\ 为根或根的直接子结点\ \}$</p>
+<p>$Z_i = \{\ \mu \in X_i - Y_i\ |\ g(\mu) \lt g(p_i(\mu))\ \}$</p>
+<p>$W_i = \{\ \mu \in X_i - Y_i\ |\ g(\mu) = g(p_i(\mu))\ \}$</p>
 <p>某次 Find 操作的代价是上面三个集合中每个点的代价的总和。</p>
 <p>那么我们可以得到如下的分析：</p>
 <ul>
@@ -1899,7 +1899,7 @@
 <p><code>\frac</code></p>
 <h1 id="矩阵"><a href="#矩阵" class="headerlink" title="矩阵"></a>矩阵</h1><p>\begin{matrix}…\end{matrix}</p>
 <p>矩阵一行的元素使用 <code>&amp;</code> 分隔，使用 <code>\\</code> 换行</p>
-<p>示例：<code>$\begin{matrix} 1 &amp; 2 \\ 3 &amp; 4 \end{matrix}$</code>：$\begin{matrix} 1 &amp; 2 \ 3 &amp; 4 \end{matrix}$</p>
+<p>示例：<code>$\begin{matrix} 1 &amp; 2 \\ 3 &amp; 4 \end{matrix}$</code>：$\begin{matrix} 1 &amp; 2 \\ 3 &amp; 4 \end{matrix}$</p>
 <p>带括号：使用 <code>\left...\right</code></p>
 <h1 id="公式对齐"><a href="#公式对齐" class="headerlink" title="公式对齐"></a>公式对齐</h1>
           

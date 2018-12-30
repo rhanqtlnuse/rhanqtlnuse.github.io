@@ -390,7 +390,7 @@
 <p>渐进比率为：$\max \limits_{I} \dfrac{val(sol_A(I))}{opt(I)}$</p>
 <h2 id="背包问题"><a href="#背包问题" class="headerlink" title="背包问题"></a>背包问题</h2><h3 id="最先适应（First-Fit）"><a href="#最先适应（First-Fit）" class="headerlink" title="最先适应（First Fit）"></a>最先适应（First Fit）</h3><p>如果我们使用 l 个背包，那么至少有 l - 1 个背包装满一半以上（more than half full）</p>
 <p>假设第 k 个和 k’ 个背包至多装了一半，那么实际上我们压根就不会打开 k’（因为背包 k 完全能够装下 k’ 中的项）</p>
-<p>那么 $\sum\limits_{i=1}^{n} s_i \gt \dfrac{l-1}{2}$，又有 $\sum\limits_{i=1}^{n} \le$ OPT，所以 $l \lt 2 \cdot$ OPT</p>
+<p>那么 $\sum\limits_{i=1}^{n} s_i \gt \dfrac{l-1}{2}$，又有 $\sum\limits_{i=1}^{n} \le$ OPT，所以 $l \lt 2\ \cdot$ OPT</p>
 <h3 id="降序最先适应"><a href="#降序最先适应" class="headerlink" title="降序最先适应"></a>降序最先适应</h3><p>先将所有的项按照非升序进行排序。</p>
 <p>引理 1：假设最优解使用了 $l$ 个背包，SOL 使用了 $l’$ 个背包，那么背包 $l$ + 1 到 $l’$ 中的项的大小一定不大于 1/3</p>
 <p>证明：令 s$_i$ 是 SOL 中第一个被放进背包 $l$ + 1 的项，我们只需证明 s$_i$ 不大于 1/3</p>
