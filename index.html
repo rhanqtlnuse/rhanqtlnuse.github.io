@@ -2,6 +2,15 @@
 
 
 
+
+
+
+
+
+
+
+
+
   
 
 
@@ -9,7 +18,7 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 
 
@@ -20,8 +29,6 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -38,9 +45,22 @@
 
 
 
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=6.6.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.6.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.6.0" color="#222">
 
 
 
@@ -48,61 +68,18 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
-
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
-
-
-
-
-
-  <meta name="keywords" content="Hexo, NexT">
-
-
-
-
-
-
-
-
-
-
-<meta property="og:type" content="website">
-<meta property="og:title" content="RHANQTL">
-<meta property="og:url" content="http://yoursite.com/index.html">
-<meta property="og:site_name" content="RHANQTL">
-<meta property="og:locale" content="zh-Hans">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="RHANQTL">
-
-
-
-<script type="text/javascript" id="hexo.configurations">
+<script id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
     scheme: 'Muse',
-    version: '5.1.4',
+    version: '6.6.0',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: '0',
-      author: '博主'
-    },
     algolia: {
       applicationID: '',
       apiKey: '',
@@ -114,14 +91,35 @@
 </script>
 
 
+  
+
+
+
+
+  <meta property="og:type" content="website">
+<meta property="og:title" content="RHANQTL">
+<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:site_name" content="RHANQTL">
+<meta property="og:locale" content="zh-Hans">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="RHANQTL">
+
+
+
+
+
 
   <link rel="canonical" href="http://yoursite.com/">
 
 
 
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
 
-
-  <title>RHANQTL</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>RHANQTL</title>
   
 
 
@@ -130,6 +128,35 @@
 
 
 
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 </head>
 
@@ -146,7 +173,7 @@
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
+  <div class="site-meta">
     
 
     <div class="custom-logo-site-title">
@@ -156,13 +183,12 @@
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
-      
-        <p class="site-subtitle"></p>
-      
+    
+    
   </div>
 
   <div class="site-nav-toggle">
-    <button>
+    <button aria-label="Toggle navigation bar">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -170,35 +196,55 @@
   </div>
 </div>
 
-<nav class="site-nav">
-  
 
+
+<nav class="site-nav">
   
     <ul id="menu" class="menu">
       
         
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
-            
-            首页
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
-            
-            归档
-          </a>
-        </li>
+        
+          
+          <li class="menu-item menu-item-home menu-item-active">
+
+    
+    
+    
       
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
 
       
+      
     </ul>
+  
+
+  
+    
+
   
 
   
@@ -206,12 +252,20 @@
 
 
 
- </div>
+  
+
+
+
+</div>
     </header>
+
+    
+
 
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
+          
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
@@ -222,6 +276,145 @@
 
   
   
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/30/RSS-订阅-arXiv/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/12/30/RSS-订阅-arXiv/" class="post-title-link" itemprop="url">RSS 订阅 arXiv</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-12-30 20:38:13" itemprop="dateCreated datePublished" datetime="2018-12-30T20:38:13+08:00">2018-12-30</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
   
 
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
@@ -248,25 +441,39 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/12/30/在数据库中存储层次结构数据/" itemprop="url">在数据库中存储层次结构数据</a></h1>
+                
+                <a href="/2018/12/30/在数据库中存储层次结构数据/" class="post-title-link" itemprop="url">在数据库中存储层次结构数据</a>
+              
+            
+          </h1>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发表于</span>
+                <span class="post-meta-item-text">Posted on</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-30T15:37:15+08:00">
-                2018-12-30
-              </time>
+
+              
+                
+              
+
+              <time title="Created: 2018-12-30 15:37:15 / Modified: 15:46:18" itemprop="dateCreated datePublished" datetime="2018-12-30T15:37:15+08:00">2018-12-30</time>
             
 
             
+              
 
+              
             
           </span>
 
@@ -279,25 +486,17 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">分类于</span>
+                <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Database/" itemprop="url" rel="index">
-                    <span itemprop="name">Database</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Database/" itemprop="url" rel="index"><span itemprop="name">Database</span></a></span>
 
                 
                 
-                  ， 
+                  , 
                 
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Database/MySQL/" itemprop="url" rel="index">
-                    <span itemprop="name">MySQL</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Database/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a></span>
 
                 
                 
@@ -333,22 +532,28 @@
       
         
           
-            <img src="/blog/2018/12/30/在数据库中存储层次结构数据/bug-report-comments-example.png">
-<h1 id="邻接（表）模型"><a href="#邻接（表）模型" class="headerlink" title="邻接（表）模型"></a>邻接（表）模型</h1><img src="/blog/2018/12/30/在数据库中存储层次结构数据/adjacency-model.png" title="邻接模型，实际上是一棵 Inverse Tree">
-<h1 id="嵌套集合模型"><a href="#嵌套集合模型" class="headerlink" title="嵌套集合模型"></a>嵌套集合模型</h1><img src="/blog/2018/12/30/在数据库中存储层次结构数据/nested-sets-model.png">
-<img src="/blog/2018/12/30/在数据库中存储层次结构数据/nested-sets-model-insert.png">
+            <img src="/2018/12/30/在数据库中存储层次结构数据/bug-report-comments-example.png">
+<h1 id="邻接（表）模型"><a href="#邻接（表）模型" class="headerlink" title="邻接（表）模型"></a>邻接（表）模型</h1><img src="/2018/12/30/在数据库中存储层次结构数据/adjacency-model.png" title="邻接模型，实际上是一棵 Inverse Tree">
+<h1 id="嵌套集合模型"><a href="#嵌套集合模型" class="headerlink" title="嵌套集合模型"></a>嵌套集合模型</h1><img src="/2018/12/30/在数据库中存储层次结构数据/nested-sets-model.png">
+<img src="/2018/12/30/在数据库中存储层次结构数据/nested-sets-model-insert.png">
 <h1 id="物化路径模型"><a href="#物化路径模型" class="headerlink" title="物化路径模型"></a>物化路径模型</h1><h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p>[1] <a href="https://www.grayboxpdx.com/blog/post/storing-hierarchical-data-in-a-database" target="_blank" rel="noopener">Storing Hierarchical Data in a Database</a></p>
 
           
         
       
     </div>
+
+    
+
     
     
     
 
     
 
+    
+      
+    
     
 
     
@@ -381,6 +586,8 @@
   
   
 
+  
+
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
   
   
@@ -405,25 +612,39 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/12/30/机器学习数学基础-概率统计：MLE/" itemprop="url">机器学习数学基础 - 概率统计：MLE</a></h1>
+                
+                <a href="/2018/12/30/机器学习数学基础-概率统计：MLE/" class="post-title-link" itemprop="url">机器学习数学基础 - 概率统计：MLE</a>
+              
+            
+          </h1>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发表于</span>
+                <span class="post-meta-item-text">Posted on</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-30T11:20:16+08:00">
-                2018-12-30
-              </time>
+
+              
+                
+              
+
+              <time title="Created: 2018-12-30 11:20:16 / Modified: 13:55:46" itemprop="dateCreated datePublished" datetime="2018-12-30T11:20:16+08:00">2018-12-30</time>
             
 
             
+              
 
+              
             
           </span>
 
@@ -436,25 +657,17 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">分类于</span>
+                <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Math/" itemprop="url" rel="index">
-                    <span itemprop="name">Math</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Math/" itemprop="url" rel="index"><span itemprop="name">Math</span></a></span>
 
                 
                 
-                  ， 
+                  , 
                 
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Math/Machine-Learning/" itemprop="url" rel="index">
-                    <span itemprop="name">Machine Learning</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Math/Machine-Learning/" itemprop="url" rel="index"><span itemprop="name">Machine Learning</span></a></span>
 
                 
                 
@@ -496,12 +709,18 @@
         
       
     </div>
+
+    
+
     
     
     
 
     
 
+    
+      
+    
     
 
     
@@ -534,6 +753,8 @@
   
   
 
+  
+
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
   
   
@@ -558,25 +779,51 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/12/29/动手学深度学习-基础篇：Softmax-回归/" itemprop="url">动手学深度学习 - 基础篇：Softmax 回归</a></h1>
+                
+                <a href="/2018/12/29/动手学深度学习-基础篇：Softmax-回归/" class="post-title-link" itemprop="url">动手学深度学习 - 基础篇：Softmax 回归</a>
+              
+            
+          </h1>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发表于</span>
+                <span class="post-meta-item-text">Posted on</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-29T21:46:11+08:00">
-                2018-12-29
-              </time>
+
+              
+                
+              
+
+              <time title="Created: 2018-12-29 21:46:11" itemprop="dateCreated datePublished" datetime="2018-12-29T21:46:11+08:00">2018-12-29</time>
             
 
             
+              
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-12-30 11:16:33" itemprop="dateModified" datetime="2018-12-30T11:16:33+08:00">2018-12-30</time>
+              
             
           </span>
 
@@ -589,25 +836,17 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">分类于</span>
+                <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Deep-Learning/" itemprop="url" rel="index">
-                    <span itemprop="name">Deep Learning</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Deep-Learning/" itemprop="url" rel="index"><span itemprop="name">Deep Learning</span></a></span>
 
                 
                 
-                  ， 
+                  , 
                 
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Deep-Learning/Basics/" itemprop="url" rel="index">
-                    <span itemprop="name">Basics</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Deep-Learning/Basics/" itemprop="url" rel="index"><span itemprop="name">Basics</span></a></span>
 
                 
                 
@@ -645,7 +884,7 @@
           
             <h1 id="Softmax-回归"><a href="#Softmax-回归" class="headerlink" title="Softmax 回归"></a>Softmax 回归</h1><h2 id="分类问题"><a href="#分类问题" class="headerlink" title="分类问题"></a>分类问题</h2><p>虽然可以使用回归模型建模，并且将预测值就近定点化到分类标签，但是这种连续值到离散值的转化通常会影响到分类质量，因此我们一般使用更加适合离散值输出的模型来解决分类问题。</p>
 <h2 id="Softmax-回归模型"><a href="#Softmax-回归模型" class="headerlink" title="Softmax 回归模型"></a>Softmax 回归模型</h2><p>Softmax 回归也是一个单层的神经网络，但是有多个输出神经元，并且其输出层是一个全连接层：</p>
-<img src="/blog/2018/12/29/动手学深度学习-基础篇：Softmax-回归/softmaxreg.svg" title="Softmax 回归是一个单层神经网络">
+<img src="/2018/12/29/动手学深度学习-基础篇：Softmax-回归/softmaxreg.svg" title="Softmax 回归是一个单层神经网络">
 <h3 id="Softmax-运算"><a href="#Softmax-运算" class="headerlink" title="Softmax 运算"></a>Softmax 运算</h3><p>一种直接的办法是直接将输出 $o_i$ 当作类别 $i$ 的置信度，但是存在两个问题：</p>
 <ul>
 <li>输出层的输出值的范围不确定，难以直观地判断这些值的意义<ul>
@@ -672,12 +911,18 @@
         
       
     </div>
+
+    
+
     
     
     
 
     
 
+    
+      
+    
     
 
     
@@ -710,6 +955,8 @@
   
   
 
+  
+
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
   
   
@@ -734,25 +981,39 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/12/29/Git-内部原理/" itemprop="url">Git 内部原理</a></h1>
+                
+                <a href="/2018/12/29/Git-内部原理/" class="post-title-link" itemprop="url">Git 内部原理</a>
+              
+            
+          </h1>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发表于</span>
+                <span class="post-meta-item-text">Posted on</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-29T08:28:24+08:00">
-                2018-12-29
-              </time>
+
+              
+                
+              
+
+              <time title="Created: 2018-12-29 08:28:24 / Modified: 10:21:20" itemprop="dateCreated datePublished" datetime="2018-12-29T08:28:24+08:00">2018-12-29</time>
             
 
             
+              
 
+              
             
           </span>
 
@@ -765,14 +1026,10 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">分类于</span>
+                <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Git/" itemprop="url" rel="index">
-                    <span itemprop="name">Git</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Git/" itemprop="url" rel="index"><span itemprop="name">Git</span></a></span>
 
                 
                 
@@ -854,7 +1111,7 @@
 </li>
 </ul>
 <h3 id="tree-对象"><a href="#tree-对象" class="headerlink" title="tree 对象"></a>tree 对象</h3><p>tree 对象可以存储文件名，也可以存储一组文件。Git 以一种类似 UNIX 文件系统但更简单的方式来存储内容，所有内容以 tree 或 blob 对象存储，tree 对象对应于 UNIX 中的目录，blob 对象则大致对应于 inode 或文件内容。一个单独的 tree 对象包含一条或多条 tree 记录，每一条记录含有一个指向 blob 或子 tree 对象的 SHA-1 指针，并附有该对象的权限模式（mode）、类型和文件名信息。</p>
-<img src="/blog/2018/12/29/Git-内部原理/git-object-model.png" title="Git 对象模型的简化版">
+<img src="/2018/12/29/Git-内部原理/git-object-model.png" title="Git 对象模型的简化版">
 <p>通常 Git 根据暂存区域（<code>index</code>    ）来创建并写入一个 tree。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">$ git status</span><br><span class="line">On branch master</span><br><span class="line"></span><br><span class="line">No commits yet</span><br><span class="line"></span><br><span class="line">Untracked files:</span><br><span class="line">  (use <span class="string">"git add &lt;file&gt;..."</span> to include <span class="keyword">in</span> what will be committed)</span><br><span class="line"></span><br><span class="line">        test.txt</span><br><span class="line"></span><br><span class="line">nothing added to commit but untracked files present (use <span class="string">"git add"</span> to track)</span><br><span class="line"></span><br><span class="line">$ git update-index --add --cacheinfo 100644 \</span><br><span class="line">&gt; 83baae61804e65cc73a7201a7252750c76066a30 test.txt</span><br><span class="line"></span><br><span class="line">$ git status</span><br><span class="line">On branch master</span><br><span class="line"></span><br><span class="line">No commits yet</span><br><span class="line"></span><br><span class="line">Changes to be committed:</span><br><span class="line">  (use <span class="string">"git rm --cached &lt;file&gt;..."</span> to unstage)</span><br><span class="line"></span><br><span class="line">        new file:   test.txt</span><br><span class="line"></span><br><span class="line">Changes not staged <span class="keyword">for</span> commit:</span><br><span class="line">  (use <span class="string">"git add &lt;file&gt;..."</span> to update what will be committed)</span><br><span class="line">  (use <span class="string">"git checkout -- &lt;file&gt;..."</span> to discard changes <span class="keyword">in</span> working directory)</span><br><span class="line"></span><br><span class="line">        modified:   test.txt</span><br></pre></td></tr></table></figure>
 <ul>
@@ -877,12 +1134,18 @@
         
       
     </div>
+
+    
+
     
     
     
 
     
 
+    
+      
+    
     
 
     
@@ -915,6 +1178,8 @@
   
   
 
+  
+
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
   
   
@@ -939,25 +1204,39 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/12/21/LeetCode-148：Sort-List/" itemprop="url">LeetCode 148：Sort List</a></h1>
+                
+                <a href="/2018/12/21/LeetCode-148：Sort-List/" class="post-title-link" itemprop="url">LeetCode 148：Sort List</a>
+              
+            
+          </h1>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发表于</span>
+                <span class="post-meta-item-text">Posted on</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-21T19:24:08+08:00">
-                2018-12-21
-              </time>
+
+              
+                
+              
+
+              <time title="Created: 2018-12-21 19:24:08 / Modified: 19:24:09" itemprop="dateCreated datePublished" datetime="2018-12-21T19:24:08+08:00">2018-12-21</time>
             
 
             
+              
 
+              
             
           </span>
 
@@ -996,12 +1275,18 @@
         
       
     </div>
+
+    
+
     
     
     
 
     
 
+    
+      
+    
     
 
     
@@ -1034,6 +1319,8 @@
   
   
 
+  
+
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
   
   
@@ -1058,25 +1345,39 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/12/18/LintCode-692：Sliding-Window-Unique-Elements-Sum/" itemprop="url">LintCode 692：Sliding Window Unique Elements Sum</a></h1>
+                
+                <a href="/2018/12/18/LintCode-692：Sliding-Window-Unique-Elements-Sum/" class="post-title-link" itemprop="url">LintCode 692：Sliding Window Unique Elements Sum</a>
+              
+            
+          </h1>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发表于</span>
+                <span class="post-meta-item-text">Posted on</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-18T20:15:05+08:00">
-                2018-12-18
-              </time>
+
+              
+                
+              
+
+              <time title="Created: 2018-12-18 20:15:05 / Modified: 20:37:54" itemprop="dateCreated datePublished" datetime="2018-12-18T20:15:05+08:00">2018-12-18</time>
             
 
             
+              
 
+              
             
           </span>
 
@@ -1089,36 +1390,24 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">分类于</span>
+                <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Algorithms/" itemprop="url" rel="index">
-                    <span itemprop="name">Algorithms</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Algorithms/" itemprop="url" rel="index"><span itemprop="name">Algorithms</span></a></span>
 
                 
                 
-                  ， 
+                  , 
                 
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Algorithms/OJ/" itemprop="url" rel="index">
-                    <span itemprop="name">OJ</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Algorithms/OJ/" itemprop="url" rel="index"><span itemprop="name">OJ</span></a></span>
 
                 
                 
-                  ， 
+                  , 
                 
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Algorithms/OJ/LintCode/" itemprop="url" rel="index">
-                    <span itemprop="name">LintCode</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Algorithms/OJ/LintCode/" itemprop="url" rel="index"><span itemprop="name">LintCode</span></a></span>
 
                 
                 
@@ -1189,12 +1478,18 @@
         
       
     </div>
+
+    
+
     
     
     
 
     
 
+    
+      
+    
     
 
     
@@ -1227,6 +1522,8 @@
   
   
 
+  
+
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
   
   
@@ -1251,25 +1548,51 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/12/17/LeetCode-128：Longest-Consecutive-Sequence/" itemprop="url">LeetCode 128：Longest Consecutive Sequence</a></h1>
+                
+                <a href="/2018/12/17/LeetCode-128：Longest-Consecutive-Sequence/" class="post-title-link" itemprop="url">LeetCode 128：Longest Consecutive Sequence</a>
+              
+            
+          </h1>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发表于</span>
+                <span class="post-meta-item-text">Posted on</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-17T21:00:40+08:00">
-                2018-12-17
-              </time>
+
+              
+                
+              
+
+              <time title="Created: 2018-12-17 21:00:40" itemprop="dateCreated datePublished" datetime="2018-12-17T21:00:40+08:00">2018-12-17</time>
             
 
             
+              
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-12-19 09:37:40" itemprop="dateModified" datetime="2018-12-19T09:37:40+08:00">2018-12-19</time>
+              
             
           </span>
 
@@ -1323,19 +1646,25 @@
 <li>遇到 2，发现与 1 和 3 相邻，建立联系，这样我们就有了一个关系链：1-2-3-4，它的长度也就是我们要求的结果</li>
 </ol>
 <p>图示：</p>
-<img src="/blog/2018/12/17/LeetCode-128：Longest-Consecutive-Sequence/dynamic.png">
+<img src="/2018/12/17/LeetCode-128：Longest-Consecutive-Sequence/dynamic.png">
 <p>这样的关系叫做 “动态等价关系”，而动态等价关系一个很经典的实现就是并查集（Union-Find）（关于动态等价关系和并查集，见 <a href="">动态等价关系：并查集</a>）</p>
 
           
         
       
     </div>
+
+    
+
     
     
     
 
     
 
+    
+      
+    
     
 
     
@@ -1368,6 +1697,8 @@
   
   
 
+  
+
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
   
   
@@ -1392,25 +1723,39 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/12/17/动态规划入门/" itemprop="url">动态规划入门</a></h1>
+                
+                <a href="/2018/12/17/动态规划入门/" class="post-title-link" itemprop="url">动态规划入门</a>
+              
+            
+          </h1>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发表于</span>
+                <span class="post-meta-item-text">Posted on</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-17T10:25:06+08:00">
-                2018-12-17
-              </time>
+
+              
+                
+              
+
+              <time title="Created: 2018-12-17 10:25:06 / Modified: 10:26:17" itemprop="dateCreated datePublished" datetime="2018-12-17T10:25:06+08:00">2018-12-17</time>
             
 
             
+              
 
+              
             
           </span>
 
@@ -1423,14 +1768,10 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">分类于</span>
+                <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Dynamic-Programming/" itemprop="url" rel="index">
-                    <span itemprop="name">Dynamic Programming</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Dynamic-Programming/" itemprop="url" rel="index"><span itemprop="name">Dynamic Programming</span></a></span>
 
                 
                 
@@ -1486,12 +1827,18 @@
         
       
     </div>
+
+    
+
     
     
     
 
     
 
+    
+      
+    
     
 
     
@@ -1524,6 +1871,8 @@
   
   
 
+  
+
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
   
   
@@ -1548,25 +1897,39 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/12/14/LeetCode-142：Linked-List-Cycle-II/" itemprop="url">LeetCode 142：Linked List Cycle II</a></h1>
+                
+                <a href="/2018/12/14/LeetCode-142：Linked-List-Cycle-II/" class="post-title-link" itemprop="url">LeetCode 142：Linked List Cycle II</a>
+              
+            
+          </h1>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发表于</span>
+                <span class="post-meta-item-text">Posted on</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-14T19:43:28+08:00">
-                2018-12-14
-              </time>
+
+              
+                
+              
+
+              <time title="Created: 2018-12-14 19:43:28 / Modified: 20:10:52" itemprop="dateCreated datePublished" datetime="2018-12-14T19:43:28+08:00">2018-12-14</time>
             
 
             
+              
 
+              
             
           </span>
 
@@ -1610,10 +1973,10 @@
 <p><strong>示意图：</strong></p>
 <ul>
 <li><p>有环：</p>
-<img src="/blog/2018/12/14/LeetCode-142：Linked-List-Cycle-II/circular-linked-list.png">
+<img src="/2018/12/14/LeetCode-142：Linked-List-Cycle-II/circular-linked-list.png">
 </li>
 <li><p>无环：</p>
-<img src="/blog/2018/12/14/LeetCode-142：Linked-List-Cycle-II/no-cycle.png">
+<img src="/2018/12/14/LeetCode-142：Linked-List-Cycle-II/no-cycle.png">
 </li>
 </ul>
 <p>这道题如果使用额外空间的话，是很好做的：用一个容器装所有访问过的结点，如果出现重复，就说明有环。但是如果不使用额外空间呢？</p>
@@ -1629,131 +1992,18 @@
         
       
     </div>
-    
-    
-    
 
     
 
     
-
+    
     
 
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
+    
 
     
       
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/14/LeetCode-695：Max-Area-of-Island/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RHANQTL">
-    </span>
-
     
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/12/14/LeetCode-695：Max-Area-of-Island/" itemprop="url">LeetCode 695：Max Area of Island</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-14T16:19:59+08:00">
-                2018-12-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
     
 
     
@@ -1782,15 +2032,12 @@
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
 
           </div>
-          
-
-
           
 
         </div>
@@ -1813,7 +2060,7 @@
 
       
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -1821,57 +2068,97 @@
               <p class="site-description motion-element" itemprop="description"></p>
           </div>
 
-          <nav class="site-state motion-element">
-
-            
-              <div class="site-state-item site-state-posts">
+          
+            <nav class="site-state motion-element">
               
-                <a href="/archives/">
-              
-                  <span class="site-state-item-count">29</span>
-                  <span class="site-state-item-name">日志</span>
-                </a>
-              </div>
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-categories">
+                <div class="site-state-item site-state-posts">
                 
-                  <span class="site-state-item-count">16</span>
-                  <span class="site-state-item-name">分类</span>
+                  <a href="/archives/">
                 
-              </div>
-            
-
-            
+                    <span class="site-state-item-count">30</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
               
+
               
-              <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">1</span>
-                  <span class="site-state-item-name">标签</span>
                 
-              </div>
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">16</span>
+                    <span class="site-state-item-name">categories</span>
+                  
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                    <span class="site-state-item-count">1</span>
+                    <span class="site-state-item-name">tags</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
             
-
-          </nav>
-
           
-
-          
-
-          
-          
-
-          
-          
-
           
 
         </div>
-      </section>
+      </div>
 
       
 
@@ -1888,16 +2175,18 @@
     <footer id="footer" class="footer">
       <div class="footer-inner">
         <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
-  <span class="with-love">
+  <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Han Qi</span>
 
   
+
+  
 </div>
 
 
-  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
 
 
 
@@ -1905,12 +2194,13 @@
 
 
 
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v6.6.0</div>
 
 
 
 
         
+
 
 
 
@@ -1931,11 +2221,14 @@
 
     
 
+    
+
+    
   </div>
 
   
 
-<script type="text/javascript">
+<script>
   if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
     window.Promise = null;
   }
@@ -1949,92 +2242,11 @@
 
 
 
-  
 
 
 
 
 
-
-
-
-
-
-
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
-
-
-
-  
-  
-
-  
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
-
-
-
-
-  
 
 
 
@@ -2048,41 +2260,33 @@
 
 
   
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.6.0"></script>
+
+  <script src="/js/src/motion.js?v=6.6.0"></script>
 
 
 
-
-
+  
   
 
   
 
   
 
-  
-  
 
-  
-  
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
-      });
-    </script>
-
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-      });
-    </script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+  <script src="/js/src/bootstrap.js?v=6.6.0"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
 </script>
@@ -2100,8 +2304,52 @@
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
+
+
+
   
 
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
   
 

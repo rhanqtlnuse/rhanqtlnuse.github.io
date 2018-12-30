@@ -2,6 +2,15 @@
 
 
 
+
+
+
+
+
+
+
+
+
   
 
 
@@ -9,7 +18,7 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 
 
@@ -20,8 +29,6 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -38,9 +45,22 @@
 
 
 
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=6.6.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.6.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.6.0" color="#222">
 
 
 
@@ -48,61 +68,18 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
-
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
-
-
-
-
-
-  <meta name="keywords" content="Hexo, NexT">
-
-
-
-
-
-
-
-
-
-
-<meta property="og:type" content="website">
-<meta property="og:title" content="RHANQTL">
-<meta property="og:url" content="http://yoursite.com/page/3/index.html">
-<meta property="og:site_name" content="RHANQTL">
-<meta property="og:locale" content="zh-Hans">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="RHANQTL">
-
-
-
-<script type="text/javascript" id="hexo.configurations">
+<script id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
     scheme: 'Muse',
-    version: '5.1.4',
+    version: '6.6.0',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: '0',
-      author: '博主'
-    },
     algolia: {
       applicationID: '',
       apiKey: '',
@@ -114,14 +91,35 @@
 </script>
 
 
+  
+
+
+
+
+  <meta property="og:type" content="website">
+<meta property="og:title" content="RHANQTL">
+<meta property="og:url" content="http://yoursite.com/page/3/index.html">
+<meta property="og:site_name" content="RHANQTL">
+<meta property="og:locale" content="zh-Hans">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="RHANQTL">
+
+
+
+
+
 
   <link rel="canonical" href="http://yoursite.com/page/3/">
 
 
 
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
 
-
-  <title>RHANQTL</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>RHANQTL</title>
   
 
 
@@ -130,6 +128,35 @@
 
 
 
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 </head>
 
@@ -146,7 +173,7 @@
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
+  <div class="site-meta">
     
 
     <div class="custom-logo-site-title">
@@ -156,13 +183,12 @@
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
-      
-        <p class="site-subtitle"></p>
-      
+    
+    
   </div>
 
   <div class="site-nav-toggle">
-    <button>
+    <button aria-label="Toggle navigation bar">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -170,35 +196,55 @@
   </div>
 </div>
 
-<nav class="site-nav">
-  
 
+
+<nav class="site-nav">
   
     <ul id="menu" class="menu">
       
         
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
-            
-            首页
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
-            
-            归档
-          </a>
-        </li>
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
       
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
 
       
+      
     </ul>
+  
+
+  
+    
+
   
 
   
@@ -206,12 +252,20 @@
 
 
 
- </div>
+  
+
+
+
+</div>
     </header>
+
+    
+
 
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
+          
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
@@ -222,6 +276,221 @@
 
   
   
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/04/sorting/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/12/04/sorting/" class="post-title-link" itemprop="url">Untitled</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-12-04 04:21:29" itemprop="dateCreated datePublished" datetime="2018-12-04T04:21:29+08:00">2018-12-04</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-11-13 09:38:01" itemprop="dateModified" datetime="2018-11-13T09:38:01+08:00">2018-11-13</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="排序问题和排序算法"><a href="#排序问题和排序算法" class="headerlink" title="排序问题和排序算法"></a>排序问题和排序算法</h1><p>关键操作：比较和元素移动</p>
+<h2 id="解决问题的思路"><a href="#解决问题的思路" class="headerlink" title="解决问题的思路"></a>解决问题的思路</h2><h3 id="分治"><a href="#分治" class="headerlink" title="分治"></a>分治</h3><ul>
+<li>分为 1 和 n - 1<ul>
+<li>插入排序</li>
+<li>选择排序</li>
+</ul>
+</li>
+<li>分为两个大小基本相等的部分<ul>
+<li>快速排序</li>
+<li>归并排序</li>
+</ul>
+</li>
+</ul>
+<h3 id="迭代"><a href="#迭代" class="headerlink" title="迭代"></a>迭代</h3><p>冒泡排序</p>
+<h3 id="其他思路"><a href="#其他思路" class="headerlink" title="其他思路"></a>其他思路</h3><p>基数排序</p>
+<h2 id="分治-1"><a href="#分治-1" class="headerlink" title="分治"></a>分治</h2><p>下面的算法设计都从抽象的递归算法开始，一步一步进行实现和优化。</p>
+<h3 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h3><p>思路：从列表未排序的部分取出一个元素，将其插入到已经排好序的部分。</p>
+<h4 id="抽象递归算法"><a href="#抽象递归算法" class="headerlink" title="抽象递归算法"></a>抽象递归算法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">insertionSortAbstract(L)</span><br><span class="line">    if L.length = 1</span><br><span class="line">        return</span><br><span class="line">    v &lt;- first(L)</span><br><span class="line">    insertionSortAbstract(rest(L))</span><br><span class="line">    L &lt;- insertAbstract(v, rest(L))</span><br><span class="line"></span><br><span class="line">insertAbstract(v, L)</span><br><span class="line">    if L.length = 0</span><br><span class="line">        return &#123;v&#125;</span><br><span class="line">    else if v &lt;= first(L)</span><br><span class="line">        return &#123;v&#125; + L</span><br><span class="line">    else</span><br><span class="line">        return first(L) + insertAbstract(v, rest(L))</span><br></pre></td></tr></table></figure>
+<h4 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h4><p>抽象算法中需要我们实现的部分有 4 个：</p>
+<ul>
+<li>列表的连接 <code>+</code></li>
+<li><code>first</code> 和 <code>rest</code></li>
+<li>列表的长度 <code>length</code></li>
+<li>插入</li>
+</ul>
+<h5 id="first-和-rest"><a href="#first-和-rest" class="headerlink" title="first 和 rest"></a><code>first</code> 和 <code>rest</code></h5><p>对于数组而言，这两个操作的实现比较简单。我们可以使用两个变量 start 和 end（不含），<code>first</code> 就是 A[start]，<code>rest</code> 就是 A[start+1, end)</p>
+<h5 id="列表的长度-length"><a href="#列表的长度-length" class="headerlink" title="列表的长度 length"></a>列表的长度 <code>length</code></h5><p>有了上面的 start 和 end，列表的长度就是 end - start</p>
+<h5 id="列表的连接"><a href="#列表的连接" class="headerlink" title="列表的连接 +"></a>列表的连接 <code>+</code></h5><p>由于我们的算法是原地（In-Place）的，排序之后的结果依然存放在原来的数组中，所以这个操作被隐含地实现了。</p>
+<h5 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h5><p>注意到在 <code>insertionSortAbstract</code> 中，每次都是选择当前子数组的第一个元素作为待插入元素，这样，我们可以把整个数组分为 3 个部分：start - 1，start，[start + 1, end)。每次取出第一个元素（A[start - 1]）时，start - 1 这个位置就变成了一个空位，如果待插入元素大于 A[start]，那么可以将 A[start] 移到这个位置上：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">insert(v, A, start, end)</span><br><span class="line">    if end - start = 0</span><br><span class="line">        A[start - 1] = v</span><br><span class="line">    else if v &lt;= A[start]</span><br><span class="line">        A[start - 1] = v</span><br><span class="line">    else</span><br><span class="line">        A[start - 1] = A[start]</span><br><span class="line">        insert(v, A, start + 1, end)</span><br></pre></td></tr></table></figure>
+<h4 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h4><h5 id="插入的优化"><a href="#插入的优化" class="headerlink" title="插入的优化"></a>插入的优化</h5><p>注意到在 insert 中，</p>
+<ul>
+<li>每次调用的 v 相对于当前的 A 来说总在 start - 1，所以其实前两个分支可以什么都不做</li>
+<li>insert 是尾递归</li>
+</ul>
+<p>可以将代码改成如下的迭代版本：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">insert(v, A, start, end)</span><br><span class="line">    if end - start = 0</span><br><span class="line">        return</span><br><span class="line">    for i &lt;- start to end - 1</span><br><span class="line">        if v &gt; A[i]</span><br><span class="line">            A[i - 1] &lt;- A[i]</span><br><span class="line">            A[i] &lt;- v</span><br></pre></td></tr></table></figure>
+<h5 id="插入排序的优化"><a href="#插入排序的优化" class="headerlink" title="插入排序的优化"></a>插入排序的优化</h5><p>注意到插入排序的实际计算过程是这样的：</p>
+<ol>
+<li>从最后的元素（A[end - 1]）组成的列表开始，将 A[end - 2] 插入到这个列表中</li>
+<li>将 A[end - 3] 插入到上面得到的列表中</li>
+<li>· · ·</li>
+<li>将 A[start] 插入到上面得到的列表中</li>
+</ol>
+<p>从后往前进行排序，所以我们可以这样修改现在的算法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">insertionSort(L, start, end)</span><br><span class="line">    if end - start = 1</span><br><span class="line">        return</span><br><span class="line">    else</span><br><span class="line">        for i &lt;- end - 2 downto start</span><br><span class="line">            insert(A[i], A, i + 1, end)</span><br></pre></td></tr></table></figure>
+<p>最终版本：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">insertionSort(L, start, end)</span><br><span class="line">    if end - start = 1</span><br><span class="line">        return</span><br><span class="line">    else</span><br><span class="line">        for i &lt;- end - 2 downto start</span><br><span class="line">            for j &lt;- i to end - 2</span><br><span class="line">                if A[j] &gt; A[j + 1]</span><br><span class="line">                    A[j], A[j + 1] &lt;- A[j + 1], A[j]</span><br></pre></td></tr></table></figure>
+<h3 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h3><p>选择最小的元素：可以使用分治的方式，将数组一分为二，递归地找出最小值。</p>
+<p>其中有一个技巧，即选择最小值的过程中，被一分为二的数组只有一边能产生当前的最小值，而另一边的最小值其实就是整个数组中第二小的元素，下一次在获取最小值时可以直接用。</p>
+<p>引申出算法优化的一个技巧：在算法执行的过程中，后面的计算可能会用到前面的结果，可以将前面的结果保存下来提高效率。</p>
+<h3 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h3><p>堆实际上是数组元素的全序。</p>
+<h2 id="迭代-1"><a href="#迭代-1" class="headerlink" title="迭代"></a>迭代</h2><h2 id="基于比较的排序算法时间复杂度的下界"><a href="#基于比较的排序算法时间复杂度的下界" class="headerlink" title="基于比较的排序算法时间复杂度的下界"></a>基于比较的排序算法时间复杂度的下界</h2><h3 id="决策树"><a href="#决策树" class="headerlink" title="决策树"></a>决策树</h3><p>决策树是一个二叉树，</p>
+<ul>
+<li>每个内结点都是一次比较操作，根据比较的结果来决定下一步的方向</li>
+<li>每个叶子结点都是输入的一种排列</li>
+</ul>
+<p>对于大小为 n 的输入，共有 n! 种排列，高度为 h 的二叉树最多有 $2^h$ 个叶子结点，那么我们有：$n! \le 2^h$，即：$h \ge \log_2(n!) = \log_2((\dfrac{n}{e})^n) = \Theta(n\log n)$</p>
+<p>也就是说，基于比较的排序算法的时间复杂度不会低于 $n\log n$，有些基于比较的排序算法的渐进复杂度为 $O(n^2)$ 是因为重复了决策树中的某些路径。</p>
+<p>归并排序具有最优的渐进复杂度（上界和下界都为 $n\log  n$）。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
   
 
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
@@ -248,25 +517,51 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/12/04/searching/" itemprop="url">未命名</a></h1>
+                
+                <a href="/2018/12/04/searching/" class="post-title-link" itemprop="url">Untitled</a>
+              
+            
+          </h1>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发表于</span>
+                <span class="post-meta-item-text">Posted on</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-04T04:21:29+08:00">
-                2018-12-04
-              </time>
+
+              
+                
+              
+
+              <time title="Created: 2018-12-04 04:21:29" itemprop="dateCreated datePublished" datetime="2018-12-04T04:21:29+08:00">2018-12-04</time>
             
 
             
+              
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-11-11 17:34:21" itemprop="dateModified" datetime="2018-11-11T17:34:21+08:00">2018-11-11</time>
+              
             
           </span>
 
@@ -385,12 +680,18 @@
         
       
     </div>
+
+    
+
     
     
     
 
     
 
+    
+      
+    
     
 
     
@@ -423,6 +724,8 @@
   
   
 
+  
+
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
   
   
@@ -447,25 +750,51 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/12/04/p-and-np/" itemprop="url">未命名</a></h1>
+                
+                <a href="/2018/12/04/p-and-np/" class="post-title-link" itemprop="url">Untitled</a>
+              
+            
+          </h1>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发表于</span>
+                <span class="post-meta-item-text">Posted on</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-04T04:21:29+08:00">
-                2018-12-04
-              </time>
+
+              
+                
+              
+
+              <time title="Created: 2018-12-04 04:21:29" itemprop="dateCreated datePublished" datetime="2018-12-04T04:21:29+08:00">2018-12-04</time>
             
 
             
+              
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-11-30 10:08:36" itemprop="dateModified" datetime="2018-11-30T10:08:36+08:00">2018-11-30</time>
+              
             
           </span>
 
@@ -536,12 +865,18 @@
         
       
     </div>
+
+    
+
     
     
     
 
     
 
+    
+      
+    
     
 
     
@@ -574,6 +909,8 @@
   
   
 
+  
+
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
   
   
@@ -598,25 +935,51 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/12/04/np-completeness/" itemprop="url">未命名</a></h1>
+                
+                <a href="/2018/12/04/np-completeness/" class="post-title-link" itemprop="url">Untitled</a>
+              
+            
+          </h1>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发表于</span>
+                <span class="post-meta-item-text">Posted on</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-04T04:21:29+08:00">
-                2018-12-04
-              </time>
+
+              
+                
+              
+
+              <time title="Created: 2018-12-04 04:21:29" itemprop="dateCreated datePublished" datetime="2018-12-04T04:21:29+08:00">2018-12-04</time>
             
 
             
+              
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-11-30 16:43:16" itemprop="dateModified" datetime="2018-11-30T16:43:16+08:00">2018-11-30</time>
+              
             
           </span>
 
@@ -678,12 +1041,18 @@
         
       
     </div>
+
+    
+
     
     
     
 
     
 
+    
+      
+    
     
 
     
@@ -716,6 +1085,8 @@
   
   
 
+  
+
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
   
   
@@ -740,25 +1111,51 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/12/04/graph-traversal/" itemprop="url">未命名</a></h1>
+                
+                <a href="/2018/12/04/graph-traversal/" class="post-title-link" itemprop="url">Untitled</a>
+              
+            
+          </h1>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发表于</span>
+                <span class="post-meta-item-text">Posted on</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-04T04:21:29+08:00">
-                2018-12-04
-              </time>
+
+              
+                
+              
+
+              <time title="Created: 2018-12-04 04:21:29" itemprop="dateCreated datePublished" datetime="2018-12-04T04:21:29+08:00">2018-12-04</time>
             
 
             
+              
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-11-11 19:30:40" itemprop="dateModified" datetime="2018-11-11T19:30:40+08:00">2018-11-11</time>
+              
             
           </span>
 
@@ -818,12 +1215,18 @@
         
       
     </div>
+
+    
+
     
     
     
 
     
 
+    
+      
+    
     
 
     
@@ -856,6 +1259,8 @@
   
   
 
+  
+
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
   
   
@@ -880,25 +1285,39 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/12/04/dag-scc/" itemprop="url">算法设计与分析：图遍历算法的应用 —— DAG 和 SCC</a></h1>
+                
+                <a href="/2018/12/04/dag-scc/" class="post-title-link" itemprop="url">算法设计与分析：图遍历算法的应用 —— DAG 和 SCC</a>
+              
+            
+          </h1>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发表于</span>
+                <span class="post-meta-item-text">Posted on</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-04T04:21:29+08:00">
-                2018-12-04
-              </time>
+
+              
+                
+              
+
+              <time title="Created: 2018-12-04 04:21:29 / Modified: 04:25:32" itemprop="dateCreated datePublished" datetime="2018-12-04T04:21:29+08:00">2018-12-04</time>
             
 
             
+              
 
+              
             
           </span>
 
@@ -911,14 +1330,10 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">分类于</span>
+                <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Algorithms/" itemprop="url" rel="index">
-                    <span itemprop="name">Algorithms</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Algorithms/" itemprop="url" rel="index"><span itemprop="name">Algorithms</span></a></span>
 
                 
                 
@@ -1083,12 +1498,18 @@
         
       
     </div>
+
+    
+
     
     
     
 
     
 
+    
+      
+    
     
 
     
@@ -1121,6 +1542,8 @@
   
   
 
+  
+
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
   
   
@@ -1145,25 +1568,51 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/12/04/approx-algo/" itemprop="url">未命名</a></h1>
+                
+                <a href="/2018/12/04/approx-algo/" class="post-title-link" itemprop="url">Untitled</a>
+              
+            
+          </h1>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发表于</span>
+                <span class="post-meta-item-text">Posted on</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-04T04:21:29+08:00">
-                2018-12-04
-              </time>
+
+              
+                
+              
+
+              <time title="Created: 2018-12-04 04:21:29" itemprop="dateCreated datePublished" datetime="2018-12-04T04:21:29+08:00">2018-12-04</time>
             
 
             
+              
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-11-30 11:53:55" itemprop="dateModified" datetime="2018-11-30T11:53:55+08:00">2018-11-30</time>
+              
             
           </span>
 
@@ -1227,12 +1676,18 @@
         
       
     </div>
+
+    
+
     
     
     
 
     
 
+    
+      
+    
     
 
     
@@ -1265,6 +1720,8 @@
   
   
 
+  
+
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
   
   
@@ -1289,25 +1746,39 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/12/04/algo-design-foundation/" itemprop="url">算法设计与分析：算法设计基础</a></h1>
+                
+                <a href="/2018/12/04/algo-design-foundation/" class="post-title-link" itemprop="url">算法设计与分析：算法设计基础</a>
+              
+            
+          </h1>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发表于</span>
+                <span class="post-meta-item-text">Posted on</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-04T04:21:29+08:00">
-                2018-12-04
-              </time>
+
+              
+                
+              
+
+              <time title="Created: 2018-12-04 04:21:29 / Modified: 04:23:18" itemprop="dateCreated datePublished" datetime="2018-12-04T04:21:29+08:00">2018-12-04</time>
             
 
             
+              
 
+              
             
           </span>
 
@@ -1320,14 +1791,10 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">分类于</span>
+                <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Algorithms/" itemprop="url" rel="index">
-                    <span itemprop="name">Algorithms</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Algorithms/" itemprop="url" rel="index"><span itemprop="name">Algorithms</span></a></span>
 
                 
                 
@@ -1489,12 +1956,18 @@
         
       
     </div>
+
+    
+
     
     
     
 
     
 
+    
+      
+    
     
 
     
@@ -1527,6 +2000,8 @@
   
   
 
+  
+
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
   
   
@@ -1551,25 +2026,51 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/12/04/red-black-tree/" itemprop="url">算法设计与分析：红黑树</a></h1>
+                
+                <a href="/2018/12/04/red-black-tree/" class="post-title-link" itemprop="url">算法设计与分析：红黑树</a>
+              
+            
+          </h1>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发表于</span>
+                <span class="post-meta-item-text">Posted on</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-04T03:22:31+08:00">
-                2018-12-04
-              </time>
+
+              
+                
+              
+
+              <time title="Created: 2018-12-04 03:22:31" itemprop="dateCreated datePublished" datetime="2018-12-04T03:22:31+08:00">2018-12-04</time>
             
 
             
+              
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-12-09 10:38:13" itemprop="dateModified" datetime="2018-12-09T10:38:13+08:00">2018-12-09</time>
+              
             
           </span>
 
@@ -1582,14 +2083,10 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">分类于</span>
+                <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Data-Structures/" itemprop="url" rel="index">
-                    <span itemprop="name">Data Structures</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Data-Structures/" itemprop="url" rel="index"><span itemprop="name">Data Structures</span></a></span>
 
                 
                 
@@ -1649,10 +2146,10 @@
 <li>内存布局会影响内存局部性，对性能会有影响。</li>
 </ol>
 <h1 id="红黑树的操作-1"><a href="#红黑树的操作-1" class="headerlink" title="红黑树的操作$^{[1]}$"></a>红黑树的操作$^{[1]}$</h1><h2 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h2><p>有 4 种基本情况（完整的图示见附录 A）：</p>
-<img src="/blog/2018/12/04/red-black-tree/insertion-cases.png">
-<h3 id="第一种情况：重新着色"><a href="#第一种情况：重新着色" class="headerlink" title="第一种情况：重新着色"></a>第一种情况：重新着色</h3><img src="/blog/2018/12/04/red-black-tree/insertion-case1.png">
-<h3 id="第二种情况"><a href="#第二种情况" class="headerlink" title="第二种情况"></a>第二种情况</h3><img src="/blog/2018/12/04/red-black-tree/insertion-case2.png">
-<h3 id="第三种情况"><a href="#第三种情况" class="headerlink" title="第三种情况"></a>第三种情况</h3><img src="/blog/2018/12/04/red-black-tree/insertion-case3.png">
+<img src="/2018/12/04/red-black-tree/insertion-cases.png">
+<h3 id="第一种情况：重新着色"><a href="#第一种情况：重新着色" class="headerlink" title="第一种情况：重新着色"></a>第一种情况：重新着色</h3><img src="/2018/12/04/red-black-tree/insertion-case1.png">
+<h3 id="第二种情况"><a href="#第二种情况" class="headerlink" title="第二种情况"></a>第二种情况</h3><img src="/2018/12/04/red-black-tree/insertion-case2.png">
+<h3 id="第三种情况"><a href="#第三种情况" class="headerlink" title="第三种情况"></a>第三种情况</h3><img src="/2018/12/04/red-black-tree/insertion-case3.png">
 <h3 id="第四种情况"><a href="#第四种情况" class="headerlink" title="第四种情况"></a>第四种情况</h3><p>这种情况最简单，因为既满足了颜色约束又没有破坏黑高度约束，所以无需调整。</p>
 <h2 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h2><p>这里会介绍两种视角，命令式视角：参考 <a href="https://www.amazon.cn/dp/B00AK7BYJY/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1544318297&amp;sr=1-1&amp;keywords=%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA" target="_blank" rel="noopener">《算法导论》</a>、<a href="https://www.amazon.cn/dp/B009OCFQ0O/ref=sr_1_1?ie=UTF8&amp;qid=1544252889&amp;sr=8-1&amp;keywords=%E7%AE%97%E6%B3%95" target="_blank" rel="noopener">《算法（第 4 版）》</a>、<a href="https://www.amazon.com/Computer-Algorithms-Introduction-Design-Analysis/dp/0201612445" target="_blank" rel="noopener">《Computer Algorithms: Introduction to Design And Analysis》</a>（以下简称《Computer Algorithms》），函数式视角（模式匹配）：参考刘新宇老师的<a href="https://www.amazon.cn/dp/B01N9JOTF6/ref=sr_1_1?ie=UTF8&amp;qid=1544252865&amp;sr=8-1&amp;keywords=%E7%AE%97%E6%B3%95%E6%96%B0%E8%A7%A3" target="_blank" rel="noopener">《算法新解》</a></p>
 <h2 id="命令式视角"><a href="#命令式视角" class="headerlink" title="命令式视角"></a>命令式视角</h2><h2 id="函数式视角：模式匹配"><a href="#函数式视角：模式匹配" class="headerlink" title="函数式视角：模式匹配"></a>函数式视角：模式匹配</h2><h1 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h1><h1 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h1><h1 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h1><h2 id="附录-A：红黑树插入、删除所有情况图示"><a href="#附录-A：红黑树插入、删除所有情况图示" class="headerlink" title="附录 A：红黑树插入、删除所有情况图示"></a>附录 A：红黑树插入、删除所有情况图示</h2><h2 id="附录-B：红黑树插入、删除实现代码"><a href="#附录-B：红黑树插入、删除实现代码" class="headerlink" title="附录 B：红黑树插入、删除实现代码"></a>附录 B：红黑树插入、删除实现代码</h2><h2 id="附录：参考"><a href="#附录：参考" class="headerlink" title="附录：参考"></a>附录：参考</h2><p>[1] Cormen, Thomas H.；Leiserson, Charles E.；Rivest, Ronald L.；Stein, Clifford. “红黑树”.《算法导论》（第 3 版）. P179</p>
@@ -1665,12 +2162,18 @@
         
       
     </div>
+
+    
+
     
     
     
 
     
 
+    
+      
+    
     
 
     
@@ -1703,6 +2206,8 @@
   
   
 
+  
+
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
   
   
@@ -1727,25 +2232,39 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/12/04/getting-started/" itemprop="url">Getting Started Guide</a></h1>
+                
+                <a href="/2018/12/04/getting-started/" class="post-title-link" itemprop="url">Getting Started Guide</a>
+              
+            
+          </h1>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发表于</span>
+                <span class="post-meta-item-text">Posted on</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-04T03:10:24+08:00">
-                2018-12-04
-              </time>
+
+              
+                
+              
+
+              <time title="Created: 2018-12-04 03:10:24 / Modified: 04:21:57" itemprop="dateCreated datePublished" datetime="2018-12-04T03:10:24+08:00">2018-12-04</time>
             
 
             
+              
 
+              
             
           </span>
 
@@ -1793,12 +2312,18 @@
         
       
     </div>
+
+    
+
     
     
     
 
     
 
+    
+      
+    
     
 
     
@@ -1827,15 +2352,12 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
   </nav>
 
 
 
           </div>
-          
-
-
           
 
         </div>
@@ -1858,7 +2380,7 @@
 
       
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -1866,57 +2388,97 @@
               <p class="site-description motion-element" itemprop="description"></p>
           </div>
 
-          <nav class="site-state motion-element">
-
-            
-              <div class="site-state-item site-state-posts">
+          
+            <nav class="site-state motion-element">
               
-                <a href="/archives/">
-              
-                  <span class="site-state-item-count">29</span>
-                  <span class="site-state-item-name">日志</span>
-                </a>
-              </div>
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-categories">
+                <div class="site-state-item site-state-posts">
                 
-                  <span class="site-state-item-count">16</span>
-                  <span class="site-state-item-name">分类</span>
+                  <a href="/archives/">
                 
-              </div>
-            
-
-            
+                    <span class="site-state-item-count">30</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
               
+
               
-              <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">1</span>
-                  <span class="site-state-item-name">标签</span>
                 
-              </div>
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">16</span>
+                    <span class="site-state-item-name">categories</span>
+                  
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                    <span class="site-state-item-count">1</span>
+                    <span class="site-state-item-name">tags</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
             
-
-          </nav>
-
           
-
-          
-
-          
-          
-
-          
-          
-
           
 
         </div>
-      </section>
+      </div>
 
       
 
@@ -1933,16 +2495,18 @@
     <footer id="footer" class="footer">
       <div class="footer-inner">
         <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
-  <span class="with-love">
+  <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Han Qi</span>
 
   
+
+  
 </div>
 
 
-  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
 
 
 
@@ -1950,12 +2514,13 @@
 
 
 
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v6.6.0</div>
 
 
 
 
         
+
 
 
 
@@ -1976,11 +2541,14 @@
 
     
 
+    
+
+    
   </div>
 
   
 
-<script type="text/javascript">
+<script>
   if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
     window.Promise = null;
   }
@@ -1994,92 +2562,11 @@
 
 
 
-  
 
 
 
 
 
-
-
-
-
-
-
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
-
-
-
-  
-  
-
-  
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
-
-
-
-
-  
 
 
 
@@ -2093,41 +2580,33 @@
 
 
   
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.6.0"></script>
+
+  <script src="/js/src/motion.js?v=6.6.0"></script>
 
 
 
-
-
+  
   
 
   
 
   
 
-  
-  
 
-  
-  
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
-      });
-    </script>
-
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-      });
-    </script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+  <script src="/js/src/bootstrap.js?v=6.6.0"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
 </script>
@@ -2145,8 +2624,52 @@
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
+
+
+
   
 
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
   
 
