@@ -83,18 +83,18 @@
 
 
 
-<meta name="description" content="Git 内部原理由于 Git 一开始被设计成共 VCS 使用的工具集而不是一整套用户友好的 VCS，所以实际上它还包含了许多底层命令（Plumbing），像 checkout remote branch 这样的命令被称为 “Porcelain”。 git init 产生的 .git 目录结构： 12345678910111213.git/├── hooks/├── info/├── objects">
+<meta name="description" content="Git 内部原理由于 Git 一开始被设计成共 VCS 使用的工具集而不是一整套用户友好的 VCS，所以实际上它还包含了许多底层命令（Plumbing），像 checkout remote branch 这样的命令被称为 “Porcelain”。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Git 内部原理">
 <meta property="og:url" content="http://yoursite.com/2018/12/29/Git-内部原理/index.html">
 <meta property="og:site_name" content="RHANQTL">
-<meta property="og:description" content="Git 内部原理由于 Git 一开始被设计成共 VCS 使用的工具集而不是一整套用户友好的 VCS，所以实际上它还包含了许多底层命令（Plumbing），像 checkout remote branch 这样的命令被称为 “Porcelain”。 git init 产生的 .git 目录结构： 12345678910111213.git/├── hooks/├── info/├── objects">
+<meta property="og:description" content="Git 内部原理由于 Git 一开始被设计成共 VCS 使用的工具集而不是一整套用户友好的 VCS，所以实际上它还包含了许多底层命令（Plumbing），像 checkout remote branch 这样的命令被称为 “Porcelain”。">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://yoursite.com/2018/12/29/Git-内部原理/git-object-model.png">
-<meta property="og:updated_time" content="2018-12-29T02:21:20.443Z">
+<meta property="og:updated_time" content="2018-12-30T15:03:11.268Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git 内部原理">
-<meta name="twitter:description" content="Git 内部原理由于 Git 一开始被设计成共 VCS 使用的工具集而不是一整套用户友好的 VCS，所以实际上它还包含了许多底层命令（Plumbing），像 checkout remote branch 这样的命令被称为 “Porcelain”。 git init 产生的 .git 目录结构： 12345678910111213.git/├── hooks/├── info/├── objects">
+<meta name="twitter:description" content="Git 内部原理由于 Git 一开始被设计成共 VCS 使用的工具集而不是一整套用户友好的 VCS，所以实际上它还包含了许多底层命令（Plumbing），像 checkout remote branch 这样的命令被称为 “Porcelain”。">
 <meta name="twitter:image" content="http://yoursite.com/2018/12/29/Git-内部原理/git-object-model.png">
 
 
@@ -328,6 +328,7 @@
 
       
         <h1 id="Git-内部原理"><a href="#Git-内部原理" class="headerlink" title="Git 内部原理"></a>Git 内部原理</h1><p>由于 Git 一开始被设计成共 VCS 使用的工具集而不是一整套用户友好的 VCS，所以实际上它还包含了许多底层命令（Plumbing），像 <code>checkout</code> <code>remote</code> <code>branch</code> 这样的命令被称为 “Porcelain”。</p>
+<a id="more"></a>
 <p><code>git init</code> 产生的 <code>.git</code> 目录结构：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">.git/</span><br><span class="line">├── hooks/</span><br><span class="line">├── info/</span><br><span class="line">├── objects/</span><br><span class="line">|   ├── info/</span><br><span class="line">|   └── pack/</span><br><span class="line">├── refs/</span><br><span class="line">|   ├── heads/</span><br><span class="line">|   └── tags/</span><br><span class="line">├── config</span><br><span class="line">├── description</span><br><span class="line">├── HEAD</span><br><span class="line">└── index</span><br></pre></td></tr></table></figure>
 <ul>
@@ -504,7 +505,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-count">30</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
