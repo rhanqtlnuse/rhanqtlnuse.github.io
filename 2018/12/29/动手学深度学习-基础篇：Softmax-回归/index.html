@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="">
+<html class="theme-next muse use-motion" lang="zh-Hans">
 <head><meta name="generator" content="Hexo 3.8.0">
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -40,7 +40,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -48,21 +48,21 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
 
 
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
 
 
 
@@ -82,23 +82,23 @@
 <meta name="description" content="Softmax 回归分类问题虽然可以使用回归模型建模，并且将预测值就近定点化到分类标签，但是这种连续值到离散值的转化通常会影响到分类质量，因此我们一般使用更加适合离散值输出的模型来解决分类问题。 Softmax 回归模型Softmax 回归也是一个单层的神经网络，但是有多个输出神经元，并且其输出层是一个全连接层：  Softmax 运算一种直接的办法是直接将输出 $o_i$ 当作类别 $i$ 的置">
 <meta property="og:type" content="article">
 <meta property="og:title" content="动手学深度学习 - 基础篇：Softmax 回归">
-<meta property="og:url" content="http://yoursite.com/2018/12/29/动手学深度学习-基础篇：Softmax-回归/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:url" content="http://rhanqtl.com/2018/12/29/动手学深度学习-基础篇：Softmax-回归/index.html">
+<meta property="og:site_name" content="RHANQTL">
 <meta property="og:description" content="Softmax 回归分类问题虽然可以使用回归模型建模，并且将预测值就近定点化到分类标签，但是这种连续值到离散值的转化通常会影响到分类质量，因此我们一般使用更加适合离散值输出的模型来解决分类问题。 Softmax 回归模型Softmax 回归也是一个单层的神经网络，但是有多个输出神经元，并且其输出层是一个全连接层：  Softmax 运算一种直接的办法是直接将输出 $o_i$ 当作类别 $i$ 的置">
-<meta property="og:locale" content="default">
-<meta property="og:image" content="http://yoursite.com/2018/12/29/动手学深度学习-基础篇：Softmax-回归/softmaxreg.svg">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://rhanqtl.com/blog/2018/12/29/动手学深度学习-基础篇：Softmax-回归/softmaxreg.svg">
 <meta property="og:updated_time" content="2018-12-30T03:16:33.290Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="动手学深度学习 - 基础篇：Softmax 回归">
 <meta name="twitter:description" content="Softmax 回归分类问题虽然可以使用回归模型建模，并且将预测值就近定点化到分类标签，但是这种连续值到离散值的转化通常会影响到分类质量，因此我们一般使用更加适合离散值输出的模型来解决分类问题。 Softmax 回归模型Softmax 回归也是一个单层的神经网络，但是有多个输出神经元，并且其输出层是一个全连接层：  Softmax 运算一种直接的办法是直接将输出 $o_i$ 当作类别 $i$ 的置">
-<meta name="twitter:image" content="http://yoursite.com/2018/12/29/动手学深度学习-基础篇：Softmax-回归/softmaxreg.svg">
+<meta name="twitter:image" content="http://rhanqtl.com/blog/2018/12/29/动手学深度学习-基础篇：Softmax-回归/softmaxreg.svg">
 
 
 
 <script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
-    root: '/',
+    root: '/blog/',
     scheme: 'Muse',
     version: '5.1.4',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
@@ -107,7 +107,7 @@
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     duoshuo: {
       userId: '0',
-      author: 'Author'
+      author: '博主'
     },
     algolia: {
       applicationID: '',
@@ -121,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/12/29/动手学深度学习-基础篇：Softmax-回归/">
+  <link rel="canonical" href="http://rhanqtl.com/2018/12/29/动手学深度学习-基础篇：Softmax-回归/">
 
 
 
 
 
-  <title>动手学深度学习 - 基础篇：Softmax 回归 | Hexo</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>动手学深度学习 - 基础篇：Softmax 回归 | RHANQTL</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -139,7 +139,7 @@
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="default">
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
@@ -155,9 +155,9 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
+      <a href="/blog/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Hexo</span>
+        <span class="site-title">RHANQTL</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -183,21 +183,21 @@
       
         
         <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
+          <a href="/blog/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
-            Home
+            首页
           </a>
         </li>
       
         
         <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
+          <a href="/blog/archives/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
-            Archives
+            归档
           </a>
         </li>
       
@@ -234,16 +234,16 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/29/动手学深度学习-基础篇：Softmax-回归/">
+    <link itemprop="mainEntityOfPage" href="http://rhanqtl.com/blog/2018/12/29/动手学深度学习-基础篇：Softmax-回归/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Han Qi">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
+      <meta itemprop="name" content="RHANQTL">
     </span>
 
     
@@ -261,9 +261,9 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-29T21:46:11+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-29T21:46:11+08:00">
                 2018-12-29
               </time>
             
@@ -282,22 +282,22 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">In</span>
+                <span class="post-meta-item-text">分类于</span>
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Deep-Learning/" itemprop="url" rel="index">
+                  <a href="/blog/categories/Deep-Learning/" itemprop="url" rel="index">
                     <span itemprop="name">Deep Learning</span>
                   </a>
                 </span>
 
                 
                 
-                  , 
+                  ， 
                 
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Deep-Learning/Basics/" itemprop="url" rel="index">
+                  <a href="/blog/categories/Deep-Learning/Basics/" itemprop="url" rel="index">
                     <span itemprop="name">Basics</span>
                   </a>
                 </span>
@@ -336,7 +336,7 @@
       
         <h1 id="Softmax-回归"><a href="#Softmax-回归" class="headerlink" title="Softmax 回归"></a>Softmax 回归</h1><h2 id="分类问题"><a href="#分类问题" class="headerlink" title="分类问题"></a>分类问题</h2><p>虽然可以使用回归模型建模，并且将预测值就近定点化到分类标签，但是这种连续值到离散值的转化通常会影响到分类质量，因此我们一般使用更加适合离散值输出的模型来解决分类问题。</p>
 <h2 id="Softmax-回归模型"><a href="#Softmax-回归模型" class="headerlink" title="Softmax 回归模型"></a>Softmax 回归模型</h2><p>Softmax 回归也是一个单层的神经网络，但是有多个输出神经元，并且其输出层是一个全连接层：</p>
-<img src="/2018/12/29/动手学深度学习-基础篇：Softmax-回归/softmaxreg.svg" title="Softmax 回归是一个单层神经网络">
+<img src="/blog/2018/12/29/动手学深度学习-基础篇：Softmax-回归/softmaxreg.svg" title="Softmax 回归是一个单层神经网络">
 <h3 id="Softmax-运算"><a href="#Softmax-运算" class="headerlink" title="Softmax 运算"></a>Softmax 运算</h3><p>一种直接的办法是直接将输出 $o_i$ 当作类别 $i$ 的置信度，但是存在两个问题：</p>
 <ul>
 <li>输出层的输出值的范围不确定，难以直观地判断这些值的意义<ul>
@@ -382,7 +382,7 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/12/29/Git-内部原理/" rel="next" title="Git 内部原理">
+              <a href="/blog/2018/12/29/Git-内部原理/" rel="next" title="Git 内部原理">
                 <i class="fa fa-chevron-left"></i> Git 内部原理
               </a>
             
@@ -392,7 +392,7 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/12/30/机器学习数学基础-概率统计：MLE/" rel="prev" title="机器学习数学基础 - 概率统计：MLE">
+              <a href="/blog/2018/12/30/机器学习数学基础-概率统计：MLE/" rel="prev" title="机器学习数学基础 - 概率统计：MLE">
                 机器学习数学基础 - 概率统计：MLE <i class="fa fa-chevron-right"></i>
               </a>
             
@@ -448,10 +448,10 @@
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
+            文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
+            站点概览
           </li>
         </ul>
       
@@ -469,10 +469,10 @@
             
               <div class="site-state-item site-state-posts">
               
-                <a href="/archives/">
+                <a href="/blog/archives/">
               
                   <span class="site-state-item-count">29</span>
-                  <span class="site-state-item-name">posts</span>
+                  <span class="site-state-item-name">日志</span>
                 </a>
               </div>
             
@@ -483,7 +483,7 @@
               <div class="site-state-item site-state-categories">
                 
                   <span class="site-state-item-count">16</span>
-                  <span class="site-state-item-name">categories</span>
+                  <span class="site-state-item-name">分类</span>
                 
               </div>
             
@@ -494,7 +494,7 @@
               <div class="site-state-item site-state-tags">
                 
                   <span class="site-state-item-count">1</span>
-                  <span class="site-state-item-name">tags</span>
+                  <span class="site-state-item-name">标签</span>
                 
               </div>
             
@@ -556,7 +556,7 @@
 </div>
 
 
-  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
 
 
 
@@ -564,7 +564,7 @@
 
 
 
-  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
 
 
 
@@ -623,57 +623,57 @@
 
   
   
-    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
   
 
   
   
-    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
   
 
   
   
-    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
   
 
   
   
-    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
   
 
   
   
-    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
   
 
   
   
-    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
   
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
-
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
 </script>
