@@ -85,17 +85,19 @@
 
 
 
-<meta name="description" content="语句覆盖 判定覆盖（分支覆盖） 条件覆盖 判定/条件覆盖 组合覆盖 路径覆盖">
+<meta name="description" content="语句覆盖：程序中的每个可执行语句至少执行一次 判定覆盖（分支覆盖）：程序中的每个判定都至少获得一次 “真” 值和一次 “假” 值 条件覆盖：程序中每个判定包含的每个条件的可能取值都至少满足一次 判定/条件覆盖：判定覆盖 + 条件覆盖 组合覆盖：程序中每个判定包含的所有条件的所有取值组合都至少满足一次 路径覆盖：程序中所有可能的路径都至少执行一次">
 <meta property="og:type" content="article">
 <meta property="og:title" content="软件测试基础：逻辑覆盖法">
 <meta property="og:url" content="http://yoursite.com/2019/01/02/软件测试基础：逻辑覆盖法/index.html">
 <meta property="og:site_name" content="RHANQTL">
-<meta property="og:description" content="语句覆盖 判定覆盖（分支覆盖） 条件覆盖 判定/条件覆盖 组合覆盖 路径覆盖">
+<meta property="og:description" content="语句覆盖：程序中的每个可执行语句至少执行一次 判定覆盖（分支覆盖）：程序中的每个判定都至少获得一次 “真” 值和一次 “假” 值 条件覆盖：程序中每个判定包含的每个条件的可能取值都至少满足一次 判定/条件覆盖：判定覆盖 + 条件覆盖 组合覆盖：程序中每个判定包含的所有条件的所有取值组合都至少满足一次 路径覆盖：程序中所有可能的路径都至少执行一次">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-02T08:20:56.631Z">
+<meta property="og:image" content="http://yoursite.com/2019/01/02/软件测试基础：逻辑覆盖法/branch-coverage.png">
+<meta property="og:updated_time" content="2019-01-02T11:37:17.039Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="软件测试基础：逻辑覆盖法">
-<meta name="twitter:description" content="语句覆盖 判定覆盖（分支覆盖） 条件覆盖 判定/条件覆盖 组合覆盖 路径覆盖">
+<meta name="twitter:description" content="语句覆盖：程序中的每个可执行语句至少执行一次 判定覆盖（分支覆盖）：程序中的每个判定都至少获得一次 “真” 值和一次 “假” 值 条件覆盖：程序中每个判定包含的每个条件的可能取值都至少满足一次 判定/条件覆盖：判定覆盖 + 条件覆盖 组合覆盖：程序中每个判定包含的所有条件的所有取值组合都至少满足一次 路径覆盖：程序中所有可能的路径都至少执行一次">
+<meta name="twitter:image" content="http://yoursite.com/2019/01/02/软件测试基础：逻辑覆盖法/branch-coverage.png">
 
 
 
@@ -359,14 +361,88 @@
 
       
         <ul>
-<li>语句覆盖</li>
-<li>判定覆盖（分支覆盖）</li>
-<li>条件覆盖</li>
-<li>判定/条件覆盖</li>
-<li>组合覆盖</li>
-<li>路径覆盖</li>
+<li>语句覆盖：程序中的每个可执行语句至少执行一次</li>
+<li>判定覆盖（分支覆盖）：程序中的每个判定都至少获得一次 “真” 值和一次 “假” 值</li>
+<li>条件覆盖：程序中每个判定包含的每个条件的可能取值都至少满足一次</li>
+<li>判定/条件覆盖：判定覆盖 + 条件覆盖</li>
+<li>组合覆盖：程序中每个判定包含的所有条件的所有取值组合都至少满足一次</li>
+<li>路径覆盖：程序中所有可能的路径都至少执行一次</li>
 </ul>
 <a id="more"></a>
+<p>以下面的代码片段为例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doWork</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y, <span class="keyword">int</span> z)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> j = <span class="number">0</span>, k = <span class="number">0</span>;            <span class="comment">// 语句块 a</span></span><br><span class="line">    <span class="keyword">if</span> (x &gt; <span class="number">3</span> &amp;&amp; z &lt; <span class="number">10</span>) &#123;</span><br><span class="line">        k = x * y - <span class="number">1</span>;           <span class="comment">// 语句块 b</span></span><br><span class="line">        j = Math.sqrt(k);</span><br><span class="line">    &#125;                            <span class="comment">// 语句块 c</span></span><br><span class="line">    <span class="keyword">if</span> (x == <span class="number">4</span> || y &gt; <span class="number">5</span>) &#123;</span><br><span class="line">        j = x * y + <span class="number">10</span>;          <span class="comment">// 语句块 d</span></span><br><span class="line">    &#125;</span><br><span class="line">    j = j % <span class="number">3</span>;                   <span class="comment">// 语句块 e</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="语句覆盖"><a href="#语句覆盖" class="headerlink" title="语句覆盖"></a>语句覆盖</h1><p>设 <code>x &gt; 3 &amp;&amp; z &lt; 10</code> 为真为 $T_1$，为假 $-T_1$；<code>x == 4 || y &gt; 5</code> 为真为 $T_2$，为假 $-T_2$</p>
+<p>只需要设计一个满足 <code>(x &gt; 3 &amp;&amp; z &lt; 10) &amp;&amp; (x == 4 || y &gt; 5)</code> 的测试用例即可。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">   (x &gt; 3 &amp;&amp; z &lt; 10) &amp;&amp; (x == 4 || y &gt; 5)</span><br><span class="line">=&gt; ((x &gt; 3 &amp;&amp; z &lt; 10) &amp;&amp; x == 4) || ((x &gt; 3 &amp;&amp; z &lt; 10) &amp;&amp; y &gt; 5)</span><br><span class="line">=&gt; ((x == 4) || (x &gt; 3 &amp;&amp; y &gt; 5)) &amp;&amp; z &lt; 10</span><br></pre></td></tr></table></figure>
+<p><code>x = 4, y = 5, z = 5</code></p>
+<ul>
+<li>分析：语句覆盖能够保证所有的语句都得到执行，但是发现不了判定中运算逻辑的错误，即它并不是⼀种充分的检验⽅法。例如在第⼀个判定 <code>((x &gt; 3) &amp;&amp; (z &lt; 10))</code> 中把 <code>&amp;&amp;</code> 错误的写成了 <code>||</code>，这时仍使⽤该测试⽤例，则程序仍会按照 abd 执⾏。可以说语句覆盖是最弱的逻辑覆盖准则。</li>
+</ul>
+<h1 id="判定覆盖"><a href="#判定覆盖" class="headerlink" title="判定覆盖"></a>判定覆盖</h1><p>也叫分支覆盖</p>
+<p>设 <code>x &gt; 3 &amp;&amp; z &lt; 10</code> 为真为 $T_1$，为假 $-T_1$；<code>x == 4 || y &gt; 5</code> 为真为 $T_2$，为假 $-T_2$</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">测试用例</th>
+<th style="text-align:center">执行路径</th>
+<th style="text-align:center">覆盖条件</th>
+<th style="text-align:center">覆盖分支</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">x = 4，y = 5，z = 5</td>
+<td style="text-align:center">abd</td>
+<td style="text-align:center">T1，T2</td>
+<td style="text-align:center">bd</td>
+</tr>
+<tr>
+<td style="text-align:center">x = 2，y = 5，z = 5</td>
+<td style="text-align:center">ace</td>
+<td style="text-align:center">-T1，-T2</td>
+<td style="text-align:center">ce</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li><p>分析：上述两个测试⽤例不仅满⾜了判定覆盖，同时还做到语句覆盖。从这点看似乎判定覆盖⽐语句覆盖更强⼀些，但仍然⽆法确定判定内部条件的错误。例如把第⼆个判定中的条件 <code>y &gt; 5</code> 错误写为 <code>y &lt; 5</code>，使⽤上述测试⽤例，照样能按原路径执⾏⽽不影响结果。因此，需要有更强的逻辑覆盖准则去检验判定内的条件。</p>
+</li>
+<li><p>判定覆盖更广泛的含义应该是使得每一个判定获得每一种可能的结果至少一次</p>
+<img src="/2019/01/02/软件测试基础：逻辑覆盖法/branch-coverage.png">
+</li>
+</ul>
+<h1 id="条件覆盖"><a href="#条件覆盖" class="headerlink" title="条件覆盖"></a>条件覆盖</h1><p>条件 <code>x &gt; 3</code> 取真值记为 T1，取假值记为 -T1</p>
+<p>条件 <code>z &lt; 10</code> 取真值记为 T2，取假值记为 -T2</p>
+<p>条件 <code>x == 4</code> 取真值记为 T3，取假值记为 -T3</p>
+<p>条件 <code>y &gt; 5</code> 取真值记为 T4，取假值记为 -T4</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">测试用例</th>
+<th style="text-align:center">执行路径</th>
+<th style="text-align:center">覆盖条件</th>
+<th style="text-align:center">覆盖分支</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+</tbody>
+</table>
+</div>
+
       
     </div>
     
@@ -454,8 +530,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -522,6 +607,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#语句覆盖"><span class="nav-number">1.</span> <span class="nav-text">语句覆盖</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#判定覆盖"><span class="nav-number">2.</span> <span class="nav-text">判定覆盖</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#条件覆盖"><span class="nav-number">3.</span> <span class="nav-text">条件覆盖</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
