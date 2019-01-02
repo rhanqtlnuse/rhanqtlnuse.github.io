@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+  <link rel="stylesheet" media="all" href="/lib/Han/dist/han.min.css?v=3.3">
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="RHANQTL" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="Softmax 回归分类问题虽然可以使用回归模型建模，并且将预测值就近定点化到分类标签，但是这种连续值到离散值的转化通常会影响到分类质量，因此我们一般使用更加适合离散值输出的模型来解决分类问题。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="动手学深度学习 - 基础篇：Softmax 回归">
+<meta property="og:url" content="http://yoursite.com/2018/12/29/动手学深度学习-基础篇：Softmax-回归/index.html">
+<meta property="og:site_name" content="RHANQTL">
+<meta property="og:description" content="Softmax 回归分类问题虽然可以使用回归模型建模，并且将预测值就近定点化到分类标签，但是这种连续值到离散值的转化通常会影响到分类质量，因此我们一般使用更加适合离散值输出的模型来解决分类问题。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2018/12/29/动手学深度学习-基础篇：Softmax-回归/softmaxreg.svg">
+<meta property="og:updated_time" content="2019-01-02T05:04:00.931Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="动手学深度学习 - 基础篇：Softmax 回归">
+<meta name="twitter:description" content="Softmax 回归分类问题虽然可以使用回归模型建模，并且将预测值就近定点化到分类标签，但是这种连续值到离散值的转化通常会影响到分类质量，因此我们一般使用更加适合离散值输出的模型来解决分类问题。">
+<meta name="twitter:image" content="http://yoursite.com/2018/12/29/动手学深度学习-基础篇：Softmax-回归/softmaxreg.svg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/12/29/动手学深度学习-基础篇：Softmax-回归/">
+
+
+
+
+
+  <title>动手学深度学习 - 基础篇：Softmax 回归 | RHANQTL</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">RHANQTL</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/29/动手学深度学习-基础篇：Softmax-回归/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">动手学深度学习 - 基础篇：Softmax 回归</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-29T21:46:11+08:00">
+                2018-12-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Deep-Learning/" itemprop="url" rel="index">
+                    <span itemprop="name">Deep Learning</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Deep-Learning/Basics/" itemprop="url" rel="index">
+                    <span itemprop="name">Basics</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Softmax-回归"><a href="#Softmax-回归" class="headerlink" title="Softmax 回归"></a>Softmax 回归</h1><h2 id="分类问题"><a href="#分类问题" class="headerlink" title="分类问题"></a>分类问题</h2><p>虽然可以使用回归模型建模，并且将预测值就近定点化到分类标签，但是这种连续值到离散值的转化通常会影响到分类质量，因此我们一般使用更加适合离散值输出的模型来解决分类问题。</p>
+<a id="more"></a>
+<h2 id="Softmax-回归模型"><a href="#Softmax-回归模型" class="headerlink" title="Softmax 回归模型"></a>Softmax 回归模型</h2><p>Softmax 回归也是一个单层的神经网络，但是有多个输出神经元，并且其输出层是一个全连接层：</p>
+<img src="/2018/12/29/动手学深度学习-基础篇：Softmax-回归/softmaxreg.svg" title="Softmax 回归是一个单层神经网络">
+<h3 id="Softmax-运算"><a href="#Softmax-运算" class="headerlink" title="Softmax 运算"></a>Softmax 运算</h3><p>一种直接的办法是直接将输出 $o_i$ 当作类别 $i$ 的置信度，但是存在两个问题：</p>
+<ul>
+<li>输出层的输出值的范围不确定，难以直观地判断这些值的意义<ul>
+<li>比如 $o_1$ = 0.1，$o_2$ = 10，$o_3$ = 0.1，并不能确定较大的值就是最可信的</li>
+</ul>
+</li>
+<li>真实标签是离散值，这些离散值与不确定范围的输出值之间的误差难以衡量</li>
+</ul>
+<p>Softmax 运算符：将输出值变换成值为正且和为 1 的概率分布</p>
+<script type="math/tex; mode=display">\hat{y_1},\hat{y_2},\hat{y_3} = \rm{softmax}(o_1,o_2,o_3)</script><p>其中</p>
+<script type="math/tex; mode=display">\hat{y}_1=\dfrac{exp(o_1)}{\sum_{i=1}^3\exp(o_i)},\hat{y}_2=\dfrac{\exp(o_2)}{\sum_{i=1}^3\exp(o_i)},\hat{y}_3=\dfrac{exp(o_3)}{\sum_{i=1}^3exp(o_i)}</script><p>正确性：</p>
+<script type="math/tex; mode=display">\arg\max\limits_i \hat{y}_i = \arg\max\limits_i \exp(o_i) = \arg\max\limits_i o_i</script><h3 id="计算表达式"><a href="#计算表达式" class="headerlink" title="计算表达式"></a>计算表达式</h3><h4 id="单样本分类的矢量计算表达式"><a href="#单样本分类的矢量计算表达式" class="headerlink" title="单样本分类的矢量计算表达式"></a>单样本分类的矢量计算表达式</h4><script type="math/tex; mode=display">o_1=x_1w_{11}+x_2w_{21} + x_3w_{31} + x_4w_{41} + b_1</script><script type="math/tex; mode=display">o_2=x_1w_{12}+x_2w_{22} + x_3w_{32} + x_4w_{42} + b_2</script><script type="math/tex; mode=display">o_3=x_1w_{13}+x_2w_{23} + x_3w_{33} + x_4w_{43} + b_3</script><script type="math/tex; mode=display">W = \left[\begin{matrix}w_{11} &w_{12}&w_{13} \\ w_{21} &w_{22}&w_{23}\\ w_{31} &w_{32}&w_{33}\\ x_{41}&x_{42}&x_{43}\end{matrix}\right],\ b = [b_1, b_2, b_3]</script><script type="math/tex; mode=display">x^{(i)} = \left[\begin{matrix} x_1^{(i)} & x_2^{(i)} & x_3^{(i)} & x_4^{(i)}\end{matrix}\right]</script><p>输出层输出为</p>
+<script type="math/tex; mode=display">o^{(i)} = \left[\begin{matrix}o_1^{(i)} & o_2^{(i)} & o_3^{(i)}\end{matrix}\right]</script><p>预测概率分布为</p>
+<script type="math/tex; mode=display">\hat{y}^{(i)} = \left[\begin{matrix}\hat{y}_1^{(i)} & \hat{y}_2^{(i)} & \hat{y}_3^{(i)}\end{matrix}\right]</script><p>Softmax 回归对样本 $i$ 分类的矢量计算表达式为</p>
+<script type="math/tex; mode=display">o^{(i)} = x^{(i)}W + b</script><script type="math/tex; mode=display">\hat{y}^{(i)} = {\rm{softmax}}(o^{(i)})</script><h4 id="小样本分类的矢量计算表达式"><a href="#小样本分类的矢量计算表达式" class="headerlink" title="小样本分类的矢量计算表达式"></a>小样本分类的矢量计算表达式</h4><script type="math/tex; mode=display">O =XW + b</script><script type="math/tex; mode=display">\hat{Y} = {\rm{softmax}}(O)</script><h3 id="交叉熵损失函数"><a href="#交叉熵损失函数" class="headerlink" title="交叉熵损失函数"></a>交叉熵损失函数</h3><p>分类标签：构造一个向量 $y^{(i)} \in \mathbb{R}^q$，第 $i$ 类的第 $i$ 个数值为 1，其余都为 0。</p>
+<p>损失函数：我们只需要判断某次的分类是不是正确，而不需要判断 Softmax 模型的输出值与实际标签相差多少（太严格，而且缺少合理性），所以这里不使用平方损失函数，而使用更适合衡量两个概率分布差异的测量函数。其中，交叉熵（Cross Entropy）是一个常用的衡量方法：</p>
+<script type="math/tex; mode=display">H(\bold{y}^{(i)},\hat{\bold{y}}^{(i)}) = -\sum\limits_{j=1}^q y_j^{(i)}\log \hat{y}_j^{(i)}</script><p>注意这里 $\bold{y}^{(i)}$ 实际上只有一个元素（第 $y^{(i)}$ 个元素）为 1，也就是说，上面的式子实际上可以简化成下面这样：</p>
+<script type="math/tex; mode=display">H(\bold{y}^{(i)},\hat{\bold{y}}^{(i)}) = -\log  \hat{y}^{(i)}_{y^{(i)}}</script><p>也就是说，交叉熵只关心对正确类别的预测概率，因为只要其值足够大，我们就可以确保分类结果正确。但是需要注意的是，如果一个样本有多个标签，例如图像中含有不止一个物体时，我们并不能做这一步简化，但是实际上也只需要关心图片中出现的物体类别的预测概率。</p>
+<p>交叉熵损失函数：</p>
+<script type="math/tex; mode=display">l(\Theta) = \dfrac{1}{n}\sum\limits_{i=1}^n H(\bold{y}^{(i)},\hat{\bold{y}}^{(i)})</script><p>同时，</p>
+<script type="math/tex; mode=display">\begin{align}l(\Theta)=\dfrac{1}{n}\sum\limits_{i=1}^n H(\bold{y}^{(i)},\hat{\bold{y}}^{(i)})\end{align} = -\dfrac{1}{n}\sum\limits_{i=1}^{n}\log\hat{y}_{y^{(i)}}^{(i)}</script><script type="math/tex; mode=display">-nl(\Theta)=\sum\limits_{i=1}^{n}\log\hat{y}_{y^{(i)}}^{(i)}</script><script type="math/tex; mode=display">\begin{align}\exp(-nl(\Theta)) &= \exp(\sum\limits_{i=1}^{n}\log\hat{y}_{y^{(i)}}^{(i)})\\&=\prod\limits_{i=1}^n\hat{y}_{y^{(i)}}^{(i)}\end{align}</script><p>所以实际上，最小化交叉熵损失函数等价于最大化训练数据集所有标签类别的联合预测概率。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/29/Git-内部原理/" rel="next" title="Git 内部原理">
+                <i class="fa fa-chevron-left"></i> Git 内部原理
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/12/30/机器学习数学基础-概率统计：MLE/" rel="prev" title="机器学习数学基础 - 概率统计：MLE">
+                机器学习数学基础 - 概率统计：MLE <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Han Qi</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">36</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-name">分类</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Softmax-回归"><span class="nav-number">1.</span> <span class="nav-text">Softmax 回归</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#分类问题"><span class="nav-number">1.1.</span> <span class="nav-text">分类问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Softmax-回归模型"><span class="nav-number">1.2.</span> <span class="nav-text">Softmax 回归模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Softmax-运算"><span class="nav-number">1.2.1.</span> <span class="nav-text">Softmax 运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#计算表达式"><span class="nav-number">1.2.2.</span> <span class="nav-text">计算表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#单样本分类的矢量计算表达式"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">单样本分类的矢量计算表达式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#小样本分类的矢量计算表达式"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">小样本分类的矢量计算表达式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#交叉熵损失函数"><span class="nav-number">1.2.3.</span> <span class="nav-text">交叉熵损失函数</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Han Qi</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+  
+
+
+  
+
+  
+
+</body>
+</html>
