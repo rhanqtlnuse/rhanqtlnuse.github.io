@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-01-02T08:18:42.847Z</updated>
+  <updated>2019-01-02T10:49:32.706Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>程序设计方法学：表驱动法</title>
+    <link href="http://yoursite.com/2019/01/02/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%B3%95%E5%AD%A6%EF%BC%9A%E8%A1%A8%E9%A9%B1%E5%8A%A8%E6%B3%95/"/>
+    <id>http://yoursite.com/2019/01/02/程序设计方法学：表驱动法/</id>
+    <published>2019-01-02T09:59:35.000Z</published>
+    <updated>2019-01-02T10:49:32.706Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;表驱动法&quot;&gt;&lt;a href=&quot;#表驱动法&quot; class=&quot;headerlink&quot; title=&quot;表驱动法&quot;&gt;&lt;/a&gt;表驱动法&lt;/h1&gt;&lt;h1 id=&quot;综述&quot;&gt;&lt;a href=&quot;#综述&quot; class=&quot;headerlink&quot; title=&quot;综述&quot;&gt;&lt;/a&gt;综述&lt;/h1&gt;&lt;p&gt;表驱动法是一种编程模式，将&lt;strong&gt;数据/动作&lt;/strong&gt;组织成一张查找表，从表中查找信息而不使用逻辑语句。适用于复杂的逻辑。另一个好处是可以将复杂逻辑从代码中独立出来，便于单独维护。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;一般有以下 3 种方法&lt;ul&gt;
+&lt;li&gt;直接访问&lt;/li&gt;
+&lt;li&gt;索引访问&lt;/li&gt;
+&lt;li&gt;阶梯访问&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+      <category term="Programming" scheme="http://yoursite.com/categories/Programming/"/>
+    
+      <category term="Methodology" scheme="http://yoursite.com/categories/Programming/Methodology/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>面向对象软件设计：设计模式</title>
@@ -427,34 +455,6 @@
     <id>http://yoursite.com/2018/12/14/LeetCode-567：Permutation-in-String/</id>
     <published>2018-12-14T00:41:56.000Z</published>
     <updated>2018-12-14T01:13:07.276Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-      <category term="Algorithms" scheme="http://yoursite.com/categories/Algorithms/"/>
-    
-      <category term="OJ" scheme="http://yoursite.com/categories/Algorithms/OJ/"/>
-    
-      <category term="LeetCode" scheme="http://yoursite.com/categories/Algorithms/OJ/LeetCode/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>LeetCode 226：Invert Binary Tree</title>
-    <link href="http://yoursite.com/2018/12/12/LeetCode-226%EF%BC%9AInvert-Binary-Tree/"/>
-    <id>http://yoursite.com/2018/12/12/LeetCode-226：Invert-Binary-Tree/</id>
-    <published>2018-12-12T12:02:39.000Z</published>
-    <updated>2018-12-12T12:28:12.047Z</updated>
     
     <summary type="html">
     
