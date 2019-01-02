@@ -233,6 +233,513 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/08/Haskell-入门/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/12/08/Haskell-入门/" itemprop="url">Haskell 入门</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-08T14:49:32+08:00">
+                2018-12-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/FP/" itemprop="url" rel="index">
+                    <span itemprop="name">FP</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/FP/Haskell/" itemprop="url" rel="index">
+                    <span itemprop="name">Haskell</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>函数调用在 Haskell 中拥有最高的优先级，所以 <code>succ 9 * 10</code> 的结果为 100，而不是所期望的 91</p>
+<p>Haskell 中 <code>if</code> 语句（实际上是一个表达式）的 <code>else</code> 不可省略：<code>if-then-else</code>，也就是说，必须返回一个值</p>
+<p>编写一些简单的函数（抽象），将其组合，形成更高级的抽象</p>
+<p>有两个参数的函数可以使用中缀形式：<code>div 9 3</code> 等价于 <code>9 `div` 3</code>，注意使用<strong>反引号</strong>将函数名括起来和参数的顺序</p>
+<p>变量的值不可修改！！！（更像数学中的变量，而不是编程中的变量），但可以对变量重新赋值</p>
+<p>Haskell 中<strong>不允许</strong>首字母大写的函数</p>
+<p>常量定义：<code>let &lt;var_name&gt; = &lt;value&gt;</code> 或 <code>&lt;var_name&gt; = &lt;value&gt;</code>，注意 <code>&lt;var_name&gt;</code> 首字母<strong>小写</strong>！</p>
+<h1 id="List"><a href="#List" class="headerlink" title="List"></a>List</h1><p><strong>单类型</strong>数据数据结构</p>
+<p>空 List：<code>[]</code></p>
+<h2 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h2><p>列表连接：<code>&lt;list1&gt; ++ &lt;list2&gt;</code></p>
+<p>字符串实际上是字符数组，所以可以使用 <code>&quot;hello&quot; ++ &quot; &quot; ++ &quot;world&quot;</code></p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">ghci</span>&gt; str1 = ['h', 'e', 'l', 'l', 'o']</span><br><span class="line"><span class="title">ghci</span>&gt; str2 = ['w', 'o', 'r', 'l', 'd']</span><br><span class="line"><span class="title">ghci</span>&gt; str1 ++ <span class="string">" "</span> ++ str2</span><br><span class="line"><span class="string">"hello world"</span></span><br></pre></td></tr></table></figure>
+<p>可以使用 <code>：</code> 将一个元素连接到 List 的头部（Lisp 的 <code>cons &lt;elem&gt; &lt;list&gt;</code>），<code>[1, 2, 3]</code> 实际上是 <code>1：2：3：[]</code> 的语法糖</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">ghci</span>&gt; 'h':'e':'l':'l':'o':[]</span><br><span class="line"><span class="string">"hello"</span></span><br></pre></td></tr></table></figure>
+<p>通过下标访问：<code>!!</code>，下标从 0 开始，超出范围会报错</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">ghci</span>&gt; [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>] !! <span class="number">3</span></span><br><span class="line"><span class="number">4</span></span><br></pre></td></tr></table></figure>
+<h3 id="比较大小"><a href="#比较大小" class="headerlink" title="比较大小"></a>比较大小</h3><p>当 List 中装有<strong>可比较</strong>的元素时，可以使用关系运算符比较列表的大小。从第一个元素开始比较如果能够决定结果，直接返回，否则继续向后比较。</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">ghci</span>&gt; [<span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>] &gt; [<span class="number">2</span>, <span class="number">1</span>, <span class="number">0</span>]</span><br><span class="line"><span class="type">True</span></span><br><span class="line"><span class="title">ghci</span>&gt; [<span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>] &gt; [<span class="number">2</span>, <span class="number">10</span>, <span class="number">100</span>]</span><br><span class="line"><span class="type">True</span></span><br><span class="line"><span class="title">ghci</span>&gt; [<span class="number">3</span>, <span class="number">4</span>, <span class="number">2</span>] &gt; [<span class="number">3</span>, <span class="number">4</span>]</span><br><span class="line"><span class="type">True</span></span><br><span class="line"><span class="title">ghci</span>&gt; [<span class="number">3</span>, <span class="number">4</span>, <span class="number">2</span>] &gt; [<span class="number">2</span>, <span class="number">4</span>]</span><br><span class="line"><span class="type">True</span></span><br><span class="line"><span class="title">ghci</span>&gt; [<span class="number">3</span>, <span class="number">4</span>, <span class="number">2</span>] == [<span class="number">3</span>, <span class="number">4</span>, <span class="number">2</span>]</span><br><span class="line"><span class="type">True</span></span><br></pre></td></tr></table></figure>
+<h3 id="其他常用函数"><a href="#其他常用函数" class="headerlink" title="其他常用函数"></a>其他常用函数</h3><p><code>head</code>：返回 List 的首个元素（Lisp 的 <code>car</code>）</p>
+<p><code>tail</code>：返回 List 的去除首个元素的部分（Lisp 的 <code>cdr</code>）</p>
+<p><code>last</code>：返回 List 的最后一个元素</p>
+<p><code>init</code>：返回 List 去除最后一个元素的部分</p>
+<p>注意：对空 List 使用这些函数会在运行期产生异常</p>
+<p><code>length</code></p>
+<p><code>null</code>：检查一个列表是否为空</p>
+<ul>
+<li>避免使用 <code>xs == []</code></li>
+</ul>
+<p><code>reverse</code>：将 List 反转</p>
+<p><code>take &lt;count&gt; &lt;list&gt;</code>：取出列表的前 count 个元素</p>
+<ul>
+<li>也可以使用中缀形式：<code>3 `take` [1, 2, 3, 4, 5, 6]</code></li>
+<li>如果 <code>count == 0</code>，那么返回 <code>[]</code></li>
+<li>如果 <code>count &gt;= length</code>，那么返回原 List</li>
+</ul>
+<p><code>drop &lt;count&gt; &lt;list&gt;</code>：删除 List 的前 count 个元素，与 <code>take</code> 大体相同</p>
+<p><code>maximum</code> 和 <code>minimum</code></p>
+<p><code>sum</code> 和 <code>product</code></p>
+<p><code>elem</code>：判断一个元素是否在 List 中，通常以中缀形式使用</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/06/位运算奇技淫巧/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/12/06/位运算奇技淫巧/" itemprop="url">位运算奇技淫巧</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-06T20:30:00+08:00">
+                2018-12-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Programming/" itemprop="url" rel="index">
+                    <span itemprop="name">Programming</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>Copyright @韩琦</p>
+<p><strong>转载请注明出处</strong></p>
+</blockquote>
+<h2 id="技巧-0：n-amp-0x01"><a href="#技巧-0：n-amp-0x01" class="headerlink" title="技巧 0：n &amp; 0x01"></a>技巧 0：<code>n &amp; 0x01</code></h2><p>这个方法就是用来判断 <code>n</code> 的奇偶性，但是需要注意的一点是，这个方式与 <code>n % 2</code> 的结果不太一样：<code>n &amp; 0x01</code> 总是返回 <code>0</code> 或 <code>1</code>，而当 <code>n</code> 为负数时，<code>n % 2</code> 可能返回 <code>-1</code>。因为 <code>-(a % b) == (-a) % b</code> 对任何 a，b（b $\ne$ 0）都成立</p>
+<h2 id="技巧-1：n-amp-n-1"><a href="#技巧-1：n-amp-n-1" class="headerlink" title="技巧 1：n &amp; (n - 1)"></a>技巧 1：<code>n &amp; (n - 1)</code></h2><p>位运算有很多很有意思的技巧，有一个比较常见的就是求一个整数二进制表示中 1 的个数：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">countOnes</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (num) &#123;</span><br><span class="line">        num = num &amp; (num - <span class="number">1</span>);</span><br><span class="line">        count++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> count;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其中，<code>num &amp; (num - 1)</code> 中 1 的个数比 <code>num</code> 少 1。</p>
+<p>至于这个方法的正确性，可以直观的解释一下。分两种情况：</p>
+<ul>
+<li><code>num</code> 最低位为 1。假设有：<code>num = 1010 0010 1101 0111b</code>，那么 <code>num - 1</code> 的结果为 <code>1010 0010 1101 0110b</code>，<code>num &amp; (num - 1)</code>：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">  1010 0010 1101 0111  // num</span><br><span class="line">&amp; 1010 0010 1101 0110  // num - 1</span><br><span class="line">---------------------</span><br><span class="line">  1010 0010 1101 0110  // num &amp; (num - 1)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>num</code> 最低位为 0。假设有：<code>num = 1010 1000 0000 0000b</code>，那么 <code>num - 1</code> 的结果为 <code>1010 0111 1111 1111</code>，<code>num &amp; (num - 1)</code>：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">  1010 1000 0000 0000  // num</span><br><span class="line">&amp; 1010 0111 1111 1111  // num - 1</span><br><span class="line">---------------------</span><br><span class="line">  1010 0000 0000 0000  // num &amp; (num - 1)</span><br></pre></td></tr></table></figure>
+<p><strong>例</strong>（LeetCode 338：Counting Bits）：</p>
+<p>Given a non negative integer number <strong>num</strong>. For every numbers <strong>i</strong> in the range <strong>0 ≤ i ≤ num</strong> calculate the number of 1’s in their binary representation and return them as an array.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: 2</span><br><span class="line">Output: [0,1,1]</span><br></pre></td></tr></table></figure>
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: 5</span><br><span class="line">Output: [0,1,1,2,1,2]</span><br></pre></td></tr></table></figure>
+<p><strong>Follow up:</strong></p>
+<ul>
+<li>It is very easy to come up with a solution with run time <strong>O(n*sizeof(integer))</strong>. But can you do it in linear time <strong>O(n)</strong>/possibly in a single pass?</li>
+<li>Space complexity should be <strong>O(n)</strong>.</li>
+<li>Can you do it like a boss? Do it without using any builtin function like <code>__builtin_popcount</code> in C++ or in any other language.</li>
+</ul>
+<p>思路：可以采用规约的方式，一个数 i 中 1 的个数等于比 i 少 1 的数中 1 的个数加上 1</p>
+<p>代码：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; countBits(<span class="keyword">int</span> num) &#123;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; res(num + <span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line">    <span class="comment">// 可以直接确定的是，0 中 1 的个数为 0，所以直接从 i = 1 开始</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= num; i++) &#123;</span><br><span class="line">        res[i] = res[i &amp; (i - <span class="number">1</span>)] + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其实这个问题在同样的思路下还有另一种解法：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; countBits(<span class="keyword">int</span> num) &#123;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; res(num + <span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= num; i++) &#123;</span><br><span class="line">        res[i] = res[i &gt;&gt; <span class="number">1</span>] + (i &amp; <span class="number">0x01</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="技巧-2："><a href="#技巧-2：" class="headerlink" title="技巧 2："></a>技巧 2：</h2>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/05/correctness-verification/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/12/05/correctness-verification/" itemprop="url">算法设计与分析：算法正确性验证</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-05T20:00:00+08:00">
+                2018-12-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithms/" itemprop="url" rel="index">
+                    <span itemprop="name">Algorithms</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="算法正确性验证"><a href="#算法正确性验证" class="headerlink" title="算法正确性验证"></a>算法正确性验证</h1><h2 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h2><h2 id="迭代"><a href="#迭代" class="headerlink" title="迭代"></a>迭代</h2>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/05/并查集/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1365,553 +1872,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/04/np-completeness/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RHANQTL">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/12/04/np-completeness/" itemprop="url">未命名</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-04T04:21:29+08:00">
-                2018-12-04
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="NP-完备性"><a href="#NP-完备性" class="headerlink" title="NP 完备性"></a>NP 完备性</h1><p><img src="/2018/12/04/np-completeness/p-np-decidable.png" width="300"></p>
-<p>NP-完备问题是 NP 问题中最难的问题</p>
-<p>如果一个问题 P 在集合 NP 中，并且如果存在一个 P 的算法，使得 NP 中的所有问题都能够在有限的额外工作的情况下解决，那么决策问题 P 就是 NP-完备的</p>
-<p>说人话：NP-完备问题就是说，某个 NP 问题 $P$ 有一个算法，对于 NP 问题集合中的其他问题，我们能够通过在这个算法中增加一些<strong>有限</strong>的额外工作令其得到解决，那么这个问题 P 就叫做 NP-完备问题。</p>
-<p>也就是说，如果我们对于问题 P 有一个算法，并且我们知道如何将问题 Q 的实例转化为问题 P 的实例，我们也就得到了解决问题 Q 的算法！</p>
-<p><img src="/2018/12/04/np-completeness/p-np-npc.png" width="300"></p>
-<p>多项式规约</p>
-<p>如果如下条件：</p>
-<ul>
-<li>T 可以在多项式时间内计算完成（取决于输入的长度）</li>
-<li>输入 x 是 Q 的 “yes” 输入当且仅当 T(x) 是 P 的 “yes” 输入</li>
-</ul>
-<p>成立，那么T 是一个从 Q 到 P 的多项式规约</p>
-<p>Q 是多项式可规约到 P 的：$Q \le_P P$</p>
-<p>P 至少与 Q 一样难</p>
-<p>NP-完备问题的另一种定义：如果一个问题 P 在集合 NP 中，并且对于 NP 集合中的每一个问题 Q，他是多项式可规约到 P 的，那么决策问题 P 就是 NP-完备的</p>
-<h2 id="NP-完备和-NP-难"><a href="#NP-完备和-NP-难" class="headerlink" title="NP-完备和 NP 难"></a>NP-完备和 NP 难</h2><p>如果对于一个决策问题 P 而言，NP 中的每一个问题 Q 都能够多项式规约为 P，那么 P 就是 NP 难的</p>
-<p>NP-难问题是至少与 NP 中最难的问题一样难的问题。一个决策问题 P 是 NP-完备的，如果它既是 NP 的又是 NP-难的</p>
-<p>一旦我们找到一个第一个 NP-完备的问题，那么找到其他 NP-完备问题就容易得多了：</p>
-<ol>
-<li>首先找到一个 NP-完备问题 P</li>
-<li>NP 中所有的问题 Q 都可以多项式规约为 P</li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/04/graph-traversal/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RHANQTL">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/12/04/graph-traversal/" itemprop="url">未命名</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-04T04:21:29+08:00">
-                2018-12-04
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="图遍历算法及其性质"><a href="#图遍历算法及其性质" class="headerlink" title="图遍历算法及其性质"></a>图遍历算法及其性质</h1><p>图 G 中一个结点的三种状态：</p>
-<ul>
-<li>未被发现：白色</li>
-<li>被发现：灰色</li>
-<li>完成：黑色</li>
-</ul>
-<p>对于无向图而言，一个黑色的顶点不会再被访问；对于有向图而言，一个黑色的顶点可能再被访问。</p>
-<p>白路径定理（White Path Theorem）：顶点 w 是顶点 v 的后代，当且仅当顶点 v 被发现时，从顶点 v 到顶点 w 的路径上所有的顶点都是白色的。</p>
-<h2 id="图遍历算法骨架"><a href="#图遍历算法骨架" class="headerlink" title="图遍历算法骨架"></a>图遍历算法骨架</h2><h3 id="DFS"><a href="#DFS" class="headerlink" title="DFS"></a>DFS</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">dfs(graph, v, color, ...) // 可以增加参数</span><br><span class="line">    adj &lt;- graph.adjs[v]</span><br><span class="line">    color[v] &lt;- GRAY</span><br><span class="line">    // 此处可以对顶点进行处理 pre-order</span><br><span class="line">    while adj != NIL</span><br><span class="line">        w &lt;- first(adj)</span><br><span class="line">        if color[w] = WHITE</span><br><span class="line">            // 此处可以对边 vw 进行一次处理</span><br><span class="line">            ret &lt;- dfs(graph, w, color, ...)</span><br><span class="line">            // 此处可以利用 ret 对 vw 进行处理</span><br><span class="line">        else</span><br><span class="line">            check edge vw</span><br><span class="line">            // 此处可以对边 vw 进行处理</span><br><span class="line">        adj &lt;- rest(adj)</span><br><span class="line">    color[v] &lt;- BLACK</span><br><span class="line">    // 此处可以对顶点进行处理 post-order</span><br></pre></td></tr></table></figure>
-<h3 id="BFS"><a href="#BFS" class="headerlink" title="BFS"></a>BFS</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">bfs(graph, start, color, ...)</span><br><span class="line">   queue.enqueue(start)</span><br><span class="line">   while queue is not empty</span><br><span class="line">       v &lt;- queue.dequeue()</span><br><span class="line">       color[v] &lt;- GRAY</span><br><span class="line">       for w in graph.adjs(v)</span><br><span class="line">           if color[w] = WHITE</span><br><span class="line">               queue.enqueue(w)</span><br><span class="line">       color[v] = BLACK</span><br><span class="line">       // 此处可以对顶点 v 进行处理</span><br></pre></td></tr></table></figure>
-<h2 id="活动区间"><a href="#活动区间" class="headerlink" title="活动区间"></a>活动区间</h2><p>活动区间是指一个顶点从被发现到完成（保持灰色）的时间。</p>
-<h3 id="活动区间的性质"><a href="#活动区间的性质" class="headerlink" title="活动区间的性质"></a>活动区间的性质</h3><p>如果顶点 w 是顶点 v 的后代，那么 w 的活动区间真包含于 v 的活动区间，反之成立。</p>
-<h2 id="图遍历过程中的几种边"><a href="#图遍历过程中的几种边" class="headerlink" title="图遍历过程中的几种边"></a>图遍历过程中的几种边</h2><ul>
-<li>树边（Tree Edge）：如果边 vw 是一条树边，那么 w 的活动区间真包含于 v 的活动区间，且不存在中间顶点 x，有 w 的活动区间真包含于 x 的活动区间，x 的活动区间真包含于 v 的活动区间。</li>
-<li>后代边（Descendant Edge）：如果边 vw 是一条后代边，那么一定存在某一中间顶点 x，有w 的活动区间真包含于 x 的活动区间，x 的活动区间真包含于 v 的活动区间</li>
-<li>回边（Back Edge）：如果边 vw 是一条回边，那么 v 的活动区间真包含于 w 的活动区间</li>
-<li>交叉边（Cross Edge）：如果边 vw 是一条交叉边，那么 w 的活动区间在 v 的活动区间之前，且二者不相交（注意顺序）<ul>
-<li>如果 v 的活动区间在 w 的活动区间之前，那么边 vw 就变成了一条树边</li>
-</ul>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/04/dag-scc/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RHANQTL">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/12/04/dag-scc/" itemprop="url">算法设计与分析：图遍历算法的应用 —— DAG 和 SCC</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-04T04:21:29+08:00">
-                2018-12-04
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Algorithms/" itemprop="url" rel="index">
-                    <span itemprop="name">Algorithms</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="图遍历算法的应用"><a href="#图遍历算法的应用" class="headerlink" title="图遍历算法的应用"></a>图遍历算法的应用</h1><h2 id="有向无环图（DAG）"><a href="#有向无环图（DAG）" class="headerlink" title="有向无环图（DAG）"></a>有向无环图（DAG）</h2><p>一个有向无环图一定至少有一个顶点没有入边，有一个顶点没有出边</p>
-<p>判断有向图环路的方法：如果有回边（Back Edge），那么一定有环路</p>
-<h3 id="拓扑排序"><a href="#拓扑排序" class="headerlink" title="拓扑排序"></a>拓扑排序</h3><p>一个 DAG 可以有多个不同的拓扑排序。</p>
-<p>有两种思路：</p>
-<ul>
-<li>将当前顶点排好序，再对后代进行排序<ul>
-<li>利用入度（BFS）<ul>
-<li>快速找到入度为 0 的顶点：队列，当某个顶点入度为 0 时，将其入队</li>
-<li>当某个顶点的入度减到 0 之后，就不会再减小</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>递归地将后代排好序，然后当前顶点自然就排好了（DFS）</li>
-</ul>
-<h3 id="任务调度"><a href="#任务调度" class="headerlink" title="任务调度"></a>任务调度</h3><p>关键路径（Critical Path）</p>
-<h2 id="强连通分量"><a href="#强连通分量" class="headerlink" title="强连通分量"></a>强连通分量</h2><p>定义：是原图的一个子图，其中的每一个顶点都能够到达子图中其他的顶点。</p>
-<p>对于如下的有向图：</p>
-<p><img src="/2018/12/04/dag-scc/graph.png" alt=""></p>
-<p>强连通分量为：ABDF、C、EG</p>
-<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>我们先介绍两个概念：</p>
-<ul>
-<li>强连通分量的 “Leader”：一个强连通分量的 Leader 是整个强连通分量中第一个被访问到的顶点；</li>
-<li>反图：有向图中所有的边都反向得到的图</li>
-</ul>
-<p>我们将有向图的每一个连通分量看作一个顶点（这样得到的图必然是一个 DAG），如下：</p>
-<p><img src="/2018/12/04/dag-scc/abstract-graph.png" alt=""></p>
-<p>我们希望能够找到每一个连通分量中所有的顶点。直觉上来看，可以先从 C3/C4 开始，然后是 C2，最后是 C1，这实际上就是一个逆拓扑序。</p>
-<p>但是有一个问题：我们必须首先找到 C3 的 Leader，而这个问题没办法解决（要么从头（C1）的 Leader 开始遍历，要么随机选择一个顶点，但是这两种方式都没办法确定一个顶点是不是 C3 的 Leader）。</p>
-<p>所以我们还可以这样想：先找出 C1 中的所有顶点，然后是 C2/C4，最后是 C3。那么问题来了，由于强连通分量之间存在边，所以访问并不一定是先访问完某一个强连通分量中的顶点，然后才去访问其他强连通分量中的顶点，而很有可能是访问了当前强连通分量中的部分顶点之后，转而访问其他强连通分量。</p>
-<p>下面我们假设从 C1 的 Leader 开始进行 DFS（假设我们知道如何确定一个顶点是否是 Leader），我们的访问顺序可能是这样：</p>
-<ol>
-<li>C1 的 Leader</li>
-<li>C1 的部分顶点</li>
-<li>C4 的 Leader</li>
-<li>C4 的全部顶点</li>
-<li>C1 的部分顶点</li>
-<li>C2 的 Leader</li>
-<li>C2 的部分顶点</li>
-<li>C3 的 Leader</li>
-<li>C3 的全部顶点</li>
-<li>C2 的部分顶点</li>
-<li>C1 的部分顶点</li>
-</ol>
-<p>由于我们做的是 DFS，所以对应上面的过程，访问的结束（顶点变为完成状态）顺序应该是这样：</p>
-<ol>
-<li>C1 的部分顶点</li>
-<li>C4 的全部顶点</li>
-<li>C4 的 Leader</li>
-<li>C1 的部分顶点</li>
-<li>C2 的部分顶点</li>
-<li>C3 的全部顶点</li>
-<li>C3 的 Leader</li>
-<li>C2 的部分顶点</li>
-<li>C2 的 Leader</li>
-<li>C1 的部分顶点</li>
-<li>C1 的 Leader</li>
-</ol>
-<p>画一个表格，更清晰一点：</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th style="text-align:center">发现顺序</th>
-<th style="text-align:center">结束顺序</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">C1 的 Leader</td>
-<td style="text-align:center">C1 的部分顶点</td>
-</tr>
-<tr>
-<td style="text-align:center">C1 的部分顶点</td>
-<td style="text-align:center">C4 的全部顶点</td>
-</tr>
-<tr>
-<td style="text-align:center">C4 的 Leader</td>
-<td style="text-align:center">C4 的 Leader</td>
-</tr>
-<tr>
-<td style="text-align:center">C4 的全部顶点</td>
-<td style="text-align:center">C1 的部分顶点</td>
-</tr>
-<tr>
-<td style="text-align:center">C1 的部分顶点</td>
-<td style="text-align:center">C2 的部分顶点</td>
-</tr>
-<tr>
-<td style="text-align:center">C2 的 Leader</td>
-<td style="text-align:center">C3 的全部顶点</td>
-</tr>
-<tr>
-<td style="text-align:center">C2 的部分顶点</td>
-<td style="text-align:center">C3 的 Leader</td>
-</tr>
-<tr>
-<td style="text-align:center">C3 的 Leader</td>
-<td style="text-align:center">C2 的部分顶点</td>
-</tr>
-<tr>
-<td style="text-align:center">C3 的全部顶点</td>
-<td style="text-align:center">C2 的 Leader</td>
-</tr>
-<tr>
-<td style="text-align:center">C2 的部分顶点</td>
-<td style="text-align:center">C1 的部分顶点</td>
-</tr>
-<tr>
-<td style="text-align:center">C1 的部分顶点</td>
-<td style="text-align:center">C1 的 Leader</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>注意到一个问题：不管是发现顺序还是结束顺序， C3/C4 的 Leader 和全部顶点都是一起出现的，将 C3 和 C4 拿掉之后，C2 的 Leader 和全部顶点又出现在了一起，再将 C2 拿掉，最终 C1 的 Leader 和全部顶点也出现在了一起。</p>
-<p>下面是遍历树：</p>
-<p><img src="/2018/12/04/dag-scc/traversal-tree.png" alt=""></p>
-<p>上面的发现顺序/结束顺序表其实就是树的先序遍历/后序遍历。每个遍历树只能含有一个或多个<strong>完整</strong>的强连通分量。</p>
-<p>注意到不管是发现顺序还是结束顺序，每个强连通分量中的顶点总数是相同的，这意味着我们可以用一个容器将发现顺序保存起来，每当我们完成一个 Leader 的访问时（这意味着这个 Leader 对应的强连通分量已经完成了），就开始从容器中删除顶点，直到将容器中的相同的 Leader 删除，这时候我们就找到了一个强连通分量。</p>
-<h4 id="确定-Leader"><a href="#确定-Leader" class="headerlink" title="确定 Leader"></a>确定 Leader</h4><p>有了上面的算法，我们还需要解决一个很早就提出的问题：如何确定一个顶点是 Leader。</p>
-<p>再来看我们的抽象强连通分量图：</p>
-<p><img src="/2018/12/04/dag-scc/abstract-graph.png" alt=""></p>
-<p>每一条边所指的顶点就是对应强连通分量的 Leader。很容易发现一个问题：两个存在边的强连通分量之间只有单向的路径。也就是说，一个强连通分量内部可能有很多回边（Back Edge），但是绝不会指向遍历树中比 Leader 更高层的顶点。这就是我们确定 Leader 的依据。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1962,7 +1922,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-count">36</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1973,7 +1933,7 @@
               
               <div class="site-state-item site-state-categories">
                 
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">22</span>
                   <span class="site-state-item-name">分类</span>
                 
               </div>
