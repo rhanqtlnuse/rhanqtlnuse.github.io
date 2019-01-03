@@ -69,11 +69,17 @@
     <link href="http://yoursite.com/2019/01/02/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%EF%BC%9A%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99/"/>
     <id>http://yoursite.com/2019/01/02/面向对象软件设计：设计原则/</id>
     <published>2019-01-02T03:26:04.000Z</published>
-    <updated>2019-01-02T07:29:19.956Z</updated>
+    <updated>2019-01-03T07:46:28.800Z</updated>
     
     <summary type="html">
     
-      &lt;h1 id=&quot;设计原则综述&quot;&gt;&lt;a href=&quot;#设计原则综述&quot; class=&quot;headerlink&quot; title=&quot;设计原则综述&quot;&gt;&lt;/a&gt;设计原则综述&lt;/h1&gt;
+      &lt;h1 id=&quot;设计原则综述&quot;&gt;&lt;a href=&quot;#设计原则综述&quot; class=&quot;headerlink&quot; title=&quot;设计原则综述&quot;&gt;&lt;/a&gt;设计原则综述&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;软件的可维护性与复用性&lt;ul&gt;
+&lt;li&gt;面向对象软件设计复用的目标在于实现支持可维护性的复用，而这要以面向对象软件设计原则为基础，这些设计原则首先都是复用的原则，遵循这些设计原则可以有效地提高系统的复用性，同时提高系统的可维护性&lt;/li&gt;
+&lt;li&gt;面向对象设计原则也是对系统进行合理重构的指南针&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
     
     </summary>
     

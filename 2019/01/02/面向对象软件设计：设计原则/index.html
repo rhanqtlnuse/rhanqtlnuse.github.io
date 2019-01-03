@@ -85,17 +85,17 @@
 
 
 
-<meta name="description" content="设计原则综述">
+<meta name="description" content="设计原则综述 软件的可维护性与复用性 面向对象软件设计复用的目标在于实现支持可维护性的复用，而这要以面向对象软件设计原则为基础，这些设计原则首先都是复用的原则，遵循这些设计原则可以有效地提高系统的复用性，同时提高系统的可维护性 面向对象设计原则也是对系统进行合理重构的指南针">
 <meta property="og:type" content="article">
 <meta property="og:title" content="面向对象软件设计：设计原则">
 <meta property="og:url" content="http://yoursite.com/2019/01/02/面向对象软件设计：设计原则/index.html">
 <meta property="og:site_name" content="RHANQTL">
-<meta property="og:description" content="设计原则综述">
+<meta property="og:description" content="设计原则综述 软件的可维护性与复用性 面向对象软件设计复用的目标在于实现支持可维护性的复用，而这要以面向对象软件设计原则为基础，这些设计原则首先都是复用的原则，遵循这些设计原则可以有效地提高系统的复用性，同时提高系统的可维护性 面向对象设计原则也是对系统进行合理重构的指南针">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-02T07:29:19.956Z">
+<meta property="og:updated_time" content="2019-01-03T07:46:28.800Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="面向对象软件设计：设计原则">
-<meta name="twitter:description" content="设计原则综述">
+<meta name="twitter:description" content="设计原则综述 软件的可维护性与复用性 面向对象软件设计复用的目标在于实现支持可维护性的复用，而这要以面向对象软件设计原则为基础，这些设计原则首先都是复用的原则，遵循这些设计原则可以有效地提高系统的复用性，同时提高系统的可维护性 面向对象设计原则也是对系统进行合理重构的指南针">
 
 
 
@@ -358,10 +358,53 @@
       
 
       
-        <h1 id="设计原则综述"><a href="#设计原则综述" class="headerlink" title="设计原则综述"></a>设计原则综述</h1><a id="more"></a>
-<h1 id="单一职责原则"><a href="#单一职责原则" class="headerlink" title="单一职责原则"></a>单一职责原则</h1><h1 id="开闭原则"><a href="#开闭原则" class="headerlink" title="开闭原则"></a>开闭原则</h1><p>最重要的原则</p>
-<p>关键是 “抽象化”</p>
-<h1 id="里氏替换原则"><a href="#里氏替换原则" class="headerlink" title="里氏替换原则"></a>里氏替换原则</h1><p>使用基类的地方应该都能够使用子类代替，而无需了解子类的细节，反之不成立</p>
+        <h1 id="设计原则综述"><a href="#设计原则综述" class="headerlink" title="设计原则综述"></a>设计原则综述</h1><ul>
+<li>软件的可维护性与复用性<ul>
+<li>面向对象软件设计复用的目标在于实现支持可维护性的复用，而这要以面向对象软件设计原则为基础，这些设计原则首先都是复用的原则，遵循这些设计原则可以有效地提高系统的复用性，同时提高系统的可维护性</li>
+<li>面向对象设计原则也是对系统进行合理重构的指南针</li>
+</ul>
+</li>
+</ul>
+<a id="more"></a>
+<h1 id="单一职责原则"><a href="#单一职责原则" class="headerlink" title="单一职责原则"></a>单一职责原则</h1><ul>
+<li>定义<ul>
+<li>第一种表述：一个对象应该只包含单一的职责，并且该职责被完整地封装在一个类中</li>
+<li>第二种表述：就一个类而言，应该仅有一个引起它变化的原因</li>
+</ul>
+</li>
+<li>分析<ul>
+<li>一个类（模块、方法）承担的职责越多，它被复用的可能性越小，而且耦合度也会过高</li>
+<li>类的职责主要表现在两个方面：数据职责和行为职责。数据职责通过属性来体现，行为职责通过方法来体现</li>
+<li>单一职责原则是实现高内聚、低耦合的指导方针</li>
+</ul>
+</li>
+</ul>
+<p><strong>例</strong></p>
+<p>假设一个基于 Java 的 C/S 系统的登陆模块的类图如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">+--------------------------------------+</span><br><span class="line">|               Login                  |</span><br><span class="line">+--------------------------------------+</span><br><span class="line">|                                      |</span><br><span class="line">+--------------------------------------+</span><br><span class="line">| + init(): void                       |</span><br><span class="line">| + display(): void                    |</span><br><span class="line">| + validate(): boolean                |</span><br><span class="line">| + getConnection(): Connection        |</span><br><span class="line">| + findUser(String username,          |</span><br><span class="line">|            String password): boolean |</span><br><span class="line">| + main(String args[]): void          |</span><br><span class="line">+--------------------------------------+</span><br></pre></td></tr></table></figure>
+<p>进行一下分析：</p>
+<ul>
+<li><p>首先，登陆模块的作用是验证用户和密码，返回验证的结果，所以 <code>validate()</code> 方法体现了这个类的职责</p>
+</li>
+<li><p><code>findUser(...)</code> 和 <code>getConnection()</code>：这个工作是 Data 层的工作</p>
+</li>
+<li><code>main()</code>：主方法，用于运行程序，应该是启动模块的方法，而不应该由登陆模块启动整个应用</li>
+</ul>
+<p>根据以上的分析，我们应该留下 <code>init()</code> <code>display()</code> <code>validate()</code> 方法，将其他的方法（职责）交给其他的类</p>
+<p>再看，其实 <code>getConnection()</code> 方法也可以从 <code>DataService</code> 中分离出来，因为一个有一定规模的系统中，一定不止有一个 <code>DataService</code>，而所有的 <code>DataService</code> 都需要连接数据库。</p>
+<p>最终版本：</p>
+
+<h1 id="开闭原则"><a href="#开闭原则" class="headerlink" title="开闭原则"></a>开闭原则</h1><p>一个软件实体应该对扩展开放，对修改关闭。也就是说在设计一个模块的时候应该使这个模块能够在不改变内部代码/设计的情况下改变这个模块的行为（扩展）。</p>
+<ul>
+<li><p>软件实体可以指一个软件模块、一个由多个类组成的局部结构或一个独立的类</p>
+</li>
+<li><p>关键是 “抽象化”</p>
+</li>
+<li>更具体的原则：对可变性封装原则，即找到系统中的可变因素，并将其封装</li>
+</ul>
+<h1 id="里氏替换原则"><a href="#里氏替换原则" class="headerlink" title="里氏替换原则"></a>里氏替换原则</h1><p>使用基类的地方应该都能够使用相应的子类代替，而无需了解子类的细节（透明），<strong>反之不成立</strong>。</p>
+<p>所以在程序中尽量使用基类类型来对对象进行定义，而在运行时再确定其子类类型，用子类对象来替换父类对象。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">List&lt;String&gt; l = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br></pre></td></tr></table></figure>
 <h1 id="依赖倒置原则"><a href="#依赖倒置原则" class="headerlink" title="依赖倒置原则"></a>依赖倒置原则</h1><p>依赖注入</p>
 <ul>
 <li>构造注入</li>
