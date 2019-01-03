@@ -92,10 +92,14 @@
 <meta property="og:site_name" content="RHANQTL">
 <meta property="og:description" content="设计原则综述 软件的可维护性与复用性 面向对象软件设计复用的目标在于实现支持可维护性的复用，而这要以面向对象软件设计原则为基础，这些设计原则首先都是复用的原则，遵循这些设计原则可以有效地提高系统的复用性，同时提高系统的可维护性 面向对象设计原则也是对系统进行合理重构的指南针">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-03T07:46:28.800Z">
+<meta property="og:image" content="http://yoursite.com/2019/01/02/面向对象软件设计：设计原则/stack-extends-vector.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/02/面向对象软件设计：设计原则/stack-aggregates-vector.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/02/面向对象软件设计：设计原则/stack-aggregates-list.png">
+<meta property="og:updated_time" content="2019-01-03T11:35:48.982Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="面向对象软件设计：设计原则">
 <meta name="twitter:description" content="设计原则综述 软件的可维护性与复用性 面向对象软件设计复用的目标在于实现支持可维护性的复用，而这要以面向对象软件设计原则为基础，这些设计原则首先都是复用的原则，遵循这些设计原则可以有效地提高系统的复用性，同时提高系统的可维护性 面向对象设计原则也是对系统进行合理重构的指南针">
+<meta name="twitter:image" content="http://yoursite.com/2019/01/02/面向对象软件设计：设计原则/stack-extends-vector.png">
 
 
 
@@ -416,6 +420,14 @@
 <li>“接口” 并不是某个语言中的语法特性（比如 Java 的 <code>interface</code>）而是合约（方法）</li>
 </ul>
 <h1 id="合成复用原则"><a href="#合成复用原则" class="headerlink" title="合成复用原则"></a>合成复用原则</h1><p>也叫 “组合/聚合复用原则”</p>
+<h2 id="与依赖倒置原则的关系"><a href="#与依赖倒置原则的关系" class="headerlink" title="与依赖倒置原则的关系"></a>与依赖倒置原则的关系</h2><p>一个经典的例子：Java 中的 Stack 类继承自 Vector</p>
+<img src="/2019/01/02/面向对象软件设计：设计原则/stack-extends-vector.png">
+<p>但其实仔细想想，Stack 是一个（is a）Vector 吗？</p>
+<p>并不是，Stack 只是部分地使用了 Vector 的功能，所以更合理的方式应该是 Stack 持有一个（has a）Vector 的引用，如下：</p>
+<img src="/2019/01/02/面向对象软件设计：设计原则/stack-aggregates-vector.png">
+<p>再进一步思考，其实 Stack 也并不是非要使用 Vector，其实它需要的只是一个<strong>顺序的容器</strong>，能够支持在一端增/删/查即可。所以可以进一步地修改，令 Vector 继承自 List，Stack 持有 List 的引用，这样我们甚至可以在运行时动态地修改 Stack 所依赖的顺序容器，而不会影响 Stack 的正常使用。这样的设计提供了更大的灵活性，同时也只给 Stack 提供了必要的接口（这里也有接口隔离原则）。</p>
+<p>将 Stack 由继承自 Vector 改为持有 Vector 的引用，遵循了合成复用原则；而将 Stack 由持有 Vector（具体类）的引用改为持有 List（抽象接口）的引用，遵循了依赖倒置原则。</p>
+<img src="/2019/01/02/面向对象软件设计：设计原则/stack-aggregates-list.png">
 <h1 id="迪米特法则"><a href="#迪米特法则" class="headerlink" title="迪米特法则"></a>迪米特法则</h1><p>也叫 “最少知识原则”</p>
 
       
@@ -592,7 +604,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#设计原则综述"><span class="nav-number">1.</span> <span class="nav-text">设计原则综述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#单一职责原则"><span class="nav-number">2.</span> <span class="nav-text">单一职责原则</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#开闭原则"><span class="nav-number">3.</span> <span class="nav-text">开闭原则</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#里氏替换原则"><span class="nav-number">4.</span> <span class="nav-text">里氏替换原则</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#依赖倒置原则"><span class="nav-number">5.</span> <span class="nav-text">依赖倒置原则</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#接口隔离原则"><span class="nav-number">6.</span> <span class="nav-text">接口隔离原则</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#合成复用原则"><span class="nav-number">7.</span> <span class="nav-text">合成复用原则</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#迪米特法则"><span class="nav-number">8.</span> <span class="nav-text">迪米特法则</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#设计原则综述"><span class="nav-number">1.</span> <span class="nav-text">设计原则综述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#单一职责原则"><span class="nav-number">2.</span> <span class="nav-text">单一职责原则</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#开闭原则"><span class="nav-number">3.</span> <span class="nav-text">开闭原则</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#里氏替换原则"><span class="nav-number">4.</span> <span class="nav-text">里氏替换原则</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#依赖倒置原则"><span class="nav-number">5.</span> <span class="nav-text">依赖倒置原则</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#接口隔离原则"><span class="nav-number">6.</span> <span class="nav-text">接口隔离原则</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#合成复用原则"><span class="nav-number">7.</span> <span class="nav-text">合成复用原则</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#与依赖倒置原则的关系"><span class="nav-number">7.1.</span> <span class="nav-text">与依赖倒置原则的关系</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#迪米特法则"><span class="nav-number">8.</span> <span class="nav-text">迪米特法则</span></a></li></ol></div>
             
 
           </div>
