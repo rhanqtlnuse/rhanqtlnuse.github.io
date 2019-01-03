@@ -93,7 +93,7 @@
 <meta property="og:description" content="语句覆盖：程序中的每个可执行语句至少执行一次 判定覆盖（分支覆盖）：程序中的每个判定都至少获得一次 “真” 值和一次 “假” 值 条件覆盖：程序中每个判定包含的每个条件的可能取值都至少满足一次 判定/条件覆盖：判定覆盖 + 条件覆盖 组合覆盖：程序中每个判定包含的所有条件的所有取值组合都至少满足一次 路径覆盖：程序中所有可能的路径都至少执行一次">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/2019/01/02/软件测试基础：逻辑覆盖法/branch-coverage.png">
-<meta property="og:updated_time" content="2019-01-02T11:37:17.039Z">
+<meta property="og:updated_time" content="2019-01-03T07:12:33.626Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="软件测试基础：逻辑覆盖法">
 <meta name="twitter:description" content="语句覆盖：程序中的每个可执行语句至少执行一次 判定覆盖（分支覆盖）：程序中的每个判定都至少获得一次 “真” 值和一次 “假” 值 条件覆盖：程序中每个判定包含的每个条件的可能取值都至少满足一次 判定/条件覆盖：判定覆盖 + 条件覆盖 组合覆盖：程序中每个判定包含的所有条件的所有取值组合都至少满足一次 路径覆盖：程序中所有可能的路径都至少执行一次">
@@ -379,7 +379,7 @@
 <li>分析：语句覆盖能够保证所有的语句都得到执行，但是发现不了判定中运算逻辑的错误，即它并不是⼀种充分的检验⽅法。例如在第⼀个判定 <code>((x &gt; 3) &amp;&amp; (z &lt; 10))</code> 中把 <code>&amp;&amp;</code> 错误的写成了 <code>||</code>，这时仍使⽤该测试⽤例，则程序仍会按照 abd 执⾏。可以说语句覆盖是最弱的逻辑覆盖准则。</li>
 </ul>
 <h1 id="判定覆盖"><a href="#判定覆盖" class="headerlink" title="判定覆盖"></a>判定覆盖</h1><p>也叫分支覆盖</p>
-<p>设 <code>x &gt; 3 &amp;&amp; z &lt; 10</code> 为真为 $T_1$，为假 $-T_1$；<code>x == 4 || y &gt; 5</code> 为真为 $T_2$，为假 $-T_2$</p>
+<p>设 <code>x &gt; 3 &amp;&amp; z &lt; 10</code> 为真为 T1，为假 -T1；<code>x == 4 || y &gt; 5</code> 为真为 $T_2$，为假 - T2</p>
 <div class="table-container">
 <table>
 <thead>
@@ -429,19 +429,117 @@
 </thead>
 <tbody>
 <tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
+<td style="text-align:center">x = 4，y = 6，z = 5</td>
+<td style="text-align:center">abd</td>
+<td style="text-align:center">T1，T2，T3，T4</td>
+<td style="text-align:center">bd</td>
 </tr>
 <tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
+<td style="text-align:center">x = 2，y = 5，z = 10</td>
+<td style="text-align:center">ace</td>
+<td style="text-align:center">-T1，-T2，-T3，-T4</td>
+<td style="text-align:center">ce</td>
 </tr>
 </tbody>
 </table>
 </div>
+<ul>
+<li><p>分析：上例同时达到了条件覆盖和判定覆盖，但并不意味着条件覆盖一定能够满足判定覆盖：</p>
+<p>|       测试用例       | 执行路径 | 覆盖条件         | 覆盖分支 |<br>| :—————————: | ———— | ———————— | ———— |<br>| x = 2，y = 6，z = 5  | acd      | -T1，T2，-T3，T4 | cd       |<br>| x = 4，y = 5，z = 15 | acd      | T1，-T2，T3，-T4 | cd       |</p>
+</li>
+</ul>
+<h1 id="判定-条件覆盖"><a href="#判定-条件覆盖" class="headerlink" title="判定/条件覆盖"></a>判定/条件覆盖</h1><p>条件 <code>x &gt; 3</code> 取真值记为 T1，取假值记为 -T1</p>
+<p>条件 <code>z &lt; 10</code> 取真值记为 T2，取假值记为 -T2</p>
+<p>条件 <code>x == 4</code> 取真值记为 T3，取假值记为 -T3</p>
+<p>条件 <code>y &gt; 5</code> 取真值记为 T4，取假值记为 -T4</p>
+<p>同条件覆盖</p>
+<ul>
+<li>分析：判定/条件覆盖法的问题在于布尔表达式的短路求值。例如对于 <code>x &gt; 3 &amp;&amp; z &lt; 10</code> 这个判定，如果 <code>x &gt; 3</code> 为假，则不会继续判断 <code>z &lt; 10</code> 这个条件，这样如果这个条件有错，无法检查出来。</li>
+</ul>
+<h1 id="组合覆盖"><a href="#组合覆盖" class="headerlink" title="组合覆盖"></a>组合覆盖</h1><p>条件 <code>x &gt; 3</code> 取真值记为 T1，取假值记为 -T1</p>
+<p>条件 <code>z &lt; 10</code> 取真值记为 T2，取假值记为 -T2</p>
+<p>条件 <code>x == 4</code> 取真值记为 T3，取假值记为 -T3</p>
+<p>条件 <code>y &gt; 5</code> 取真值记为 T4，取假值记为 -T4</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>测试用例</th>
+<th>执行路径</th>
+<th>覆盖条件</th>
+<th>覆盖组合</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>x = 4，y = 6，z = 5</td>
+<td>abd</td>
+<td>T1，T2，T3，T4</td>
+<td></td>
+</tr>
+<tr>
+<td>x = 4，y = 5，z = 15</td>
+<td>acd</td>
+<td>T1，-T2，T3，-T4</td>
+<td></td>
+</tr>
+<tr>
+<td>x = 2，y = 6，z = 5</td>
+<td>acd</td>
+<td>-T1，T2，-T3，T4</td>
+<td></td>
+</tr>
+<tr>
+<td>x = 2，y = 5，z = 15</td>
+<td>ace</td>
+<td>-T1，-T2，-T3，-T4</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>分析：覆盖了所有 8 种条件取值的组合，覆盖了所有判定的真假分支，但是却丢失了一条路径 abe</li>
+</ul>
+<h1 id="路径覆盖"><a href="#路径覆盖" class="headerlink" title="路径覆盖"></a>路径覆盖</h1><p>条件 <code>x &gt; 3</code> 取真值记为 T1，取假值记为 -T1</p>
+<p>条件 <code>z &lt; 10</code> 取真值记为 T2，取假值记为 -T2</p>
+<p>条件 <code>x == 4</code> 取真值记为 T3，取假值记为 -T3</p>
+<p>条件 <code>y &gt; 5</code> 取真值记为 T4，取假值记为 -T4</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>测试用例</th>
+<th>执行路径</th>
+<th>覆盖条件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>x = 4，y = 6，z = 5</td>
+<td>abd</td>
+<td>T1，T2，T3，T4</td>
+</tr>
+<tr>
+<td>x = 4，y = 5，z = 15</td>
+<td>acd</td>
+<td>T1，-T2，T3，-T4</td>
+</tr>
+<tr>
+<td>x = 2，y = 5，z = 15</td>
+<td>ace</td>
+<td>-T1，-T2，-T3，-T4</td>
+</tr>
+<tr>
+<td>x = 5，y = 5，z = 5</td>
+<td>abe</td>
+<td>T1，T2，-T3，-T4</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>分析：虽然实现了路径覆盖，但是并没有覆盖程序中的所有条件组合（缺少 -T1，T2，-T3，T4）。即满足了路径覆盖的测试用例并不一定满足组合覆盖。</li>
+</ul>
 
       
     </div>
@@ -617,7 +715,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#语句覆盖"><span class="nav-number">1.</span> <span class="nav-text">语句覆盖</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#判定覆盖"><span class="nav-number">2.</span> <span class="nav-text">判定覆盖</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#条件覆盖"><span class="nav-number">3.</span> <span class="nav-text">条件覆盖</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#语句覆盖"><span class="nav-number">1.</span> <span class="nav-text">语句覆盖</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#判定覆盖"><span class="nav-number">2.</span> <span class="nav-text">判定覆盖</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#条件覆盖"><span class="nav-number">3.</span> <span class="nav-text">条件覆盖</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#判定-条件覆盖"><span class="nav-number">4.</span> <span class="nav-text">判定/条件覆盖</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#组合覆盖"><span class="nav-number">5.</span> <span class="nav-text">组合覆盖</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#路径覆盖"><span class="nav-number">6.</span> <span class="nav-text">路径覆盖</span></a></li></ol></div>
             
 
           </div>
