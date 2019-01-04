@@ -85,17 +85,20 @@
 
 
 
-<meta name="description" content="函数调用在 Haskell 中拥有最高的优先级，所以 succ 9 * 10 的结果为 100，而不是所期望的 91 Haskell 中 if 语句（实际上是一个表达式）的 else 不可省略：if-then-else，也就是说，必须返回一个值 编写一些简单的函数（抽象），将其组合，形成更高级的抽象 有两个参数的函数可以使用中缀形式：div 9 3 等价于 9 `div` 3，注意使用反引号将函数">
+<meta name="description" content="概述HTTP，Hyper Text Transfer Protocol，是在 Web 上进行数据交换的基础，是一种 client-server 协议，请求通常是由像浏览器这样的接收方发起的。像浏览器这样的客户端发出的消息叫做 request，被服务器响应的消息叫 response。 HTTP 是应用层协议，通过 TCP 或者 TLS（加密的 TCP 连接），但是理论上任何可靠的传输协议都可以使用。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Haskell 入门">
-<meta property="og:url" content="http://yoursite.com/2018/12/08/Haskell-入门/index.html">
+<meta property="og:title" content="计算机网络：HTTP">
+<meta property="og:url" content="http://yoursite.com/2019/01/04/计算机网络：HTTP/index.html">
 <meta property="og:site_name" content="RHANQTL">
-<meta property="og:description" content="函数调用在 Haskell 中拥有最高的优先级，所以 succ 9 * 10 的结果为 100，而不是所期望的 91 Haskell 中 if 语句（实际上是一个表达式）的 else 不可省略：if-then-else，也就是说，必须返回一个值 编写一些简单的函数（抽象），将其组合，形成更高级的抽象 有两个参数的函数可以使用中缀形式：div 9 3 等价于 9 `div` 3，注意使用反引号将函数">
+<meta property="og:description" content="概述HTTP，Hyper Text Transfer Protocol，是在 Web 上进行数据交换的基础，是一种 client-server 协议，请求通常是由像浏览器这样的接收方发起的。像浏览器这样的客户端发出的消息叫做 request，被服务器响应的消息叫 response。 HTTP 是应用层协议，通过 TCP 或者 TLS（加密的 TCP 连接），但是理论上任何可靠的传输协议都可以使用。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-08T11:56:32.221Z">
+<meta property="og:image" content="http://yoursite.com/2019/01/04/计算机网络：HTTP/client-server-chain.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/04/计算机网络：HTTP/HTTP_request.png">
+<meta property="og:updated_time" content="2019-01-04T07:21:33.874Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Haskell 入门">
-<meta name="twitter:description" content="函数调用在 Haskell 中拥有最高的优先级，所以 succ 9 * 10 的结果为 100，而不是所期望的 91 Haskell 中 if 语句（实际上是一个表达式）的 else 不可省略：if-then-else，也就是说，必须返回一个值 编写一些简单的函数（抽象），将其组合，形成更高级的抽象 有两个参数的函数可以使用中缀形式：div 9 3 等价于 9 `div` 3，注意使用反引号将函数">
+<meta name="twitter:title" content="计算机网络：HTTP">
+<meta name="twitter:description" content="概述HTTP，Hyper Text Transfer Protocol，是在 Web 上进行数据交换的基础，是一种 client-server 协议，请求通常是由像浏览器这样的接收方发起的。像浏览器这样的客户端发出的消息叫做 request，被服务器响应的消息叫 response。 HTTP 是应用层协议，通过 TCP 或者 TLS（加密的 TCP 连接），但是理论上任何可靠的传输协议都可以使用。">
+<meta name="twitter:image" content="http://yoursite.com/2019/01/04/计算机网络：HTTP/client-server-chain.png">
 
 
 
@@ -125,13 +128,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/12/08/Haskell-入门/">
+  <link rel="canonical" href="http://yoursite.com/2019/01/04/计算机网络：HTTP/">
 
 
 
 
 
-  <title>Haskell 入门 | RHANQTL</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>计算机网络：HTTP | RHANQTL</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -258,7 +261,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/08/Haskell-入门/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/04/计算机网络：HTTP/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Han Qi">
@@ -275,7 +278,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Haskell 入门</h1>
+          <h1 class="post-title" itemprop="name headline">计算机网络：HTTP</h1>
         
 
         <div class="post-meta">
@@ -287,8 +290,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-08T14:49:32+08:00">
-                2018-12-08
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-04T14:19:54+08:00">
+                2019-01-04
               </time>
             
 
@@ -310,19 +313,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/FP/" itemprop="url" rel="index">
-                    <span itemprop="name">FP</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/FP/Haskell/" itemprop="url" rel="index">
-                    <span itemprop="name">Haskell</span>
+                  <a href="/categories/Computer-Networks/" itemprop="url" rel="index">
+                    <span itemprop="name">Computer Networks</span>
                   </a>
                 </span>
 
@@ -358,46 +350,61 @@
       
 
       
-        <p>函数调用在 Haskell 中拥有最高的优先级，所以 <code>succ 9 * 10</code> 的结果为 100，而不是所期望的 91</p>
-<p>Haskell 中 <code>if</code> 语句（实际上是一个表达式）的 <code>else</code> 不可省略：<code>if-then-else</code>，也就是说，必须返回一个值</p>
-<p>编写一些简单的函数（抽象），将其组合，形成更高级的抽象</p>
-<p>有两个参数的函数可以使用中缀形式：<code>div 9 3</code> 等价于 <code>9 `div` 3</code>，注意使用<strong>反引号</strong>将函数名括起来和参数的顺序</p>
-<p>变量的值不可修改！！！（更像数学中的变量，而不是编程中的变量），但可以对变量重新赋值</p>
-<p>Haskell 中<strong>不允许</strong>首字母大写的函数</p>
-<p>常量定义：<code>let &lt;var_name&gt; = &lt;value&gt;</code> 或 <code>&lt;var_name&gt; = &lt;value&gt;</code>，注意 <code>&lt;var_name&gt;</code> 首字母<strong>小写</strong>！</p>
-<h1 id="List"><a href="#List" class="headerlink" title="List"></a>List</h1><p><strong>单类型</strong>数据数据结构</p>
-<p>空 List：<code>[]</code></p>
-<h2 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h2><p>列表连接：<code>&lt;list1&gt; ++ &lt;list2&gt;</code></p>
-<p>字符串实际上是字符数组，所以可以使用 <code>&quot;hello&quot; ++ &quot; &quot; ++ &quot;world&quot;</code></p>
-<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">ghci</span>&gt; str1 = ['h', 'e', 'l', 'l', 'o']</span><br><span class="line"><span class="title">ghci</span>&gt; str2 = ['w', 'o', 'r', 'l', 'd']</span><br><span class="line"><span class="title">ghci</span>&gt; str1 ++ <span class="string">" "</span> ++ str2</span><br><span class="line"><span class="string">"hello world"</span></span><br></pre></td></tr></table></figure>
-<p>可以使用 <code>：</code> 将一个元素连接到 List 的头部（Lisp 的 <code>cons &lt;elem&gt; &lt;list&gt;</code>），<code>[1, 2, 3]</code> 实际上是 <code>1：2：3：[]</code> 的语法糖</p>
-<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">ghci</span>&gt; 'h':'e':'l':'l':'o':[]</span><br><span class="line"><span class="string">"hello"</span></span><br></pre></td></tr></table></figure>
-<p>通过下标访问：<code>!!</code>，下标从 0 开始，超出范围会报错</p>
-<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">ghci</span>&gt; [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>] !! <span class="number">3</span></span><br><span class="line"><span class="number">4</span></span><br></pre></td></tr></table></figure>
-<h3 id="比较大小"><a href="#比较大小" class="headerlink" title="比较大小"></a>比较大小</h3><p>当 List 中装有<strong>可比较</strong>的元素时，可以使用关系运算符比较列表的大小。从第一个元素开始比较如果能够决定结果，直接返回，否则继续向后比较。</p>
-<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">ghci</span>&gt; [<span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>] &gt; [<span class="number">2</span>, <span class="number">1</span>, <span class="number">0</span>]</span><br><span class="line"><span class="type">True</span></span><br><span class="line"><span class="title">ghci</span>&gt; [<span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>] &gt; [<span class="number">2</span>, <span class="number">10</span>, <span class="number">100</span>]</span><br><span class="line"><span class="type">True</span></span><br><span class="line"><span class="title">ghci</span>&gt; [<span class="number">3</span>, <span class="number">4</span>, <span class="number">2</span>] &gt; [<span class="number">3</span>, <span class="number">4</span>]</span><br><span class="line"><span class="type">True</span></span><br><span class="line"><span class="title">ghci</span>&gt; [<span class="number">3</span>, <span class="number">4</span>, <span class="number">2</span>] &gt; [<span class="number">2</span>, <span class="number">4</span>]</span><br><span class="line"><span class="type">True</span></span><br><span class="line"><span class="title">ghci</span>&gt; [<span class="number">3</span>, <span class="number">4</span>, <span class="number">2</span>] == [<span class="number">3</span>, <span class="number">4</span>, <span class="number">2</span>]</span><br><span class="line"><span class="type">True</span></span><br></pre></td></tr></table></figure>
-<h3 id="其他常用函数"><a href="#其他常用函数" class="headerlink" title="其他常用函数"></a>其他常用函数</h3><p><code>head</code>：返回 List 的首个元素（Lisp 的 <code>car</code>）</p>
-<p><code>tail</code>：返回 List 的去除首个元素的部分（Lisp 的 <code>cdr</code>）</p>
-<p><code>last</code>：返回 List 的最后一个元素</p>
-<p><code>init</code>：返回 List 去除最后一个元素的部分</p>
-<p>注意：对空 List 使用这些函数会在运行期产生异常</p>
-<p><code>length</code></p>
-<p><code>null</code>：检查一个列表是否为空</p>
+        <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>HTTP，Hyper Text Transfer Protocol，是在 Web 上进行数据交换的基础，是一种 client-server 协议，请求通常是由像浏览器这样的接收方发起的。像浏览器这样的客户端发出的消息叫做 request，被服务器响应的消息叫 response。</p>
+<p>HTTP 是应用层协议，通过 TCP 或者 TLS（加密的 TCP 连接），但是理论上任何可靠的传输协议都可以使用。</p>
+<h2 id="基于-HTTP-的组件系统"><a href="#基于-HTTP-的组件系统" class="headerlink" title="基于 HTTP 的组件系统"></a>基于 HTTP 的组件系统</h2><p>HTTP 是一个 client-server 协议：请求通过一个实体被发出，实体也就是用户代理。大多数情况下，这个用户代理都是浏览器，有时也是机器爬虫。</p>
+<p>每一个发送到服务器的请求，都会被服务器处理并返回一个消息，也就是 response。在这个请求与响应之间，还有许许多多的被称为 proxy 的实体，他们的作用与表现各不相同，比如有些是网关，还有些是 Cache 等。</p>
+<img src="/2019/01/04/计算机网络：HTTP/client-server-chain.png">
+<h3 id="客户端：user-agent"><a href="#客户端：user-agent" class="headerlink" title="客户端：user-agent"></a>客户端：user-agent</h3><p>user-agent 就是任何能够为用户发起行为的工具，这个角色通常都是由浏览器来扮演，也有一些例    外情况，比如工程师使用的程序，以及 Web 开发人员调试应用程序。</p>
+<h3 id="Web-服务端"><a href="#Web-服务端" class="headerlink" title="Web 服务端"></a>Web 服务端</h3><p>服务器只是虚拟意义上代表一个机器：它可以是共享负载的一组服务器组成的计算机集群，也可以是一种复杂的软件，通过向其他计算机（如缓存，数据库服务器，电子商务服务器）发起请求来获取部分或全部资源。</p>
+<p>服务器不一定是一台机器，一个机器上可以装载众多的服务器。在 HTTP/1.1 和 Host 头部中，它们甚至可以共享同一个 IP 地址。</p>
+<h3 id="代理"><a href="#代理" class="headerlink" title="代理"></a>代理</h3><p>可以表现的透明，又可以不透明。主要有以下几种作用：</p>
 <ul>
-<li>避免使用 <code>xs == []</code></li>
+<li>缓存</li>
+<li>过滤</li>
+<li>负载均衡（让多个服务器服务不同的请求）</li>
+<li>认证（对不同资源进行权限管理）</li>
+<li>日志记录（允许存储历史信息）</li>
 </ul>
-<p><code>reverse</code>：将 List 反转</p>
-<p><code>take &lt;count&gt; &lt;list&gt;</code>：取出列表的前 count 个元素</p>
-<ul>
-<li>也可以使用中缀形式：<code>3 `take` [1, 2, 3, 4, 5, 6]</code></li>
-<li>如果 <code>count == 0</code>，那么返回 <code>[]</code></li>
-<li>如果 <code>count &gt;= length</code>，那么返回原 List</li>
+<h2 id="HTTP-的基本性质"><a href="#HTTP-的基本性质" class="headerlink" title="HTTP 的基本性质"></a>HTTP 的基本性质</h2><ul>
+<li>简单的：HTTP 报文能够被人读懂<ul>
+<li>HTTP/2 将 HTTP 消息封装到了帧（Frame）中，使得报文不能被直接读取，但原理依然是相同的</li>
 </ul>
-<p><code>drop &lt;count&gt; &lt;list&gt;</code>：删除 List 的前 count 个元素，与 <code>take</code> 大体相同</p>
-<p><code>maximum</code> 和 <code>minimum</code></p>
-<p><code>sum</code> 和 <code>product</code></p>
-<p><code>elem</code>：判断一个元素是否在 List 中，通常以中缀形式使用</p>
-
+</li>
+<li>可扩展：HTTP 首部<ul>
+<li>只要服务端和客户端就新的首部达成语义一致，新功能就可以被轻松加入进来</li>
+</ul>
+</li>
+<li>无状态的，有会话（Session）的：在同一个连接中，两个执行成功的请求之间是没有关系的<ul>
+<li>使用 HTTP 的首部扩展，将 Cookies 添加到首部中，创建有状态的会话，让每次请求都能共享相同的上下文信息</li>
+</ul>
+</li>
+<li>HTTP 并不需要其底层的传输层协议是面向连接的，只需要它是可靠的，或不丢失消息的（至少返回错误）。HTTP 依赖于面向连接的 TCP 进行消息传递，但连接并不是必须的<ul>
+<li>HTTP/1.0 为每一个请求/响应都打开一个 TCP 连接</li>
+<li>HTTP/1.1 引入了流水线和持久性连接的概念</li>
+<li>HTTP/2 通过在一个连接复用消息的方式来让这个连接始终保持为暖连接</li>
+</ul>
+</li>
+</ul>
+<h2 id="HTTP-能控制什么"><a href="#HTTP-能控制什么" class="headerlink" title="HTTP 能控制什么"></a>HTTP 能控制什么</h2><ul>
+<li>缓存</li>
+<li>开放同源限制</li>
+<li>认证</li>
+<li>代理和隧道<ul>
+<li>并非所有的代理都是 HTTP 代理。例如，SOCKS 协议的代理就运作在更底层，一些像 FTP 这样的协议也能够被它们处理</li>
+</ul>
+</li>
+<li>会话</li>
+</ul>
+<h2 id="HTTP-流"><a href="#HTTP-流" class="headerlink" title="HTTP 流"></a>HTTP 流</h2><p>当客户端想要和服务端进行信息交互时（服务端指的是最终服务器或者是中间代理），过程表现为以下几步：</p>
+<ol>
+<li>建立一个 TCP 连接：打开一条新的连接，重用一个已存在的连接，打开多条连接</li>
+<li>发送一个 HTTP 报文</li>
+<li>读取服务端返回的报文信息</li>
+<li>关闭连接或者为后续请求重用连接</li>
+</ol>
+<p>当HTTP流水线启动时，后续请求都可以不用等待第一个请求的成功响应就被发送。然而HTTP流水线已被证明很难在现有的网络中实现，因为现有网络中有很多老旧的软件与现代版本的软件共存。因此，HTTP流水线已被在有多请求下表现得更稳健的HTTP/2的帧所取代。</p>
+<h2 id="HTTP-报文"><a href="#HTTP-报文" class="headerlink" title="HTTP 报文"></a>HTTP 报文</h2><h3 id="请求"><a href="#请求" class="headerlink" title="请求"></a>请求</h3><img src="/2019/01/04/计算机网络：HTTP/HTTP_request.png">
       
     </div>
     
@@ -421,8 +428,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/12/06/位运算奇技淫巧/" rel="next" title="位运算奇技淫巧">
-                <i class="fa fa-chevron-left"></i> 位运算奇技淫巧
+              <a href="/2019/01/02/程序设计方法学：表驱动法/" rel="next" title="程序设计方法学：表驱动法">
+                <i class="fa fa-chevron-left"></i> 程序设计方法学：表驱动法
               </a>
             
           </div>
@@ -430,10 +437,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/12/12/LeetCode-226：Invert-Binary-Tree/" rel="prev" title="LeetCode 226：Invert Binary Tree">
-                LeetCode 226：Invert Binary Tree <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -572,7 +575,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#List"><span class="nav-number">1.</span> <span class="nav-text">List</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#操作"><span class="nav-number">1.1.</span> <span class="nav-text">操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#比较大小"><span class="nav-number">1.1.1.</span> <span class="nav-text">比较大小</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他常用函数"><span class="nav-number">1.1.2.</span> <span class="nav-text">其他常用函数</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基于-HTTP-的组件系统"><span class="nav-number">1.1.</span> <span class="nav-text">基于 HTTP 的组件系统</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#客户端：user-agent"><span class="nav-number">1.1.1.</span> <span class="nav-text">客户端：user-agent</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Web-服务端"><span class="nav-number">1.1.2.</span> <span class="nav-text">Web 服务端</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代理"><span class="nav-number">1.1.3.</span> <span class="nav-text">代理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP-的基本性质"><span class="nav-number">1.2.</span> <span class="nav-text">HTTP 的基本性质</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP-能控制什么"><span class="nav-number">1.3.</span> <span class="nav-text">HTTP 能控制什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP-流"><span class="nav-number">1.4.</span> <span class="nav-text">HTTP 流</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP-报文"><span class="nav-number">1.5.</span> <span class="nav-text">HTTP 报文</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#请求"><span class="nav-number">1.5.1.</span> <span class="nav-text">请求</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>

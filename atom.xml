@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-01-02T10:49:32.706Z</updated>
+  <updated>2019-01-04T07:21:33.874Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>计算机网络：HTTP</title>
+    <link href="http://yoursite.com/2019/01/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%9AHTTP/"/>
+    <id>http://yoursite.com/2019/01/04/计算机网络：HTTP/</id>
+    <published>2019-01-04T06:19:54.000Z</published>
+    <updated>2019-01-04T07:21:33.874Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+      <category term="Computer Networks" scheme="http://yoursite.com/categories/Computer-Networks/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>程序设计方法学：表驱动法</title>
@@ -445,34 +469,6 @@
     <summary type="html">
     
     </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>LeetCode 567：Permutation in String</title>
-    <link href="http://yoursite.com/2018/12/14/LeetCode-567%EF%BC%9APermutation-in-String/"/>
-    <id>http://yoursite.com/2018/12/14/LeetCode-567：Permutation-in-String/</id>
-    <published>2018-12-14T00:41:56.000Z</published>
-    <updated>2018-12-14T01:13:07.276Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-      <category term="Algorithms" scheme="http://yoursite.com/categories/Algorithms/"/>
-    
-      <category term="OJ" scheme="http://yoursite.com/categories/Algorithms/OJ/"/>
-    
-      <category term="LeetCode" scheme="http://yoursite.com/categories/Algorithms/OJ/LeetCode/"/>
     
     
   </entry>
