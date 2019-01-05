@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-01-04T07:21:33.874Z</updated>
+  <updated>2019-01-05T08:18:37.202Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>计算机网络：HTTP</title>
-    <link href="http://yoursite.com/2019/01/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%9AHTTP/"/>
-    <id>http://yoursite.com/2019/01/04/计算机网络：HTTP/</id>
-    <published>2019-01-04T06:19:54.000Z</published>
-    <updated>2019-01-04T07:21:33.874Z</updated>
+    <title>E.W.Dijkstra 831：为什么应该从 0 开始计数</title>
+    <link href="http://yoursite.com/2019/01/05/E-W-Dijkstra-831%EF%BC%9A%E4%B8%BA%E4%BB%80%E4%B9%88%E5%BA%94%E8%AF%A5%E4%BB%8E-0-%E5%BC%80%E5%A7%8B%E8%AE%A1%E6%95%B0/"/>
+    <id>http://yoursite.com/2019/01/05/E-W-Dijkstra-831：为什么应该从-0-开始计数/</id>
+    <published>2019-01-05T07:35:33.000Z</published>
+    <updated>2019-01-05T08:18:37.202Z</updated>
     
     <summary type="html">
     
@@ -32,6 +32,39 @@
           
         
       
+    
+    </summary>
+    
+      <category term="Uncategorized" scheme="http://yoursite.com/categories/Uncategorized/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>HDU 22366：无题 II</title>
+    <link href="http://yoursite.com/2019/01/05/HDU-22366%EF%BC%9A%E6%97%A0%E9%A2%98-II/"/>
+    <id>http://yoursite.com/2019/01/05/HDU-22366：无题-II/</id>
+    <published>2019-01-05T05:10:08.000Z</published>
+    <updated>2019-01-05T05:10:08.127Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>计算机网络：HTTP</title>
+    <link href="http://yoursite.com/2019/01/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%9AHTTP/"/>
+    <id>http://yoursite.com/2019/01/04/计算机网络：HTTP/</id>
+    <published>2019-01-04T06:19:54.000Z</published>
+    <updated>2019-01-04T08:25:21.390Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;概述&quot;&gt;&lt;a href=&quot;#概述&quot; class=&quot;headerlink&quot; title=&quot;概述&quot;&gt;&lt;/a&gt;概述&lt;/h1&gt;&lt;h1 id=&quot;HTTP-概述&quot;&gt;&lt;a href=&quot;#HTTP-概述&quot; class=&quot;headerlink&quot; title=&quot;HTTP 概述&quot;&gt;&lt;/a&gt;HTTP 概述&lt;/h1&gt;&lt;p&gt;HTTP，Hyper Text Transfer Protocol，是在 Web 上进行数据交换的基础，是一种 client-server 协议，请求通常是由像浏览器这样的接收方发起的。像浏览器这样的客户端发出的消息叫做 request，被服务器响应的消息叫 response。&lt;/p&gt;
+&lt;p&gt;HTTP 是应用层协议，通过 TCP 或者 TLS（加密的 TCP 连接），但是理论上任何可靠的传输协议都可以使用。&lt;/p&gt;
     
     </summary>
     
@@ -433,42 +466,6 @@
     </summary>
     
       <category term="Dynamic Programming" scheme="http://yoursite.com/categories/Dynamic-Programming/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>LeetCode 142：Linked List Cycle II</title>
-    <link href="http://yoursite.com/2018/12/14/LeetCode-142%EF%BC%9ALinked-List-Cycle-II/"/>
-    <id>http://yoursite.com/2018/12/14/LeetCode-142：Linked-List-Cycle-II/</id>
-    <published>2018-12-14T11:43:28.000Z</published>
-    <updated>2018-12-14T12:10:52.157Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>LeetCode 695：Max Area of Island</title>
-    <link href="http://yoursite.com/2018/12/14/LeetCode-695%EF%BC%9AMax-Area-of-Island/"/>
-    <id>http://yoursite.com/2018/12/14/LeetCode-695：Max-Area-of-Island/</id>
-    <published>2018-12-14T08:19:59.000Z</published>
-    <updated>2018-12-14T08:19:59.256Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
     
     
   </entry>

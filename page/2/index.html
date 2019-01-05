@@ -255,6 +255,324 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/30/10x-程序员/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/12/30/10x-程序员/" itemprop="url">10x 程序员</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-30T22:43:52+08:00">
+                2018-12-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>转载自 <a href="http://antirez.com/news/112" target="_blank" rel="noopener"><antirez></antirez></a></p>
+<h2 id="The-mythical-10x-programmer"><a href="#The-mythical-10x-programmer" class="headerlink" title="The mythical 10x programmer"></a>The mythical 10x programmer</h2><p>antirez 670 days ago. 543210 views.A 10x programmer is, in the mythology of programming, a programmer that can do ten times the work of another normal programmer, where for normal programmer we can imagine one good at doing its work, but without the magical abilities of the 10x programmer. Actually to better characterize the “normal programmer” it is better to say that it represents the one having the average programming output, among the programmers that are professionals in this discipline.</p>
+<p>The programming community is extremely polarized about the existence or not of such a beast: who says there is no such a thing as the 10x programmer, who says it actually does not just exist, but there are even 100x programmers if you know where to look for.</p>
+<p>If you see programming as a “linear” discipline, it is clear that the 10x programmer looks like an irrational possibility. How can a runner run 10x faster than another one? Or a construction worker build 10x the things another worker can build in the same time? However programming is a design discipline, in a very special way. Even when a programmer does not participate in the actual architectural design of a program, the act of implementing it still requires a sub-design of the implementation strategy.</p>
+<p>So if the design and implementation of a program are not linear abilities, things like experience, coding abilities, knowledge, recognition of useless parts, are, in my opinion, not just linear advantages, they work together in a multiplicative way in the act of creating a program. Of course this phenomenon happens much more when a programmer can both handle the design and the implementation of a program. The more “goal oriented” is the task, the more a potential 10x programmer can exploit her/his abilities in order to reach the goal with a lot less efforts. When the task at hand is much more rigid, with specific guidelines about what tools to use and how to implement things, the ability of a 10x programmer to perform a lot of work in less time is weakened: it can still exploit “local” design possibilities to do a much better work, but cannot change in more profound ways the path used to reach the goal, that may include, possibly, even eliminating part of the specification completely from the project, so that the goal to be reached looks almost the same but the efforts to reach it are reduced by a big factor.</p>
+<p>In twenty years of working as a programmer I observed other programmers working with me, as coworkers, guided by me in order to reach a given goal, providing patches to Redis and other projects. At the same time many people told me that they believe I’m a very fast programmer. Considering I’m far from being a workaholic, I’ll also use myself as a reference of coding things fast.</p>
+<p>The following is a list of qualities that I believe make the most difference in programmers productivity.</p>
+<ul>
+<li>Bare programming abilities: getting sub-tasks done</li>
+</ul>
+<p>One of the most obvious limits, or strengths, of a programmer is to deal with the sub-task of actually implementing part of a program: a function, an algorithm or whatever. Surprisingly the ability to use basic imperative programming constructs very efficiently in order to implement something is, in my experience, not as widespread as one may think. In a team sometimes I observed very incompetent programmers, that were not even aware of a simple sorting algorithm, to get more work done than graduated programmers that were in theory extremely competent but very poor in the practice of implementing solutions.</p>
+<ul>
+<li>Experience: pattern matching</li>
+</ul>
+<p>By experience I mean the set of already explored solutions for a number of recurring tasks. An experienced programmer eventually knows how to deal with a variety of sub tasks. This avoids both a lot of design work, but especially, is an extremely powerful weapon against design errors, that are in turn among the biggest enemies of simplicity.</p>
+<ul>
+<li>Focus: actual time VS hypothetical time</li>
+</ul>
+<p>The number of hours spent writing code is irrelevant without looking at the quality of the time. Lack of focus can be generated by internal and external factors. Internal factors are procrastination, lack of interest in the project at hand (you can’t be good doing things you do not love), lack of exercise / well-being, poor or little sleeping. External factors are frequent meetings, work environments without actual offices, coworkers interrupting often and so forth. It seems natural that trying to improve focus and to reduce interruptions is going to have a non marginal effect on the programming productivity. Sometimes in order to gain focus, extreme measures are needed. For instance I only read emails from time to time and do not reply to most of them.</p>
+<ul>
+<li>Design sacrifice: killing 5% to get 90%</li>
+</ul>
+<p>Often complexity is generated when there is no willingness to recognized that a non fundamental goal of a project is accounting for a very large amount of design complexity, or is making another more important goal very hard to reach, because there is a design tension among a fundamental feature and a non fundamental one. It is very important for a designer to recognize all the parts of a design that are not easy wins, that is, there is no proportionality between the effort and the advantages. A project that is executed in order to maximize the output, is going to focus exactly on the aspects that matter and that can be implemented in a reasonable amount of time. For example when designing Disque, a message broker, at some point I realized that by providing just best-effort ordering for the messages, all the other aspects of the project could be substantially improved: availability, query language and clients interaction, simplicity and performances.</p>
+<ul>
+<li>Simplicity</li>
+</ul>
+<p>This is an obvious point that means all and nothing. In order to understand what simplicity is, it is worth to check how complexity is often generated. I believe that the two main drivers of complexity are the unwillingness to perform design sacrifices, and the accumulation of errors in the design activity.</p>
+<p>If you think at the design process, each time a wrong path is pursued, we get more and more far from the optimal solution. An initial design error, in the wrong hands, will not generate a re-design of the same system, but will lead to the design of another complex solution in order to cope with the initial error. The project, thus, becomes more complex and less efficient at every wrong step.</p>
+<p>The way simplicity can be achieved is to reason in terms of small metal “proof of concepts”, so that a large amount of simple designs can be explored in the mind of the programmer, to start working from something that looks the most viable and direct solution. Later, experience and personal design abilities will allow to improve the design and find sensible solutions for the sub-designs that need to be resolved.</p>
+<p>However each time a complex solution is needed, it’s important to reason for a long time about how the complexity can be avoided, and only continue in that direction if no better possibility is found even considering completely different alternatives.</p>
+<ul>
+<li>Perfectionism, or how to kill your productivity and bias your designs</li>
+</ul>
+<p>Perfectionism comes in two variants: an engineering culture of reaching the best possible measurable performance in a program, and as a personality trait. In both the instances, I see this as one of the biggest barriers for a programmer to deliver things fast. Perfectionism and fear of external judice insert a designing bias that will result in poor choices in order to refine a design only according to psychological or trivially measurable parameters, where things like robustness, simplicity, ability to deliver in time, are often never accounted for. </p>
+<ul>
+<li>Knowledge: some theory is going to help</li>
+</ul>
+<p>When dealing with complex tasks, knowledge about data structures, fundamental limits of computation, non trivial algorithms that are very suitable to model certain tasks, are going to have an impact in the ability to find a suitable design. To be a super expert of everything is not required, but to be at least aware of a multitude of potential solutions for a problem certainly is. For instance applying design sacrifice (accept some error percentage) and being aware of probabilistic set cardinality estimators, can be combined together in order to avoid a complex, slow and memory inefficient solution in order to count unique items in a stream.</p>
+<ul>
+<li>Low level: understanding the machine</li>
+</ul>
+<p>A number of issues in programs, even when using high level languages, arise from the misunderstanding of how the computer is going to perform a given task. This may even lead to the need of re-designing and re-implementing again from scratch a project because there is a fundamental problem in the tools or algorithms used. Good competence of C, the understanding of how CPUs work and clear ideas about how the kernel operates and how system calls are implemented, can save from bad late-stage surprises.</p>
+<ul>
+<li>Debugging skills</li>
+</ul>
+<p>It is very easy to spend an enormous amount of work in order to find bugs. The sum of being good at gaining state about a bug, incrementally, in order to fix it with a rational set of steps, and the attitude of writing simple code that is unlikely to contain too many bugs, can have a great effect on the programmer efficiency.</p>
+<p>It is no surprising to me to see how the above qualities of a programmer can have a 10x impact on the output. Combined they allow for good implementations of designs that start from a viable model and can be several times simpler than alternatives. There is a way to stress simplicity that I like to call “opportunistic programming”. Basically at every development step, the set of features to implement is chosen in order to have the maximum impact on the user base of the program, with the minimum requirement of efforts.</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/30/订阅-arXiv/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/12/30/订阅-arXiv/" itemprop="url">RSS 订阅 arXiv</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-30T20:38:13+08:00">
+                2018-12-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="1-订阅"><a href="#1-订阅" class="headerlink" title="1 订阅"></a>1 订阅</h1><h2 id="1-1-步骤"><a href="#1-1-步骤" class="headerlink" title="1.1 步骤"></a>1.1 步骤</h2><ol>
+<li><p>首先，你得确定一下你想订阅哪些：<a href="https://arxiv.org/help/archive_list，以" target="_blank" rel="noopener">https://arxiv.org/help/archive_list，以</a> CS 为例：</p>
+<img src="/2018/12/30/订阅-arXiv/available-list.png" title="CS 这一大类下可订阅的子学科">
+</li>
+<li><p>注意上图红框的地方，里面的 <strong>cs</strong> 就是我们目的邮箱的名字，也就是说，如果我想订阅 <strong>Computer Science</strong> 这一大类下的文章，就要发邮件给 <strong>cs@arxiv.org</strong></p>
+</li>
+<li><p>开始写邮件</p>
+<ol>
+<li><p>首先是主题，为 <code>subscribe &lt;你的名字&gt;</code> 这样的格式</p>
+</li>
+<li><p>内容：用 <code>add &lt;分类名&gt;</code> 表示增加订阅 &lt;分类名&gt; 类的文章，用 <code>del &lt;分类名&gt;</code> 表示取消订阅 &lt;分类名&gt; 类的文章</p>
+</li>
+<li><p>一封完整的订阅邮件应该是这样的：</p>
+<img src="/2018/12/30/订阅-arXiv/complete-mail.png">
+<p>这代表我订阅了 <strong>Discrete Mathematics</strong>、<strong>Information Theory</strong>、<strong>Operating Systems</strong>、<strong>Symbolic Computation</strong> 类的文章</p>
+</li>
+</ol>
+</li>
+<li><p>如果成功会受到这样一封邮件</p>
+<img src="/2018/12/30/订阅-arXiv/reply.png">
+<p>其中 <strong>Artificial Intelligence</strong> 这些刚刚没写的是我之前订阅的</p>
+</li>
+<li><p>如果失败（邮件投递成功，订阅失败）的话会收到一封第一行为 “(No valid add or del options specified.)” 的邮件，这时候就要检查一下标题、命令、分类名称是否正确</p>
+</li>
+<li><p>注意事项：邮件一定要用<font color="red"><strong>纯文本</strong></font>！！！</p>
+</li>
+</ol>
+<h2 id="1-2-获取可订阅列表的另一种方法"><a href="#1-2-获取可订阅列表的另一种方法" class="headerlink" title="1.2 获取可订阅列表的另一种方法"></a>1.2 获取可订阅列表的另一种方法</h2><p>比如我想知道 <strong>Computer Science</strong> 大类下面可订阅的子分类，那么就给相应的邮箱（这里是 <strong>cs@arxiv.org</strong>）发一封标题为 <code>subscribe</code> 的空内容邮件。</p>
+<p>不过这个方法似乎有问题，会返回失败消息。</p>
+<h2 id="1-3-可订阅子分类的缩写名"><a href="#1-3-可订阅子分类的缩写名" class="headerlink" title="1.3 可订阅子分类的缩写名"></a>1.3 可订阅子分类的缩写名</h2><p>这个还没研究过，以后再说。</p>
+<h1 id="2-取消订阅"><a href="#2-取消订阅" class="headerlink" title="2 取消订阅"></a>2 取消订阅</h1><h2 id="2-1-取消订阅某个子分类"><a href="#2-1-取消订阅某个子分类" class="headerlink" title="2.1 取消订阅某个子分类"></a>2.1 取消订阅某个子分类</h2><p>比如我想取消 <strong>Computer Science</strong> 大类下面 <strong>Artificial Intelligence</strong> 分类的订阅，那么就给相应的邮箱（这里是 <strong>cs@arxiv.org</strong>）发送一封带有 <code>del Artificial Intelligence</code> 的邮件，其他同上。</p>
+<h2 id="2-2-取消订阅某个大类"><a href="#2-2-取消订阅某个大类" class="headerlink" title="2.2 取消订阅某个大类"></a>2.2 取消订阅某个大类</h2><p>比如我想取消 <strong>Computer Science</strong> 大类的订阅，那么就给相应的邮箱（这里是 <strong>cs@arxiv.org</strong>） 发送一封标题为 <code>cancel</code> 的空内容邮件。</p>
+<h1 id="再次强调：邮件一定要用纯文本！！！"><a href="#再次强调：邮件一定要用纯文本！！！" class="headerlink" title="再次强调：邮件一定要用纯文本！！！"></a>再次强调：邮件一定要用<font color="red">纯文本</font>！！！</h1><h1 id="3-官方说明"><a href="#3-官方说明" class="headerlink" title="3 官方说明"></a>3 官方说明</h1><p><a href="https://arxiv.org/help/subscribe" target="_blank" rel="noopener">To Subscribe to the E-Mail Alerting Service</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/30/在数据库中存储层次结构数据/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1468,268 +1786,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/14/LeetCode-142：Linked-List-Cycle-II/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RHANQTL">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/12/14/LeetCode-142：Linked-List-Cycle-II/" itemprop="url">LeetCode 142：Linked List Cycle II</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-14T19:43:28+08:00">
-                2018-12-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><strong>题目描述：</strong></p>
-<p>给定一个链表，返回链表开始入环的第一个节点。 如果链表无环，则返回 <code>null</code>。</p>
-<p><strong>说明：</strong></p>
-<ul>
-<li>不允许修改给定的链表</li>
-<li>你是否可以不用额外空间解决此题？</li>
-</ul>
-<p><strong>示意图：</strong></p>
-<ul>
-<li><p>有环：</p>
-<img src="/2018/12/14/LeetCode-142：Linked-List-Cycle-II/circular-linked-list.png">
-</li>
-<li><p>无环：</p>
-<img src="/2018/12/14/LeetCode-142：Linked-List-Cycle-II/no-cycle.png">
-</li>
-</ul>
-<p>这道题如果使用额外空间的话，是很好做的：用一个容器装所有访问过的结点，如果出现重复，就说明有环。但是如果不使用额外空间呢？</p>
-<p>快慢指针！</p>
-<p>原理是这样的：设环的长度为 $r$，快慢两个指针相遇时走过的长度分别为 $2k$ 和 $k$，那么有 $2k - k = n \cdot r \Rightarrow k = n \cdot r$。假设链表的 <code>head</code> 与环的第一个结点距离为 $s$，链表的 <code>head</code> 与快慢指针相遇点的距离为 $k$，那么环的第一个结点与相遇点的距离为 $m = k - s$，带入，有</p>
-<script type="math/tex; mode=display">s = n \cdot r - m = (n-1) \cdot r + (r-m)</script><p>令 $n = 1$，则有 $s = r - m$，此时快（慢）指针到环的第一个结点的距离与 <code>head</code> 到第一个结点的距离相等，那么二者走同样的步数，相遇点就是环的第一个结点。</p>
-<p>代码：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> ListNode <span class="title">detectCycle</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (head == <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    ListNode slow = head;</span><br><span class="line">    ListNode fast = head;</span><br><span class="line">    <span class="keyword">while</span> (fast.next != <span class="keyword">null</span> &amp;&amp; fast.next.next != <span class="keyword">null</span>) &#123;</span><br><span class="line">        slow = slow.next;</span><br><span class="line">        fast = fast.next.next;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (slow == fast) &#123;</span><br><span class="line">            ListNode p = head;</span><br><span class="line">            <span class="keyword">while</span> (p != fast) &#123;</span><br><span class="line">                fast = fast.next;</span><br><span class="line">                p = p.next;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> p;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="另外"><a href="#另外" class="headerlink" title="另外"></a>另外</h1><p>快慢指针其实还可以做一些其他的事情，就目前的知识，快慢指针还能够找到<strong>单</strong>链表的中点（当然并不会改善复杂度）：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> ListNode <span class="title">mid</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (head == <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (head.next == <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> head;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    ListNode fast = head;</span><br><span class="line">    ListNode slow = head;</span><br><span class="line">    <span class="keyword">while</span> (fast.next != <span class="keyword">null</span> &amp;&amp; fast.next.next != <span class="keyword">null</span>) &#123;</span><br><span class="line">        slow = slow.next;</span><br><span class="line">        fast = fast.next.next;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> slow;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/14/LeetCode-695：Max-Area-of-Island/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RHANQTL">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/12/14/LeetCode-695：Max-Area-of-Island/" itemprop="url">LeetCode 695：Max Area of Island</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-14T16:19:59+08:00">
-                2018-12-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1780,7 +1836,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">38</span>
+                  <span class="site-state-item-count">40</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1791,7 +1847,7 @@
               
               <div class="site-state-item site-state-categories">
                 
-                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-count">27</span>
                   <span class="site-state-item-name">分类</span>
                 
               </div>
