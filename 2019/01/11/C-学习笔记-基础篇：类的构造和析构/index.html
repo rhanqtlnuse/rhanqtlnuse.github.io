@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+  <link rel="stylesheet" media="all" href="/lib/Han/dist/han.min.css?v=3.3">
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="RHANQTL" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="概述在介绍 C++ 的类构造和析构之前，先介绍一个重要的原则：RAII。 RAII 源于 C++，是 Bjarne Stroustrup 和 Andrew Koenig) 在设计 C++ 异常时，为解决资源管理的异常安全性而使用的方法，后来 Bjarne 称之为 RAII。 RAII 要求，资源的有效期与持有资源的对象的生命期严格绑定，即由对象的构造函数完成资源的分配（获取），同时由析构函数完成资">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++ 学习笔记 - 基础篇：类的构造和析构">
+<meta property="og:url" content="http://yoursite.com/2019/01/11/C-学习笔记-基础篇：类的构造和析构/index.html">
+<meta property="og:site_name" content="RHANQTL">
+<meta property="og:description" content="概述在介绍 C++ 的类构造和析构之前，先介绍一个重要的原则：RAII。 RAII 源于 C++，是 Bjarne Stroustrup 和 Andrew Koenig) 在设计 C++ 异常时，为解决资源管理的异常安全性而使用的方法，后来 Bjarne 称之为 RAII。 RAII 要求，资源的有效期与持有资源的对象的生命期严格绑定，即由对象的构造函数完成资源的分配（获取），同时由析构函数完成资">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2019/01/11/C-学习笔记-基础篇：类的构造和析构/initializer-order.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/11/C-学习笔记-基础篇：类的构造和析构/second-way.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/11/C-学习笔记-基础篇：类的构造和析构/multi-delegate.png">
+<meta property="og:updated_time" content="2019-01-14T12:26:43.167Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="C++ 学习笔记 - 基础篇：类的构造和析构">
+<meta name="twitter:description" content="概述在介绍 C++ 的类构造和析构之前，先介绍一个重要的原则：RAII。 RAII 源于 C++，是 Bjarne Stroustrup 和 Andrew Koenig) 在设计 C++ 异常时，为解决资源管理的异常安全性而使用的方法，后来 Bjarne 称之为 RAII。 RAII 要求，资源的有效期与持有资源的对象的生命期严格绑定，即由对象的构造函数完成资源的分配（获取），同时由析构函数完成资">
+<meta name="twitter:image" content="http://yoursite.com/2019/01/11/C-学习笔记-基础篇：类的构造和析构/initializer-order.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/01/11/C-学习笔记-基础篇：类的构造和析构/">
+
+
+
+
+
+  <title>C++ 学习笔记 - 基础篇：类的构造和析构 | RHANQTL</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">RHANQTL</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/11/C-学习笔记-基础篇：类的构造和析构/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">C++ 学习笔记 - 基础篇：类的构造和析构</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-11T20:23:31+08:00">
+                2019-01-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Programming-Languages/" itemprop="url" rel="index">
+                    <span itemprop="name">Programming Languages</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Programming-Languages/C/" itemprop="url" rel="index">
+                    <span itemprop="name">C++</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>在介绍 C++ 的类构造和析构之前，先介绍一个重要的原则：RAII。</p>
+<p>RAII 源于 C++，是 <a href="https://en.wikipedia.org/wiki/Bjarne_Stroustrup" target="_blank" rel="noopener">Bjarne Stroustrup</a> 和 <a href="https://en.wikipedia.org/wiki/Andrew_Koenig_(programmer" target="_blank" rel="noopener">Andrew Koenig</a>) 在设计 C++ 异常时，为解决资源管理的异常安全性而使用的方法，后来 Bjarne 称之为 RAII。</p>
+<p>RAII 要求，资源的有效期与持有资源的对象的生命期严格绑定，即由对象的构造函数完成资源的分配（获取），同时由析构函数完成资源的释放。在这种要求下，只要对象能正确地析构，就不会出现资源泄露的问题。$^{[1]}$</p>
+<a id="more"></a>
+<h1 id="类的构造函数"><a href="#类的构造函数" class="headerlink" title="类的构造函数"></a>类的构造函数</h1><p>在 C++ 中，类的构造函数有以下几种：</p>
+<ul>
+<li>普通的构造函数</li>
+<li>委托构造函数</li>
+<li>复制构造函数</li>
+<li>移动构造函数</li>
+<li>转换构造函数</li>
+</ul>
+<p>C++ 11 中还引入了一个新的特性：初始化列表，可以用于简化对象的构造。</p>
+<h2 id="普通构造函数"><a href="#普通构造函数" class="headerlink" title="普通构造函数"></a>普通构造函数</h2><p>// TODO: 构造函数执行顺序</p>
+<p>// TODO: 默认构造函数，成员默认值</p>
+<ul>
+<li>注意构造函数的声明/定义中<strong>没有</strong>返回值，并不是 <code>void</code></li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Dummy(...) &#123;</span><br><span class="line">    <span class="comment">// do something</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>默认构造函数、成员默认值</p>
+</li>
+<li><p>执行顺序</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dummy</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    <span class="keyword">char</span> c;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    Dummy(<span class="keyword">int</span> i, <span class="keyword">char</span> c): i(i), c(c) &#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"i = "</span> &lt;&lt; i &lt;&lt; <span class="string">", c = "</span> &lt;&lt; c &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>执行 <code>Dummy d(1, &#39;a&#39;)</code>。我们已经知道，<code>i</code> 和 <code>c</code> 的默认值分别为 <code>0</code> 和 <code>&#39;\0&#39;</code>，如果：</p>
+<ul>
+<li>成员初始化列表先执行，那么输出应该是 <code>i = 1, c = a</code></li>
+<li>成员初始化列表后执行，那么输出应该是 <code>i = 0, c = &lt;某个奇怪的字符&gt;</code></li>
+</ul>
+<p>执行结果：</p>
+<img src="/2019/01/11/C-学习笔记-基础篇：类的构造和析构/initializer-order.png">
+<p>说明执行顺序为：成员初始化列表 $\rightarrow$ 构造函数体</p>
+</li>
+<li><p>成员初始化列表能做什么？</p>
+<ul>
+<li></li>
+</ul>
+</li>
+</ul>
+<h2 id="委托构造函数"><a href="#委托构造函数" class="headerlink" title="委托构造函数"></a>委托构造函数</h2><p>委托构造函数是 C++ 11 引入的特性。“委托构造函数”，顾名思义，就是将对象的构造委托给另一个构造函数。我们先来看看不使用委托构造函数的情况：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 为了节省空间直接在类中定义</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dummy</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    <span class="keyword">char</span> c;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    Dummy(): i(<span class="number">0</span>), c(<span class="string">'\0'</span>) &#123; &#125;</span><br><span class="line">    Dummy(<span class="keyword">int</span> i) &#123;</span><br><span class="line">        <span class="keyword">if</span> (i &lt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="built_in">std</span>::<span class="built_in">cerr</span> &lt;&lt; <span class="string">"i 应该为非负数"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">this</span>-&gt;i = i;</span><br><span class="line">            <span class="keyword">this</span>-&gt;c = <span class="string">'\0'</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    Dummy(<span class="keyword">char</span> c) &#123;</span><br><span class="line">        <span class="keyword">if</span> (!<span class="built_in">isdigit</span>(c) &amp;&amp; !<span class="built_in">isalpha</span>(c) &amp;&amp; c != <span class="string">'_'</span>) &#123;</span><br><span class="line">            <span class="built_in">std</span>::<span class="built_in">cerr</span> &lt;&lt; <span class="string">"c 应该为字母、数字、下划线或空字符"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">this</span>-&gt;i = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">this</span>-&gt;c = c;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    Dummy(<span class="keyword">int</span> i, <span class="keyword">char</span> c) &#123;</span><br><span class="line">        <span class="keyword">if</span> (i &lt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="built_in">std</span>::<span class="built_in">cerr</span> &lt;&lt; <span class="string">"i 应该为非负数"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (!<span class="built_in">isdigit</span>(c) &amp;&amp; !<span class="built_in">isalpha</span>(c) &amp;&amp; c != <span class="string">'_'</span> &amp;&amp; c != <span class="string">'\0'</span>) &#123;</span><br><span class="line">                <span class="built_in">std</span>::<span class="built_in">cerr</span> &lt;&lt; <span class="string">"c 应该为字母、数字、下划线或空字符"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">this</span>-&gt;i = i;</span><br><span class="line">                <span class="keyword">this</span>-&gt;c = c;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>这个例子仅仅是一个规模很小的类，试想一下，如果是一个规模很大的类，我们就需要编写大量的重复代码，代码的复用性不好，可维护性也很差。使用委托构造函数可以避免这个问题：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dummy</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    <span class="keyword">char</span> c;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    Dummy(): Dummy(<span class="number">0</span>, <span class="string">'\0'</span>) &#123; &#125;</span><br><span class="line">    Dummy(<span class="keyword">int</span> i): Dummy(i, <span class="string">'\0'</span>) &#123; &#125;</span><br><span class="line">    Dummy(<span class="keyword">char</span> c): Dummy(<span class="number">0</span>, c) &#123; &#125;</span><br><span class="line">    Dummy(<span class="keyword">int</span> i, <span class="keyword">char</span> c) &#123;</span><br><span class="line">        <span class="keyword">if</span> (i &lt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="built_in">std</span>::<span class="built_in">cerr</span> &lt;&lt; <span class="string">"i 应该为非负数"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (!<span class="built_in">isdigit</span>(c) &amp;&amp; !<span class="built_in">isalpha</span>(c) &amp;&amp; c != <span class="string">'_'</span> &amp;&amp; c != <span class="string">'\0'</span>) &#123;</span><br><span class="line">                <span class="built_in">std</span>::<span class="built_in">cerr</span> &lt;&lt; <span class="string">"c 应该为字母、数字、下划线或空字符"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">this</span>-&gt;i = i;</span><br><span class="line">                <span class="keyword">this</span>-&gt;c = c;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>代码一下子就短了不少！（当然，你要是说偏不使用委托构造函数，而是把代码写在一行里，我也没意见，但是这么写你可能会被同组的人或者你的 Leader 打死）。当然，让代码变短并不是主要目的（万一公司是按代码行数算工资的呢），我们的主要目的是提高代码的复用程度和可维护性，使用委托构造函数，只需要维护一份代码。</p>
+<h3 id="使用委托构造函数需要注意的问题"><a href="#使用委托构造函数需要注意的问题" class="headerlink" title="使用委托构造函数需要注意的问题"></a>使用委托构造函数需要注意的问题</h3><ul>
+<li><p>委托构造函数的写法</p>
+<ul>
+<li><p>第一种写法</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Dummy(): Dummy(<span class="number">0</span>, <span class="string">'\0'</span>) &#123; &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>第二种写法</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Dummy() &#123;</span><br><span class="line">    Dummy(<span class="number">0</span>, <span class="string">'\0'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>两种写法都合法，但是第二种写法在 CLion 中会提示：</p>
+<img src="/2019/01/11/C-学习笔记-基础篇：类的构造和析构/second-way.png">
+<p>所以应该使用第一种写法。</p>
+</li>
+</ul>
+<ul>
+<li><p>将构造对象的职责委托给谁？普遍规则是含有最多参数的构造函数</p>
+</li>
+<li><p>一个构造函数只能委托一个构造函数</p>
+<p>《C++ Primer》中有这样一段话：</p>
+<blockquote>
+<p>在委托构造函数内，成员的初始值列表只有一个<strong>唯一</strong>的入口，就是类名本身。和其他成员初始值一样，类名后面紧跟圆括号括起来的参数列表，参数列表必须与类中另外一个构造函数匹配。</p>
+</blockquote>
+<p>注意这个“唯一”，就是说如下的写法是<strong>不合法</strong>的：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Dummy(<span class="keyword">int</span> i, <span class="keyword">char</span> c): Dummy(<span class="number">0</span>), Dummy(c) &#123; &#125;</span><br></pre></td></tr></table></figure>
+<p>在 CLion 中会有这样的提示：</p>
+<img src="/2019/01/11/C-学习笔记-基础篇：类的构造和析构/multi-delegate.png">
+</li>
+<li><p>使用委托构造函数时，不能再进行成员列表初始化</p>
+</li>
+</ul>
+<h2 id="复制（拷贝）构造函数"><a href="#复制（拷贝）构造函数" class="headerlink" title="复制（拷贝）构造函数"></a>复制（拷贝）构造函数</h2><h2 id="移动构造函数"><a href="#移动构造函数" class="headerlink" title="移动构造函数"></a>移动构造函数</h2><h2 id="转换构造函数"><a href="#转换构造函数" class="headerlink" title="转换构造函数"></a>转换构造函数</h2><h2 id="初始化列表"><a href="#初始化列表" class="headerlink" title="初始化列表"></a>初始化列表</h2><h1 id="类的析构函数"><a href="#类的析构函数" class="headerlink" title="类的析构函数"></a>类的析构函数</h1><h1 id="RAII-与数组和容器类"><a href="#RAII-与数组和容器类" class="headerlink" title="RAII 与数组和容器类"></a>RAII 与数组和容器类</h1><h1 id="RAII-与异常"><a href="#RAII-与异常" class="headerlink" title="RAII 与异常"></a>RAII 与异常</h1><h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p>[1] <a href="https://zh.wikipedia.org/wiki/RAII" target="_blank" rel="noopener">中文维基百科：RAII</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/11/C-学习笔记-基础篇：友元/" rel="next" title="C++ 学习笔记：友元">
+                <i class="fa fa-chevron-left"></i> C++ 学习笔记：友元
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/01/12/C-STL：map/" rel="prev" title="C++ STL：map">
+                C++ STL：map <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Han Qi</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">46</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-name">分类</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#类的构造函数"><span class="nav-number">2.</span> <span class="nav-text">类的构造函数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#普通构造函数"><span class="nav-number">2.1.</span> <span class="nav-text">普通构造函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#委托构造函数"><span class="nav-number">2.2.</span> <span class="nav-text">委托构造函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用委托构造函数需要注意的问题"><span class="nav-number">2.2.1.</span> <span class="nav-text">使用委托构造函数需要注意的问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#复制（拷贝）构造函数"><span class="nav-number">2.3.</span> <span class="nav-text">复制（拷贝）构造函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#移动构造函数"><span class="nav-number">2.4.</span> <span class="nav-text">移动构造函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#转换构造函数"><span class="nav-number">2.5.</span> <span class="nav-text">转换构造函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#初始化列表"><span class="nav-number">2.6.</span> <span class="nav-text">初始化列表</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#类的析构函数"><span class="nav-number">3.</span> <span class="nav-text">类的析构函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#RAII-与数组和容器类"><span class="nav-number">4.</span> <span class="nav-text">RAII 与数组和容器类</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#RAII-与异常"><span class="nav-number">5.</span> <span class="nav-text">RAII 与异常</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">6.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Han Qi</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>

@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-01-05T08:18:37.202Z</updated>
+  <updated>2019-01-12T01:50:37.167Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,130 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>C++ STL：map</title>
+    <link href="http://yoursite.com/2019/01/12/C-STL%EF%BC%9Amap/"/>
+    <id>http://yoursite.com/2019/01/12/C-STL：map/</id>
+    <published>2019-01-12T01:50:37.000Z</published>
+    <updated>2019-01-12T01:50:37.167Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>C++ 学习笔记 - 基础篇：类的构造和析构</title>
+    <link href="http://yoursite.com/2019/01/11/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%9F%BA%E7%A1%80%E7%AF%87%EF%BC%9A%E7%B1%BB%E7%9A%84%E6%9E%84%E9%80%A0%E5%92%8C%E6%9E%90%E6%9E%84/"/>
+    <id>http://yoursite.com/2019/01/11/C-学习笔记-基础篇：类的构造和析构/</id>
+    <published>2019-01-11T12:23:31.000Z</published>
+    <updated>2019-01-14T12:26:43.167Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;概述&quot;&gt;&lt;a href=&quot;#概述&quot; class=&quot;headerlink&quot; title=&quot;概述&quot;&gt;&lt;/a&gt;概述&lt;/h1&gt;&lt;p&gt;在介绍 C++ 的类构造和析构之前，先介绍一个重要的原则：RAII。&lt;/p&gt;
+&lt;p&gt;RAII 源于 C++，是 &lt;a href=&quot;https://en.wikipedia.org/wiki/Bjarne_Stroustrup&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Bjarne Stroustrup&lt;/a&gt; 和 &lt;a href=&quot;https://en.wikipedia.org/wiki/Andrew_Koenig_(programmer&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Andrew Koenig&lt;/a&gt;) 在设计 C++ 异常时，为解决资源管理的异常安全性而使用的方法，后来 Bjarne 称之为 RAII。&lt;/p&gt;
+&lt;p&gt;RAII 要求，资源的有效期与持有资源的对象的生命期严格绑定，即由对象的构造函数完成资源的分配（获取），同时由析构函数完成资源的释放。在这种要求下，只要对象能正确地析构，就不会出现资源泄露的问题。$^{[1]}$&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Programming Languages" scheme="http://yoursite.com/categories/Programming-Languages/"/>
+    
+      <category term="C++" scheme="http://yoursite.com/categories/Programming-Languages/C/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>C++ 学习笔记：友元</title>
+    <link href="http://yoursite.com/2019/01/11/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%9F%BA%E7%A1%80%E7%AF%87%EF%BC%9A%E5%8F%8B%E5%85%83/"/>
+    <id>http://yoursite.com/2019/01/11/C-学习笔记-基础篇：友元/</id>
+    <published>2019-01-11T12:06:55.000Z</published>
+    <updated>2019-01-11T12:22:36.200Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>图论 - 基本算法：最短路径</title>
+    <link href="http://yoursite.com/2019/01/10/%E5%9B%BE%E8%AE%BA-%E5%9F%BA%E6%9C%AC%E7%AE%97%E6%B3%95%EF%BC%9A%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84/"/>
+    <id>http://yoursite.com/2019/01/10/图论-基本算法：最短路径/</id>
+    <published>2019-01-10T13:32:35.000Z</published>
+    <updated>2019-01-11T01:37:26.213Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>图论 - 基本算法：最小生成树</title>
+    <link href="http://yoursite.com/2019/01/10/%E5%9B%BE%E8%AE%BA-%E5%9F%BA%E6%9C%AC%E7%AE%97%E6%B3%95%EF%BC%9A%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/"/>
+    <id>http://yoursite.com/2019/01/10/图论-基本算法：最小生成树/</id>
+    <published>2019-01-10T13:21:23.000Z</published>
+    <updated>2019-01-10T14:00:54.158Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>NP</title>
+    <link href="http://yoursite.com/2019/01/08/NP/"/>
+    <id>http://yoursite.com/2019/01/08/NP/</id>
+    <published>2019-01-08T13:13:59.000Z</published>
+    <updated>2019-01-08T15:11:12.662Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>E.W.Dijkstra 831：为什么应该从 0 开始计数</title>
@@ -175,11 +299,11 @@
   </entry>
   
   <entry>
-    <title>C++ STL：lower_bound() 与 upper_bound()</title>
-    <link href="http://yoursite.com/2019/01/01/C-STL%EF%BC%9Alower-bound-%E4%B8%8E-upper-bound/"/>
-    <id>http://yoursite.com/2019/01/01/C-STL：lower-bound-与-upper-bound/</id>
+    <title>C++ 学习笔记 - STL：lower_bound() 与 upper_bound()</title>
+    <link href="http://yoursite.com/2019/01/01/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-STL%EF%BC%9Alower-bound-%E4%B8%8E-upper-bound/"/>
+    <id>http://yoursite.com/2019/01/01/C-学习笔记-STL：lower-bound-与-upper-bound/</id>
     <published>2018-12-31T16:12:20.000Z</published>
-    <updated>2018-12-31T16:39:15.344Z</updated>
+    <updated>2019-01-14T09:47:06.556Z</updated>
     
     <summary type="html">
     
@@ -340,132 +464,6 @@
       <category term="Math" scheme="http://yoursite.com/categories/Math/"/>
     
       <category term="Machine Learning" scheme="http://yoursite.com/categories/Math/Machine-Learning/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>动手学深度学习 - 基础篇：Softmax 回归</title>
-    <link href="http://yoursite.com/2018/12/29/%E5%8A%A8%E6%89%8B%E5%AD%A6%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E5%9F%BA%E7%A1%80%E7%AF%87%EF%BC%9ASoftmax-%E5%9B%9E%E5%BD%92/"/>
-    <id>http://yoursite.com/2018/12/29/动手学深度学习-基础篇：Softmax-回归/</id>
-    <published>2018-12-29T13:46:11.000Z</published>
-    <updated>2019-01-02T05:04:00.931Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;Softmax-回归&quot;&gt;&lt;a href=&quot;#Softmax-回归&quot; class=&quot;headerlink&quot; title=&quot;Softmax 回归&quot;&gt;&lt;/a&gt;Softmax 回归&lt;/h1&gt;&lt;h2 id=&quot;分类问题&quot;&gt;&lt;a href=&quot;#分类问题&quot; class=&quot;headerlink&quot; title=&quot;分类问题&quot;&gt;&lt;/a&gt;分类问题&lt;/h2&gt;&lt;p&gt;虽然可以使用回归模型建模，并且将预测值就近定点化到分类标签，但是这种连续值到离散值的转化通常会影响到分类质量，因此我们一般使用更加适合离散值输出的模型来解决分类问题。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Deep Learning" scheme="http://yoursite.com/categories/Deep-Learning/"/>
-    
-      <category term="Basics" scheme="http://yoursite.com/categories/Deep-Learning/Basics/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Git 内部原理</title>
-    <link href="http://yoursite.com/2018/12/29/Git-%E5%86%85%E9%83%A8%E5%8E%9F%E7%90%86/"/>
-    <id>http://yoursite.com/2018/12/29/Git-内部原理/</id>
-    <published>2018-12-29T00:28:24.000Z</published>
-    <updated>2018-12-30T15:03:11.268Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;Git-内部原理&quot;&gt;&lt;a href=&quot;#Git-内部原理&quot; class=&quot;headerlink&quot; title=&quot;Git 内部原理&quot;&gt;&lt;/a&gt;Git 内部原理&lt;/h1&gt;&lt;p&gt;由于 Git 一开始被设计成共 VCS 使用的工具集而不是一整套用户友好的 VCS，所以实际上它还包含了许多底层命令（Plumbing），像 &lt;code&gt;checkout&lt;/code&gt; &lt;code&gt;remote&lt;/code&gt; &lt;code&gt;branch&lt;/code&gt; 这样的命令被称为 “Porcelain”。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Git" scheme="http://yoursite.com/categories/Git/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>LeetCode 148：Sort List</title>
-    <link href="http://yoursite.com/2018/12/21/LeetCode-148%EF%BC%9ASort-List/"/>
-    <id>http://yoursite.com/2018/12/21/LeetCode-148：Sort-List/</id>
-    <published>2018-12-21T11:24:08.000Z</published>
-    <updated>2018-12-21T11:24:09.531Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>LintCode 692：Sliding Window Unique Elements Sum</title>
-    <link href="http://yoursite.com/2018/12/18/LintCode-692%EF%BC%9ASliding-Window-Unique-Elements-Sum/"/>
-    <id>http://yoursite.com/2018/12/18/LintCode-692：Sliding-Window-Unique-Elements-Sum/</id>
-    <published>2018-12-18T12:15:05.000Z</published>
-    <updated>2018-12-18T12:37:54.392Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-      <category term="Algorithms" scheme="http://yoursite.com/categories/Algorithms/"/>
-    
-      <category term="OJ" scheme="http://yoursite.com/categories/Algorithms/OJ/"/>
-    
-      <category term="LintCode" scheme="http://yoursite.com/categories/Algorithms/OJ/LintCode/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>LeetCode 128：Longest Consecutive Sequence</title>
-    <link href="http://yoursite.com/2018/12/17/LeetCode-128%EF%BC%9ALongest-Consecutive-Sequence/"/>
-    <id>http://yoursite.com/2018/12/17/LeetCode-128：Longest-Consecutive-Sequence/</id>
-    <published>2018-12-17T13:00:40.000Z</published>
-    <updated>2018-12-19T01:37:40.287Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>动态规划入门</title>
-    <link href="http://yoursite.com/2018/12/17/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E5%85%A5%E9%97%A8/"/>
-    <id>http://yoursite.com/2018/12/17/动态规划入门/</id>
-    <published>2018-12-17T02:25:06.000Z</published>
-    <updated>2018-12-17T02:26:17.891Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-      <category term="Dynamic Programming" scheme="http://yoursite.com/categories/Dynamic-Programming/"/>
     
     
   </entry>
