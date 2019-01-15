@@ -85,17 +85,13 @@
 
 
 
-<meta name="description" content="MLE，Maximum Likelihood Estimation，极（最）大似然估计">
-<meta property="og:type" content="article">
-<meta property="og:title" content="机器学习数学基础 - 概率统计：MLE">
-<meta property="og:url" content="http://yoursite.com/2018/12/30/机器学习数学基础-概率统计：MLE/index.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="RHANQTL">
+<meta property="og:url" content="http://yoursite.com/tags/Machine-Learning/index.html">
 <meta property="og:site_name" content="RHANQTL">
-<meta property="og:description" content="MLE，Maximum Likelihood Estimation，极（最）大似然估计">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-03T02:23:47.136Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="机器学习数学基础 - 概率统计：MLE">
-<meta name="twitter:description" content="MLE，Maximum Likelihood Estimation，极（最）大似然估计">
+<meta name="twitter:title" content="RHANQTL">
 
 
 
@@ -125,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/12/30/机器学习数学基础-概率统计：MLE/">
+  <link rel="canonical" href="http://yoursite.com/tags/Machine-Learning/">
 
 
 
 
 
-  <title>机器学习数学基础 - 概率统计：MLE | RHANQTL</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>标签: Machine Learning | RHANQTL</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -150,7 +146,7 @@
     
   
 
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
@@ -244,188 +240,52 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-expand">
-    
+  
+  
+  
+  <div class="post-block tag">
 
-  
+    <div id="posts" class="posts-collapse">
+      <div class="collection-title">
+        <h1>Machine Learning<small>标签</small>
+        </h1>
+      </div>
 
-  
-  
-  
+      
+        
 
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/30/机器学习数学基础-概率统计：MLE/">
+    <header class="post-header">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RHANQTL">
-    </span>
-
-    
-      <header class="post-header">
-
+      <h2 class="post-title">
         
+            <a class="post-title-link" href="/2019/01/14/机器学习数学基础-概率统计：马尔可夫链/" itemprop="url">
+              
+                <span itemprop="name">机器学习数学基础 - 概率统计：马尔可夫链</span>
+              
+            </a>
         
-          <h1 class="post-title" itemprop="name headline">机器学习数学基础 - 概率统计：MLE</h1>
-        
+      </h2>
 
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-30T11:20:16+08:00">
-                2018-12-30
-              </time>
-            
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated" datetime="2019-01-14T23:05:45+08:00" content="2019-01-14">
+          01-14
+        </time>
+      </div>
 
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Math/" itemprop="url" rel="index">
-                    <span itemprop="name">Math</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Math/Machine-Learning/" itemprop="url" rel="index">
-                    <span itemprop="name">Machine Learning</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        <p>MLE，Maximum Likelihood Estimation，极（最）大似然估计</p>
-<a id="more"></a>
-<ul>
-<li>基于似然函数 $\mathcal{L}(\theta;x)$</li>
-</ul>
-<p>有一个统计模型，例如一组分布 ${f(\cdot;\theta | \theta\in\Theta)}$，其中，$\theta$ 表示模型的参数（可能是多维的）。极大似然的方法就是找到使得似然函数 $\mathcal{L}(\theta;x)$ 取得最大值的模型参数 $\theta$。</p>
-<p>直觉上，这个方法选择了使得数据有最大可能性的参数值</p>
-<p>极大似然估计：</p>
-<script type="math/tex; mode=display">\hat{\theta}\in\{\underset{\theta\in\Theta}{\mathrm{arg\,max}}\ \mathcal{L}(\theta;x)\}</script><p>实践中，通常使用自然对数的似然函数（对数似然）更方便：</p>
-<script type="math/tex; mode=display">\ell(\theta;x)=\ln\mathcal{L}(\theta;x)</script><p>或者平均值：</p>
-<script type="math/tex; mode=display">\hat{\ell}(\theta;x)=\dfrac{1}{n}\ln\mathcal{L}(\theta;x)</script><h1 id="与贝叶斯推断的关系"><a href="#与贝叶斯推断的关系" class="headerlink" title="与贝叶斯推断的关系"></a>与贝叶斯推断的关系</h1><p>$\begin{align}\underset{\theta\in\Theta}{\mathrm{arg\,max}} \mathrm{P}(\theta | x_1,x_2,\dots,x_n) &amp;=\underset{\theta\in\Theta}{\mathrm{arg\,max}} \dfrac{f(x_1,x_2,\dots,x_n | \theta)P(\theta)}{\mathrm{P}(x_1,x_2,\dots,x_n)} \ &amp;=\underset{\theta\in\Theta}{\mathrm{arg\,max}} f(x_1,x_2,\dots,x_n | \theta)P(\theta)\end{align}$</p>
-<h1 id="Examples"><a href="#Examples" class="headerlink" title="Examples"></a>Examples</h1>
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2018/12/29/动手学深度学习-基础篇：Softmax-回归/" rel="next" title="动手学深度学习 - 基础篇：Softmax 回归">
-                <i class="fa fa-chevron-left"></i> 动手学深度学习 - 基础篇：Softmax 回归
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/12/30/在数据库中存储层次结构数据/" rel="prev" title="在数据库中存储层次结构数据">
-                在数据库中存储层次结构数据 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
+    </header>
   </article>
 
 
-
-    <div class="post-spread">
       
     </div>
+
   </div>
+  
+  
+  
+
+  
 
 
           </div>
@@ -433,10 +293,6 @@
 
 
           
-
-  
-
-
 
         </div>
         
@@ -457,17 +313,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -534,22 +381,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#与贝叶斯推断的关系"><span class="nav-number">1.</span> <span class="nav-text">与贝叶斯推断的关系</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Examples"><span class="nav-number">2.</span> <span class="nav-text">Examples</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
@@ -683,32 +514,11 @@
   
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
-
-
 
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
 
 
 
@@ -761,6 +571,43 @@
   
 
   
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
   
 
 

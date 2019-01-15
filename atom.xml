@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-01-12T01:50:37.167Z</updated>
+  <updated>2019-01-15T03:50:55.126Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>机器学习数学基础 - 概率统计：马尔可夫链</title>
+    <link href="http://yoursite.com/2019/01/14/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80-%E6%A6%82%E7%8E%87%E7%BB%9F%E8%AE%A1%EF%BC%9A%E9%A9%AC%E5%B0%94%E5%8F%AF%E5%A4%AB%E9%93%BE/"/>
+    <id>http://yoursite.com/2019/01/14/机器学习数学基础-概率统计：马尔可夫链/</id>
+    <published>2019-01-14T15:05:45.000Z</published>
+    <updated>2019-01-15T03:50:55.126Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Math" scheme="http://yoursite.com/tags/Math/"/>
+    
+      <category term="Machine Learning" scheme="http://yoursite.com/tags/Machine-Learning/"/>
+    
+  </entry>
   
   <entry>
     <title>C++ STL：map</title>
@@ -35,12 +61,12 @@
     <link href="http://yoursite.com/2019/01/11/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%9F%BA%E7%A1%80%E7%AF%87%EF%BC%9A%E7%B1%BB%E7%9A%84%E6%9E%84%E9%80%A0%E5%92%8C%E6%9E%90%E6%9E%84/"/>
     <id>http://yoursite.com/2019/01/11/C-学习笔记-基础篇：类的构造和析构/</id>
     <published>2019-01-11T12:23:31.000Z</published>
-    <updated>2019-01-14T12:26:43.167Z</updated>
+    <updated>2019-01-14T12:33:03.316Z</updated>
     
     <summary type="html">
     
       &lt;h1 id=&quot;概述&quot;&gt;&lt;a href=&quot;#概述&quot; class=&quot;headerlink&quot; title=&quot;概述&quot;&gt;&lt;/a&gt;概述&lt;/h1&gt;&lt;p&gt;在介绍 C++ 的类构造和析构之前，先介绍一个重要的原则：RAII。&lt;/p&gt;
-&lt;p&gt;RAII 源于 C++，是 &lt;a href=&quot;https://en.wikipedia.org/wiki/Bjarne_Stroustrup&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Bjarne Stroustrup&lt;/a&gt; 和 &lt;a href=&quot;https://en.wikipedia.org/wiki/Andrew_Koenig_(programmer&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Andrew Koenig&lt;/a&gt;) 在设计 C++ 异常时，为解决资源管理的异常安全性而使用的方法，后来 Bjarne 称之为 RAII。&lt;/p&gt;
+&lt;p&gt;RAII 源于 C++，是 &lt;a href=&quot;https://en.wikipedia.org/wiki/Bjarne_Stroustrup&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Bjarne Stroustrup&lt;/a&gt; 和 &lt;a href=&quot;https://en.wikipedia.org/wiki/Andrew_Koenig_(programmer\&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Andrew Koenig&lt;/a&gt;) 在设计 C++ 异常时，为解决资源管理的异常安全性而使用的方法，后来 Bjarne 称之为 RAII。&lt;/p&gt;
 &lt;p&gt;RAII 要求，资源的有效期与持有资源的对象的生命期严格绑定，即由对象的构造函数完成资源的分配（获取），同时由析构函数完成资源的释放。在这种要求下，只要对象能正确地析构，就不会出现资源泄露的问题。$^{[1]}$&lt;/p&gt;
     
     </summary>
@@ -444,26 +470,6 @@
       <category term="Database" scheme="http://yoursite.com/categories/Database/"/>
     
       <category term="MySQL" scheme="http://yoursite.com/categories/Database/MySQL/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>机器学习数学基础 - 概率统计：MLE</title>
-    <link href="http://yoursite.com/2018/12/30/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80-%E6%A6%82%E7%8E%87%E7%BB%9F%E8%AE%A1%EF%BC%9AMLE/"/>
-    <id>http://yoursite.com/2018/12/30/机器学习数学基础-概率统计：MLE/</id>
-    <published>2018-12-30T03:20:16.000Z</published>
-    <updated>2019-01-03T02:23:47.136Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;MLE，Maximum Likelihood Estimation，极（最）大似然估计&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Math" scheme="http://yoursite.com/categories/Math/"/>
-    
-      <category term="Machine Learning" scheme="http://yoursite.com/categories/Math/Machine-Learning/"/>
     
     
   </entry>
