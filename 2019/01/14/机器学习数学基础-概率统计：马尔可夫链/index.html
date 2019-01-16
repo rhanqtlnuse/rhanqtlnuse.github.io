@@ -93,7 +93,7 @@
 <meta property="og:site_name" content="RHANQTL">
 <meta property="og:description" content="Introduction马尔可夫链（Markov Chain）是具有马尔可夫性质的随机过程。“马尔可夫链” 是指一个随机变量的序列，这个过程向前移动，马尔可夫性质仅在相邻的时期定义 serial 依赖。它可以用于描述符合这样特征的系统：  一个事件的链 对于这些事件，下一步发生什么只取决于系统当前的状态  对于一个马尔可夫链，我们需要明确两个变量：  系统的状态空间 系统的时间参数索引（Time">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-15T03:50:55.126Z">
+<meta property="og:updated_time" content="2019-01-16T12:37:08.370Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器学习数学基础 - 概率统计：马尔可夫链">
 <meta name="twitter:description" content="Introduction马尔可夫链（Markov Chain）是具有马尔可夫性质的随机过程。“马尔可夫链” 是指一个随机变量的序列，这个过程向前移动，马尔可夫性质仅在相邻的时期定义 serial 依赖。它可以用于描述符合这样特征的系统：  一个事件的链 对于这些事件，下一步发生什么只取决于系统当前的状态  对于一个马尔可夫链，我们需要明确两个变量：  系统的状态空间 系统的时间参数索引（Time">
@@ -308,6 +308,11 @@
           
 
           
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 浏览
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            </span>
+          
 
           
 
@@ -386,6 +391,7 @@
 <script type="math/tex; mode=display">\Pr(X_{n+1}=x|X_1=x_1, X2=x_2, \dots, X_n=x_n) = \Pr(X_{n+1}=x|X_n=x_n)</script><p>如果两个条件概率都是良定义的，即</p>
 <script type="math/tex; mode=display">\Pr(X_1=x_1, X_2=x_2, \dots, X_n=x_n) \gt 0</script><p>其中 $X_i$ 的可能值形成一个可数集 S，称为链的状态空间。</p>
 <p>可以用有向图表示，边的权重为转移概率；或者用转移矩阵表示</p>
+<p>每行的和为 1</p>
 <p>初始状态 $\Pr(X_1=x_1)$</p>
 <p>第二步：$\Pr(X_2=x_2|X_1=x_1) = \dfrac{\Pr(X_2=x_2, X_1=x_1)}{\Pr(X_1=x_1)}$</p>
 <p>第二步：$\Pr(X_3=x_3|X_2=x_2) = \dfrac{\Pr(X_3=x_3, X_2=x_2)}{\Pr(X_2=x_2)}$</p>
@@ -401,7 +407,19 @@
 <p>所以这个“与之前的状态无关”到底是哪方面无关？</p>
 <p>假设转移矩阵为 $P$</p>
 <script type="math/tex; mode=display">x^{(n+3)}=x^{(n+2)}P = (x^{(n+1)}P)P = ((x^{(n)}P)P)P = x^{(n)}P^3</script><p>$x^{(n+3)}$ 可以由 $x^{(n)}$ 计算，那么为什么说 $x^{(n+3)}$ 与 $x^{(n)}$ 无关？</p>
-<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p>[1] <a href="https://en.wikipedia.org/wiki/Markov_chain" target="_blank" rel="noopener">维基百科：Markov Chain</a></p>
+<p>答：这个“无关”用词并不准确，准确地说应该是，$x^{(x+3)}$ 可以仅由 $x^{(x+2)}$ 计算出来</p>
+<h2 id="连续时间马尔可夫链"><a href="#连续时间马尔可夫链" class="headerlink" title="连续时间马尔可夫链"></a>连续时间马尔可夫链</h2><p>连续时间马尔可夫链 $(X_t)_{t \ge 0}$ 由以下三部分定义：</p>
+<ul>
+<li>一个有限或可数的状态空间 S </li>
+<li>转移率矩阵 Q（维度为 |S|），<ul>
+<li>每行的和为 0</li>
+<li>$q_{ij}$ 表示从状态 i 转移到状态 j 的概率</li>
+<li>$q_{ii}$ 是不定的，可以用于保证转移矩阵的每行的和为 0</li>
+</ul>
+</li>
+<li>状态空间上定义的初始概率分布</li>
+</ul>
+<h3 id="三种等价的定义"><a href="#三种等价的定义" class="headerlink" title="三种等价的定义"></a>三种等价的定义</h3><h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p>[1] <a href="https://en.wikipedia.org/wiki/Markov_chain" target="_blank" rel="noopener">维基百科：Markov Chain</a></p>
 
       
     </div>
@@ -581,7 +599,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#例子"><span class="nav-number">1.1.</span> <span class="nav-text">例子</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#示例"><span class="nav-number">2.</span> <span class="nav-text">示例</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#马尔可夫性质"><span class="nav-number">3.</span> <span class="nav-text">马尔可夫性质</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#正式定义"><span class="nav-number">4.</span> <span class="nav-text">正式定义</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#离散时间马尔可夫链"><span class="nav-number">4.1.</span> <span class="nav-text">离散时间马尔可夫链</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#变体"><span class="nav-number">4.1.1.</span> <span class="nav-text">变体</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#例子"><span class="nav-number">1.1.</span> <span class="nav-text">例子</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#示例"><span class="nav-number">2.</span> <span class="nav-text">示例</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#马尔可夫性质"><span class="nav-number">3.</span> <span class="nav-text">马尔可夫性质</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#正式定义"><span class="nav-number">4.</span> <span class="nav-text">正式定义</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#离散时间马尔可夫链"><span class="nav-number">4.1.</span> <span class="nav-text">离散时间马尔可夫链</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#变体"><span class="nav-number">4.1.1.</span> <span class="nav-text">变体</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#连续时间马尔可夫链"><span class="nav-number">4.2.</span> <span class="nav-text">连续时间马尔可夫链</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#三种等价的定义"><span class="nav-number">4.2.1.</span> <span class="nav-text">三种等价的定义</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li></ol></div>
             
 
           </div>
@@ -625,6 +643,26 @@
 
 
         
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> 访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
 
 
 
