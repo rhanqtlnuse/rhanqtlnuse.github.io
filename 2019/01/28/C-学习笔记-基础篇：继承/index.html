@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+  <link rel="stylesheet" media="all" href="/lib/Han/dist/han.min.css?v=3.3">
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="RHANQTL" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="综述继承是面向对象程序设计中一个重要的特性。 继承cppreference 的定义：任何类类型（以 class-key class 或 struct 声明者）可被声明为派生自一或多个基类，基类自身也可以派生自其基类，这组成继承层级。 基类的列表提供于类声明语法的 base-clause 。 base-clause 由字符 : 后随一或多个 base-specifier 的逗号分隔列表组成。 bas">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++ 学习笔记 - 基础篇：继承">
+<meta property="og:url" content="http://yoursite.com/2019/01/28/C-学习笔记-基础篇：继承/index.html">
+<meta property="og:site_name" content="RHANQTL">
+<meta property="og:description" content="综述继承是面向对象程序设计中一个重要的特性。 继承cppreference 的定义：任何类类型（以 class-key class 或 struct 声明者）可被声明为派生自一或多个基类，基类自身也可以派生自其基类，这组成继承层级。 基类的列表提供于类声明语法的 base-clause 。 base-clause 由字符 : 后随一或多个 base-specifier 的逗号分隔列表组成。 bas">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2019/01/28/C-学习笔记-基础篇：继承/more-than-once.png">
+<meta property="og:updated_time" content="2019-01-29T09:15:04.740Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="C++ 学习笔记 - 基础篇：继承">
+<meta name="twitter:description" content="综述继承是面向对象程序设计中一个重要的特性。 继承cppreference 的定义：任何类类型（以 class-key class 或 struct 声明者）可被声明为派生自一或多个基类，基类自身也可以派生自其基类，这组成继承层级。 基类的列表提供于类声明语法的 base-clause 。 base-clause 由字符 : 后随一或多个 base-specifier 的逗号分隔列表组成。 bas">
+<meta name="twitter:image" content="http://yoursite.com/2019/01/28/C-学习笔记-基础篇：继承/more-than-once.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/01/28/C-学习笔记-基础篇：继承/">
+
+
+
+
+
+  <title>C++ 学习笔记 - 基础篇：继承 | RHANQTL</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">RHANQTL</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/28/C-学习笔记-基础篇：继承/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">C++ 学习笔记 - 基础篇：继承</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-28T09:31:48+08:00">
+                2019-01-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 浏览
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="综述"><a href="#综述" class="headerlink" title="综述"></a>综述</h1><p>继承是面向对象程序设计中一个重要的特性。</p>
+<h1 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h1><p>cppreference 的定义：任何类类型（以 <em>class-key</em> <code>class</code> 或 <code>struct</code> 声明者）可被声明为<em>派生</em>自一或多个<em>基类</em>，基类自身也可以派生自其基类，这组成继承层级。</p>
+<p>基类的列表提供于类声明语法的 base-clause 。 base-clause 由字符 <code>:</code> 后随一或多个 base-specifier 的逗号分隔列表组成。</p>
+<p>base-specifier 的语法如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">attr(可选) access-specifier(可选) virtual-specifier(可选) class-or-decltype</span><br></pre></td></tr></table></figure>
+<ul>
+<li>attr(C++ 11)：可选的任何数量的属性序列</li>
+<li>access-specifier：private、public、protected 之一<ul>
+<li>缺省：<code>struct</code> 为 <code>public</code>，<code>class</code> 为 <code>private</code></li>
+</ul>
+</li>
+<li>virtual-specifier：<code>virtual</code></li>
+<li>注意是可以使用 <code>decltype</code> 作为类声明符</li>
+</ul>
+<p>virtual-specifier 与 access-specifier 可以任意顺序出现。</p>
+<p>同一类不能指定于直接基类多于一次，但同一类可以既是直接又是间接基类。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Base</span> &#123;</span> &#125;;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Derived</span> :</span> Base, Base &#123; &#125;;</span><br></pre></td></tr></table></figure>
+<img src="/2019/01/28/C-学习笔记-基础篇：继承/more-than-once.png">
+<h2 id="虚基类"><a href="#虚基类" class="headerlink" title="虚基类"></a>虚基类</h2><p>对于每个指定为 <code>virtual</code> 的相异基类，最终派生类对象仅含有该类型的一个基类子对象，即使该类在继承层级中出现多次（只要它每次都以 <code>virtual</code> 继承）。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">B</span> &#123;</span> <span class="keyword">int</span> n; &#125;;</span><br><span class="line"><span class="comment">// 顺序是任意的</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">X</span> :</span> <span class="keyword">public</span> <span class="keyword">virtual</span> B &#123;&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Y</span> :</span> <span class="keyword">virtual</span> <span class="keyword">public</span> B &#123;&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Z</span> :</span> <span class="keyword">public</span> B &#123;&#125;;</span><br><span class="line"><span class="comment">// 每个 AA 类型对象拥有一个 X ，一个 Y ，一个 Z 和二个 B ：</span></span><br><span class="line"><span class="comment">// 其一是 Z 的基类，另一者为 X 与 Y 所共享</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">AA</span> :</span> X, Y, Z &#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        X::n = <span class="number">1</span>; <span class="comment">// 修改虚 B 基类子对象的成员</span></span><br><span class="line">        Y::n = <span class="number">2</span>; <span class="comment">// 修改同一虚 B 基类子对象的成员</span></span><br><span class="line">        Z::n = <span class="number">3</span>; <span class="comment">// 修改非虚 B 基类子对象的成员</span></span><br><span class="line"> </span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; X::n &lt;&lt; Y::n &lt;&lt; Z::n &lt;&lt; <span class="string">'\n'</span>; <span class="comment">// 打印 223</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>继承层级有虚基类的例子之一是标准库的 <code>iostream</code> 的继承层级： <a href="https://zh.cppreference.com/w/cpp/io/basic_istream" target="_blank" rel="noopener">std::istream</a> 与 <a href="https://zh.cppreference.com/w/cpp/io/basic_ostream" target="_blank" rel="noopener">std::ostream</a> 从 <a href="https://zh.cppreference.com/w/cpp/io/basic_ios" target="_blank" rel="noopener">std::ios</a> 使用虚继承派生。 <a href="https://zh.cppreference.com/w/cpp/io/basic_iostream" target="_blank" rel="noopener">std::iostream</a> 继承 <a href="https://zh.cppreference.com/w/cpp/io/basic_istream" target="_blank" rel="noopener">std::istream</a> 和 <a href="https://zh.cppreference.com/w/cpp/io/basic_ostream" target="_blank" rel="noopener">std::ostream</a> ，故每个 <a href="https://zh.cppreference.com/w/cpp/io/basic_iostream" target="_blank" rel="noopener">std::iostream</a> 实例含一个 <a href="https://zh.cppreference.com/w/cpp/io/basic_ostream" target="_blank" rel="noopener">std::ostream</a> 子对象、一个 <a href="https://zh.cppreference.com/w/cpp/io/basic_istream" target="_blank" rel="noopener">std::istream</a> 子对象和仅一个 <a href="https://zh.cppreference.com/w/cpp/io/basic_ios" target="_blank" rel="noopener">std::ios</a> 子对象。</p>
+<p>所有虚基类子对象在任何非虚基类子对象前初始化，故只有最终派生类于其<a href="https://zh.cppreference.com/w/cpp/language/initializer_list" target="_blank" rel="noopener">成员初始化器列表</a>调用虚基类的构造函数：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Base</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    Base(<span class="keyword">int</span> n): n(n) &#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Base()"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">X</span> :</span> <span class="keyword">virtual</span> Base &#123;</span><br><span class="line">    X(): Base(<span class="number">1</span>) &#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"X()"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Y</span> :</span> <span class="keyword">virtual</span> Base &#123;</span><br><span class="line">    Y(): Base(<span class="number">2</span>) &#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Y()"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Derived</span> :</span> X, Y &#123;</span><br><span class="line">    Derived(): Base(<span class="number">3</span>), X(), Y() &#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Derived()"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>如果创建一个 <code>Derived</code> 类对象，那么输出的顺序为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Base()</span><br><span class="line">X()</span><br><span class="line">Y()</span><br><span class="line">Derived()</span><br></pre></td></tr></table></figure>
+<p>即使将成员初始化列表的顺序修改为 <code>Derived(): X(), Y(), Base(3)</code> 或 <code>Derived(): Base(3) { }</code>，输出顺序也相同。</p>
+<p>如果 <code>Derived(): X(), Y() { }</code> 或者 <code>Derived() { }</code>，会报错：</p>
+
+<p><code>Derived</code> 的默认构造函数调用 X 和 Y 的默认构造函数，但这些构造函数不调用 B 的构造函数，因为 B 是虚基类。这是合理的，因为按照虚基类的规定，Derived 只有一个 <code>Base</code> 子对象，所以这个初始化工作应该交给 <code>Derived</code>。</p>
+<h2 id="公有继承"><a href="#公有继承" class="headerlink" title="公有继承"></a>公有继承</h2><p>基类的所有公开成员可作为派生类的公开成员访问，基类的所有受保护成员可作为派生类的受保护成员访问（基类的私有成员决不可访问，除非设为友元）。</p>
+<p>“IS-A” 关系</p>
+<p>派生类应该维护其公开基类的类不变量，不应强化任何其所<a href="https://zh.cppreference.com/w/cpp/language/virtual" target="_blank" rel="noopener">覆写</a>的成员函数的前置条件，或弱化任何其后置条件。</p>
+<h2 id="受保护继承"><a href="#受保护继承" class="headerlink" title="受保护继承"></a>受保护继承</h2><p>基类的所有公开和受保护成员可作为派生类的受保护成员访问（基类的私有成员决不可访问，除非设为友元）。</p>
+<p>受保护继承可用于“受控制的多态”：在派生类的成员中，还有在所有进一步派生类的成员中，派生类是（ IS-A ）基类：到派生类的引用和指针可用于期待到基类的引用和指针处。</p>
+<h2 id="私有继承"><a href="#私有继承" class="headerlink" title="私有继承"></a>私有继承</h2><p>基类的所有公开和受保护成员可作为派生类的私有成员访问（基类的私有成员决不可访问，除非设为友元）。</p>
+<p>私有继承常用于基于策略的设计，因为策略常是空基类，而使用基类可以启用静多态并活用<a href="https://zh.cppreference.com/w/cpp/language/ebo" target="_blank" rel="noopener">空基类优化</a></p>
+<p>私有继承亦可用于实现合成关系（基类子对象是派生类对象的实现细节）。成员使用提供更好的封装，而且通常受到偏好，除非派生类要求访问基类的受保护成员（包含构造函数）、需要覆写基类的虚成员、需要基类构造先于或析构后于某其他基类子对象，需要共享虚基类或需要控制虚基类的构造。实现合成的成员使用亦不可应用于从<a href="https://zh.cppreference.com/w/cpp/language/parameter_pack" target="_blank" rel="noopener">参数包</a>多重继承的情况，或在编译时通过模板元编程确定基类身份的情况。</p>
+<p>同受保护继承，私有继承亦可用于受控制的多态：在派生类的成员内（但不在进一步派生类内），派生类是（ IS-A ）基类。</p>
+<h1 id="虚函数"><a href="#虚函数" class="headerlink" title="虚函数"></a>虚函数</h1><p>虚函数是 C++ 中一个与继承相关的概念。函数声明中带有 <code>virtual</code> 关键字表示函数是虚函数。只有虚函数才能被覆写（Override）。</p>
+<p><code>virtual</code> 指定符指定<strong>非静态</strong>成员函数为虚并支持动态绑定。</p>
+<p>虚函数可以不提供实现（定义）。</p>
+<p>纯虚函数：<code>声明 virtual-specifier(可选) = 0</code></p>
+<p><code>virtual int f() = 0;</code></p>
+<ul>
+<li><p>有纯虚函数的类被称为“抽象类”，不能创建其实例。</p>
+</li>
+<li><p>纯虚函数也可以提供定义（而且若析构函数为纯虚则必须提供），但是必须在类外（因为类声明的语法不允许 <code>= 0</code> 和定义同时出现）：</p>
+</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Abstract</span> &#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">int</span> <span class="title">f</span><span class="params">()</span> </span>= <span class="number">0</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> Abstract::f() &#123;</span><br><span class="line">    <span class="comment">// definition</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>无论纯虚函数是否拥有定义，从抽象类的构造函数或析构函数进行纯虚函数的虚调用属于未定义的行为，如果纯虚函数有定义，可以使用限定名进行非虚调用</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Abstract</span> &#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">int</span> <span class="title">f</span><span class="params">()</span> </span>= <span class="number">0</span>;</span><br><span class="line">    ~Abstract() &#123;</span><br><span class="line">        Abstract::f();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> Abstract::f() &#123;</span><br><span class="line">    <span class="comment">// definition</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="虚指定符"><a href="#虚指定符" class="headerlink" title="虚指定符"></a>虚指定符</h2><p><code>override</code> 和 <code>final</code>，覆写基类的虚函数，有此指定符的函数为虚函数。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/27/Java-学习笔记-基础篇：多线程/" rel="next" title="Java 学习笔记 - 基础篇：多线程">
+                <i class="fa fa-chevron-left"></i> Java 学习笔记 - 基础篇：多线程
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/02/01/C-学习笔记-基础篇：动态内存管理/" rel="prev" title="C++ 学习笔记 - 基础篇：动态内存管理">
+                C++ 学习笔记 - 基础篇：动态内存管理 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Han Qi</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">55</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-name">分类</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#综述"><span class="nav-number">1.</span> <span class="nav-text">综述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#继承"><span class="nav-number">2.</span> <span class="nav-text">继承</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#虚基类"><span class="nav-number">2.1.</span> <span class="nav-text">虚基类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#公有继承"><span class="nav-number">2.2.</span> <span class="nav-text">公有继承</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#受保护继承"><span class="nav-number">2.3.</span> <span class="nav-text">受保护继承</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#私有继承"><span class="nav-number">2.4.</span> <span class="nav-text">私有继承</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#虚函数"><span class="nav-number">3.</span> <span class="nav-text">虚函数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#虚指定符"><span class="nav-number">3.1.</span> <span class="nav-text">虚指定符</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Han Qi</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> 访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>

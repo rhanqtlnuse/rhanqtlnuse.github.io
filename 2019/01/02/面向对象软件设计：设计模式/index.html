@@ -85,20 +85,20 @@
 
 
 
-<meta name="description" content="设计模式综述着眼于 “变化”">
+<meta name="description" content="设计模式综述着眼于 “变化” 分析一个设计模式的优缺点时，应该从以下几个方面着手：  类的数量 类间结构的复杂度 单个类的负载 对开闭原则的支持">
 <meta property="og:type" content="article">
 <meta property="og:title" content="面向对象软件设计：设计模式">
 <meta property="og:url" content="http://yoursite.com/2019/01/02/面向对象软件设计：设计模式/index.html">
 <meta property="og:site_name" content="RHANQTL">
-<meta property="og:description" content="设计模式综述着眼于 “变化”">
+<meta property="og:description" content="设计模式综述着眼于 “变化” 分析一个设计模式的优缺点时，应该从以下几个方面着手：  类的数量 类间结构的复杂度 单个类的负载 对开闭原则的支持">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/2019/01/02/面向对象软件设计：设计模式/strategy-pattern.png">
 <meta property="og:image" content="http://yoursite.com/2019/01/02/面向对象软件设计：设计模式/factory-method-pattern.png">
-<meta property="og:updated_time" content="2019-01-02T08:18:42.847Z">
+<meta property="og:image" content="http://yoursite.com/2019/01/02/面向对象软件设计：设计模式/strategy-pattern.png">
+<meta property="og:updated_time" content="2019-01-27T18:15:41.773Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="面向对象软件设计：设计模式">
-<meta name="twitter:description" content="设计模式综述着眼于 “变化”">
-<meta name="twitter:image" content="http://yoursite.com/2019/01/02/面向对象软件设计：设计模式/strategy-pattern.png">
+<meta name="twitter:description" content="设计模式综述着眼于 “变化” 分析一个设计模式的优缺点时，应该从以下几个方面着手：  类的数量 类间结构的复杂度 单个类的负载 对开闭原则的支持">
+<meta name="twitter:image" content="http://yoursite.com/2019/01/02/面向对象软件设计：设计模式/factory-method-pattern.png">
 
 
 
@@ -367,9 +367,38 @@
 
       
         <h1 id="设计模式综述"><a href="#设计模式综述" class="headerlink" title="设计模式综述"></a>设计模式综述</h1><p>着眼于 “变化”</p>
+<p>分析一个设计模式的优缺点时，应该从以下几个方面着手：</p>
+<ul>
+<li>类的数量</li>
+<li>类间结构的复杂度</li>
+<li>单个类的负载</li>
+<li>对开闭原则的支持</li>
+</ul>
 <a id="more"></a>
-<h1 id="策略模式"><a href="#策略模式" class="headerlink" title="策略模式"></a>策略模式</h1><img src="/2019/01/02/面向对象软件设计：设计模式/strategy-pattern.png">
-<h1 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h1><h2 id="简单工厂模式"><a href="#简单工厂模式" class="headerlink" title="简单工厂模式"></a>简单工厂模式</h2><h2 id="工厂方法模式"><a href="#工厂方法模式" class="headerlink" title="工厂方法模式"></a>工厂方法模式</h2><img src="/2019/01/02/面向对象软件设计：设计模式/factory-method-pattern.png">
+<h1 id="创建型模式"><a href="#创建型模式" class="headerlink" title="创建型模式"></a>创建型模式</h1><h2 id="单件模式"><a href="#单件模式" class="headerlink" title="单件模式"></a>单件模式</h2><h2 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h2><h3 id="简单工厂模式"><a href="#简单工厂模式" class="headerlink" title="简单工厂模式"></a>简单工厂模式</h3><h3 id="工厂方法模式"><a href="#工厂方法模式" class="headerlink" title="工厂方法模式"></a>工厂方法模式</h3><img src="/2019/01/02/面向对象软件设计：设计模式/factory-method-pattern.png">
+<h3 id="抽象工厂模式"><a href="#抽象工厂模式" class="headerlink" title="抽象工厂模式"></a>抽象工厂模式</h3><h2 id="原型模式"><a href="#原型模式" class="headerlink" title="原型模式"></a>原型模式</h2><h2 id="建造者（生成器）模式"><a href="#建造者（生成器）模式" class="headerlink" title="建造者（生成器）模式"></a>建造者（生成器）模式</h2><h1 id="结构型模式"><a href="#结构型模式" class="headerlink" title="结构型模式"></a>结构型模式</h1><h2 id="装饰者模式"><a href="#装饰者模式" class="headerlink" title="装饰者模式"></a>装饰者模式</h2><h1 id="行为型模式"><a href="#行为型模式" class="headerlink" title="行为型模式"></a>行为型模式</h1><p>行为型模式涉及到<strong>算法</strong>和对象间<strong>职责的分配</strong>，不仅描述对象或类的模式，还描述它们之间的<strong>通信</strong>模式。</p>
+<ul>
+<li><p>行为类模式：使用继承机制在类间分派行为</p>
+</li>
+<li><p>行为对象模式：适用对象复合而不是继承</p>
+<ul>
+<li>一个重要的问题是对等的对象如何相互了解对方</li>
+</ul>
+</li>
+</ul>
+<h2 id="责任链模式"><a href="#责任链模式" class="headerlink" title="责任链模式"></a>责任链模式</h2><p>责任链上的每一个对象都可以处理请求或者将请求转发（Forward）给下一个对象</p>
+<ul>
+<li>适用场景<ul>
+<li>有多个对象可以处理同一个请求，哪个对象处理该请求需要在运行时动态确定</li>
+<li>想在不明确指定接收者的情况下，向多个对象中的一个提交一个请求</li>
+<li>可处理一个请求的对象集合应被动态指定</li>
+</ul>
+</li>
+</ul>
+<h2 id="命令模式"><a href="#命令模式" class="headerlink" title="命令模式"></a>命令模式</h2><h2 id="访问者模式"><a href="#访问者模式" class="headerlink" title="访问者模式"></a>访问者模式</h2><p>视角的转变：对象结构 $\rightarrow$ 操作</p>
+<p>如果有额外的参数怎么办？变成实现类的属性，在构造时传入，相当于多个参数：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Element</span>;</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ConcreteElementA</span>;</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ConcreteElementB</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Visitor</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">visit</span><span class="params">(ConcreteElementA &amp;e)</span> </span>= <span class="number">0</span>;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">visit</span><span class="params">(ConcreteElementB &amp;e)</span> </span>= <span class="number">0</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ExampleVisitor</span> :</span> <span class="keyword">public</span> Visitor &#123;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">int</span> _dummy;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    explicit ExampleVisitor(int i): _dummy(i) &#123; &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">visit</span><span class="params">(ConcreteElementA &amp;e)</span> override </span>&#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"visit(ConcreteElementA&amp;)"</span> &lt;&lt; <span class="string">" "</span> &lt;&lt; _dummy &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">visit</span><span class="params">(ConcreteElementB &amp;e)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"visit(ConcreteElementB&amp;)"</span> &lt;&lt; <span class="string">" "</span> &lt;&lt; _dummy &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Element</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">accept</span><span class="params">(Visitor *visitor)</span> </span>= <span class="number">0</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ConcreteElementA</span> :</span> <span class="keyword">public</span> Element &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">accept</span><span class="params">(Visitor *visitor)</span> </span>&#123;</span><br><span class="line">        visitor-&gt;visit(*<span class="keyword">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ConcreteElementB</span> :</span> <span class="keyword">public</span> Element &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">accept</span><span class="params">(Visitor *visitor)</span> </span>&#123;</span><br><span class="line">        visitor-&gt;visit(*<span class="keyword">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    ConcreteElementA a;</span><br><span class="line">    ConcreteElementB b;</span><br><span class="line">    a.accept(<span class="keyword">new</span> ExampleVisitor(<span class="number">3</span>));</span><br><span class="line">    b.accept(<span class="keyword">new</span> ExampleVisitor(<span class="number">5</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="模板算法模式"><a href="#模板算法模式" class="headerlink" title="模板算法模式"></a>模板算法模式</h2><h2 id="策略模式"><a href="#策略模式" class="headerlink" title="策略模式"></a>策略模式</h2><img src="/2019/01/02/面向对象软件设计：设计模式/strategy-pattern.png">
 <h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p>[1] Erich Gamma，Richard Helm，Ralph Johnson，John Vlissides. <a href="https://book.douban.com/subject/1052241/" target="_blank" rel="noopener">《设计模式：可复用面向对象软件的基础》</a></p>
 <p>[2] <a href="https://book.douban.com/subject/2243615/" target="_blank" rel="noopener">《Head First 设计模式》</a></p>
 
@@ -485,7 +514,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">47</span>
+                  <span class="site-state-item-count">55</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -507,7 +536,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>
@@ -547,7 +576,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#设计模式综述"><span class="nav-number">1.</span> <span class="nav-text">设计模式综述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#策略模式"><span class="nav-number">2.</span> <span class="nav-text">策略模式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#工厂模式"><span class="nav-number">3.</span> <span class="nav-text">工厂模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#简单工厂模式"><span class="nav-number">3.1.</span> <span class="nav-text">简单工厂模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#工厂方法模式"><span class="nav-number">3.2.</span> <span class="nav-text">工厂方法模式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">4.</span> <span class="nav-text">参考</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#设计模式综述"><span class="nav-number">1.</span> <span class="nav-text">设计模式综述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#创建型模式"><span class="nav-number">2.</span> <span class="nav-text">创建型模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#单件模式"><span class="nav-number">2.1.</span> <span class="nav-text">单件模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#工厂模式"><span class="nav-number">2.2.</span> <span class="nav-text">工厂模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简单工厂模式"><span class="nav-number">2.2.1.</span> <span class="nav-text">简单工厂模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#工厂方法模式"><span class="nav-number">2.2.2.</span> <span class="nav-text">工厂方法模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#抽象工厂模式"><span class="nav-number">2.2.3.</span> <span class="nav-text">抽象工厂模式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原型模式"><span class="nav-number">2.3.</span> <span class="nav-text">原型模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#建造者（生成器）模式"><span class="nav-number">2.4.</span> <span class="nav-text">建造者（生成器）模式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#结构型模式"><span class="nav-number">3.</span> <span class="nav-text">结构型模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#装饰者模式"><span class="nav-number">3.1.</span> <span class="nav-text">装饰者模式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#行为型模式"><span class="nav-number">4.</span> <span class="nav-text">行为型模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#责任链模式"><span class="nav-number">4.1.</span> <span class="nav-text">责任链模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#命令模式"><span class="nav-number">4.2.</span> <span class="nav-text">命令模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#访问者模式"><span class="nav-number">4.3.</span> <span class="nav-text">访问者模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模板算法模式"><span class="nav-number">4.4.</span> <span class="nav-text">模板算法模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#策略模式"><span class="nav-number">4.5.</span> <span class="nav-text">策略模式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li></ol></div>
             
 
           </div>
@@ -714,24 +743,7 @@
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
 
 
 
@@ -784,6 +796,43 @@
   
 
   
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
   
 
 

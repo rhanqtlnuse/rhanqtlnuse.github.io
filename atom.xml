@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-01-16T12:37:08.370Z</updated>
+  <updated>2019-02-01T13:46:56.101Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,162 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>C++ 学习笔记 - 基础篇：类型转换</title>
+    <link href="http://yoursite.com/2019/02/01/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%9F%BA%E7%A1%80%E7%AF%87%EF%BC%9A%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/"/>
+    <id>http://yoursite.com/2019/02/01/C-学习笔记-基础篇：类型转换/</id>
+    <published>2019-02-01T13:46:27.000Z</published>
+    <updated>2019-02-01T13:46:56.101Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>C++ 学习笔记 - 基础篇：动态内存管理</title>
+    <link href="http://yoursite.com/2019/02/01/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%9F%BA%E7%A1%80%E7%AF%87%EF%BC%9A%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/"/>
+    <id>http://yoursite.com/2019/02/01/C-学习笔记-基础篇：动态内存管理/</id>
+    <published>2019-02-01T13:37:55.000Z</published>
+    <updated>2019-02-01T13:49:20.451Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>C++ 学习笔记 - 基础篇：继承</title>
+    <link href="http://yoursite.com/2019/01/28/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%9F%BA%E7%A1%80%E7%AF%87%EF%BC%9A%E7%BB%A7%E6%89%BF/"/>
+    <id>http://yoursite.com/2019/01/28/C-学习笔记-基础篇：继承/</id>
+    <published>2019-01-28T01:31:48.000Z</published>
+    <updated>2019-01-29T09:15:04.740Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Java 学习笔记 - 基础篇：多线程</title>
+    <link href="http://yoursite.com/2019/01/27/Java-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%9F%BA%E7%A1%80%E7%AF%87%EF%BC%9A%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
+    <id>http://yoursite.com/2019/01/27/Java-学习笔记-基础篇：多线程/</id>
+    <published>2019-01-26T18:03:20.000Z</published>
+    <updated>2019-01-26T18:03:21.008Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Java 学习笔记 - 基础篇：日期操作</title>
+    <link href="http://yoursite.com/2019/01/27/Java-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%9F%BA%E7%A1%80%E7%AF%87%EF%BC%9A%E6%97%A5%E6%9C%9F%E6%93%8D%E4%BD%9C/"/>
+    <id>http://yoursite.com/2019/01/27/Java-学习笔记-基础篇：日期操作/</id>
+    <published>2019-01-26T18:03:07.000Z</published>
+    <updated>2019-01-26T18:03:07.172Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Java 学习笔记 - 基础篇：枚举类</title>
+    <link href="http://yoursite.com/2019/01/27/Java-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%9F%BA%E7%A1%80%E7%AF%87%EF%BC%9A%E6%9E%9A%E4%B8%BE%E7%B1%BB/"/>
+    <id>http://yoursite.com/2019/01/27/Java-学习笔记-基础篇：枚举类/</id>
+    <published>2019-01-26T18:02:37.000Z</published>
+    <updated>2019-01-26T18:02:37.577Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>面向对象软件设计：UML 基础</title>
+    <link href="http://yoursite.com/2019/01/27/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%EF%BC%9AUML-%E5%9F%BA%E7%A1%80/"/>
+    <id>http://yoursite.com/2019/01/27/面向对象软件设计：UML-基础/</id>
+    <published>2019-01-26T17:56:48.000Z</published>
+    <updated>2019-01-27T17:54:24.393Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Design" scheme="http://yoursite.com/tags/Design/"/>
+    
+      <category term="OOP" scheme="http://yoursite.com/tags/OOP/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>POJ 1753：Flip Game</title>
+    <link href="http://yoursite.com/2019/01/18/POJ-1753%EF%BC%9AFlip-Game/"/>
+    <id>http://yoursite.com/2019/01/18/POJ-1753：Flip-Game/</id>
+    <published>2019-01-18T02:54:56.000Z</published>
+    <updated>2019-01-18T03:07:59.503Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>机器学习数学基础 - 概率统计：马尔可夫链</title>
@@ -43,11 +199,11 @@
   </entry>
   
   <entry>
-    <title>C++ STL：map</title>
-    <link href="http://yoursite.com/2019/01/12/C-STL%EF%BC%9Amap/"/>
-    <id>http://yoursite.com/2019/01/12/C-STL：map/</id>
+    <title>C++ 学习笔记 - STL：map</title>
+    <link href="http://yoursite.com/2019/01/12/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-STL%EF%BC%9Amap/"/>
+    <id>http://yoursite.com/2019/01/12/C-学习笔记-STL：map/</id>
     <published>2019-01-12T01:50:37.000Z</published>
-    <updated>2019-01-12T01:50:37.167Z</updated>
+    <updated>2019-01-28T01:34:00.420Z</updated>
     
     <summary type="html">
     
@@ -61,7 +217,7 @@
     <link href="http://yoursite.com/2019/01/11/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%9F%BA%E7%A1%80%E7%AF%87%EF%BC%9A%E7%B1%BB%E7%9A%84%E6%9E%84%E9%80%A0%E5%92%8C%E6%9E%90%E6%9E%84/"/>
     <id>http://yoursite.com/2019/01/11/C-学习笔记-基础篇：类的构造和析构/</id>
     <published>2019-01-11T12:23:31.000Z</published>
-    <updated>2019-01-16T13:54:25.938Z</updated>
+    <updated>2019-01-17T11:41:12.377Z</updated>
     
     <summary type="html">
     
@@ -79,11 +235,11 @@
   </entry>
   
   <entry>
-    <title>C++ 学习笔记：友元</title>
+    <title>C++ 学习笔记 - 基础篇：友元</title>
     <link href="http://yoursite.com/2019/01/11/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%9F%BA%E7%A1%80%E7%AF%87%EF%BC%9A%E5%8F%8B%E5%85%83/"/>
     <id>http://yoursite.com/2019/01/11/C-学习笔记-基础篇：友元/</id>
     <published>2019-01-11T12:06:55.000Z</published>
-    <updated>2019-01-11T12:22:36.200Z</updated>
+    <updated>2019-01-28T01:33:14.654Z</updated>
     
     <summary type="html">
     
@@ -191,11 +347,11 @@
   </entry>
   
   <entry>
-    <title>HDU 22366：无题 II</title>
-    <link href="http://yoursite.com/2019/01/05/HDU-22366%EF%BC%9A%E6%97%A0%E9%A2%98-II/"/>
-    <id>http://yoursite.com/2019/01/05/HDU-22366：无题-II/</id>
+    <title>HDU 2236：无题 II</title>
+    <link href="http://yoursite.com/2019/01/05/HDU-2236%EF%BC%9A%E6%97%A0%E9%A2%98-II/"/>
+    <id>http://yoursite.com/2019/01/05/HDU-2236：无题-II/</id>
     <published>2019-01-05T05:10:08.000Z</published>
-    <updated>2019-01-05T05:10:08.127Z</updated>
+    <updated>2019-01-18T02:53:46.660Z</updated>
     
     <summary type="html">
     
@@ -256,36 +412,17 @@
     <link href="http://yoursite.com/2019/01/02/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%EF%BC%9A%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     <id>http://yoursite.com/2019/01/02/面向对象软件设计：设计模式/</id>
     <published>2019-01-02T05:02:06.000Z</published>
-    <updated>2019-01-02T08:18:42.847Z</updated>
+    <updated>2019-01-27T18:15:41.773Z</updated>
     
     <summary type="html">
     
       &lt;h1 id=&quot;设计模式综述&quot;&gt;&lt;a href=&quot;#设计模式综述&quot; class=&quot;headerlink&quot; title=&quot;设计模式综述&quot;&gt;&lt;/a&gt;设计模式综述&lt;/h1&gt;&lt;p&gt;着眼于 “变化”&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Design" scheme="http://yoursite.com/categories/Design/"/>
-    
-      <category term="OOP" scheme="http://yoursite.com/categories/Design/OOP/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>面向对象软件设计：设计原则</title>
-    <link href="http://yoursite.com/2019/01/02/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%EF%BC%9A%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99/"/>
-    <id>http://yoursite.com/2019/01/02/面向对象软件设计：设计原则/</id>
-    <published>2019-01-02T03:26:04.000Z</published>
-    <updated>2019-01-03T11:35:48.982Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;设计原则综述&quot;&gt;&lt;a href=&quot;#设计原则综述&quot; class=&quot;headerlink&quot; title=&quot;设计原则综述&quot;&gt;&lt;/a&gt;设计原则综述&lt;/h1&gt;&lt;ul&gt;
-&lt;li&gt;软件的可维护性与复用性&lt;ul&gt;
-&lt;li&gt;面向对象软件设计复用的目标在于实现支持可维护性的复用，而这要以面向对象软件设计原则为基础，这些设计原则首先都是复用的原则，遵循这些设计原则可以有效地提高系统的复用性，同时提高系统的可维护性&lt;/li&gt;
-&lt;li&gt;面向对象设计原则也是对系统进行合理重构的指南针&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
+&lt;p&gt;分析一个设计模式的优缺点时，应该从以下几个方面着手：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;类的数量&lt;/li&gt;
+&lt;li&gt;类间结构的复杂度&lt;/li&gt;
+&lt;li&gt;单个类的负载&lt;/li&gt;
+&lt;li&gt;对开闭原则的支持&lt;/li&gt;
 &lt;/ul&gt;
     
     </summary>
@@ -293,183 +430,6 @@
       <category term="Design" scheme="http://yoursite.com/categories/Design/"/>
     
       <category term="OOP" scheme="http://yoursite.com/categories/Design/OOP/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>软件测试基础：逻辑覆盖法</title>
-    <link href="http://yoursite.com/2019/01/02/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95%E5%9F%BA%E7%A1%80%EF%BC%9A%E9%80%BB%E8%BE%91%E8%A6%86%E7%9B%96%E6%B3%95/"/>
-    <id>http://yoursite.com/2019/01/02/软件测试基础：逻辑覆盖法/</id>
-    <published>2019-01-02T02:45:06.000Z</published>
-    <updated>2019-01-03T07:12:33.626Z</updated>
-    
-    <summary type="html">
-    
-      &lt;ul&gt;
-&lt;li&gt;语句覆盖：程序中的每个可执行语句至少执行一次&lt;/li&gt;
-&lt;li&gt;判定覆盖（分支覆盖）：程序中的每个判定都至少获得一次 “真” 值和一次 “假” 值&lt;/li&gt;
-&lt;li&gt;条件覆盖：程序中每个判定包含的每个条件的可能取值都至少满足一次&lt;/li&gt;
-&lt;li&gt;判定/条件覆盖：判定覆盖 + 条件覆盖&lt;/li&gt;
-&lt;li&gt;组合覆盖：程序中每个判定包含的所有条件的所有取值组合都至少满足一次&lt;/li&gt;
-&lt;li&gt;路径覆盖：程序中所有可能的路径都至少执行一次&lt;/li&gt;
-&lt;/ul&gt;
-    
-    </summary>
-    
-      <category term="Software Engineering" scheme="http://yoursite.com/categories/Software-Engineering/"/>
-    
-      <category term="Software Testing" scheme="http://yoursite.com/categories/Software-Engineering/Software-Testing/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>C++ 学习笔记 - STL：lower_bound() 与 upper_bound()</title>
-    <link href="http://yoursite.com/2019/01/01/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-STL%EF%BC%9Alower-bound-%E4%B8%8E-upper-bound/"/>
-    <id>http://yoursite.com/2019/01/01/C-学习笔记-STL：lower-bound-与-upper-bound/</id>
-    <published>2018-12-31T16:12:20.000Z</published>
-    <updated>2019-01-14T09:47:06.556Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-      <category term="Programming Languages" scheme="http://yoursite.com/categories/Programming-Languages/"/>
-    
-      <category term="C++" scheme="http://yoursite.com/categories/Programming-Languages/C/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>温习 C 语言：数组 &amp; 指针</title>
-    <link href="http://yoursite.com/2018/12/31/%E6%B8%A9%E4%B9%A0-C-%E8%AF%AD%E8%A8%80%EF%BC%9A%E6%95%B0%E7%BB%84-%E6%8C%87%E9%92%88/"/>
-    <id>http://yoursite.com/2018/12/31/温习-C-语言：数组-指针/</id>
-    <published>2018-12-31T15:07:30.000Z</published>
-    <updated>2018-12-31T15:12:03.227Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-      <category term="Programming Languages" scheme="http://yoursite.com/categories/Programming-Languages/"/>
-    
-      <category term="C" scheme="http://yoursite.com/categories/Programming-Languages/C/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>POJ 3061：Subsequence</title>
-    <link href="http://yoursite.com/2018/12/31/POJ-3061%EF%BC%9ASubsequence/"/>
-    <id>http://yoursite.com/2018/12/31/POJ-3061：Subsequence/</id>
-    <published>2018-12-31T15:00:43.000Z</published>
-    <updated>2018-12-31T15:15:43.377Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-      <category term="Algorithms" scheme="http://yoursite.com/categories/Algorithms/"/>
-    
-      <category term="OJ" scheme="http://yoursite.com/categories/Algorithms/OJ/"/>
-    
-      <category term="POJ" scheme="http://yoursite.com/categories/Algorithms/OJ/POJ/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>10x 程序员</title>
-    <link href="http://yoursite.com/2018/12/30/10x-%E7%A8%8B%E5%BA%8F%E5%91%98/"/>
-    <id>http://yoursite.com/2018/12/30/10x-程序员/</id>
-    <published>2018-12-30T14:43:52.000Z</published>
-    <updated>2018-12-30T14:45:03.446Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>RSS 订阅 arXiv</title>
-    <link href="http://yoursite.com/2018/12/30/%E8%AE%A2%E9%98%85-arXiv/"/>
-    <id>http://yoursite.com/2018/12/30/订阅-arXiv/</id>
-    <published>2018-12-30T12:38:13.000Z</published>
-    <updated>2018-12-31T07:17:58.761Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>在数据库中存储层次结构数据</title>
-    <link href="http://yoursite.com/2018/12/30/%E5%9C%A8%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%AD%E5%AD%98%E5%82%A8%E5%B1%82%E6%AC%A1%E7%BB%93%E6%9E%84%E6%95%B0%E6%8D%AE/"/>
-    <id>http://yoursite.com/2018/12/30/在数据库中存储层次结构数据/</id>
-    <published>2018-12-30T07:37:15.000Z</published>
-    <updated>2018-12-30T07:46:18.117Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-      <category term="Database" scheme="http://yoursite.com/categories/Database/"/>
-    
-      <category term="MySQL" scheme="http://yoursite.com/categories/Database/MySQL/"/>
     
     
   </entry>
