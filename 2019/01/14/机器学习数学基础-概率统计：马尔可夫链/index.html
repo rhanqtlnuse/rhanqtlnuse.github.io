@@ -93,7 +93,7 @@
 <meta property="og:site_name" content="RHANQTL">
 <meta property="og:description" content="Introduction马尔可夫链（Markov Chain）是具有马尔可夫性质的随机过程。“马尔可夫链” 是指一个随机变量的序列，这个过程向前移动，马尔可夫性质仅在相邻的时期定义 serial 依赖。它可以用于描述符合这样特征的系统：  一个事件的链 对于这些事件，下一步发生什么只取决于系统当前的状态  对于一个马尔可夫链，我们需要明确两个变量：  系统的状态空间 系统的时间参数索引（Time">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-16T12:37:08.370Z">
+<meta property="og:updated_time" content="2019-02-14T14:56:59.756Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器学习数学基础 - 概率统计：马尔可夫链">
 <meta name="twitter:description" content="Introduction马尔可夫链（Markov Chain）是具有马尔可夫性质的随机过程。“马尔可夫链” 是指一个随机变量的序列，这个过程向前移动，马尔可夫性质仅在相邻的时期定义 serial 依赖。它可以用于描述符合这样特征的系统：  一个事件的链 对于这些事件，下一步发生什么只取决于系统当前的状态  对于一个马尔可夫链，我们需要明确两个变量：  系统的状态空间 系统的时间参数索引（Time">
@@ -386,7 +386,9 @@
 </ul>
 </li>
 </ul>
-<h1 id="马尔可夫性质"><a href="#马尔可夫性质" class="headerlink" title="马尔可夫性质"></a>马尔可夫性质</h1><p>马尔可夫性质是指随机过程的无记忆性：如果过程的未来状态的条件概率分布只取决于当前状态，而不取决于其之前的事件序列，则随机过程具有马尔可夫性质</p>
+<h1 id="马尔可夫性质-2"><a href="#马尔可夫性质-2" class="headerlink" title="马尔可夫性质 $^{[2]}$"></a>马尔可夫性质 $^{[2]}$</h1><p>马尔可夫性质是指随机过程的<em>无记忆性</em>：如果过程的未来状态的条件概率分布只取决于当前状态，而不取决于其之前的事件序列，则随机过程具有马尔可夫性质</p>
+<h3 id="强（Strong）马尔可夫性质"><a href="#强（Strong）马尔可夫性质" class="headerlink" title="强（Strong）马尔可夫性质"></a>强（Strong）马尔可夫性质</h3><p>与马尔可夫性质类似，但“当前”（present）是以 “stopping time” 定义的</p>
+<p>马尔可夫假设：用于描述马尔可夫性质被假设为成立的模型</p>
 <h1 id="正式定义"><a href="#正式定义" class="headerlink" title="正式定义"></a>正式定义</h1><h2 id="离散时间马尔可夫链"><a href="#离散时间马尔可夫链" class="headerlink" title="离散时间马尔可夫链"></a>离散时间马尔可夫链</h2><p>有马尔可夫性质的随机变量序列 $X_1$，$X_2$，$X_3$，$\dots$</p>
 <script type="math/tex; mode=display">\Pr(X_{n+1}=x|X_1=x_1, X2=x_2, \dots, X_n=x_n) = \Pr(X_{n+1}=x|X_n=x_n)</script><p>如果两个条件概率都是良定义的，即</p>
 <script type="math/tex; mode=display">\Pr(X_1=x_1, X_2=x_2, \dots, X_n=x_n) \gt 0</script><p>其中 $X_i$ 的可能值形成一个可数集 S，称为链的状态空间。</p>
@@ -419,7 +421,8 @@
 </li>
 <li>状态空间上定义的初始概率分布</li>
 </ul>
-<h3 id="三种等价的定义"><a href="#三种等价的定义" class="headerlink" title="三种等价的定义"></a>三种等价的定义</h3><h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p>[1] <a href="https://en.wikipedia.org/wiki/Markov_chain" target="_blank" rel="noopener">维基百科：Markov Chain</a></p>
+<h3 id="三种等价的定义"><a href="#三种等价的定义" class="headerlink" title="三种等价的定义"></a>三种等价的定义</h3><h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p>[1] <a href="https://en.wikipedia.org/wiki/Markov_chain" target="_blank" rel="noopener">Wikipedia：Markov Chain</a></p>
+<p>[2] <a href="https://en.wikipedia.org/wiki/Markov_property" target="_blank" rel="noopener">Wikipedia：Markov Property</a></p>
 
       
     </div>
@@ -603,7 +606,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#例子"><span class="nav-number">1.1.</span> <span class="nav-text">例子</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#示例"><span class="nav-number">2.</span> <span class="nav-text">示例</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#马尔可夫性质"><span class="nav-number">3.</span> <span class="nav-text">马尔可夫性质</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#正式定义"><span class="nav-number">4.</span> <span class="nav-text">正式定义</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#离散时间马尔可夫链"><span class="nav-number">4.1.</span> <span class="nav-text">离散时间马尔可夫链</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#变体"><span class="nav-number">4.1.1.</span> <span class="nav-text">变体</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#连续时间马尔可夫链"><span class="nav-number">4.2.</span> <span class="nav-text">连续时间马尔可夫链</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#三种等价的定义"><span class="nav-number">4.2.1.</span> <span class="nav-text">三种等价的定义</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#例子"><span class="nav-number">1.1.</span> <span class="nav-text">例子</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#示例"><span class="nav-number">2.</span> <span class="nav-text">示例</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#马尔可夫性质-2"><span class="nav-number">3.</span> <span class="nav-text">马尔可夫性质 $^{[2]}$</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#强（Strong）马尔可夫性质"><span class="nav-number">3.0.1.</span> <span class="nav-text">强（Strong）马尔可夫性质</span></a></li></ol></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#正式定义"><span class="nav-number">4.</span> <span class="nav-text">正式定义</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#离散时间马尔可夫链"><span class="nav-number">4.1.</span> <span class="nav-text">离散时间马尔可夫链</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#变体"><span class="nav-number">4.1.1.</span> <span class="nav-text">变体</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#连续时间马尔可夫链"><span class="nav-number">4.2.</span> <span class="nav-text">连续时间马尔可夫链</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#三种等价的定义"><span class="nav-number">4.2.1.</span> <span class="nav-text">三种等价的定义</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li></div>
             
 
           </div>
