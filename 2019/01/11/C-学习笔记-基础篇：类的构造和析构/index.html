@@ -88,22 +88,22 @@
 <meta name="description" content="概述在介绍 C++ 的类构造和析构之前，先介绍一个重要的原则：RAII。 RAII 源于 C++，是 Bjarne Stroustrup 和 Andrew Koenig) 在设计 C++ 异常时，为解决资源管理的异常安全性而使用的方法，后来 Bjarne 称之为 RAII。 RAII 要求，资源的有效期与持有资源的对象的生命期严格绑定，即由对象的构造函数完成资源的分配（获取），同时由析构函数完成资">
 <meta property="og:type" content="article">
 <meta property="og:title" content="C++ 学习笔记 - 基础篇：类的构造和析构">
-<meta property="og:url" content="http://yoursite.com/2019/01/11/C-学习笔记-基础篇：类的构造和析构/index.html">
+<meta property="og:url" content="rhanqtl.com/2019/01/11/C-学习笔记-基础篇：类的构造和析构/index.html">
 <meta property="og:site_name" content="RHANQTL">
 <meta property="og:description" content="概述在介绍 C++ 的类构造和析构之前，先介绍一个重要的原则：RAII。 RAII 源于 C++，是 Bjarne Stroustrup 和 Andrew Koenig) 在设计 C++ 异常时，为解决资源管理的异常安全性而使用的方法，后来 Bjarne 称之为 RAII。 RAII 要求，资源的有效期与持有资源的对象的生命期严格绑定，即由对象的构造函数完成资源的分配（获取），同时由析构函数完成资">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/2019/01/11/C-学习笔记-基础篇：类的构造和析构/initializer-order.png">
-<meta property="og:image" content="http://yoursite.com/2019/01/11/C-学习笔记-基础篇：类的构造和析构/second-way.png">
-<meta property="og:image" content="http://yoursite.com/2019/01/11/C-学习笔记-基础篇：类的构造和析构/multi-delegate.png">
-<meta property="og:image" content="http://yoursite.com/2019/01/11/C-学习笔记-基础篇：类的构造和析构/delegate-after.png">
-<meta property="og:image" content="http://yoursite.com/2019/01/11/C-学习笔记-基础篇：类的构造和析构/shallow-copy.png">
-<meta property="og:image" content="http://yoursite.com/2019/01/11/C-学习笔记-基础篇：类的构造和析构/deep-copy.png">
-<meta property="og:image" content="http://yoursite.com/2019/01/11/C-学习笔记-基础篇：类的构造和析构/transfer-non-const-ref.png">
+<meta property="og:image" content="/2019/01/11/C-学习笔记-基础篇：类的构造和析构/initializer-order.png">
+<meta property="og:image" content="/2019/01/11/C-学习笔记-基础篇：类的构造和析构/second-way.png">
+<meta property="og:image" content="/2019/01/11/C-学习笔记-基础篇：类的构造和析构/multi-delegate.png">
+<meta property="og:image" content="/2019/01/11/C-学习笔记-基础篇：类的构造和析构/delegate-after.png">
+<meta property="og:image" content="/2019/01/11/C-学习笔记-基础篇：类的构造和析构/shallow-copy.png">
+<meta property="og:image" content="/2019/01/11/C-学习笔记-基础篇：类的构造和析构/deep-copy.png">
+<meta property="og:image" content="/2019/01/11/C-学习笔记-基础篇：类的构造和析构/transfer-non-const-ref.png">
 <meta property="og:updated_time" content="2019-01-17T11:41:12.377Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C++ 学习笔记 - 基础篇：类的构造和析构">
 <meta name="twitter:description" content="概述在介绍 C++ 的类构造和析构之前，先介绍一个重要的原则：RAII。 RAII 源于 C++，是 Bjarne Stroustrup 和 Andrew Koenig) 在设计 C++ 异常时，为解决资源管理的异常安全性而使用的方法，后来 Bjarne 称之为 RAII。 RAII 要求，资源的有效期与持有资源的对象的生命期严格绑定，即由对象的构造函数完成资源的分配（获取），同时由析构函数完成资">
-<meta name="twitter:image" content="http://yoursite.com/2019/01/11/C-学习笔记-基础篇：类的构造和析构/initializer-order.png">
+<meta name="twitter:image" content="/2019/01/11/C-学习笔记-基础篇：类的构造和析构/initializer-order.png">
 
 
 
@@ -133,7 +133,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/01/11/C-学习笔记-基础篇：类的构造和析构/">
+  <link rel="canonical" href="rhanqtl.com/2019/01/11/C-学习笔记-基础篇：类的构造和析构/">
 
 
 
@@ -266,7 +266,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/11/C-学习笔记-基础篇：类的构造和析构/">
+    <link itemprop="mainEntityOfPage" href="rhanqtl.com/2019/01/11/C-学习笔记-基础篇：类的构造和析构/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Han Qi">
