@@ -85,17 +85,20 @@
 
 
 
-<meta name="description" content="图遍历算法及其性质图 G 中一个结点的三种状态：  未被发现：白色 被发现：灰色 完成：黑色  对于无向图而言，一个黑色的顶点不会再被访问；对于有向图而言，一个黑色的顶点可能再被访问。 白路径定理（White Path Theorem）：顶点 w 是顶点 v 的后代，当且仅当顶点 v 被发现时，从顶点 v 到顶点 w 的路径上所有的顶点都是白色的。 图遍历算法骨架DFS12345678910111">
+<meta name="description" content="1 ADD 是什么？ Attribute-Driven Design 中的 “Attribute” 指的是软件架构的质量属性，ADD 是一种基于软件质量属性需求的设计过程。 ADD 遵循这样一个递归的过程：根据系统或系统元素的质量属性需求，运用合适的架构 tactic 和模式 将系统或系统中的要素分解  2 Overview ADD 遵循 “计划 —— 行动 —— 检查” 的循环  计划：根据质量">
 <meta property="og:type" content="article">
-<meta property="og:title" content="RHANQTL">
-<meta property="og:url" content="http://yoursite.com/2018/12/04/graph-traversal/index.html">
+<meta property="og:title" content="Attribute-Driven Design">
+<meta property="og:url" content="http://yoursite.com/2019/03/27/Attribute-Driven-Design/index.html">
 <meta property="og:site_name" content="RHANQTL">
-<meta property="og:description" content="图遍历算法及其性质图 G 中一个结点的三种状态：  未被发现：白色 被发现：灰色 完成：黑色  对于无向图而言，一个黑色的顶点不会再被访问；对于有向图而言，一个黑色的顶点可能再被访问。 白路径定理（White Path Theorem）：顶点 w 是顶点 v 的后代，当且仅当顶点 v 被发现时，从顶点 v 到顶点 w 的路径上所有的顶点都是白色的。 图遍历算法骨架DFS12345678910111">
+<meta property="og:description" content="1 ADD 是什么？ Attribute-Driven Design 中的 “Attribute” 指的是软件架构的质量属性，ADD 是一种基于软件质量属性需求的设计过程。 ADD 遵循这样一个递归的过程：根据系统或系统元素的质量属性需求，运用合适的架构 tactic 和模式 将系统或系统中的要素分解  2 Overview ADD 遵循 “计划 —— 行动 —— 检查” 的循环  计划：根据质量">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-11T11:30:40.273Z">
+<meta property="og:image" content="http://yoursite.com/2019/03/27/Attribute-Driven-Design/steps-overview.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/27/Attribute-Driven-Design/priority-pairs.png">
+<meta property="og:updated_time" content="2019-03-27T12:23:56.160Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="RHANQTL">
-<meta name="twitter:description" content="图遍历算法及其性质图 G 中一个结点的三种状态：  未被发现：白色 被发现：灰色 完成：黑色  对于无向图而言，一个黑色的顶点不会再被访问；对于有向图而言，一个黑色的顶点可能再被访问。 白路径定理（White Path Theorem）：顶点 w 是顶点 v 的后代，当且仅当顶点 v 被发现时，从顶点 v 到顶点 w 的路径上所有的顶点都是白色的。 图遍历算法骨架DFS12345678910111">
+<meta name="twitter:title" content="Attribute-Driven Design">
+<meta name="twitter:description" content="1 ADD 是什么？ Attribute-Driven Design 中的 “Attribute” 指的是软件架构的质量属性，ADD 是一种基于软件质量属性需求的设计过程。 ADD 遵循这样一个递归的过程：根据系统或系统元素的质量属性需求，运用合适的架构 tactic 和模式 将系统或系统中的要素分解  2 Overview ADD 遵循 “计划 —— 行动 —— 检查” 的循环  计划：根据质量">
+<meta name="twitter:image" content="http://yoursite.com/2019/03/27/Attribute-Driven-Design/steps-overview.png">
 
 
 
@@ -125,13 +128,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/12/04/graph-traversal/">
+  <link rel="canonical" href="http://yoursite.com/2019/03/27/Attribute-Driven-Design/">
 
 
 
 
 
-  <title> | RHANQTL</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>Attribute-Driven Design | RHANQTL</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -258,7 +261,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/04/graph-traversal/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/27/Attribute-Driven-Design/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Han Qi">
@@ -275,7 +278,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline"></h1>
+          <h1 class="post-title" itemprop="name headline">Attribute-Driven Design</h1>
         
 
         <div class="post-meta">
@@ -287,8 +290,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-04T04:21:29+08:00">
-                2018-12-04
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-27T15:59:40+08:00">
+                2019-03-27
               </time>
             
 
@@ -330,27 +333,123 @@
       
 
       
-        <h1 id="图遍历算法及其性质"><a href="#图遍历算法及其性质" class="headerlink" title="图遍历算法及其性质"></a>图遍历算法及其性质</h1><p>图 G 中一个结点的三种状态：</p>
-<ul>
-<li>未被发现：白色</li>
-<li>被发现：灰色</li>
-<li>完成：黑色</li>
+        <h1 id="1-ADD-是什么？"><a href="#1-ADD-是什么？" class="headerlink" title="1 ADD 是什么？"></a>1 ADD 是什么？</h1><ul>
+<li>Attribute-Driven Design 中的 “Attribute” 指的是软件架构的<em>质量属性</em>，ADD 是一种基于软件质量属性需求的设计过程。</li>
+<li>ADD 遵循这样一个递归的过程：根据系统或系统元素的<em>质量属性需求</em>，运用合适的架构 <em>tactic</em> 和<em>模式</em> 将系统或系统中的要素<em>分解</em></li>
 </ul>
-<p>对于无向图而言，一个黑色的顶点不会再被访问；对于有向图而言，一个黑色的顶点可能再被访问。</p>
-<p>白路径定理（White Path Theorem）：顶点 w 是顶点 v 的后代，当且仅当顶点 v 被发现时，从顶点 v 到顶点 w 的路径上所有的顶点都是白色的。</p>
-<h2 id="图遍历算法骨架"><a href="#图遍历算法骨架" class="headerlink" title="图遍历算法骨架"></a>图遍历算法骨架</h2><h3 id="DFS"><a href="#DFS" class="headerlink" title="DFS"></a>DFS</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">dfs(graph, v, color, ...) // 可以增加参数</span><br><span class="line">    adj &lt;- graph.adjs[v]</span><br><span class="line">    color[v] &lt;- GRAY</span><br><span class="line">    // 此处可以对顶点进行处理 pre-order</span><br><span class="line">    while adj != NIL</span><br><span class="line">        w &lt;- first(adj)</span><br><span class="line">        if color[w] = WHITE</span><br><span class="line">            // 此处可以对边 vw 进行一次处理</span><br><span class="line">            ret &lt;- dfs(graph, w, color, ...)</span><br><span class="line">            // 此处可以利用 ret 对 vw 进行处理</span><br><span class="line">        else</span><br><span class="line">            check edge vw</span><br><span class="line">            // 此处可以对边 vw 进行处理</span><br><span class="line">        adj &lt;- rest(adj)</span><br><span class="line">    color[v] &lt;- BLACK</span><br><span class="line">    // 此处可以对顶点进行处理 post-order</span><br></pre></td></tr></table></figure>
-<h3 id="BFS"><a href="#BFS" class="headerlink" title="BFS"></a>BFS</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">bfs(graph, start, color, ...)</span><br><span class="line">   queue.enqueue(start)</span><br><span class="line">   while queue is not empty</span><br><span class="line">       v &lt;- queue.dequeue()</span><br><span class="line">       color[v] &lt;- GRAY</span><br><span class="line">       for w in graph.adjs(v)</span><br><span class="line">           if color[w] = WHITE</span><br><span class="line">               queue.enqueue(w)</span><br><span class="line">       color[v] = BLACK</span><br><span class="line">       // 此处可以对顶点 v 进行处理</span><br></pre></td></tr></table></figure>
-<h2 id="活动区间"><a href="#活动区间" class="headerlink" title="活动区间"></a>活动区间</h2><p>活动区间是指一个顶点从被发现到完成（保持灰色）的时间。</p>
-<h3 id="活动区间的性质"><a href="#活动区间的性质" class="headerlink" title="活动区间的性质"></a>活动区间的性质</h3><p>如果顶点 w 是顶点 v 的后代，那么 w 的活动区间真包含于 v 的活动区间，反之成立。</p>
-<h2 id="图遍历过程中的几种边"><a href="#图遍历过程中的几种边" class="headerlink" title="图遍历过程中的几种边"></a>图遍历过程中的几种边</h2><ul>
-<li>树边（Tree Edge）：如果边 vw 是一条树边，那么 w 的活动区间真包含于 v 的活动区间，且不存在中间顶点 x，有 w 的活动区间真包含于 x 的活动区间，x 的活动区间真包含于 v 的活动区间。</li>
-<li>后代边（Descendant Edge）：如果边 vw 是一条后代边，那么一定存在某一中间顶点 x，有w 的活动区间真包含于 x 的活动区间，x 的活动区间真包含于 v 的活动区间</li>
-<li>回边（Back Edge）：如果边 vw 是一条回边，那么 v 的活动区间真包含于 w 的活动区间</li>
-<li>交叉边（Cross Edge）：如果边 vw 是一条交叉边，那么 w 的活动区间在 v 的活动区间之前，且二者不相交（注意顺序）<ul>
-<li>如果 v 的活动区间在 w 的活动区间之前，那么边 vw 就变成了一条树边</li>
+<h1 id="2-Overview"><a href="#2-Overview" class="headerlink" title="2 Overview"></a>2 Overview</h1><ul>
+<li><p>ADD 遵循 “计划 —— 行动 —— 检查” 的循环</p>
+<ol>
+<li><p>计划：根据<em>质量属性需求</em> 和<em>设计约束</em> 来选择在架构中使用何种元素</p>
+</li>
+<li><p>行动：实例化上一步得到的元素以满足功能性需求和质量属性需求</p>
+</li>
+<li><p>检查：分析上一步得到的设计，确定需求是否得到满足</p>
+</li>
+</ol>
+<p>这个过程不断循环，直到所有的 ASR 得到满足</p>
+</li>
+<li><p>ADD 的步骤</p>
+<img src="/2019/03/27/Attribute-Driven-Design/steps-overview.png">
+<ul>
+<li>需要注意的一处：开始 Step 1 之前需要保证所有的需求都是 Well-formed 并且已经被涉众（Stakeholder）排序</li>
 </ul>
 </li>
 </ul>
+<h1 id="3-ADD-输入与输出"><a href="#3-ADD-输入与输出" class="headerlink" title="3 ADD 输入与输出"></a>3 ADD 输入与输出</h1><ul>
+<li><p>输入</p>
+<ul>
+<li>被涉众根据业务（Business）和任务（Mission）目标进行过排序的功能性需求（Functional Requirements）、设计约束（Design Constraints）和质量属性需求（Quality Attribute Requirements）<ul>
+<li>Design constraints are decisions about a system’s design that must be incorporated into any final design of the system.</li>
+<li>某些情况下可能难以将某个特定的条件分类为任何一个，比如：<ul>
+<li>A security requirement to provide user authentication could be interpreted as a functional requirement or a quality attribute requirement.</li>
+<li>A requirement to interoperate with a particular legacy application could be interpreted as a functional requirement or a design constraint.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>输出</p>
+<ul>
+<li>ADD 的输出是就<em>角色</em>、<em>职责</em>、<em>属性</em> 和<em>软件元素</em> 之间的<em>关系</em> 而言的系统设计<ul>
+<li>软件元素（Software Element）：a computational or developmental artifact that fulfills various roles and responsibilities, has defined properties, and relates to other soft-ware elements to compose the architecture of a system</li>
+<li>角色（Role）：a set of related responsibilities</li>
+<li>职责（Responsibility）：the functionality, data, or information that a software element provides</li>
+<li>属性（Property）：additional information about a software element such as name, type, quality attribute characteristic, protocol, and so on</li>
+<li>关系（Relationship）：a definition of how two software elements are associated with or interact with one another</li>
+</ul>
+</li>
+<li>ADD 的结果使用多种架构视图记录<ul>
+<li>架构视图：Module、C&amp;C、Allocation</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="4-ADD-过程详述"><a href="#4-ADD-过程详述" class="headerlink" title="4 ADD 过程详述"></a>4 ADD 过程详述</h1><ol>
+<li><p>确认有足够的质量属性需求信息</p>
+<ul>
+<li>每个质量属性需求都应该以 “刺激 - 响应” 的形式表述</li>
+</ul>
+</li>
+<li><p>选择系统中的某个元素进行分解</p>
+<ul>
+<li>两种选择<ul>
+<li>在 ADD 流程中初次到达 Step 2：a <em>“greenfield”</em> development. The only element you can decompose is the <em>system itself</em>. By default, <em>all</em> requirements are assigned to that system.</li>
+<li>已经经过若干次 ADD 流程迭代或者来源于设计约束：a <em>partially designed system</em>. In this case, the system has been partitioned into two or more elements, and requirements have been assigned to those elements. You must <em>choose one</em> of these elements as the focus of subsequent steps.<ul>
+<li>选择元素的标准<ul>
+<li>当前关于架构的知识<ul>
+<li>是否是你能够选择的唯一元素 (e.g., the entire system or the last element left)</li>
+<li>the number of dependencies it has with other elements of the system (e.g., many or few dependencies)</li>
+</ul>
+</li>
+<li>风险和困难<ul>
+<li>how difficult it will be to achieve the element’s associated requirements</li>
+<li>how familiar you are with how to achieve the element’s associated requirements</li>
+<li>the risk involved with achieving the element’s associated requirements</li>
+</ul>
+</li>
+<li>业务（商业）标准<ul>
+<li>the role the element plays in incremental development of the system</li>
+<li>the role it plays in incremental releases of functionality (i.e., subsetability)</li>
+<li>whether it will be built, purchased, licensed, or used as open source</li>
+<li>the impact it has on time to market</li>
+<li>whether it will be implemented using legacy components</li>
+<li>the availability of personnel to address a component</li>
+</ul>
+</li>
+<li>组织标准<ul>
+<li>the impact it has on resource utilization (e.g., human and computing re-sources)</li>
+<li>the skill level involved with its development</li>
+<li>the impact it has on improving development skills in the organization</li>
+<li>someone of authority selected it</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>识别候选的架构 Driver</p>
+<ul>
+<li><p>依据需求对架构的潜在影响，第二次对需求进行排序</p>
+<ul>
+<li><p>简单地给需求分配如 “较高影响” “一般影响” “较低影响” 这样的标签</p>
+</li>
+<li><p>得到如 “(H, H)” “(M, L)” 这样的有序对，第一个分量表示需求对涉众的重要性，第二个分量表示需求对架构的潜在影响的级别</p>
+<img src="/2019/03/27/Attribute-Driven-Design/priority-pairs.png">
+</li>
+<li><p>选择若干个（5 到 6 个）高优先级需求作为后续步骤的关注点，这些被选中的需求叫做要被分解的元素的 “候选架构 Driver”</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
 
       
     </div>
@@ -375,8 +474,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/12/04/dag-scc/" rel="next" title="算法设计与分析：图遍历算法的应用 —— DAG 和 SCC">
-                <i class="fa fa-chevron-left"></i> 算法设计与分析：图遍历算法的应用 —— DAG 和 SCC
+              <a href="/2019/03/27/微服务架构/" rel="next" title="微服务架构">
+                <i class="fa fa-chevron-left"></i> 微服务架构
               </a>
             
           </div>
@@ -384,10 +483,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/12/04/np-completeness/" rel="prev" title="">
-                 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -526,7 +621,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#图遍历算法及其性质"><span class="nav-number">1.</span> <span class="nav-text">图遍历算法及其性质</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#图遍历算法骨架"><span class="nav-number">1.1.</span> <span class="nav-text">图遍历算法骨架</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#DFS"><span class="nav-number">1.1.1.</span> <span class="nav-text">DFS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BFS"><span class="nav-number">1.1.2.</span> <span class="nav-text">BFS</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#活动区间"><span class="nav-number">1.2.</span> <span class="nav-text">活动区间</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#活动区间的性质"><span class="nav-number">1.2.1.</span> <span class="nav-text">活动区间的性质</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图遍历过程中的几种边"><span class="nav-number">1.3.</span> <span class="nav-text">图遍历过程中的几种边</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-ADD-是什么？"><span class="nav-number">1.</span> <span class="nav-text">1 ADD 是什么？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-Overview"><span class="nav-number">2.</span> <span class="nav-text">2 Overview</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-ADD-输入与输出"><span class="nav-number">3.</span> <span class="nav-text">3 ADD 输入与输出</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-ADD-过程详述"><span class="nav-number">4.</span> <span class="nav-text">4 ADD 过程详述</span></a></li></ol></div>
             
 
           </div>
