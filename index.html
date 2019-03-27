@@ -435,12 +435,140 @@
 </li>
 <li><p>得到如 “(H, H)” “(M, L)” 这样的有序对，第一个分量表示需求对涉众的重要性，第二个分量表示需求对架构的潜在影响的级别</p>
 <img src="/2019/03/27/Attribute-Driven-Design/priority-pairs.png">
+<ul>
+<li>If more than five or six requirements are ranked (H,H), this situation might signal a risk to the project and warrant renegotiation of the priorities. If renewed discussion is not feasible, then the architect should choose the handful of requirements that he/she believes will have the most far-reaching effect on the architecture.</li>
+</ul>
 </li>
 <li><p>选择若干个（5 到 6 个）高优先级需求作为后续步骤的关注点，这些被选中的需求叫做要被分解的元素的 “候选架构 Driver”</p>
+<ul>
+<li>更深入的分析可能会剔除当前的某些候选架构 Driver，而将另一些加入到候选列表，后续步骤的目标就是识别真正的架构 Driver<ul>
+<li>“架构 Driver” 就是会对架构的结构产生影响的功能性需求、设计约束或质量属性需求</li>
+</ul>
+</li>
+</ul>
 </li>
 </ul>
 </li>
 </ul>
+</li>
+<li><p>选择满足架构 Driver 的设计概念（Design Concept）</p>
+<ul>
+<li><p>选择主要的元素类型（major types of elements）以及它们之间的关系</p>
+<ul>
+<li>借助设计约束、质量属性需求</li>
+</ul>
+</li>
+<li><p>依照如下步骤：</p>
+<ol>
+<li><p>识别与候选架构 Driver 相关联的设计理念（Design Concern）。例如，如果质量属性需求要求可用性，那么主要的设计理念应该是错误预防、错误检测和错误回复</p>
+</li>
+<li><p>对于每个设计理念，列出可选的架构模式的列表</p>
+<ul>
+<li>识别每个架构模式的 discriminating parameter，并估计其价值<ul>
+<li>对于重启的架构模式（比如热重启和冷重启），重启花费的时间就是 discriminating parameter</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>从列表中选择合适的架构模式，记录理由</p>
+<ul>
+<li><p>如何选择合适的架构模式？一个参考是创建如下的矩阵，并考虑这些方面：</p>
+<ul>
+<li>每个架构模式的权衡（Trade-off）</li>
+<li>架构模式组合的好坏</li>
+<li>是否有互相冲突的架构模式</li>
+</ul>
+<table>
+    <tr>
+        <th></th>
+        <th colspan="2">Pattern 1</th>
+        <th colspan="2">Pattern 2</th>
+        <th>...</th>
+        <th colspan="2">Pattern n</th>
+    </tr>
+    <tr>
+        <td></td>
+        <td>Pros</td>
+        <td>Cons</td>
+        <td>Pros</td>
+        <td>Cons</td>
+        <td>...</td>
+        <td>Pros</td>
+        <td>Cons</td>
+    </tr>
+    <tr>
+        <td>Architectural driver 1</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Architectural driver 2</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>...</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Architectural driver n</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+</table>
+</li>
+</ul>
+</li>
+<li><p>Consider the patterns identified so far and decide how they relate to each other. The combination of the selected patterns results in a new pattern.</p>
+<ul>
+<li>哪些元素有联系？</li>
+<li>哪些元素没有联系？</li>
+<li>哪些功能有重叠？重叠功能可以作为如何合并模式的指示</li>
+</ul>
+</li>
+<li><p>通过不同的视图，描述已选择的模式，记录（但不需要完全的记录）</p>
+</li>
+<li><p>评估和解决设计理念中的不一致性</p>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p>实例化架构元素、分配职责</p>
+<ul>
+<li><p>正在被分解的系统元素作为父元素（Parent Element），实例化得到的元素作为子元素（Child Element）</p>
+</li>
+<li><p>同时可能会涉及到一些细化的部分</p>
+</li>
+</ul>
+</li>
+<li><p>定义实例化元素之间的接口</p>
+<ul>
+<li>供接口（Provide）和需接口（Require）</li>
+</ul>
+</li>
+<li><p>验证和精化需求、令他们作为实例化元素的约束</p>
 </li>
 </ol>
 
