@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-03-27T13:38:45.007Z</updated>
+  <updated>2019-04-02T11:41:24.394Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,11 +17,131 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>linux-programming: toc</title>
+    <link href="http://yoursite.com/2019/04/02/linux-programming-toc/"/>
+    <id>http://yoursite.com/2019/04/02/linux-programming-toc/</id>
+    <published>2019-04-02T11:41:23.000Z</published>
+    <updated>2019-04-02T11:41:24.394Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Linux 程序设计：Shell</title>
+    <link href="http://yoursite.com/2019/04/02/linux-programming-shell/"/>
+    <id>http://yoursite.com/2019/04/02/linux-programming-shell/</id>
+    <published>2019-04-02T09:49:00.000Z</published>
+    <updated>2019-04-02T13:32:16.086Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>linux-programming: gdb</title>
+    <link href="http://yoursite.com/2019/04/02/linux-programming-gdb/"/>
+    <id>http://yoursite.com/2019/04/02/linux-programming-gdb/</id>
+    <published>2019-04-02T08:10:45.000Z</published>
+    <updated>2019-04-02T08:10:46.074Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>linux-programming: gcc</title>
+    <link href="http://yoursite.com/2019/04/02/linux-programming-gcc/"/>
+    <id>http://yoursite.com/2019/04/02/linux-programming-gcc/</id>
+    <published>2019-04-02T08:10:40.000Z</published>
+    <updated>2019-04-02T08:10:40.648Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Linux 程序设计：make 和 Makefile</title>
+    <link href="http://yoursite.com/2019/04/02/linux-programming-make-makefile/"/>
+    <id>http://yoursite.com/2019/04/02/linux-programming-make-makefile/</id>
+    <published>2019-04-02T08:08:51.000Z</published>
+    <updated>2019-04-02T09:07:30.294Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;什么是-Makefile？&quot;&gt;&lt;a href=&quot;#什么是-Makefile？&quot; class=&quot;headerlink&quot; title=&quot;什么是 Makefile？&quot;&gt;&lt;/a&gt;什么是 Makefile？&lt;/h1&gt;&lt;h1 id=&quot;为什么要使用-Makefile？&quot;&gt;&lt;a href=&quot;#为什么要使用-Makefile？&quot; class=&quot;headerlink&quot; title=&quot;为什么要使用 Makefile？&quot;&gt;&lt;/a&gt;为什么要使用 Makefile？&lt;/h1&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Linux 程序设计：文件系统</title>
+    <link href="http://yoursite.com/2019/04/02/linux-programming-file-system/"/>
+    <id>http://yoursite.com/2019/04/02/linux-programming-file-system/</id>
+    <published>2019-04-02T07:46:30.000Z</published>
+    <updated>2019-04-02T12:38:43.237Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;硬盘分区&quot;&gt;&lt;a href=&quot;#硬盘分区&quot; class=&quot;headerlink&quot; title=&quot;硬盘分区&quot;&gt;&lt;/a&gt;硬盘分区&lt;/h1&gt;&lt;h2 id=&quot;MBR&quot;&gt;&lt;a href=&quot;#MBR&quot; class=&quot;headerlink&quot; title=&quot;MBR&quot;&gt;&lt;/a&gt;MBR&lt;/h2&gt;&lt;p&gt;MBR（Master Boot Record，主引导记录）&lt;/p&gt;
+&lt;p&gt;MBR 有如下组成部分：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;446 字节的程序代码，用于启动 OS&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;64 字节的分区表，最多支持 4 个分区&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;有时在一些使用 MBR 分区的硬盘中安装双系统，可能会发现无法增加新的主分区，就是因为 MBR 最多支持 4 个主分区。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;2 字节的 “魔数” 0x55AA&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;GPT&quot;&gt;&lt;a href=&quot;#GPT&quot; class=&quot;headerlink&quot; title=&quot;GPT&quot;&gt;&lt;/a&gt;GPT&lt;/h2&gt;&lt;p&gt;GPT（GUID Partition Table，全局唯一标识分区表）&lt;/p&gt;
+&lt;p&gt;在 GPT 硬盘中，分区表的位置信息存储在 &lt;u&gt;GPT 头&lt;/u&gt;（GPT header）中，但是出于兼容性的考虑，硬盘的第一个扇区仍然用作 MBR（叫做保护 MBR（protective MBR）），之后才是 GPT 头，接下来就是分区表本身。&lt;/p&gt;
+&lt;p&gt;为了避免分区表损坏，GPT 在硬盘最后保存了分区表的一份副本（Secondary GPT）。&lt;/p&gt;
+&lt;p&gt;GPT 分区表的结构如下：&lt;/p&gt;
+&lt;img src=&quot;/2019/04/02/linux-programming-file-system/gpt-overview.svg.png&quot; title=&quot;此例中，每个逻辑块为 512 字节，每个分区的记录为 128 字节。负数表示从最后的块开始倒数，使用 −1 表示最后一个块&quot;&gt;
+&lt;p&gt;解释：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;在支持从 GPT 启动的 OS 中，MBR 只有一个标识为 0xEE 的分区，表示这块硬盘使用 GPT 分区表。不能识别 GPT 硬盘的 OS 通常会识别出一个未知类型的分区，并且拒绝对硬盘进行操作，除非用户特别要求删除这个分区。这就避免了错误识别并破坏硬盘中的数据的危险。另外，能够识别 GPT 分区表的操作系统会检查保护 MBR 中的分区表，如果分区类型不是 0xEE 或者 MBR 分区表中有多个项，也会拒绝对硬盘进行操作。&lt;/li&gt;
+&lt;li&gt;在使用 64 位 Windows Server 2003 的机器上，最多可以创建 128 个分区，即分区表中保留了 128 个项，其中每个都是 128 字节。（EFI 标准要求分区表最小要有 16,384 字节，即 128 个分区项的大小）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&quot;什么是文件系统？&quot;&gt;&lt;a href=&quot;#什么是文件系统？&quot; class=&quot;headerlink&quot; title=&quot;什么是文件系统？&quot;&gt;&lt;/a&gt;什么是文件系统？&lt;/h1&gt;&lt;p&gt;文件系统是操作系统中存取和管理文件的部分。&lt;/p&gt;
+&lt;p&gt;我们先来看一下 “文件” 是什么。&lt;/p&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
     <title>Attribute-Driven Design</title>
     <link href="http://yoursite.com/2019/03/27/Attribute-Driven-Design/"/>
     <id>http://yoursite.com/2019/03/27/Attribute-Driven-Design/</id>
     <published>2019-03-27T07:59:40.000Z</published>
-    <updated>2019-03-27T13:38:45.007Z</updated>
+    <updated>2019-03-29T03:37:37.134Z</updated>
     
     <summary type="html">
     
@@ -296,140 +416,6 @@
     <summary type="html">
     
     </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>C++ 学习笔记 - 基础篇：类的构造和析构</title>
-    <link href="http://yoursite.com/2019/01/11/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%9F%BA%E7%A1%80%E7%AF%87%EF%BC%9A%E7%B1%BB%E7%9A%84%E6%9E%84%E9%80%A0%E5%92%8C%E6%9E%90%E6%9E%84/"/>
-    <id>http://yoursite.com/2019/01/11/C-学习笔记-基础篇：类的构造和析构/</id>
-    <published>2019-01-11T12:23:31.000Z</published>
-    <updated>2019-01-17T11:41:12.377Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;概述&quot;&gt;&lt;a href=&quot;#概述&quot; class=&quot;headerlink&quot; title=&quot;概述&quot;&gt;&lt;/a&gt;概述&lt;/h1&gt;&lt;p&gt;在介绍 C++ 的类构造和析构之前，先介绍一个重要的原则：RAII。&lt;/p&gt;
-&lt;p&gt;RAII 源于 C++，是 &lt;a href=&quot;https://en.wikipedia.org/wiki/Bjarne_Stroustrup&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Bjarne Stroustrup&lt;/a&gt; 和 &lt;a href=&quot;https://en.wikipedia.org/wiki/Andrew_Koenig_(programmer\&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Andrew Koenig&lt;/a&gt;) 在设计 C++ 异常时，为解决资源管理的异常安全性而使用的方法，后来 Bjarne 称之为 RAII。&lt;/p&gt;
-&lt;p&gt;RAII 要求，资源的有效期与持有资源的对象的生命期严格绑定，即由对象的构造函数完成资源的分配（获取），同时由析构函数完成资源的释放。在这种要求下，只要对象能正确地析构，就不会出现资源泄露的问题。$^{[1]}$&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Programming Languages" scheme="http://yoursite.com/categories/Programming-Languages/"/>
-    
-      <category term="C++" scheme="http://yoursite.com/categories/Programming-Languages/C/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>C++ 学习笔记 - 基础篇：友元</title>
-    <link href="http://yoursite.com/2019/01/11/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%9F%BA%E7%A1%80%E7%AF%87%EF%BC%9A%E5%8F%8B%E5%85%83/"/>
-    <id>http://yoursite.com/2019/01/11/C-学习笔记-基础篇：友元/</id>
-    <published>2019-01-11T12:06:55.000Z</published>
-    <updated>2019-01-28T01:33:14.654Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>图论 - 基本算法：最短路径</title>
-    <link href="http://yoursite.com/2019/01/10/%E5%9B%BE%E8%AE%BA-%E5%9F%BA%E6%9C%AC%E7%AE%97%E6%B3%95%EF%BC%9A%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84/"/>
-    <id>http://yoursite.com/2019/01/10/图论-基本算法：最短路径/</id>
-    <published>2019-01-10T13:32:35.000Z</published>
-    <updated>2019-01-11T01:37:26.213Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>图论 - 基本算法：最小生成树</title>
-    <link href="http://yoursite.com/2019/01/10/%E5%9B%BE%E8%AE%BA-%E5%9F%BA%E6%9C%AC%E7%AE%97%E6%B3%95%EF%BC%9A%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/"/>
-    <id>http://yoursite.com/2019/01/10/图论-基本算法：最小生成树/</id>
-    <published>2019-01-10T13:21:23.000Z</published>
-    <updated>2019-01-10T14:00:54.158Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>NP</title>
-    <link href="http://yoursite.com/2019/01/08/NP/"/>
-    <id>http://yoursite.com/2019/01/08/NP/</id>
-    <published>2019-01-08T13:13:59.000Z</published>
-    <updated>2019-01-08T15:11:12.662Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>E.W.Dijkstra 831：为什么应该从 0 开始计数</title>
-    <link href="http://yoursite.com/2019/01/05/E-W-Dijkstra-831%EF%BC%9A%E4%B8%BA%E4%BB%80%E4%B9%88%E5%BA%94%E8%AF%A5%E4%BB%8E-0-%E5%BC%80%E5%A7%8B%E8%AE%A1%E6%95%B0/"/>
-    <id>http://yoursite.com/2019/01/05/E-W-Dijkstra-831：为什么应该从-0-开始计数/</id>
-    <published>2019-01-05T07:35:33.000Z</published>
-    <updated>2019-01-05T08:18:37.202Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-      <category term="Uncategorized" scheme="http://yoursite.com/categories/Uncategorized/"/>
     
     
   </entry>
