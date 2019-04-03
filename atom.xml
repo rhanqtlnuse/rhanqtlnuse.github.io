@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-04-02T11:41:24.394Z</updated>
+  <updated>2019-04-03T09:35:56.614Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,25 +17,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>linux-programming: toc</title>
+    <title>Linux 程序设计：目录</title>
     <link href="http://yoursite.com/2019/04/02/linux-programming-toc/"/>
     <id>http://yoursite.com/2019/04/02/linux-programming-toc/</id>
     <published>2019-04-02T11:41:23.000Z</published>
-    <updated>2019-04-02T11:41:24.394Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Linux 程序设计：Shell</title>
-    <link href="http://yoursite.com/2019/04/02/linux-programming-shell/"/>
-    <id>http://yoursite.com/2019/04/02/linux-programming-shell/</id>
-    <published>2019-04-02T09:49:00.000Z</published>
-    <updated>2019-04-02T13:32:16.086Z</updated>
+    <updated>2019-04-03T09:35:56.614Z</updated>
     
     <summary type="html">
     
@@ -53,11 +39,33 @@
   </entry>
   
   <entry>
-    <title>linux-programming: gdb</title>
+    <title>Linux 程序设计 - 基础篇：Shell</title>
+    <link href="http://yoursite.com/2019/04/02/linux-programming-shell/"/>
+    <id>http://yoursite.com/2019/04/02/linux-programming-shell/</id>
+    <published>2019-04-02T09:49:00.000Z</published>
+    <updated>2019-04-03T09:37:45.404Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Linux 程序设计 - 工具篇：GDB</title>
     <link href="http://yoursite.com/2019/04/02/linux-programming-gdb/"/>
     <id>http://yoursite.com/2019/04/02/linux-programming-gdb/</id>
     <published>2019-04-02T08:10:45.000Z</published>
-    <updated>2019-04-02T08:10:46.074Z</updated>
+    <updated>2019-04-03T09:36:58.829Z</updated>
     
     <summary type="html">
     
@@ -67,11 +75,11 @@
   </entry>
   
   <entry>
-    <title>linux-programming: gcc</title>
+    <title>Linux 程序设计 - 工具篇：GCC</title>
     <link href="http://yoursite.com/2019/04/02/linux-programming-gcc/"/>
     <id>http://yoursite.com/2019/04/02/linux-programming-gcc/</id>
     <published>2019-04-02T08:10:40.000Z</published>
-    <updated>2019-04-02T08:10:40.648Z</updated>
+    <updated>2019-04-03T09:36:44.620Z</updated>
     
     <summary type="html">
     
@@ -81,11 +89,11 @@
   </entry>
   
   <entry>
-    <title>Linux 程序设计：make 和 Makefile</title>
+    <title>Linux 程序设计 - 工具篇：make 和 Makefile</title>
     <link href="http://yoursite.com/2019/04/02/linux-programming-make-makefile/"/>
     <id>http://yoursite.com/2019/04/02/linux-programming-make-makefile/</id>
     <published>2019-04-02T08:08:51.000Z</published>
-    <updated>2019-04-02T09:07:30.294Z</updated>
+    <updated>2019-04-03T09:37:12.149Z</updated>
     
     <summary type="html">
     
@@ -97,11 +105,11 @@
   </entry>
   
   <entry>
-    <title>Linux 程序设计：文件系统</title>
+    <title>Linux 程序设计 - 基础篇：文件系统</title>
     <link href="http://yoursite.com/2019/04/02/linux-programming-file-system/"/>
     <id>http://yoursite.com/2019/04/02/linux-programming-file-system/</id>
     <published>2019-04-02T07:46:30.000Z</published>
-    <updated>2019-04-02T12:38:43.237Z</updated>
+    <updated>2019-04-03T09:38:03.094Z</updated>
     
     <summary type="html">
     
