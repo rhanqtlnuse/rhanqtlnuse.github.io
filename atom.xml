@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-04-03T09:35:56.614Z</updated>
+  <updated>2019-04-05T16:02:20.840Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,64 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Haskell 极简教程</title>
+    <link href="http://yoursite.com/2019/04/05/haskell-learn-haskell-fast-and-hard/"/>
+    <id>http://yoursite.com/2019/04/05/haskell-learn-haskell-fast-and-hard/</id>
+    <published>2019-04-05T15:39:40.000Z</published>
+    <updated>2019-04-05T16:02:20.840Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Emergency</title>
+    <link href="http://yoursite.com/2019/04/05/Emergency/"/>
+    <id>http://yoursite.com/2019/04/05/Emergency/</id>
+    <published>2019-04-05T00:57:54.000Z</published>
+    <updated>2019-04-05T00:57:54.671Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Linux 程序设计 - 进阶篇：网络编程</title>
+    <link href="http://yoursite.com/2019/04/03/linux-programming-advanced-network-programming/"/>
+    <id>http://yoursite.com/2019/04/03/linux-programming-advanced-network-programming/</id>
+    <published>2019-04-03T15:15:24.000Z</published>
+    <updated>2019-04-03T15:25:42.372Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>Linux 程序设计：目录</title>
@@ -43,7 +101,7 @@
     <link href="http://yoursite.com/2019/04/02/linux-programming-shell/"/>
     <id>http://yoursite.com/2019/04/02/linux-programming-shell/</id>
     <published>2019-04-02T09:49:00.000Z</published>
-    <updated>2019-04-03T09:37:45.404Z</updated>
+    <updated>2019-04-03T14:36:04.300Z</updated>
     
     <summary type="html">
     
@@ -363,68 +421,6 @@
       <category term="Design" scheme="http://yoursite.com/tags/Design/"/>
     
       <category term="OOP" scheme="http://yoursite.com/tags/OOP/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>POJ 1753：Flip Game</title>
-    <link href="http://yoursite.com/2019/01/18/POJ-1753%EF%BC%9AFlip-Game/"/>
-    <id>http://yoursite.com/2019/01/18/POJ-1753：Flip-Game/</id>
-    <published>2019-01-18T02:54:56.000Z</published>
-    <updated>2019-01-18T03:07:59.503Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>机器学习数学基础 - 概率统计：马尔可夫链</title>
-    <link href="http://yoursite.com/2019/01/14/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80-%E6%A6%82%E7%8E%87%E7%BB%9F%E8%AE%A1%EF%BC%9A%E9%A9%AC%E5%B0%94%E5%8F%AF%E5%A4%AB%E9%93%BE/"/>
-    <id>http://yoursite.com/2019/01/14/机器学习数学基础-概率统计：马尔可夫链/</id>
-    <published>2019-01-14T15:05:45.000Z</published>
-    <updated>2019-02-14T14:56:59.756Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-    
-      <category term="Math" scheme="http://yoursite.com/tags/Math/"/>
-    
-      <category term="Machine Learning" scheme="http://yoursite.com/tags/Machine-Learning/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>C++ 学习笔记 - STL：map</title>
-    <link href="http://yoursite.com/2019/01/12/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-STL%EF%BC%9Amap/"/>
-    <id>http://yoursite.com/2019/01/12/C-学习笔记-STL：map/</id>
-    <published>2019-01-12T01:50:37.000Z</published>
-    <updated>2019-01-28T01:34:00.420Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
     
   </entry>
   
