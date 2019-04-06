@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-04-06T04:20:46.197Z</updated>
+  <updated>2019-04-06T06:17:57.535Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -21,17 +21,13 @@
     <link href="http://yoursite.com/2019/04/05/haskell-learn-haskell-fast-and-hard/"/>
     <id>http://yoursite.com/2019/04/05/haskell-learn-haskell-fast-and-hard/</id>
     <published>2019-04-05T15:39:40.000Z</published>
-    <updated>2019-04-06T04:20:46.197Z</updated>
+    <updated>2019-04-06T06:17:57.535Z</updated>
     
     <summary type="html">
     
-      
-      
-        
-        
-          
-        
-      
+      &lt;p&gt;&lt;strong&gt;声明：本文翻译自 &lt;a href=&quot;http://yannesposito.com/Scratch/en/blog/Haskell-the-Hard-Way/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Learn Haskell Fast and Hard&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;img src=&quot;/2019/04/05/haskell-learn-haskell-fast-and-hard/magritte_pleasure_principle.jpg&quot;&gt;
+&lt;p&gt;我坚定地相信所有的开发者都应该学习 Haskell。当然，这并不意味着每个人都要变成 Haskell 高手（super Haskell ninjas），但是你至少能发现 Haskell 能给你提供什么。学习 Haskell 能够开阔你的思路。&lt;/p&gt;
     
     </summary>
     
