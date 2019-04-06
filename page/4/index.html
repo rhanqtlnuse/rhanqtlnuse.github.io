@@ -255,6 +255,319 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/08/NP/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/01/08/NP/" itemprop="url">NP</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-08T21:13:59+08:00">
+                2019-01-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ul>
+<li><p>先要弄清几个基本概念</p>
+<ul>
+<li>P 问题：在多项式时间（或者更精确地说是 <strong>O(</strong>$n^k$<strong>)</strong> 时间）内能够<strong>解决</strong>的问题</li>
+<li>NP 问题：在多项式时间内能够<strong>验证</strong>的问题</li>
+<li>NP 难问题：问题 Q 是 NP 难问题，当对于任意的 $Q’ \in \mathrm{NP}_2$，$Q’\le_\mathrm{P} Q$</li>
+<li>NPC 问题（NP 完全问题）：即是 NP 问题，又是 NP 难问题</li>
+<li>规约<ul>
+<li>转换过程需要多项式时间</li>
+<li>两个实例的解是<strong>相同</strong>的</li>
+</ul>
+</li>
+<li><p>判定问题 &amp; 最优化问题</p>
+<ul>
+<li>判定问题简单来说就是需要给出<strong>是/不是</strong>答案的问题</li>
+<li>最优化问题就是说，对于问题的每个可行的解，都有一个关联的值，希望找到值最优的可行解</li>
+<li>通常判定问题比最优化问题简单，或者说“不会更难”，所以可以通过证明判定问题不易解决来证明最优化问题不易解决</li>
+<li>NPC 把注意力放在判定问题上</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>证明 NPC<ul>
+<li>证明 NP：证明可在多项式时间内验证</li>
+<li>证明 NP 难<ul>
+<li>选取某个 NPC 问题 $Q’$</li>
+<li>规约算法<ul>
+<li>证明规约的正确性，即任意的 $x \in Q’$ 有 $f(x) \in Q$</li>
+<li>证明多项式运行时间</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>电路可满足性问题（Circuit Satisfiability）<br>- </li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/05/E-W-Dijkstra-831：为什么应该从-0-开始计数/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/01/05/E-W-Dijkstra-831：为什么应该从-0-开始计数/" itemprop="url">E.W.Dijkstra 831：为什么应该从 0 开始计数</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-05T15:35:33+08:00">
+                2019-01-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Uncategorized/" itemprop="url" rel="index">
+                    <span itemprop="name">Uncategorized</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><strong>翻译自 EWD 831，原文地址：<a href="https://www.cs.utexas.edu/users/EWD/transcriptions/EWD08xx/EWD831.html" target="_blank" rel="noopener">传送门</a></strong>（不完全直译）</p>
+<h1 id="第一部分"><a href="#第一部分" class="headerlink" title="第一部分"></a>第一部分</h1><p>（这一部分论证的是表示区间的时候要不要包含上下界）</p>
+<p>为了不使用 “$\dots$” 来表示自然数的子序列 2，3，$\dots$，12，我们有四种约定俗成的形式：</p>
+<ol>
+<li>2 $\le$ $i$ $\lt$ 13</li>
+<li>1 $\lt$ $i$ $\le$ 12</li>
+<li>2 $\le$ i $\le$ 12</li>
+<li>1 $\lt$ $i$ $\lt$ 13</li>
+</ol>
+<p>有什么选择其中某一种而不是用其他形式的理由吗？当然有。第 1 种和第 2 种形式有一个优点：可以通过上界和下界的差值得到序列的长度。观察的结果是，无论在哪种形式中，两个子序列相邻意味着其中一个的上界等于另一个的下界。尽管这些观察都是有效的，但是它们并不能让我们确定应该从第 1 种形式和第 2 种形式中应该选择哪个，所以让我们重新开始。</p>
+<p>存在一个最小的自然数，不包含下界——像第 2、4 种方式那样——强制子序列从最小的自然数开始。这看上去很丑，所以对于下界我们更乐于像第 1、3 种方式那样使用 $\le$。现在，考虑子序列从最小的自然数开始，包含上界会在序列为空时变得不自然。这看上去也很丑，所以对于上界，我们更乐于像第 1、4 种方式中那样使用 $\lt$。综上，我们得到结论：更乐于使用第 1 种形式。</p>
+<p>注意：在 Xerox PARC 开发地编程语言 Mesa，对于整数的区间有如上四种表示。广泛的经验证明，使用其他三种形式，经常会导致笨拙（？）和错误，并且考虑到有经验的 Mesa 程序员现在都被强烈的建议不要使用后三种形式。我提到这个实验性的证据——因为值得被提及——因为某些人对未在实践中验证过的结论感到不适。</p>
+<h1 id="第二部分"><a href="#第二部分" class="headerlink" title="第二部分"></a>第二部分</h1><p>（这一部分论证的是计数应该从 0 开始）</p>
+<p>当处理一个长度为 N 的序列时，我们使用下标来区分其中的元素，下一个伤脑筋的问题是给第一个元素分配什么下标值。秉承第 1 种方式的约定，当下标从 1 开始时，下标的范围为 1 $\le$ $i$ $\lt$ N+1，然而如果从 0 开始，得到了更 Nice 的范围 0 $\le$ $i$ $\lt$ N。所以让我们从 0 开始计算序号：一个元素的序号（下标）等于序列中这个元素前面的元素的个数。并且我们最好将 0 当作最自然的自然数（原文：And the moral of the story is that we had better regard —after all those centuries!— zero as a most natural number.）</p>
+<p>注意：很多编程语言的设计并没有考虑这个细节。再 FORTRAN 中，下标总是从 1 开始，再 ALGOL 60 和 PASCAL 中，使用的是第 3 种形式；更近期的 SASL 因为 FORTRAN 的这个约定而失败了：SASL 中的序列同时是正整数上的函数。（the more recent SASL has fallen back on the FORTRAN convention: a sequence in SASL is at the same time a function on the positive integers.）真遗憾！</p>
+<h1 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h1><p>上面的讨论起于最近的一次事件，在一个情绪爆发中，我在大学的一个数学系的同事——不是计算机科学家——指责更年轻的计算机科学家们有学究气，因为——像他们按照习惯做的那样——从 0 开始计数。他下意识地采用最明智的约定作为挑衅（）He took consciously adopting the most sensible convention as a provocation. 我认为 Antony Jay 的这句话很对：“在 Corporate Religions 同其他宗教一样，异教徒必须被 cast out 不是因为他错的概率而是他对的概率。”</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/05/HDU-2236：无题-II/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1496,348 +1809,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/31/POJ-3061：Subsequence/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RHANQTL">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/12/31/POJ-3061：Subsequence/" itemprop="url">POJ 3061：Subsequence</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-31T23:00:43+08:00">
-                2018-12-31
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Algorithms/" itemprop="url" rel="index">
-                    <span itemprop="name">Algorithms</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Algorithms/OJ/" itemprop="url" rel="index">
-                    <span itemprop="name">OJ</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Algorithms/OJ/POJ/" itemprop="url" rel="index">
-                    <span itemprop="name">POJ</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Subsequence"><a href="#Subsequence" class="headerlink" title="Subsequence"></a>Subsequence</h1><p><strong>Time Limit:</strong> 1000MS</p>
-<p><strong>Memory Limit:</strong> 65536K</p>
-<h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p>A sequence of N positive integers (10 &lt; N &lt; 100 000), each of them less than or equal 10000, and a positive integer S (S &lt; 100 000 000) are given. Write a program to find the minimal length of the subsequence of consecutive elements of the sequence, the sum of which is greater than or equal to S.</p>
-<h2 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h2><p>The first line is the number of test cases. For each test case the program has to read the numbers N and S, separated by an interval, from the first line. The numbers of the sequence are given in the second line of the test case, separated by intervals. The input will finish with the end of file.</p>
-<h2 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h2><p>For each the case the program has to print the result on separate line of the output file.if no answer, print 0.</p>
-<h2 id="Sample-Input"><a href="#Sample-Input" class="headerlink" title="Sample Input"></a>Sample Input</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">2</span><br><span class="line">10 15</span><br><span class="line">5 1 3 5 10 7 4 9 2 8</span><br><span class="line">5 11</span><br><span class="line">1 2 3 4 5</span><br></pre></td></tr></table></figure>
-<h2 id="Sample-Output"><a href="#Sample-Output" class="headerlink" title="Sample Output"></a>Sample Output</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">2</span><br><span class="line">3</span><br></pre></td></tr></table></figure>
-<h2 id="Source"><a href="#Source" class="headerlink" title="Source"></a>Source</h2><p><a href="http://poj.org/searchproblem?field=source&amp;key=Southeastern+Europe+2006" target="_blank" rel="noopener">Southeastern Europe 2006</a></p>
-<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/30/10x-程序员/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RHANQTL">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/12/30/10x-程序员/" itemprop="url">10x 程序员</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-30T22:43:52+08:00">
-                2018-12-30
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>转载自 <a href="http://antirez.com/news/112" target="_blank" rel="noopener"><antirez></antirez></a></p>
-<h2 id="The-mythical-10x-programmer"><a href="#The-mythical-10x-programmer" class="headerlink" title="The mythical 10x programmer"></a>The mythical 10x programmer</h2><p>antirez 670 days ago. 543210 views.A 10x programmer is, in the mythology of programming, a programmer that can do ten times the work of another normal programmer, where for normal programmer we can imagine one good at doing its work, but without the magical abilities of the 10x programmer. Actually to better characterize the “normal programmer” it is better to say that it represents the one having the average programming output, among the programmers that are professionals in this discipline.</p>
-<p>The programming community is extremely polarized about the existence or not of such a beast: who says there is no such a thing as the 10x programmer, who says it actually does not just exist, but there are even 100x programmers if you know where to look for.</p>
-<p>If you see programming as a “linear” discipline, it is clear that the 10x programmer looks like an irrational possibility. How can a runner run 10x faster than another one? Or a construction worker build 10x the things another worker can build in the same time? However programming is a design discipline, in a very special way. Even when a programmer does not participate in the actual architectural design of a program, the act of implementing it still requires a sub-design of the implementation strategy.</p>
-<p>So if the design and implementation of a program are not linear abilities, things like experience, coding abilities, knowledge, recognition of useless parts, are, in my opinion, not just linear advantages, they work together in a multiplicative way in the act of creating a program. Of course this phenomenon happens much more when a programmer can both handle the design and the implementation of a program. The more “goal oriented” is the task, the more a potential 10x programmer can exploit her/his abilities in order to reach the goal with a lot less efforts. When the task at hand is much more rigid, with specific guidelines about what tools to use and how to implement things, the ability of a 10x programmer to perform a lot of work in less time is weakened: it can still exploit “local” design possibilities to do a much better work, but cannot change in more profound ways the path used to reach the goal, that may include, possibly, even eliminating part of the specification completely from the project, so that the goal to be reached looks almost the same but the efforts to reach it are reduced by a big factor.</p>
-<p>In twenty years of working as a programmer I observed other programmers working with me, as coworkers, guided by me in order to reach a given goal, providing patches to Redis and other projects. At the same time many people told me that they believe I’m a very fast programmer. Considering I’m far from being a workaholic, I’ll also use myself as a reference of coding things fast.</p>
-<p>The following is a list of qualities that I believe make the most difference in programmers productivity.</p>
-<ul>
-<li>Bare programming abilities: getting sub-tasks done</li>
-</ul>
-<p>One of the most obvious limits, or strengths, of a programmer is to deal with the sub-task of actually implementing part of a program: a function, an algorithm or whatever. Surprisingly the ability to use basic imperative programming constructs very efficiently in order to implement something is, in my experience, not as widespread as one may think. In a team sometimes I observed very incompetent programmers, that were not even aware of a simple sorting algorithm, to get more work done than graduated programmers that were in theory extremely competent but very poor in the practice of implementing solutions.</p>
-<ul>
-<li>Experience: pattern matching</li>
-</ul>
-<p>By experience I mean the set of already explored solutions for a number of recurring tasks. An experienced programmer eventually knows how to deal with a variety of sub tasks. This avoids both a lot of design work, but especially, is an extremely powerful weapon against design errors, that are in turn among the biggest enemies of simplicity.</p>
-<ul>
-<li>Focus: actual time VS hypothetical time</li>
-</ul>
-<p>The number of hours spent writing code is irrelevant without looking at the quality of the time. Lack of focus can be generated by internal and external factors. Internal factors are procrastination, lack of interest in the project at hand (you can’t be good doing things you do not love), lack of exercise / well-being, poor or little sleeping. External factors are frequent meetings, work environments without actual offices, coworkers interrupting often and so forth. It seems natural that trying to improve focus and to reduce interruptions is going to have a non marginal effect on the programming productivity. Sometimes in order to gain focus, extreme measures are needed. For instance I only read emails from time to time and do not reply to most of them.</p>
-<ul>
-<li>Design sacrifice: killing 5% to get 90%</li>
-</ul>
-<p>Often complexity is generated when there is no willingness to recognized that a non fundamental goal of a project is accounting for a very large amount of design complexity, or is making another more important goal very hard to reach, because there is a design tension among a fundamental feature and a non fundamental one. It is very important for a designer to recognize all the parts of a design that are not easy wins, that is, there is no proportionality between the effort and the advantages. A project that is executed in order to maximize the output, is going to focus exactly on the aspects that matter and that can be implemented in a reasonable amount of time. For example when designing Disque, a message broker, at some point I realized that by providing just best-effort ordering for the messages, all the other aspects of the project could be substantially improved: availability, query language and clients interaction, simplicity and performances.</p>
-<ul>
-<li>Simplicity</li>
-</ul>
-<p>This is an obvious point that means all and nothing. In order to understand what simplicity is, it is worth to check how complexity is often generated. I believe that the two main drivers of complexity are the unwillingness to perform design sacrifices, and the accumulation of errors in the design activity.</p>
-<p>If you think at the design process, each time a wrong path is pursued, we get more and more far from the optimal solution. An initial design error, in the wrong hands, will not generate a re-design of the same system, but will lead to the design of another complex solution in order to cope with the initial error. The project, thus, becomes more complex and less efficient at every wrong step.</p>
-<p>The way simplicity can be achieved is to reason in terms of small metal “proof of concepts”, so that a large amount of simple designs can be explored in the mind of the programmer, to start working from something that looks the most viable and direct solution. Later, experience and personal design abilities will allow to improve the design and find sensible solutions for the sub-designs that need to be resolved.</p>
-<p>However each time a complex solution is needed, it’s important to reason for a long time about how the complexity can be avoided, and only continue in that direction if no better possibility is found even considering completely different alternatives.</p>
-<ul>
-<li>Perfectionism, or how to kill your productivity and bias your designs</li>
-</ul>
-<p>Perfectionism comes in two variants: an engineering culture of reaching the best possible measurable performance in a program, and as a personality trait. In both the instances, I see this as one of the biggest barriers for a programmer to deliver things fast. Perfectionism and fear of external judice insert a designing bias that will result in poor choices in order to refine a design only according to psychological or trivially measurable parameters, where things like robustness, simplicity, ability to deliver in time, are often never accounted for. </p>
-<ul>
-<li>Knowledge: some theory is going to help</li>
-</ul>
-<p>When dealing with complex tasks, knowledge about data structures, fundamental limits of computation, non trivial algorithms that are very suitable to model certain tasks, are going to have an impact in the ability to find a suitable design. To be a super expert of everything is not required, but to be at least aware of a multitude of potential solutions for a problem certainly is. For instance applying design sacrifice (accept some error percentage) and being aware of probabilistic set cardinality estimators, can be combined together in order to avoid a complex, slow and memory inefficient solution in order to count unique items in a stream.</p>
-<ul>
-<li>Low level: understanding the machine</li>
-</ul>
-<p>A number of issues in programs, even when using high level languages, arise from the misunderstanding of how the computer is going to perform a given task. This may even lead to the need of re-designing and re-implementing again from scratch a project because there is a fundamental problem in the tools or algorithms used. Good competence of C, the understanding of how CPUs work and clear ideas about how the kernel operates and how system calls are implemented, can save from bad late-stage surprises.</p>
-<ul>
-<li>Debugging skills</li>
-</ul>
-<p>It is very easy to spend an enormous amount of work in order to find bugs. The sum of being good at gaining state about a bug, incrementally, in order to fix it with a rational set of steps, and the attitude of writing simple code that is unlikely to contain too many bugs, can have a great effect on the programmer efficiency.</p>
-<p>It is no surprising to me to see how the above qualities of a programmer can have a 10x impact on the output. Combined they allow for good implementations of designs that start from a viable model and can be several times simpler than alternatives. There is a way to stress simplicity that I like to call “opportunistic programming”. Basically at every development step, the set of features to implement is chosen in order to have the maximum impact on the user base of the program, with the minimum requirement of efforts.</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1883,7 +1859,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">69</span>
+                  <span class="site-state-item-count">71</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
