@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-04-06T06:17:57.535Z</updated>
+  <updated>2019-04-06T09:11:29.781Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,17 +17,21 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Haskell 极简教程</title>
-    <link href="http://yoursite.com/2019/04/05/haskell-learn-haskell-fast-and-hard/"/>
-    <id>http://yoursite.com/2019/04/05/haskell-learn-haskell-fast-and-hard/</id>
-    <published>2019-04-05T15:39:40.000Z</published>
-    <updated>2019-04-06T06:17:57.535Z</updated>
+    <title>pta-advanced-1006</title>
+    <link href="http://yoursite.com/2019/04/06/pta-advanced-1006/"/>
+    <id>http://yoursite.com/2019/04/06/pta-advanced-1006/</id>
+    <published>2019-04-06T09:07:12.000Z</published>
+    <updated>2019-04-06T09:11:29.781Z</updated>
     
     <summary type="html">
     
-      &lt;p&gt;&lt;strong&gt;声明：本文翻译自 &lt;a href=&quot;http://yannesposito.com/Scratch/en/blog/Haskell-the-Hard-Way/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Learn Haskell Fast and Hard&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
-&lt;img src=&quot;/2019/04/05/haskell-learn-haskell-fast-and-hard/magritte_pleasure_principle.jpg&quot;&gt;
-&lt;p&gt;我坚定地相信所有的开发者都应该学习 Haskell。当然，这并不意味着每个人都要变成 Haskell 高手（super Haskell ninjas），但是你至少能发现 Haskell 能给你提供什么。学习 Haskell 能够开阔你的思路。&lt;/p&gt;
+      
+      
+        
+        
+          
+        
+      
     
     </summary>
     
@@ -35,13 +39,39 @@
   </entry>
   
   <entry>
-    <title>Emergency</title>
-    <link href="http://yoursite.com/2019/04/05/Emergency/"/>
-    <id>http://yoursite.com/2019/04/05/Emergency/</id>
-    <published>2019-04-05T00:57:54.000Z</published>
-    <updated>2019-04-05T00:57:54.671Z</updated>
+    <title>pta-advanced-1003</title>
+    <link href="http://yoursite.com/2019/04/06/pta-advanced-1003/"/>
+    <id>http://yoursite.com/2019/04/06/pta-advanced-1003/</id>
+    <published>2019-04-06T06:00:10.000Z</published>
+    <updated>2019-04-06T09:35:24.187Z</updated>
     
     <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Haskell 极简教程</title>
+    <link href="http://yoursite.com/2019/04/05/haskell-learn-haskell-fast-and-hard/"/>
+    <id>http://yoursite.com/2019/04/05/haskell-learn-haskell-fast-and-hard/</id>
+    <published>2019-04-05T15:39:40.000Z</published>
+    <updated>2019-04-06T09:17:14.616Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;strong&gt;声明：本文翻译自 &lt;a href=&quot;http://yannesposito.com/Scratch/en/blog/Haskell-the-Hard-Way/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Learn Haskell Fast and Hard&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;img src=&quot;/2019/04/05/haskell-learn-haskell-fast-and-hard/magritte_pleasure_principle.jpg&quot;&gt;
+&lt;p&gt;我坚定地相信所有的开发者都应该学习 Haskell。当然，这并不意味着每个人都要变成 Haskell 高手（super Haskell ninjas），但是你至少能发现 Haskell 能给你提供什么。学习 Haskell 能够开阔你的思路。&lt;/p&gt;
     
     </summary>
     
@@ -391,32 +421,6 @@
     
     </summary>
     
-    
-  </entry>
-  
-  <entry>
-    <title>面向对象软件设计：UML 基础</title>
-    <link href="http://yoursite.com/2019/01/27/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%EF%BC%9AUML-%E5%9F%BA%E7%A1%80/"/>
-    <id>http://yoursite.com/2019/01/27/面向对象软件设计：UML-基础/</id>
-    <published>2019-01-26T17:56:48.000Z</published>
-    <updated>2019-01-27T17:54:24.393Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-    
-      <category term="Design" scheme="http://yoursite.com/tags/Design/"/>
-    
-      <category term="OOP" scheme="http://yoursite.com/tags/OOP/"/>
     
   </entry>
   

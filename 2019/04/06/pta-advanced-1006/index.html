@@ -85,17 +85,17 @@
 
 
 
-<meta name="description" content="算法正确性验证递归迭代">
+<meta name="description" content="又是一道水题，用 String.compareTo 就完了 代码1234567891011121314151617181920212223242526272829303132333435import java.util.ArrayList;import java.util.List;import java.util.Scanner;public class Main &amp;#123;    publi">
 <meta property="og:type" content="article">
-<meta property="og:title" content="算法设计与分析：算法正确性验证">
-<meta property="og:url" content="http://yoursite.com/2018/12/05/correctness-verification/index.html">
+<meta property="og:title" content="pta-advanced-1006">
+<meta property="og:url" content="http://yoursite.com/2019/04/06/pta-advanced-1006/index.html">
 <meta property="og:site_name" content="RHANQTL">
-<meta property="og:description" content="算法正确性验证递归迭代">
+<meta property="og:description" content="又是一道水题，用 String.compareTo 就完了 代码1234567891011121314151617181920212223242526272829303132333435import java.util.ArrayList;import java.util.List;import java.util.Scanner;public class Main &amp;#123;    publi">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-06T12:41:52.737Z">
+<meta property="og:updated_time" content="2019-04-06T09:11:29.781Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="算法设计与分析：算法正确性验证">
-<meta name="twitter:description" content="算法正确性验证递归迭代">
+<meta name="twitter:title" content="pta-advanced-1006">
+<meta name="twitter:description" content="又是一道水题，用 String.compareTo 就完了 代码1234567891011121314151617181920212223242526272829303132333435import java.util.ArrayList;import java.util.List;import java.util.Scanner;public class Main &amp;#123;    publi">
 
 
 
@@ -125,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/12/05/correctness-verification/">
+  <link rel="canonical" href="http://yoursite.com/2019/04/06/pta-advanced-1006/">
 
 
 
 
 
-  <title>算法设计与分析：算法正确性验证 | RHANQTL</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>pta-advanced-1006 | RHANQTL</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -258,7 +258,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/05/correctness-verification/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/06/pta-advanced-1006/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Han Qi">
@@ -275,7 +275,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">算法设计与分析：算法正确性验证</h1>
+          <h1 class="post-title" itemprop="name headline">pta-advanced-1006</h1>
         
 
         <div class="post-meta">
@@ -287,8 +287,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-05T20:00:00+08:00">
-                2018-12-05
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-06T17:07:12+08:00">
+                2019-04-06
               </time>
             
 
@@ -297,28 +297,6 @@
             
           </span>
 
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Algorithms/" itemprop="url" rel="index">
-                    <span itemprop="name">Algorithms</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -352,7 +330,9 @@
       
 
       
-        <h1 id="算法正确性验证"><a href="#算法正确性验证" class="headerlink" title="算法正确性验证"></a>算法正确性验证</h1><h2 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h2><h2 id="迭代"><a href="#迭代" class="headerlink" title="迭代"></a>迭代</h2>
+        <p>又是一道水题，用 <code>String.compareTo</code> 就完了</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> String[] solve() &#123;</span><br><span class="line">        List&lt;String[]&gt; records = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        Scanner in = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">        <span class="keyword">final</span> <span class="keyword">int</span> M = in.nextInt();</span><br><span class="line">        in.nextLine();</span><br><span class="line">        String[] firstRecord = in.nextLine().split(<span class="string">"\\s+"</span>);</span><br><span class="line">        String signInId = firstRecord[<span class="number">0</span>], signOutId = firstRecord[<span class="number">0</span>];</span><br><span class="line">        String signInTime = firstRecord[<span class="number">1</span>], signOutTime = firstRecord[<span class="number">2</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; M; i++) &#123;</span><br><span class="line">            String[] record = in.nextLine().split(<span class="string">"\\s+"</span>);</span><br><span class="line">            <span class="keyword">if</span> (record[<span class="number">1</span>].compareTo(signInTime) &lt; <span class="number">0</span>) &#123;</span><br><span class="line">                signInId = record[<span class="number">0</span>];</span><br><span class="line">                signInTime = record[<span class="number">1</span>];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (record[<span class="number">2</span>].compareTo(signOutTime) &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                signOutId = record[<span class="number">0</span>];</span><br><span class="line">                signOutTime = record[<span class="number">2</span>];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        in.close();</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> String[] &#123; signInId, signOutId &#125;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Main s = <span class="keyword">new</span> Main();</span><br><span class="line">        String[] result = s.solve();</span><br><span class="line">        System.out.print(result[<span class="number">0</span>] + <span class="string">" "</span> + result[<span class="number">1</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
       
     </div>
     
@@ -376,8 +356,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/12/05/并查集/" rel="next" title="并查集">
-                <i class="fa fa-chevron-left"></i> 并查集
+              <a href="/2019/04/06/pta-advanced-1003/" rel="next" title="pta-advanced-1003">
+                <i class="fa fa-chevron-left"></i> pta-advanced-1003
               </a>
             
           </div>
@@ -385,10 +365,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/12/06/位运算奇技淫巧/" rel="prev" title="位运算奇技淫巧">
-                位运算奇技淫巧 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -527,7 +503,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#算法正确性验证"><span class="nav-number">1.</span> <span class="nav-text">算法正确性验证</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#递归"><span class="nav-number">1.1.</span> <span class="nav-text">递归</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#迭代"><span class="nav-number">1.2.</span> <span class="nav-text">迭代</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#代码"><span class="nav-number">1.</span> <span class="nav-text">代码</span></a></li></ol></div>
             
 
           </div>
@@ -694,7 +670,24 @@
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 
 
 
@@ -747,43 +740,6 @@
   
 
   
-  
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
-      });
-    </script>
-
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-      });
-    </script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
   
 
 
