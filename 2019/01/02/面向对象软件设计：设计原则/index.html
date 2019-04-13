@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+  <link rel="stylesheet" media="all" href="/lib/Han/dist/han.min.css?v=3.3">
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/logo.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="RHANQTL" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="设计原则综述 软件的可维护性与复用性 面向对象软件设计复用的目标在于实现支持可维护性的复用，而这要以面向对象软件设计原则为基础，这些设计原则首先都是复用的原则，遵循这些设计原则可以有效地提高系统的复用性，同时提高系统的可维护性 面向对象设计原则也是对系统进行合理重构的指南针">
+<meta property="og:type" content="article">
+<meta property="og:title" content="面向对象软件设计：设计原则">
+<meta property="og:url" content="http://yoursite.com/2019/01/02/面向对象软件设计：设计原则/index.html">
+<meta property="og:site_name" content="RHANQTL">
+<meta property="og:description" content="设计原则综述 软件的可维护性与复用性 面向对象软件设计复用的目标在于实现支持可维护性的复用，而这要以面向对象软件设计原则为基础，这些设计原则首先都是复用的原则，遵循这些设计原则可以有效地提高系统的复用性，同时提高系统的可维护性 面向对象设计原则也是对系统进行合理重构的指南针">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2019/01/02/面向对象软件设计：设计原则/stack-extends-vector.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/02/面向对象软件设计：设计原则/stack-aggregates-vector.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/02/面向对象软件设计：设计原则/stack-aggregates-list.png">
+<meta property="og:updated_time" content="2019-01-03T11:35:48.982Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="面向对象软件设计：设计原则">
+<meta name="twitter:description" content="设计原则综述 软件的可维护性与复用性 面向对象软件设计复用的目标在于实现支持可维护性的复用，而这要以面向对象软件设计原则为基础，这些设计原则首先都是复用的原则，遵循这些设计原则可以有效地提高系统的复用性，同时提高系统的可维护性 面向对象设计原则也是对系统进行合理重构的指南针">
+<meta name="twitter:image" content="http://yoursite.com/2019/01/02/面向对象软件设计：设计原则/stack-extends-vector.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/01/02/面向对象软件设计：设计原则/">
+
+
+
+
+
+  <title>面向对象软件设计：设计原则 | RHANQTL</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">RHANQTL</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/02/面向对象软件设计：设计原则/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">面向对象软件设计：设计原则</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-02T11:26:04+08:00">
+                2019-01-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Design/" itemprop="url" rel="index">
+                    <span itemprop="name">Design</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Design/OOP/" itemprop="url" rel="index">
+                    <span itemprop="name">OOP</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 浏览
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="设计原则综述"><a href="#设计原则综述" class="headerlink" title="设计原则综述"></a>设计原则综述</h1><ul>
+<li>软件的可维护性与复用性<ul>
+<li>面向对象软件设计复用的目标在于实现支持可维护性的复用，而这要以面向对象软件设计原则为基础，这些设计原则首先都是复用的原则，遵循这些设计原则可以有效地提高系统的复用性，同时提高系统的可维护性</li>
+<li>面向对象设计原则也是对系统进行合理重构的指南针</li>
+</ul>
+</li>
+</ul>
+<a id="more"></a>
+<h1 id="单一职责原则"><a href="#单一职责原则" class="headerlink" title="单一职责原则"></a>单一职责原则</h1><ul>
+<li>定义<ul>
+<li>第一种表述：一个对象应该只包含单一的职责，并且该职责被完整地封装在一个类中</li>
+<li>第二种表述：就一个类而言，应该仅有一个引起它变化的原因</li>
+</ul>
+</li>
+<li>分析<ul>
+<li>一个类（模块、方法）承担的职责越多，它被复用的可能性越小，而且耦合度也会过高</li>
+<li>类的职责主要表现在两个方面：数据职责和行为职责。数据职责通过属性来体现，行为职责通过方法来体现</li>
+<li>单一职责原则是实现高内聚、低耦合的指导方针</li>
+</ul>
+</li>
+</ul>
+<p><strong>例</strong></p>
+<p>假设一个基于 Java 的 C/S 系统的登陆模块的类图如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">+--------------------------------------+</span><br><span class="line">|               Login                  |</span><br><span class="line">+--------------------------------------+</span><br><span class="line">|                                      |</span><br><span class="line">+--------------------------------------+</span><br><span class="line">| + init(): void                       |</span><br><span class="line">| + display(): void                    |</span><br><span class="line">| + validate(): boolean                |</span><br><span class="line">| + getConnection(): Connection        |</span><br><span class="line">| + findUser(String username,          |</span><br><span class="line">|            String password): boolean |</span><br><span class="line">| + main(String args[]): void          |</span><br><span class="line">+--------------------------------------+</span><br></pre></td></tr></table></figure>
+<p>进行一下分析：</p>
+<ul>
+<li><p>首先，登陆模块的作用是验证用户和密码，返回验证的结果，所以 <code>validate()</code> 方法体现了这个类的职责</p>
+</li>
+<li><p><code>findUser(...)</code> 和 <code>getConnection()</code>：这个工作是 Data 层的工作</p>
+</li>
+<li><code>main()</code>：主方法，用于运行程序，应该是启动模块的方法，而不应该由登陆模块启动整个应用</li>
+</ul>
+<p>根据以上的分析，我们应该留下 <code>init()</code> <code>display()</code> <code>validate()</code> 方法，将其他的方法（职责）交给其他的类</p>
+<p>再看，其实 <code>getConnection()</code> 方法也可以从 <code>DataService</code> 中分离出来，因为一个有一定规模的系统中，一定不止有一个 <code>DataService</code>，而所有的 <code>DataService</code> 都需要连接数据库。</p>
+<p>最终版本：</p>
+
+<h1 id="开闭原则"><a href="#开闭原则" class="headerlink" title="开闭原则"></a>开闭原则</h1><p>一个软件实体应该对扩展开放，对修改关闭。也就是说在设计一个模块的时候应该使这个模块能够在不改变内部代码/设计的情况下改变这个模块的行为（扩展）。</p>
+<ul>
+<li><p>软件实体可以指一个软件模块、一个由多个类组成的局部结构或一个独立的类</p>
+</li>
+<li><p>关键是 “抽象化”</p>
+</li>
+<li>更具体的原则：对可变性封装原则，即找到系统中的可变因素，并将其封装</li>
+</ul>
+<h1 id="里氏替换原则"><a href="#里氏替换原则" class="headerlink" title="里氏替换原则"></a>里氏替换原则</h1><p>使用基类的地方应该都能够使用相应的子类代替，而无需了解子类的细节（透明），<strong>反之不成立</strong>。</p>
+<p>所以在程序中尽量使用基类类型来对对象进行定义，而在运行时再确定其子类类型，用子类对象来替换父类对象。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">List&lt;String&gt; l = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br></pre></td></tr></table></figure>
+<h1 id="依赖倒置原则"><a href="#依赖倒置原则" class="headerlink" title="依赖倒置原则"></a>依赖倒置原则</h1><p>依赖注入</p>
+<ul>
+<li>构造注入</li>
+<li>设值注入</li>
+<li>接口注入</li>
+</ul>
+<h1 id="接口隔离原则"><a href="#接口隔离原则" class="headerlink" title="接口隔离原则"></a>接口隔离原则</h1><p>针对接口编程，不要针对实现编程</p>
+<ul>
+<li>“接口” 并不是某个语言中的语法特性（比如 Java 的 <code>interface</code>）而是合约（方法）</li>
+</ul>
+<h1 id="合成复用原则"><a href="#合成复用原则" class="headerlink" title="合成复用原则"></a>合成复用原则</h1><p>也叫 “组合/聚合复用原则”</p>
+<h2 id="与依赖倒置原则的关系"><a href="#与依赖倒置原则的关系" class="headerlink" title="与依赖倒置原则的关系"></a>与依赖倒置原则的关系</h2><p>一个经典的例子：Java 中的 Stack 类继承自 Vector</p>
+<img src="/2019/01/02/面向对象软件设计：设计原则/stack-extends-vector.png">
+<p>但其实仔细想想，Stack 是一个（is a）Vector 吗？</p>
+<p>并不是，Stack 只是部分地使用了 Vector 的功能，所以更合理的方式应该是 Stack 持有一个（has a）Vector 的引用，如下：</p>
+<img src="/2019/01/02/面向对象软件设计：设计原则/stack-aggregates-vector.png">
+<p>再进一步思考，其实 Stack 也并不是非要使用 Vector，其实它需要的只是一个<strong>顺序的容器</strong>，能够支持在一端增/删/查即可。所以可以进一步地修改，令 Vector 继承自 List，Stack 持有 List 的引用，这样我们甚至可以在运行时动态地修改 Stack 所依赖的顺序容器，而不会影响 Stack 的正常使用。这样的设计提供了更大的灵活性，同时也只给 Stack 提供了必要的接口（这里也有接口隔离原则）。</p>
+<p>将 Stack 由继承自 Vector 改为持有 Vector 的引用，遵循了合成复用原则；而将 Stack 由持有 Vector（具体类）的引用改为持有 List（抽象接口）的引用，遵循了依赖倒置原则。</p>
+<img src="/2019/01/02/面向对象软件设计：设计原则/stack-aggregates-list.png">
+<h1 id="迪米特法则"><a href="#迪米特法则" class="headerlink" title="迪米特法则"></a>迪米特法则</h1><p>也叫 “最少知识原则”</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/02/软件测试基础：逻辑覆盖法/" rel="next" title="软件测试基础：逻辑覆盖法">
+                <i class="fa fa-chevron-left"></i> 软件测试基础：逻辑覆盖法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/01/02/面向对象软件设计：设计模式/" rel="prev" title="面向对象软件设计：设计模式">
+                面向对象软件设计：设计模式 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Han Qi</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">82</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-name">分类</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#设计原则综述"><span class="nav-number">1.</span> <span class="nav-text">设计原则综述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#单一职责原则"><span class="nav-number">2.</span> <span class="nav-text">单一职责原则</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#开闭原则"><span class="nav-number">3.</span> <span class="nav-text">开闭原则</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#里氏替换原则"><span class="nav-number">4.</span> <span class="nav-text">里氏替换原则</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#依赖倒置原则"><span class="nav-number">5.</span> <span class="nav-text">依赖倒置原则</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#接口隔离原则"><span class="nav-number">6.</span> <span class="nav-text">接口隔离原则</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#合成复用原则"><span class="nav-number">7.</span> <span class="nav-text">合成复用原则</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#与依赖倒置原则的关系"><span class="nav-number">7.1.</span> <span class="nav-text">与依赖倒置原则的关系</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#迪米特法则"><span class="nav-number">8.</span> <span class="nav-text">迪米特法则</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Han Qi</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> 访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>

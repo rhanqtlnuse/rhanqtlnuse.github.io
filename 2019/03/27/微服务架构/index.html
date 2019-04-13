@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+  <link rel="stylesheet" media="all" href="/lib/Han/dist/han.min.css?v=3.3">
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/logo.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="RHANQTL" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="微服务架构 vs. 单体架构 简而言之，微服务架构风格这种开发方法，是以开发一组小型服务的方式来开发一个独立的应用系统的。其中每个小型服务都运行在独立 的进程中，并经常采用 HTTP 资源 API 这样轻量的机制来相互通信。这些服务围绕业务功能 进行构建，并能通过全自动 的部署机制来进行独立部署。这些微服务可以使用不同的语言来编写，并且可以使用不同的数据存储技术。对这些微服务我们仅做最低限度的集中">
+<meta property="og:type" content="article">
+<meta property="og:title" content="微服务架构">
+<meta property="og:url" content="http://yoursite.com/2019/03/27/微服务架构/index.html">
+<meta property="og:site_name" content="RHANQTL">
+<meta property="og:description" content="微服务架构 vs. 单体架构 简而言之，微服务架构风格这种开发方法，是以开发一组小型服务的方式来开发一个独立的应用系统的。其中每个小型服务都运行在独立 的进程中，并经常采用 HTTP 资源 API 这样轻量的机制来相互通信。这些服务围绕业务功能 进行构建，并能通过全自动 的部署机制来进行独立部署。这些微服务可以使用不同的语言来编写，并且可以使用不同的数据存储技术。对这些微服务我们仅做最低限度的集中">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2019/03/27/微服务架构/scale-mono.jpg">
+<meta property="og:updated_time" content="2019-03-27T07:43:34.726Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="微服务架构">
+<meta name="twitter:description" content="微服务架构 vs. 单体架构 简而言之，微服务架构风格这种开发方法，是以开发一组小型服务的方式来开发一个独立的应用系统的。其中每个小型服务都运行在独立 的进程中，并经常采用 HTTP 资源 API 这样轻量的机制来相互通信。这些服务围绕业务功能 进行构建，并能通过全自动 的部署机制来进行独立部署。这些微服务可以使用不同的语言来编写，并且可以使用不同的数据存储技术。对这些微服务我们仅做最低限度的集中">
+<meta name="twitter:image" content="http://yoursite.com/2019/03/27/微服务架构/scale-mono.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/27/微服务架构/">
+
+
+
+
+
+  <title>微服务架构 | RHANQTL</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">RHANQTL</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/27/微服务架构/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">微服务架构</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-27T14:40:45+08:00">
+                2019-03-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 浏览
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="微服务架构-vs-单体架构"><a href="#微服务架构-vs-单体架构" class="headerlink" title="微服务架构 vs. 单体架构"></a>微服务架构 vs. 单体架构</h1><ul>
+<li><p>简而言之，微服务架构风格这种开发方法，是以开发一组小型服务的方式来开发一个独立的应用系统的。其中每个小型服务都运行在<em>独立</em> 的进程中，并经常采用 HTTP 资源 API 这样轻量的机制来相互通信。这些服务围绕<em>业务功能</em> 进行构建，并能通过<em>全自动</em> 的部署机制来进行独立部署。这些微服务可以使用不同的语言来编写，并且可以使用不同的数据存储技术。对这些微服务我们仅做最低限度的集中管理。（“自治”）</p>
+</li>
+<li><p>单体架构：以单个单元的方式来构建的。对于系统的任何改变，都会涉及构建和部署上述服务端应用系统的一个新版本。</p>
+<img src="/2019/03/27/微服务架构/scale-mono.jpg">
+</li>
+</ul>
+<h1 id="微服务架构的特性"><a href="#微服务架构的特性" class="headerlink" title="微服务架构的特性"></a>微服务架构的特性</h1><p>下面所描述的所有这些共性，并不是所有的微服务架构都完全具备。</p>
+<ul>
+<li><p>“组件化” 与 “多服务”</p>
+<ul>
+<li>组件：一个组件就是一个可以独立更换和升级的软件单元。</li>
+<li>良好的微服务架构的目的，是通过内聚的服务边界和服务协议方面的演进机制，来将由于服务接口的变更导致的多个服务之间的协同修改变得最小化。</li>
+<li>比起进程内调用，远程调用更加昂贵，所以远程调用 API 接口必须是<em>粗粒度</em> 的</li>
+</ul>
+</li>
+<li><p>围绕业务功能（business capability）组织团队</p>
+<ul>
+<li><p>不再根据逻辑上的划分来组织系统（比如用户界面层、业务逻辑层和数据访问和持久化层）</p>
+</li>
+<li><p>康威定律</p>
+<blockquote>
+<p>任何设计（广义上的）系统的组织，都会产生这样一个设计，即该设计的结构与该组织的沟通结构相一致。</p>
+<p>​                                        —— 梅尔文 • 康威（Melvyn Conway）, 1967年</p>
+</blockquote>
+</li>
+<li><p>跨职能团队负责构建和运维每个产品，而每个产品被拆分为多个独立的服务，彼此通过一个<em>消息总线</em> 来通信。</p>
+</li>
+</ul>
+<blockquote>
+<p><strong>微服务应该有多大？</strong></p>
+<ul>
+<li>亚马逊的 “两个比萨团队”（即一个团队可以被两个比萨所喂饱）理念：一个团队不会多于12人</li>
+<li>对于规模较小的服务，我们已经看到一个6人的团队在支持6个服务。</li>
+</ul>
+</blockquote>
+</li>
+<li><p>“做产品” 而不是 “做项目”</p>
+<ul>
+<li>亚马逊：“谁构建，谁运行”，即一个开发团队对一个在生产环境下运行的软件负全责。<ul>
+<li>关注构建质量</li>
+</ul>
+</li>
+<li>这样的 “产品” 理念，是与业务功能的联动绑定在一起的。它不会将软件看作是一个待完成的功能集合，而是认为存在这样一个持续的关系，即软件如何能助其客户来持续增进业务功能。</li>
+</ul>
+</li>
+<li><p>智能端点（smart endpoints）与傻瓜管道（dumb pipes）</p>
+<ul>
+<li>智能端点：接收一个请求，酌情对其应用业务逻辑，并产生一个响应</li>
+<li>傻瓜管道：通过一个轻量级的消息总线来进行消息发送，除了提供可靠的异步机制（fabric）以外不做其他任何事情，智能功能存在于那些生产和消费诸多消息的各个端点，即各个服务中</li>
+<li>需要用更粗粒度的协议来替代细粒度的服务间通信</li>
+</ul>
+</li>
+<li><p>去中心化地治理技术</p>
+<blockquote>
+<p><strong>微服务和SOA</strong></p>
+<p>当我们谈起微服务时，一个常见的问题就会出现：是否微服务仅仅是十多年前所看到的“面向服务的架构”(Service Oriented Architecture, SOA)？这样问是有道理的，因为微服务风格非常类似于一些支持SOA的人所赞成的观点。然而，问题在于SOA这个词儿意味着太多不同的东西(<a href="http://martinfowler.com/bliki/ServiceOrientedAmbiguity.html)。而且大多数时候，我们所遇到的某些被称作&quot;SOA&quot;的事物，明显不同于本文所描述的风格。这通常由于它们专注于ESB，来集成各个单块应用。" target="_blank" rel="noopener">http://martinfowler.com/bliki/ServiceOrientedAmbiguity.html)。而且大多数时候，我们所遇到的某些被称作&quot;SOA&quot;的事物，明显不同于本文所描述的风格。这通常由于它们专注于ESB，来集成各个单块应用。</a></p>
+<p>特别地，我们已经看到如此之多的面向服务的拙劣实现——从将系统复杂性隐藏于ESB中的趋势，到花费数百万进行多年却没有交付任何价值的失败项目，到顽固抑制变化发生的中心化技术治理模型——以至于有时觉得其所造成的种种问题真的不堪回首。</p>
+<p>当然，在微服务社区投入使用的许多技术，源自各个开发人员将各种服务集成到各个大型组织的经验。“容错读取”(Tolerant Reader, <a href="http://martinfowler.com/bliki/TolerantReader.html)模式就是这样一个例子。对于Web的广泛使用，使得人们不再使用一些中心化的标准，而使用一些简单的协议。坦率地说，这些中心化的标准，其复杂性已经达到令人吃惊的程度（http://wiki.apache.org/ws/WebServiceSpecifications）。（任何时候，如果需要一个本体（ontology）来管理其他各个本体，那么麻烦就大了。）" target="_blank" rel="noopener">http://martinfowler.com/bliki/TolerantReader.html)模式就是这样一个例子。对于Web的广泛使用，使得人们不再使用一些中心化的标准，而使用一些简单的协议。坦率地说，这些中心化的标准，其复杂性已经达到令人吃惊的程度（http://wiki.apache.org/ws/WebServiceSpecifications）。（任何时候，如果需要一个本体（ontology）来管理其他各个本体，那么麻烦就大了。）</a></p>
+<p>这种常见的SOA的表现，已使得一些微服务的倡导者完全拒绝将自己贴上SOA的标签。尽管其他人会将微服务看作是SOA的一种形式，也许微服务就是以正确的形式来实现面向服务的SOA。不管是哪种情况，SOA意味着如此之多的不同事物，这表明用一个更加干净利落的术语来命名这种架构风格是很有价值的。</p>
+<p>“YAGNI” 或者 “You Aren’t Going To Need It”（你不会需要它）是极限编程的一条原则（<a href="http://c2.com/cgi/wiki?YouArentGonnaNeedIt）和劝诫，指的是“除非到了需要的时候，否则不要添加新功能”。" target="_blank" rel="noopener">http://c2.com/cgi/wiki?YouArentGonnaNeedIt）和劝诫，指的是“除非到了需要的时候，否则不要添加新功能”。</a></p>
+</blockquote>
+</li>
+<li><p>去中心化地管理数据</p>
+<ul>
+<li>从最抽象的层面看，这意味着各个系统对客观世界所构建的概念模型将彼此各不相同</li>
+<li>微服务架构更强调在各个服务之间进行 “无事务” 的协调，这源自微服务社区明确地认识到下述两点，即数据一致性可能只要求数据在<em>最终</em> 达到一致，并且一致性问题能够通过补偿操作来进行处理。</li>
+<li>只要修复错误的成本，与在保持更大的数据一致性却导致丢了生意所产生的成本相比，前者更低，那么这种 “非一致性” 地管理数据的权衡就是值得的。</li>
+</ul>
+</li>
+<li><p>基础设施自动化</p>
+</li>
+<li><p>容错设计</p>
+<ul>
+<li>因为服务可能在任何时候发生故障，所以下面两件事就变得很重要：<ul>
+<li>能够快速地<em>检测</em> 出故障</li>
+<li>在可能的情况下能够<em>自动恢复</em> 服务</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>演进式设计</p>
+<ul>
+<li>变化控制并不一定意味着要减少变化</li>
+<li>组件的关键属性：独立更换和升级<ul>
+<li>进行组件划分时考虑的重点</li>
+</ul>
+</li>
+<li>组件（服务）的寿命也是一个关注点（这一点在 Essential Software Architecture 中也有讲到），如果服务将来会报废，那么没有必要进行过多的长期演进的准备</li>
+<li>如果发现需要同时反复变更两个服务时，这就是它们两个需要被合并的信号</li>
+<li>必须要考虑当一个服务发生变化时，依赖它并对其进行消费的其他服务将无法工作。传统的集成方法是试图使用<em>版本化</em> 来解决这个问题。但在微服务世界中，大家更喜欢将版本化作为最后万不得已的手段来使用。我们可以通过把各个服务设计得尽量能够容错，来应对其所依赖的服务所发生的变化来避免许多版本化的工作。</li>
+</ul>
+</li>
+</ul>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p>[1] <a href="http://martinfowler.com/articles/microservices.html" target="_blank" rel="noopener">微服务原文链接</a></p>
+<p>[2] <a href="http://mp.weixin.qq.com/s__biz=MjM5MjEwNTEzOQ==&amp;mid=401500724&amp;idx=1&amp;sn=4e42fa2ffcd5732ae044fe6a387a1cc3#rd" target="_blank" rel="noopener">微服务译文链接</a></p>
+<p>[3] <a href="https://zhuanlan.zhihu.com/p/52189005" target="_blank" rel="noopener">知乎 - 阿里P8架构师谈（SOA微服务淘宝架构）：单体架构、SOA、微服务的架构设计详解</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/26/从C到汇编/" rel="next" title="从 C 到汇编">
+                <i class="fa fa-chevron-left"></i> 从 C 到汇编
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/27/Attribute-Driven-Design/" rel="prev" title="Attribute-Driven Design">
+                Attribute-Driven Design <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Han Qi</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">82</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-name">分类</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#微服务架构-vs-单体架构"><span class="nav-number">1.</span> <span class="nav-text">微服务架构 vs. 单体架构</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#微服务架构的特性"><span class="nav-number">2.</span> <span class="nav-text">微服务架构的特性</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">3.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Han Qi</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> 访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>
