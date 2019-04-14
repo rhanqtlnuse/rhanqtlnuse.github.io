@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+  <link rel="stylesheet" media="all" href="/lib/Han/dist/han.min.css?v=3.3">
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/logo.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/logo.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="RHANQTL" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="分治框架：  将问题分解为较小的子问题 有些情况下，可能只要解决了问题的一部分就能得到问题的答案，这种情况叫做“规约”   解决子问题 基本情况可以直接解决 非基本情况可以继续分解成更小的子问题   将子问题的结果合并  算法设计过程中，一个不错的思路是先设计出相应的递归算法，然后对其进行优化或者转换成迭代形式。 递归算法设计设计递归算法有两个必须遵守的基本原则：  必须有基本情况 每次分解/规约">
+<meta property="og:type" content="article">
+<meta property="og:title" content="算法设计与分析：算法设计基础">
+<meta property="og:url" content="http://yoursite.com/2018/12/04/algorithms-design-foundation/index.html">
+<meta property="og:site_name" content="RHANQTL">
+<meta property="og:description" content="分治框架：  将问题分解为较小的子问题 有些情况下，可能只要解决了问题的一部分就能得到问题的答案，这种情况叫做“规约”   解决子问题 基本情况可以直接解决 非基本情况可以继续分解成更小的子问题   将子问题的结果合并  算法设计过程中，一个不错的思路是先设计出相应的递归算法，然后对其进行优化或者转换成迭代形式。 递归算法设计设计递归算法有两个必须遵守的基本原则：  必须有基本情况 每次分解/规约">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-12-03T20:23:18.915Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="算法设计与分析：算法设计基础">
+<meta name="twitter:description" content="分治框架：  将问题分解为较小的子问题 有些情况下，可能只要解决了问题的一部分就能得到问题的答案，这种情况叫做“规约”   解决子问题 基本情况可以直接解决 非基本情况可以继续分解成更小的子问题   将子问题的结果合并  算法设计过程中，一个不错的思路是先设计出相应的递归算法，然后对其进行优化或者转换成迭代形式。 递归算法设计设计递归算法有两个必须遵守的基本原则：  必须有基本情况 每次分解/规约">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/12/04/algorithms-design-foundation/">
+
+
+
+
+
+  <title>算法设计与分析：算法设计基础 | RHANQTL</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">RHANQTL</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/04/algorithms-design-foundation/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">算法设计与分析：算法设计基础</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-04T04:21:29+08:00">
+                2018-12-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithms/" itemprop="url" rel="index">
+                    <span itemprop="name">Algorithms</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 浏览
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="分治"><a href="#分治" class="headerlink" title="分治"></a>分治</h2><p>框架：</p>
+<ul>
+<li>将问题分解为较小的子问题<ul>
+<li>有些情况下，可能只要解决了问题的一部分就能得到问题的答案，这种情况叫做“规约”</li>
+</ul>
+</li>
+<li>解决子问题<ul>
+<li>基本情况可以直接解决</li>
+<li>非基本情况可以继续分解成更小的子问题</li>
+</ul>
+</li>
+<li>将子问题的结果合并</li>
+</ul>
+<p>算法设计过程中，一个不错的思路是先设计出相应的递归算法，然后对其进行优化或者转换成迭代形式。</p>
+<h2 id="递归算法设计"><a href="#递归算法设计" class="headerlink" title="递归算法设计"></a>递归算法设计</h2><p>设计递归算法有两个必须遵守的基本原则：</p>
+<ul>
+<li>必须有基本情况</li>
+<li>每次分解/规约问题要确保至少有一个参数<strong>确定</strong>能够更加接近结束条件</li>
+</ul>
+<h3 id="例子：扔鸡蛋"><a href="#例子：扔鸡蛋" class="headerlink" title="例子：扔鸡蛋"></a>例子：扔鸡蛋</h3><p>假设我们有两个鸡蛋，要确定他们的强度（两个鸡蛋强度相同）。强度定义如下：</p>
+<ul>
+<li>如果从第 i 层楼将鸡蛋扔下，鸡蛋碎了，那么鸡蛋的强度为 i - 1</li>
+</ul>
+<p>如果我们有两个鸡蛋，强度在 1 到 100 之间，如何确定鸡蛋的强度？</p>
+<h5 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h5><p>选择第 i 层将鸡蛋扔下，</p>
+<ul>
+<li>如果鸡蛋碎了，那么可以确定强度在 1 到 i - 1 之间，用另一个鸡蛋从第 2 层楼开始顺序查找；</li>
+<li>如果鸡蛋没碎，那么可以确定强度在 i 到 100 之间，此时我们还有 <strong>2 个</strong>鸡蛋，可以再次进行整个过程。</li>
+</ul>
+<p>可以看到，这个问题有两部分参数：</p>
+<ul>
+<li>鸡蛋的个数</li>
+<li>当前已确定的强度范围</li>
+</ul>
+<p>下面，我们对这个问题进行推广。</p>
+<h4 id="推广"><a href="#推广" class="headerlink" title="推广"></a>推广</h4><p>如果我们有 k 个鸡蛋，要在 m 到 n 之间确定一个强度，应该怎样做才能有最小的次数？</p>
+<h5 id="解决方案-1"><a href="#解决方案-1" class="headerlink" title="解决方案"></a>解决方案</h5><p>选择第 i 层（m &lt; i &lt;= n），扔下一个鸡蛋，</p>
+<ul>
+<li>如果鸡蛋碎了，那么可以确定强度在 m 到 i - 1 之间，此时我们还有 k - 1 个鸡蛋</li>
+<li>如果鸡蛋没碎，那么可以确定强度在 i 到 n 之间，此时我们还有 k 个鸡蛋</li>
+</ul>
+<p>由此，我们可以得到如下的基本算法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">throwEgg(eggCount, lowerBound, upperBound)</span><br><span class="line">    i &lt;- 选择某一层</span><br><span class="line">    return 1 + min&#123;</span><br><span class="line">                throwEgg(eggCount - 1, lowerBound, i - 1),</span><br><span class="line">                throwEgg(eggCount, i, upperBound)</span><br><span class="line">               &#125;</span><br></pre></td></tr></table></figure>
+<p>回到之前的两个基本原则之一：必须有基本情况。</p>
+<p>直观地看，这个问题的基本情况就是当我们只有 1 个鸡蛋的时候，只能从 m 开始一层一层地尝试，尝试次数总共为 n - m 次。</p>
+<p>接下来，看看我们目前确定的基本算法，考虑另一个基本原则：每次分解/规约问题要确保至少有一个参数确定能够更加接近结束条件。</p>
+<p>我们目前的基本算法有一个问题：如果每次较小的都是 <code>throwEgg(eggCount, i, upperBound)</code>，那么我们的计算永远也不会回到基本情况，所以，需要添加一个基本情况：当 m &gt;= n 时，不需要（无法）进行测试。这样一来，我们的算法就变成了下面这个样子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">throwEgg(eggCount, lowerBound, upperBound)</span><br><span class="line">    if eggCount = 1</span><br><span class="line">        return n - m</span><br><span class="line">    if m &gt;= n</span><br><span class="line">        return 0</span><br><span class="line">    i &lt;- 选择某一层</span><br><span class="line">    return 1 + min&#123;</span><br><span class="line">                throwEgg(eggCount - 1, lowerBound, i - 1),</span><br><span class="line">                throwEgg(eggCount, i, upperBound)</span><br><span class="line">               &#125;</span><br></pre></td></tr></table></figure>
+<p>到这一步，还存在一个问题：如何选择 i？</p>
+<p>题目中并没有明确规定该如何选择，我们也并没有什么厉害的办法，所以只能穷举：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">throwEgg(eggCount, lowerBound, upperBound)</span><br><span class="line">    if eggCount = 1</span><br><span class="line">        return n - m</span><br><span class="line">    if m &gt;= n</span><br><span class="line">        return 0</span><br><span class="line">    for i &lt;- m + 1 to n</span><br><span class="line">        tmp &lt;- 1 + min&#123;</span><br><span class="line">                    throwEgg(eggCount - 1, lowerBound, i - 1),</span><br><span class="line">                    throwEgg(eggCount, i, upperBound)</span><br><span class="line">                   &#125;</span><br><span class="line">        if tmp &lt; minValue</span><br><span class="line">            minValue &lt;- min</span><br><span class="line">    return minValue</span><br></pre></td></tr></table></figure>
+<p>到这里，我们的算法设计算是完成了。</p>
+<h2 id="算法的优化"><a href="#算法的优化" class="headerlink" title="算法的优化"></a>算法的优化</h2><p>算法优化有一些常见的技巧：</p>
+<ul>
+<li><p>以空间换时间：我们的算法可能会出现后面的计算要用到前面计算结果的情况，未经优化的算法可能会进行大量的重复计算，这时候我们可以将这些中间结果记录下来，用到的时候直接查询，无需计算。</p>
+</li>
+<li><p>将递归转换为迭代</p>
+<ul>
+<li><p>尾递归：在<strong>运算</strong>的最后进行的递归调用</p>
+<ul>
+<li><p>是尾递归</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">euclidGCD(m, n)</span><br><span class="line">    if n = 0</span><br><span class="line">        return m</span><br><span class="line">    else</span><br><span class="line">        return euclidGCD(n, m % n)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>不是尾递归</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">fib(n)</span><br><span class="line">    if n = 0</span><br><span class="line">        return 0</span><br><span class="line">    else if n = 1</span><br><span class="line">        return 1</span><br><span class="line">    else</span><br><span class="line">        return fib(n - 1) + fib(n - 2)</span><br></pre></td></tr></table></figure>
+<p>注意尾递归是在运算的最后出现的递归调用，而在上面例子中，最后的运算是加法</p>
+</li>
+</ul>
+</li>
+<li><p>尾递归可以方便地转换成迭代</p>
+<ul>
+<li><p>函数体转换为一个循环体</p>
+</li>
+<li><p>参数转为变量声明</p>
+</li>
+<li><p>基本情况：直接返回相应的结果</p>
+</li>
+<li><p>递归调用：首先计算相应的新参数，赋给相关变量，然后加上 continue 语句</p>
+</li>
+<li><p>例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">euclidGCD(m, n)</span><br><span class="line">    m&apos; &lt;- m</span><br><span class="line">    n&apos; &lt;- n</span><br><span class="line">    while True</span><br><span class="line">        if n&apos; = 0</span><br><span class="line">            return m&apos;</span><br><span class="line">        else</span><br><span class="line">            m&apos;, n&apos; = n&apos;, m&apos; % n&apos;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>其它形式的递归也可以转换成迭代</p>
+<ul>
+<li>斐波那契数列：计算 f(n) 首先要顺序地计算 f(0)，f(1)，· · ·，f(n - 1)</li>
+<li>很多递归都可以通过显式地维护一个栈转换为迭代（比如 DFS）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>某些问题还有特定的优化方式（根据计算过程优化）</p>
+</li>
+</ul>
+<h3 id="扔鸡蛋的优化"><a href="#扔鸡蛋的优化" class="headerlink" title="扔鸡蛋的优化"></a>扔鸡蛋的优化</h3><p>扔鸡蛋问题可以根据下面几点来优化：</p>
+<ul>
+<li>假设初始给定的 k’，m’，n’，那么对于参数 k &lt;= k’，m &lt;= m’，n &lt;= n’，函数 f(k, m, n) 可能会被多次重复计算</li>
+<li>对于任意的 k，m，n，m’，n’，如果 n - m = n’ - m’，那么 f(k, m, n) = f(k, m’, n’)</li>
+<li>根据题意<ul>
+<li>k’ &gt; k’’ 意味着 f(k’, m, n) &lt;= f(k’’, m, n)</li>
+<li>m - n &gt; m’ – n’ 意味着 f(k, m, n) &gt;= f(k, m’, n’)</li>
+</ul>
+</li>
+</ul>
+<p>应对方案：</p>
+<ul>
+<li><p>重复计算：以空间换时间</p>
+</li>
+<li><p>第二点表明，只要 m 与 n 的差相同，计算的结果就相同，所以我们可以只保留二者之差 n - m，这样能够减少一个参数（因为某一个参数总为 0）</p>
+</li>
+<li><p>第三点涉及到函数的单调性问题</p>
+<ul>
+<li>f 对于 k 是一个单调非递增函数</li>
+<li>f 对于 m 与 n 的差是一个单调非递减函数</li>
+<li>根据上面两点，可以确定，两条曲线一定会交于某点，并且 f 在这一点取得最小值</li>
+</ul>
+<p>伪代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">throwEgg(eggCount, diff)</span><br><span class="line">    if diff &lt;= 0</span><br><span class="line">        return 0</span><br><span class="line">    if eggCount = 1</span><br><span class="line">        return diff</span><br><span class="line">    for i &lt;- 1 to diff</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/04/algorithms-red-black-tree/" rel="next" title="算法设计与分析：红黑树">
+                <i class="fa fa-chevron-left"></i> 算法设计与分析：红黑树
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/12/04/algorithms-approx-algo/" rel="prev" title="">
+                 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Han Qi</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">83</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-name">分类</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#分治"><span class="nav-number">1.</span> <span class="nav-text">分治</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#递归算法设计"><span class="nav-number">2.</span> <span class="nav-text">递归算法设计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#例子：扔鸡蛋"><span class="nav-number">2.1.</span> <span class="nav-text">例子：扔鸡蛋</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#解决方案"><span class="nav-number">2.1.0.1.</span> <span class="nav-text">解决方案</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#推广"><span class="nav-number">2.1.1.</span> <span class="nav-text">推广</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#解决方案-1"><span class="nav-number">2.1.1.1.</span> <span class="nav-text">解决方案</span></a></li></ol></li></ol></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#算法的优化"><span class="nav-number">3.</span> <span class="nav-text">算法的优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#扔鸡蛋的优化"><span class="nav-number">3.1.</span> <span class="nav-text">扔鸡蛋的优化</span></a></li></ol></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Han Qi</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> 访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+  
+
+
+  
+
+  
+
+</body>
+</html>

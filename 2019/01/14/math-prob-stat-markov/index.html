@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+  <link rel="stylesheet" media="all" href="/lib/Han/dist/han.min.css?v=3.3">
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/logo.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/logo.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Math,Machine Learning,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="RHANQTL" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="Introduction马尔可夫链（Markov Chain）是具有马尔可夫性质的随机过程。“马尔可夫链” 是指一个随机变量的序列，这个过程向前移动，马尔可夫性质仅在相邻的时期定义 serial 依赖。它可以用于描述符合这样特征的系统：  一个事件的链 对于这些事件，下一步发生什么只取决于系统当前的状态  对于一个马尔可夫链，我们需要明确两个变量：  系统的状态空间 系统的时间参数索引（Time">
+<meta name="keywords" content="Math,Machine Learning">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习数学基础 - 概率统计：马尔可夫链">
+<meta property="og:url" content="http://yoursite.com/2019/01/14/math-prob-stat-markov/index.html">
+<meta property="og:site_name" content="RHANQTL">
+<meta property="og:description" content="Introduction马尔可夫链（Markov Chain）是具有马尔可夫性质的随机过程。“马尔可夫链” 是指一个随机变量的序列，这个过程向前移动，马尔可夫性质仅在相邻的时期定义 serial 依赖。它可以用于描述符合这样特征的系统：  一个事件的链 对于这些事件，下一步发生什么只取决于系统当前的状态  对于一个马尔可夫链，我们需要明确两个变量：  系统的状态空间 系统的时间参数索引（Time">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-02-14T14:56:59.756Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="机器学习数学基础 - 概率统计：马尔可夫链">
+<meta name="twitter:description" content="Introduction马尔可夫链（Markov Chain）是具有马尔可夫性质的随机过程。“马尔可夫链” 是指一个随机变量的序列，这个过程向前移动，马尔可夫性质仅在相邻的时期定义 serial 依赖。它可以用于描述符合这样特征的系统：  一个事件的链 对于这些事件，下一步发生什么只取决于系统当前的状态  对于一个马尔可夫链，我们需要明确两个变量：  系统的状态空间 系统的时间参数索引（Time">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/01/14/math-prob-stat-markov/">
+
+
+
+
+
+  <title>机器学习数学基础 - 概率统计：马尔可夫链 | RHANQTL</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">RHANQTL</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/14/math-prob-stat-markov/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">机器学习数学基础 - 概率统计：马尔可夫链</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-14T23:05:45+08:00">
+                2019-01-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 浏览
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>马尔可夫链（Markov Chain）是具有马尔可夫性质的随机过程。“马尔可夫链” 是指一个随机变量的序列，这个过程向前移动，马尔可夫性质仅在相邻的时期定义 serial 依赖。它可以用于描述符合这样特征的系统：</p>
+<ul>
+<li>一个事件的链</li>
+<li>对于这些事件，下一步发生什么只取决于系统当前的状态</li>
+</ul>
+<p>对于一个马尔可夫链，我们需要明确两个变量：</p>
+<ul>
+<li>系统的状态空间</li>
+<li>系统的时间参数索引（Time Parameter Index）</li>
+</ul>
+<table>
+    <tr>
+        <th></th>
+        <th>Countable state space</th>
+        <th>Continuous or general state space</th>
+    </tr>
+    <tr>
+        <th>Discrete time</th>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <th>Continuous time</th>
+        <td></td>
+        <td></td>
+    </tr>
+</table>
+
+<p>时间参数通常是离散的</p>
+<p>系统状态的变化称为过渡，与各种状态变化相关的概率称为转移概率。</p>
+<p>这个过程由状态空间，描述特定转换概率的转移矩阵以及跨状态空间的初始状态（或初始分布）标识。</p>
+<p>Markov属性表明系统在下一步（实际上在所有未来步骤中）的<a href="https://en.wikipedia.org/wiki/Conditional_probability_distribution" target="_blank" rel="noopener">条件概率分布</a>仅取决于系统的当前状态，而不是另外取决于前一步骤的系统状态。</p>
+<p>由于系统随机变化，通常无法确定地预测未来某一点马尔可夫链的状态。<a href="https://en.wikipedia.org/wiki/Markov_chain#cite_note-:1-39" target="_blank" rel="noopener">[39]</a>然而，可以预测系统未来的统计特性。<a href="https://en.wikipedia.org/wiki/Markov_chain#cite_note-:1-39" target="_blank" rel="noopener">[39]</a>在许多应用中，重要的是这些统计特性。</p>
+<h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><p>酒鬼步行</p>
+<p>一个著名的马尔可夫链是所谓的“酒鬼步行”问题，在<a href="https://en.wikipedia.org/wiki/Number_line" target="_blank" rel="noopener">数字线上</a><a href="https://en.wikipedia.org/wiki/Random_walk" target="_blank" rel="noopener">随机行走</a>，在每一步，位置可能以相同的概率改变+1或-1。</p>
+<p>即转移矩阵是这样的（假设数字线长为 5）：</p>
+<script type="math/tex; mode=display">\left[\begin{matrix}0 & 0.5 & 0 & 0& 0 \\ 0.5 & 0 & 0.5& 0 & 0 \\ 0 & 0.5 & 0 & 0.5 & 0 \\ 0 & 0& 0.5 & 0 & 0.5 \\ 0 & 0& 0& 0.5 & 0\end{matrix}\right]</script><p>饮食习惯</p>
+<p>另一个例子是只吃葡萄，奶酪或生菜的生物的饮食习惯，其饮食习惯符合以下规则：</p>
+<ul>
+<li>它每天吃一次。</li>
+<li>如果它今天吃奶酪，明天它会以相同的概率吃生菜或葡萄。</li>
+<li>如果它今天吃了葡萄，明天就会吃概率为1/10的葡萄，概率为4/10的奶酪和概率为5/10的生菜。</li>
+<li>如果它今天吃生菜，明天将吃概率为4/10的葡萄或概率为6/10的奶酪。明天不会再吃生菜了。</li>
+</ul>
+<script type="math/tex; mode=display">\left[\begin{matrix}0 & 0.5 & 0.5 \\ 0.4 & 0.1 & 0.5 \\ 0.6 & 0.4 & 0\end{matrix}\right]</script><p>该理论通常仅在下一步的概率分布非常依赖于当前状态时才应用。</p>
+<h1 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h1><ul>
+<li>酒鬼步行、随机游走、赌博</li>
+<li>生死过程、泊松点过程</li>
+<li>非马尔可夫的例子：取硬币问题<ul>
+<li>假设有一个零钱包，包含 5 个 25 美分的硬币，5 个 10 美分，5 个 5 美分，并且一个接一个地从钱包中随机抽取硬币放在桌子上。如果 $X_ {n}$ 表示取出 $n$ 个硬币之后桌子上硬币的总价值，其中 $X_0 = 0$，那么序列 ${ X_n:n\in\mathbb{N}}$ 不是马尔可夫过程。</li>
+<li>假设我们取了 6 次硬币，5 枚 5 美分的硬币和 1 枚 25 美分的硬币，那么当前 $X_6 = 0.5$，那么我们下一次取硬币的概率会受到影响：比如以后不能再取面值为 5 美分的硬币，那么我们可以确定 $X_7 \ge 0.6$ 的概率为 1。而如果我们不知道当前已经取出的硬币的情况，我们可能会推断出，当前取了 4 个 10 美分的硬币和 2 个 5 美分的硬币，这样 $X_7 \ge 0.6$ 的概率为 $\dfrac{2}{3}$，与之前的 1 不同，也就是说，<strong>状态之间转移的概率受到了影响</strong>！</li>
+<li>这个场景可以建模为马尔可夫过程，我们可以定义 $X_n$ 表示第 n 次取硬币后桌子上各种硬币的数量，比如，$X_6 = 1, 0, 5$ 表示第 6 次抽取后桌子上有 1 枚 25 美分的硬币，5 枚 5 美分的硬币。这个新模型将由 216（$= 6 \times 6 \times 6$ ）种可能状态表示</li>
+</ul>
+</li>
+</ul>
+<h1 id="马尔可夫性质-2"><a href="#马尔可夫性质-2" class="headerlink" title="马尔可夫性质 $^{[2]}$"></a>马尔可夫性质 $^{[2]}$</h1><p>马尔可夫性质是指随机过程的<em>无记忆性</em>：如果过程的未来状态的条件概率分布只取决于当前状态，而不取决于其之前的事件序列，则随机过程具有马尔可夫性质</p>
+<h3 id="强（Strong）马尔可夫性质"><a href="#强（Strong）马尔可夫性质" class="headerlink" title="强（Strong）马尔可夫性质"></a>强（Strong）马尔可夫性质</h3><p>与马尔可夫性质类似，但“当前”（present）是以 “stopping time” 定义的</p>
+<p>马尔可夫假设：用于描述马尔可夫性质被假设为成立的模型</p>
+<h1 id="正式定义"><a href="#正式定义" class="headerlink" title="正式定义"></a>正式定义</h1><h2 id="离散时间马尔可夫链"><a href="#离散时间马尔可夫链" class="headerlink" title="离散时间马尔可夫链"></a>离散时间马尔可夫链</h2><p>有马尔可夫性质的随机变量序列 $X_1$，$X_2$，$X_3$，$\dots$</p>
+<script type="math/tex; mode=display">\Pr(X_{n+1}=x|X_1=x_1, X2=x_2, \dots, X_n=x_n) = \Pr(X_{n+1}=x|X_n=x_n)</script><p>如果两个条件概率都是良定义的，即</p>
+<script type="math/tex; mode=display">\Pr(X_1=x_1, X_2=x_2, \dots, X_n=x_n) \gt 0</script><p>其中 $X_i$ 的可能值形成一个可数集 S，称为链的状态空间。</p>
+<p>可以用有向图表示，边的权重为转移概率；或者用转移矩阵表示</p>
+<p>每行的和为 1</p>
+<p>初始状态 $\Pr(X_1=x_1)$</p>
+<p>第二步：$\Pr(X_2=x_2|X_1=x_1) = \dfrac{\Pr(X_2=x_2, X_1=x_1)}{\Pr(X_1=x_1)}$</p>
+<p>第二步：$\Pr(X_3=x_3|X_2=x_2) = \dfrac{\Pr(X_3=x_3, X_2=x_2)}{\Pr(X_2=x_2)}$</p>
+<p>第二步：$\Pr(X_4=x_4|X_3=x_3) = \dfrac{\Pr(X_4=x_4, X_3=x_3)}{\Pr(X_3=x_3)}$</p>
+<h3 id="变体"><a href="#变体" class="headerlink" title="变体"></a>变体</h3><ul>
+<li><p>时间齐次马尔可夫链（固定马尔可夫链）</p>
+<script type="math/tex; mode=display">\Pr(X_{n+1}=x|X_n=y) = \Pr(X_n=x|X_{n-1}=y)</script><p>转换的概率与 n 无关</p>
+</li>
+<li><p>有记忆的马尔可夫链（m 阶马尔可夫链）</p>
+<script type="math/tex; mode=display">\Pr(X_{n+1}=x_{n+1}|X_n=x_n, X_{n-1}=x_{n-1}, \dots, X_{n-m+1}=x_{n-m+1})</script><p>可以由这个链 $X_n$ 构建新的链 $Y_n$，其中 $Y_i = (X_i, X_{i-1}, \dots, X_{i-m+1})$</p>
+</li>
+</ul>
+<p>所以这个“与之前的状态无关”到底是哪方面无关？</p>
+<p>假设转移矩阵为 $P$</p>
+<script type="math/tex; mode=display">x^{(n+3)}=x^{(n+2)}P = (x^{(n+1)}P)P = ((x^{(n)}P)P)P = x^{(n)}P^3</script><p>$x^{(n+3)}$ 可以由 $x^{(n)}$ 计算，那么为什么说 $x^{(n+3)}$ 与 $x^{(n)}$ 无关？</p>
+<p>答：这个“无关”用词并不准确，准确地说应该是，$x^{(x+3)}$ 可以仅由 $x^{(x+2)}$ 计算出来</p>
+<h2 id="连续时间马尔可夫链"><a href="#连续时间马尔可夫链" class="headerlink" title="连续时间马尔可夫链"></a>连续时间马尔可夫链</h2><p>连续时间马尔可夫链 $(X_t)_{t \ge 0}$ 由以下三部分定义：</p>
+<ul>
+<li>一个有限或可数的状态空间 S </li>
+<li>转移率矩阵 Q（维度为 |S|），<ul>
+<li>每行的和为 0</li>
+<li>$q_{ij}$ 表示从状态 i 转移到状态 j 的概率</li>
+<li>$q_{ii}$ 是不定的，可以用于保证转移矩阵的每行的和为 0</li>
+</ul>
+</li>
+<li>状态空间上定义的初始概率分布</li>
+</ul>
+<h3 id="三种等价的定义"><a href="#三种等价的定义" class="headerlink" title="三种等价的定义"></a>三种等价的定义</h3><h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p>[1] <a href="https://en.wikipedia.org/wiki/Markov_chain" target="_blank" rel="noopener">Wikipedia：Markov Chain</a></p>
+<p>[2] <a href="https://en.wikipedia.org/wiki/Markov_property" target="_blank" rel="noopener">Wikipedia：Markov Property</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Math/" rel="tag"># Math</a>
+          
+            <a href="/tags/Machine-Learning/" rel="tag"># Machine Learning</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/12/cpp-stl-map/" rel="next" title="C++ 学习笔记 - STL：map">
+                <i class="fa fa-chevron-left"></i> C++ 学习笔记 - STL：map
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/01/18/POJ-1753：Flip-Game/" rel="prev" title="POJ 1753：Flip Game">
+                POJ 1753：Flip Game <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Han Qi</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">83</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-name">分类</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#例子"><span class="nav-number">1.1.</span> <span class="nav-text">例子</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#示例"><span class="nav-number">2.</span> <span class="nav-text">示例</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#马尔可夫性质-2"><span class="nav-number">3.</span> <span class="nav-text">马尔可夫性质 $^{[2]}$</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#强（Strong）马尔可夫性质"><span class="nav-number">3.0.1.</span> <span class="nav-text">强（Strong）马尔可夫性质</span></a></li></ol></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#正式定义"><span class="nav-number">4.</span> <span class="nav-text">正式定义</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#离散时间马尔可夫链"><span class="nav-number">4.1.</span> <span class="nav-text">离散时间马尔可夫链</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#变体"><span class="nav-number">4.1.1.</span> <span class="nav-text">变体</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#连续时间马尔可夫链"><span class="nav-number">4.2.</span> <span class="nav-text">连续时间马尔可夫链</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#三种等价的定义"><span class="nav-number">4.2.1.</span> <span class="nav-text">三种等价的定义</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Han Qi</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> 访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+  
+
+
+  
+
+  
+
+</body>
+</html>

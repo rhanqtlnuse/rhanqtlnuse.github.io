@@ -265,7 +265,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/28/C-学习笔记-基础篇：继承/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/28/cpp-basic-inheriant/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Han Qi">
@@ -284,7 +284,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/01/28/C-学习笔记-基础篇：继承/" itemprop="url">C++ 学习笔记 - 基础篇：继承</a></h1>
+                <a class="post-title-link" href="/2019/01/28/cpp-basic-inheriant/" itemprop="url">C++ 学习笔记 - 基础篇：继承</a></h1>
         
 
         <div class="post-meta">
@@ -353,7 +353,7 @@
 <p>virtual-specifier 与 access-specifier 可以任意顺序出现。</p>
 <p>同一类不能指定于直接基类多于一次，但同一类可以既是直接又是间接基类。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Base</span> &#123;</span> &#125;;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Derived</span> :</span> Base, Base &#123; &#125;;</span><br></pre></td></tr></table></figure>
-<img src="/2019/01/28/C-学习笔记-基础篇：继承/more-than-once.png">
+<img src="/2019/01/28/cpp-basic-inheriant/more-than-once.png">
 <h2 id="虚基类"><a href="#虚基类" class="headerlink" title="虚基类"></a>虚基类</h2><p>对于每个指定为 <code>virtual</code> 的相异基类，最终派生类对象仅含有该类型的一个基类子对象，即使该类在继承层级中出现多次（只要它每次都以 <code>virtual</code> 继承）。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">B</span> &#123;</span> <span class="keyword">int</span> n; &#125;;</span><br><span class="line"><span class="comment">// 顺序是任意的</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">X</span> :</span> <span class="keyword">public</span> <span class="keyword">virtual</span> B &#123;&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Y</span> :</span> <span class="keyword">virtual</span> <span class="keyword">public</span> B &#123;&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Z</span> :</span> <span class="keyword">public</span> B &#123;&#125;;</span><br><span class="line"><span class="comment">// 每个 AA 类型对象拥有一个 X ，一个 Y ，一个 Z 和二个 B ：</span></span><br><span class="line"><span class="comment">// 其一是 Z 的基类，另一者为 X 与 Y 所共享</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">AA</span> :</span> X, Y, Z &#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        X::n = <span class="number">1</span>; <span class="comment">// 修改虚 B 基类子对象的成员</span></span><br><span class="line">        Y::n = <span class="number">2</span>; <span class="comment">// 修改同一虚 B 基类子对象的成员</span></span><br><span class="line">        Z::n = <span class="number">3</span>; <span class="comment">// 修改非虚 B 基类子对象的成员</span></span><br><span class="line"> </span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; X::n &lt;&lt; Y::n &lt;&lt; Z::n &lt;&lt; <span class="string">'\n'</span>; <span class="comment">// 打印 223</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <p>继承层级有虚基类的例子之一是标准库的 <code>iostream</code> 的继承层级： <a href="https://zh.cppreference.com/w/cpp/io/basic_istream" target="_blank" rel="noopener">std::istream</a> 与 <a href="https://zh.cppreference.com/w/cpp/io/basic_ostream" target="_blank" rel="noopener">std::ostream</a> 从 <a href="https://zh.cppreference.com/w/cpp/io/basic_ios" target="_blank" rel="noopener">std::ios</a> 使用虚继承派生。 <a href="https://zh.cppreference.com/w/cpp/io/basic_iostream" target="_blank" rel="noopener">std::iostream</a> 继承 <a href="https://zh.cppreference.com/w/cpp/io/basic_istream" target="_blank" rel="noopener">std::istream</a> 和 <a href="https://zh.cppreference.com/w/cpp/io/basic_ostream" target="_blank" rel="noopener">std::ostream</a> ，故每个 <a href="https://zh.cppreference.com/w/cpp/io/basic_iostream" target="_blank" rel="noopener">std::iostream</a> 实例含一个 <a href="https://zh.cppreference.com/w/cpp/io/basic_ostream" target="_blank" rel="noopener">std::ostream</a> 子对象、一个 <a href="https://zh.cppreference.com/w/cpp/io/basic_istream" target="_blank" rel="noopener">std::istream</a> 子对象和仅一个 <a href="https://zh.cppreference.com/w/cpp/io/basic_ios" target="_blank" rel="noopener">std::ios</a> 子对象。</p>
@@ -440,7 +440,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/27/Java-学习笔记-基础篇：多线程/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/27/java-basic-thread/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Han Qi">
@@ -459,7 +459,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/01/27/Java-学习笔记-基础篇：多线程/" itemprop="url">Java 学习笔记 - 基础篇：多线程</a></h1>
+                <a class="post-title-link" href="/2019/01/27/java-basic-thread/" itemprop="url">Java 学习笔记 - 基础篇：多线程</a></h1>
         
 
         <div class="post-meta">
@@ -559,7 +559,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/27/Java-学习笔记-基础篇：日期操作/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/27/java-basic-date/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Han Qi">
@@ -578,7 +578,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/01/27/Java-学习笔记-基础篇：日期操作/" itemprop="url">Java 学习笔记 - 基础篇：日期操作</a></h1>
+                <a class="post-title-link" href="/2019/01/27/java-basic-date/" itemprop="url">Java 学习笔记 - 基础篇：日期操作</a></h1>
         
 
         <div class="post-meta">
@@ -678,7 +678,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/27/Java-学习笔记-基础篇：枚举类/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/27/java-basic-enum/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Han Qi">
@@ -697,7 +697,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/01/27/Java-学习笔记-基础篇：枚举类/" itemprop="url">Java 学习笔记 - 基础篇：枚举类</a></h1>
+                <a class="post-title-link" href="/2019/01/27/java-basic-enum/" itemprop="url">Java 学习笔记 - 基础篇：枚举类</a></h1>
         
 
         <div class="post-meta">
@@ -1050,7 +1050,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/14/机器学习数学基础-概率统计：马尔可夫链/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/14/math-prob-stat-markov/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Han Qi">
@@ -1069,7 +1069,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/01/14/机器学习数学基础-概率统计：马尔可夫链/" itemprop="url">机器学习数学基础 - 概率统计：马尔可夫链</a></h1>
+                <a class="post-title-link" href="/2019/01/14/math-prob-stat-markov/" itemprop="url">机器学习数学基础 - 概率统计：马尔可夫链</a></h1>
         
 
         <div class="post-meta">
@@ -1261,7 +1261,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/12/C-学习笔记-STL：map/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/12/cpp-stl-map/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Han Qi">
@@ -1280,7 +1280,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/01/12/C-学习笔记-STL：map/" itemprop="url">C++ 学习笔记 - STL：map</a></h1>
+                <a class="post-title-link" href="/2019/01/12/cpp-stl-map/" itemprop="url">C++ 学习笔记 - STL：map</a></h1>
         
 
         <div class="post-meta">
@@ -1380,7 +1380,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/11/C-学习笔记-基础篇：类的构造和析构/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/11/cpp-basic-construct-destruct/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Han Qi">
@@ -1399,7 +1399,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/01/11/C-学习笔记-基础篇：类的构造和析构/" itemprop="url">C++ 学习笔记 - 基础篇：类的构造和析构</a></h1>
+                <a class="post-title-link" href="/2019/01/11/cpp-basic-construct-destruct/" itemprop="url">C++ 学习笔记 - 基础篇：类的构造和析构</a></h1>
         
 
         <div class="post-meta">
@@ -1488,7 +1488,7 @@
 <p>RAII 要求，资源的有效期与持有资源的对象的生命期严格绑定，即由对象的构造函数完成资源的分配（获取），同时由析构函数完成资源的释放。在这种要求下，只要对象能正确地析构，就不会出现资源泄露的问题。$^{[1]}$</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/01/11/C-学习笔记-基础篇：类的构造和析构/#more" rel="contents">
+            <a class="btn" href="/2019/01/11/cpp-basic-construct-destruct/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1539,7 +1539,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/11/C-学习笔记-基础篇：友元/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/11/cpp-basic-friend/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Han Qi">
@@ -1558,7 +1558,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/01/11/C-学习笔记-基础篇：友元/" itemprop="url">C++ 学习笔记 - 基础篇：友元</a></h1>
+                <a class="post-title-link" href="/2019/01/11/cpp-basic-friend/" itemprop="url">C++ 学习笔记 - 基础篇：友元</a></h1>
         
 
         <div class="post-meta">

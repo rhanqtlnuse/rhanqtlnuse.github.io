@@ -1,0 +1,1205 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+  <link rel="stylesheet" media="all" href="/lib/Han/dist/han.min.css?v=3.3">
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/logo.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/logo.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="RHANQTL" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="概述在介绍 C++ 的类构造和析构之前，先介绍一个重要的原则：RAII。 RAII 源于 C++，是 Bjarne Stroustrup 和 Andrew Koenig) 在设计 C++ 异常时，为解决资源管理的异常安全性而使用的方法，后来 Bjarne 称之为 RAII。 RAII 要求，资源的有效期与持有资源的对象的生命期严格绑定，即由对象的构造函数完成资源的分配（获取），同时由析构函数完成资">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++ 学习笔记 - 基础篇：类的构造和析构">
+<meta property="og:url" content="http://yoursite.com/2019/01/11/cpp-basic-construct-destruct/index.html">
+<meta property="og:site_name" content="RHANQTL">
+<meta property="og:description" content="概述在介绍 C++ 的类构造和析构之前，先介绍一个重要的原则：RAII。 RAII 源于 C++，是 Bjarne Stroustrup 和 Andrew Koenig) 在设计 C++ 异常时，为解决资源管理的异常安全性而使用的方法，后来 Bjarne 称之为 RAII。 RAII 要求，资源的有效期与持有资源的对象的生命期严格绑定，即由对象的构造函数完成资源的分配（获取），同时由析构函数完成资">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2019/01/11/cpp-basic-construct-destruct/initializer-order.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/11/cpp-basic-construct-destruct/second-way.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/11/cpp-basic-construct-destruct/multi-delegate.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/11/cpp-basic-construct-destruct/delegate-after.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/11/cpp-basic-construct-destruct/shallow-copy.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/11/cpp-basic-construct-destruct/deep-copy.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/11/cpp-basic-construct-destruct/transfer-non-const-ref.png">
+<meta property="og:updated_time" content="2019-01-17T11:41:12.377Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="C++ 学习笔记 - 基础篇：类的构造和析构">
+<meta name="twitter:description" content="概述在介绍 C++ 的类构造和析构之前，先介绍一个重要的原则：RAII。 RAII 源于 C++，是 Bjarne Stroustrup 和 Andrew Koenig) 在设计 C++ 异常时，为解决资源管理的异常安全性而使用的方法，后来 Bjarne 称之为 RAII。 RAII 要求，资源的有效期与持有资源的对象的生命期严格绑定，即由对象的构造函数完成资源的分配（获取），同时由析构函数完成资">
+<meta name="twitter:image" content="http://yoursite.com/2019/01/11/cpp-basic-construct-destruct/initializer-order.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/01/11/cpp-basic-construct-destruct/">
+
+
+
+
+
+  <title>C++ 学习笔记 - 基础篇：类的构造和析构 | RHANQTL</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">RHANQTL</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/11/cpp-basic-construct-destruct/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">C++ 学习笔记 - 基础篇：类的构造和析构</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-11T20:23:31+08:00">
+                2019-01-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Programming-Languages/" itemprop="url" rel="index">
+                    <span itemprop="name">Programming Languages</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Programming-Languages/C/" itemprop="url" rel="index">
+                    <span itemprop="name">C++</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 浏览
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>在介绍 C++ 的类构造和析构之前，先介绍一个重要的原则：RAII。</p>
+<p>RAII 源于 C++，是 <a href="https://en.wikipedia.org/wiki/Bjarne_Stroustrup" target="_blank" rel="noopener">Bjarne Stroustrup</a> 和 <a href="https://en.wikipedia.org/wiki/Andrew_Koenig_(programmer\" target="_blank" rel="noopener">Andrew Koenig</a>) 在设计 C++ 异常时，为解决资源管理的异常安全性而使用的方法，后来 Bjarne 称之为 RAII。</p>
+<p>RAII 要求，资源的有效期与持有资源的对象的生命期严格绑定，即由对象的构造函数完成资源的分配（获取），同时由析构函数完成资源的释放。在这种要求下，只要对象能正确地析构，就不会出现资源泄露的问题。$^{[1]}$</p>
+<a id="more"></a>
+<h1 id="类的构造函数"><a href="#类的构造函数" class="headerlink" title="类的构造函数"></a>类的构造函数</h1><p>在 C++ 中，类的构造函数有以下几种：</p>
+<ul>
+<li>普通的构造函数</li>
+<li>委托构造函数</li>
+<li>复制构造函数</li>
+<li>移动构造函数</li>
+<li>转换构造函数</li>
+</ul>
+<p>C++ 11 中还引入了一个新的特性：初始化列表，可以用于简化对象的构造。</p>
+<h2 id="普通构造函数"><a href="#普通构造函数" class="headerlink" title="普通构造函数"></a>普通构造函数</h2><p>// TODO: 默认构造函数，成员默认值</p>
+<ul>
+<li>注意构造函数的声明/定义中<strong>没有</strong>返回值，并不是 <code>void</code></li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Dummy(...) &#123;</span><br><span class="line">    <span class="comment">// do something</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>默认构造函数、成员默认值</p>
+</li>
+<li><p>执行顺序</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dummy</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    <span class="keyword">char</span> c;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    Dummy(<span class="keyword">int</span> i, <span class="keyword">char</span> c): i(i), c(c) &#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"i = "</span> &lt;&lt; i &lt;&lt; <span class="string">", c = "</span> &lt;&lt; c &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>执行 <code>Dummy d(1, &#39;a&#39;)</code>。我们已经知道，<code>i</code> 和 <code>c</code> 的默认值分别为 <code>0</code> 和 <code>&#39;\0&#39;</code>，如果：</p>
+<ul>
+<li>成员初始化列表先执行，那么输出应该是 <code>i = 1, c = a</code></li>
+<li>成员初始化列表后执行，那么输出应该是 <code>i = 0, c = &lt;某个奇怪的字符&gt;</code></li>
+</ul>
+<p>执行结果：</p>
+<img src="/2019/01/11/cpp-basic-construct-destruct/initializer-order.png">
+<p>说明执行顺序为：成员初始化列表 $\rightarrow$ 构造函数体</p>
+</li>
+<li><p>成员初始化列表能做什么？</p>
+<ul>
+<li></li>
+</ul>
+</li>
+</ul>
+<h2 id="委托构造函数"><a href="#委托构造函数" class="headerlink" title="委托构造函数"></a>委托构造函数</h2><p>委托构造函数是 C++ 11 引入的特性。“委托构造函数”，顾名思义，就是将对象的构造委托给另一个构造函数。我们先来看看不使用委托构造函数的情况：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 为了节省空间直接在类中定义</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dummy</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    <span class="keyword">char</span> c;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    Dummy(): i(<span class="number">0</span>), c(<span class="string">'\0'</span>) &#123; &#125;</span><br><span class="line">    Dummy(<span class="keyword">int</span> i) &#123;</span><br><span class="line">        <span class="keyword">if</span> (i &lt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="built_in">std</span>::<span class="built_in">cerr</span> &lt;&lt; <span class="string">"i 应该为非负数"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">this</span>-&gt;i = i;</span><br><span class="line">            <span class="keyword">this</span>-&gt;c = <span class="string">'\0'</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    Dummy(<span class="keyword">char</span> c) &#123;</span><br><span class="line">        <span class="keyword">if</span> (!<span class="built_in">isdigit</span>(c) &amp;&amp; !<span class="built_in">isalpha</span>(c) &amp;&amp; c != <span class="string">'_'</span>) &#123;</span><br><span class="line">            <span class="built_in">std</span>::<span class="built_in">cerr</span> &lt;&lt; <span class="string">"c 应该为字母、数字、下划线或空字符"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">this</span>-&gt;i = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">this</span>-&gt;c = c;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    Dummy(<span class="keyword">int</span> i, <span class="keyword">char</span> c) &#123;</span><br><span class="line">        <span class="keyword">if</span> (i &lt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="built_in">std</span>::<span class="built_in">cerr</span> &lt;&lt; <span class="string">"i 应该为非负数"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (!<span class="built_in">isdigit</span>(c) &amp;&amp; !<span class="built_in">isalpha</span>(c) &amp;&amp; c != <span class="string">'_'</span> &amp;&amp; c != <span class="string">'\0'</span>) &#123;</span><br><span class="line">                <span class="built_in">std</span>::<span class="built_in">cerr</span> &lt;&lt; <span class="string">"c 应该为字母、数字、下划线或空字符"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">this</span>-&gt;i = i;</span><br><span class="line">                <span class="keyword">this</span>-&gt;c = c;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>这个例子仅仅是一个规模很小的类，试想一下，如果是一个规模很大的类，我们就需要编写大量的重复代码，代码的复用性不好，可维护性也很差。使用委托构造函数可以避免这个问题：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dummy</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    <span class="keyword">char</span> c;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    Dummy(): Dummy(<span class="number">0</span>, <span class="string">'\0'</span>) &#123; &#125;</span><br><span class="line">    Dummy(<span class="keyword">int</span> i): Dummy(i, <span class="string">'\0'</span>) &#123; &#125;</span><br><span class="line">    Dummy(<span class="keyword">char</span> c): Dummy(<span class="number">0</span>, c) &#123; &#125;</span><br><span class="line">    Dummy(<span class="keyword">int</span> i, <span class="keyword">char</span> c) &#123;</span><br><span class="line">        <span class="keyword">if</span> (i &lt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="built_in">std</span>::<span class="built_in">cerr</span> &lt;&lt; <span class="string">"i 应该为非负数"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (!<span class="built_in">isdigit</span>(c) &amp;&amp; !<span class="built_in">isalpha</span>(c) &amp;&amp; c != <span class="string">'_'</span> &amp;&amp; c != <span class="string">'\0'</span>) &#123;</span><br><span class="line">                <span class="built_in">std</span>::<span class="built_in">cerr</span> &lt;&lt; <span class="string">"c 应该为字母、数字、下划线或空字符"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">this</span>-&gt;i = i;</span><br><span class="line">                <span class="keyword">this</span>-&gt;c = c;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>代码一下子就短了不少！（当然，你要是说偏不使用委托构造函数，而是把代码写在一行里，我也没意见，但是这么写你可能会被同组的人或者你的 Leader 打死）。当然，让代码变短并不是主要目的（万一公司是按代码行数算工资的呢），我们的主要目的是提高代码的复用程度和可维护性，使用委托构造函数，只需要维护一份代码。</p>
+<h3 id="使用委托构造函数需要注意的问题"><a href="#使用委托构造函数需要注意的问题" class="headerlink" title="使用委托构造函数需要注意的问题"></a>使用委托构造函数需要注意的问题</h3><ul>
+<li><p>委托构造函数的写法</p>
+<ul>
+<li><p>第一种写法</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Dummy(): Dummy(<span class="number">0</span>, <span class="string">'\0'</span>) &#123; &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>第二种写法</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Dummy() &#123;</span><br><span class="line">    Dummy(<span class="number">0</span>, <span class="string">'\0'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>两种写法都合法，但是第二种写法在 CLion 中会提示：</p>
+<img src="/2019/01/11/cpp-basic-construct-destruct/second-way.png">
+<p>所以应该使用第一种写法。</p>
+</li>
+</ul>
+<ul>
+<li><p>将构造对象的职责委托给谁？普遍规则是含有最多参数的构造函数</p>
+</li>
+<li><p>一个构造函数只能委托一个构造函数</p>
+<p>《C++ Primer》中有这样一段话：</p>
+<blockquote>
+<p>在委托构造函数内，成员的初始值列表只有一个<strong>唯一</strong>的入口，就是类名本身。和其他成员初始值一样，类名后面紧跟圆括号括起来的参数列表，参数列表必须与类中另外一个构造函数匹配。</p>
+</blockquote>
+<p>注意这个“唯一”，就是说如下的写法是<strong>不合法</strong>的：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Dummy(<span class="keyword">int</span> i, <span class="keyword">char</span> c): Dummy(<span class="number">0</span>), Dummy(c) &#123; &#125;</span><br></pre></td></tr></table></figure>
+<p>在 CLion 中会有这样的提示：</p>
+<img src="/2019/01/11/cpp-basic-construct-destruct/multi-delegate.png">
+</li>
+<li><p>使用委托构造函数时，不能再进行成员列表初始化</p>
+</li>
+</ul>
+<ul>
+<li><p>原因：</p>
+</li>
+<li><p>那么问题来了：能不能先用初始化列表初始化一部分成员再使用委托？比如这样：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dummy</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    <span class="keyword">char</span> c;</span><br><span class="line">    <span class="keyword">double</span> d;</span><br><span class="line">    <span class="keyword">float</span> f;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    Dummy(): i(<span class="number">1</span>), c(<span class="string">'a'</span>), Dummy(<span class="number">1.0</span>, <span class="number">2.0</span>) &#123; &#125;</span><br><span class="line">    Dummy(<span class="keyword">double</span> d, <span class="keyword">float</span> f) &#123;</span><br><span class="line">        <span class="keyword">this</span>-&gt;d = d;</span><br><span class="line">        <span class="keyword">this</span>-&gt;f = f;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>这时 CLion 会报这样的错误：</p>
+<img src="/2019/01/11/cpp-basic-construct-destruct/delegate-after.png">
+<p>而如果进行编译，编译器会产生如下的错误：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">error: constructor delegation follows mem-initializer for &apos;Dummy::c&apos;</span><br><span class="line">     Dummy(): i(1), c(&apos;\0&apos;), Dummy(2.0, 1.0) &#123; &#125;</span><br><span class="line">                                           ^</span><br></pre></td></tr></table></figure>
+<p>所以，如果要在初始化列表中使用委托构造，只能单独使用。但是可以在方法体中对成员<strong>重新赋值</strong>（注意：这时就不能叫做初始化了，因为成员已经由初始化列表或者默认构造函数初始化过了）</p>
+</li>
+</ul>
+<h2 id="复制（拷贝）构造函数"><a href="#复制（拷贝）构造函数" class="headerlink" title="复制（拷贝）构造函数"></a>复制（拷贝）构造函数</h2><p>拷贝构造函数的参数必须是本类的一个<strong>引用变量</strong>：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Dummy(<span class="keyword">const</span> Dummy &amp;that) &#123;</span><br><span class="line">    <span class="comment">// do something</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a href="cppreference.com">cppreference.com</a> 对于拷贝构造函数的参数有如下规定：</p>
+<p>第一个参数如下：</p>
+<ul>
+<li><code>T&amp;</code></li>
+<li><code>const T&amp;</code></li>
+<li><code>volatile T&amp;</code></li>
+<li><code>const volatile T&amp;</code></li>
+</ul>
+<p>没有其余参数或者其余参数都有默认值。可以声明多个复制构造函数。</p>
+<ol>
+<li><code>class_name(const class_name &amp;)</code></li>
+<li><code>class_name(const class_name &amp;) = default;</code></li>
+<li><code>class_name(const class_name &amp;) = delete;</code> $^{[9]}$</li>
+</ol>
+<h3 id="浅拷贝与深拷贝"><a href="#浅拷贝与深拷贝" class="headerlink" title="浅拷贝与深拷贝"></a>浅拷贝与深拷贝</h3><h4 id="浅拷贝"><a href="#浅拷贝" class="headerlink" title="浅拷贝"></a>浅拷贝</h4><p>假设我们有这样一个类：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 为了节省空间直接在类中定义</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dummy</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">char</span> *str;</span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    Dummy(<span class="keyword">char</span> *str, <span class="keyword">int</span> i): str(str), i(i) &#123; &#125;</span><br><span class="line">    Dummy(<span class="keyword">const</span> Dummy &amp;that) &#123;</span><br><span class="line">        <span class="keyword">this</span>-&gt;str = that.str;</span><br><span class="line">        <span class="keyword">this</span>-&gt;i = that.i;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">modifyString</span><span class="params">(<span class="keyword">int</span> index, <span class="keyword">char</span> c)</span> </span>&#123;</span><br><span class="line">        str[index] = c;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">modifyInteger</span><span class="params">(<span class="keyword">int</span> newValue)</span> </span>&#123;</span><br><span class="line">        i = newValue;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"str = "</span> &lt;&lt; str &lt;&lt; <span class="string">", i = "</span> &lt;&lt; i &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>我们来调用一下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">char</span> str[] = <span class="string">"example"</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="function">Dummy <span class="title">one</span><span class="params">(str, <span class="number">64</span>)</span></span>;</span><br><span class="line">    <span class="function">Dummy <span class="title">another</span><span class="params">(one)</span></span>;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"对象刚刚构造："</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"  one: "</span>;</span><br><span class="line">    one.print();</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"  another: "</span>;</span><br><span class="line">    another.print();</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    </span><br><span class="line">    one.modifyString(<span class="number">2</span>, <span class="string">'e'</span>);</span><br><span class="line">    one.modifyInteger(<span class="number">128</span>);</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"对 one 进行修改之后："</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"  one: "</span>;</span><br><span class="line">    one.print();</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"  another: "</span>;</span><br><span class="line">    another.print();</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">对象刚刚构造：</span><br><span class="line">  one: str = example, i = 64</span><br><span class="line">  another: str = example, i = 64</span><br><span class="line"></span><br><span class="line">对 one 进行修改之后：</span><br><span class="line">  one: str = exemple, i = 128</span><br><span class="line">  another: str = exemple, i = 64</span><br></pre></td></tr></table></figure>
+<p>注意到对 <code>one</code> 进行修改之后，两个对象的 <code>str</code> 都变成了 <code>&quot;exemple&quot;</code>（先不管 <code>i</code> 的值）这种方式就叫做浅拷贝：对于指针，只拷贝指针的值，而不拷贝指针指向的值。</p>
+<img src="/2019/01/11/cpp-basic-construct-destruct/shallow-copy.png">
+<h4 id="深拷贝"><a href="#深拷贝" class="headerlink" title="深拷贝"></a>深拷贝</h4><p>我们将 <code>Dummy</code> 类的拷贝构造函数改写如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Dummy(<span class="keyword">const</span> Dummy &amp;that) &#123;</span><br><span class="line">    <span class="keyword">int</span> len = <span class="built_in">strlen</span>(that.str);</span><br><span class="line">    <span class="keyword">this</span>-&gt;str = <span class="keyword">new</span> <span class="keyword">char</span>[len + <span class="number">1</span>];</span><br><span class="line">    <span class="built_in">strncpy</span>(<span class="keyword">this</span>-&gt;str, that.str, len);</span><br><span class="line">    <span class="keyword">this</span>-&gt;i = that.i;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>再次运行上面的 <code>main</code> 函数，输出如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">对象刚刚构造：</span><br><span class="line">  one: str = example, i = 64</span><br><span class="line">  another: str = example, i = 64</span><br><span class="line"></span><br><span class="line">对 one 进行修改之后：</span><br><span class="line">  one: str = exemple, i = 128</span><br><span class="line">  another: str = example, i = 64</span><br></pre></td></tr></table></figure>
+<p>注意到这次 <code>another</code> 的 <code>str</code> 并没有被修改，也就是说 <code>another</code> 创建并维护了 <code>&quot;example&quot;</code> 这个字符串（字符数组）的一个副本，改动 <code>one</code> 并不会对 <code>another</code> 造成影响，这就是深拷贝。</p>
+<img src="/2019/01/11/cpp-basic-construct-destruct/deep-copy.png">
+<p>当然，深/浅拷贝的主要关注点并不仅仅是上面的例子，其主要关注点是资源的管理。</p>
+<p>延续上面的例子，如果使用浅拷贝，在 <code>main</code> 结束时先执行 <code>one</code> 的析构函数，释放了 <code>str</code>，然后对 <code>another</code> 进行析构时就会出错，因为两个对象的 <code>str</code> 实际上是指向同一块动态分配的内存，析构 <code>another</code> 时相当于又释放了一次该内存块，就会出错；而如果使用深拷贝，由于两个对象的 <code>str</code> 指向两块动态分配的内存，<code>delete</code> 就不会有问题。</p>
+<h3 id="非指针的拷贝"><a href="#非指针的拷贝" class="headerlink" title="非指针的拷贝"></a>非指针的拷贝</h3><p>对于非指针，无所谓深拷贝、浅拷贝，都是将属性的值复制。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Pair</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">int</span> x;</span><br><span class="line">    <span class="keyword">int</span> y;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    Pair(): Pair(<span class="number">0</span>, <span class="number">0</span>) &#123; &#125;</span><br><span class="line">    Pair(<span class="keyword">int</span> x, <span class="keyword">int</span> y): x(x),y(y) &#123; &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">incX</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        x = x + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">incY</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        y = y + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"("</span> &lt;&lt; x &lt;&lt; <span class="string">", "</span> &lt;&lt; y &lt;&lt; <span class="string">")"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>在 <code>Dummy</code> 类中增加如下方法：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">modifyPair</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    p.incX();</span><br><span class="line">    p.incY();</span><br><span class="line">    p.incY();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>修改 <code>Dummy</code> 类的拷贝构造函数和 <code>print</code></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Dummy(<span class="keyword">const</span> Dummy &amp;that) &#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="keyword">size_t</span> len = <span class="built_in">strlen</span>(that.str);</span><br><span class="line">    <span class="keyword">this</span>-&gt;str = <span class="keyword">new</span> <span class="keyword">char</span>[len + <span class="number">1</span>];</span><br><span class="line">    <span class="built_in">strncpy</span>(<span class="keyword">this</span>-&gt;str, that.str, len);</span><br><span class="line">    <span class="keyword">this</span>-&gt;i = that.i;</span><br><span class="line">    <span class="keyword">this</span>-&gt;p = that.p;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"str = "</span> &lt;&lt; str &lt;&lt; <span class="string">", i = "</span> &lt;&lt; i &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"  "</span>;</span><br><span class="line">    p.print();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>修改 <code>main</code></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">char</span> str[<span class="number">8</span>] = <span class="string">"example"</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function">Dummy <span class="title">one</span><span class="params">(str, <span class="number">64</span>)</span></span>;</span><br><span class="line">    <span class="function">Dummy <span class="title">another</span><span class="params">(one)</span></span>;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"对象刚刚构造："</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"  one: "</span>;</span><br><span class="line">    one.print();</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"  another: "</span>;</span><br><span class="line">    another.print();</span><br><span class="line"></span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">    one.modifyString(<span class="number">2</span>, <span class="string">'e'</span>);</span><br><span class="line">    one.modifyInteger(<span class="number">128</span>);</span><br><span class="line">    one.modifyPair();</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"对 one 进行修改之后："</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"  one: "</span>;</span><br><span class="line">    one.print();</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"  another: "</span>;</span><br><span class="line">    another.print();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">对象刚刚构造：</span><br><span class="line">  one: str = example, i = 64</span><br><span class="line">  (0, 0)</span><br><span class="line">  another: str = example, i = 64</span><br><span class="line">  (0, 0)</span><br><span class="line"></span><br><span class="line">对 one 进行修改之后：</span><br><span class="line">  one: str = exemple, i = 128</span><br><span class="line">  (1, 2)</span><br><span class="line">  another: str = example, i = 64</span><br><span class="line">  (0, 0)</span><br></pre></td></tr></table></figure>
+<p>如果非指针属性中有指针，那么就需要递归地进行拷贝（取决于怎么写）（这个过程应该是运行时进行的）</p>
+<p>如果没有显式定义，编译器会增加一个默认的拷贝构造函数，浅拷贝：将 <code>Dummy</code> 类的拷贝构造函数去掉，运行 <code>main</code>，输出会与浅拷贝相同</p>
+<ul>
+<li><p>默认拷贝构造函数是有问题的：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dummy</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">int</span> objectCount;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    Dummy() &#123;</span><br><span class="line">        objectCount++;</span><br><span class="line">    &#125;</span><br><span class="line">    ~Dummy() &#123;</span><br><span class="line">        objectCount--;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">getCount</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> count;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> Dummy::objectCount = <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
+<p>如果有如下的 <code>main</code> 函数</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    Dummy *d1 = <span class="keyword">new</span> Dummy();</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"after constructing d1: "</span> &lt;&lt; Dummy::getCount() &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    Dummy *d2 = <span class="keyword">new</span> Dummy(*d1);</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"after constructing d2: "</span> &lt;&lt; Dummy::getCount() &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">delete</span> d2;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"after destructing d1: "</span> &lt;&lt; Dummy::getCount() &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">delete</span> d1;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"after destructing d2: "</span> &lt;&lt; Dummy::getCount() &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出结果为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">after constructing d1: 1</span><br><span class="line">after constructing d2: 1</span><br><span class="line">after destructing d1: 0</span><br><span class="line">after destructing d2: -1</span><br></pre></td></tr></table></figure>
+<p>也就是说，默认的构造函数只是简单地对成员进行赋值。</p>
+</li>
+</ul>
+<h4 id="防止默认拷贝"><a href="#防止默认拷贝" class="headerlink" title="防止默认拷贝"></a>防止默认拷贝</h4><p>将拷贝构造函数声明为 <code>private</code></p>
+<h3 id="拷贝构造函数的调用时机"><a href="#拷贝构造函数的调用时机" class="headerlink" title="拷贝构造函数的调用时机"></a>拷贝构造函数的调用时机</h3><ul>
+<li><p>对象以<strong>值传递</strong>的方式作为函数参数</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">doSomething</span><span class="params">(Dummy d)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// do something</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>将实参的值拷贝给形参 <code>d</code></li>
+<li>函数调用结束后析构 <code>d</code></li>
+</ol>
+</li>
+<li><p>对象以<strong>值传递</strong>的方式从函数返回</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Dummy <span class="title">doSomething</span><span class="params">(...)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// do something</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>对象需要通过另外一个对象进行初始化</p>
+<ul>
+<li><p>显式调用</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Dummy <span class="title">d1</span><span class="params">(...)</span></span>;</span><br><span class="line"><span class="function">Dummy <span class="title">d2</span><span class="params">(d1)</span></span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>隐式调用</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Dummy <span class="title">d1</span><span class="params">(...)</span></span>;</span><br><span class="line">Dummy d2 = d1;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="移动构造函数-6"><a href="#移动构造函数-6" class="headerlink" title="移动构造函数 $^{[6]}$"></a>移动构造函数 $^{[6]}$</h2><p>移动语义是 C++ 11 引入的新特性。</p>
+<p><a href="cppreference.com">cppreference.com</a> 对移动构造函数的定义如下：类 T 的移动构造函数是非模板构造函数，其首参数是 <code>T&amp;&amp;</code>、<code>const T&amp;&amp;</code>、<code>volatile T&amp;&amp;</code>、<code>const volatile T&amp;&amp;</code>，无其他参数或者剩余参数均有默认值。</p>
+<p>语法如下：</p>
+<ol>
+<li><code>class_name(class_name &amp;&amp;);</code>：典型声明</li>
+<li><code>class_name(class_name &amp;&amp;) = default;</code>：强制编译器生成移动构造函数</li>
+<li><code>class_name(class_name &amp;&amp;) = delete;</code>：避免隐式移动构造函数</li>
+</ol>
+<p>典型的移动构造函数“窃取”参数曾所保有的资源（例如指向动态分配对象的指针、文件描述符、 TCP 接头、 I/O 流、运行的线程等），而非复制它们，并令参数在某个合法但不确定的状态。</p>
+<h3 id="什么是右值？"><a href="#什么是右值？" class="headerlink" title="什么是右值？"></a>什么是右值？</h3><p>在继续学习移动构造函数之前，先学习一个概念：右值。</p>
+<p>右值表达式包括纯右值、亡值。</p>
+<h4 id="纯右值"><a href="#纯右值" class="headerlink" title="纯右值"></a>纯右值</h4><p>下列表达式是纯右值表达式：</p>
+<ul>
+<li><p>（除了<a href="https://zh.cppreference.com/w/cpp/language/string_literal" target="_blank" rel="noopener">字符串字面量</a>之外的）字面量，例如 <code>42</code> 、 <code>true</code> 或 <code>nullptr</code>；</p>
+<ul>
+<li>字符串字面量不是纯右值表达式的原因简略地说就是，像 <code>42</code>、<code>true</code> 这些字面量因为其对应的类型（<code>int</code>、<code>bool</code>）有固定的长度，所以可以很容易地直接写在生成的机器码中（比如 <code>movl %eax, $42</code>），而不同的字符串的长度不总是相同，所以一般情况下是将字符串字面量作为内存中的<strong>数据对象</strong>，而“数据对象”这一概念就是左值。$^{[4]}$</li>
+</ul>
+</li>
+<li><p>函数调用或重载运算符表达式，其返回类型是<strong>非引用</strong>，例如 <code>str.substr(1, 2)</code>、<code>str1 + str2</code> 或 <code>it++</code>；</p>
+</li>
+<li><p>与运算相关的表达式（个人认为这一部分可以套用上一条，当作是返回类型为非引用的函数调用）</p>
+<ul>
+<li><p><code>a++</code> 与 <code>a--</code>，内建的后置自增与后置自减表达式；</p>
+<ul>
+<li><p>这一条要特别注意！对应地，<code>++a</code> 和 <code>--a</code> 是左值</p>
+</li>
+<li><p>原因比较容易想到：因为返回的是 <code>a</code> 之前的值，以如下类定义为例：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Integer</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">int</span> x;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">int</span> <span class="keyword">operator</span>++(<span class="keyword">int</span> dummy) &#123;</span><br><span class="line">        <span class="keyword">int</span> ret = x;</span><br><span class="line">        x++;</span><br><span class="line">        <span class="keyword">return</span> ret;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p><code>a + b</code> 、 <code>a % b</code> 、 <code>a &amp; b</code> 、 <code>a &lt;&lt; b</code> ，以及其他所有内建的算术表达式；</p>
+</li>
+<li><p><code>a &amp;&amp; b</code>、<code>a || b</code>、<code>!a</code>，内建的逻辑表达式；</p>
+</li>
+<li><p><code>a &lt; b</code>、<code>a == b</code>、<code>a &gt;= b</code> 以及其他所有内建的比较表达式；</p>
+</li>
+</ul>
+</li>
+<li><p>成员访问运算符 $^{[3]}$</p>
+<ul>
+<li><p><code>&amp;a</code>，内建的取地址表达式；</p>
+</li>
+<li><p>内建的成员访问运算符</p>
+<ul>
+<li><code>a.m</code>，对象成员表达式，其中 <code>m</code> 是成员枚举符或非静态成员函数（C++11 前，其中 <code>a</code> 为右值且 <code>m</code> 为非引用类型的非静态数据成员）；</li>
+<li><code>p-&gt;m</code>，内建的指针成员表达式，其中 <code>m</code> 为成员枚举符或非静态成员函数；</li>
+</ul>
+</li>
+<li><p>内建的成员指针访问运算符</p>
+<ul>
+<li><p><code>a.*mp</code>，对象的成员指针表达式，其中 <code>mp</code> 是指向成员函数的指针（C++11 前，其中 <code>a</code> 为右值且 <code>mp</code> 为指向数据成员的指针）；</p>
+</li>
+<li><p><code>p-&gt;*mp</code>，内建的指针的成员指针表达式，其中 <code>mp</code> 是指向成员函数的指针；</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><code>a, b</code>，内建的逗号表达式，其中 <code>b</code> 是右值；</p>
+</li>
+<li><p><code>a ? b : c</code>，某些 <code>b</code> 和 <code>c</code> 的三元条件表达式；</p>
+<ul>
+<li>如果 <code>b</code> 和 <code>c</code> 都是左值呢？</li>
+<li>如果 <code>b</code> 和 <code>c</code> 一个是左值一个是右值呢？</li>
+</ul>
+</li>
+<li><p>转换为<strong>非引用</strong>类型的转型表达式，例如 <code>static_cast&lt;double&gt;(x)</code>、<code>std::string{}</code> 或 <code>(int)42</code>；</p>
+</li>
+<li><p><code>this</code> 指针；</p>
+<ul>
+<li><p>原因：<code>this</code> 指针并不能像其他指针那样修改，并且实际上并未存储在某个位置，它的值是由编译器基于上下文确定的。$^{[5]}$对 <code>this</code> 取地址会出错：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">In member function &apos;void Dummy::f()&apos;:</span><br><span class="line">main.cpp:8:22: error: lvalue required as unary &apos;&amp;&apos; operand</span><br><span class="line">         Dummy **p = &amp;this;</span><br><span class="line">                      ^~~~</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>枚举项；</p>
+</li>
+<li><p><a href="https://zh.cppreference.com/w/cpp/language/lambda" target="_blank" rel="noopener">Lambda 表达式</a>，例如 <code>[](int x){ return x * x; }</code>；(C++11 起)</p>
+</li>
+</ul>
+<h5 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h5><ul>
+<li>右值共有的性质</li>
+<li>纯右值不能多态：它所标识的对象的动态类型始终为该表达式的类型。</li>
+<li>非类非数组的纯右值不能有 <a href="https://zh.cppreference.com/w/cpp/language/cv" target="_blank" rel="noopener">cv 限定</a>。（注意：函数调用或转型表达式可能生成非类的 cv 限定类型纯右值，但 cv 限定符被立即剥除。）</li>
+<li>纯右值不能具有<a href="https://zh.cppreference.com/w/cpp/language/type#.E4.B8.8D.E5.AE.8C.E6.95.B4.E7.B1.BB.E5.9E.8B" target="_blank" rel="noopener">不完整类型</a>。（除了类型 <code>void</code>（见下文），或在 <code>decltype</code> 指定符中使用之外）</li>
+</ul>
+<h4 id="亡值"><a href="#亡值" class="headerlink" title="亡值"></a>亡值</h4><p>下列表达式是亡值表达式：</p>
+<ul>
+<li>函数调用或重载运算符表达式，其返回类型为<strong>右值引用</strong>，例如 <code>std::move(x)</code>；</li>
+<li><code>a[n]</code>，内建的下标表达式，其操作数之一是数组右值；</li>
+<li>成员访问运算符<ul>
+<li><code>a.m</code>，对象成员表达式，其中 <code>a</code> 是右值且 <code>m</code> 是非引用类型的非静态数据成员；<ul>
+<li>C++ 11 前，这是“右值”</li>
+</ul>
+</li>
+<li><code>a.*mp</code>，对象的成员指针表达式，其中 <code>a</code> 为右值且 <code>mp</code> 为指向数据成员的指针；<ul>
+<li>C++ 11 前，这是“右值”</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>a ? b : c</code>，某些 <code>b</code> 和 <code>c</code> 的三元条件表达式；</li>
+<li>转换为对象的右值引用类型的转型表达式，例如 <code>static_cast&lt;char&amp;&amp;&gt;(x)</code>；</li>
+<li>任何指代临时对象的表达式，在<a href="https://zh.cppreference.com/w/cpp/language/implicit_conversion#.E4.B8.B4.E6.97.B6.E9.87.8F.E5.AE.9E.E8.B4.A8.E5.8C.96" target="_blank" rel="noopener">临时量实质化</a>后。（C++17 起）</li>
+</ul>
+<h5 id="性质-1"><a href="#性质-1" class="headerlink" title="性质"></a>性质</h5><ul>
+<li>右值共有的性质。</li>
+<li>泛左值共有的性质。</li>
+</ul>
+<p>特别是，同所有的右值类似，亡值可以绑定到右值引用上，而且同所有的泛左值类似，亡值可以是多态的，而且非类的亡值可以有 <a href="https://zh.cppreference.com/w/cpp/language/cv" target="_blank" rel="noopener">cv 限定</a>。</p>
+<h4 id="右值"><a href="#右值" class="headerlink" title="右值"></a>右值</h4><p>右值表达式包括纯右值、亡值。</p>
+<p>性质：</p>
+<ul>
+<li>右值不能被取地址： <code>&amp;int()</code> 、<code>&amp;i++</code>、<code>&amp;42</code> 及 <code>&amp;std::move(x)</code> 是非法的；</li>
+<li>右值不能用作内建赋值运算符及内建复合赋值运算符的左操作数；</li>
+<li>右值可以用于初始化 <code>const</code> 左值引用，这种情况下该右值所标识的对象的生存期被延长到该引用的作用域结尾；</li>
+<li>C++ 11 的扩充<ul>
+<li>右值可以用于初始化右值引用，这种情况下该右值所标识的对象的生存期被延长到该引用的作用域结尾；</li>
+<li>当被用作函数实参且该函数有两种重载可用，其中之一接受右值引用的形参而另一个接受 <code>const</code> 的左值引用的形参时，右值将被绑定到右值引用的重载之上（从而，当复制与移动构造函数均可用时，以右值实参将调用其移动构造函数，复制和移动赋值运算符与此类似）。</li>
+</ul>
+</li>
+</ul>
+<h3 id="隐式声明的移动构造函数"><a href="#隐式声明的移动构造函数" class="headerlink" title="隐式声明的移动构造函数"></a>隐式声明的移动构造函数</h3><p>若不对类类型（<code>struct</code> 、<code>class</code> 或 <code>union</code> ）提供用户定义的移动构造函数，且下列所有为真：</p>
+<ul>
+<li>无用户声明的<a href="https://zh.cppreference.com/w/cpp/language/copy_constructor" target="_blank" rel="noopener">复制构造函数</a>；</li>
+<li>无用户声明的<a href="https://zh.cppreference.com/w/cpp/language/copy_assignment" target="_blank" rel="noopener">复制赋值运算符</a>；</li>
+<li>无用户声明的<a href="https://zh.cppreference.com/w/cpp/language/move_assignment" target="_blank" rel="noopener">移动赋值运算符</a>；</li>
+<li>无用户声明的<a href="https://zh.cppreference.com/w/cpp/language/destructor" target="_blank" rel="noopener">析构函数</a>；</li>
+<li>隐式声明的移动构造函数不因下列任何条件成立而定义为被删除（C++14 前）<ul>
+<li><code>T</code> 有不能移动（有被删除、不可访问或有歧义的移动构造函数）的非静态数据成员；</li>
+<li><code>T</code> 有不能移动（有被删除、不可访问或有歧义的移动构造函数）的直接或虚基类；</li>
+<li><code>T</code> 有直接或虚基类，带被删除或不可访问的析构函数；</li>
+<li><code>T</code> 是类联合类，且拥有带非平凡移动构造函数的变体成员；</li>
+<li><code>T</code> 有数据成员或直接或虚基类，它不可平凡复制且无移动构造函数。(C++14 前)</li>
+<li><a href="https://zh.cppreference.com/w/cpp/language/overload_resolution" target="_blank" rel="noopener">重载决议</a>忽略被删除的隐式声明的移动构造函数（否则它会阻止从右值复制构造）（C++14 起）</li>
+</ul>
+</li>
+</ul>
+<p>则编译器将声明移动构造函数为其类的非 <a href="https://zh.cppreference.com/w/cpp/language/explicit" target="_blank" rel="noopener">explicit</a> 的 <code>inline public</code> 成员，签名为 <code>T::T(T&amp;&amp;)</code> 。</p>
+<p>类能拥有多个移动构造函数，例如 <code>T::T(const T&amp;&amp;)</code> 和 <code>T::T(T&amp;&amp;)</code> 。若存在用户定义的移动构造函数，则用户仍可用关键词 <code>default</code> 强制编译器生成隐式声明的移动构造函数。</p>
+<h3 id="移动构造函数的调用时机"><a href="#移动构造函数的调用时机" class="headerlink" title="移动构造函数的调用时机"></a>移动构造函数的调用时机</h3><p>从同类型的右值（亡值或纯右值）（C++17 前）（C++ 17 起为“亡值”）初始化（以直接初始化或复制初始化）对象时，调用移动构造函数，情况包括：</p>
+<ul>
+<li>初始化： <code>T a = std::move(b);</code> 或 <code>T a(std::move(b));</code> ，其中 <code>b</code> 有类型 <code>T</code> ；</li>
+<li>函数参数传递： <code>f(std::move(a));</code> ，其中 <code>a</code> 有类型 <code>T</code> 而 <code>f</code> 为 <code>Ret f(T t)</code>；</li>
+<li>函数返回：在如 <code>T f()</code> 的函数中的 <code>return a;</code> ，其中 <code>a</code> 有类型 <code>T</code> ，它有移动构造函数。</li>
+</ul>
+<p>初始化器为纯右值时，通常会优化掉 (C++17 前)决不进行 (C++17 起)移动构造函数的调用，见<a href="https://zh.cppreference.com/w/cpp/language/copy_elision" target="_blank" rel="noopener">复制消除</a>。</p>
+<h3 id="移动构造函数与拷贝构造函数的区别"><a href="#移动构造函数与拷贝构造函数的区别" class="headerlink" title="移动构造函数与拷贝构造函数的区别"></a>移动构造函数与拷贝构造函数的区别</h3><p>// TODO</p>
+<h2 id="转换构造函数"><a href="#转换构造函数" class="headerlink" title="转换构造函数"></a>转换构造函数</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Complex</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">double</span> real;</span><br><span class="line">    <span class="keyword">double</span> imag;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    Complex(<span class="keyword">double</span> real, <span class="keyword">double</span> imag): real(real), imag(imag) &#123; &#125;</span><br><span class="line">    Complex(<span class="keyword">double</span> real): Complex(real, imag) &#123; &#125;</span><br><span class="line">    <span class="keyword">friend</span> <span class="built_in">std</span>::ostream &amp;<span class="keyword">operator</span>&lt;&lt;(<span class="built_in">std</span>::ostream &amp;out, <span class="keyword">const</span> Complex &amp;c) &#123;</span><br><span class="line">        <span class="keyword">if</span> (c.real != <span class="number">0.0</span>) &#123;</span><br><span class="line">            out &lt;&lt; c.real;</span><br><span class="line">            <span class="keyword">if</span> (c.imag != <span class="number">0</span>) &#123;</span><br><span class="line">                out &lt;&lt; <span class="string">" + "</span> &lt;&lt; c.imag &lt;&lt; <span class="string">"i"</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (c.imag != <span class="number">0</span>) &#123;</span><br><span class="line">                out &lt;&lt; c.imag &lt;&lt; <span class="string">"i"</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                out &lt;&lt; <span class="string">"0"</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> out;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    Complex c = <span class="number">1.25</span>;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; c &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意：<code>Complex c = 1.25</code> 这里不能使用引用 <code>Complex &amp;c = 1.25</code>，会报错：</p>
+<img src="/2019/01/11/cpp-basic-construct-destruct/transfer-non-const-ref.png">
+<p>但可以使用 <code>const Complex &amp;c = 1.25;</code></p>
+<p>// TODO: so why？</p>
+<p>可以通过在构造函数声明前加上 <code>explicit</code> 避免隐式使用转换功能：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>运行刚才的 <code>main</code>，报错如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">In function 'int main()':</span><br><span class="line">error: conversion from 'double' to non-scalar type 'Complex' requested</span><br><span class="line">     Complex c = <span class="number">1.25</span>;</span><br><span class="line">                 ^~~~</span><br></pre></td></tr></table></figure>
+<p>实际上转换构造函数的声明是这样的：只能有一个参数或者除了第一个参数（被转换的类型）之外都有默认值：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Complex</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">double</span> real;</span><br><span class="line">    <span class="keyword">double</span> imag;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    Complex(<span class="keyword">double</span> real, <span class="keyword">double</span> imag=<span class="number">0.0</span>): real(real), imag(imag) &#123; &#125;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>同样可以使用 <code>explicit</code> 关键字限定不能进行隐式转换。</p>
+<h2 id="初始化列表-10"><a href="#初始化列表-10" class="headerlink" title="初始化列表 $^{[10]}$"></a>初始化列表 $^{[10]}$</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dummy</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    <span class="keyword">double</span> d;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    Dummy(): i(<span class="number">1</span>), d(<span class="number">2.0</span>) &#123; &#125;</span><br><span class="line">    <span class="comment">// Dummy() &#123;</span></span><br><span class="line">    <span class="comment">//     i = 1;</span></span><br><span class="line">    <span class="comment">//     d = 2.0;</span></span><br><span class="line">    <span class="comment">// &#125;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面两种写法结果是相同的，但是过程（或者说意义）不同：使用初始化列表是<strong>显式初始化</strong>类的成员，而在构造函数体中是对类的成员<strong>赋值</strong>。</p>
+<p>对内置类型的成员（包括指针），初始化和赋值没有什么大的区别，像上面的任一个构造函数都可以。对非内置类型成员变量，为了避免两次构造，推荐使用初始化列表。进入构造函数体之前，成员<strong>必须</strong>都进行过初始化，可以是显式的，可以是隐式的，但有的时候必须用带有初始化列表的构造函数：</p>
+<ul>
+<li>成员类型是没有默认构造函数的类。若没有提供显式初始化，则编译器隐式使用成员类型的默认构造函数；若类没有默认构造函数，则编译器尝试使用默认构造函数将会失败。</li>
+<li><code>const</code> 成员或引用类型的成员。因为 <code>const</code> 对象或引用类型只能初始化，不能对他们赋值。 </li>
+</ul>
+<p>结果 &amp; 性能：</p>
+<ul>
+<li>内置数据类型，复合类型（指针，引用）：在成员初始化列表和构造函数体内进行，在性能和结果上都是一样的</li>
+<li>用户定义类型（类类型）：结果上相同，但是性能上存在很大的差别。因为类类型的数据成员对象在进入函数体前已经构造完成，也就是说在成员初始化列表处进行构造对象的工作，调用构造函数，在进入函数体之后，进行的是对已经构造好的类对象的赋值，又调用个拷贝赋值操作符才能完成（如果并未提供，则使用编译器提供的默认按成员赋值行为）</li>
+</ul>
+<h3 id="成员初始化列表的执行顺序"><a href="#成员初始化列表的执行顺序" class="headerlink" title="成员初始化列表的执行顺序"></a>成员初始化列表的执行顺序</h3><p>按照<strong>声明</strong>的顺序：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dummy</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">int</span> m_x;</span><br><span class="line">    <span class="keyword">int</span> m_y;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    Dummy(<span class="keyword">int</span> y): m_y(y), m_x(m_y) &#123; &#125;</span><br><span class="line">    <span class="keyword">friend</span> <span class="built_in">std</span>::ostream &amp;<span class="keyword">operator</span>&lt;&lt;(<span class="built_in">std</span>::ostream &amp;out, Dummy &amp;d) &#123;</span><br><span class="line">        out &lt;&lt; d.m_x &lt;&lt; <span class="string">", "</span> &lt;&lt; d.m_y;</span><br><span class="line">        <span class="keyword">return</span> out;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>执行顺序为 <code>m_x(m_y)</code> $\rightarrow$ <code>m_y(y)</code>，这样一来，<code>m_x</code> 会有不确定的值：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="function">Dummy <span class="title">d</span><span class="params">(<span class="number">4</span>)</span></span>;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; d &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">4201051, 4</span><br></pre></td></tr></table></figure>
+<p>所以：</p>
+<ul>
+<li>要么总是按照你希望它们被初始化的顺序声明成员；</li>
+<li>要么总是按照它们声明的顺序在初始化列表中罗列这些成员，这样虽然不能从根本上解决问题，但是有助于发现声明顺序上的问题</li>
+</ul>
+<h1 id="类的析构函数"><a href="#类的析构函数" class="headerlink" title="类的析构函数"></a>类的析构函数</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">~Dummy() &#123;</span><br><span class="line">    <span class="comment">// 归还资源</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="RAII-与数组和容器类"><a href="#RAII-与数组和容器类" class="headerlink" title="RAII 与数组和容器类"></a>RAII 与数组和容器类</h1><h1 id="RAII-与异常-7"><a href="#RAII-与异常-7" class="headerlink" title="RAII 与异常 $^{[7]}$"></a>RAII 与异常 $^{[7]}$</h1><p>C++ 中没有 <code>finally</code> 关键字，可以使用智能指针确保 RAII 的贯彻。如下代码：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    Dummy *d = <span class="keyword">new</span> Dummy();</span><br><span class="line">    <span class="comment">// do something</span></span><br><span class="line">    <span class="keyword">delete</span> d;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果在 <code>delete d</code> 之前抛出异常，那么 <code>delete d</code> 就不会被执行，造成资源泄露。使用智能指针避免这个问题：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">shared_ptr</span>&lt;Dummy&gt; d(<span class="keyword">new</span> Dummy());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p> <code>f()</code> 执行完之后，由于离开了作用域，智能指针的析构函数被执行，其中释放了 <code>new</code> 申请的资源：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">smart_ptr</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    smart_ptr(T *p): m_ptr(p) &#123; &#125;</span><br><span class="line">    ~smart_ptr() &#123;</span><br><span class="line">        <span class="keyword">delete</span> m_ptr;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    T *m_ptr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><font face="Lucida Console">We can solve any problem by introducing an extra level of indirection.</font> $^{[8]}$</p>
+<p>软件工程基本定理：我们可以通过引入额外的间接层来解决任何问题。</p>
+<div align="right"><font face="Lucida Console">—— David J. Wheeler</font></div>
+
+</blockquote>
+<p>不过，这里的 RAII 并不是十分严格：对象（所占的内存也是资源）的创建（资源获取）是在构造函数之外进行的。广义上，我们也把它划归 RAII 范畴。但是，Matthew Wilson 在《Imperfect C++》一书中，将其独立出来，称其为 RRID（Resource Release Is Destruction，资源释放即析构）。RRID 的实施需要在类的开发者和使用者之间建立契约，采用<strong>相同</strong>的方法获取和释放资源。比如，如果在 <code>shared_ptr</code> 构造时使用 <code>malloc()</code>，便会出现问题，因为 <code>shared_ptr</code> 是通过 <code>delete</code> 释放资源的。</p>
+<h2 id="域守卫技术"><a href="#域守卫技术" class="headerlink" title="域守卫技术"></a>域守卫技术</h2><p>当一个函数需要通过多个局部变量来管理资源时，RAII 就显得非常好用。因为只有被构造成功（构造函数没有抛出异常）的对象才会在返回时调用析构函数，同时析构函数的调用顺序恰好是它们构造顺序的反序，这样既可以保证多个资源（对象）的正确释放，又能满足多个资源之间的依赖关系。</p>
+<p>RAII 的“资源”，不仅仅局限于动态获取（<code>new</code> / <code>delete</code>）的资源，还可以推而广之，用于管理广义的“资源”。假设我们有这样一个多线程的程序，其临界资源每次只能由一个线程来读/写，一种简单的做法就是使用一个标志位，表示临界资源是否被占用：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dummy</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">bool</span> locked;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    Dummy(): locked(<span class="literal">false</span>) &#123; &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">doWork</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (locked) &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        locked = <span class="literal">true</span>;</span><br><span class="line">        <span class="comment">// do something</span></span><br><span class="line">        locked = <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>问题来了：如果在 <code>locked = false</code> 之前 <code>doWork</code> 异常退出，<code>locked</code> 就会一直为 <code>true</code>，那么临界资源就不再可用。怎样避免这个问题？一种简单的想法是增加一个修改 <code>locked</code> 属性的 <code>public</code> 方法，将这件事交给调用者来做。这样虽然可行，但是破坏了 <code>Dummy</code> 类的封装性，对使用者也不友好。我们的目标是不论 <code>doWork</code> 是正常退出还是异常退出，<code>locked</code> 都被还原为 <code>false</code>，使用 RAII 可以很优雅地解决这个问题：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ScopeGuard</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">bool</span> &amp;val;</span><br><span class="line">    <span class="keyword">bool</span> oldVal;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    ScopeGuard(<span class="keyword">bool</span> &amp;val, <span class="keyword">bool</span> newVal): val(val), oldVal(val) &#123;</span><br><span class="line">        <span class="keyword">this</span>-&gt;val = newVal;</span><br><span class="line">    &#125;</span><br><span class="line">    ~ScopeGuard() &#123;</span><br><span class="line">        val = oldVal;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>修改 <code>Dummy::doWork</code>：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">doWork</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (locked) &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function">ScopeGuard <span class="title">sg</span><span class="params">(locked, <span class="literal">true</span>)</span></span>;</span><br><span class="line">    <span class="comment">// do something</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样，即使 <code>doWork</code> 异常退出，由于 <code>bs</code> 离开作用域，析构函数被调用，<code>locked</code> 被赋予原来的值（<code>false</code>），使用者无需关心锁的释放问题。但是要注意的是，<code>ScopeGuard::val</code> 是一个<strong>引用</strong>！</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p>[1] <a href="https://zh.wikipedia.org/wiki/RAII" target="_blank" rel="noopener">中文维基百科：RAII</a></p>
+<p>[2] <a href="https://blog.csdn.net/lwbeyond/article/details/6202256" target="_blank" rel="noopener">C++ 拷贝构造函数详解</a></p>
+<p>[3] <a href="https://zh.cppreference.com/w/cpp/language/operator_member_access" target="_blank" rel="noopener">成员访问运算符</a></p>
+<p>[4] <a href="https://stackoverflow.com/questions/10004511/why-are-string-literals-l-value-while-all-other-literals-are-r-value" target="_blank" rel="noopener">Why are string literals l-value while all other literals are r-value?</a></p>
+<p>[5] <a href="https://stackoverflow.com/questions/27095476/is-this-pointer-an-r-value" target="_blank" rel="noopener">Is this pointer an r-value?</a></p>
+<p>[6] 内容主要来自 <a href="https://zh.cppreference.com/w/cpp/language/move_constructor" target="_blank" rel="noopener">Cpp Reference：移动构造函数</a></p>
+<p>[7] 内容主要来自 <a href="https://blog.csdn.net/bzhxuexi/article/details/16967111" target="_blank" rel="noopener">RAII：在类的构造函数中分配资源，在析构函数中释放资源</a></p>
+<p>[8] <a href="https://en.wikipedia.org/wiki/Fundamental_theorem_of_software_engineering" target="_blank" rel="noopener">维基百科：Fundamental theorem of software engineering</a></p>
+<p>[9] <a href="https://zh.cppreference.com/w/cpp/language/copy_constructor" target="_blank" rel="noopener">Cpp Reference：复制构造函数</a></p>
+<p>[10] <a href="https://www.cnblogs.com/BlueTzar/articles/1223169.html" target="_blank" rel="noopener">C++ 类构造函数初始化列表</a></p>
+<h1 id="深入"><a href="#深入" class="headerlink" title="深入"></a>深入</h1><p>[1] <a href="https://zh.cppreference.com/w/cpp/language/value_category#cite_note-pmfc-2" target="_blank" rel="noopener">C++ 值类别</a></p>
+<p>[2] Matthew Wilson. <a href="https://book.douban.com/subject/1470838/" target="_blank" rel="noopener"><em>Imperfect C++</em></a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/11/cpp-basic-friend/" rel="next" title="C++ 学习笔记 - 基础篇：友元">
+                <i class="fa fa-chevron-left"></i> C++ 学习笔记 - 基础篇：友元
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/01/12/cpp-stl-map/" rel="prev" title="C++ 学习笔记 - STL：map">
+                C++ 学习笔记 - STL：map <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Han Qi</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">83</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-name">分类</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#类的构造函数"><span class="nav-number">2.</span> <span class="nav-text">类的构造函数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#普通构造函数"><span class="nav-number">2.1.</span> <span class="nav-text">普通构造函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#委托构造函数"><span class="nav-number">2.2.</span> <span class="nav-text">委托构造函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用委托构造函数需要注意的问题"><span class="nav-number">2.2.1.</span> <span class="nav-text">使用委托构造函数需要注意的问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#复制（拷贝）构造函数"><span class="nav-number">2.3.</span> <span class="nav-text">复制（拷贝）构造函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#浅拷贝与深拷贝"><span class="nav-number">2.3.1.</span> <span class="nav-text">浅拷贝与深拷贝</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#浅拷贝"><span class="nav-number">2.3.1.1.</span> <span class="nav-text">浅拷贝</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#深拷贝"><span class="nav-number">2.3.1.2.</span> <span class="nav-text">深拷贝</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#非指针的拷贝"><span class="nav-number">2.3.2.</span> <span class="nav-text">非指针的拷贝</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#防止默认拷贝"><span class="nav-number">2.3.2.1.</span> <span class="nav-text">防止默认拷贝</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#拷贝构造函数的调用时机"><span class="nav-number">2.3.3.</span> <span class="nav-text">拷贝构造函数的调用时机</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#移动构造函数-6"><span class="nav-number">2.4.</span> <span class="nav-text">移动构造函数 $^{[6]}$</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是右值？"><span class="nav-number">2.4.1.</span> <span class="nav-text">什么是右值？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#纯右值"><span class="nav-number">2.4.1.1.</span> <span class="nav-text">纯右值</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#性质"><span class="nav-number">2.4.1.1.1.</span> <span class="nav-text">性质</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#亡值"><span class="nav-number">2.4.1.2.</span> <span class="nav-text">亡值</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#性质-1"><span class="nav-number">2.4.1.2.1.</span> <span class="nav-text">性质</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#右值"><span class="nav-number">2.4.1.3.</span> <span class="nav-text">右值</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#隐式声明的移动构造函数"><span class="nav-number">2.4.2.</span> <span class="nav-text">隐式声明的移动构造函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#移动构造函数的调用时机"><span class="nav-number">2.4.3.</span> <span class="nav-text">移动构造函数的调用时机</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#移动构造函数与拷贝构造函数的区别"><span class="nav-number">2.4.4.</span> <span class="nav-text">移动构造函数与拷贝构造函数的区别</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#转换构造函数"><span class="nav-number">2.5.</span> <span class="nav-text">转换构造函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#初始化列表-10"><span class="nav-number">2.6.</span> <span class="nav-text">初始化列表 $^{[10]}$</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#成员初始化列表的执行顺序"><span class="nav-number">2.6.1.</span> <span class="nav-text">成员初始化列表的执行顺序</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#类的析构函数"><span class="nav-number">3.</span> <span class="nav-text">类的析构函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#RAII-与数组和容器类"><span class="nav-number">4.</span> <span class="nav-text">RAII 与数组和容器类</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#RAII-与异常-7"><span class="nav-number">5.</span> <span class="nav-text">RAII 与异常 $^{[7]}$</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#域守卫技术"><span class="nav-number">5.1.</span> <span class="nav-text">域守卫技术</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">6.</span> <span class="nav-text">参考</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#深入"><span class="nav-number">7.</span> <span class="nav-text">深入</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Han Qi</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> 访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+  
+
+
+  
+
+  
+
+</body>
+</html>
