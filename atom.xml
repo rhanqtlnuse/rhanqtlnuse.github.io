@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-04-14T07:10:30.563Z</updated>
+  <updated>2019-04-18T14:59:12.496Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>一道神奇的笔试题</title>
+    <link href="http://yoursite.com/2019/04/18/others-qrcode-problem/"/>
+    <id>http://yoursite.com/2019/04/18/others-qrcode-problem/</id>
+    <published>2019-04-18T13:00:01.000Z</published>
+    <updated>2019-04-18T14:59:12.496Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>《学习观》笔记</title>
@@ -39,13 +61,21 @@
   </entry>
   
   <entry>
-    <title>pta-advanced-1013</title>
+    <title>PTA 甲级 1013：Battle Over Cities</title>
     <link href="http://yoursite.com/2019/04/13/pta-advanced-1013/"/>
     <id>http://yoursite.com/2019/04/13/pta-advanced-1013/</id>
     <published>2019-04-13T02:13:13.000Z</published>
-    <updated>2019-04-13T02:13:13.592Z</updated>
+    <updated>2019-04-15T08:11:23.462Z</updated>
     
     <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
     
     </summary>
     
@@ -358,28 +388,6 @@
     <id>http://yoursite.com/2019/04/02/linux-programming-toc/</id>
     <published>2019-04-02T11:41:23.000Z</published>
     <updated>2019-04-03T09:35:56.614Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Linux 程序设计 - 基础篇：Shell</title>
-    <link href="http://yoursite.com/2019/04/02/linux-programming-shell/"/>
-    <id>http://yoursite.com/2019/04/02/linux-programming-shell/</id>
-    <published>2019-04-02T09:49:00.000Z</published>
-    <updated>2019-04-03T14:36:04.300Z</updated>
     
     <summary type="html">
     
