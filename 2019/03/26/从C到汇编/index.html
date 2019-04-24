@@ -92,7 +92,7 @@
 <meta property="og:site_name" content="RHANQTL">
 <meta property="og:description" content="C 到汇编以下均为 GCC 的行为！！！ 变量全局变量 初始化的全局变量：.data 未初始化的全局变量和初始化为 0 的全局变量：.bss 这样做只需要在目标代码中放置占位符即可，不需要保存实际的数据，可以节省空间    *局部变量 静态局部变量 非静态局部变量  第一个局部变量的地址为 -0x8(%ebp)，第二个局部变量的地址为 -0xc(%ebp)，依此类推   常量数据对象： 最典型的数">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-26T07:41:39.018Z">
+<meta property="og:updated_time" content="2019-04-20T18:25:09.109Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="从 C 到汇编">
 <meta name="twitter:description" content="C 到汇编以下均为 GCC 的行为！！！ 变量全局变量 初始化的全局变量：.data 未初始化的全局变量和初始化为 0 的全局变量：.bss 这样做只需要在目标代码中放置占位符即可，不需要保存实际的数据，可以节省空间    *局部变量 静态局部变量 非静态局部变量  第一个局部变量的地址为 -0x8(%ebp)，第二个局部变量的地址为 -0xc(%ebp)，依此类推   常量数据对象： 最典型的数">
@@ -357,7 +357,38 @@
 </ul>
 <h3 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h3><p>数据对象：</p>
 <p>最典型的数据对象：字符串字面量</p>
-<h2 id="函数调用"><a href="#函数调用" class="headerlink" title="函数调用"></a>函数调用</h2><h3 id="参数传递"><a href="#参数传递" class="headerlink" title="参数传递"></a>参数传递</h3><ul>
+<h2 id="函数调用"><a href="#函数调用" class="headerlink" title="函数调用"></a>函数调用</h2><h3 id="函数调用方式"><a href="#函数调用方式" class="headerlink" title="函数调用方式"></a>函数调用方式</h3><ul>
+<li><p><code>__cdecl</code></p>
+<p><code>__cdecl</code> 是 C Declaration  的缩写，表示 C 语言默认的函数调用方法：所有参数<strong>从右到左</strong>依次入栈，这些参数由<strong>调用者</strong>清除，称为手动清栈。被调用函数<strong>不要求</strong>调用者传递多少参数，调用者传递过多或者过少的参数，甚至完全不同的参数都不会产生编译阶段的错误。<strong>实现可变参数的调用只能用该方法</strong>。</p>
+</li>
+<li><p><code>__stdcall</code></p>
+<p><code>__stdcall</code> 是 Standard Call 的缩写，是 C++ 的标准调用方式：所有参数<strong>从右到左</strong>依次入栈，如果是调用类成员的话，最后一个入栈的是 <code>this</code> 指针。这些堆栈中的参数由<strong>被调用者</strong>在返回后清除，使用的指令是 <code>retn X</code>，X 表示参数占用的字节数，CPU 在 <code>retn</code> 之后自动弹出 X 个字节的堆栈空间，称为自动清栈。函数在编译的时候就<strong>必须确定</strong>参数个数，并且调用者必须严格的控制参数的生成，不能多，不能少，否则返回后会出错。</p>
+</li>
+<li><p><code>__pascal</code></p>
+<p><code>__pascal</code> 是 Pascal 语言（Delphi）的函数调用方式，也可以在 C++ 中使用，参数压栈顺序与前两者<strong>相反</strong>。返回时的清栈方式与 <code>__stdcall</code> 相同。</p>
+</li>
+<li><p><code>__fastcall</code></p>
+<p><code>__fastcall</code> 是编译器指定的快速调用方式。由于大多数的函数参数个数很少，使用堆栈传递比较费时。因此 <code>__fastcall</code> 通常规定将前两个（或若干个）参数由寄存器传递，其余参数还是通过堆栈传递。不同编译器编译的程序规定的寄存器不同，返回方式和 <code>__stdcall</code> 相当。</p>
+</li>
+<li><p><code>__thiscall</code></p>
+<p><code>__thiscall</code> 是为了解决类成员调用中 <code>this</code> 指针传递而规定的。<code>__thiscall</code> 要求把 <code>this</code> 指针放在特定寄存器中，该寄存器由编译器决定。VC 使用 <code>ecx</code>，Borland 的 C++ 编译器使用 <code>eax</code>。返回方式和 <code>__stdcall</code> 相当。</p>
+</li>
+</ul>
+<p><code>__fastcall</code> 和 <code>__thiscall</code> 涉及的寄存器由编译器决定，因此<strong>不能</strong>用作跨编译器的接口。所以 Windows 上的 COM 对象接口都定义为 <code>__stdcall</code> 调用方式。</p>
+<p>C 语言中不加说明<strong>默认</strong>函数为 <code>__cdecl</code> 方式（C 中也只能用这种方式），C++ 也一样，但是默认的调用方式可以在 IDE 环境中设置。</p>
+<p>例子：<code>f(a, b, c);</code>（汇编代码均为示意，并不是合法的）</p>
+<ul>
+<li><p><code>__cdecl</code> 调用约定：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">push c			; 参数按右到左传递</span><br><span class="line">push b</span><br><span class="line">push a</span><br><span class="line">call f			; 此处的函数名只是示例，实际上会有修饰</span><br><span class="line">add  %esp, 0xc	; 调用者平衡堆栈</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>__stdcall</code> 调用约定</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">push c</span><br><span class="line">push b</span><br><span class="line">push a</span><br><span class="line">call f			; 被调用者平衡堆栈</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>__pascal</code> 调用约定</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">push a</span><br><span class="line">push b</span><br><span class="line">push c</span><br><span class="line">call f			; 被调用者平衡堆栈</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="参数传递"><a href="#参数传递" class="headerlink" title="参数传递"></a>参数传递</h3><ul>
 <li>32 位<ul>
 <li>通过寄存器传递时有寄存器顺序约定</li>
 <li>通过栈传递：最后一个参数最先 push，第一个参数最后 push，由于堆栈是由高地址向低地址增长，这样的 push 顺序能够保证第一个参数最靠近被调用函数的栈帧，<em>便于处理变参</em>。</li>
@@ -501,7 +532,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">84</span>
+                  <span class="site-state-item-count">87</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -563,7 +594,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#C-到汇编"><span class="nav-number">1.</span> <span class="nav-text">C 到汇编</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#变量"><span class="nav-number">1.1.</span> <span class="nav-text">变量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#全局变量"><span class="nav-number">1.1.1.</span> <span class="nav-text">全局变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#局部变量"><span class="nav-number">1.1.2.</span> <span class="nav-text">*局部变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常量"><span class="nav-number">1.1.3.</span> <span class="nav-text">常量</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数调用"><span class="nav-number">1.2.</span> <span class="nav-text">函数调用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#参数传递"><span class="nav-number">1.2.1.</span> <span class="nav-text">参数传递</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#变参"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">变参</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#call"><span class="nav-number">1.2.2.</span> <span class="nav-text">call</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#准备工作（Prologue）"><span class="nav-number">1.2.3.</span> <span class="nav-text">准备工作（Prologue）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#返回值"><span class="nav-number">1.2.4.</span> <span class="nav-text">返回值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#leave-和-ret"><span class="nav-number">1.2.5.</span> <span class="nav-text">leave 和 ret</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#更多"><span class="nav-number">2.</span> <span class="nav-text">更多</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#C-到汇编"><span class="nav-number">1.</span> <span class="nav-text">C 到汇编</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#变量"><span class="nav-number">1.1.</span> <span class="nav-text">变量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#全局变量"><span class="nav-number">1.1.1.</span> <span class="nav-text">全局变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#局部变量"><span class="nav-number">1.1.2.</span> <span class="nav-text">*局部变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常量"><span class="nav-number">1.1.3.</span> <span class="nav-text">常量</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数调用"><span class="nav-number">1.2.</span> <span class="nav-text">函数调用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#函数调用方式"><span class="nav-number">1.2.1.</span> <span class="nav-text">函数调用方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参数传递"><span class="nav-number">1.2.2.</span> <span class="nav-text">参数传递</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#变参"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">变参</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#call"><span class="nav-number">1.2.3.</span> <span class="nav-text">call</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#准备工作（Prologue）"><span class="nav-number">1.2.4.</span> <span class="nav-text">准备工作（Prologue）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#返回值"><span class="nav-number">1.2.5.</span> <span class="nav-text">返回值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#leave-和-ret"><span class="nav-number">1.2.6.</span> <span class="nav-text">leave 和 ret</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#更多"><span class="nav-number">2.</span> <span class="nav-text">更多</span></a></li></ol></div>
             
 
           </div>

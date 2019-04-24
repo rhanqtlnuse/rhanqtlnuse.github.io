@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-04-18T14:59:12.496Z</updated>
+  <updated>2019-04-24T00:55:18.562Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,58 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>字符集：ASCII、Unicode 和 UTF-8</title>
+    <link href="http://yoursite.com/2019/04/24/others-ascii-unicode-utf8/"/>
+    <id>http://yoursite.com/2019/04/24/others-ascii-unicode-utf8/</id>
+    <published>2019-04-24T00:06:30.000Z</published>
+    <updated>2019-04-24T00:55:18.562Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;最近想实现一个自己的 C++ &lt;code&gt;string&lt;/code&gt; 类，对 &lt;code&gt;string&lt;/code&gt; 类编码问题早有耳闻（当然也亲身体验过），所以打算先学习一下字符编码相关的知识。&lt;/p&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>others-problem-question</title>
+    <link href="http://yoursite.com/2019/04/23/others-problem-question/"/>
+    <id>http://yoursite.com/2019/04/23/others-problem-question/</id>
+    <published>2019-04-23T04:28:23.000Z</published>
+    <updated>2019-04-23T04:28:23.319Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Experiment、Case Study、Survey、Action Research</title>
+    <link href="http://yoursite.com/2019/04/23/others-experiment-case-study-survey-action-research/"/>
+    <id>http://yoursite.com/2019/04/23/others-experiment-case-study-survey-action-research/</id>
+    <published>2019-04-23T04:24:25.000Z</published>
+    <updated>2019-04-23T04:45:54.277Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>一道神奇的笔试题</title>
@@ -326,68 +378,6 @@
     <id>http://yoursite.com/2019/04/06/pta-advanced-1003/</id>
     <published>2019-04-06T06:00:10.000Z</published>
     <updated>2019-04-06T09:36:36.067Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Haskell 极简教程</title>
-    <link href="http://yoursite.com/2019/04/05/haskell-learn-haskell-fast-and-hard/"/>
-    <id>http://yoursite.com/2019/04/05/haskell-learn-haskell-fast-and-hard/</id>
-    <published>2019-04-05T15:39:40.000Z</published>
-    <updated>2019-04-06T15:54:00.615Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;strong&gt;声明：本文翻译自 &lt;a href=&quot;http://yannesposito.com/Scratch/en/blog/Haskell-the-Hard-Way/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Learn Haskell Fast and Hard&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
-&lt;img src=&quot;/2019/04/05/haskell-learn-haskell-fast-and-hard/magritte_pleasure_principle.jpg&quot;&gt;
-&lt;p&gt;我坚定地相信所有的开发者都应该学习 Haskell。当然，这并不意味着每个人都要变成 Haskell 高手（super Haskell ninjas），但是你至少能发现 Haskell 能给你提供什么。学习 Haskell 能够开阔你的思路。&lt;/p&gt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Linux 程序设计 - 进阶篇：网络编程</title>
-    <link href="http://yoursite.com/2019/04/03/linux-programming-advanced-network-programming/"/>
-    <id>http://yoursite.com/2019/04/03/linux-programming-advanced-network-programming/</id>
-    <published>2019-04-03T15:15:24.000Z</published>
-    <updated>2019-04-03T15:25:42.372Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Linux 程序设计：目录</title>
-    <link href="http://yoursite.com/2019/04/02/linux-programming-toc/"/>
-    <id>http://yoursite.com/2019/04/02/linux-programming-toc/</id>
-    <published>2019-04-02T11:41:23.000Z</published>
-    <updated>2019-04-03T09:35:56.614Z</updated>
     
     <summary type="html">
     
