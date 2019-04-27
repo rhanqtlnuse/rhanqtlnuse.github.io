@@ -265,6 +265,985 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/11/cpp-basic-friend/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/01/11/cpp-basic-friend/" itemprop="url">C++ 学习笔记 - 基础篇：友元</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-11T20:06:55+08:00">
+                2019-01-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="友元概述"><a href="#友元概述" class="headerlink" title="友元概述"></a>友元概述</h1><p>在 C++ 中，没有像 Java 中一样统一的 <code>toString()</code> 方法，可是有时我们想要实现类似的功能，想像输出基本类型那样输出一个对象，该怎么做呢？</p>
+<p>友元是 C++ 中一种机制，允许友元直接访问和修改类的私有对象</p>
+<h1 id="友元"><a href="#友元" class="headerlink" title="友元"></a>友元</h1><p>友元关系需要注意以下几点：</p>
+<ul>
+<li>友元关系是单向的</li>
+<li>友元不受类的访问权限的控制</li>
+<li>《代码大全》中也提到，要谨慎使用友元，因为友元机制本身是为了性能对类封装性的破坏，所以需要在安全性和性能两方面进行权衡</li>
+</ul>
+<p>头文件：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> __PERSON_H__</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> __PERSON_H__</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">string</span> firstName;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">string</span> lastName;</span><br><span class="line">    <span class="keyword">unsigned</span> age;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    Person(<span class="built_in">string</span> &amp;firstName, <span class="built_in">string</span> &amp;lastName, <span class="keyword">unsigned</span> age);</span><br><span class="line">    <span class="comment">// 虽然写在 public 下面，但其实并不受到访问权限的控制，放在 private 下也一样</span></span><br><span class="line">    <span class="keyword">friend</span> <span class="built_in">std</span>::ostream &amp; <span class="keyword">operator</span>&lt;&lt;(<span class="built_in">std</span>::ostream &amp;out, Person *p);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"Person.h"</span></span></span><br><span class="line"></span><br><span class="line">Person::Person(<span class="built_in">string</span> &amp;firstName, <span class="built_in">string</span> &amp;lastName, <span class="keyword">unsigned</span> age) &#123;</span><br><span class="line">    <span class="comment">// omitted</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 注意没有 friend 和 Person::</span></span><br><span class="line"><span class="built_in">std</span>::ostream &amp; <span class="keyword">operator</span>&lt;&lt;(<span class="built_in">std</span>::ostream &amp;out, Person &amp;p) &#123;</span><br><span class="line">    out &lt;&lt; <span class="string">"full name: "</span> &lt;&lt; p.firstName &lt;&lt; <span class="string">"-"</span> &lt;&lt; p.lastName &lt;&lt; <span class="string">", age: "</span> &lt;&lt; p.age;</span><br><span class="line">    <span class="keyword">return</span> out;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="友元与继承"><a href="#友元与继承" class="headerlink" title="友元与继承"></a>友元与继承</h1><h1 id="友元的替代方案"><a href="#友元的替代方案" class="headerlink" title="友元的替代方案"></a>友元的替代方案</h1>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/10/algorithms-shortest-path/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/01/10/algorithms-shortest-path/" itemprop="url">图论 - 基本算法：最短路径</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-10T21:32:35+08:00">
+                2019-01-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Dijkstra"><a href="#Dijkstra" class="headerlink" title="Dijkstra"></a>Dijkstra</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">procedure Dijkstra(G, s)</span><br><span class="line">    Q &lt;- G.V</span><br><span class="line">    S &lt;- &#123;&#125;</span><br><span class="line">    while Q is not empty</span><br><span class="line">        u &lt;- EXTRA-MIN(Q)</span><br><span class="line">        S &lt;- S + &#123; u &#125;</span><br><span class="line">        for each edge (u, v) in G</span><br><span class="line">            if v.d &gt; u.d + dist(u, v)</span><br><span class="line">                v.d &lt;- u.d + dist(u, v)</span><br><span class="line">                v.pi &lt;- u</span><br></pre></td></tr></table></figure>
+<ul>
+<li>实际上类似于 BFS（邻接 $\rightarrow$ 邻接的邻接 $\rightarrow\cdots$），所以初始化时可以只将与 s 邻接的顶点放入一个<strong>普通队列</strong>，然后按照 BFS 的方式进行最短路径的搜索</li>
+</ul>
+<h1 id="Floyd-Warshall"><a href="#Floyd-Warshall" class="headerlink" title="Floyd-Warshall"></a>Floyd-Warshall</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">for k &lt;- [0, V) do</span><br><span class="line">    for i &lt;- [0, V) do</span><br><span class="line">        for j &lt;- [0, V) do</span><br><span class="line">            if dist[i][j] &gt;= dist[i][k] + dist[k][j] then</span><br><span class="line">                dist[i][j] = dist[i][k] + dist[k][j]</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/10/algorithms-mst/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/01/10/algorithms-mst/" itemprop="url">图论 - 基本算法：最小生成树</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-10T21:21:23+08:00">
+                2019-01-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="什么是最小生成树？"><a href="#什么是最小生成树？" class="headerlink" title="什么是最小生成树？"></a>什么是最小生成树？</h1><p>最小生成树（Minimal Spanning Tree，MST）</p>
+<ul>
+<li>连通且无环的无向图</li>
+<li>边权重总和最小</li>
+</ul>
+<h1 id="MST-性质"><a href="#MST-性质" class="headerlink" title="MST 性质"></a>MST 性质</h1><ul>
+<li>对于图 G 的任意一个顶点 v，和 v 相关联的最短的边一定在某个 MST 中<ul>
+<li>证明：设和 v 相关联的最短的边为 e，如果某个 MST 不包含 e，那么将其加入到这个 MST 中会产生一个回路，去掉回路中某一条非 e 的边，可以得到总权重更小的 MST</li>
+<li>由此可以知道每次选择与顶点相关联的<strong>最短</strong>的边</li>
+</ul>
+</li>
+<li>将 e 的两个端点合并后得到图 G’，设合并后的顶点是 v’。假设 G’ 的某棵 MST 是 T’，那么将 e 加入到 T’ 中将得到 G 的 MST<ul>
+<li>证明：假设 G 中包含 e 的 MST 是 T，那么 T - e 是 G’ 的一棵生成树 T’’，假设这棵生成树不是 G’ 的 MST，那么 T’ + e 是 G 中的生成树，并且 T’ + e &lt; T</li>
+<li>所以可以递归地构建 MST</li>
+</ul>
+</li>
+<li>带权重的连通无向图的生成树的 MST 性质：当且仅当对任意非树边 (u, v)，T $\cup$ {(u, v)} 包含环并且在这个环中 (u, v) 是有最大权重的边时，我们说生成树 T 有 MST 性质<ul>
+<li>所有的 MST 有相同的权重</li>
+</ul>
+</li>
+</ul>
+<h1 id="求解-MST"><a href="#求解-MST" class="headerlink" title="求解 MST"></a>求解 MST</h1><h2 id="Prim"><a href="#Prim" class="headerlink" title="Prim"></a>Prim</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">procedure MST-Prim(G)</span><br><span class="line">    for each vertex v in G</span><br><span class="line">        v.key &lt;- Inf</span><br><span class="line">        v.pi &lt;- NIL</span><br><span class="line">    Q &lt;- G.V</span><br><span class="line">    while Q is not empty</span><br><span class="line">        u &lt;- extractMin(Q)</span><br><span class="line">        for each edge (u, v) in G</span><br><span class="line">            if v in Q and weight(u, v) &lt; v.key</span><br><span class="line">                v.pi = u</span><br><span class="line">                v.key &lt;- weight(u, v)</span><br></pre></td></tr></table></figure>
+<h2 id="Kruskal"><a href="#Kruskal" class="headerlink" title="Kruskal"></a>Kruskal</h2><p>选择一条权重最小的边，同时不能产生环：不能产生环意味着这条边 (u, v)，u 和 v 不属于同一个连通分量</p>
+<ul>
+<li>首先这条边不在生成树中，否则选不到这条边</li>
+<li>placeholder</li>
+<li>UNION-FIND</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">procedure MST-Kruskal(G)</span><br><span class="line">    Q &lt;- G.E</span><br><span class="line">    S &lt;- &#123;&#125;</span><br><span class="line">    while Q is not empty</span><br><span class="line">        (u, v) &lt;- EXTRA-MIN(Q)</span><br><span class="line">        uSet &lt;- FIND(u)</span><br><span class="line">        vSet &lt;- FIND(v)</span><br><span class="line">        if uSet != vSet</span><br><span class="line">            UNION(uSet, vSet)</span><br><span class="line">            S &lt;- S + &#123;(u, v)&#125;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/08/algorithms-np/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/01/08/algorithms-np/" itemprop="url">NP</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-08T21:13:59+08:00">
+                2019-01-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ul>
+<li><p>先要弄清几个基本概念</p>
+<ul>
+<li>P 问题：在多项式时间（或者更精确地说是 <strong>O(</strong>$n^k$<strong>)</strong> 时间）内能够<strong>解决</strong>的问题</li>
+<li>NP 问题：在多项式时间内能够<strong>验证</strong>的问题</li>
+<li>NP 难问题：问题 Q 是 NP 难问题，当对于任意的 $Q’ \in \mathrm{NP}_2$，$Q’\le_\mathrm{P} Q$</li>
+<li>NPC 问题（NP 完全问题）：即是 NP 问题，又是 NP 难问题</li>
+<li>规约<ul>
+<li>转换过程需要多项式时间</li>
+<li>两个实例的解是<strong>相同</strong>的</li>
+</ul>
+</li>
+<li><p>判定问题 &amp; 最优化问题</p>
+<ul>
+<li>判定问题简单来说就是需要给出<strong>是/不是</strong>答案的问题</li>
+<li>最优化问题就是说，对于问题的每个可行的解，都有一个关联的值，希望找到值最优的可行解</li>
+<li>通常判定问题比最优化问题简单，或者说“不会更难”，所以可以通过证明判定问题不易解决来证明最优化问题不易解决</li>
+<li>NPC 把注意力放在判定问题上</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>证明 NPC<ul>
+<li>证明 NP：证明可在多项式时间内验证</li>
+<li>证明 NP 难<ul>
+<li>选取某个 NPC 问题 $Q’$</li>
+<li>规约算法<ul>
+<li>证明规约的正确性，即任意的 $x \in Q’$ 有 $f(x) \in Q$</li>
+<li>证明多项式运行时间</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>电路可满足性问题（Circuit Satisfiability）<br>- </li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/05/ewd831-为什么应该从-0-开始计数/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/01/05/ewd831-为什么应该从-0-开始计数/" itemprop="url">E.W.Dijkstra 831：为什么应该从 0 开始计数</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-05T15:35:33+08:00">
+                2019-01-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Uncategorized/" itemprop="url" rel="index">
+                    <span itemprop="name">Uncategorized</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><strong>翻译自 EWD 831，原文地址：<a href="https://www.cs.utexas.edu/users/EWD/transcriptions/EWD08xx/EWD831.html" target="_blank" rel="noopener">传送门</a></strong>（不完全直译）</p>
+<h1 id="第一部分"><a href="#第一部分" class="headerlink" title="第一部分"></a>第一部分</h1><p>（这一部分论证的是表示区间的时候要不要包含上下界）</p>
+<p>为了不使用 “$\dots$” 来表示自然数的子序列 2，3，$\dots$，12，我们有四种约定俗成的形式：</p>
+<ol>
+<li>2 $\le$ $i$ $\lt$ 13</li>
+<li>1 $\lt$ $i$ $\le$ 12</li>
+<li>2 $\le$ i $\le$ 12</li>
+<li>1 $\lt$ $i$ $\lt$ 13</li>
+</ol>
+<p>有什么选择其中某一种而不是用其他形式的理由吗？当然有。第 1 种和第 2 种形式有一个优点：可以通过上界和下界的差值得到序列的长度。观察的结果是，无论在哪种形式中，两个子序列相邻意味着其中一个的上界等于另一个的下界。尽管这些观察都是有效的，但是它们并不能让我们确定应该从第 1 种形式和第 2 种形式中应该选择哪个，所以让我们重新开始。</p>
+<p>存在一个最小的自然数，不包含下界——像第 2、4 种方式那样——强制子序列从最小的自然数开始。这看上去很丑，所以对于下界我们更乐于像第 1、3 种方式那样使用 $\le$。现在，考虑子序列从最小的自然数开始，包含上界会在序列为空时变得不自然。这看上去也很丑，所以对于上界，我们更乐于像第 1、4 种方式中那样使用 $\lt$。综上，我们得到结论：更乐于使用第 1 种形式。</p>
+<p>注意：在 Xerox PARC 开发地编程语言 Mesa，对于整数的区间有如上四种表示。广泛的经验证明，使用其他三种形式，经常会导致笨拙（？）和错误，并且考虑到有经验的 Mesa 程序员现在都被强烈的建议不要使用后三种形式。我提到这个实验性的证据——因为值得被提及——因为某些人对未在实践中验证过的结论感到不适。</p>
+<h1 id="第二部分"><a href="#第二部分" class="headerlink" title="第二部分"></a>第二部分</h1><p>（这一部分论证的是计数应该从 0 开始）</p>
+<p>当处理一个长度为 N 的序列时，我们使用下标来区分其中的元素，下一个伤脑筋的问题是给第一个元素分配什么下标值。秉承第 1 种方式的约定，当下标从 1 开始时，下标的范围为 1 $\le$ $i$ $\lt$ N+1，然而如果从 0 开始，得到了更 Nice 的范围 0 $\le$ $i$ $\lt$ N。所以让我们从 0 开始计算序号：一个元素的序号（下标）等于序列中这个元素前面的元素的个数。并且我们最好将 0 当作最自然的自然数（原文：And the moral of the story is that we had better regard —after all those centuries!— zero as a most natural number.）</p>
+<p>注意：很多编程语言的设计并没有考虑这个细节。再 FORTRAN 中，下标总是从 1 开始，再 ALGOL 60 和 PASCAL 中，使用的是第 3 种形式；更近期的 SASL 因为 FORTRAN 的这个约定而失败了：SASL 中的序列同时是正整数上的函数。（the more recent SASL has fallen back on the FORTRAN convention: a sequence in SASL is at the same time a function on the positive integers.）真遗憾！</p>
+<h1 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h1><p>上面的讨论起于最近的一次事件，在一个情绪爆发中，我在大学的一个数学系的同事——不是计算机科学家——指责更年轻的计算机科学家们有学究气，因为——像他们按照习惯做的那样——从 0 开始计数。他下意识地采用最明智的约定作为挑衅（）He took consciously adopting the most sensible convention as a provocation. 我认为 Antony Jay 的这句话很对：“在 Corporate Religions 同其他宗教一样，异教徒必须被 cast out 不是因为他错的概率而是他对的概率。”</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/05/HDU-2236：无题-II/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/01/05/HDU-2236：无题-II/" itemprop="url">HDU 2236：无题 II</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-05T13:10:08+08:00">
+                2019-01-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/04/computer-networks-http/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/01/04/computer-networks-http/" itemprop="url">计算机网络：HTTP</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-04T14:19:54+08:00">
+                2019-01-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Computer-Networks/" itemprop="url" rel="index">
+                    <span itemprop="name">Computer Networks</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><h1 id="HTTP-概述"><a href="#HTTP-概述" class="headerlink" title="HTTP 概述"></a>HTTP 概述</h1><p>HTTP，Hyper Text Transfer Protocol，是在 Web 上进行数据交换的基础，是一种 client-server 协议，请求通常是由像浏览器这样的接收方发起的。像浏览器这样的客户端发出的消息叫做 request，被服务器响应的消息叫 response。</p>
+<p>HTTP 是应用层协议，通过 TCP 或者 TLS（加密的 TCP 连接），但是理论上任何可靠的传输协议都可以使用。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/01/04/computer-networks-http/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/02/程序设计方法学：表驱动法/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -744,1153 +1723,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/02/soft-eng-test-logical-coverage/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RHANQTL">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/01/02/soft-eng-test-logical-coverage/" itemprop="url">软件测试基础：逻辑覆盖法</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-02T10:45:06+08:00">
-                2019-01-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Software-Engineering/" itemprop="url" rel="index">
-                    <span itemprop="name">Software Engineering</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Software-Engineering/Software-Testing/" itemprop="url" rel="index">
-                    <span itemprop="name">Software Testing</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <ul>
-<li>语句覆盖：程序中的每个可执行语句至少执行一次</li>
-<li>判定覆盖（分支覆盖）：程序中的每个判定都至少获得一次 “真” 值和一次 “假” 值</li>
-<li>条件覆盖：程序中每个判定包含的每个条件的可能取值都至少满足一次</li>
-<li>判定/条件覆盖：判定覆盖 + 条件覆盖</li>
-<li>组合覆盖：程序中每个判定包含的所有条件的所有取值组合都至少满足一次</li>
-<li>路径覆盖：程序中所有可能的路径都至少执行一次</li>
-</ul>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/01/02/soft-eng-test-logical-coverage/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/01/cpp-stl-lower-bound-upper-bound/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RHANQTL">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/01/01/cpp-stl-lower-bound-upper-bound/" itemprop="url">C++ 学习笔记 - STL：lower_bound() 与 upper_bound()</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-01T00:12:20+08:00">
-                2019-01-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Programming-Languages/" itemprop="url" rel="index">
-                    <span itemprop="name">Programming Languages</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Programming-Languages/C/" itemprop="url" rel="index">
-                    <span itemprop="name">C++</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>头文件 <code>&lt;algorithm&gt;</code> 中，<code>lower_bound()</code> 和 <code>upper_bound()</code> 主要是用来在一个有序序列中查找一个元素第一次出现的位置和最后一次出现的位置的后一个位置（这个的原因 E.W.D. 论证过，详见参考 [1]）。一看到“有序序列”，自然第一反应就是使用二分查找。但是我们平时的二分查找通常是三个分支：大于 key，小于 key，等于 key。所以需要进行一些小小的修改。</p>
-<h1 id="lower-bound"><a href="#lower-bound" class="headerlink" title="lower_bound()"></a><code>lower_bound()</code></h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">lower_bound</span><span class="params">(<span class="keyword">int</span> *a, <span class="keyword">int</span> size, <span class="keyword">int</span> key)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> first = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> len = size;</span><br><span class="line">    <span class="keyword">int</span> middle, half;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span> (len &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        half = len &gt;&gt; <span class="number">1</span>;</span><br><span class="line">        middle = first + half;</span><br><span class="line">        <span class="keyword">if</span> (a[middle] &lt; key) &#123;</span><br><span class="line">            first = middle + <span class="number">1</span>;</span><br><span class="line">            len = len - half - <span class="number">1</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            len = half;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> first;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="upper-bound"><a href="#upper-bound" class="headerlink" title="upper_bound()"></a><code>upper_bound()</code></h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">upper_bound</span><span class="params">(<span class="keyword">int</span> *a, <span class="keyword">int</span> size, <span class="keyword">int</span> key)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> first = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> len = size;</span><br><span class="line">    <span class="keyword">int</span> half, middle;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span> (len &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        half = len &gt;&gt; <span class="number">1</span>;</span><br><span class="line">        middle = first + half;</span><br><span class="line">        <span class="keyword">if</span> (a[middle] &gt; key) &#123;</span><br><span class="line">            len = half;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            first = middle + <span class="number">1</span>;</span><br><span class="line">            len - len - half - <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> first;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>比较一下这两个方法，几乎是对称的，真的很精巧！</p>
-<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p>[1] <a href="https://www.cs.utexas.edu/users/EWD/transcriptions/EWD08xx/EWD831.html" target="_blank" rel="noopener">EWD831: Why Numbering Should Start At Zero</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/31/温习-C-语言：数组-指针/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RHANQTL">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/12/31/温习-C-语言：数组-指针/" itemprop="url">温习 C 语言：数组 & 指针</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-31T23:07:30+08:00">
-                2018-12-31
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Programming-Languages/" itemprop="url" rel="index">
-                    <span itemprop="name">Programming Languages</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Programming-Languages/C/" itemprop="url" rel="index">
-                    <span itemprop="name">C</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="在-C-中动态创建数组"><a href="#在-C-中动态创建数组" class="headerlink" title="在 C 中动态创建数组"></a>在 C 中动态创建数组</h2><p>使用 <code>malloc</code> 函数</p>
-<ul>
-<li><p>一维数组（n 个元素）</p>
-<ul>
-<li><p>创建</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> *a = (<span class="keyword">int</span> *) <span class="built_in">malloc</span>(n * <span class="keyword">sizeof</span>(<span class="keyword">int</span>));</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>销毁</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">free</span>(a);</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>二维数组（m 行 n 列）</p>
-<ul>
-<li><p>创建</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> **a = (<span class="keyword">int</span> **) <span class="built_in">malloc</span>(m * <span class="keyword">sizeof</span>(<span class="keyword">int</span> *));</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; i++) &#123;</span><br><span class="line">    a[i] = (<span class="keyword">int</span> *) <span class="built_in">malloc</span>(n * <span class="keyword">sizeof</span>(<span class="keyword">int</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>销毁</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; i++) &#123;</span><br><span class="line">    <span class="built_in">free</span>(a[i]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">free</span>(a);</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/31/POJ-3061：Subsequence/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RHANQTL">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/12/31/POJ-3061：Subsequence/" itemprop="url">POJ 3061：Subsequence</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-31T23:00:43+08:00">
-                2018-12-31
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Algorithms/" itemprop="url" rel="index">
-                    <span itemprop="name">Algorithms</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Algorithms/OJ/" itemprop="url" rel="index">
-                    <span itemprop="name">OJ</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Algorithms/OJ/POJ/" itemprop="url" rel="index">
-                    <span itemprop="name">POJ</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Subsequence"><a href="#Subsequence" class="headerlink" title="Subsequence"></a>Subsequence</h1><p><strong>Time Limit:</strong> 1000MS</p>
-<p><strong>Memory Limit:</strong> 65536K</p>
-<h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p>A sequence of N positive integers (10 &lt; N &lt; 100 000), each of them less than or equal 10000, and a positive integer S (S &lt; 100 000 000) are given. Write a program to find the minimal length of the subsequence of consecutive elements of the sequence, the sum of which is greater than or equal to S.</p>
-<h2 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h2><p>The first line is the number of test cases. For each test case the program has to read the numbers N and S, separated by an interval, from the first line. The numbers of the sequence are given in the second line of the test case, separated by intervals. The input will finish with the end of file.</p>
-<h2 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h2><p>For each the case the program has to print the result on separate line of the output file.if no answer, print 0.</p>
-<h2 id="Sample-Input"><a href="#Sample-Input" class="headerlink" title="Sample Input"></a>Sample Input</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">2</span><br><span class="line">10 15</span><br><span class="line">5 1 3 5 10 7 4 9 2 8</span><br><span class="line">5 11</span><br><span class="line">1 2 3 4 5</span><br></pre></td></tr></table></figure>
-<h2 id="Sample-Output"><a href="#Sample-Output" class="headerlink" title="Sample Output"></a>Sample Output</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">2</span><br><span class="line">3</span><br></pre></td></tr></table></figure>
-<h2 id="Source"><a href="#Source" class="headerlink" title="Source"></a>Source</h2><p><a href="http://poj.org/searchproblem?field=source&amp;key=Southeastern+Europe+2006" target="_blank" rel="noopener">Southeastern Europe 2006</a></p>
-<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/30/10x-programmer/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RHANQTL">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/12/30/10x-programmer/" itemprop="url">10x 程序员</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-30T22:43:52+08:00">
-                2018-12-30
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>转载自 <a href="http://antirez.com/news/112" target="_blank" rel="noopener"><antirez></antirez></a></p>
-<h2 id="The-mythical-10x-programmer"><a href="#The-mythical-10x-programmer" class="headerlink" title="The mythical 10x programmer"></a>The mythical 10x programmer</h2><p>antirez 670 days ago. 543210 views.A 10x programmer is, in the mythology of programming, a programmer that can do ten times the work of another normal programmer, where for normal programmer we can imagine one good at doing its work, but without the magical abilities of the 10x programmer. Actually to better characterize the “normal programmer” it is better to say that it represents the one having the average programming output, among the programmers that are professionals in this discipline.</p>
-<p>The programming community is extremely polarized about the existence or not of such a beast: who says there is no such a thing as the 10x programmer, who says it actually does not just exist, but there are even 100x programmers if you know where to look for.</p>
-<p>If you see programming as a “linear” discipline, it is clear that the 10x programmer looks like an irrational possibility. How can a runner run 10x faster than another one? Or a construction worker build 10x the things another worker can build in the same time? However programming is a design discipline, in a very special way. Even when a programmer does not participate in the actual architectural design of a program, the act of implementing it still requires a sub-design of the implementation strategy.</p>
-<p>So if the design and implementation of a program are not linear abilities, things like experience, coding abilities, knowledge, recognition of useless parts, are, in my opinion, not just linear advantages, they work together in a multiplicative way in the act of creating a program. Of course this phenomenon happens much more when a programmer can both handle the design and the implementation of a program. The more “goal oriented” is the task, the more a potential 10x programmer can exploit her/his abilities in order to reach the goal with a lot less efforts. When the task at hand is much more rigid, with specific guidelines about what tools to use and how to implement things, the ability of a 10x programmer to perform a lot of work in less time is weakened: it can still exploit “local” design possibilities to do a much better work, but cannot change in more profound ways the path used to reach the goal, that may include, possibly, even eliminating part of the specification completely from the project, so that the goal to be reached looks almost the same but the efforts to reach it are reduced by a big factor.</p>
-<p>In twenty years of working as a programmer I observed other programmers working with me, as coworkers, guided by me in order to reach a given goal, providing patches to Redis and other projects. At the same time many people told me that they believe I’m a very fast programmer. Considering I’m far from being a workaholic, I’ll also use myself as a reference of coding things fast.</p>
-<p>The following is a list of qualities that I believe make the most difference in programmers productivity.</p>
-<ul>
-<li>Bare programming abilities: getting sub-tasks done</li>
-</ul>
-<p>One of the most obvious limits, or strengths, of a programmer is to deal with the sub-task of actually implementing part of a program: a function, an algorithm or whatever. Surprisingly the ability to use basic imperative programming constructs very efficiently in order to implement something is, in my experience, not as widespread as one may think. In a team sometimes I observed very incompetent programmers, that were not even aware of a simple sorting algorithm, to get more work done than graduated programmers that were in theory extremely competent but very poor in the practice of implementing solutions.</p>
-<ul>
-<li>Experience: pattern matching</li>
-</ul>
-<p>By experience I mean the set of already explored solutions for a number of recurring tasks. An experienced programmer eventually knows how to deal with a variety of sub tasks. This avoids both a lot of design work, but especially, is an extremely powerful weapon against design errors, that are in turn among the biggest enemies of simplicity.</p>
-<ul>
-<li>Focus: actual time VS hypothetical time</li>
-</ul>
-<p>The number of hours spent writing code is irrelevant without looking at the quality of the time. Lack of focus can be generated by internal and external factors. Internal factors are procrastination, lack of interest in the project at hand (you can’t be good doing things you do not love), lack of exercise / well-being, poor or little sleeping. External factors are frequent meetings, work environments without actual offices, coworkers interrupting often and so forth. It seems natural that trying to improve focus and to reduce interruptions is going to have a non marginal effect on the programming productivity. Sometimes in order to gain focus, extreme measures are needed. For instance I only read emails from time to time and do not reply to most of them.</p>
-<ul>
-<li>Design sacrifice: killing 5% to get 90%</li>
-</ul>
-<p>Often complexity is generated when there is no willingness to recognized that a non fundamental goal of a project is accounting for a very large amount of design complexity, or is making another more important goal very hard to reach, because there is a design tension among a fundamental feature and a non fundamental one. It is very important for a designer to recognize all the parts of a design that are not easy wins, that is, there is no proportionality between the effort and the advantages. A project that is executed in order to maximize the output, is going to focus exactly on the aspects that matter and that can be implemented in a reasonable amount of time. For example when designing Disque, a message broker, at some point I realized that by providing just best-effort ordering for the messages, all the other aspects of the project could be substantially improved: availability, query language and clients interaction, simplicity and performances.</p>
-<ul>
-<li>Simplicity</li>
-</ul>
-<p>This is an obvious point that means all and nothing. In order to understand what simplicity is, it is worth to check how complexity is often generated. I believe that the two main drivers of complexity are the unwillingness to perform design sacrifices, and the accumulation of errors in the design activity.</p>
-<p>If you think at the design process, each time a wrong path is pursued, we get more and more far from the optimal solution. An initial design error, in the wrong hands, will not generate a re-design of the same system, but will lead to the design of another complex solution in order to cope with the initial error. The project, thus, becomes more complex and less efficient at every wrong step.</p>
-<p>The way simplicity can be achieved is to reason in terms of small metal “proof of concepts”, so that a large amount of simple designs can be explored in the mind of the programmer, to start working from something that looks the most viable and direct solution. Later, experience and personal design abilities will allow to improve the design and find sensible solutions for the sub-designs that need to be resolved.</p>
-<p>However each time a complex solution is needed, it’s important to reason for a long time about how the complexity can be avoided, and only continue in that direction if no better possibility is found even considering completely different alternatives.</p>
-<ul>
-<li>Perfectionism, or how to kill your productivity and bias your designs</li>
-</ul>
-<p>Perfectionism comes in two variants: an engineering culture of reaching the best possible measurable performance in a program, and as a personality trait. In both the instances, I see this as one of the biggest barriers for a programmer to deliver things fast. Perfectionism and fear of external judice insert a designing bias that will result in poor choices in order to refine a design only according to psychological or trivially measurable parameters, where things like robustness, simplicity, ability to deliver in time, are often never accounted for. </p>
-<ul>
-<li>Knowledge: some theory is going to help</li>
-</ul>
-<p>When dealing with complex tasks, knowledge about data structures, fundamental limits of computation, non trivial algorithms that are very suitable to model certain tasks, are going to have an impact in the ability to find a suitable design. To be a super expert of everything is not required, but to be at least aware of a multitude of potential solutions for a problem certainly is. For instance applying design sacrifice (accept some error percentage) and being aware of probabilistic set cardinality estimators, can be combined together in order to avoid a complex, slow and memory inefficient solution in order to count unique items in a stream.</p>
-<ul>
-<li>Low level: understanding the machine</li>
-</ul>
-<p>A number of issues in programs, even when using high level languages, arise from the misunderstanding of how the computer is going to perform a given task. This may even lead to the need of re-designing and re-implementing again from scratch a project because there is a fundamental problem in the tools or algorithms used. Good competence of C, the understanding of how CPUs work and clear ideas about how the kernel operates and how system calls are implemented, can save from bad late-stage surprises.</p>
-<ul>
-<li>Debugging skills</li>
-</ul>
-<p>It is very easy to spend an enormous amount of work in order to find bugs. The sum of being good at gaining state about a bug, incrementally, in order to fix it with a rational set of steps, and the attitude of writing simple code that is unlikely to contain too many bugs, can have a great effect on the programmer efficiency.</p>
-<p>It is no surprising to me to see how the above qualities of a programmer can have a 10x impact on the output. Combined they allow for good implementations of designs that start from a viable model and can be several times simpler than alternatives. There is a way to stress simplicity that I like to call “opportunistic programming”. Basically at every development step, the set of features to implement is chosen in order to have the maximum impact on the user base of the program, with the minimum requirement of efforts.</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/30/订阅-arXiv/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RHANQTL">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/12/30/订阅-arXiv/" itemprop="url">RSS 订阅 arXiv</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-30T20:38:13+08:00">
-                2018-12-30
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="1-订阅"><a href="#1-订阅" class="headerlink" title="1 订阅"></a>1 订阅</h1><h2 id="1-1-步骤"><a href="#1-1-步骤" class="headerlink" title="1.1 步骤"></a>1.1 步骤</h2><ol>
-<li><p>首先，你得确定一下你想订阅哪些：<a href="https://arxiv.org/help/archive_list，以" target="_blank" rel="noopener">https://arxiv.org/help/archive_list，以</a> CS 为例：</p>
-<img src="/2018/12/30/订阅-arXiv/available-list.png" title="CS 这一大类下可订阅的子学科">
-</li>
-<li><p>注意上图红框的地方，里面的 <strong>cs</strong> 就是我们目的邮箱的名字，也就是说，如果我想订阅 <strong>Computer Science</strong> 这一大类下的文章，就要发邮件给 <strong>cs@arxiv.org</strong></p>
-</li>
-<li><p>开始写邮件</p>
-<ol>
-<li><p>首先是主题，为 <code>subscribe &lt;你的名字&gt;</code> 这样的格式</p>
-</li>
-<li><p>内容：用 <code>add &lt;分类名&gt;</code> 表示增加订阅 &lt;分类名&gt; 类的文章，用 <code>del &lt;分类名&gt;</code> 表示取消订阅 &lt;分类名&gt; 类的文章</p>
-</li>
-<li><p>一封完整的订阅邮件应该是这样的：</p>
-<img src="/2018/12/30/订阅-arXiv/complete-mail.png">
-<p>这代表我订阅了 <strong>Discrete Mathematics</strong>、<strong>Information Theory</strong>、<strong>Operating Systems</strong>、<strong>Symbolic Computation</strong> 类的文章</p>
-</li>
-</ol>
-</li>
-<li><p>如果成功会受到这样一封邮件</p>
-<img src="/2018/12/30/订阅-arXiv/reply.png">
-<p>其中 <strong>Artificial Intelligence</strong> 这些刚刚没写的是我之前订阅的</p>
-</li>
-<li><p>如果失败（邮件投递成功，订阅失败）的话会收到一封第一行为 “(No valid add or del options specified.)” 的邮件，这时候就要检查一下标题、命令、分类名称是否正确</p>
-</li>
-<li><p>注意事项：邮件一定要用<font color="red"><strong>纯文本</strong></font>！！！</p>
-</li>
-</ol>
-<h2 id="1-2-获取可订阅列表的另一种方法"><a href="#1-2-获取可订阅列表的另一种方法" class="headerlink" title="1.2 获取可订阅列表的另一种方法"></a>1.2 获取可订阅列表的另一种方法</h2><p>比如我想知道 <strong>Computer Science</strong> 大类下面可订阅的子分类，那么就给相应的邮箱（这里是 <strong>cs@arxiv.org</strong>）发一封标题为 <code>subscribe</code> 的空内容邮件。</p>
-<p>不过这个方法似乎有问题，会返回失败消息。</p>
-<h2 id="1-3-可订阅子分类的缩写名"><a href="#1-3-可订阅子分类的缩写名" class="headerlink" title="1.3 可订阅子分类的缩写名"></a>1.3 可订阅子分类的缩写名</h2><p>这个还没研究过，以后再说。</p>
-<h1 id="2-取消订阅"><a href="#2-取消订阅" class="headerlink" title="2 取消订阅"></a>2 取消订阅</h1><h2 id="2-1-取消订阅某个子分类"><a href="#2-1-取消订阅某个子分类" class="headerlink" title="2.1 取消订阅某个子分类"></a>2.1 取消订阅某个子分类</h2><p>比如我想取消 <strong>Computer Science</strong> 大类下面 <strong>Artificial Intelligence</strong> 分类的订阅，那么就给相应的邮箱（这里是 <strong>cs@arxiv.org</strong>）发送一封带有 <code>del Artificial Intelligence</code> 的邮件，其他同上。</p>
-<h2 id="2-2-取消订阅某个大类"><a href="#2-2-取消订阅某个大类" class="headerlink" title="2.2 取消订阅某个大类"></a>2.2 取消订阅某个大类</h2><p>比如我想取消 <strong>Computer Science</strong> 大类的订阅，那么就给相应的邮箱（这里是 <strong>cs@arxiv.org</strong>） 发送一封标题为 <code>cancel</code> 的空内容邮件。</p>
-<h1 id="再次强调：邮件一定要用纯文本！！！"><a href="#再次强调：邮件一定要用纯文本！！！" class="headerlink" title="再次强调：邮件一定要用纯文本！！！"></a>再次强调：邮件一定要用<font color="red">纯文本</font>！！！</h1><h1 id="3-官方说明"><a href="#3-官方说明" class="headerlink" title="3 官方说明"></a>3 官方说明</h1><p><a href="https://arxiv.org/help/subscribe" target="_blank" rel="noopener">To Subscribe to the E-Mail Alerting Service</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/30/在数据库中存储层次结构数据/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RHANQTL">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/12/30/在数据库中存储层次结构数据/" itemprop="url">在数据库中存储层次结构数据</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-30T15:37:15+08:00">
-                2018-12-30
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Database/" itemprop="url" rel="index">
-                    <span itemprop="name">Database</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Database/MySQL/" itemprop="url" rel="index">
-                    <span itemprop="name">MySQL</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <img src="/2018/12/30/在数据库中存储层次结构数据/bug-report-comments-example.png">
-<h1 id="邻接（表）模型"><a href="#邻接（表）模型" class="headerlink" title="邻接（表）模型"></a>邻接（表）模型</h1><img src="/2018/12/30/在数据库中存储层次结构数据/adjacency-model.png" title="邻接模型，实际上是一棵 Inverse Tree">
-<h1 id="嵌套集合模型"><a href="#嵌套集合模型" class="headerlink" title="嵌套集合模型"></a>嵌套集合模型</h1><img src="/2018/12/30/在数据库中存储层次结构数据/nested-sets-model.png">
-<img src="/2018/12/30/在数据库中存储层次结构数据/nested-sets-model-insert.png">
-<h1 id="物化路径模型"><a href="#物化路径模型" class="headerlink" title="物化路径模型"></a>物化路径模型</h1><h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p>[1] <a href="https://www.grayboxpdx.com/blog/post/storing-hierarchical-data-in-a-database" target="_blank" rel="noopener">Storing Hierarchical Data in a Database</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/7/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/7/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1936,7 +1773,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">87</span>
+                  <span class="site-state-item-count">94</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

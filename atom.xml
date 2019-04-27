@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-04-24T00:55:18.562Z</updated>
+  <updated>2019-04-26T11:30:07.248Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,120 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>linux-programming-shell-command-sed</title>
+    <link href="http://yoursite.com/2019/04/26/linux-programming-shell-command-sed/"/>
+    <id>http://yoursite.com/2019/04/26/linux-programming-shell-command-sed/</id>
+    <published>2019-04-26T11:30:07.000Z</published>
+    <updated>2019-04-26T11:30:07.248Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>linux-programming-shell-command-awk</title>
+    <link href="http://yoursite.com/2019/04/26/linux-programming-shell-command-awk/"/>
+    <id>http://yoursite.com/2019/04/26/linux-programming-shell-command-awk/</id>
+    <published>2019-04-26T11:30:03.000Z</published>
+    <updated>2019-04-26T11:30:03.206Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>linux-programming-shell-command-grep</title>
+    <link href="http://yoursite.com/2019/04/26/linux-programming-shell-command-grep/"/>
+    <id>http://yoursite.com/2019/04/26/linux-programming-shell-command-grep/</id>
+    <published>2019-04-26T11:29:53.000Z</published>
+    <updated>2019-04-26T11:29:53.624Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>linux-programming-shell-command</title>
+    <link href="http://yoursite.com/2019/04/26/linux-programming-shell-command/"/>
+    <id>http://yoursite.com/2019/04/26/linux-programming-shell-command/</id>
+    <published>2019-04-26T11:28:46.000Z</published>
+    <updated>2019-04-26T11:29:43.035Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>nlp-word-vector</title>
+    <link href="http://yoursite.com/2019/04/25/nlp-word-vector/"/>
+    <id>http://yoursite.com/2019/04/25/nlp-word-vector/</id>
+    <published>2019-04-25T03:49:32.000Z</published>
+    <updated>2019-04-25T03:49:32.380Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>中文分词算法</title>
+    <link href="http://yoursite.com/2019/04/25/nlp-chinese-word-segmentation/"/>
+    <id>http://yoursite.com/2019/04/25/nlp-chinese-word-segmentation/</id>
+    <published>2019-04-25T03:41:47.000Z</published>
+    <updated>2019-04-25T08:25:11.033Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>软件测试工具</title>
+    <link href="http://yoursite.com/2019/04/24/soft-eng-test-tools/"/>
+    <id>http://yoursite.com/2019/04/24/soft-eng-test-tools/</id>
+    <published>2019-04-24T02:49:33.000Z</published>
+    <updated>2019-04-26T07:03:33.889Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>字符集：ASCII、Unicode 和 UTF-8</title>
@@ -250,144 +364,6 @@
     <updated>2019-04-08T07:15:26.841Z</updated>
     
     <summary type="html">
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>pta-advanced-1009</title>
-    <link href="http://yoursite.com/2019/04/08/pta-advanced-1009/"/>
-    <id>http://yoursite.com/2019/04/08/pta-advanced-1009/</id>
-    <published>2019-04-08T07:15:22.000Z</published>
-    <updated>2019-04-08T07:15:22.542Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>pta-advanced-1010</title>
-    <link href="http://yoursite.com/2019/04/08/pta-advanced-1010/"/>
-    <id>http://yoursite.com/2019/04/08/pta-advanced-1010/</id>
-    <published>2019-04-08T07:14:57.000Z</published>
-    <updated>2019-04-08T07:14:58.499Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>pta-advanced-1007</title>
-    <link href="http://yoursite.com/2019/04/07/pta-advanced-1007/"/>
-    <id>http://yoursite.com/2019/04/07/pta-advanced-1007/</id>
-    <published>2019-04-07T04:43:50.000Z</published>
-    <updated>2019-04-07T05:13:59.993Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>PTA 甲级 1006：Sign In and Sign Out</title>
-    <link href="http://yoursite.com/2019/04/06/pta-advanced-1006/"/>
-    <id>http://yoursite.com/2019/04/06/pta-advanced-1006/</id>
-    <published>2019-04-06T09:07:12.000Z</published>
-    <updated>2019-04-06T09:37:13.622Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>PTA 甲级 1005：Spell It Right</title>
-    <link href="http://yoursite.com/2019/04/06/pta-advanced-1005/"/>
-    <id>http://yoursite.com/2019/04/06/pta-advanced-1005/</id>
-    <published>2019-04-06T08:31:06.000Z</published>
-    <updated>2019-04-06T09:36:48.824Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>PTA 甲级 1004：Counting Leaves</title>
-    <link href="http://yoursite.com/2019/04/06/pta-advanced-1004/"/>
-    <id>http://yoursite.com/2019/04/06/pta-advanced-1004/</id>
-    <published>2019-04-06T08:16:21.000Z</published>
-    <updated>2019-04-06T09:36:43.651Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>PTA 甲级 1003：Emergency</title>
-    <link href="http://yoursite.com/2019/04/06/pta-advanced-1003/"/>
-    <id>http://yoursite.com/2019/04/06/pta-advanced-1003/</id>
-    <published>2019-04-06T06:00:10.000Z</published>
-    <updated>2019-04-06T09:36:36.067Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
     
     </summary>
     
