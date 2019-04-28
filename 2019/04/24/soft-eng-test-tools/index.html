@@ -85,19 +85,20 @@
 
 
 
-<meta name="description" content="pitestPitest 官网   123456&amp;lt;plugin&amp;gt;    &amp;lt;groupId&amp;gt;org.pitest&amp;lt;/groupId&amp;gt;    &amp;lt;artifactId&amp;gt;pitest-maven&amp;lt;/artifactId&amp;gt;    &amp;lt;!-- 这里的 LATEST 是一个参数 --&amp;gt;    &amp;lt;version&amp;gt;LATEST&amp;lt;">
+<meta name="description" content="pitestPitestPitest 官网 可以通过 eclipse Software Market 安装，也可以通过修改 pom.xml 文件，下面提供后者的步骤： 把下面的部分加到 pom.xml 的 build 元素下： 123456&amp;lt;plugin&amp;gt;    &amp;lt;groupId&amp;gt;org.pitest&amp;lt;/groupId&amp;gt;    &amp;lt;artifactId&amp;gt">
 <meta property="og:type" content="article">
 <meta property="og:title" content="软件测试工具">
 <meta property="og:url" content="http://yoursite.com/2019/04/24/soft-eng-test-tools/index.html">
 <meta property="og:site_name" content="RHANQTL">
-<meta property="og:description" content="pitestPitest 官网   123456&amp;lt;plugin&amp;gt;    &amp;lt;groupId&amp;gt;org.pitest&amp;lt;/groupId&amp;gt;    &amp;lt;artifactId&amp;gt;pitest-maven&amp;lt;/artifactId&amp;gt;    &amp;lt;!-- 这里的 LATEST 是一个参数 --&amp;gt;    &amp;lt;version&amp;gt;LATEST&amp;lt;">
+<meta property="og:description" content="pitestPitestPitest 官网 可以通过 eclipse Software Market 安装，也可以通过修改 pom.xml 文件，下面提供后者的步骤： 把下面的部分加到 pom.xml 的 build 元素下： 123456&amp;lt;plugin&amp;gt;    &amp;lt;groupId&amp;gt;org.pitest&amp;lt;/groupId&amp;gt;    &amp;lt;artifactId&amp;gt">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2019/04/24/soft-eng-test-tools/pitest.org.png">
 <meta property="og:image" content="http://yoursite.com/2019/04/24/soft-eng-test-tools/pitest-getting-started.png">
-<meta property="og:updated_time" content="2019-04-26T07:03:33.889Z">
+<meta property="og:updated_time" content="2019-04-28T10:38:54.017Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="软件测试工具">
-<meta name="twitter:description" content="pitestPitest 官网   123456&amp;lt;plugin&amp;gt;    &amp;lt;groupId&amp;gt;org.pitest&amp;lt;/groupId&amp;gt;    &amp;lt;artifactId&amp;gt;pitest-maven&amp;lt;/artifactId&amp;gt;    &amp;lt;!-- 这里的 LATEST 是一个参数 --&amp;gt;    &amp;lt;version&amp;gt;LATEST&amp;lt;">
-<meta name="twitter:image" content="http://yoursite.com/2019/04/24/soft-eng-test-tools/pitest-getting-started.png">
+<meta name="twitter:description" content="pitestPitestPitest 官网 可以通过 eclipse Software Market 安装，也可以通过修改 pom.xml 文件，下面提供后者的步骤： 把下面的部分加到 pom.xml 的 build 元素下： 123456&amp;lt;plugin&amp;gt;    &amp;lt;groupId&amp;gt;org.pitest&amp;lt;/groupId&amp;gt;    &amp;lt;artifactId&amp;gt">
+<meta name="twitter:image" content="http://yoursite.com/2019/04/24/soft-eng-test-tools/pitest.org.png">
 
 
 
@@ -342,20 +343,23 @@
       
 
       
-        <h1 id="pitest"><a href="#pitest" class="headerlink" title="pitest"></a>pitest</h1><p><a href="http://pitest.org/" target="_blank" rel="noopener">Pitest 官网</a></p>
-
-<img src="/2019/04/24/soft-eng-test-tools/pitest-getting-started.png">
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;plugin&gt;</span><br><span class="line">    &lt;groupId&gt;org.pitest&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;pitest-maven&lt;/artifactId&gt;</span><br><span class="line">    &lt;!-- 这里的 LATEST 是一个参数 --&gt;</span><br><span class="line">    &lt;version&gt;LATEST&lt;/version&gt;</span><br><span class="line">&lt;/plugin&gt;</span><br></pre></td></tr></table></figure>
-<p>指定要进行变异的类和要进行测试的单元测试：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;plugin&gt;</span><br><span class="line">    &lt;groupId&gt;org.pitest&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;pitest-maven&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;LATEST&lt;/version&gt;</span><br><span class="line">    &lt;configuration&gt;</span><br><span class="line">        &lt;targetClasses&gt;</span><br><span class="line">            &lt;param&gt;com.your.package.root.want.to.mutate*&lt;/param&gt;</span><br><span class="line">        &lt;/targetClasses&gt;</span><br><span class="line">        &lt;targetTests&gt;</span><br><span class="line">            &lt;param&gt;com.your.package.root*&lt;/param&gt;</span><br><span class="line">        &lt;/targetTests&gt;</span><br><span class="line">    &lt;/configuration&gt;</span><br><span class="line">&lt;/plugin&gt;</span><br></pre></td></tr></table></figure>
-<p>运行：</p>
+        <h1 id="pitest"><a href="#pitest" class="headerlink" title="pitest"></a>pitest</h1><h1 id="Pitest"><a href="#Pitest" class="headerlink" title="Pitest"></a>Pitest</h1><p><a href="http://pitest.org/" target="_blank" rel="noopener">Pitest 官网</a></p>
+<p>可以通过 eclipse Software Market 安装，也可以通过修改 <code>pom.xml</code> 文件，下面提供后者的步骤：</p>
+<p>把下面的部分加到 <code>pom.xml</code> 的 <code>build</code> 元素下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;plugin&gt;</span><br><span class="line">    &lt;groupId&gt;org.pitest&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;pitest-maven&lt;/artifactId&gt;</span><br><span class="line">    &lt;!-- 这里的 LATEST 是一个参数，比如 1.4.7 --&gt;</span><br><span class="line">    &lt;version&gt;LATEST&lt;/version&gt;</span><br><span class="line">&lt;/plugin&gt;</span><br></pre></td></tr></table></figure>
+<p>默认情况下对所有的类进行变异测试，指定要进行变异的类和要进行测试的单元测试：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;plugin&gt;</span><br><span class="line">    &lt;groupId&gt;org.pitest&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;pitest-maven&lt;/artifactId&gt;</span><br><span class="line">    &lt;!-- 这里的 LATEST 是一个参数，比如 1.4.7 --&gt;</span><br><span class="line">    &lt;version&gt;LATEST&lt;/version&gt;</span><br><span class="line">    &lt;configuration&gt;</span><br><span class="line">        &lt;targetClasses&gt;</span><br><span class="line">            &lt;param&gt;com.your.package.root.want.to.mutate*&lt;/param&gt;</span><br><span class="line">        &lt;/targetClasses&gt;</span><br><span class="line">        &lt;targetTests&gt;</span><br><span class="line">            &lt;param&gt;com.your.package.root*&lt;/param&gt;</span><br><span class="line">        &lt;/targetTests&gt;</span><br><span class="line">    &lt;/configuration&gt;</span><br><span class="line">&lt;/plugin&gt;</span><br></pre></td></tr></table></figure>
+<p>在项目的根目录（<code>src/</code> 的父目录）下运行：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn org.pitest:pitest-maven:mutationCoverage</span><br></pre></td></tr></table></figure>
-<p>输出的报告在 <code>target/pit-reports</code></p>
-<p><a href="http://pitest.org/quickstart/maven/" target="_blank" rel="noopener">Maven Quick Start</a></p>
-<h1 id="代码覆盖率：Jacoco-EmlEmma"><a href="#代码覆盖率：Jacoco-EmlEmma" class="headerlink" title="代码覆盖率：Jacoco (EmlEmma)"></a>代码覆盖率：Jacoco (EmlEmma)</h1><p>eclipse 插件，IntelliJ IDEA 有自带的代码覆盖率工具</p>
+<p>输出的报告在 <code>target/pit-reports/</code> 中。</p>
+<p>更详细的教程：<a href="http://pitest.org/quickstart/maven/" target="_blank" rel="noopener">Pitest - Maven Quick Start</a></p>
+<img src="/2019/04/24/soft-eng-test-tools/pitest.org.png">
+<img src="/2019/04/24/soft-eng-test-tools/pitest-getting-started.png">
+<h1 id="代码覆盖率：Jacoco-EmlEmma"><a href="#代码覆盖率：Jacoco-EmlEmma" class="headerlink" title="代码覆盖率：Jacoco (EmlEmma)"></a>代码覆盖率：Jacoco (EmlEmma)</h1><p><a href="https://www.eclemma.org/jacoco/" target="_blank" rel="noopener">Jacoco 官方网站</a></p>
+<p>eclipse 插件，IntelliJ IDEA 有自带的代码覆盖率工具</p>
 <p>通过 eclipse Software Market 安装</p>
-<h1 id="自动生成单元测试：EvoSuite"><a href="#自动生成单元测试：EvoSuite" class="headerlink" title="自动生成单元测试：EvoSuite"></a>自动生成单元测试：EvoSuite</h1><p>自动生成测试用例，当然并不智能</p>
-<p><a href="http://www.evosuite.org/" target="_blank" rel="noopener">官方网站</a></p>
+<h1 id="自动生成单元测试：EvoSuite"><a href="#自动生成单元测试：EvoSuite" class="headerlink" title="自动生成单元测试：EvoSuite"></a>自动生成单元测试：EvoSuite</h1><p><a href="http://www.evosuite.org/" target="_blank" rel="noopener">EvoSuite 官方网站</a></p>
+<p>自动生成测试用例，当然并不智能，但还是挺不错的。</p>
 
       
     </div>
@@ -531,7 +535,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#pitest"><span class="nav-number">1.</span> <span class="nav-text">pitest</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#代码覆盖率：Jacoco-EmlEmma"><span class="nav-number">2.</span> <span class="nav-text">代码覆盖率：Jacoco (EmlEmma)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#自动生成单元测试：EvoSuite"><span class="nav-number">3.</span> <span class="nav-text">自动生成单元测试：EvoSuite</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#pitest"><span class="nav-number">1.</span> <span class="nav-text">pitest</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Pitest"><span class="nav-number">2.</span> <span class="nav-text">Pitest</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#代码覆盖率：Jacoco-EmlEmma"><span class="nav-number">3.</span> <span class="nav-text">代码覆盖率：Jacoco (EmlEmma)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#自动生成单元测试：EvoSuite"><span class="nav-number">4.</span> <span class="nav-text">自动生成单元测试：EvoSuite</span></a></li></ol></div>
             
 
           </div>
