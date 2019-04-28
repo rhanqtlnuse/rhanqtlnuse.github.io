@@ -85,18 +85,18 @@
 
 
 
-<meta name="description" content="这是一篇伤感的博客。 昨天参加了 DeeCamp 2019 的笔试，倒数第二道题是这样的： 小明使用如下的代码生成了一张图片： 123456789101112131415import scipyimport numpy as npdef generate_img(matrix, digit_img):    &apos;&apos;&apos;    matrix: 120*80 的 ndarray，含有 0-9 之间的数字">
+<meta name="description" content="这是一篇伤感的博客。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="记 DeeCamp 2019 的一道笔试题">
 <meta property="og:url" content="http://yoursite.com/2019/04/28/others-deecamp2019-last-question/index.html">
 <meta property="og:site_name" content="RHANQTL">
-<meta property="og:description" content="这是一篇伤感的博客。 昨天参加了 DeeCamp 2019 的笔试，倒数第二道题是这样的： 小明使用如下的代码生成了一张图片： 123456789101112131415import scipyimport numpy as npdef generate_img(matrix, digit_img):    &apos;&apos;&apos;    matrix: 120*80 的 ndarray，含有 0-9 之间的数字">
+<meta property="og:description" content="这是一篇伤感的博客。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/2019/04/28/others-deecamp2019-last-question/number_matrix.bmp">
-<meta property="og:updated_time" content="2019-04-28T10:18:49.555Z">
+<meta property="og:updated_time" content="2019-04-28T10:21:11.102Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="记 DeeCamp 2019 的一道笔试题">
-<meta name="twitter:description" content="这是一篇伤感的博客。 昨天参加了 DeeCamp 2019 的笔试，倒数第二道题是这样的： 小明使用如下的代码生成了一张图片： 123456789101112131415import scipyimport numpy as npdef generate_img(matrix, digit_img):    &apos;&apos;&apos;    matrix: 120*80 的 ndarray，含有 0-9 之间的数字">
+<meta name="twitter:description" content="这是一篇伤感的博客。">
 <meta name="twitter:image" content="http://yoursite.com/2019/04/28/others-deecamp2019-last-question/number_matrix.bmp">
 
 
@@ -343,6 +343,7 @@
 
       
         <p>这是一篇伤感的博客。</p>
+<a id="more"></a>
 <p>昨天参加了 DeeCamp 2019 的笔试，倒数第二道题是这样的：</p>
 <p>小明使用如下的代码生成了一张图片：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> scipy</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">generate_img</span><span class="params">(matrix, digit_img)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    matrix: 120*80 的 ndarray，含有 0-9 之间的数字</span></span><br><span class="line"><span class="string">    digit_img: 10*28*28 的 ndarray，0-9 对应的图片</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    img = np.zeros((matrix.shape[<span class="number">0</span>] * <span class="number">28</span>, matrix.shape[<span class="number">1</span>] * <span class="number">28</span>))</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(matrix.shape[<span class="number">0</span>]):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(matrix.shape[<span class="number">1</span>]):</span><br><span class="line">            ii = i * <span class="number">28</span></span><br><span class="line">            jj = j * <span class="number">28</span></span><br><span class="line">            img[ii:ii+<span class="number">28</span>, jj:jj+<span class="number">28</span>] = digit_img[matrix[i][j]]</span><br><span class="line">    scipy.imwrite(<span class="string">'number_matrix.bmp'</span>, img)</span><br></pre></td></tr></table></figure>
@@ -467,7 +468,7 @@
               
               <div class="site-state-item site-state-categories">
                 
-                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-count">28</span>
                   <span class="site-state-item-name">分类</span>
                 
               </div>

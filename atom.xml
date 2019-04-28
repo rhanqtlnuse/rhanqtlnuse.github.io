@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-04-28T10:18:49.555Z</updated>
+  <updated>2019-04-28T10:21:11.102Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -21,17 +21,11 @@
     <link href="http://yoursite.com/2019/04/28/others-deecamp2019-last-question/"/>
     <id>http://yoursite.com/2019/04/28/others-deecamp2019-last-question/</id>
     <published>2019-04-28T08:52:16.000Z</published>
-    <updated>2019-04-28T10:18:49.555Z</updated>
+    <updated>2019-04-28T10:21:11.102Z</updated>
     
     <summary type="html">
     
-      
-      
-        
-        
-          
-        
-      
+      &lt;p&gt;这是一篇伤感的博客。&lt;/p&gt;
     
     </summary>
     
@@ -121,11 +115,13 @@
     <link href="http://yoursite.com/2019/04/25/nlp-word-vector/"/>
     <id>http://yoursite.com/2019/04/25/nlp-word-vector/</id>
     <published>2019-04-25T03:49:32.000Z</published>
-    <updated>2019-04-25T03:49:32.380Z</updated>
+    <updated>2019-04-28T10:28:00.875Z</updated>
     
     <summary type="html">
     
     </summary>
+    
+      <category term="NLP" scheme="http://yoursite.com/categories/NLP/"/>
     
     
   </entry>
@@ -135,7 +131,7 @@
     <link href="http://yoursite.com/2019/04/25/nlp-chinese-word-segmentation/"/>
     <id>http://yoursite.com/2019/04/25/nlp-chinese-word-segmentation/</id>
     <published>2019-04-25T03:41:47.000Z</published>
-    <updated>2019-04-25T08:25:11.033Z</updated>
+    <updated>2019-04-28T10:27:49.123Z</updated>
     
     <summary type="html">
     
@@ -148,6 +144,8 @@
       
     
     </summary>
+    
+      <category term="NLP" scheme="http://yoursite.com/categories/NLP/"/>
     
     
   </entry>
