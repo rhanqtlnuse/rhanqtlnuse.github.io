@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-04-28T14:40:10.753Z</updated>
+  <updated>2019-04-28T15:23:45.061Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>PyTorch：torchvision.transforms</title>
+    <link href="http://yoursite.com/2019/04/28/pytorch-torchvision-transforms/"/>
+    <id>http://yoursite.com/2019/04/28/pytorch-torchvision-transforms/</id>
+    <published>2019-04-28T15:05:24.000Z</published>
+    <updated>2019-04-28T15:23:45.061Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>为什么 C++ 没有通用的 Object 类？</title>
@@ -47,7 +69,7 @@
     <link href="http://yoursite.com/2019/04/28/python-image-io/"/>
     <id>http://yoursite.com/2019/04/28/python-image-io/</id>
     <published>2019-04-28T11:22:02.000Z</published>
-    <updated>2019-04-28T11:26:19.619Z</updated>
+    <updated>2019-04-28T15:04:16.112Z</updated>
     
     <summary type="html">
     
@@ -376,20 +398,6 @@
           
         
       
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>csapp-lab-prologue</title>
-    <link href="http://yoursite.com/2019/04/13/csapp-lab-prologue/"/>
-    <id>http://yoursite.com/2019/04/13/csapp-lab-prologue/</id>
-    <published>2019-04-12T16:04:21.000Z</published>
-    <updated>2019-04-12T16:04:21.940Z</updated>
-    
-    <summary type="html">
     
     </summary>
     
