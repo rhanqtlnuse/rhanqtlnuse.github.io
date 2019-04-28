@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-04-26T11:30:07.248Z</updated>
+  <updated>2019-04-28T10:12:21.562Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,50 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>记 DeeCamp 2019 的一道笔试题</title>
+    <link href="http://yoursite.com/2019/04/28/others-deecamp-last-question/"/>
+    <id>http://yoursite.com/2019/04/28/others-deecamp-last-question/</id>
+    <published>2019-04-28T08:52:16.000Z</published>
+    <updated>2019-04-28T10:12:21.562Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>示例 1：手写数字识别</title>
+    <link href="http://yoursite.com/2019/04/27/ml-basic-digit-recognization/"/>
+    <id>http://yoursite.com/2019/04/27/ml-basic-digit-recognization/</id>
+    <published>2019-04-27T13:16:56.000Z</published>
+    <updated>2019-04-27T13:22:17.359Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>linux-programming-shell-command-sed</title>
@@ -334,34 +378,6 @@
     <id>http://yoursite.com/2019/04/08/pta-advanced-1002/</id>
     <published>2019-04-08T07:15:36.000Z</published>
     <updated>2019-04-08T07:15:36.960Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>pta-advanced-1001</title>
-    <link href="http://yoursite.com/2019/04/08/pta-advanced-1001/"/>
-    <id>http://yoursite.com/2019/04/08/pta-advanced-1001/</id>
-    <published>2019-04-08T07:15:32.000Z</published>
-    <updated>2019-04-08T07:15:32.965Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>pta-advanced-1008</title>
-    <link href="http://yoursite.com/2019/04/08/pta-advanced-1008/"/>
-    <id>http://yoursite.com/2019/04/08/pta-advanced-1008/</id>
-    <published>2019-04-08T07:15:26.000Z</published>
-    <updated>2019-04-08T07:15:26.841Z</updated>
     
     <summary type="html">
     

@@ -265,6 +265,372 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/08/haskell-入门/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/12/08/haskell-入门/" itemprop="url">Haskell 入门</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-08T14:49:32+08:00">
+                2018-12-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/FP/" itemprop="url" rel="index">
+                    <span itemprop="name">FP</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/FP/Haskell/" itemprop="url" rel="index">
+                    <span itemprop="name">Haskell</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>函数调用在 Haskell 中拥有最高的优先级，所以 <code>succ 9 * 10</code> 的结果为 100，而不是所期望的 91</p>
+<p>Haskell 中 <code>if</code> 语句（实际上是一个表达式）的 <code>else</code> 不可省略：<code>if-then-else</code>，也就是说，必须返回一个值</p>
+<p>编写一些简单的函数（抽象），将其组合，形成更高级的抽象</p>
+<p>有两个参数的函数可以使用中缀形式：<code>div 9 3</code> 等价于 <code>9 `div` 3</code>，注意使用<strong>反引号</strong>将函数名括起来和参数的顺序</p>
+<p>变量的值不可修改！！！（更像数学中的变量，而不是编程中的变量），但可以对变量重新赋值</p>
+<p>Haskell 中<strong>不允许</strong>首字母大写的函数</p>
+<p>常量定义：<code>let &lt;var_name&gt; = &lt;value&gt;</code> 或 <code>&lt;var_name&gt; = &lt;value&gt;</code>，注意 <code>&lt;var_name&gt;</code> 首字母<strong>小写</strong>！</p>
+<h1 id="List"><a href="#List" class="headerlink" title="List"></a>List</h1><p><strong>单类型</strong>数据数据结构</p>
+<p>空 List：<code>[]</code></p>
+<h2 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h2><p>列表连接：<code>&lt;list1&gt; ++ &lt;list2&gt;</code></p>
+<p>字符串实际上是字符数组，所以可以使用 <code>&quot;hello&quot; ++ &quot; &quot; ++ &quot;world&quot;</code></p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">ghci</span>&gt; str1 = ['h', 'e', 'l', 'l', 'o']</span><br><span class="line"><span class="title">ghci</span>&gt; str2 = ['w', 'o', 'r', 'l', 'd']</span><br><span class="line"><span class="title">ghci</span>&gt; str1 ++ <span class="string">" "</span> ++ str2</span><br><span class="line"><span class="string">"hello world"</span></span><br></pre></td></tr></table></figure>
+<p>可以使用 <code>：</code> 将一个元素连接到 List 的头部（Lisp 的 <code>cons &lt;elem&gt; &lt;list&gt;</code>），<code>[1, 2, 3]</code> 实际上是 <code>1：2：3：[]</code> 的语法糖</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">ghci</span>&gt; 'h':'e':'l':'l':'o':[]</span><br><span class="line"><span class="string">"hello"</span></span><br></pre></td></tr></table></figure>
+<p>通过下标访问：<code>!!</code>，下标从 0 开始，超出范围会报错</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">ghci</span>&gt; [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>] !! <span class="number">3</span></span><br><span class="line"><span class="number">4</span></span><br></pre></td></tr></table></figure>
+<h3 id="比较大小"><a href="#比较大小" class="headerlink" title="比较大小"></a>比较大小</h3><p>当 List 中装有<strong>可比较</strong>的元素时，可以使用关系运算符比较列表的大小。从第一个元素开始比较如果能够决定结果，直接返回，否则继续向后比较。</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">ghci</span>&gt; [<span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>] &gt; [<span class="number">2</span>, <span class="number">1</span>, <span class="number">0</span>]</span><br><span class="line"><span class="type">True</span></span><br><span class="line"><span class="title">ghci</span>&gt; [<span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>] &gt; [<span class="number">2</span>, <span class="number">10</span>, <span class="number">100</span>]</span><br><span class="line"><span class="type">True</span></span><br><span class="line"><span class="title">ghci</span>&gt; [<span class="number">3</span>, <span class="number">4</span>, <span class="number">2</span>] &gt; [<span class="number">3</span>, <span class="number">4</span>]</span><br><span class="line"><span class="type">True</span></span><br><span class="line"><span class="title">ghci</span>&gt; [<span class="number">3</span>, <span class="number">4</span>, <span class="number">2</span>] &gt; [<span class="number">2</span>, <span class="number">4</span>]</span><br><span class="line"><span class="type">True</span></span><br><span class="line"><span class="title">ghci</span>&gt; [<span class="number">3</span>, <span class="number">4</span>, <span class="number">2</span>] == [<span class="number">3</span>, <span class="number">4</span>, <span class="number">2</span>]</span><br><span class="line"><span class="type">True</span></span><br></pre></td></tr></table></figure>
+<h3 id="其他常用函数"><a href="#其他常用函数" class="headerlink" title="其他常用函数"></a>其他常用函数</h3><p><code>head</code>：返回 List 的首个元素（Lisp 的 <code>car</code>）</p>
+<p><code>tail</code>：返回 List 的去除首个元素的部分（Lisp 的 <code>cdr</code>）</p>
+<p><code>last</code>：返回 List 的最后一个元素</p>
+<p><code>init</code>：返回 List 去除最后一个元素的部分</p>
+<p>注意：对空 List 使用这些函数会在运行期产生异常</p>
+<p><code>length</code></p>
+<p><code>null</code>：检查一个列表是否为空</p>
+<ul>
+<li>避免使用 <code>xs == []</code></li>
+</ul>
+<p><code>reverse</code>：将 List 反转</p>
+<p><code>take &lt;count&gt; &lt;list&gt;</code>：取出列表的前 count 个元素</p>
+<ul>
+<li>也可以使用中缀形式：<code>3 `take` [1, 2, 3, 4, 5, 6]</code></li>
+<li>如果 <code>count == 0</code>，那么返回 <code>[]</code></li>
+<li>如果 <code>count &gt;= length</code>，那么返回原 List</li>
+</ul>
+<p><code>drop &lt;count&gt; &lt;list&gt;</code>：删除 List 的前 count 个元素，与 <code>take</code> 大体相同</p>
+<p><code>maximum</code> 和 <code>minimum</code></p>
+<p><code>sum</code> 和 <code>product</code></p>
+<p><code>elem</code>：判断一个元素是否在 List 中，通常以中缀形式使用</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/06/位运算奇技淫巧/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/12/06/位运算奇技淫巧/" itemprop="url">位运算奇技淫巧</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-06T20:30:00+08:00">
+                2018-12-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Programming/" itemprop="url" rel="index">
+                    <span itemprop="name">Programming</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>Copyright @韩琦</p>
+<p><strong>转载请注明出处</strong></p>
+</blockquote>
+<h2 id="技巧-0：n-amp-0x01"><a href="#技巧-0：n-amp-0x01" class="headerlink" title="技巧 0：n &amp; 0x01"></a>技巧 0：<code>n &amp; 0x01</code></h2><p>这个方法就是用来判断 <code>n</code> 的奇偶性，但是需要注意的一点是，这个方式与 <code>n % 2</code> 的结果不太一样：<code>n &amp; 0x01</code> 总是返回 <code>0</code> 或 <code>1</code>，而当 <code>n</code> 为负数时，<code>n % 2</code> 可能返回 <code>-1</code>。因为 <code>-(a % b) == (-a) % b</code> 对任何 a，b（b $\ne$ 0）都成立</p>
+<h2 id="技巧-1：n-amp-n-1"><a href="#技巧-1：n-amp-n-1" class="headerlink" title="技巧 1：n &amp; (n - 1)"></a>技巧 1：<code>n &amp; (n - 1)</code></h2><p>位运算有很多很有意思的技巧，有一个比较常见的就是求一个整数二进制表示中 1 的个数：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">countOnes</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (num) &#123;</span><br><span class="line">        num = num &amp; (num - <span class="number">1</span>);</span><br><span class="line">        count++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> count;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其中，<code>num &amp; (num - 1)</code> 中 1 的个数比 <code>num</code> 少 1。</p>
+<p>至于这个方法的正确性，可以直观的解释一下。分两种情况：</p>
+<ul>
+<li><code>num</code> 最低位为 1。假设有：<code>num = 1010 0010 1101 0111b</code>，那么 <code>num - 1</code> 的结果为 <code>1010 0010 1101 0110b</code>，<code>num &amp; (num - 1)</code>：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">  1010 0010 1101 0111  // num</span><br><span class="line">&amp; 1010 0010 1101 0110  // num - 1</span><br><span class="line">---------------------</span><br><span class="line">  1010 0010 1101 0110  // num &amp; (num - 1)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>num</code> 最低位为 0。假设有：<code>num = 1010 1000 0000 0000b</code>，那么 <code>num - 1</code> 的结果为 <code>1010 0111 1111 1111</code>，<code>num &amp; (num - 1)</code>：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">  1010 1000 0000 0000  // num</span><br><span class="line">&amp; 1010 0111 1111 1111  // num - 1</span><br><span class="line">---------------------</span><br><span class="line">  1010 0000 0000 0000  // num &amp; (num - 1)</span><br></pre></td></tr></table></figure>
+<p><strong>例</strong>（LeetCode 338：Counting Bits）：</p>
+<p>Given a non negative integer number <strong>num</strong>. For every numbers <strong>i</strong> in the range <strong>0 ≤ i ≤ num</strong> calculate the number of 1’s in their binary representation and return them as an array.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: 2</span><br><span class="line">Output: [0,1,1]</span><br></pre></td></tr></table></figure>
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: 5</span><br><span class="line">Output: [0,1,1,2,1,2]</span><br></pre></td></tr></table></figure>
+<p><strong>Follow up:</strong></p>
+<ul>
+<li>It is very easy to come up with a solution with run time <strong>O(n*sizeof(integer))</strong>. But can you do it in linear time <strong>O(n)</strong>/possibly in a single pass?</li>
+<li>Space complexity should be <strong>O(n)</strong>.</li>
+<li>Can you do it like a boss? Do it without using any builtin function like <code>__builtin_popcount</code> in C++ or in any other language.</li>
+</ul>
+<p>思路：可以采用规约的方式，一个数 i 中 1 的个数等于比 i 少 1 的数中 1 的个数加上 1</p>
+<p>代码：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; countBits(<span class="keyword">int</span> num) &#123;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; res(num + <span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line">    <span class="comment">// 可以直接确定的是，0 中 1 的个数为 0，所以直接从 i = 1 开始</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= num; i++) &#123;</span><br><span class="line">        res[i] = res[i &amp; (i - <span class="number">1</span>)] + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其实这个问题在同样的思路下还有另一种解法：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; countBits(<span class="keyword">int</span> num) &#123;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; res(num + <span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= num; i++) &#123;</span><br><span class="line">        res[i] = res[i &gt;&gt; <span class="number">1</span>] + (i &amp; <span class="number">0x01</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="技巧-2："><a href="#技巧-2：" class="headerlink" title="技巧 2："></a>技巧 2：</h2>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/05/algorithms-correctness-verification/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1442,412 +1808,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/04/algorithms-approx-algo/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RHANQTL">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/12/04/algorithms-approx-algo/" itemprop="url">未命名</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-04T04:21:29+08:00">
-                2018-12-04
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="渐进算法"><a href="#渐进算法" class="headerlink" title="渐进算法"></a>渐进算法</h1><p>很多优化问题是 NP 难的，相应的决策问题是 NP 完备的，而我们并不总是需要精确的答案，所以可以使用高效的渐进算法。</p>
-<h2 id="渐进比率（Approximation-Ratio）"><a href="#渐进比率（Approximation-Ratio）" class="headerlink" title="渐进比率（Approximation Ratio）"></a>渐进比率（Approximation Ratio）</h2><ul>
-<li>sol$_A$(I) 是 A 在输入 I 上返回的解</li>
-<li>val(SOL) 表示解 SOL 的值</li>
-<li>opt(I) 是在输入 I 上最优的值</li>
-</ul>
-<p>渐进比率为：$\max \limits_{I} \dfrac{val(sol_A(I))}{opt(I)}$</p>
-<h2 id="背包问题"><a href="#背包问题" class="headerlink" title="背包问题"></a>背包问题</h2><h3 id="最先适应（First-Fit）"><a href="#最先适应（First-Fit）" class="headerlink" title="最先适应（First Fit）"></a>最先适应（First Fit）</h3><p>如果我们使用 l 个背包，那么至少有 l - 1 个背包装满一半以上（more than half full）</p>
-<p>假设第 k 个和 k’ 个背包至多装了一半，那么实际上我们压根就不会打开 k’（因为背包 k 完全能够装下 k’ 中的项）</p>
-<p>那么 $\sum\limits_{i=1}^{n} s_i \gt \dfrac{l-1}{2}$，又有 $\sum\limits_{i=1}^{n} \le$ OPT，所以 $l \lt 2 \cdot$ OPT</p>
-<h3 id="降序最先适应"><a href="#降序最先适应" class="headerlink" title="降序最先适应"></a>降序最先适应</h3><p>先将所有的项按照非升序进行排序。</p>
-<p>引理 1：假设最优解使用了 $l$ 个背包，SOL 使用了 $l’$ 个背包，那么背包 $l$ + 1 到 $l’$ 中的项的大小一定不大于 1/3</p>
-<p>证明：令 s$_i$ 是 SOL 中第一个被放进背包 $l$ + 1 的项，我们只需证明 s$_i$ 不大于 1/3</p>
-<p>假设 s$_i\gt$ 1/3，那么 SOL 中背包 1 到 $l$ 每个最多装 2 项</p>
-<p>事实上，在 SOL 中背包 1 到 $l$ 可以被分成两部分：</p>
-<ul>
-<li>背包 1 到 $k$ 每个都包含 1 项</li>
-<li>背包 $k$ + 1 到 l 每个都包含 2 项</li>
-</ul>
-<p>在 OPT 中，一定有 k 个背包不包含 s$_{k+1}$，…，s$_i$，设他们是前 k 个背包（因为在 OPT 中，s$_1$，…，s$_k$ 一定每个单独占据一个背包）</p>
-<p>由于  s$_{k+1}$，…，s$_i$ 中每个的大小都大于 1/3，在 OPT 中，背包 k + 1 到 $l$ 最多能装其中的两个，那么 OPT 不能将 s$_1$，…，s$_i$ 装进 $l$ 个背包，产生矛盾</p>
-<h2 id="不可渐进性"><a href="#不可渐进性" class="headerlink" title="不可渐进性"></a>不可渐进性</h2><ul>
-<li>有些问题的渐进比率有上界</li>
-<li>有些问题很难找到渐进算法</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/04/algorithms-design-foundation/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RHANQTL">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/12/04/algorithms-design-foundation/" itemprop="url">算法设计与分析：算法设计基础</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-04T04:21:29+08:00">
-                2018-12-04
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Algorithms/" itemprop="url" rel="index">
-                    <span itemprop="name">Algorithms</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="分治"><a href="#分治" class="headerlink" title="分治"></a>分治</h2><p>框架：</p>
-<ul>
-<li>将问题分解为较小的子问题<ul>
-<li>有些情况下，可能只要解决了问题的一部分就能得到问题的答案，这种情况叫做“规约”</li>
-</ul>
-</li>
-<li>解决子问题<ul>
-<li>基本情况可以直接解决</li>
-<li>非基本情况可以继续分解成更小的子问题</li>
-</ul>
-</li>
-<li>将子问题的结果合并</li>
-</ul>
-<p>算法设计过程中，一个不错的思路是先设计出相应的递归算法，然后对其进行优化或者转换成迭代形式。</p>
-<h2 id="递归算法设计"><a href="#递归算法设计" class="headerlink" title="递归算法设计"></a>递归算法设计</h2><p>设计递归算法有两个必须遵守的基本原则：</p>
-<ul>
-<li>必须有基本情况</li>
-<li>每次分解/规约问题要确保至少有一个参数<strong>确定</strong>能够更加接近结束条件</li>
-</ul>
-<h3 id="例子：扔鸡蛋"><a href="#例子：扔鸡蛋" class="headerlink" title="例子：扔鸡蛋"></a>例子：扔鸡蛋</h3><p>假设我们有两个鸡蛋，要确定他们的强度（两个鸡蛋强度相同）。强度定义如下：</p>
-<ul>
-<li>如果从第 i 层楼将鸡蛋扔下，鸡蛋碎了，那么鸡蛋的强度为 i - 1</li>
-</ul>
-<p>如果我们有两个鸡蛋，强度在 1 到 100 之间，如何确定鸡蛋的强度？</p>
-<h5 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h5><p>选择第 i 层将鸡蛋扔下，</p>
-<ul>
-<li>如果鸡蛋碎了，那么可以确定强度在 1 到 i - 1 之间，用另一个鸡蛋从第 2 层楼开始顺序查找；</li>
-<li>如果鸡蛋没碎，那么可以确定强度在 i 到 100 之间，此时我们还有 <strong>2 个</strong>鸡蛋，可以再次进行整个过程。</li>
-</ul>
-<p>可以看到，这个问题有两部分参数：</p>
-<ul>
-<li>鸡蛋的个数</li>
-<li>当前已确定的强度范围</li>
-</ul>
-<p>下面，我们对这个问题进行推广。</p>
-<h4 id="推广"><a href="#推广" class="headerlink" title="推广"></a>推广</h4><p>如果我们有 k 个鸡蛋，要在 m 到 n 之间确定一个强度，应该怎样做才能有最小的次数？</p>
-<h5 id="解决方案-1"><a href="#解决方案-1" class="headerlink" title="解决方案"></a>解决方案</h5><p>选择第 i 层（m &lt; i &lt;= n），扔下一个鸡蛋，</p>
-<ul>
-<li>如果鸡蛋碎了，那么可以确定强度在 m 到 i - 1 之间，此时我们还有 k - 1 个鸡蛋</li>
-<li>如果鸡蛋没碎，那么可以确定强度在 i 到 n 之间，此时我们还有 k 个鸡蛋</li>
-</ul>
-<p>由此，我们可以得到如下的基本算法：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">throwEgg(eggCount, lowerBound, upperBound)</span><br><span class="line">    i &lt;- 选择某一层</span><br><span class="line">    return 1 + min&#123;</span><br><span class="line">                throwEgg(eggCount - 1, lowerBound, i - 1),</span><br><span class="line">                throwEgg(eggCount, i, upperBound)</span><br><span class="line">               &#125;</span><br></pre></td></tr></table></figure>
-<p>回到之前的两个基本原则之一：必须有基本情况。</p>
-<p>直观地看，这个问题的基本情况就是当我们只有 1 个鸡蛋的时候，只能从 m 开始一层一层地尝试，尝试次数总共为 n - m 次。</p>
-<p>接下来，看看我们目前确定的基本算法，考虑另一个基本原则：每次分解/规约问题要确保至少有一个参数确定能够更加接近结束条件。</p>
-<p>我们目前的基本算法有一个问题：如果每次较小的都是 <code>throwEgg(eggCount, i, upperBound)</code>，那么我们的计算永远也不会回到基本情况，所以，需要添加一个基本情况：当 m &gt;= n 时，不需要（无法）进行测试。这样一来，我们的算法就变成了下面这个样子：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">throwEgg(eggCount, lowerBound, upperBound)</span><br><span class="line">    if eggCount = 1</span><br><span class="line">        return n - m</span><br><span class="line">    if m &gt;= n</span><br><span class="line">        return 0</span><br><span class="line">    i &lt;- 选择某一层</span><br><span class="line">    return 1 + min&#123;</span><br><span class="line">                throwEgg(eggCount - 1, lowerBound, i - 1),</span><br><span class="line">                throwEgg(eggCount, i, upperBound)</span><br><span class="line">               &#125;</span><br></pre></td></tr></table></figure>
-<p>到这一步，还存在一个问题：如何选择 i？</p>
-<p>题目中并没有明确规定该如何选择，我们也并没有什么厉害的办法，所以只能穷举：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">throwEgg(eggCount, lowerBound, upperBound)</span><br><span class="line">    if eggCount = 1</span><br><span class="line">        return n - m</span><br><span class="line">    if m &gt;= n</span><br><span class="line">        return 0</span><br><span class="line">    for i &lt;- m + 1 to n</span><br><span class="line">        tmp &lt;- 1 + min&#123;</span><br><span class="line">                    throwEgg(eggCount - 1, lowerBound, i - 1),</span><br><span class="line">                    throwEgg(eggCount, i, upperBound)</span><br><span class="line">                   &#125;</span><br><span class="line">        if tmp &lt; minValue</span><br><span class="line">            minValue &lt;- min</span><br><span class="line">    return minValue</span><br></pre></td></tr></table></figure>
-<p>到这里，我们的算法设计算是完成了。</p>
-<h2 id="算法的优化"><a href="#算法的优化" class="headerlink" title="算法的优化"></a>算法的优化</h2><p>算法优化有一些常见的技巧：</p>
-<ul>
-<li><p>以空间换时间：我们的算法可能会出现后面的计算要用到前面计算结果的情况，未经优化的算法可能会进行大量的重复计算，这时候我们可以将这些中间结果记录下来，用到的时候直接查询，无需计算。</p>
-</li>
-<li><p>将递归转换为迭代</p>
-<ul>
-<li><p>尾递归：在<strong>运算</strong>的最后进行的递归调用</p>
-<ul>
-<li><p>是尾递归</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">euclidGCD(m, n)</span><br><span class="line">    if n = 0</span><br><span class="line">        return m</span><br><span class="line">    else</span><br><span class="line">        return euclidGCD(n, m % n)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>不是尾递归</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">fib(n)</span><br><span class="line">    if n = 0</span><br><span class="line">        return 0</span><br><span class="line">    else if n = 1</span><br><span class="line">        return 1</span><br><span class="line">    else</span><br><span class="line">        return fib(n - 1) + fib(n - 2)</span><br></pre></td></tr></table></figure>
-<p>注意尾递归是在运算的最后出现的递归调用，而在上面例子中，最后的运算是加法</p>
-</li>
-</ul>
-</li>
-<li><p>尾递归可以方便地转换成迭代</p>
-<ul>
-<li><p>函数体转换为一个循环体</p>
-</li>
-<li><p>参数转为变量声明</p>
-</li>
-<li><p>基本情况：直接返回相应的结果</p>
-</li>
-<li><p>递归调用：首先计算相应的新参数，赋给相关变量，然后加上 continue 语句</p>
-</li>
-<li><p>例子：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">euclidGCD(m, n)</span><br><span class="line">    m&apos; &lt;- m</span><br><span class="line">    n&apos; &lt;- n</span><br><span class="line">    while True</span><br><span class="line">        if n&apos; = 0</span><br><span class="line">            return m&apos;</span><br><span class="line">        else</span><br><span class="line">            m&apos;, n&apos; = n&apos;, m&apos; % n&apos;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>其它形式的递归也可以转换成迭代</p>
-<ul>
-<li>斐波那契数列：计算 f(n) 首先要顺序地计算 f(0)，f(1)，· · ·，f(n - 1)</li>
-<li>很多递归都可以通过显式地维护一个栈转换为迭代（比如 DFS）</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>某些问题还有特定的优化方式（根据计算过程优化）</p>
-</li>
-</ul>
-<h3 id="扔鸡蛋的优化"><a href="#扔鸡蛋的优化" class="headerlink" title="扔鸡蛋的优化"></a>扔鸡蛋的优化</h3><p>扔鸡蛋问题可以根据下面几点来优化：</p>
-<ul>
-<li>假设初始给定的 k’，m’，n’，那么对于参数 k &lt;= k’，m &lt;= m’，n &lt;= n’，函数 f(k, m, n) 可能会被多次重复计算</li>
-<li>对于任意的 k，m，n，m’，n’，如果 n - m = n’ - m’，那么 f(k, m, n) = f(k, m’, n’)</li>
-<li>根据题意<ul>
-<li>k’ &gt; k’’ 意味着 f(k’, m, n) &lt;= f(k’’, m, n)</li>
-<li>m - n &gt; m’ – n’ 意味着 f(k, m, n) &gt;= f(k, m’, n’)</li>
-</ul>
-</li>
-</ul>
-<p>应对方案：</p>
-<ul>
-<li><p>重复计算：以空间换时间</p>
-</li>
-<li><p>第二点表明，只要 m 与 n 的差相同，计算的结果就相同，所以我们可以只保留二者之差 n - m，这样能够减少一个参数（因为某一个参数总为 0）</p>
-</li>
-<li><p>第三点涉及到函数的单调性问题</p>
-<ul>
-<li>f 对于 k 是一个单调非递增函数</li>
-<li>f 对于 m 与 n 的差是一个单调非递减函数</li>
-<li>根据上面两点，可以确定，两条曲线一定会交于某点，并且 f 在这一点取得最小值</li>
-</ul>
-<p>伪代码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">throwEgg(eggCount, diff)</span><br><span class="line">    if diff &lt;= 0</span><br><span class="line">        return 0</span><br><span class="line">    if eggCount = 1</span><br><span class="line">        return diff</span><br><span class="line">    for i &lt;- 1 to diff</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1898,7 +1858,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">94</span>
+                  <span class="site-state-item-count">96</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
