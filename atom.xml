@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-05-07T13:07:18.377Z</updated>
+  <updated>2019-05-07T16:18:32.354Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -21,17 +21,11 @@
     <link href="http://yoursite.com/2019/05/07/ml-nn-activation-func/"/>
     <id>http://yoursite.com/2019/05/07/ml-nn-activation-func/</id>
     <published>2019-05-07T10:35:45.000Z</published>
-    <updated>2019-05-07T13:07:18.377Z</updated>
+    <updated>2019-05-07T16:18:32.354Z</updated>
     
     <summary type="html">
     
-      
-      
-        
-        
-          
-        
-      
+      &lt;p&gt;激活函数是神经网络重要的组成部分，本文整理了一些常见的激活函数。&lt;/p&gt;
     
     </summary>
     

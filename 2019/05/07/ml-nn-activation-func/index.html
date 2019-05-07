@@ -85,21 +85,21 @@
 
 
 
-<meta name="description" content="Sigmoid\sigma(x) = \dfrac{1}{1 + e^{-x}}​  非 zero-centered  tanh\tanh(x) = \dfrac{e^x-e^{-x}}{e^x+e^{-x}}  zero-centered 饱和  ReLU全称为“Rectified Linear Unit” f(x) = \begin{cases}x &amp; \text{if}\ x \ge 0 \">
+<meta name="description" content="激活函数是神经网络重要的组成部分，本文整理了一些常见的激活函数。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="机器学习 - 神经网络篇：常用激活函数">
 <meta property="og:url" content="http://yoursite.com/2019/05/07/ml-nn-activation-func/index.html">
 <meta property="og:site_name" content="RHANQTL">
-<meta property="og:description" content="Sigmoid\sigma(x) = \dfrac{1}{1 + e^{-x}}​  非 zero-centered  tanh\tanh(x) = \dfrac{e^x-e^{-x}}{e^x+e^{-x}}  zero-centered 饱和  ReLU全称为“Rectified Linear Unit” f(x) = \begin{cases}x &amp; \text{if}\ x \ge 0 \">
+<meta property="og:description" content="激活函数是神经网络重要的组成部分，本文整理了一些常见的激活函数。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/2019/05/07/ml-nn-activation-func/sigmoid.png">
 <meta property="og:image" content="http://yoursite.com/2019/05/07/ml-nn-activation-func/tanh.png">
 <meta property="og:image" content="http://yoursite.com/2019/05/07/ml-nn-activation-func/relu.png">
 <meta property="og:image" content="http://yoursite.com/2019/05/07/ml-nn-activation-func/dead-relu-norm1.png">
-<meta property="og:updated_time" content="2019-05-07T13:07:18.377Z">
+<meta property="og:updated_time" content="2019-05-07T16:18:32.354Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器学习 - 神经网络篇：常用激活函数">
-<meta name="twitter:description" content="Sigmoid\sigma(x) = \dfrac{1}{1 + e^{-x}}​  非 zero-centered  tanh\tanh(x) = \dfrac{e^x-e^{-x}}{e^x+e^{-x}}  zero-centered 饱和  ReLU全称为“Rectified Linear Unit” f(x) = \begin{cases}x &amp; \text{if}\ x \ge 0 \">
+<meta name="twitter:description" content="激活函数是神经网络重要的组成部分，本文整理了一些常见的激活函数。">
 <meta name="twitter:image" content="http://yoursite.com/2019/05/07/ml-nn-activation-func/sigmoid.png">
 
 
@@ -367,54 +367,65 @@
       
 
       
-        <h1 id="Sigmoid"><a href="#Sigmoid" class="headerlink" title="Sigmoid"></a>Sigmoid</h1><script type="math/tex; mode=display">\sigma(x) = \dfrac{1}{1 + e^{-x}}​</script><img src="/2019/05/07/ml-nn-activation-func/sigmoid.png">
+        <p>激活函数是神经网络重要的组成部分，本文整理了一些常见的激活函数。</p>
+<a id="more"></a>
+<h1 id="饱和-amp-非饱和函数"><a href="#饱和-amp-非饱和函数" class="headerlink" title="饱和 &amp; 非饱和函数"></a>饱和 &amp; 非饱和函数</h1><p>非饱和（Non-Saturating）：当且仅当 $(|\lim_{z\rightarrow -\infty} f(z)| = +\infty)  \vee (|\lim_{z\rightarrow +\infty} f(z)| = +\infty)$ 时，称 $f$ 是非饱和的</p>
+<p>饱和（Saturating）：当 $f$ 不是非饱和函数时，称 $f$ 是饱和的</p>
+<blockquote>
+<p>在“饱和函数”的语境中，“饱和”意味着在某个特定的点之后，函数值已经非常接近最大值，函数输入的任何进一步增加将不再导致其输出（有意义地）增加。此时的函数是被“全部填满”的，所以称作“饱和”。</p>
+</blockquote>
+<p>二者的区别在于饱和激活函数会压缩输入。[3]</p>
+<h1 id="Sigmoid"><a href="#Sigmoid" class="headerlink" title="Sigmoid"></a>Sigmoid</h1><script type="math/tex; mode=display">\sigma(x) = \dfrac{1}{1 + e^{-x}}</script><p>梯度：</p>
+<script type="math/tex; mode=display">\begin{align}\nabla_x \sigma(x) &= \dfrac{e^{-x}}{(1 + e^{-x})^2} \\ &= \dfrac{1}{1 + e^{-x}}\dfrac{e^{-x}}{1 + e^{-x}} \\&= \sigma(x)(1 - \sigma(x))\end{align}</script><img src="/2019/05/07/ml-nn-activation-func/sigmoid.png">
 <ul>
 <li>非 zero-centered</li>
+<li>饱和激活函数：$f(x)\in(0, 1)$</li>
 </ul>
-<h1 id="tanh"><a href="#tanh" class="headerlink" title="tanh"></a>tanh</h1><script type="math/tex; mode=display">\tanh(x) = \dfrac{e^x-e^{-x}}{e^x+e^{-x}}</script><img src="/2019/05/07/ml-nn-activation-func/tanh.png">
+<h1 id="tanh"><a href="#tanh" class="headerlink" title="tanh"></a>tanh</h1><script type="math/tex; mode=display">\tanh(x) = \dfrac{e^x-e^{-x}}{e^x+e^{-x}}​</script><img src="/2019/05/07/ml-nn-activation-func/tanh.png">
 <ul>
 <li>zero-centered</li>
-<li>饱和</li>
+<li>饱和激活函数：$f(x)\in(-1, 1)$</li>
 </ul>
 <h1 id="ReLU"><a href="#ReLU" class="headerlink" title="ReLU"></a>ReLU</h1><p>全称为“Rectified Linear Unit”</p>
-<script type="math/tex; mode=display">f(x) = \begin{cases}x & \text{if}\ x \ge 0 \\ 0 & \text{if}\ x \lt 0 \end{cases}</script><p>或者：</p>
-<script type="math/tex; mode=display">f(x) = \max(0, x)</script><img src="/2019/05/07/ml-nn-activation-func/relu.png">
+<script type="math/tex; mode=display">f(x) = \begin{cases}x & \text{if}\ x \ge 0 \\ 0 & \text{if}\ x \lt 0 \end{cases}​</script><p>或者：</p>
+<script type="math/tex; mode=display">f(x) = \max(0, x)</script><p>梯度：</p>
+<script type="math/tex; mode=display">\nabla_x f(x) = \mathbb{1}\{x \gt 0\}​</script><img src="/2019/05/07/ml-nn-activation-func/relu.png">
 <ul>
 <li>节省计算量</li>
 <li>CNN 中常用</li>
 <li>非 zero-centered</li>
-<li>正数不饱和，负数硬饱和</li>
+<li>非饱和激活函数：$\lim\limits_{x\rightarrow+\infty}f(x)=+\infty$</li>
 </ul>
-<p>ReLU 在负数区域被 kill 的现象叫做 Dead ReLU，这样的情况下，有人通过初始化的时候用一个稍微大于 0 的数，比如 0.01，来初始化神经元，从而使得 ReLU 更偏向于激活而不是死掉，但是这个方法是否有效有争议。</p>
-<h2 id="Dead-ReLU-问题"><a href="#Dead-ReLU-问题" class="headerlink" title="Dead ReLU 问题"></a>Dead ReLU 问题</h2><p>下面是一个场景：</p>
-<p>假设神经网络的输入 X 符合某个分布。让我们看一个特定的 ReLU 单元 R。对于任何固定的参数集，输入 X 的分布意味着 ReLU 单元 R 的输入的分布。为了便于可视化，假设 R 的输入符合<em>以 +0.1 为中心的低方差高斯分布</em>。</p>
+<h2 id="Dead-ReLU-问题"><a href="#Dead-ReLU-问题" class="headerlink" title="Dead ReLU 问题"></a>Dead ReLU 问题</h2><p>简而言之，ReLU 在负数区域被 kill 的现象叫做 Dead ReLU。</p>
+<p>下面是一个场景：</p>
+<p>假设神经网络的输入 X 符合某个分布，我们来看一个特定的 ReLU 单元 R。对于任何固定的参数集，X 的分布意味着 ReLU 单元 R 的输入的分布。假设 R 的输入符合<em>以 +0.1 为中心的低方差高斯分布</em>。</p>
 <img src="/2019/05/07/ml-nn-activation-func/dead-relu-norm1.png" title="以 +0.1 为中心的低方差高斯分布">
 <p>在这个场景中：</p>
 <ul>
-<li>R 的大多数输入是正数，因此</li>
-<li>大多数输入会导致 ReLU gate <em>打开</em>，因此</li>
-<li>大多数输入会导致梯度通过 R 反向传播，因此</li>
+<li>R 的大多数输入是<em>正数</em>，因此</li>
+<li>大多数输入会使 ReLU gate <em>打开</em>，因此</li>
+<li>大多数输入会使梯度通过 R 反向传播，因此</li>
 <li>R 的输入通常<em>会</em> 通过 SGD 反向传播更新</li>
 </ul>
-<p>现在假设在一次特定的反向传播过程中，有一个大的梯度向后传递给 R。由于 R 是<em>打开</em> 的，它会将这个大的梯度向后传递到它的输入。这会导致计算 R 的输入的函数发生相对较大的变化。这意味着 R 的输入的分布已经改变 —— 假设 R 的输入现在符合<em>以 -0.1 为中心的低方差高斯分布</em>。</p>
+<p>现在假设在一次特定的反向传播过程中，有一个大的梯度向后传递给 R。由于 R 是<em>打开</em> 的，它会将这个大的梯度向后传递到它的输入。这会导致计算 R 的输入的函数发生相对较大的变化，意味着 R 的输入的分布已经改变 —— 我们假设 R 的输入的分布现在变成了<em>以 -0.1 为中心的低方差高斯分布</em>。</p>
 <p>现在我们有：</p>
 <ul>
 <li>R 的大多数输入是负数，因此</li>
-<li>大多数输入会导致 ReLU gate <em>关闭</em>，因此</li>
-<li>大多数输入会导致梯度无法通过 R 反向传播，因此</li>
+<li>大多数输入会使 ReLU gate <em>关闭</em>，因此</li>
+<li>大多数输入会使梯度无法通过 R 反向传播，因此</li>
 <li>R 的输入通常<em>不会</em> 通过 SGD 反向传播更新。</li>
 </ul>
-<p>发生了什么？R 的输入分布的相对较小的变化（平均为 -0.2）导致 R 的行为存在质的差异。我们越过了零边界，R 现在几乎总是关闭的。问题是<em>关闭的 ReLU 无法更新其输入参数</em>，因此 dead（dead = 始终关闭）ReLU 就会保持 dead 的状态。</p>
+<p>发生了什么？R 的输入的分布相对较小的变化（均值变化仅仅为 -0.2）就导致 R 的行为存在质的差异。我们越过了零边界，R 现在几乎总是关闭的。问题就在于<em>关闭的 ReLU 无法更新其输入参数</em>，因此 dead（dead = 始终关闭）ReLU 就会保持 dead 的状态。</p>
 <p>站在数学的角度来看，这是因为 ReLU 函数</p>
 <script type="math/tex; mode=display">f(x) = \max(0, x)</script><p>的梯度为：</p>
-<script type="math/tex; mode=display">\nabla_x f(x) = \mathbb{1}\{x \gt 0\}</script><p>所以当且仅当 ReLU 在前向传播期间关闭了 gate 时，它将在反向传播期间关闭 gate。Dead ReLU <del>就会保持 dead 的状态</del>很可能会保持 dead 的状态。</p>
-<p>当然，还有机会恢复一些 ReLU gate。回想一下，影响 R 的输入分布的许多“上游”参数仍然通过图中的其他路径进行了更新。例如，R的“兄弟”包括那些打开的并且仍然向后传递梯度的 ReLU。这些对 R 的上游参数的更新可以将 R 的输入分布移回到在正区域中具有重要支持。细节有点复杂：注意到，例如在仿射层中，直接向R 提供输入的行向量在 R 打开之前是不可更新的。因此，只有通过对<em>先前</em> 线性变换层的更新才能恢复完全（fully）dead 的 ReLU。特别地，如果线性变换是没有参数共享的典型仿射，则 100％ 无法在第一个隐藏层恢复死亡的 ReLU。无论如何，这个问题值得进行一些实证研究。</p>
-<p>从 SGD 步骤更新的平均幅度越大，可能将 R 输入的整个分布推向负区域的风险就越大。</p>
-<p>最后，与我的例子不同的是，你可以分阶段完成此操作，其中一个 SGD 步骤将部分分布从正区域推出，随后的 SGD 步骤将推出其余的分布。通常，你可以将 R 的输入分布视为一种随机游走。如果采取相对较大的步骤，你可能会遇到 dead ReLU。</p>
+<script type="math/tex; mode=display">\nabla_x f(x) = \mathbb{1}\{x \gt 0\}​</script><p>所以当且仅当 ReLU 单元在前向传播期间关闭了 gate 时，它在反向传播期间也会关闭 gate。Dead ReLU <del>就会保持 dead 的状态</del>很可能会保持 dead 的状态。</p>
+<p>当然，还有机会恢复一些 ReLU gate。回想一下，影响 R 的输入的分布的许多“上游”参数仍然通过图中的其他路径进行了更新。例如，R 的“兄弟”包括那些打开的并且仍然向后传递梯度的 ReLU 单元。这些对 R 的上游参数的更新可能将 R 的输入的分布的大部分移回到正区域中。细节有点复杂：注意到，例如在仿射层中，直接向 R 提供输入的行向量在 R 打开之前是不可更新的。因此，只有通过对<em>先前</em> 线性变换层的更新才能恢复完全（fully）dead 的 ReLU。特别地，如果线性变换是没有参数共享的典型仿射，则 100％ 无法在第一个隐藏层恢复死亡的 ReLU。</p>
+<p>希望你能明白为什么较大的学习率可能成为罪魁祸首。从 SGD 步骤更新的平均幅度越大，可能将 R 输入的整个分布推向负区域的风险就越大。</p>
+<p>最后，与我的例子不同的是，你可以分阶段完成此操作，其中一个 SGD 步骤将部分分布从正区域推出，随后的 SGD 步骤将推出其余的分布。通常，你可以将 R 的输入的分布视为一种随机游走。如果采取相对较大的步骤，你可能会遇到 dead ReLU。</p>
 <p>避免方法：</p>
 <ul>
-<li>避免使用具有零梯度区域的非线性（可以使用 Leaky ReLU 等）</li>
-<li>还可以考虑通过检测 dead ReLU 并随机重新初始化它们的输入参数来恢复 dead ReLU —— 虽然这会减慢学习速度，但可能会鼓励更有效地使用参数。[2]</li>
+<li>避免使用具有零梯度区域的非线性函数，可以使用 Leaky ReLU 等代替</li>
+<li>还可以考虑通过检测 dead ReLU 并随机重新初始化它们的输入参数来恢复 —— 虽然这会减慢学习速度，但可能会鼓励更有效地使用参数。[2]</li>
 </ul>
 <h2 id="变种"><a href="#变种" class="headerlink" title="变种"></a>变种</h2><h3 id="LeakyReLU-LReLU"><a href="#LeakyReLU-LReLU" class="headerlink" title="LeakyReLU (LReLU)"></a>LeakyReLU (LReLU)</h3><script type="math/tex; mode=display">f(x) = \max(\lambda x, x)</script><p>其中，$\lambda \in (0, 1)$</p>
 <p>下图是 $\lambda = 0.02$ 时的曲线：</p>
@@ -423,7 +434,7 @@
 <h3 id="Randomized-Leaky-ReLU-RReLU"><a href="#Randomized-Leaky-ReLU-RReLU" class="headerlink" title="Randomized Leaky ReLU (RReLU)"></a>Randomized Leaky ReLU (RReLU)</h3><p>最早是在 Kaggle 全美数据科学大赛（NDSB）中被首先提出并使用的。</p>
 <p>其中，$\lambda \sim U(l, u)$，其中，$l, u \in [0, 1)$</p>
 <h3 id="Noisy-ReLU"><a href="#Noisy-ReLU" class="headerlink" title="Noisy ReLU"></a>Noisy ReLU</h3><p>Noisy ReLU 是 ReLU 在考虑高斯噪声的基础上进行改进的变种激活函数。对于神经元的输入值 $x$，Noisy ReLU 加上了一定程度的正态分布的不确定性，即</p>
-<script type="math/tex; mode=display">f(x) = \max(0, x + Y)</script><p>其中，随机变量 $Y \sim \N(0, \sigma(x))$。目前，噪声线性整流函数在受限玻尔兹曼机（Restricted Boltzmann Machine）在计算机图形学的应用中取得了比较好的成果。</p>
+<script type="math/tex; mode=display">f(x) = \max(0, x + Y)​</script><p>其中，随机变量 $Y \sim \mathbb{N}(0, \sigma(x))$。目前，噪声线性整流函数在受限玻尔兹曼机（Restricted Boltzmann Machine）在计算机图形学的应用中取得了比较好的成果。</p>
 <p>相比于传统的神经网络激活函数，诸如 Sigmoid 和 tanh 等双曲函数，ReLU 有以下几方面的优势：</p>
 <ul>
 <li><p>仿生物学原理：相关大脑方面的研究表明生物神经元的信息编码通常比较分散和稀疏。通常情况下，大脑中在同一时间大概只有 1% - 4% 的神经元处于活跃状态。使用线性修正以及正则化（regularization）可以对机器神经网络中神经元的活跃度（即输出为正值）进行调试；相比之下，Sigmoid 在输入为 0 时达到 $\dfrac{1}{2}$，即已经是半饱和的稳定状态，不够符合实际生物学对模拟神经网络的期望。不过需要指出的是，一般情况下，在一个使用 ReLU 的神经网络中大概有 50% 的神经元处于激活态</p>
@@ -441,6 +452,7 @@
 <p>缺点在于增加了参数量。</p>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p>[1] ReLU 的几个变种参考自：<a href="https://zh.wikipedia.org/wiki/%E7%BA%BF%E6%80%A7%E6%95%B4%E6%B5%81%E5%87%BD%E6%95%B0" target="_blank" rel="noopener">维基百科 - 线性整流函数</a></p>
 <p>[2] 关于 Dead ReLU 的问题参考自：<a href="https://www.quora.com/What-is-the-dying-ReLU-problem-in-neural-networks" target="_blank" rel="noopener">Quora - What is the “dying ReLU” problem in neural networks?</a></p>
+<p>[3] 饱和函数和不饱和函数的定义参考自：<a href="https://stats.stackexchange.com/questions/174295/what-does-the-term-saturating-nonlinearities-mean" target="_blank" rel="noopener">StackExchange - What does the term saturating nonlinearities mean?</a></p>
 <h1 id="延伸阅读"><a href="#延伸阅读" class="headerlink" title="延伸阅读"></a>延伸阅读</h1><p>[1] 关于神经网络中激活函数的作用，请参见如下的知乎问题：<a href="https://www.zhihu.com/question/22334626" target="_blank" rel="noopener">神经网络激励函数的作用是什么？有没有形象的解释？</a></p>
 <p>[2] 看过上面的解释之后，可能会产生疑问：ReLU 作为分段线性函数，是否与其他的非线性激活函数一样强大？可以看这个知乎问题：<a href="https://www.zhihu.com/question/58304333" target="_blank" rel="noopener">ReLU 是分段线性函数，非线性映射能力足以拟合任意函数吗？</a></p>
 
@@ -614,7 +626,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Sigmoid"><span class="nav-number">1.</span> <span class="nav-text">Sigmoid</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#tanh"><span class="nav-number">2.</span> <span class="nav-text">tanh</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ReLU"><span class="nav-number">3.</span> <span class="nav-text">ReLU</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Dead-ReLU-问题"><span class="nav-number">3.1.</span> <span class="nav-text">Dead ReLU 问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#变种"><span class="nav-number">3.2.</span> <span class="nav-text">变种</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#LeakyReLU-LReLU"><span class="nav-number">3.2.1.</span> <span class="nav-text">LeakyReLU (LReLU)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Parametric-ReLU-PReLU"><span class="nav-number">3.2.2.</span> <span class="nav-text">Parametric ReLU (PReLU)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Randomized-Leaky-ReLU-RReLU"><span class="nav-number">3.2.3.</span> <span class="nav-text">Randomized Leaky ReLU (RReLU)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Noisy-ReLU"><span class="nav-number">3.2.4.</span> <span class="nav-text">Noisy ReLU</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ELU"><span class="nav-number">4.</span> <span class="nav-text">ELU</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Maxout"><span class="nav-number">5.</span> <span class="nav-text">Maxout</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">6.</span> <span class="nav-text">参考资料</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#延伸阅读"><span class="nav-number">7.</span> <span class="nav-text">延伸阅读</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#饱和-amp-非饱和函数"><span class="nav-number">1.</span> <span class="nav-text">饱和 &amp; 非饱和函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Sigmoid"><span class="nav-number">2.</span> <span class="nav-text">Sigmoid</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#tanh"><span class="nav-number">3.</span> <span class="nav-text">tanh</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ReLU"><span class="nav-number">4.</span> <span class="nav-text">ReLU</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Dead-ReLU-问题"><span class="nav-number">4.1.</span> <span class="nav-text">Dead ReLU 问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#变种"><span class="nav-number">4.2.</span> <span class="nav-text">变种</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#LeakyReLU-LReLU"><span class="nav-number">4.2.1.</span> <span class="nav-text">LeakyReLU (LReLU)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Parametric-ReLU-PReLU"><span class="nav-number">4.2.2.</span> <span class="nav-text">Parametric ReLU (PReLU)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Randomized-Leaky-ReLU-RReLU"><span class="nav-number">4.2.3.</span> <span class="nav-text">Randomized Leaky ReLU (RReLU)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Noisy-ReLU"><span class="nav-number">4.2.4.</span> <span class="nav-text">Noisy ReLU</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ELU"><span class="nav-number">5.</span> <span class="nav-text">ELU</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Maxout"><span class="nav-number">6.</span> <span class="nav-text">Maxout</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">7.</span> <span class="nav-text">参考资料</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#延伸阅读"><span class="nav-number">8.</span> <span class="nav-text">延伸阅读</span></a></li></ol></div>
             
 
           </div>
