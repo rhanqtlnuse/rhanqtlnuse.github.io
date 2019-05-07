@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+  <link rel="stylesheet" media="all" href="/lib/Han/dist/han.min.css?v=3.3">
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/logo.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/logo.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/logo.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.png?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="RHANQTL" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="Copyright (c) @rhanqtl 今天在知乎看到一个有意思的问题：char*(*(*a)(void))[20]; 这个是个什么意思？，它涉及到 C 中一些比较难懂的内容，所以通过这个问题来复习 C 中的指针。 指针基础我们使用指针来间接地访问变量。 最基本的： 123456int i = 10;int *p = &amp;amp;i;// %p 占位符表示以十六进制格式输出指针的值printf">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C 学习笔记：指针">
+<meta property="og:url" content="http://yoursite.com/2018/12/31/c-pointer/index.html">
+<meta property="og:site_name" content="RHANQTL">
+<meta property="og:description" content="Copyright (c) @rhanqtl 今天在知乎看到一个有意思的问题：char*(*(*a)(void))[20]; 这个是个什么意思？，它涉及到 C 中一些比较难懂的内容，所以通过这个问题来复习 C 中的指针。 指针基础我们使用指针来间接地访问变量。 最基本的： 123456int i = 10;int *p = &amp;amp;i;// %p 占位符表示以十六进制格式输出指针的值printf">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-05-04T12:22:55.924Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="C 学习笔记：指针">
+<meta name="twitter:description" content="Copyright (c) @rhanqtl 今天在知乎看到一个有意思的问题：char*(*(*a)(void))[20]; 这个是个什么意思？，它涉及到 C 中一些比较难懂的内容，所以通过这个问题来复习 C 中的指针。 指针基础我们使用指针来间接地访问变量。 最基本的： 123456int i = 10;int *p = &amp;amp;i;// %p 占位符表示以十六进制格式输出指针的值printf">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/12/31/c-pointer/">
+
+
+
+
+
+  <title>C 学习笔记：指针 | RHANQTL</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">RHANQTL</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/31/c-pointer/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">C 学习笔记：指针</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-31T23:07:30+08:00">
+                2018-12-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Programming-Languages/" itemprop="url" rel="index">
+                    <span itemprop="name">Programming Languages</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Programming-Languages/C/" itemprop="url" rel="index">
+                    <span itemprop="name">C</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 浏览
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong>Copyright (c) @rhanqtl</strong></p>
+<p>今天在知乎看到一个有意思的问题：<a href="https://www.zhihu.com/question/56399162/answer/669441812" target="_blank" rel="noopener"><code>char*(*(*a)(void))[20];</code> 这个是个什么意思？</a>，它涉及到 C 中一些比较难懂的内容，所以通过这个问题来复习 C 中的指针。</p>
+<h1 id="指针基础"><a href="#指针基础" class="headerlink" title="指针基础"></a>指针基础</h1><p>我们使用指针来间接地访问变量。</p>
+<p>最基本的：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i = <span class="number">10</span>;</span><br><span class="line"><span class="keyword">int</span> *p = &amp;i;</span><br><span class="line"><span class="comment">// %p 占位符表示以十六进制格式输出指针的值</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"i: %d, p: %p, *p: %d\n"</span>, i, p, *p);</span><br><span class="line">*p = *p + <span class="number">1</span>;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"i: %d, p: %p, *p: %d\n"</span>, i, p, *p);</span><br></pre></td></tr></table></figure>
+<p>输出为：</p>
+<pre>
+    i: 10, p: 0061FF28, *p: 10
+    i: 11, p: 0061FF28, *p: 11
+</pre>
+
+<h2 id="结构体指针"><a href="#结构体指针" class="headerlink" title="结构体指针"></a>结构体指针</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">S</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    <span class="keyword">float</span> f;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">S</span> <span class="title">s</span> = &#123;</span> <span class="number">42</span>, <span class="number">3.14</span> &#125;;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">S</span> *<span class="title">p</span> = &amp;<span class="title">s</span>;</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"%i, %f\n"</span>, (*p).i, (*p).f);</span><br></pre></td></tr></table></figure>
+<p>由于 <code>(*p).member</code> 这样的写法太麻烦，所以 C 使用另一个操作符 <code>-&gt;</code>，减少了字符数，看起来也更简洁：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">printf</span>(<span class="string">"%i, %f\n"</span>, p-&gt;i, p-&gt;f);</span><br></pre></td></tr></table></figure>
+<h2 id="常量指针与指针常量"><a href="#常量指针与指针常量" class="headerlink" title="常量指针与指针常量"></a>常量指针与指针常量</h2><ul>
+<li><p>常量指针：指针将它所指向的值<strong>当作</strong>常量（并不一定真的是常量），指针也可以指向其他的值</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> *cip;</span><br><span class="line"><span class="keyword">int</span> <span class="keyword">const</span> *icp;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> i = <span class="number">42</span>;</span><br><span class="line">cip = &amp;i;</span><br><span class="line">icp = &amp;i;</span><br><span class="line"><span class="comment">// error: assignment of read-only location '*cip' ('*icp')</span></span><br><span class="line">*cip = *cip + <span class="number">1</span>;</span><br><span class="line">*icp = *icp + <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> j = <span class="number">43</span>;</span><br><span class="line"><span class="comment">// OK</span></span><br><span class="line">cip = &amp;j;</span><br><span class="line">icp = &amp;j;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> ci = <span class="number">42</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> *cip = &amp;ci;</span><br><span class="line"><span class="keyword">int</span> <span class="keyword">const</span> *icp = &amp;ci;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>指针常量：可以通过指针修改它所指向的值，但是指针不可以指向其他的值，并且指针必须<strong>定义</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// error</span></span><br><span class="line"><span class="keyword">int</span> * <span class="keyword">const</span> ipc;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i = <span class="number">42</span>, <span class="keyword">int</span> j = <span class="number">43</span>;</span><br><span class="line"><span class="keyword">int</span> * <span class="keyword">const</span> ipc = &amp;<span class="number">42</span>;</span><br><span class="line">ipc = &amp;<span class="number">42</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="指针与数组"><a href="#指针与数组" class="headerlink" title="指针与数组"></a>指针与数组</h1><p>说到指针，一个绝对绕不开的话题就是它和数组的关系。</p>
+<p>最基本的，可以通过指针访问数组的元素，比如：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a[<span class="number">10</span>] = &#123; <span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span> &#125;;</span><br><span class="line"><span class="keyword">int</span> *p = a;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d "</span>, *p++);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0 1 2 3 4 5 6 7 8 9</span><br></pre></td></tr></table></figure>
+<p>这里有一些需要注意的点：</p>
+<ul>
+<li><p><code>p</code> 的初始化方式，可以是 <code>a</code> 或 <code>&amp;a[0]</code></p>
+</li>
+<li><p><code>*</code> 和 <code>++</code> 的结合顺序：<code>++</code> 先，<code>*</code> 后。来看一个示例：</p>
+<p>对上面的代码做一个小小的改动：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a[<span class="number">10</span>] = &#123; <span class="number">0</span>, <span class="number">11</span>, <span class="number">12</span>, <span class="number">13</span>, <span class="number">14</span>, <span class="number">15</span>, <span class="number">16</span>, <span class="number">17</span>, <span class="number">18</span>, <span class="number">19</span> &#125;;</span><br><span class="line"><span class="keyword">int</span> *p = a;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d "</span>, *(p++));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出为：</p>
+<pre>
+    0 11 12 13 14 15 16 17 18 19
+</pre>
+
+<p>再对这段代码做一个小小的改动，让 <code>p</code> 先和 <code>*</code> 结合</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a[<span class="number">10</span>] = &#123; <span class="number">0</span>, <span class="number">11</span>, <span class="number">12</span>, <span class="number">13</span>, <span class="number">14</span>, <span class="number">15</span>, <span class="number">16</span>, <span class="number">17</span>, <span class="number">18</span>, <span class="number">19</span> &#125;;</span><br><span class="line"><span class="keyword">int</span> *p = a;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d "</span>, (*p)++);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出为：</p>
+<pre>
+    0 1 2 3 4 5 6 7 8 9
+</pre>
+</li>
+<li><p>指针运算</p>
+<p>我们可以对最初的代码做一些修改：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a[<span class="number">10</span>] = &#123; <span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span> &#125;;</span><br><span class="line"><span class="keyword">int</span> *p = a;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"element: %d, pointer: %p\n"</span>, *p++, p);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出为：</p>
+<pre>
+    element: 0, pointer: 0061FF04
+    element: 1, pointer: 0061FF08
+    element: 2, pointer: 0061FF0C
+    element: 3, pointer: 0061FF10
+    element: 4, pointer: 0061FF14
+    element: 5, pointer: 0061FF18
+    element: 6, pointer: 0061FF1C
+    element: 7, pointer: 0061FF20
+    element: 8, pointer: 0061FF24
+    element: 9, pointer: 0061FF28
+</pre>
+
+<p>可以看到，指针的值每次加 4，在我的电脑上，<code>sizeof(int)</code> 为 4，<code>--</code> 也是同样，每次跨越一个元素。那么 <code>+</code> <code>-</code> 呢？示例：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a[<span class="number">10</span>] = &#123; <span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span> &#125;;</span><br><span class="line"><span class="keyword">int</span> *p = &amp;a[<span class="number">1</span>], *q = &amp;a[<span class="number">5</span>];</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"%d\n"</span>, q - p);</span><br></pre></td></tr></table></figure>
+<p>输出为：</p>
+<pre>
+    4
+</pre>
+
+<p>刚好是 <code>a[5]</code> 对于 <code>a[1]</code> 的偏移量。</p>
+<p>所以指针的运算实际上是一种逻辑的操作，实际的增量由编译器计算。GCC 6.3.0 会对指针的 <code>*</code> 和 <code>/</code> 报错。</p>
+</li>
+</ul>
+<h2 id="其他形式"><a href="#其他形式" class="headerlink" title="其他形式"></a>其他形式</h2><p>C 中还有一种寻址的形式。</p>
+<p>考虑如下的代码：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a[] = &#123; <span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span> &#125;;</span><br><span class="line"><span class="keyword">int</span> *p = a;</span><br></pre></td></tr></table></figure>
+<p>如下的几种写法都是等价的：</p>
+<ul>
+<li><code>a[3]</code></li>
+<li><code>*(a + 3)</code></li>
+<li><code>*(p + 3)</code></li>
+<li><code>p[3]</code></li>
+</ul>
+<h2 id="指针和数组的区别"><a href="#指针和数组的区别" class="headerlink" title="指针和数组的区别"></a>指针和数组的区别</h2><p>相信很多人都听过一句话（或者类似的话）：“数组本质上就是不可变的指针”。个人认为，这句话需要增加一个限定条件 —— “在汇编语言层面”。在 C 语言的层次上，数组和指针有诸多的不同：</p>
+<ul>
+<li><p>（非指针常量的）指针可以指向其他的值，而数组不可以</p>
+</li>
+<li><p>对指针使用 <code>sizeof</code> 运算符得到的是机器中一个地址的字节数（32 位系统就是 4，64 位系统就是 8），而对数组使用则会得到数组实际的字节数</p>
+</li>
+<li><p>函数的参数（形参和实参）都是指针</p>
+<ul>
+<li><p>这里有一个小小的问题，即如果函数声明为 <code>void f(int a[4])</code>，是数组还是指针？答案是指针，来看一个示例：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">(<span class="keyword">int</span> a[<span class="number">4</span>])</span> </span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"sizeof(a) = %u\n"</span>, <span class="keyword">sizeof</span>(a));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用 GCC 编译会输出警告：</p>
+<pre>
+     warning: 'sizeof' on array function parameter 'a' will return size of 'int *' [-Wsizeof-array-argument]
+     printf("sizeof(a) = %u\n", sizeof(a));
+                                      ^
+</pre>
+
+<p>实际的运行结果也并不是 16，而是 4</p>
+<p>看看汇编代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">subl    $24, %esp</span><br><span class="line">movl    $4, 4(%esp)		; 注意这里</span><br><span class="line">movl    $LC4, (%esp)</span><br><span class="line">call    _printf</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="动态内存管理"><a href="#动态内存管理" class="headerlink" title="动态内存管理"></a>动态内存管理</h2><p>几个相关的函数在头文件 <code>stdlib.h</code> 中。</p>
+<h3 id="malloc-calloc-和-free-函数"><a href="#malloc-calloc-和-free-函数" class="headerlink" title="malloc calloc 和 free 函数"></a><code>malloc</code> <code>calloc</code> 和 <code>free</code> 函数</h3><p><code>malloc</code> 和 <code>calloc</code> 会分配一块空间，并且返回一个指向这块空间基址的指针，<code>free</code> 则是将这块空间归还。</p>
+<p><code>malloc</code> 和 <code>calloc</code> 的不同点在于 <code>calloc</code> 会将分配的空间中的每个字节清零。</p>
+<ul>
+<li><p>一维数组（n 个元素）</p>
+<ul>
+<li><p>创建</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> *a = (<span class="keyword">int</span> *) <span class="built_in">malloc</span>(n * <span class="keyword">sizeof</span>(<span class="keyword">int</span>));</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>销毁</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">free</span>(a);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>二维数组（m 行 n 列）</p>
+<ul>
+<li><p>创建</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> **a = (<span class="keyword">int</span> **) <span class="built_in">malloc</span>(m * <span class="keyword">sizeof</span>(<span class="keyword">int</span> *));</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; i++) &#123;</span><br><span class="line">    a[i] = (<span class="keyword">int</span> *) <span class="built_in">malloc</span>(n * <span class="keyword">sizeof</span>(<span class="keyword">int</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>销毁</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; i++) &#123;</span><br><span class="line">    <span class="built_in">free</span>(a[i]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">free</span>(a);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>更高维的数组依此类推</p>
+</li>
+</ul>
+<h3 id="realloc"><a href="#realloc" class="headerlink" title="realloc"></a><code>realloc</code></h3><p>用于重新分配一块空间。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> *p = (<span class="keyword">int</span> *) <span class="built_in">malloc</span>(<span class="number">32</span> * <span class="keyword">sizeof</span>(<span class="keyword">int</span>));</span><br><span class="line">p = (<span class="keyword">int</span> *) <span class="built_in">realloc</span>()</span><br></pre></td></tr></table></figure>
+<h2 id="指针数组和数组指针"><a href="#指针数组和数组指针" class="headerlink" title="指针数组和数组指针"></a>指针数组和数组指针</h2><ul>
+<li><p>指针数组：顾名思义，指针数组的元素全为指针，一个非常典型的例子就是 <code>main</code> 的参数：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> *argv[])</span> </span>&#123; <span class="comment">/* ... */</span> &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>数组指针：步长为一个数组的指针</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"> </span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="函数指针"><a href="#函数指针" class="headerlink" title="函数指针"></a>函数指针</h1><p>指向函数的指针。假设有如下的函数：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">(<span class="keyword">int</span> arg1, <span class="keyword">int</span> arg2)</span> </span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"f()\n"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>那么指向它的函数指针就是：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> (*fp)(<span class="keyword">int</span>, <span class="keyword">int</span>);</span><br></pre></td></tr></table></figure>
+<p>同其他的变量一样，可以直接赋值：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fp = f;</span><br></pre></td></tr></table></figure>
+<p>调用：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">fp();</span><br><span class="line">(*fp)();</span><br></pre></td></tr></table></figure>
+<p>输出为：</p>
+<pre>
+    f()
+    f()
+</pre>
+
+<p>遇到比较复杂的情况，也可以使用 <code>typedef</code> 关键字进行简化：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">typedef</span> <span class="title">void</span> <span class="params">(*FP)</span><span class="params">(<span class="keyword">int</span>, <span class="keyword">int</span>)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>使用：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FP fp = f;</span><br></pre></td></tr></table></figure>
+<h2 id="函数指针数组和函数数组指针"><a href="#函数指针数组和函数数组指针" class="headerlink" title="函数指针数组和函数数组指针"></a>函数指针数组和函数数组指针</h2><h1 id="问题的答案"><a href="#问题的答案" class="headerlink" title="问题的答案"></a>问题的答案</h1><p>复习过上面的知识之后，再来看最初的问题：<code>char *(*(*a)(void))[20]</code> 是什么意思？</p>
+<p>首先，我们知道 <code>char *(*a)(void)</code> 表示 <code>a</code> 指向一个不接收任何参数，并且返回一个 <code>char *</code> 的函数。我们把这个类型定义为 <code>FP</code>：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">char</span> *(*FP)(<span class="keyword">void</span>);</span><br></pre></td></tr></table></figure>
+<p>那么 <code>char *(*(*a)(void))[20]</code> 是不是表示数组指针呢？来探究一下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">char</span> *<span class="title">doit</span><span class="params">(<span class="keyword">void</span>)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">char</span> *s = <span class="string">"a string"</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"doit()\n"</span>);</span><br><span class="line">    <span class="keyword">return</span> s;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">FP fpa[<span class="number">20</span>] = &#123;</span><br><span class="line">    doit, doit, doit, doit, doit, </span><br><span class="line">    doit, doit, doit, doit, doit, </span><br><span class="line">    doit, doit, doit, doit, doit, </span><br><span class="line">    doit, doit, doit, doit, doit</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">char</span> *(*(*a)(<span class="keyword">void</span>))[<span class="number">20</span>] = &amp;fpa;</span><br></pre></td></tr></table></figure>
+<h1 id="使用指针的注意事项"><a href="#使用指针的注意事项" class="headerlink" title="使用指针的注意事项"></a>使用指针的注意事项</h1><ul>
+<li>注意空指针，对空指针解引用时会产生 Segmentation fault（段错误）</li>
+<li><code>free(p)</code> 后，最好将 <code>p</code> 设为 <code>NULL</code></li>
+<li>由于 C 并不检查数组的越界访问，所以写代码时应该小心，尽可能注意检查</li>
+<li>对于 <code>malloc</code> <code>calloc</code> <code>realloc</code> 分配的内存，要检查是否返回 <code>NULL</code></li>
+<li>注意不要返回局部变量的指针</li>
+</ul>
+<h1 id="延伸阅读"><a href="#延伸阅读" class="headerlink" title="延伸阅读"></a>延伸阅读</h1><p>[1] <a href="http://unixwiz.net/techtips/reading-cdecl.html" target="_blank" rel="noopener">Reading C Type Declarations</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/31/POJ-3061：Subsequence/" rel="next" title="POJ 3061：Subsequence">
+                <i class="fa fa-chevron-left"></i> POJ 3061：Subsequence
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/01/01/cpp-stl-lower-bound-upper-bound/" rel="prev" title="C++ 学习笔记 - STL：lower_bound() 与 upper_bound()">
+                C++ 学习笔记 - STL：lower_bound() 与 upper_bound() <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Han Qi</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">107</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">32</span>
+                  <span class="site-state-item-name">分类</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#指针基础"><span class="nav-number">1.</span> <span class="nav-text">指针基础</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#结构体指针"><span class="nav-number">1.1.</span> <span class="nav-text">结构体指针</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常量指针与指针常量"><span class="nav-number">1.2.</span> <span class="nav-text">常量指针与指针常量</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#指针与数组"><span class="nav-number">2.</span> <span class="nav-text">指针与数组</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#其他形式"><span class="nav-number">2.1.</span> <span class="nav-text">其他形式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#指针和数组的区别"><span class="nav-number">2.2.</span> <span class="nav-text">指针和数组的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#动态内存管理"><span class="nav-number">2.3.</span> <span class="nav-text">动态内存管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#malloc-calloc-和-free-函数"><span class="nav-number">2.3.1.</span> <span class="nav-text">malloc calloc 和 free 函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#realloc"><span class="nav-number">2.3.2.</span> <span class="nav-text">realloc</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#指针数组和数组指针"><span class="nav-number">2.4.</span> <span class="nav-text">指针数组和数组指针</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#函数指针"><span class="nav-number">3.</span> <span class="nav-text">函数指针</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#函数指针数组和函数数组指针"><span class="nav-number">3.1.</span> <span class="nav-text">函数指针数组和函数数组指针</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#问题的答案"><span class="nav-number">4.</span> <span class="nav-text">问题的答案</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用指针的注意事项"><span class="nav-number">5.</span> <span class="nav-text">使用指针的注意事项</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#延伸阅读"><span class="nav-number">6.</span> <span class="nav-text">延伸阅读</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Han Qi</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> 访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>

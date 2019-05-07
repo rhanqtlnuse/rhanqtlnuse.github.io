@@ -98,7 +98,8 @@
 <meta property="og:image" content="http://yoursite.com/2019/04/05/haskell-learn-haskell-fast-and-hard/picasso_owl.jpg">
 <meta property="og:image" content="http://yoursite.com/2019/04/05/haskell-learn-haskell-fast-and-hard/kandinsky_gugg.jpg">
 <meta property="og:image" content="http://yoursite.com/2019/04/05/haskell-learn-haskell-fast-and-hard/hr_giger_biomechanicallandscape_500.jpg">
-<meta property="og:updated_time" content="2019-04-06T15:54:00.615Z">
+<meta property="og:image" content="http://yoursite.com/2019/04/05/haskell-learn-haskell-fast-and-hard/escher_polygon.png">
+<meta property="og:updated_time" content="2019-05-07T13:08:33.084Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Haskell 极简教程">
 <meta name="twitter:description" content="声明：本文翻译自 Learn Haskell Fast and Hard  我坚定地相信所有的开发者都应该学习 Haskell。当然，这并不意味着每个人都要变成 Haskell 高手（super Haskell ninjas），但是你至少能发现 Haskell 能给你提供什么。学习 Haskell 能够开阔你的思路。">
@@ -792,6 +793,108 @@
 <p>替换为</p>
 <figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">foo</span> (x:xs) = <span class="keyword">if</span> even x</span><br><span class="line">                 <span class="keyword">then</span> foo (n+x) xs</span><br><span class="line">                 <span class="keyword">else</span> foo n xs</span><br></pre></td></tr></table></figure>
 <p>这是一个非常有用的特性，使得我们的代码更简洁、更易读。</p>
+<p>在 Haskell 中，你能够通过 $\eta$ - 规约简化函数的定义。比如，如下的函数定义：</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">f</span> x = (some expression) x</span><br></pre></td></tr></table></figure>
+<p>可以改写为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">f = some expression</span><br></pre></td></tr></table></figure>
+<p>我们使用这种方法移除 <code>l</code>：</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- Version 4</span></span><br><span class="line"><span class="title">evenSum</span> :: <span class="type">Integral</span> a =&gt; [a] -&gt; a</span><br><span class="line"></span><br><span class="line"><span class="title">evenSum</span> = accumSum <span class="number">0</span></span><br><span class="line">    <span class="keyword">where</span></span><br><span class="line">        accumSum n [] = n</span><br><span class="line">        accumSum n (x:xs) = </span><br><span class="line">            <span class="keyword">if</span> even x</span><br><span class="line">                <span class="keyword">then</span> (n + x) xs</span><br><span class="line">                <span class="keyword">else</span> n xs</span><br></pre></td></tr></table></figure>
+<div align="right"><a href="">点此下载 14_Functions.lhs</a></div>
+
+<h3 id="3-1-1-更高阶的函数"><a href="#3-1-1-更高阶的函数" class="headerlink" title="3.1.1 更高阶的函数"></a>3.1.1 更高阶的函数</h3><img src="/2019/04/05/haskell-learn-haskell-fast-and-hard/escher_polygon.png">
+<p>to make tings even better，我们应该使用更高阶的函数。这是什么？更高阶的函数是将函数作为参数（parameter）的函数。</p>
+<p>示例：</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">filter</span> :: (a -&gt; <span class="type">Bool</span>) -&gt; [a] -&gt; [a]</span><br><span class="line"><span class="title">map</span> :: (a -&gt; b) -&gt; [a] -&gt; [b]</span><br><span class="line"><span class="title">foldl</span> :: (a -&gt; b -&gt; a) -&gt; a -&gt; [b] -&gt; a</span><br></pre></td></tr></table></figure>
+<p>继续简化我们的代码：</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- Version 5</span></span><br><span class="line"><span class="title">evenSum</span> l = mysum <span class="number">0</span> (filter even l)</span><br><span class="line">    <span class="keyword">where</span></span><br><span class="line">        mysum n [] = n</span><br><span class="line">        mysum n (x:xs) = mysum (n + x) xs</span><br></pre></td></tr></table></figure>
+<p>其中：</p>
+<pre>
+filter even [1..10] ⇔ [2, 4, 6, 8, 10]
+</pre>
+函数 `filter` 以一个类型为 `a -> Bool` 的函数和一个类型为 `[a]` 的列表作为参数，并且返回由使谓词为 `true` 的元素组成的列表。
+
+我们的下一步是使用另一种技巧来完成与循环相同的事情。我们使用 `foldl` 函数累加列表（由 `filter` 返回的）中的值。函数 `foldl` 反映一个通用的编码模式：
+
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">myfunc</span> list = foo initialValue list</span><br><span class="line"><span class="title">foo</span> accumulated [] = accumulated</span><br><span class="line"><span class="title">foo</span> tmpValue (x:xs) = foo (bar tmpValue x) xs</span><br></pre></td></tr></table></figure>
+
+可以替换为：
+
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">myfunc</span> list = foldl bar initialValue list</span><br></pre></td></tr></table></figure>
+
+`foldl` 的定义：
+
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">foldl</span> f z [] = z</span><br><span class="line"><span class="title">foldl</span> f z (x:xs) = foldl f (f z x) xs</span><br></pre></td></tr></table></figure>
+
+<pre>
+foldl f z [x1, ... , xn]
+⇔ f (... (f (f z x1) x2) ...) xn
+</pre>
+
+<p>但是由于 Haskell 是惰性的，它并不计算 <code>(f z x)</code> 的值，仅仅是将它 push 到栈上。这是为什么我们通常使用 <code>foldl&#39;</code> 而不是 <code>foldl</code>，<code>foldl&#39;</code> 是 <code>foldl</code> 的 strict 版本。如果你不理解 lazy 和 strict 是什么意思，别担心，暂时把 <code>foldl</code> 和 <code>foldl&#39;</code> 当成一样的东西。</p>
+<p>使用 <code>foldl&#39;</code> 改写的 <code>evenSum</code>：</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- Version 6</span></span><br><span class="line"><span class="comment">-- foldl' 默认不可以访问，需要从 Data.List 模块导入</span></span><br><span class="line"><span class="keyword">import</span> Data.List</span><br><span class="line"><span class="title">evenSum</span> l = foldl' mysum <span class="number">0</span> (filter even l)</span><br><span class="line">    <span class="keyword">where</span> mysum acc value = acc + value</span><br></pre></td></tr></table></figure>
+<p>可以使用 lambda 化简：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-- Version 7</span><br><span class="line">-- 通常应该只引入必要的函数</span><br><span class="line">import Data.List (foldl&apos;)</span><br><span class="line">evenSum l = foldl&apos; (\x y -&gt; x + y) 0 (filter even l)</span><br></pre></td></tr></table></figure>
+<div align="right"><a href="http://yannesposito.com/Scratch/en/blog/Haskell-the-Hard-Way/code/02_Hard_Part/15_Functions.lhs" target="_blank" rel="noopener">点此下载 15_Functions.lhs</a></div>
+
+<p>另外，注意到：</p>
+<pre>
+(\x y -> x + y) ⇔ (+)
+</pre>
+
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- Version 8</span></span><br><span class="line"><span class="keyword">import</span> Data.List (<span class="title">foldl'</span>)</span><br><span class="line"><span class="title">evenSum</span> :: <span class="type">Integral</span> a =&gt; [a] -&gt; a</span><br><span class="line"><span class="title">evenSum</span> l = foldl' (+) <span class="number">0</span> (filter even l)</span><br></pre></td></tr></table></figure>
+<div align="right"><a href="http://yannesposito.com/Scratch/en/blog/Haskell-the-Hard-Way/code/02_Hard_Part/16_Functions.lhs" target="_blank" rel="noopener">点此下载 16_Functions.lhs</a></div>
+
+<p><code>foldl&#39;</code> 并不是最容易把握的函数，如果你还不习惯，you should study it a bit.</p>
+<p>为了理解 <code>evenSum</code> 如何工作，看看下面逐步的过程：</p>
+<pre>
+evenSum [1, 2, 3, 4]
+⇒ foldl' (+) 0 (filter even [1, 2, 3, 4])
+⇒ foldl' (+) 0 [2, 4]
+⇒ foldl' (+) (0 + 2) [4]
+⇒ foldl' (+) 2 [4]
+⇒ foldl' (+) (2 + 4) []
+⇒ foldl' (+) 6 []
+⇒ 6
+</pre>
+
+<p>另一个有用的高阶函数是 <code>(.)</code>，函数 <code>(.)</code> 对应于数学的组合。</p>
+<pre>
+(f . g . h) x ⇔ f (g (h x))
+</pre>
+
+<p>可以利用 <code>(.)</code> 函数对 <code>evenSum</code> 进行 $\eta$ - 规约：</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- Version 9</span></span><br><span class="line"><span class="keyword">import</span> Data.List (<span class="title">foldl'</span>)</span><br><span class="line"><span class="title">evenSum</span> :: <span class="type">Integral</span> a =&gt; [a] -&gt; a</span><br><span class="line"><span class="title">evenSum</span> = (foldl' (+) <span class="number">0</span>) . (filter even)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<pre>
+evenSum l = foldl' (+) 0 (filter even l)
+          -- l 先与 (filter even) 结合
+          = ((foldl' (+) 0) . (filter even)) l
+-- 进行 eta-规约
+⇒ evenSum = (foldl' (+) 0) . (filter even)
+</pre>
+
+</blockquote>
+<p>另外，我们可以将某些部分重命名以使代码更清晰：</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- Version 10</span></span><br><span class="line"><span class="keyword">import</span> Data.List (<span class="title">foldl'</span>)</span><br><span class="line"><span class="title">sum'</span> :: (<span class="type">Num</span> a) =&gt; [a] -&gt; a</span><br><span class="line"><span class="title">sum'</span> = foldl' (+) <span class="number">0</span></span><br><span class="line"><span class="title">evenSum</span> :: <span class="type">Integral</span> a =&gt; [a] -&gt; a</span><br><span class="line"><span class="title">evenSum</span> = sum' . (filter even)</span><br></pre></td></tr></table></figure>
+<p>It is time to discuss the direction our code has moved as we introduced more functional idioms. 通过使用高阶函数，我们有什么收获？</p>
+<p>首先，你可能会认为主要的区别就是高阶函数更加简洁。但事实上，it has more to do with better thinking. 假设我们想要对 <code>evenSum</code> 进行小小的修改，例如，计算所有为偶数的平方之和。</p>
+<pre>
+[1,2,3,4] ▷ [1,4,9,16] ▷ [4,16] ▷ 20
+</pre>
+在 Version 10 的基础上修改十分容易：
+
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">squareEvenSum</span> = sum' . (filter even) . (map(^<span class="number">2</span>))</span><br><span class="line"><span class="title">squareEvenSum</span> = evenSum . (map (^<span class="number">2</span>))</span><br></pre></td></tr></table></figure>
+
+我们刚刚增加了另一个 “转换函数”：
+
+<pre>
+map (^2) [1,2,3,4] ⇔ [1,4,9,16]
+</pre>
+
+<p><code>map</code> 函数仅仅是对列表中每个元素应用一个函数。</p>
+<p>我们不需要修改函数定义内部的任何东西。这使得代码更加模块化。但是你必须要以更加数学化的方式思考你的函数。需要时，You can also use your function interchangably with others。That is, you can compose, map, fold, filter using your new function.</p>
+<p>修改 version 1 留给读者作为练习 ☺</p>
 
       
     </div>
@@ -905,7 +1008,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">105</span>
+                  <span class="site-state-item-count">107</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -916,7 +1019,7 @@
               
               <div class="site-state-item site-state-categories">
                 
-                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-count">32</span>
                   <span class="site-state-item-name">分类</span>
                 
               </div>
@@ -967,7 +1070,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-绪论"><span class="nav-number">1.</span> <span class="nav-text">1. 绪论</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-安装"><span class="nav-number">1.1.</span> <span class="nav-text">1.1. 安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-别害怕"><span class="nav-number">1.2.</span> <span class="nav-text">1.2. 别害怕</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-很基础的-Haskell"><span class="nav-number">1.3.</span> <span class="nav-text">1.3. 很基础的 Haskell</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-1-函数声明"><span class="nav-number">1.3.1.</span> <span class="nav-text">1.3.1. 函数声明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-2-使用类型的示例"><span class="nav-number">1.3.2.</span> <span class="nav-text">1.3.2. 使用类型的示例</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-Essential-Haskell"><span class="nav-number">2.</span> <span class="nav-text">2. Essential Haskell</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-符号"><span class="nav-number">2.1.</span> <span class="nav-text">2.1. 符号</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-函数中有用的符号"><span class="nav-number">2.2.</span> <span class="nav-text">2.2. 函数中有用的符号</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-困难的部分"><span class="nav-number">3.</span> <span class="nav-text">3. 困难的部分</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-函数式风格"><span class="nav-number">3.1.</span> <span class="nav-text">3.1. 函数式风格</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-绪论"><span class="nav-number">1.</span> <span class="nav-text">1. 绪论</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-安装"><span class="nav-number">1.1.</span> <span class="nav-text">1.1. 安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-别害怕"><span class="nav-number">1.2.</span> <span class="nav-text">1.2. 别害怕</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-很基础的-Haskell"><span class="nav-number">1.3.</span> <span class="nav-text">1.3. 很基础的 Haskell</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-1-函数声明"><span class="nav-number">1.3.1.</span> <span class="nav-text">1.3.1. 函数声明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-2-使用类型的示例"><span class="nav-number">1.3.2.</span> <span class="nav-text">1.3.2. 使用类型的示例</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-Essential-Haskell"><span class="nav-number">2.</span> <span class="nav-text">2. Essential Haskell</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-符号"><span class="nav-number">2.1.</span> <span class="nav-text">2.1. 符号</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-函数中有用的符号"><span class="nav-number">2.2.</span> <span class="nav-text">2.2. 函数中有用的符号</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-困难的部分"><span class="nav-number">3.</span> <span class="nav-text">3. 困难的部分</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-函数式风格"><span class="nav-number">3.1.</span> <span class="nav-text">3.1. 函数式风格</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-1-更高阶的函数"><span class="nav-number">3.1.1.</span> <span class="nav-text">3.1.1 更高阶的函数</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>

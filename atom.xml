@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-04-30T02:03:53.339Z</updated>
+  <updated>2019-05-07T13:07:18.377Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,52 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>机器学习 - 神经网络篇：常用激活函数</title>
+    <link href="http://yoursite.com/2019/05/07/ml-nn-activation-func/"/>
+    <id>http://yoursite.com/2019/05/07/ml-nn-activation-func/</id>
+    <published>2019-05-07T10:35:45.000Z</published>
+    <updated>2019-05-07T13:07:18.377Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+      <category term="Machine Learning" scheme="http://yoursite.com/categories/Machine-Learning/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>编程语言列表</title>
+    <link href="http://yoursite.com/2019/05/04/others-programming-languages-list/"/>
+    <id>http://yoursite.com/2019/05/04/others-programming-languages-list/</id>
+    <published>2019-05-04T08:34:22.000Z</published>
+    <updated>2019-05-04T08:38:08.525Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>kick-start-2019-round-a-2</title>
@@ -299,11 +345,11 @@
   </entry>
   
   <entry>
-    <title>linux-programming-shell-command</title>
+    <title>Linux 程序设计 - Shell 篇：基础命令</title>
     <link href="http://yoursite.com/2019/04/26/linux-programming-shell-command/"/>
     <id>http://yoursite.com/2019/04/26/linux-programming-shell-command/</id>
     <published>2019-04-26T11:28:46.000Z</published>
-    <updated>2019-04-26T11:29:43.035Z</updated>
+    <updated>2019-05-06T11:00:02.161Z</updated>
     
     <summary type="html">
     
@@ -368,36 +414,6 @@
           
         
       
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>字符集：ASCII、Unicode 和 UTF-8</title>
-    <link href="http://yoursite.com/2019/04/24/others-ascii-unicode-utf8/"/>
-    <id>http://yoursite.com/2019/04/24/others-ascii-unicode-utf8/</id>
-    <published>2019-04-24T00:06:30.000Z</published>
-    <updated>2019-04-24T00:55:18.562Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;最近想实现一个自己的 C++ &lt;code&gt;string&lt;/code&gt; 类，对 &lt;code&gt;string&lt;/code&gt; 类编码问题早有耳闻（当然也亲身体验过），所以打算先学习一下字符编码相关的知识。&lt;/p&gt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>others-problem-question</title>
-    <link href="http://yoursite.com/2019/04/23/others-problem-question/"/>
-    <id>http://yoursite.com/2019/04/23/others-problem-question/</id>
-    <published>2019-04-23T04:28:23.000Z</published>
-    <updated>2019-04-23T04:28:23.319Z</updated>
-    
-    <summary type="html">
     
     </summary>
     

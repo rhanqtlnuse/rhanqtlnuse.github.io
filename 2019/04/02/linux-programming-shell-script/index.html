@@ -87,14 +87,14 @@
 
 <meta name="description" content="变量Shell 中的变量实际上都是字符串。 预定义变量环境变量    名字 含义     PATH 默认的命令搜索路径   UID    PWD    PS1    PS2    TERM                 自动变量    名字 含义     @    ?    !    $                         用户定义变量格式：&amp;lt;variable name&amp;gt;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Linux 程序设计 - 基础篇：Shell">
+<meta property="og:title" content="Linux 程序设计 - Shell 篇：编写 Shell 脚本">
 <meta property="og:url" content="http://yoursite.com/2019/04/02/linux-programming-shell-script/index.html">
 <meta property="og:site_name" content="RHANQTL">
 <meta property="og:description" content="变量Shell 中的变量实际上都是字符串。 预定义变量环境变量    名字 含义     PATH 默认的命令搜索路径   UID    PWD    PS1    PS2    TERM                 自动变量    名字 含义     @    ?    !    $                         用户定义变量格式：&amp;lt;variable name&amp;gt;">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-26T11:27:21.946Z">
+<meta property="og:updated_time" content="2019-05-06T11:00:47.059Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Linux 程序设计 - 基础篇：Shell">
+<meta name="twitter:title" content="Linux 程序设计 - Shell 篇：编写 Shell 脚本">
 <meta name="twitter:description" content="变量Shell 中的变量实际上都是字符串。 预定义变量环境变量    名字 含义     PATH 默认的命令搜索路径   UID    PWD    PS1    PS2    TERM                 自动变量    名字 含义     @    ?    !    $                         用户定义变量格式：&amp;lt;variable name&amp;gt;">
 
 
@@ -131,7 +131,7 @@
 
 
 
-  <title>Linux 程序设计 - 基础篇：Shell | RHANQTL</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>Linux 程序设计 - Shell 篇：编写 Shell 脚本 | RHANQTL</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -285,7 +285,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Linux 程序设计 - 基础篇：Shell</h1>
+          <h1 class="post-title" itemprop="name headline">Linux 程序设计 - Shell 篇：编写 Shell 脚本</h1>
         
 
         <div class="post-meta">
@@ -501,6 +501,14 @@
 </tbody>
 </table>
 </div>
+<h1 id="生成列表"><a href="#生成列表" class="headerlink" title="生成列表"></a>生成列表</h1><p><code>{lower..upper}</code> 或 <code>反引号seq \<lower\> \<upper\>反引号</upper\></lower\></code>，注意：</p>
+<p>A sequence expression takes the form {x..y[..incr]}, where x and y are either integers or single characters, and incr, an optional increment, is an integer. When integers are supplied, the expression expands to each number between x and y, inclusive….When characters are supplied, the expression expands to each character lexicographically between x and y, inclusive. Note that both x and y must be of the same type. When the increment is supplied, it is used as the difference between each term. The default increment is 1 or -1 as appropriate.</p>
+<h1 id="控制结构"><a href="#控制结构" class="headerlink" title="控制结构"></a>控制结构</h1><h2 id="分支"><a href="#分支" class="headerlink" title="分支"></a>分支</h2><p><strong><code>if</code></strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">if bool-expression</span><br><span class="line">then</span><br><span class="line">    # statements</span><br><span class="line">elif bool-expression</span><br><span class="line">then</span><br><span class="line">    # statements</span><br><span class="line">else</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+<p><strong><code>case</code></strong></p>
+<h2 id="循环"><a href="#循环" class="headerlink" title="循环"></a>循环</h2><p><strong><code>for</code></strong></p>
+<p><strong><code>while</code></strong></p>
+<p><strong><code>until</code></strong></p>
 <h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p>[1] <a href="https://www.gnu.org/software/bash/manual/html_node/Redirections.html" target="_blank" rel="noopener">GNU Shell 教程</a></p>
 
       
@@ -615,7 +623,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">105</span>
+                  <span class="site-state-item-count">107</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -626,7 +634,7 @@
               
               <div class="site-state-item site-state-categories">
                 
-                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-count">32</span>
                   <span class="site-state-item-name">分类</span>
                 
               </div>
@@ -677,7 +685,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#变量"><span class="nav-number">1.</span> <span class="nav-text">变量</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#预定义变量"><span class="nav-number">1.1.</span> <span class="nav-text">预定义变量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#环境变量"><span class="nav-number">1.1.1.</span> <span class="nav-text">环境变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自动变量"><span class="nav-number">1.1.2.</span> <span class="nav-text">自动变量</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用户定义变量"><span class="nav-number">1.2.</span> <span class="nav-text">用户定义变量</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">2.</span> <span class="nav-text">参考</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#变量"><span class="nav-number">1.</span> <span class="nav-text">变量</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#预定义变量"><span class="nav-number">1.1.</span> <span class="nav-text">预定义变量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#环境变量"><span class="nav-number">1.1.1.</span> <span class="nav-text">环境变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自动变量"><span class="nav-number">1.1.2.</span> <span class="nav-text">自动变量</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用户定义变量"><span class="nav-number">1.2.</span> <span class="nav-text">用户定义变量</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#生成列表"><span class="nav-number">2.</span> <span class="nav-text">生成列表</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#控制结构"><span class="nav-number">3.</span> <span class="nav-text">控制结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#分支"><span class="nav-number">3.1.</span> <span class="nav-text">分支</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#循环"><span class="nav-number">3.2.</span> <span class="nav-text">循环</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">4.</span> <span class="nav-text">参考</span></a></li></ol></div>
             
 
           </div>
