@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-05-07T16:18:32.354Z</updated>
+  <updated>2019-05-08T07:27:47.813Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,56 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>nlp-cs224n-2019-assignment2</title>
+    <link href="http://yoursite.com/2019/05/08/nlp-cs224n-2019-assignment2/"/>
+    <id>http://yoursite.com/2019/05/08/nlp-cs224n-2019-assignment2/</id>
+    <published>2019-05-08T07:27:47.000Z</published>
+    <updated>2019-05-08T07:27:47.813Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>dl-basic-matrix-deriv</title>
+    <link href="http://yoursite.com/2019/05/08/dl-basic-matrix-deriv/"/>
+    <id>http://yoursite.com/2019/05/08/dl-basic-matrix-deriv/</id>
+    <published>2019-05-08T03:42:15.000Z</published>
+    <updated>2019-05-08T03:42:16.467Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>ml-nn-bias</title>
+    <link href="http://yoursite.com/2019/05/08/ml-nn-bias/"/>
+    <id>http://yoursite.com/2019/05/08/ml-nn-bias/</id>
+    <published>2019-05-08T01:34:15.000Z</published>
+    <updated>2019-05-08T01:35:22.543Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>机器学习 - 神经网络篇：常用激活函数</title>
@@ -346,68 +396,6 @@
     <updated>2019-05-06T11:00:02.161Z</updated>
     
     <summary type="html">
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>nlp-word-vector</title>
-    <link href="http://yoursite.com/2019/04/25/nlp-word-vector/"/>
-    <id>http://yoursite.com/2019/04/25/nlp-word-vector/</id>
-    <published>2019-04-25T03:49:32.000Z</published>
-    <updated>2019-04-28T10:28:00.875Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
-      <category term="NLP" scheme="http://yoursite.com/categories/NLP/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>中文分词算法</title>
-    <link href="http://yoursite.com/2019/04/25/nlp-chinese-word-segmentation/"/>
-    <id>http://yoursite.com/2019/04/25/nlp-chinese-word-segmentation/</id>
-    <published>2019-04-25T03:41:47.000Z</published>
-    <updated>2019-04-28T10:31:02.199Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-      <category term="NLP" scheme="http://yoursite.com/categories/NLP/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>软件测试工具</title>
-    <link href="http://yoursite.com/2019/04/24/soft-eng-test-tools/"/>
-    <id>http://yoursite.com/2019/04/24/soft-eng-test-tools/</id>
-    <published>2019-04-24T02:49:33.000Z</published>
-    <updated>2019-04-28T10:38:54.017Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
     
     </summary>
     
