@@ -85,19 +85,19 @@
 
 
 
-<meta name="description" content="An Overview of Gradient Descent Optimization Algorithms">
+<meta name="description" content="An Overview of Gradient Descent Optimization Algorithms 梯度下降随机梯度下降小批量梯度下降Adam动量 \begin{align}\mathbb{m} &amp;\leftarrow \beta_1\mathbb{m} + (1 - \beta_1)\nabla_{\theta}J_{\text{minibatch}}(\theta) \\ \t">
 <meta property="og:type" content="article">
 <meta property="og:title" content="优化算法">
 <meta property="og:url" content="http://yoursite.com/2019/04/27/ml-basic-optimize-algo/index.html">
 <meta property="og:site_name" content="RHANQTL">
-<meta property="og:description" content="An Overview of Gradient Descent Optimization Algorithms">
+<meta property="og:description" content="An Overview of Gradient Descent Optimization Algorithms 梯度下降随机梯度下降小批量梯度下降Adam动量 \begin{align}\mathbb{m} &amp;\leftarrow \beta_1\mathbb{m} + (1 - \beta_1)\nabla_{\theta}J_{\text{minibatch}}(\theta) \\ \t">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/2019/04/27/ml-basic-optimize-algo/1.gif">
 <meta property="og:image" content="http://yoursite.com/2019/04/27/ml-basic-optimize-algo/2.gif">
-<meta property="og:updated_time" content="2019-04-28T14:56:13.272Z">
+<meta property="og:updated_time" content="2019-05-09T06:15:26.394Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="优化算法">
-<meta name="twitter:description" content="An Overview of Gradient Descent Optimization Algorithms">
+<meta name="twitter:description" content="An Overview of Gradient Descent Optimization Algorithms 梯度下降随机梯度下降小批量梯度下降Adam动量 \begin{align}\mathbb{m} &amp;\leftarrow \beta_1\mathbb{m} + (1 - \beta_1)\nabla_{\theta}J_{\text{minibatch}}(\theta) \\ \t">
 <meta name="twitter:image" content="http://yoursite.com/2019/04/27/ml-basic-optimize-algo/1.gif">
 
 
@@ -406,6 +406,10 @@
         <img src="/2019/04/27/ml-basic-optimize-algo/1.gif">
 <img src="/2019/04/27/ml-basic-optimize-algo/2.gif">
 <p><a href="http://ruder.io/optimizing-gradient-descent/index.html" target="_blank" rel="noopener">An Overview of Gradient Descent Optimization Algorithms</a></p>
+<h1 id="梯度下降"><a href="#梯度下降" class="headerlink" title="梯度下降"></a>梯度下降</h1><h1 id="随机梯度下降"><a href="#随机梯度下降" class="headerlink" title="随机梯度下降"></a>随机梯度下降</h1><h1 id="小批量梯度下降"><a href="#小批量梯度下降" class="headerlink" title="小批量梯度下降"></a>小批量梯度下降</h1><h1 id="Adam"><a href="#Adam" class="headerlink" title="Adam"></a>Adam</h1><p>动量</p>
+<script type="math/tex; mode=display">\begin{align}\mathbb{m} &\leftarrow \beta_1\mathbb{m} + (1 - \beta_1)\nabla_{\theta}J_{\text{minibatch}}(\theta) \\ \theta &\leftarrow \theta - \alpha\mathbb{m}\end{align}​</script><p>其中，$\beta_1 \in [0, 1]​$ 是一个超参数，通常设置为 0.9</p>
+<h3 id="自适应学习速率"><a href="#自适应学习速率" class="headerlink" title="自适应学习速率"></a>自适应学习速率</h3><p>Adaptive learning rates</p>
+<script type="math/tex; mode=display">\begin{align}\mathbb{m} & \leftarrow \beta_1\mathbb{m} + (1 - \beta_1)\nabla_{\theta}J_{\text{minibatch}}(\theta)\\ \mathbb{v} &\leftarrow \beta_2\mathbb{v} + (1 - \beta_2)(\nabla_{\theta}J_{\text{minibatch}}(\theta)\odot\nabla_{\theta}J_{\text{minibatch}}(\theta))\\ \mathbb{\theta} & \leftarrow \mathbb{\theta} - \alpha\odot\mathbb{m}/\sqrt{\mathbb{v}}\end{align}​</script><p>其中，$\beta_2\in[0, 1]$ 是一个超参数，通常设置为 0.99</p>
 
       
     </div>
@@ -430,7 +434,7 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/04/27/ml-basic-digit-recognization/" rel="next" title="示例 1：手写数字识别">
+              <a href="/2019/04/27/ml-nn-example-digit-recognization/" rel="next" title="示例 1：手写数字识别">
                 <i class="fa fa-chevron-left"></i> 示例 1：手写数字识别
               </a>
             
@@ -494,8 +498,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -510,7 +523,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">110</span>
+                  <span class="site-state-item-count">114</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -532,7 +545,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>
@@ -562,6 +575,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#梯度下降"><span class="nav-number">1.</span> <span class="nav-text">梯度下降</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#随机梯度下降"><span class="nav-number">2.</span> <span class="nav-text">随机梯度下降</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#小批量梯度下降"><span class="nav-number">3.</span> <span class="nav-text">小批量梯度下降</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Adam"><span class="nav-number">4.</span> <span class="nav-text">Adam</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#自适应学习速率"><span class="nav-number">4.0.1.</span> <span class="nav-text">自适应学习速率</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

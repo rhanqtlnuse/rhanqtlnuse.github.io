@@ -85,17 +85,17 @@
 
 
 
-<meta name="description" content="$w^{(L)} \cdot a^{(L-1)} + b^{(L-1)}$ $z^{(L)}$ $a^{(L)}$ $C_0 = (a^{(L)} - y)^2$ $\dfrac{\partial{C_0}}{\partial{w^{(L)}}} = \dfrac{\partial{z^{(L)}}}{\partial{w^{(L)}}}\dfrac{\partial{a^{(L)}}}{\par">
+<meta name="description" content="延伸阅读[1] 关于神经网络中偏置项的作用，请参见：神经网络中的偏置项 b 到底是什么？">
 <meta property="og:type" content="article">
-<meta property="og:title" content="深度学习 - 基础篇：反向传播">
-<meta property="og:url" content="http://yoursite.com/2019/04/09/dl-basic-bp/index.html">
+<meta property="og:title" content="ml-nn-bias">
+<meta property="og:url" content="http://yoursite.com/2019/05/08/ml-nn-basic-bias/index.html">
 <meta property="og:site_name" content="RHANQTL">
-<meta property="og:description" content="$w^{(L)} \cdot a^{(L-1)} + b^{(L-1)}$ $z^{(L)}$ $a^{(L)}$ $C_0 = (a^{(L)} - y)^2$ $\dfrac{\partial{C_0}}{\partial{w^{(L)}}} = \dfrac{\partial{z^{(L)}}}{\partial{w^{(L)}}}\dfrac{\partial{a^{(L)}}}{\par">
+<meta property="og:description" content="延伸阅读[1] 关于神经网络中偏置项的作用，请参见：神经网络中的偏置项 b 到底是什么？">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-08T17:57:47.143Z">
+<meta property="og:updated_time" content="2019-05-08T01:35:22.543Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="深度学习 - 基础篇：反向传播">
-<meta name="twitter:description" content="$w^{(L)} \cdot a^{(L-1)} + b^{(L-1)}$ $z^{(L)}$ $a^{(L)}$ $C_0 = (a^{(L)} - y)^2$ $\dfrac{\partial{C_0}}{\partial{w^{(L)}}} = \dfrac{\partial{z^{(L)}}}{\partial{w^{(L)}}}\dfrac{\partial{a^{(L)}}}{\par">
+<meta name="twitter:title" content="ml-nn-bias">
+<meta name="twitter:description" content="延伸阅读[1] 关于神经网络中偏置项的作用，请参见：神经网络中的偏置项 b 到底是什么？">
 
 
 
@@ -125,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/04/09/dl-basic-bp/">
+  <link rel="canonical" href="http://yoursite.com/2019/05/08/ml-nn-basic-bias/">
 
 
 
 
 
-  <title>深度学习 - 基础篇：反向传播 | RHANQTL</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>ml-nn-bias | RHANQTL</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -306,7 +306,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/09/dl-basic-bp/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/08/ml-nn-basic-bias/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Han Qi">
@@ -323,7 +323,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">深度学习 - 基础篇：反向传播</h1>
+          <h1 class="post-title" itemprop="name headline">ml-nn-bias</h1>
         
 
         <div class="post-meta">
@@ -335,8 +335,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-09T01:46:33+08:00">
-                2019-04-09
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-08T09:34:15+08:00">
+                2019-05-08
               </time>
             
 
@@ -378,17 +378,7 @@
       
 
       
-        <p>$w^{(L)} \cdot a^{(L-1)} + b^{(L-1)}$</p>
-<p>$z^{(L)}$</p>
-<p>$a^{(L)}$</p>
-<p>$C_0 = (a^{(L)} - y)^2$</p>
-<p>$\dfrac{\partial{C_0}}{\partial{w^{(L)}}} = \dfrac{\partial{z^{(L)}}}{\partial{w^{(L)}}}\dfrac{\partial{a^{(L)}}}{\partial{z^{(L)}}}\dfrac{\partial{C_0}}{\partial{a^{(L)}}}$</p>
-<p>其中，</p>
-<p>$\dfrac{\partial{z^{(L)}}}{\partial{w^{(L)}}} = a^{(L)}$</p>
-<p>$\dfrac{\partial{a^{(L)}}}{\partial{z^{(L)}}} = \sigma’(z^{(L)})$</p>
-<p>$\dfrac{\partial{C_0}}{\partial{a^{(L)}}} = 2(a^{(L)} - y)$</p>
-<p>故</p>
-<p>$\dfrac{\partial{C_0}}{\partial{w^{(L)}}} = 2a^{(L)}\sigma’(z^{(L)})(a^{(L)} - y)$</p>
+        <h1 id="延伸阅读"><a href="#延伸阅读" class="headerlink" title="延伸阅读"></a>延伸阅读</h1><p>[1] 关于神经网络中偏置项的作用，请参见：<a href="https://www.jiqizhixin.com/articles/2018-07-05-18" target="_blank" rel="noopener">神经网络中的偏置项 b 到底是什么？</a></p>
 
       
     </div>
@@ -413,8 +403,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/04/08/pta-advanced-1002/" rel="next" title="pta-advanced-1002">
-                <i class="fa fa-chevron-left"></i> pta-advanced-1002
+              <a href="/2019/05/07/ml-nn-basic-activation-func/" rel="next" title="机器学习 - 神经网络篇：常用激活函数">
+                <i class="fa fa-chevron-left"></i> 机器学习 - 神经网络篇：常用激活函数
               </a>
             
           </div>
@@ -423,8 +413,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/04/11/pta-advanced-1012/" rel="prev" title="PTA 甲级 1012：The Best Rank">
-                PTA 甲级 1012：The Best Rank <i class="fa fa-chevron-right"></i>
+              <a href="/2019/05/08/ml-basic-matrix-deriv/" rel="prev" title="dl-basic-matrix-deriv">
+                dl-basic-matrix-deriv <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -477,8 +467,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -493,7 +492,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">110</span>
+                  <span class="site-state-item-count">114</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -515,7 +514,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>
@@ -545,6 +544,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#延伸阅读"><span class="nav-number">1.</span> <span class="nav-text">延伸阅读</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

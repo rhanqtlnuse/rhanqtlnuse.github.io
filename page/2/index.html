@@ -303,6 +303,599 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/30/cpp-stl-iterator/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/04/30/cpp-stl-iterator/" itemprop="url">cpp-stl-iterator</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-30T09:51:28+08:00">
+                2019-04-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Programming/" itemprop="url" rel="index">
+                    <span itemprop="name">Programming</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Programming/C/" itemprop="url" rel="index">
+                    <span itemprop="name">C++</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>STL 提供迭代器，可以用于遍历 <code>vector</code> <code>list</code> <code>string</code> 等容器。相关方法为 <code>begin</code> <code>end</code> <code>cbegin</code> <code>cend</code>。</p>
+<p><code>begin</code> <code>cbegin</code> 指向第一个元素，<code>end</code> <code>cend</code> 指向最后一个元素的下一个位置：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">iterator</span><br><span class="line">begin() _GLIBCXX_NOEXCEPT &#123;</span><br><span class="line">    <span class="keyword">return</span> iterator(<span class="keyword">this</span>-&gt;_M_impl._M_start);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const_iterator</span><br><span class="line">begin() <span class="keyword">const</span> _GLIBCXX_NOEXCEPT &#123; </span><br><span class="line">    <span class="keyword">return</span> const_iterator(<span class="keyword">this</span>-&gt;_M_impl._M_start);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">iterator</span><br><span class="line">end() _GLIBCXX_NOEXCEPT &#123;</span><br><span class="line">    <span class="keyword">return</span> iterator(<span class="keyword">this</span>-&gt;_M_impl._M_finish);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const_iterator</span><br><span class="line">end() <span class="keyword">const</span> _GLIBCXX_NOEXCEPT &#123;</span><br><span class="line">    <span class="keyword">return</span> const_iterator(<span class="keyword">this</span>-&gt;_M_impl._M_finish);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">if</span> __cplusplus &gt;= 201103L</span></span><br><span class="line"></span><br><span class="line">const_iterator</span><br><span class="line">cbegin() <span class="keyword">const</span> <span class="keyword">noexcept</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> const_iterator(<span class="keyword">this</span>-&gt;_M_impl._M_start);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const_iterator</span><br><span class="line">cend() <span class="keyword">const</span> <span class="keyword">noexcept</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> const_iterator(<span class="keyword">this</span>-&gt;_M_impl._M_finish);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+<p>其中，<code>this-&gt;_M_impl</code>：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// struct _Vector_base</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * typedef typename __gnu_cxx::__alloc_traits&lt;_Alloc&gt;::template</span></span><br><span class="line"><span class="comment"> *     rebind&lt;_Tp&gt;::other _Tp_alloc_type;</span></span><br><span class="line"><span class="comment"> * typedef typename __gnu_cxx::__alloc_traits&lt;_Tp_alloc_type&gt;::pointer</span></span><br><span class="line"><span class="comment"> *     pointer;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> _<span class="title">Vector_impl</span> :</span> <span class="keyword">public</span> _Tp_alloc_type &#123;</span><br><span class="line">	pointer _M_start;</span><br><span class="line">	pointer _M_finish;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    _Vector_impl _M_impl;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/30/cpp-stl-reverse-iterator/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/04/30/cpp-stl-reverse-iterator/" itemprop="url">C++ 学习笔记 - STL：反向迭代器</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-30T09:25:27+08:00">
+                2019-04-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Programming/" itemprop="url" rel="index">
+                    <span itemprop="name">Programming</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Programming/C/" itemprop="url" rel="index">
+                    <span itemprop="name">C++</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>STL 提供反向迭代器 <code>reverse_iterator</code>，可以用于 <code>vector</code> <code>list</code> <code>string</code> 等。反向迭代器实际上是一个适配器，它反转给定迭代器的方向，即从末尾向前遍历的迭代器，方法为 <code>rbegin</code> <code>rend</code> <code>crbegin</code> <code>crend</code>。</p>
+<p><code>rend</code> <code>crend</code> 指向第一个元素的前一个位置，<code>rbegin</code> <code>crbegin</code> 指向最后一个元素：</p>
+<img src="/2019/04/30/cpp-stl-reverse-iterator/range-rbegin-rend.svg">
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">reverse_iterator</span><br><span class="line">rbegin() _GLIBCXX_NOEXCEPT &#123;</span><br><span class="line">    <span class="keyword">return</span> reverse_iterator(end()); </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const_reverse_iterator</span><br><span class="line">rbegin() <span class="keyword">const</span> _GLIBCXX_NOEXCEPT &#123; </span><br><span class="line">    <span class="keyword">return</span> const_reverse_iterator(end());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">reverse_iterator</span><br><span class="line">rend() _GLIBCXX_NOEXCEPT &#123;</span><br><span class="line">    <span class="keyword">return</span> reverse_iterator(begin());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const_reverse_iterator</span><br><span class="line">rend() <span class="keyword">const</span> _GLIBCXX_NOEXCEPT &#123;</span><br><span class="line">    <span class="keyword">return</span> const_reverse_iterator(begin());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">if</span> __cplusplus &gt;= 201103L</span></span><br><span class="line"></span><br><span class="line">const_reverse_iterator</span><br><span class="line">crbegin() <span class="keyword">const</span> <span class="keyword">noexcept</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> const_reverse_iterator(end());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const_reverse_iterator</span><br><span class="line">crend() <span class="keyword">const</span> <span class="keyword">noexcept</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> const_reverse_iterator(begin());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+<div align="right"><font face="Courier New"><a href="https://gcc.gnu.org/onlinedocs/gcc-4.9.4/libstdc++/api/a01253_source.html" target="_blank" rel="noopener">bits/stl_iterator.h</a></font></div>
+
+<p>反向迭代器重载了 <code>++</code> 和 <code>--</code> 运算符，<code>++</code> 的语义变成了 <code>--</code>：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">reverse_iterator &amp;</span><br><span class="line"><span class="keyword">operator</span>++() &#123;</span><br><span class="line">    --current;</span><br><span class="line">    <span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">reverse_iterator</span><br><span class="line"><span class="keyword">operator</span>++(<span class="keyword">int</span>) &#123;</span><br><span class="line">    reverse_iterator __tmp = *<span class="keyword">this</span>;</span><br><span class="line">    --current;</span><br><span class="line">    <span class="keyword">return</span> __tmp;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">reverse_iterator &amp;</span><br><span class="line"><span class="keyword">operator</span>--() &#123;</span><br><span class="line">    ++current;</span><br><span class="line">    <span class="keyword">return</span> *<span class="keyword">this</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">reverse_iterator</span><br><span class="line"><span class="keyword">operator</span>--(<span class="keyword">int</span>) &#123;</span><br><span class="line">    reverse_iterator __tmp = *<span class="keyword">this</span>;</span><br><span class="line">    ++current;</span><br><span class="line">    <span class="keyword">return</span> __tmp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<div align="right"><font face="Courier New"><a href="https://gcc.gnu.org/onlinedocs/gcc-4.9.4/libstdc++/api/a01253_source.html" target="_blank" rel="noopener">bits/stl_iterator.h</a></font></div>
+
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p>[1] <a href="https://zh.cppreference.com/w/cpp/iterator/reverse_iterator" target="_blank" rel="noopener">cppreference - reverse iterator</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/30/kick-start-2019-round-a-1/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/04/30/kick-start-2019-round-a-1/" itemprop="url">kick-start-2019-round-a-1</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-30T09:20:57+08:00">
+                2019-04-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Google Kick Start 2019</p>
+<h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><h3 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h3><p>As the football coach at your local school, you have been tasked with picking a team of exactly <strong>P</strong> students to represent your school. There are <strong>N</strong> students for you to pick from. The i-th student has a <em>skill rating</em> <strong>Si</strong>, which is a positive integer indicating how skilled they are.</p>
+<p>You have decided that a team is <em>fair</em> if it has exactly <strong>P</strong> students on it and they all have the same skill rating. That way, everyone plays as a team. Initially, it might not be possible to pick a fair team, so you will give some of the students one-on-one coaching. It takes one hour of coaching to increase the skill rating of any student by 1.</p>
+<p>The competition season is starting very soon (in fact, the first match has already started!), so you’d like to find the minimum number of hours of coaching you need to give before you are able to pick a fair team.</p>
+<h3 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h3><p>The first line of the input gives the number of test cases, <strong>T</strong>. <strong>T</strong> test cases follow. Each test case starts with a line containing the two integers <strong>N</strong> and <strong>P</strong>, the number of students and the number of students you need to pick, respectively. Then, another line follows containing <strong>N</strong> integers <strong>Si</strong>; the i-th of these is the skill of the i-th student.</p>
+<h3 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h3><p>For each test case, output one line containing <code>Case #x: y</code>, where <code>x</code> is the test case number (starting from 1) and <code>y</code> is the minimum number of hours of coaching needed, before you can pick a fair team of <strong>P</strong> students.</p>
+<h3 id="Limits"><a href="#Limits" class="headerlink" title="Limits"></a>Limits</h3><p>Time limit: 15 seconds per test set.<br>Memory limit: 1 GB.<br>1 ≤ <strong>T</strong> ≤ 100.<br>1 ≤ <strong>Si</strong> ≤ 10000, for all i.<br>2 ≤ <strong>P</strong> ≤ <strong>N</strong>.</p>
+<h4 id="Test-set-1-Visible"><a href="#Test-set-1-Visible" class="headerlink" title="Test set 1 (Visible)"></a>Test set 1 (Visible)</h4><p>2 ≤ <strong>N</strong> ≤ 1000.</p>
+<h4 id="Test-set-2-Hidden"><a href="#Test-set-2-Hidden" class="headerlink" title="Test set 2 (Hidden)"></a>Test set 2 (Hidden)</h4><p>2 ≤ <strong>N</strong> ≤ 105.</p>
+<h3 id="Sample"><a href="#Sample" class="headerlink" title="Sample"></a>Sample</h3><h4 id="Input-1"><a href="#Input-1" class="headerlink" title="Input"></a>Input</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">3</span><br><span class="line">4 3</span><br><span class="line">3 1 9 100</span><br><span class="line">6 2</span><br><span class="line">5 5 1 2 3 4</span><br><span class="line">5 5</span><br><span class="line">7 7 1 7 7</span><br></pre></td></tr></table></figure>
+<h4 id="Output-1"><a href="#Output-1" class="headerlink" title="Output"></a>Output</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Case #1: 14</span><br><span class="line">Case #2: 0</span><br><span class="line">Case #3: 6</span><br></pre></td></tr></table></figure>
+<p>In Sample Case #1, you can spend a total of 6 hours training the first student and 8 hours training the second one. This gives the first, second and third students a skill level of 9. This is the minimum time you can spend, so the answer is 14.</p>
+<p>In Sample Case #2, you can already pick a fair team (the first and second student) without having to do any coaching, so the answer is 0.</p>
+<p>In Sample Case #3, <strong>P</strong> = <strong>N</strong>, so every student will be on your team. You have to spend 6 hours training the third student, so that they have a skill of 7, like everyone else. This is the minimum time you can spend, so the answer is 6.</p>
+<h1 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h1><h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>初始的递归代码：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">search</span><span class="params">(<span class="keyword">int</span> from, <span class="keyword">int</span> studentsNeeded, <span class="keyword">int</span> maxRating, <span class="keyword">int</span> cumulativeCost)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// no enough students</span></span><br><span class="line">    <span class="keyword">if</span> (N &lt; from + studentsNeeded) &#123;</span><br><span class="line">        <span class="keyword">return</span> MAX;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (studentsNeeded == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> cumulativeCost;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 0-1 selection problem</span></span><br><span class="line">    <span class="keyword">int</span> min = MAX;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = from, to = N; i &lt; to; i++) &#123;</span><br><span class="line">        <span class="comment">// do not pick the student</span></span><br><span class="line">        <span class="keyword">int</span> t1 = search(i + <span class="number">1</span>, studentsNeeded, maxRating, cumulativeCost);</span><br><span class="line">        <span class="comment">// pick the student</span></span><br><span class="line">        <span class="keyword">int</span> t2;</span><br><span class="line">            <span class="keyword">if</span> (skillRatings[i] &gt;= maxRating) &#123;</span><br><span class="line">                t2 = search(i + <span class="number">1</span>, studentsNeeded - <span class="number">1</span>, skillRatings[i], </span><br><span class="line">                    cumulativeCost</span><br><span class="line">                    + ((P - studentsNeeded) * (skillRatings[i] - maxRating)));</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                t2 = search(i + <span class="number">1</span>, studentsNeeded - <span class="number">1</span>, maxRating, </span><br><span class="line">                    cumulativeCost + (maxRating - skillRatings[i]));</span><br><span class="line">            &#125;</span><br><span class="line">        min = MIN(min, MIN(t1, t2));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> min;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> T;</span><br><span class="line"><span class="keyword">int</span> N, P;</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; skillRatings;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">solve</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span> </span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;T);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> testCaseId = <span class="number">1</span>; testCaseId &lt;= T; testCaseId++) &#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>, &amp;N, &amp;P);</span><br><span class="line">        skillRatings = <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(N);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; i++) &#123;</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;skillRatings[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"Case #%d: %d\n"</span>, testCaseId, solve());</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">solve</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> result;</span><br><span class="line">    <span class="keyword">if</span> (P == N) &#123;</span><br><span class="line">        result = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> max = *max_element(skillRatings.cbegin(), skillRatings.cend());</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; i++) &#123;</span><br><span class="line">            result += max - skillRatings[i];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        sort(skillRatings.rbegin(), skillRatings.rend());</span><br><span class="line">        <span class="keyword">int</span> curr = <span class="number">0</span>, prev;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; P; i++) &#123;</span><br><span class="line">            curr += skillRatings[<span class="number">0</span>] - skillRatings[i];</span><br><span class="line">        &#125;</span><br><span class="line">        prev = curr;</span><br><span class="line">        <span class="keyword">int</span> min = curr;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; N - P + <span class="number">1</span>; i++) &#123;</span><br><span class="line">            curr = prev - (P - <span class="number">1</span>) * (skillRatings[i - <span class="number">1</span>] - skillRatings[i])</span><br><span class="line">                    + skillRatings[i] - skillRatings[i + P - <span class="number">1</span>];</span><br><span class="line">            prev = curr;</span><br><span class="line">            min = curr &lt; min ? curr : min;</span><br><span class="line">        &#125;</span><br><span class="line">        result = min;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/28/pytorch-torchvision-transforms/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/04/28/pytorch-torchvision-transforms/" itemprop="url">PyTorch：torchvision.transforms</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-28T23:05:24+08:00">
+                2019-04-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>PyTorch 提供了 torchvision.transforms 包，其中提供了进行如下工作的工具：</p>
+<ul>
+<li>PIL.Image/numpy.ndarray 与 Tensor 互转</li>
+<li>归一化</li>
+<li>对 PIL.Image 进行裁剪、缩放等操作</li>
+</ul>
+<p>通常，在使用 torchvision.transforms 时，我们使用 transforms.Compose 将 transform 组合在一起，transform 是 callable 对象。</p>
+<p><strong>注意：</strong><code>transforms.Compose</code> 中的 transform 是按顺序执行的</p>
+<h2 id="PIL-Image-numpy-ndarray-与-Tensor-互转"><a href="#PIL-Image-numpy-ndarray-与-Tensor-互转" class="headerlink" title="PIL.Image/numpy.ndarray 与 Tensor 互转"></a>PIL.Image/numpy.ndarray 与 Tensor 互转</h2><h3 id="PIL-Image-与-Tensor"><a href="#PIL-Image-与-Tensor" class="headerlink" title="PIL.Image 与 Tensor"></a>PIL.Image 与 Tensor</h3><p>PIL.Image 的形状为 <code>(nChannels, height, width)</code></p>
+<p><strong>PIL.Image 到 Tensor</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"><span class="keyword">import</span> torchvision.transforms <span class="keyword">as</span> transforms</span><br><span class="line"></span><br><span class="line">img = Image.open(<span class="string">'pic.jpg'</span>)</span><br><span class="line">transform = transforms.ToTensor()</span><br><span class="line">tensor = transform(img)</span><br></pre></td></tr></table></figure>
+<p><strong>Tensor 到 PIL.Image</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"><span class="keyword">import</span> torchvision.transforms <span class="keyword">as</span> transforms</span><br><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"></span><br><span class="line">tensor = torch.randn((<span class="number">1</span>, <span class="number">28</span>, <span class="number">28</span>))</span><br><span class="line">transform = transforms.ToPILImage()</span><br><span class="line">img = transform(img)</span><br><span class="line">img.show()</span><br><span class="line">img.save(<span class="string">'pic.jpg'</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="numpy-ndarray-与-Tensor"><a href="#numpy-ndarray-与-Tensor" class="headerlink" title="numpy.ndarray 与 Tensor"></a>numpy.ndarray 与 Tensor</h3><p><strong>numpy.ndarray 到 Tensor</strong></p>
+<p><strong>Tensor 到 numpy.ndarray</strong></p>
+<h2 id="归一化"><a href="#归一化" class="headerlink" title="归一化"></a>归一化</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"><span class="keyword">import</span> torchvision.transforms <span class="keyword">as</span> transforms</span><br><span class="line"></span><br><span class="line">img = Image.open(<span class="string">'pic.jpg'</span>)</span><br><span class="line">transform = transforms.Compose([</span><br><span class="line">    transforms.ToTensor(),</span><br><span class="line">    transforms.Normalize(mean=(<span class="number">0.5</span>, <span class="number">0.5</span>, <span class="number">0.5</span>), std=(<span class="number">0.5</span>, <span class="number">0.5</span>, <span class="number">0.5</span>))</span><br><span class="line">])</span><br></pre></td></tr></table></figure>
+<p>其中，<code>transforms.Normalize</code> 使用如下公式进行归一化：</p>
+<script type="math/tex; mode=display">channel = \dfrac{channel - mean}{std}​</script><h2 id="裁剪、缩放"><a href="#裁剪、缩放" class="headerlink" title="裁剪、缩放"></a>裁剪、缩放</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"><span class="keyword">import</span> torchvision.transforms <span class="keyword">as</span> transforms</span><br><span class="line"></span><br><span class="line">img = Image.open(<span class="string">'pic.jpg'</span>)</span><br><span class="line"><span class="comment"># 注意 img.size 返回的是 width*height</span></span><br><span class="line">print(img.size)</span><br><span class="line">transform = transforms.Resize((<span class="number">32</span>, <span class="number">32</span>))</span><br><span class="line">img = transform(img)</span><br><span class="line">print(img.size)</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/28/cpp-basic-object-class/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -981,6 +1574,10 @@
             <img src="/2019/04/27/ml-basic-optimize-algo/1.gif">
 <img src="/2019/04/27/ml-basic-optimize-algo/2.gif">
 <p><a href="http://ruder.io/optimizing-gradient-descent/index.html" target="_blank" rel="noopener">An Overview of Gradient Descent Optimization Algorithms</a></p>
+<h1 id="梯度下降"><a href="#梯度下降" class="headerlink" title="梯度下降"></a>梯度下降</h1><h1 id="随机梯度下降"><a href="#随机梯度下降" class="headerlink" title="随机梯度下降"></a>随机梯度下降</h1><h1 id="小批量梯度下降"><a href="#小批量梯度下降" class="headerlink" title="小批量梯度下降"></a>小批量梯度下降</h1><h1 id="Adam"><a href="#Adam" class="headerlink" title="Adam"></a>Adam</h1><p>动量</p>
+<script type="math/tex; mode=display">\begin{align}\mathbb{m} &\leftarrow \beta_1\mathbb{m} + (1 - \beta_1)\nabla_{\theta}J_{\text{minibatch}}(\theta) \\ \theta &\leftarrow \theta - \alpha\mathbb{m}\end{align}​</script><p>其中，$\beta_1 \in [0, 1]​$ 是一个超参数，通常设置为 0.9</p>
+<h3 id="自适应学习速率"><a href="#自适应学习速率" class="headerlink" title="自适应学习速率"></a>自适应学习速率</h3><p>Adaptive learning rates</p>
+<script type="math/tex; mode=display">\begin{align}\mathbb{m} & \leftarrow \beta_1\mathbb{m} + (1 - \beta_1)\nabla_{\theta}J_{\text{minibatch}}(\theta)\\ \mathbb{v} &\leftarrow \beta_2\mathbb{v} + (1 - \beta_2)(\nabla_{\theta}J_{\text{minibatch}}(\theta)\odot\nabla_{\theta}J_{\text{minibatch}}(\theta))\\ \mathbb{\theta} & \leftarrow \mathbb{\theta} - \alpha\odot\mathbb{m}/\sqrt{\mathbb{v}}\end{align}​</script><p>其中，$\beta_2\in[0, 1]$ 是一个超参数，通常设置为 0.99</p>
 
           
         
@@ -1029,7 +1626,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/27/ml-basic-digit-recognization/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/27/ml-nn-example-digit-recognization/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Han Qi">
@@ -1048,7 +1645,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/04/27/ml-basic-digit-recognization/" itemprop="url">示例 1：手写数字识别</a></h1>
+                <a class="post-title-link" href="/2019/04/27/ml-nn-example-digit-recognization/" itemprop="url">示例 1：手写数字识别</a></h1>
         
 
         <div class="post-meta">
@@ -1142,487 +1739,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/26/linux-programming-shell-command-sed/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RHANQTL">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/04/26/linux-programming-shell-command-sed/" itemprop="url">linux-programming-shell-command-sed</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-26T19:30:07+08:00">
-                2019-04-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/26/linux-programming-shell-command-awk/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RHANQTL">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/04/26/linux-programming-shell-command-awk/" itemprop="url">linux-programming-shell-command-awk</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-26T19:30:03+08:00">
-                2019-04-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/26/linux-programming-shell-command-grep/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RHANQTL">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/04/26/linux-programming-shell-command-grep/" itemprop="url">linux-programming-shell-command-grep</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-26T19:29:53+08:00">
-                2019-04-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/26/linux-programming-shell-command/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RHANQTL">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/04/26/linux-programming-shell-command/" itemprop="url">Linux 程序设计 - Shell 篇：基础命令</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-26T19:28:46+08:00">
-                2019-04-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1668,7 +1789,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">110</span>
+                  <span class="site-state-item-count">114</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1690,7 +1811,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>

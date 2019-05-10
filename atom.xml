@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-05-08T07:27:47.813Z</updated>
+  <updated>2019-05-10T08:07:11.180Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,11 +17,37 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>nlp-cs224n-2019-assignment2</title>
-    <link href="http://yoursite.com/2019/05/08/nlp-cs224n-2019-assignment2/"/>
-    <id>http://yoursite.com/2019/05/08/nlp-cs224n-2019-assignment2/</id>
-    <published>2019-05-08T07:27:47.000Z</published>
-    <updated>2019-05-08T07:27:47.813Z</updated>
+    <title>C++ 学习笔记 - STL：排序相关函数</title>
+    <link href="http://yoursite.com/2019/05/10/cpp-stl-algorithm-sort/"/>
+    <id>http://yoursite.com/2019/05/10/cpp-stl-algorithm-sort/</id>
+    <published>2019-05-10T04:01:29.000Z</published>
+    <updated>2019-05-10T08:07:11.180Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+      <category term="Programming Languages" scheme="http://yoursite.com/categories/Programming-Languages/"/>
+    
+      <category term="C++" scheme="http://yoursite.com/categories/Programming-Languages/C/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>ml-dl-rnn</title>
+    <link href="http://yoursite.com/2019/05/09/ml-dl-rnn/"/>
+    <id>http://yoursite.com/2019/05/09/ml-dl-rnn/</id>
+    <published>2019-05-09T13:26:21.000Z</published>
+    <updated>2019-05-09T13:26:21.123Z</updated>
     
     <summary type="html">
     
@@ -31,9 +57,59 @@
   </entry>
   
   <entry>
+    <title>ml-dl-cnn</title>
+    <link href="http://yoursite.com/2019/05/09/ml-dl-cnn/"/>
+    <id>http://yoursite.com/2019/05/09/ml-dl-cnn/</id>
+    <published>2019-05-09T13:26:15.000Z</published>
+    <updated>2019-05-09T13:26:16.061Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>深入 Word2Vec</title>
+    <link href="http://yoursite.com/2019/05/08/nlp-deep-in-word2vec/"/>
+    <id>http://yoursite.com/2019/05/08/nlp-deep-in-word2vec/</id>
+    <published>2019-05-08T15:56:51.000Z</published>
+    <updated>2019-05-09T02:53:21.796Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Word2Vec 是 Google 于 2013 年提出的词向量表示法。&lt;/p&gt;
+&lt;h1 id=&quot;原始论文&quot;&gt;&lt;a href=&quot;#原始论文&quot; class=&quot;headerlink&quot; title=&quot;原始论文&quot;&gt;&lt;/a&gt;原始论文&lt;/h1&gt;&lt;p&gt;Tomas Mikolov, Ilya Sutskever, Kai Chen, Greg Corrado, Jeffrey Dean. “Distributed Representations of Words and Phrases and their Compositionality”. &lt;em&gt;Advances in Neural Information Processing Systems 26 (NIPS 2013)&lt;/em&gt;. &lt;a href=&quot;https://papers.nips.cc/paper/5021-distributed-representations-of-words-and-phrases-and-their-compositionality.pdf&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://papers.nips.cc/paper/5021-distributed-representations-of-words-and-phrases-and-their-compositionality.pdf&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Tomas Mikolov, Kai Chen, Greg Corrado, Jeffrey Dean. (2013, Jan.16). “Efficient Estimation of Word Representations in Vector Space”. &lt;em&gt;arXiv:1301.3781 [cs.CL]&lt;/em&gt;. &lt;a href=&quot;https://arxiv.org/pdf/1301.3781.pdf&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://arxiv.org/pdf/1301.3781.pdf&lt;/a&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="NLP" scheme="http://yoursite.com/tags/NLP/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>CS224n - Assignment2</title>
+    <link href="http://yoursite.com/2019/05/08/nlp-cs224n-2019-assignment2/"/>
+    <id>http://yoursite.com/2019/05/08/nlp-cs224n-2019-assignment2/</id>
+    <published>2019-05-08T07:27:47.000Z</published>
+    <updated>2019-05-09T03:06:22.967Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+      <category term="NLP" scheme="http://yoursite.com/categories/NLP/"/>
+    
+    
+  </entry>
+  
+  <entry>
     <title>dl-basic-matrix-deriv</title>
-    <link href="http://yoursite.com/2019/05/08/dl-basic-matrix-deriv/"/>
-    <id>http://yoursite.com/2019/05/08/dl-basic-matrix-deriv/</id>
+    <link href="http://yoursite.com/2019/05/08/ml-basic-matrix-deriv/"/>
+    <id>http://yoursite.com/2019/05/08/ml-basic-matrix-deriv/</id>
     <published>2019-05-08T03:42:15.000Z</published>
     <updated>2019-05-08T03:42:16.467Z</updated>
     
@@ -46,8 +122,8 @@
   
   <entry>
     <title>ml-nn-bias</title>
-    <link href="http://yoursite.com/2019/05/08/ml-nn-bias/"/>
-    <id>http://yoursite.com/2019/05/08/ml-nn-bias/</id>
+    <link href="http://yoursite.com/2019/05/08/ml-nn-basic-bias/"/>
+    <id>http://yoursite.com/2019/05/08/ml-nn-basic-bias/</id>
     <published>2019-05-08T01:34:15.000Z</published>
     <updated>2019-05-08T01:35:22.543Z</updated>
     
@@ -68,8 +144,8 @@
   
   <entry>
     <title>机器学习 - 神经网络篇：常用激活函数</title>
-    <link href="http://yoursite.com/2019/05/07/ml-nn-activation-func/"/>
-    <id>http://yoursite.com/2019/05/07/ml-nn-activation-func/</id>
+    <link href="http://yoursite.com/2019/05/07/ml-nn-basic-activation-func/"/>
+    <id>http://yoursite.com/2019/05/07/ml-nn-basic-activation-func/</id>
     <published>2019-05-07T10:35:45.000Z</published>
     <updated>2019-05-07T16:18:32.354Z</updated>
     
@@ -305,7 +381,7 @@
     <link href="http://yoursite.com/2019/04/27/ml-basic-optimize-algo/"/>
     <id>http://yoursite.com/2019/04/27/ml-basic-optimize-algo/</id>
     <published>2019-04-27T15:16:56.000Z</published>
-    <updated>2019-04-28T14:56:13.272Z</updated>
+    <updated>2019-05-09T06:15:26.394Z</updated>
     
     <summary type="html">
     
@@ -326,8 +402,8 @@
   
   <entry>
     <title>示例 1：手写数字识别</title>
-    <link href="http://yoursite.com/2019/04/27/ml-basic-digit-recognization/"/>
-    <id>http://yoursite.com/2019/04/27/ml-basic-digit-recognization/</id>
+    <link href="http://yoursite.com/2019/04/27/ml-nn-example-digit-recognization/"/>
+    <id>http://yoursite.com/2019/04/27/ml-nn-example-digit-recognization/</id>
     <published>2019-04-27T13:16:56.000Z</published>
     <updated>2019-04-27T13:22:17.359Z</updated>
     
@@ -340,62 +416,6 @@
           
         
       
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>linux-programming-shell-command-sed</title>
-    <link href="http://yoursite.com/2019/04/26/linux-programming-shell-command-sed/"/>
-    <id>http://yoursite.com/2019/04/26/linux-programming-shell-command-sed/</id>
-    <published>2019-04-26T11:30:07.000Z</published>
-    <updated>2019-04-26T11:30:07.248Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>linux-programming-shell-command-awk</title>
-    <link href="http://yoursite.com/2019/04/26/linux-programming-shell-command-awk/"/>
-    <id>http://yoursite.com/2019/04/26/linux-programming-shell-command-awk/</id>
-    <published>2019-04-26T11:30:03.000Z</published>
-    <updated>2019-04-26T11:30:03.206Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>linux-programming-shell-command-grep</title>
-    <link href="http://yoursite.com/2019/04/26/linux-programming-shell-command-grep/"/>
-    <id>http://yoursite.com/2019/04/26/linux-programming-shell-command-grep/</id>
-    <published>2019-04-26T11:29:53.000Z</published>
-    <updated>2019-04-26T11:29:53.624Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Linux 程序设计 - Shell 篇：基础命令</title>
-    <link href="http://yoursite.com/2019/04/26/linux-programming-shell-command/"/>
-    <id>http://yoursite.com/2019/04/26/linux-programming-shell-command/</id>
-    <published>2019-04-26T11:28:46.000Z</published>
-    <updated>2019-05-06T11:00:02.161Z</updated>
-    
-    <summary type="html">
     
     </summary>
     

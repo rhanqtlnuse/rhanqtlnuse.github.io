@@ -85,14 +85,17 @@
 
 
 
+<meta name="description" content="$w^{(L)} \cdot a^{(L-1)} + b^{(L-1)}$ $z^{(L)}$ $a^{(L)}$ $C_0 = (a^{(L)} - y)^2$ $\dfrac{\partial{C_0}}{\partial{w^{(L)}}} = \dfrac{\partial{z^{(L)}}}{\partial{w^{(L)}}}\dfrac{\partial{a^{(L)}}}{\par">
 <meta property="og:type" content="article">
-<meta property="og:title" content="dl-basic-matrix-deriv">
-<meta property="og:url" content="http://yoursite.com/2019/05/08/dl-basic-matrix-deriv/index.html">
+<meta property="og:title" content="深度学习 - 基础篇：反向传播">
+<meta property="og:url" content="http://yoursite.com/2019/04/09/ml-nn-basic-bp/index.html">
 <meta property="og:site_name" content="RHANQTL">
+<meta property="og:description" content="$w^{(L)} \cdot a^{(L-1)} + b^{(L-1)}$ $z^{(L)}$ $a^{(L)}$ $C_0 = (a^{(L)} - y)^2$ $\dfrac{\partial{C_0}}{\partial{w^{(L)}}} = \dfrac{\partial{z^{(L)}}}{\partial{w^{(L)}}}\dfrac{\partial{a^{(L)}}}{\par">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-08T03:42:16.467Z">
+<meta property="og:updated_time" content="2019-04-08T17:57:47.143Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="dl-basic-matrix-deriv">
+<meta name="twitter:title" content="深度学习 - 基础篇：反向传播">
+<meta name="twitter:description" content="$w^{(L)} \cdot a^{(L-1)} + b^{(L-1)}$ $z^{(L)}$ $a^{(L)}$ $C_0 = (a^{(L)} - y)^2$ $\dfrac{\partial{C_0}}{\partial{w^{(L)}}} = \dfrac{\partial{z^{(L)}}}{\partial{w^{(L)}}}\dfrac{\partial{a^{(L)}}}{\par">
 
 
 
@@ -122,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/05/08/dl-basic-matrix-deriv/">
+  <link rel="canonical" href="http://yoursite.com/2019/04/09/ml-nn-basic-bp/">
 
 
 
 
 
-  <title>dl-basic-matrix-deriv | RHANQTL</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>深度学习 - 基础篇：反向传播 | RHANQTL</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -303,7 +306,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/08/dl-basic-matrix-deriv/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/09/ml-nn-basic-bp/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Han Qi">
@@ -320,7 +323,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">dl-basic-matrix-deriv</h1>
+          <h1 class="post-title" itemprop="name headline">深度学习 - 基础篇：反向传播</h1>
         
 
         <div class="post-meta">
@@ -332,8 +335,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-08T11:42:15+08:00">
-                2019-05-08
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-09T01:46:33+08:00">
+                2019-04-09
               </time>
             
 
@@ -375,7 +378,18 @@
       
 
       
-        
+        <p>$w^{(L)} \cdot a^{(L-1)} + b^{(L-1)}$</p>
+<p>$z^{(L)}$</p>
+<p>$a^{(L)}$</p>
+<p>$C_0 = (a^{(L)} - y)^2$</p>
+<p>$\dfrac{\partial{C_0}}{\partial{w^{(L)}}} = \dfrac{\partial{z^{(L)}}}{\partial{w^{(L)}}}\dfrac{\partial{a^{(L)}}}{\partial{z^{(L)}}}\dfrac{\partial{C_0}}{\partial{a^{(L)}}}$</p>
+<p>其中，</p>
+<p>$\dfrac{\partial{z^{(L)}}}{\partial{w^{(L)}}} = a^{(L)}$</p>
+<p>$\dfrac{\partial{a^{(L)}}}{\partial{z^{(L)}}} = \sigma’(z^{(L)})$</p>
+<p>$\dfrac{\partial{C_0}}{\partial{a^{(L)}}} = 2(a^{(L)} - y)$</p>
+<p>故</p>
+<p>$\dfrac{\partial{C_0}}{\partial{w^{(L)}}} = 2a^{(L)}\sigma’(z^{(L)})(a^{(L)} - y)$</p>
+
       
     </div>
     
@@ -399,8 +413,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/05/08/ml-nn-bias/" rel="next" title="ml-nn-bias">
-                <i class="fa fa-chevron-left"></i> ml-nn-bias
+              <a href="/2019/04/08/pta-advanced-1002/" rel="next" title="pta-advanced-1002">
+                <i class="fa fa-chevron-left"></i> pta-advanced-1002
               </a>
             
           </div>
@@ -409,8 +423,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/05/08/nlp-cs224n-2019-assignment2/" rel="prev" title="nlp-cs224n-2019-assignment2">
-                nlp-cs224n-2019-assignment2 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/04/11/pta-advanced-1012/" rel="prev" title="PTA 甲级 1012：The Best Rank">
+                PTA 甲级 1012：The Best Rank <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -479,7 +493,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">110</span>
+                  <span class="site-state-item-count">114</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -501,7 +515,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>

@@ -72,7 +72,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="NLP,">
 
 
 
@@ -85,17 +85,18 @@
 
 
 
-<meta name="description" content="延伸阅读[1] 关于神经网络中偏置项的作用，请参见：神经网络中的偏置项 b 到底是什么？">
+<meta name="description" content="Word2Vec 是 Google 于 2013 年提出的词向量表示法。 原始论文Tomas Mikolov, Ilya Sutskever, Kai Chen, Greg Corrado, Jeffrey Dean. “Distributed Representations of Words and Phrases and their Compositionality”. Advances in">
+<meta name="keywords" content="NLP">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ml-nn-bias">
-<meta property="og:url" content="http://yoursite.com/2019/05/08/ml-nn-bias/index.html">
+<meta property="og:title" content="深入 Word2Vec">
+<meta property="og:url" content="http://yoursite.com/2019/05/08/nlp-deep-in-word2vec/index.html">
 <meta property="og:site_name" content="RHANQTL">
-<meta property="og:description" content="延伸阅读[1] 关于神经网络中偏置项的作用，请参见：神经网络中的偏置项 b 到底是什么？">
+<meta property="og:description" content="Word2Vec 是 Google 于 2013 年提出的词向量表示法。 原始论文Tomas Mikolov, Ilya Sutskever, Kai Chen, Greg Corrado, Jeffrey Dean. “Distributed Representations of Words and Phrases and their Compositionality”. Advances in">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-08T01:35:22.543Z">
+<meta property="og:updated_time" content="2019-05-09T02:53:21.796Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ml-nn-bias">
-<meta name="twitter:description" content="延伸阅读[1] 关于神经网络中偏置项的作用，请参见：神经网络中的偏置项 b 到底是什么？">
+<meta name="twitter:title" content="深入 Word2Vec">
+<meta name="twitter:description" content="Word2Vec 是 Google 于 2013 年提出的词向量表示法。 原始论文Tomas Mikolov, Ilya Sutskever, Kai Chen, Greg Corrado, Jeffrey Dean. “Distributed Representations of Words and Phrases and their Compositionality”. Advances in">
 
 
 
@@ -125,13 +126,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/05/08/ml-nn-bias/">
+  <link rel="canonical" href="http://yoursite.com/2019/05/08/nlp-deep-in-word2vec/">
 
 
 
 
 
-  <title>ml-nn-bias | RHANQTL</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>深入 Word2Vec | RHANQTL</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -306,7 +307,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/08/ml-nn-bias/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/08/nlp-deep-in-word2vec/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Han Qi">
@@ -323,7 +324,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">ml-nn-bias</h1>
+          <h1 class="post-title" itemprop="name headline">深入 Word2Vec</h1>
         
 
         <div class="post-meta">
@@ -335,7 +336,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-08T09:34:15+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-08T23:56:51+08:00">
                 2019-05-08
               </time>
             
@@ -378,7 +379,13 @@
       
 
       
-        <h1 id="延伸阅读"><a href="#延伸阅读" class="headerlink" title="延伸阅读"></a>延伸阅读</h1><p>[1] 关于神经网络中偏置项的作用，请参见：<a href="https://www.jiqizhixin.com/articles/2018-07-05-18" target="_blank" rel="noopener">神经网络中的偏置项 b 到底是什么？</a></p>
+        <p>Word2Vec 是 Google 于 2013 年提出的词向量表示法。</p>
+<h1 id="原始论文"><a href="#原始论文" class="headerlink" title="原始论文"></a>原始论文</h1><p>Tomas Mikolov, Ilya Sutskever, Kai Chen, Greg Corrado, Jeffrey Dean. “Distributed Representations of Words and Phrases and their Compositionality”. <em>Advances in Neural Information Processing Systems 26 (NIPS 2013)</em>. <a href="https://papers.nips.cc/paper/5021-distributed-representations-of-words-and-phrases-and-their-compositionality.pdf" target="_blank" rel="noopener">https://papers.nips.cc/paper/5021-distributed-representations-of-words-and-phrases-and-their-compositionality.pdf</a></p>
+<p>Tomas Mikolov, Kai Chen, Greg Corrado, Jeffrey Dean. (2013, Jan.16). “Efficient Estimation of Word Representations in Vector Space”. <em>arXiv:1301.3781 [cs.CL]</em>. <a href="https://arxiv.org/pdf/1301.3781.pdf" target="_blank" rel="noopener">https://arxiv.org/pdf/1301.3781.pdf</a></p>
+<a id="more"></a>
+<h1 id="Skip-Gram-amp-CBoW"><a href="#Skip-Gram-amp-CBoW" class="headerlink" title="Skip-Gram &amp; CBoW"></a>Skip-Gram &amp; CBoW</h1><h1 id="Hierarchical-Softmax-amp-Negative-Sampling"><a href="#Hierarchical-Softmax-amp-Negative-Sampling" class="headerlink" title="Hierarchical Softmax &amp; Negative Sampling"></a>Hierarchical Softmax &amp; Negative Sampling</h1><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p>[1] McCormick, C. (2016, April 19). “Word2Vec Tutorial - The Skip-Gram Model”. <a href="http://mccormickml.com/2016/04/19/word2vec-tutorial-the-skip-gram-model/" target="_blank" rel="noopener">http://mccormickml.com/2016/04/19/word2vec-tutorial-the-skip-gram-model/</a></p>
+<p>[2] McCormick, C. (2017, January 11). “Word2Vec Tutorial Part 2 - Negative Sampling”. <a href="http://mccormickml.com/2017/01/11/word2vec-tutorial-part-2-negative-sampling/" target="_blank" rel="noopener">http://mccormickml.com/2017/01/11/word2vec-tutorial-part-2-negative-sampling/</a></p>
+<p>[3] 穆文. (2017, April 11). “[NLP] 秒懂词向量 Word2Vec 的本质”. <em>数据挖掘机养成记</em>. <a href="https://zhuanlan.zhihu.com/p/26306795" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/26306795</a></p>
 
       
     </div>
@@ -394,6 +401,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/NLP/" rel="tag"># NLP</a>
+          
+        </div>
+      
 
       
       
@@ -403,8 +416,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/05/07/ml-nn-activation-func/" rel="next" title="机器学习 - 神经网络篇：常用激活函数">
-                <i class="fa fa-chevron-left"></i> 机器学习 - 神经网络篇：常用激活函数
+              <a href="/2019/05/08/nlp-cs224n-2019-assignment2/" rel="next" title="CS224n - Assignment2">
+                <i class="fa fa-chevron-left"></i> CS224n - Assignment2
               </a>
             
           </div>
@@ -413,8 +426,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/05/08/dl-basic-matrix-deriv/" rel="prev" title="dl-basic-matrix-deriv">
-                dl-basic-matrix-deriv <i class="fa fa-chevron-right"></i>
+              <a href="/2019/05/09/ml-dl-cnn/" rel="prev" title="ml-dl-cnn">
+                ml-dl-cnn <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -492,7 +505,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">110</span>
+                  <span class="site-state-item-count">114</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -514,7 +527,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>
@@ -554,7 +567,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#延伸阅读"><span class="nav-number">1.</span> <span class="nav-text">延伸阅读</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#原始论文"><span class="nav-number">1.</span> <span class="nav-text">原始论文</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Skip-Gram-amp-CBoW"><span class="nav-number">2.</span> <span class="nav-text">Skip-Gram &amp; CBoW</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Hierarchical-Softmax-amp-Negative-Sampling"><span class="nav-number">3.</span> <span class="nav-text">Hierarchical Softmax &amp; Negative Sampling</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">4.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
             
 
           </div>

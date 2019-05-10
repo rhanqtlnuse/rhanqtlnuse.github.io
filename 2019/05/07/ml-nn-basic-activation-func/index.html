@@ -88,19 +88,19 @@
 <meta name="description" content="激活函数是神经网络重要的组成部分，本文整理了一些常见的激活函数。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="机器学习 - 神经网络篇：常用激活函数">
-<meta property="og:url" content="http://yoursite.com/2019/05/07/ml-nn-activation-func/index.html">
+<meta property="og:url" content="http://yoursite.com/2019/05/07/ml-nn-basic-activation-func/index.html">
 <meta property="og:site_name" content="RHANQTL">
 <meta property="og:description" content="激活函数是神经网络重要的组成部分，本文整理了一些常见的激活函数。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/2019/05/07/ml-nn-activation-func/sigmoid.png">
-<meta property="og:image" content="http://yoursite.com/2019/05/07/ml-nn-activation-func/tanh.png">
-<meta property="og:image" content="http://yoursite.com/2019/05/07/ml-nn-activation-func/relu.png">
-<meta property="og:image" content="http://yoursite.com/2019/05/07/ml-nn-activation-func/dead-relu-norm1.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/07/ml-nn-basic-activation-func/sigmoid.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/07/ml-nn-basic-activation-func/tanh.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/07/ml-nn-basic-activation-func/relu.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/07/ml-nn-basic-activation-func/dead-relu-norm1.png">
 <meta property="og:updated_time" content="2019-05-07T16:18:32.354Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器学习 - 神经网络篇：常用激活函数">
 <meta name="twitter:description" content="激活函数是神经网络重要的组成部分，本文整理了一些常见的激活函数。">
-<meta name="twitter:image" content="http://yoursite.com/2019/05/07/ml-nn-activation-func/sigmoid.png">
+<meta name="twitter:image" content="http://yoursite.com/2019/05/07/ml-nn-basic-activation-func/sigmoid.png">
 
 
 
@@ -130,7 +130,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/05/07/ml-nn-activation-func/">
+  <link rel="canonical" href="http://yoursite.com/2019/05/07/ml-nn-basic-activation-func/">
 
 
 
@@ -311,7 +311,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/07/ml-nn-activation-func/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/07/ml-nn-basic-activation-func/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Han Qi">
@@ -414,12 +414,12 @@
 </blockquote>
 <p>二者的区别在于饱和激活函数会压缩输入。[3]</p>
 <h1 id="Sigmoid"><a href="#Sigmoid" class="headerlink" title="Sigmoid"></a>Sigmoid</h1><script type="math/tex; mode=display">\sigma(x) = \dfrac{1}{1 + e^{-x}}</script><p>梯度：</p>
-<script type="math/tex; mode=display">\begin{align}\nabla_x \sigma(x) &= \dfrac{e^{-x}}{(1 + e^{-x})^2} \\ &= \dfrac{1}{1 + e^{-x}}\dfrac{e^{-x}}{1 + e^{-x}} \\&= \sigma(x)(1 - \sigma(x))\end{align}</script><img src="/2019/05/07/ml-nn-activation-func/sigmoid.png">
+<script type="math/tex; mode=display">\begin{align}\nabla_x \sigma(x) &= \dfrac{e^{-x}}{(1 + e^{-x})^2} \\ &= \dfrac{1}{1 + e^{-x}}\dfrac{e^{-x}}{1 + e^{-x}} \\&= \sigma(x)(1 - \sigma(x))\end{align}</script><img src="/2019/05/07/ml-nn-basic-activation-func/sigmoid.png">
 <ul>
 <li>非 zero-centered</li>
 <li>饱和激活函数：$f(x)\in(0, 1)$</li>
 </ul>
-<h1 id="tanh"><a href="#tanh" class="headerlink" title="tanh"></a>tanh</h1><script type="math/tex; mode=display">\tanh(x) = \dfrac{e^x-e^{-x}}{e^x+e^{-x}}​</script><img src="/2019/05/07/ml-nn-activation-func/tanh.png">
+<h1 id="tanh"><a href="#tanh" class="headerlink" title="tanh"></a>tanh</h1><script type="math/tex; mode=display">\tanh(x) = \dfrac{e^x-e^{-x}}{e^x+e^{-x}}​</script><img src="/2019/05/07/ml-nn-basic-activation-func/tanh.png">
 <ul>
 <li>zero-centered</li>
 <li>饱和激活函数：$f(x)\in(-1, 1)$</li>
@@ -427,7 +427,7 @@
 <h1 id="ReLU"><a href="#ReLU" class="headerlink" title="ReLU"></a>ReLU</h1><p>全称为“Rectified Linear Unit”</p>
 <script type="math/tex; mode=display">f(x) = \begin{cases}x & \text{if}\ x \ge 0 \\ 0 & \text{if}\ x \lt 0 \end{cases}​</script><p>或者：</p>
 <script type="math/tex; mode=display">f(x) = \max(0, x)</script><p>梯度：</p>
-<script type="math/tex; mode=display">\nabla_x f(x) = \mathbb{1}\{x \gt 0\}​</script><img src="/2019/05/07/ml-nn-activation-func/relu.png">
+<script type="math/tex; mode=display">\nabla_x f(x) = \mathbb{1}\{x \gt 0\}​</script><img src="/2019/05/07/ml-nn-basic-activation-func/relu.png">
 <ul>
 <li>节省计算量</li>
 <li>CNN 中常用</li>
@@ -437,7 +437,7 @@
 <h2 id="Dead-ReLU-问题"><a href="#Dead-ReLU-问题" class="headerlink" title="Dead ReLU 问题"></a>Dead ReLU 问题</h2><p>简而言之，ReLU 在负数区域被 kill 的现象叫做 Dead ReLU。</p>
 <p>下面是一个场景：</p>
 <p>假设神经网络的输入 X 符合某个分布，我们来看一个特定的 ReLU 单元 R。对于任何固定的参数集，X 的分布意味着 ReLU 单元 R 的输入的分布。假设 R 的输入符合<em>以 +0.1 为中心的低方差高斯分布</em>。</p>
-<img src="/2019/05/07/ml-nn-activation-func/dead-relu-norm1.png" title="以 +0.1 为中心的低方差高斯分布">
+<img src="/2019/05/07/ml-nn-basic-activation-func/dead-relu-norm1.png" title="以 +0.1 为中心的低方差高斯分布">
 <p>在这个场景中：</p>
 <ul>
 <li>R 的大多数输入是<em>正数</em>，因此</li>
@@ -527,7 +527,7 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/05/08/ml-nn-bias/" rel="prev" title="ml-nn-bias">
+              <a href="/2019/05/08/ml-nn-basic-bias/" rel="prev" title="ml-nn-bias">
                 ml-nn-bias <i class="fa fa-chevron-right"></i>
               </a>
             
@@ -606,7 +606,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">110</span>
+                  <span class="site-state-item-count">114</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -628,7 +628,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>

@@ -303,6 +303,575 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/01/cpp-basic-dynamic-memory/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/02/01/cpp-basic-dynamic-memory/" itemprop="url">C++ 学习笔记 - 基础篇：动态内存管理</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-01T21:37:55+08:00">
+                2019-02-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="C-中的动态内存管理"><a href="#C-中的动态内存管理" class="headerlink" title="C 中的动态内存管理"></a>C 中的动态内存管理</h1><h2 id="malloc-free"><a href="#malloc-free" class="headerlink" title="malloc/free"></a><code>malloc</code>/<code>free</code></h2><p>头文件 <code>stdlib.h</code> 中</p>
+<ul>
+<li>Allocates/release memory<ol>
+<li>Memory allocated from ‘Heap’</li>
+<li>Returns a void*</li>
+<li>Returns NULL on failure</li>
+<li>Must specify the size required in bytes.</li>
+<li>Allocating array requires manual calculation of space.</li>
+<li>Reallocating larger chunk of memory simple (No copy constructor to worry about)</li>
+<li>They will <strong>NOT</strong> call new/delete</li>
+<li>No way to splice user code into the allocation sequence to help with low memory.</li>
+<li>malloc/free can <strong>NOT</strong> be overridden legally</li>
+</ol>
+</li>
+</ul>
+<h2 id="realloc"><a href="#realloc" class="headerlink" title="realloc"></a><code>realloc</code></h2><h1 id="C-中的动态内存管理-1"><a href="#C-中的动态内存管理-1" class="headerlink" title="C++ 中的动态内存管理"></a>C++ 中的动态内存管理</h1><h2 id="new-delete"><a href="#new-delete" class="headerlink" title="new/delete"></a><code>new</code>/<code>delete</code></h2><ul>
+<li>Allocate/release memory<ol>
+<li>Memory allocated from ‘Free Store’</li>
+<li>Returns a fully typed pointer.</li>
+<li>new (standard version) never returns a NULL (will throw on failure)</li>
+<li>Are called with Type-ID (compiler calculates the size)</li>
+<li>Has a version explicitly to handle arrays.</li>
+<li>Reallocating (to get more space) not handled intuitively (because of copy constructor).</li>
+<li>Whether they call malloc/free is implementation defined.</li>
+<li>Can add a new memory allocator to deal with low memory (set_new_handler)</li>
+<li>operator new/delete can be overridden legally</li>
+<li><strong>constructor/destructor used to initialize/destroy the object</strong></li>
+</ol>
+</li>
+</ul>
+<h2 id="重载-new-delete"><a href="#重载-new-delete" class="headerlink" title="重载 new/delete"></a>重载 <code>new</code>/<code>delete</code></h2><h2 id="智能指针"><a href="#智能指针" class="headerlink" title="智能指针"></a>智能指针</h2><p>Table comparison of the features:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"> Feature                  | new/delete                     | malloc/free                   </span><br><span class="line">--------------------------+--------------------------------+-------------------------------</span><br><span class="line"> Memory allocated from    | &apos;Free Store&apos;                   | &apos;Heap&apos;                        </span><br><span class="line"> Returns                  | Fully typed pointer            | void*                         </span><br><span class="line"> On failure               | Throws (never returns NULL)    | Returns NULL                  </span><br><span class="line"> Required size            | Calculated by compiler         | Must be specified in bytes    </span><br><span class="line"> Handling arrays          | Has an explicit version        | Requires manual calculations  </span><br><span class="line"> Reallocating             | Not handled intuitively        | Simple (no copy constructor)  </span><br><span class="line"> Call of reverse          | Implementation defined         | No                            </span><br><span class="line"> Low memory cases         | Can add a new memory allocator | Not handled by user code      </span><br><span class="line"> Overridable              | Yes                            | No                            </span><br><span class="line"> Use of (con-)/destructor | Yes                            | No</span><br></pre></td></tr></table></figure>
+<p>Technically memory allocated by new comes from the ‘Free Store’ while memory allocated by malloc comes from the ‘Heap’. Whether these two areas are the same is an implementation details, which is another reason that malloc and new can not be mixed.</p>
+<p>The only way I could think that would be beneficial to use <code>malloc</code> would be if you needed to <strong>change the size of your buffer</strong> of data. The <code>new</code> keyword does not have an analogous way like <code>realloc</code>. The <code>realloc</code> function might be able to extend the size of a chunk of memory for you more efficiently.</p>
+<p>It is worth mentioning that you cannot mix <code>new</code>/<code>free</code> and <code>malloc</code>/<code>delete</code>.</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p>[1] <a href="https://stackoverflow.com/questions/240212/what-is-the-difference-between-new-delete-and-malloc-free" target="_blank" rel="noopener">https://stackoverflow.com/questions/240212/what-is-the-difference-between-new-delete-and-malloc-free</a></p>
+<p>[2] <a href="https://stackoverflow.com/questions/184537/in-what-cases-do-i-use-malloc-vs-new" target="_blank" rel="noopener">https://stackoverflow.com/questions/184537/in-what-cases-do-i-use-malloc-vs-new</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/28/cpp-basic-inheriant/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/01/28/cpp-basic-inheriant/" itemprop="url">C++ 学习笔记 - 基础篇：继承</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-28T09:31:48+08:00">
+                2019-01-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="综述"><a href="#综述" class="headerlink" title="综述"></a>综述</h1><p>继承是面向对象程序设计中一个重要的特性。</p>
+<h1 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h1><p>cppreference 的定义：任何类类型（以 <em>class-key</em> <code>class</code> 或 <code>struct</code> 声明者）可被声明为<em>派生</em>自一或多个<em>基类</em>，基类自身也可以派生自其基类，这组成继承层级。</p>
+<p>基类的列表提供于类声明语法的 base-clause 。 base-clause 由字符 <code>:</code> 后随一或多个 base-specifier 的逗号分隔列表组成。</p>
+<p>base-specifier 的语法如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">attr(可选) access-specifier(可选) virtual-specifier(可选) class-or-decltype</span><br></pre></td></tr></table></figure>
+<ul>
+<li>attr(C++ 11)：可选的任何数量的属性序列</li>
+<li>access-specifier：private、public、protected 之一<ul>
+<li>缺省：<code>struct</code> 为 <code>public</code>，<code>class</code> 为 <code>private</code></li>
+</ul>
+</li>
+<li>virtual-specifier：<code>virtual</code></li>
+<li>注意是可以使用 <code>decltype</code> 作为类声明符</li>
+</ul>
+<p>virtual-specifier 与 access-specifier 可以任意顺序出现。</p>
+<p>同一类不能指定于直接基类多于一次，但同一类可以既是直接又是间接基类。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Base</span> &#123;</span> &#125;;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Derived</span> :</span> Base, Base &#123; &#125;;</span><br></pre></td></tr></table></figure>
+<img src="/2019/01/28/cpp-basic-inheriant/more-than-once.png">
+<h2 id="虚基类"><a href="#虚基类" class="headerlink" title="虚基类"></a>虚基类</h2><p>对于每个指定为 <code>virtual</code> 的相异基类，最终派生类对象仅含有该类型的一个基类子对象，即使该类在继承层级中出现多次（只要它每次都以 <code>virtual</code> 继承）。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">B</span> &#123;</span> <span class="keyword">int</span> n; &#125;;</span><br><span class="line"><span class="comment">// 顺序是任意的</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">X</span> :</span> <span class="keyword">public</span> <span class="keyword">virtual</span> B &#123;&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Y</span> :</span> <span class="keyword">virtual</span> <span class="keyword">public</span> B &#123;&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Z</span> :</span> <span class="keyword">public</span> B &#123;&#125;;</span><br><span class="line"><span class="comment">// 每个 AA 类型对象拥有一个 X ，一个 Y ，一个 Z 和二个 B ：</span></span><br><span class="line"><span class="comment">// 其一是 Z 的基类，另一者为 X 与 Y 所共享</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">AA</span> :</span> X, Y, Z &#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        X::n = <span class="number">1</span>; <span class="comment">// 修改虚 B 基类子对象的成员</span></span><br><span class="line">        Y::n = <span class="number">2</span>; <span class="comment">// 修改同一虚 B 基类子对象的成员</span></span><br><span class="line">        Z::n = <span class="number">3</span>; <span class="comment">// 修改非虚 B 基类子对象的成员</span></span><br><span class="line"> </span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; X::n &lt;&lt; Y::n &lt;&lt; Z::n &lt;&lt; <span class="string">'\n'</span>; <span class="comment">// 打印 223</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>继承层级有虚基类的例子之一是标准库的 <code>iostream</code> 的继承层级： <a href="https://zh.cppreference.com/w/cpp/io/basic_istream" target="_blank" rel="noopener">std::istream</a> 与 <a href="https://zh.cppreference.com/w/cpp/io/basic_ostream" target="_blank" rel="noopener">std::ostream</a> 从 <a href="https://zh.cppreference.com/w/cpp/io/basic_ios" target="_blank" rel="noopener">std::ios</a> 使用虚继承派生。 <a href="https://zh.cppreference.com/w/cpp/io/basic_iostream" target="_blank" rel="noopener">std::iostream</a> 继承 <a href="https://zh.cppreference.com/w/cpp/io/basic_istream" target="_blank" rel="noopener">std::istream</a> 和 <a href="https://zh.cppreference.com/w/cpp/io/basic_ostream" target="_blank" rel="noopener">std::ostream</a> ，故每个 <a href="https://zh.cppreference.com/w/cpp/io/basic_iostream" target="_blank" rel="noopener">std::iostream</a> 实例含一个 <a href="https://zh.cppreference.com/w/cpp/io/basic_ostream" target="_blank" rel="noopener">std::ostream</a> 子对象、一个 <a href="https://zh.cppreference.com/w/cpp/io/basic_istream" target="_blank" rel="noopener">std::istream</a> 子对象和仅一个 <a href="https://zh.cppreference.com/w/cpp/io/basic_ios" target="_blank" rel="noopener">std::ios</a> 子对象。</p>
+<p>所有虚基类子对象在任何非虚基类子对象前初始化，故只有最终派生类于其<a href="https://zh.cppreference.com/w/cpp/language/initializer_list" target="_blank" rel="noopener">成员初始化器列表</a>调用虚基类的构造函数：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Base</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    Base(<span class="keyword">int</span> n): n(n) &#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Base()"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">X</span> :</span> <span class="keyword">virtual</span> Base &#123;</span><br><span class="line">    X(): Base(<span class="number">1</span>) &#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"X()"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Y</span> :</span> <span class="keyword">virtual</span> Base &#123;</span><br><span class="line">    Y(): Base(<span class="number">2</span>) &#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Y()"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Derived</span> :</span> X, Y &#123;</span><br><span class="line">    Derived(): Base(<span class="number">3</span>), X(), Y() &#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Derived()"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>如果创建一个 <code>Derived</code> 类对象，那么输出的顺序为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Base()</span><br><span class="line">X()</span><br><span class="line">Y()</span><br><span class="line">Derived()</span><br></pre></td></tr></table></figure>
+<p>即使将成员初始化列表的顺序修改为 <code>Derived(): X(), Y(), Base(3)</code> 或 <code>Derived(): Base(3) { }</code>，输出顺序也相同。</p>
+<p>如果 <code>Derived(): X(), Y() { }</code> 或者 <code>Derived() { }</code>，会报错：</p>
+
+<p><code>Derived</code> 的默认构造函数调用 X 和 Y 的默认构造函数，但这些构造函数不调用 B 的构造函数，因为 B 是虚基类。这是合理的，因为按照虚基类的规定，Derived 只有一个 <code>Base</code> 子对象，所以这个初始化工作应该交给 <code>Derived</code>。</p>
+<h2 id="公有继承"><a href="#公有继承" class="headerlink" title="公有继承"></a>公有继承</h2><p>基类的所有公开成员可作为派生类的公开成员访问，基类的所有受保护成员可作为派生类的受保护成员访问（基类的私有成员决不可访问，除非设为友元）。</p>
+<p>“IS-A” 关系</p>
+<p>派生类应该维护其公开基类的类不变量，不应强化任何其所<a href="https://zh.cppreference.com/w/cpp/language/virtual" target="_blank" rel="noopener">覆写</a>的成员函数的前置条件，或弱化任何其后置条件。</p>
+<h2 id="受保护继承"><a href="#受保护继承" class="headerlink" title="受保护继承"></a>受保护继承</h2><p>基类的所有公开和受保护成员可作为派生类的受保护成员访问（基类的私有成员决不可访问，除非设为友元）。</p>
+<p>受保护继承可用于“受控制的多态”：在派生类的成员中，还有在所有进一步派生类的成员中，派生类是（ IS-A ）基类：到派生类的引用和指针可用于期待到基类的引用和指针处。</p>
+<h2 id="私有继承"><a href="#私有继承" class="headerlink" title="私有继承"></a>私有继承</h2><p>基类的所有公开和受保护成员可作为派生类的私有成员访问（基类的私有成员决不可访问，除非设为友元）。</p>
+<p>私有继承常用于基于策略的设计，因为策略常是空基类，而使用基类可以启用静多态并活用<a href="https://zh.cppreference.com/w/cpp/language/ebo" target="_blank" rel="noopener">空基类优化</a></p>
+<p>私有继承亦可用于实现合成关系（基类子对象是派生类对象的实现细节）。成员使用提供更好的封装，而且通常受到偏好，除非派生类要求访问基类的受保护成员（包含构造函数）、需要覆写基类的虚成员、需要基类构造先于或析构后于某其他基类子对象，需要共享虚基类或需要控制虚基类的构造。实现合成的成员使用亦不可应用于从<a href="https://zh.cppreference.com/w/cpp/language/parameter_pack" target="_blank" rel="noopener">参数包</a>多重继承的情况，或在编译时通过模板元编程确定基类身份的情况。</p>
+<p>同受保护继承，私有继承亦可用于受控制的多态：在派生类的成员内（但不在进一步派生类内），派生类是（ IS-A ）基类。</p>
+<h1 id="虚函数"><a href="#虚函数" class="headerlink" title="虚函数"></a>虚函数</h1><p>虚函数是 C++ 中一个与继承相关的概念。函数声明中带有 <code>virtual</code> 关键字表示函数是虚函数。只有虚函数才能被覆写（Override）。</p>
+<p><code>virtual</code> 指定符指定<strong>非静态</strong>成员函数为虚并支持动态绑定。</p>
+<p>虚函数可以不提供实现（定义）。</p>
+<p>纯虚函数：<code>声明 virtual-specifier(可选) = 0</code></p>
+<p><code>virtual int f() = 0;</code></p>
+<ul>
+<li><p>有纯虚函数的类被称为“抽象类”，不能创建其实例。</p>
+</li>
+<li><p>纯虚函数也可以提供定义（而且若析构函数为纯虚则必须提供），但是必须在类外（因为类声明的语法不允许 <code>= 0</code> 和定义同时出现）：</p>
+</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Abstract</span> &#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">int</span> <span class="title">f</span><span class="params">()</span> </span>= <span class="number">0</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> Abstract::f() &#123;</span><br><span class="line">    <span class="comment">// definition</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>无论纯虚函数是否拥有定义，从抽象类的构造函数或析构函数进行纯虚函数的虚调用属于未定义的行为，如果纯虚函数有定义，可以使用限定名进行非虚调用</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Abstract</span> &#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">int</span> <span class="title">f</span><span class="params">()</span> </span>= <span class="number">0</span>;</span><br><span class="line">    ~Abstract() &#123;</span><br><span class="line">        Abstract::f();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> Abstract::f() &#123;</span><br><span class="line">    <span class="comment">// definition</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="虚指定符"><a href="#虚指定符" class="headerlink" title="虚指定符"></a>虚指定符</h2><p><code>override</code> 和 <code>final</code>，覆写基类的虚函数，有此指定符的函数为虚函数。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/27/java-basic-thread/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/01/27/java-basic-thread/" itemprop="url">Java 学习笔记 - 基础篇：多线程</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-27T02:03:20+08:00">
+                2019-01-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/27/java-basic-date/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/01/27/java-basic-date/" itemprop="url">Java 学习笔记 - 基础篇：日期操作</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-27T02:03:07+08:00">
+                2019-01-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/27/java-basic-enum/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1184,567 +1753,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/11/cpp-basic-friend/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RHANQTL">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/01/11/cpp-basic-friend/" itemprop="url">C++ 学习笔记 - 基础篇：友元</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-11T20:06:55+08:00">
-                2019-01-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="友元概述"><a href="#友元概述" class="headerlink" title="友元概述"></a>友元概述</h1><p>在 C++ 中，没有像 Java 中一样统一的 <code>toString()</code> 方法，可是有时我们想要实现类似的功能，想像输出基本类型那样输出一个对象，该怎么做呢？</p>
-<p>友元是 C++ 中一种机制，允许友元直接访问和修改类的私有对象</p>
-<h1 id="友元"><a href="#友元" class="headerlink" title="友元"></a>友元</h1><p>友元关系需要注意以下几点：</p>
-<ul>
-<li>友元关系是单向的</li>
-<li>友元不受类的访问权限的控制</li>
-<li>《代码大全》中也提到，要谨慎使用友元，因为友元机制本身是为了性能对类封装性的破坏，所以需要在安全性和性能两方面进行权衡</li>
-</ul>
-<p>头文件：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> __PERSON_H__</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> __PERSON_H__</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">string</span> firstName;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">string</span> lastName;</span><br><span class="line">    <span class="keyword">unsigned</span> age;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    Person(<span class="built_in">string</span> &amp;firstName, <span class="built_in">string</span> &amp;lastName, <span class="keyword">unsigned</span> age);</span><br><span class="line">    <span class="comment">// 虽然写在 public 下面，但其实并不受到访问权限的控制，放在 private 下也一样</span></span><br><span class="line">    <span class="keyword">friend</span> <span class="built_in">std</span>::ostream &amp; <span class="keyword">operator</span>&lt;&lt;(<span class="built_in">std</span>::ostream &amp;out, Person *p);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"Person.h"</span></span></span><br><span class="line"></span><br><span class="line">Person::Person(<span class="built_in">string</span> &amp;firstName, <span class="built_in">string</span> &amp;lastName, <span class="keyword">unsigned</span> age) &#123;</span><br><span class="line">    <span class="comment">// omitted</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 注意没有 friend 和 Person::</span></span><br><span class="line"><span class="built_in">std</span>::ostream &amp; <span class="keyword">operator</span>&lt;&lt;(<span class="built_in">std</span>::ostream &amp;out, Person &amp;p) &#123;</span><br><span class="line">    out &lt;&lt; <span class="string">"full name: "</span> &lt;&lt; p.firstName &lt;&lt; <span class="string">"-"</span> &lt;&lt; p.lastName &lt;&lt; <span class="string">", age: "</span> &lt;&lt; p.age;</span><br><span class="line">    <span class="keyword">return</span> out;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="友元与继承"><a href="#友元与继承" class="headerlink" title="友元与继承"></a>友元与继承</h1><h1 id="友元的替代方案"><a href="#友元的替代方案" class="headerlink" title="友元的替代方案"></a>友元的替代方案</h1>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/10/algorithms-shortest-path/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RHANQTL">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/01/10/algorithms-shortest-path/" itemprop="url">图论 - 基本算法：最短路径</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-10T21:32:35+08:00">
-                2019-01-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Dijkstra"><a href="#Dijkstra" class="headerlink" title="Dijkstra"></a>Dijkstra</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">procedure Dijkstra(G, s)</span><br><span class="line">    Q &lt;- G.V</span><br><span class="line">    S &lt;- &#123;&#125;</span><br><span class="line">    while Q is not empty</span><br><span class="line">        u &lt;- EXTRA-MIN(Q)</span><br><span class="line">        S &lt;- S + &#123; u &#125;</span><br><span class="line">        for each edge (u, v) in G</span><br><span class="line">            if v.d &gt; u.d + dist(u, v)</span><br><span class="line">                v.d &lt;- u.d + dist(u, v)</span><br><span class="line">                v.pi &lt;- u</span><br></pre></td></tr></table></figure>
-<ul>
-<li>实际上类似于 BFS（邻接 $\rightarrow$ 邻接的邻接 $\rightarrow\cdots$），所以初始化时可以只将与 s 邻接的顶点放入一个<strong>普通队列</strong>，然后按照 BFS 的方式进行最短路径的搜索</li>
-</ul>
-<h1 id="Floyd-Warshall"><a href="#Floyd-Warshall" class="headerlink" title="Floyd-Warshall"></a>Floyd-Warshall</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">for k &lt;- [0, V) do</span><br><span class="line">    for i &lt;- [0, V) do</span><br><span class="line">        for j &lt;- [0, V) do</span><br><span class="line">            if dist[i][j] &gt;= dist[i][k] + dist[k][j] then</span><br><span class="line">                dist[i][j] = dist[i][k] + dist[k][j]</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/10/algorithms-mst/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RHANQTL">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/01/10/algorithms-mst/" itemprop="url">图论 - 基本算法：最小生成树</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-10T21:21:23+08:00">
-                2019-01-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="什么是最小生成树？"><a href="#什么是最小生成树？" class="headerlink" title="什么是最小生成树？"></a>什么是最小生成树？</h1><p>最小生成树（Minimal Spanning Tree，MST）</p>
-<ul>
-<li>连通且无环的无向图</li>
-<li>边权重总和最小</li>
-</ul>
-<h1 id="MST-性质"><a href="#MST-性质" class="headerlink" title="MST 性质"></a>MST 性质</h1><ul>
-<li>对于图 G 的任意一个顶点 v，和 v 相关联的最短的边一定在某个 MST 中<ul>
-<li>证明：设和 v 相关联的最短的边为 e，如果某个 MST 不包含 e，那么将其加入到这个 MST 中会产生一个回路，去掉回路中某一条非 e 的边，可以得到总权重更小的 MST</li>
-<li>由此可以知道每次选择与顶点相关联的<strong>最短</strong>的边</li>
-</ul>
-</li>
-<li>将 e 的两个端点合并后得到图 G’，设合并后的顶点是 v’。假设 G’ 的某棵 MST 是 T’，那么将 e 加入到 T’ 中将得到 G 的 MST<ul>
-<li>证明：假设 G 中包含 e 的 MST 是 T，那么 T - e 是 G’ 的一棵生成树 T’’，假设这棵生成树不是 G’ 的 MST，那么 T’ + e 是 G 中的生成树，并且 T’ + e &lt; T</li>
-<li>所以可以递归地构建 MST</li>
-</ul>
-</li>
-<li>带权重的连通无向图的生成树的 MST 性质：当且仅当对任意非树边 (u, v)，T $\cup$ {(u, v)} 包含环并且在这个环中 (u, v) 是有最大权重的边时，我们说生成树 T 有 MST 性质<ul>
-<li>所有的 MST 有相同的权重</li>
-</ul>
-</li>
-</ul>
-<h1 id="求解-MST"><a href="#求解-MST" class="headerlink" title="求解 MST"></a>求解 MST</h1><h2 id="Prim"><a href="#Prim" class="headerlink" title="Prim"></a>Prim</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">procedure MST-Prim(G)</span><br><span class="line">    for each vertex v in G</span><br><span class="line">        v.key &lt;- Inf</span><br><span class="line">        v.pi &lt;- NIL</span><br><span class="line">    Q &lt;- G.V</span><br><span class="line">    while Q is not empty</span><br><span class="line">        u &lt;- extractMin(Q)</span><br><span class="line">        for each edge (u, v) in G</span><br><span class="line">            if v in Q and weight(u, v) &lt; v.key</span><br><span class="line">                v.pi = u</span><br><span class="line">                v.key &lt;- weight(u, v)</span><br></pre></td></tr></table></figure>
-<h2 id="Kruskal"><a href="#Kruskal" class="headerlink" title="Kruskal"></a>Kruskal</h2><p>选择一条权重最小的边，同时不能产生环：不能产生环意味着这条边 (u, v)，u 和 v 不属于同一个连通分量</p>
-<ul>
-<li>首先这条边不在生成树中，否则选不到这条边</li>
-<li>placeholder</li>
-<li>UNION-FIND</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">procedure MST-Kruskal(G)</span><br><span class="line">    Q &lt;- G.E</span><br><span class="line">    S &lt;- &#123;&#125;</span><br><span class="line">    while Q is not empty</span><br><span class="line">        (u, v) &lt;- EXTRA-MIN(Q)</span><br><span class="line">        uSet &lt;- FIND(u)</span><br><span class="line">        vSet &lt;- FIND(v)</span><br><span class="line">        if uSet != vSet</span><br><span class="line">            UNION(uSet, vSet)</span><br><span class="line">            S &lt;- S + &#123;(u, v)&#125;</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/08/algorithms-np/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RHANQTL">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/01/08/algorithms-np/" itemprop="url">NP</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-08T21:13:59+08:00">
-                2019-01-08
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ul>
-<li><p>先要弄清几个基本概念</p>
-<ul>
-<li>P 问题：在多项式时间（或者更精确地说是 <strong>O(</strong>$n^k$<strong>)</strong> 时间）内能够<strong>解决</strong>的问题</li>
-<li>NP 问题：在多项式时间内能够<strong>验证</strong>的问题</li>
-<li>NP 难问题：问题 Q 是 NP 难问题，当对于任意的 $Q’ \in \mathrm{NP}_2$，$Q’\le_\mathrm{P} Q$</li>
-<li>NPC 问题（NP 完全问题）：即是 NP 问题，又是 NP 难问题</li>
-<li>规约<ul>
-<li>转换过程需要多项式时间</li>
-<li>两个实例的解是<strong>相同</strong>的</li>
-</ul>
-</li>
-<li><p>判定问题 &amp; 最优化问题</p>
-<ul>
-<li>判定问题简单来说就是需要给出<strong>是/不是</strong>答案的问题</li>
-<li>最优化问题就是说，对于问题的每个可行的解，都有一个关联的值，希望找到值最优的可行解</li>
-<li>通常判定问题比最优化问题简单，或者说“不会更难”，所以可以通过证明判定问题不易解决来证明最优化问题不易解决</li>
-<li>NPC 把注意力放在判定问题上</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>证明 NPC<ul>
-<li>证明 NP：证明可在多项式时间内验证</li>
-<li>证明 NP 难<ul>
-<li>选取某个 NPC 问题 $Q’$</li>
-<li>规约算法<ul>
-<li>证明规约的正确性，即任意的 $x \in Q’$ 有 $f(x) \in Q$</li>
-<li>证明多项式运行时间</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>电路可满足性问题（Circuit Satisfiability）<br>- </li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/6/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/8/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/6/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/8/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1790,7 +1803,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">110</span>
+                  <span class="site-state-item-count">114</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1812,7 +1825,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>
