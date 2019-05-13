@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-05-10T08:07:11.180Z</updated>
+  <updated>2019-05-13T10:22:13.068Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,70 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>data-visual-python-tools</title>
+    <link href="http://yoursite.com/2019/05/13/data-visual-python-tools-intro/"/>
+    <id>http://yoursite.com/2019/05/13/data-visual-python-tools-intro/</id>
+    <published>2019-05-13T10:17:10.000Z</published>
+    <updated>2019-05-13T10:22:13.068Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+      <category term="数据可视化 (Data Visualization)" scheme="http://yoursite.com/categories/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96-Data-Visualization/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>机器学习中常用的数据集</title>
+    <link href="http://yoursite.com/2019/05/12/ml-commonly-used-datasets/"/>
+    <id>http://yoursite.com/2019/05/12/ml-commonly-used-datasets/</id>
+    <published>2019-05-12T15:01:58.000Z</published>
+    <updated>2019-05-12T15:03:03.342Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+      <category term="Machine Learning" scheme="http://yoursite.com/categories/Machine-Learning/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Redis 学习笔记（1）</title>
+    <link href="http://yoursite.com/2019/05/12/redis-intro/"/>
+    <id>http://yoursite.com/2019/05/12/redis-intro/</id>
+    <published>2019-05-12T10:26:06.000Z</published>
+    <updated>2019-05-12T13:15:58.328Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+      <category term="Redis" scheme="http://yoursite.com/categories/Redis/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>C++ 学习笔记 - STL：排序相关函数</title>
@@ -354,68 +418,6 @@
     <summary type="html">
     
       &lt;p&gt;Python 的 &lt;code&gt;object&lt;/code&gt; 也像 Java 中的 &lt;code&gt;Object&lt;/code&gt; 一样，有判断对象相等和求对象 Hash 值的函数，分别为 &lt;code&gt;__eq__&lt;/code&gt; 和 &lt;code&gt;__hash__&lt;/code&gt;&lt;/p&gt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>记 DeeCamp 2019 的一道笔试题</title>
-    <link href="http://yoursite.com/2019/04/28/others-deecamp2019-last-question/"/>
-    <id>http://yoursite.com/2019/04/28/others-deecamp2019-last-question/</id>
-    <published>2019-04-28T08:52:16.000Z</published>
-    <updated>2019-04-28T10:21:11.102Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;这是一篇伤感的博客。&lt;/p&gt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>优化算法</title>
-    <link href="http://yoursite.com/2019/04/27/ml-basic-optimize-algo/"/>
-    <id>http://yoursite.com/2019/04/27/ml-basic-optimize-algo/</id>
-    <published>2019-04-27T15:16:56.000Z</published>
-    <updated>2019-05-09T06:15:26.394Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-      <category term="ML" scheme="http://yoursite.com/categories/ML/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>示例 1：手写数字识别</title>
-    <link href="http://yoursite.com/2019/04/27/ml-nn-example-digit-recognization/"/>
-    <id>http://yoursite.com/2019/04/27/ml-nn-example-digit-recognization/</id>
-    <published>2019-04-27T13:16:56.000Z</published>
-    <updated>2019-04-27T13:22:17.359Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
     
     </summary>
     

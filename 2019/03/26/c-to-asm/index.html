@@ -85,19 +85,17 @@
 
 
 
-<meta name="description" content="Softmax 回归分类问题虽然可以使用回归模型建模，并且将预测值就近定点化到分类标签，但是这种连续值到离散值的转化通常会影响到分类质量，因此我们一般使用更加适合离散值输出的模型来解决分类问题。">
+<meta name="description" content="C 到汇编以下均为 GCC 的行为！！！ 变量全局变量 初始化的全局变量：.data 未初始化的全局变量和初始化为 0 的全局变量：.bss 这样做只需要在目标代码中放置占位符即可，不需要保存实际的数据，可以节省空间    *局部变量 静态局部变量 非静态局部变量  第一个局部变量的地址为 -0x8(%ebp)，第二个局部变量的地址为 -0xc(%ebp)，依此类推   常量数据对象： 最典型的数">
 <meta property="og:type" content="article">
-<meta property="og:title" content="动手学深度学习 - 基础篇：Softmax 回归">
-<meta property="og:url" content="http://yoursite.com/2018/12/29/动手学深度学习-基础篇：Softmax-回归/index.html">
+<meta property="og:title" content="从 C 到汇编">
+<meta property="og:url" content="http://yoursite.com/2019/03/26/c-to-asm/index.html">
 <meta property="og:site_name" content="RHANQTL">
-<meta property="og:description" content="Softmax 回归分类问题虽然可以使用回归模型建模，并且将预测值就近定点化到分类标签，但是这种连续值到离散值的转化通常会影响到分类质量，因此我们一般使用更加适合离散值输出的模型来解决分类问题。">
+<meta property="og:description" content="C 到汇编以下均为 GCC 的行为！！！ 变量全局变量 初始化的全局变量：.data 未初始化的全局变量和初始化为 0 的全局变量：.bss 这样做只需要在目标代码中放置占位符即可，不需要保存实际的数据，可以节省空间    *局部变量 静态局部变量 非静态局部变量  第一个局部变量的地址为 -0x8(%ebp)，第二个局部变量的地址为 -0xc(%ebp)，依此类推   常量数据对象： 最典型的数">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/2018/12/29/动手学深度学习-基础篇：Softmax-回归/softmaxreg.svg">
-<meta property="og:updated_time" content="2019-01-02T05:04:00.931Z">
+<meta property="og:updated_time" content="2019-04-20T18:25:09.109Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="动手学深度学习 - 基础篇：Softmax 回归">
-<meta name="twitter:description" content="Softmax 回归分类问题虽然可以使用回归模型建模，并且将预测值就近定点化到分类标签，但是这种连续值到离散值的转化通常会影响到分类质量，因此我们一般使用更加适合离散值输出的模型来解决分类问题。">
-<meta name="twitter:image" content="http://yoursite.com/2018/12/29/动手学深度学习-基础篇：Softmax-回归/softmaxreg.svg">
+<meta name="twitter:title" content="从 C 到汇编">
+<meta name="twitter:description" content="C 到汇编以下均为 GCC 的行为！！！ 变量全局变量 初始化的全局变量：.data 未初始化的全局变量和初始化为 0 的全局变量：.bss 这样做只需要在目标代码中放置占位符即可，不需要保存实际的数据，可以节省空间    *局部变量 静态局部变量 非静态局部变量  第一个局部变量的地址为 -0x8(%ebp)，第二个局部变量的地址为 -0xc(%ebp)，依此类推   常量数据对象： 最典型的数">
 
 
 
@@ -127,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/12/29/动手学深度学习-基础篇：Softmax-回归/">
+  <link rel="canonical" href="http://yoursite.com/2019/03/26/c-to-asm/">
 
 
 
 
 
-  <title>动手学深度学习 - 基础篇：Softmax 回归 | RHANQTL</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>从 C 到汇编 | RHANQTL</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -308,7 +306,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/29/动手学深度学习-基础篇：Softmax-回归/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/26/c-to-asm/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Han Qi">
@@ -325,7 +323,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">动手学深度学习 - 基础篇：Softmax 回归</h1>
+          <h1 class="post-title" itemprop="name headline">从 C 到汇编</h1>
         
 
         <div class="post-meta">
@@ -337,8 +335,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-29T21:46:11+08:00">
-                2018-12-29
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-26T15:37:02+08:00">
+                2019-03-26
               </time>
             
 
@@ -347,39 +345,6 @@
             
           </span>
 
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Deep-Learning/" itemprop="url" rel="index">
-                    <span itemprop="name">Deep Learning</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Deep-Learning/Basics/" itemprop="url" rel="index">
-                    <span itemprop="name">Basics</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -413,31 +378,85 @@
       
 
       
-        <h1 id="Softmax-回归"><a href="#Softmax-回归" class="headerlink" title="Softmax 回归"></a>Softmax 回归</h1><h2 id="分类问题"><a href="#分类问题" class="headerlink" title="分类问题"></a>分类问题</h2><p>虽然可以使用回归模型建模，并且将预测值就近定点化到分类标签，但是这种连续值到离散值的转化通常会影响到分类质量，因此我们一般使用更加适合离散值输出的模型来解决分类问题。</p>
-<a id="more"></a>
-<h2 id="Softmax-回归模型"><a href="#Softmax-回归模型" class="headerlink" title="Softmax 回归模型"></a>Softmax 回归模型</h2><p>Softmax 回归也是一个单层的神经网络，但是有多个输出神经元，并且其输出层是一个全连接层：</p>
-<img src="/2018/12/29/动手学深度学习-基础篇：Softmax-回归/softmaxreg.svg" title="Softmax 回归是一个单层神经网络">
-<h3 id="Softmax-运算"><a href="#Softmax-运算" class="headerlink" title="Softmax 运算"></a>Softmax 运算</h3><p>一种直接的办法是直接将输出 $o_i$ 当作类别 $i$ 的置信度，但是存在两个问题：</p>
-<ul>
-<li>输出层的输出值的范围不确定，难以直观地判断这些值的意义<ul>
-<li>比如 $o_1$ = 0.1，$o_2$ = 10，$o_3$ = 0.1，并不能确定较大的值就是最可信的</li>
+        <h1 id="C-到汇编"><a href="#C-到汇编" class="headerlink" title="C 到汇编"></a>C 到汇编</h1><p>以下均为 <strong>GCC</strong> 的行为！！！</p>
+<h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><h3 id="全局变量"><a href="#全局变量" class="headerlink" title="全局变量"></a>全局变量</h3><ul>
+<li>初始化的全局变量：<code>.data</code></li>
+<li>未初始化的全局变量和<em>初始化为 0 的全局变量</em>：<code>.bss</code><ul>
+<li>这样做只需要在目标代码中放置占位符即可，不需要保存实际的数据，可以节省空间</li>
 </ul>
 </li>
-<li>真实标签是离散值，这些离散值与不确定范围的输出值之间的误差难以衡量</li>
 </ul>
-<p>Softmax 运算符：将输出值变换成值为正且和为 1 的概率分布</p>
-<script type="math/tex; mode=display">\hat{y_1},\hat{y_2},\hat{y_3} = \rm{softmax}(o_1,o_2,o_3)</script><p>其中</p>
-<script type="math/tex; mode=display">\hat{y}_1=\dfrac{exp(o_1)}{\sum_{i=1}^3\exp(o_i)},\hat{y}_2=\dfrac{\exp(o_2)}{\sum_{i=1}^3\exp(o_i)},\hat{y}_3=\dfrac{exp(o_3)}{\sum_{i=1}^3exp(o_i)}</script><p>正确性：</p>
-<script type="math/tex; mode=display">\arg\max\limits_i \hat{y}_i = \arg\max\limits_i \exp(o_i) = \arg\max\limits_i o_i</script><h3 id="计算表达式"><a href="#计算表达式" class="headerlink" title="计算表达式"></a>计算表达式</h3><h4 id="单样本分类的矢量计算表达式"><a href="#单样本分类的矢量计算表达式" class="headerlink" title="单样本分类的矢量计算表达式"></a>单样本分类的矢量计算表达式</h4><script type="math/tex; mode=display">o_1=x_1w_{11}+x_2w_{21} + x_3w_{31} + x_4w_{41} + b_1</script><script type="math/tex; mode=display">o_2=x_1w_{12}+x_2w_{22} + x_3w_{32} + x_4w_{42} + b_2</script><script type="math/tex; mode=display">o_3=x_1w_{13}+x_2w_{23} + x_3w_{33} + x_4w_{43} + b_3</script><script type="math/tex; mode=display">W = \left[\begin{matrix}w_{11} &w_{12}&w_{13} \\ w_{21} &w_{22}&w_{23}\\ w_{31} &w_{32}&w_{33}\\ x_{41}&x_{42}&x_{43}\end{matrix}\right],\ b = [b_1, b_2, b_3]</script><script type="math/tex; mode=display">x^{(i)} = \left[\begin{matrix} x_1^{(i)} & x_2^{(i)} & x_3^{(i)} & x_4^{(i)}\end{matrix}\right]</script><p>输出层输出为</p>
-<script type="math/tex; mode=display">o^{(i)} = \left[\begin{matrix}o_1^{(i)} & o_2^{(i)} & o_3^{(i)}\end{matrix}\right]</script><p>预测概率分布为</p>
-<script type="math/tex; mode=display">\hat{y}^{(i)} = \left[\begin{matrix}\hat{y}_1^{(i)} & \hat{y}_2^{(i)} & \hat{y}_3^{(i)}\end{matrix}\right]</script><p>Softmax 回归对样本 $i$ 分类的矢量计算表达式为</p>
-<script type="math/tex; mode=display">o^{(i)} = x^{(i)}W + b</script><script type="math/tex; mode=display">\hat{y}^{(i)} = {\rm{softmax}}(o^{(i)})</script><h4 id="小样本分类的矢量计算表达式"><a href="#小样本分类的矢量计算表达式" class="headerlink" title="小样本分类的矢量计算表达式"></a>小样本分类的矢量计算表达式</h4><script type="math/tex; mode=display">O =XW + b</script><script type="math/tex; mode=display">\hat{Y} = {\rm{softmax}}(O)</script><h3 id="交叉熵损失函数"><a href="#交叉熵损失函数" class="headerlink" title="交叉熵损失函数"></a>交叉熵损失函数</h3><p>分类标签：构造一个向量 $y^{(i)} \in \mathbb{R}^q$，第 $i$ 类的第 $i$ 个数值为 1，其余都为 0。</p>
-<p>损失函数：我们只需要判断某次的分类是不是正确，而不需要判断 Softmax 模型的输出值与实际标签相差多少（太严格，而且缺少合理性），所以这里不使用平方损失函数，而使用更适合衡量两个概率分布差异的测量函数。其中，交叉熵（Cross Entropy）是一个常用的衡量方法：</p>
-<script type="math/tex; mode=display">H(\bold{y}^{(i)},\hat{\bold{y}}^{(i)}) = -\sum\limits_{j=1}^q y_j^{(i)}\log \hat{y}_j^{(i)}</script><p>注意这里 $\bold{y}^{(i)}$ 实际上只有一个元素（第 $y^{(i)}$ 个元素）为 1，也就是说，上面的式子实际上可以简化成下面这样：</p>
-<script type="math/tex; mode=display">H(\bold{y}^{(i)},\hat{\bold{y}}^{(i)}) = -\log  \hat{y}^{(i)}_{y^{(i)}}</script><p>也就是说，交叉熵只关心对正确类别的预测概率，因为只要其值足够大，我们就可以确保分类结果正确。但是需要注意的是，如果一个样本有多个标签，例如图像中含有不止一个物体时，我们并不能做这一步简化，但是实际上也只需要关心图片中出现的物体类别的预测概率。</p>
-<p>交叉熵损失函数：</p>
-<script type="math/tex; mode=display">l(\Theta) = \dfrac{1}{n}\sum\limits_{i=1}^n H(\bold{y}^{(i)},\hat{\bold{y}}^{(i)})</script><p>同时，</p>
-<script type="math/tex; mode=display">\begin{align}l(\Theta)=\dfrac{1}{n}\sum\limits_{i=1}^n H(\bold{y}^{(i)},\hat{\bold{y}}^{(i)})\end{align} = -\dfrac{1}{n}\sum\limits_{i=1}^{n}\log\hat{y}_{y^{(i)}}^{(i)}</script><script type="math/tex; mode=display">-nl(\Theta)=\sum\limits_{i=1}^{n}\log\hat{y}_{y^{(i)}}^{(i)}</script><script type="math/tex; mode=display">\begin{align}\exp(-nl(\Theta)) &= \exp(\sum\limits_{i=1}^{n}\log\hat{y}_{y^{(i)}}^{(i)})\\&=\prod\limits_{i=1}^n\hat{y}_{y^{(i)}}^{(i)}\end{align}</script><p>所以实际上，最小化交叉熵损失函数等价于最大化训练数据集所有标签类别的联合预测概率。</p>
+<h3 id="局部变量"><a href="#局部变量" class="headerlink" title="*局部变量"></a>*局部变量</h3><ul>
+<li>静态局部变量</li>
+<li><p>非静态局部变量</p>
+</li>
+<li><p>第一个局部变量的地址为 <code>-0x8(%ebp)</code>，第二个局部变量的地址为 <code>-0xc(%ebp)</code>，依此类推</p>
+</li>
+</ul>
+<h3 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h3><p>数据对象：</p>
+<p>最典型的数据对象：字符串字面量</p>
+<h2 id="函数调用"><a href="#函数调用" class="headerlink" title="函数调用"></a>函数调用</h2><h3 id="函数调用方式"><a href="#函数调用方式" class="headerlink" title="函数调用方式"></a>函数调用方式</h3><ul>
+<li><p><code>__cdecl</code></p>
+<p><code>__cdecl</code> 是 C Declaration  的缩写，表示 C 语言默认的函数调用方法：所有参数<strong>从右到左</strong>依次入栈，这些参数由<strong>调用者</strong>清除，称为手动清栈。被调用函数<strong>不要求</strong>调用者传递多少参数，调用者传递过多或者过少的参数，甚至完全不同的参数都不会产生编译阶段的错误。<strong>实现可变参数的调用只能用该方法</strong>。</p>
+</li>
+<li><p><code>__stdcall</code></p>
+<p><code>__stdcall</code> 是 Standard Call 的缩写，是 C++ 的标准调用方式：所有参数<strong>从右到左</strong>依次入栈，如果是调用类成员的话，最后一个入栈的是 <code>this</code> 指针。这些堆栈中的参数由<strong>被调用者</strong>在返回后清除，使用的指令是 <code>retn X</code>，X 表示参数占用的字节数，CPU 在 <code>retn</code> 之后自动弹出 X 个字节的堆栈空间，称为自动清栈。函数在编译的时候就<strong>必须确定</strong>参数个数，并且调用者必须严格的控制参数的生成，不能多，不能少，否则返回后会出错。</p>
+</li>
+<li><p><code>__pascal</code></p>
+<p><code>__pascal</code> 是 Pascal 语言（Delphi）的函数调用方式，也可以在 C++ 中使用，参数压栈顺序与前两者<strong>相反</strong>。返回时的清栈方式与 <code>__stdcall</code> 相同。</p>
+</li>
+<li><p><code>__fastcall</code></p>
+<p><code>__fastcall</code> 是编译器指定的快速调用方式。由于大多数的函数参数个数很少，使用堆栈传递比较费时。因此 <code>__fastcall</code> 通常规定将前两个（或若干个）参数由寄存器传递，其余参数还是通过堆栈传递。不同编译器编译的程序规定的寄存器不同，返回方式和 <code>__stdcall</code> 相当。</p>
+</li>
+<li><p><code>__thiscall</code></p>
+<p><code>__thiscall</code> 是为了解决类成员调用中 <code>this</code> 指针传递而规定的。<code>__thiscall</code> 要求把 <code>this</code> 指针放在特定寄存器中，该寄存器由编译器决定。VC 使用 <code>ecx</code>，Borland 的 C++ 编译器使用 <code>eax</code>。返回方式和 <code>__stdcall</code> 相当。</p>
+</li>
+</ul>
+<p><code>__fastcall</code> 和 <code>__thiscall</code> 涉及的寄存器由编译器决定，因此<strong>不能</strong>用作跨编译器的接口。所以 Windows 上的 COM 对象接口都定义为 <code>__stdcall</code> 调用方式。</p>
+<p>C 语言中不加说明<strong>默认</strong>函数为 <code>__cdecl</code> 方式（C 中也只能用这种方式），C++ 也一样，但是默认的调用方式可以在 IDE 环境中设置。</p>
+<p>例子：<code>f(a, b, c);</code>（汇编代码均为示意，并不是合法的）</p>
+<ul>
+<li><p><code>__cdecl</code> 调用约定：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">push c			; 参数按右到左传递</span><br><span class="line">push b</span><br><span class="line">push a</span><br><span class="line">call f			; 此处的函数名只是示例，实际上会有修饰</span><br><span class="line">add  %esp, 0xc	; 调用者平衡堆栈</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>__stdcall</code> 调用约定</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">push c</span><br><span class="line">push b</span><br><span class="line">push a</span><br><span class="line">call f			; 被调用者平衡堆栈</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>__pascal</code> 调用约定</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">push a</span><br><span class="line">push b</span><br><span class="line">push c</span><br><span class="line">call f			; 被调用者平衡堆栈</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="参数传递"><a href="#参数传递" class="headerlink" title="参数传递"></a>参数传递</h3><ul>
+<li>32 位<ul>
+<li>通过寄存器传递时有寄存器顺序约定</li>
+<li>通过栈传递：最后一个参数最先 push，第一个参数最后 push，由于堆栈是由高地址向低地址增长，这样的 push 顺序能够保证第一个参数最靠近被调用函数的栈帧，<em>便于处理变参</em>。</li>
+</ul>
+</li>
+<li>64 位<ul>
+<li>前 6 个参数：rdi, rsi, rdx, rcx, r8, r9</li>
+<li>其余参数通过栈传递，同 32 位，但每个参数按照 <em>8</em> 字节对齐</li>
+</ul>
+</li>
+</ul>
+<h4 id="变参"><a href="#变参" class="headerlink" title="变参"></a>变参</h4><p><code>va_list</code>：变参列表，<code>typedef char * va_list;</code>，也就是字节指针</p>
+<p>三个主要的宏：</p>
+<ul>
+<li><code>va_start(ap, 第一个值)</code>：将变参列表 <code>ap</code> 初始化为第一个匿名参数</li>
+<li><code>va_arg(ap, type)</code>：获取下一个类型为 <code>type</code> 的匿名参数</li>
+<li><code>va_end(ap)</code>：负责结束时的清理工作</li>
+</ul>
+<h3 id="call"><a href="#call" class="headerlink" title="call"></a><code>call</code></h3><p>CPU 执行 <code>call</code> 指令，进行两步操作：</p>
+<ol>
+<li><p>将当前的 IP 或 CS 和 IP 压入栈中</p>
+</li>
+<li><p>转移</p>
+</li>
+</ol>
+<h3 id="准备工作（Prologue）"><a href="#准备工作（Prologue）" class="headerlink" title="准备工作（Prologue）"></a>准备工作（Prologue）</h3><p>C 语言中进入被调用函数之后通常会有如下的代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">push	%ebp</span><br><span class="line">mov		%esp, %ebp</span><br></pre></td></tr></table></figure>
+<p>所以，在调用者的栈帧中，第一项（<code>0x0(%esp)</code>）为其栈帧的栈底指针（<code>%ebp</code>）；而第二项（<code>0x4(%esp)</code>）为返回地址</p>
+<h3 id="返回值"><a href="#返回值" class="headerlink" title="返回值"></a>返回值</h3><p>通常返回值放在 <code>%eax</code> 中</p>
+<h3 id="leave-和-ret"><a href="#leave-和-ret" class="headerlink" title="leave 和 ret"></a><code>leave</code> 和 <code>ret</code></h3><h1 id="更多"><a href="#更多" class="headerlink" title="更多"></a>更多</h1><p>[1] <a href="https://stackoverflow.com/questions/4228261/understanding-the-purpose-of-some-assembly-statements" target="_blank" rel="noopener">Understanding the purpose of some assembly statements</a></p>
 
       
     </div>
@@ -462,8 +481,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/12/29/Git-内部原理/" rel="next" title="Git 内部原理">
-                <i class="fa fa-chevron-left"></i> Git 内部原理
+              <a href="/2019/03/25/笔记本电脑选购总结/" rel="next" title="笔记本电脑选购总结">
+                <i class="fa fa-chevron-left"></i> 笔记本电脑选购总结
               </a>
             
           </div>
@@ -472,8 +491,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/12/30/math-prob-stat-mle/" rel="prev" title="机器学习数学基础 - 概率统计：MLE">
-                机器学习数学基础 - 概率统计：MLE <i class="fa fa-chevron-right"></i>
+              <a href="/2019/03/27/soft-eng-arch-micro-services/" rel="prev" title="微服务架构">
+                微服务架构 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -551,7 +570,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">114</span>
+                  <span class="site-state-item-count">116</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -562,7 +581,7 @@
               
               <div class="site-state-item site-state-categories">
                 
-                  <span class="site-state-item-count">32</span>
+                  <span class="site-state-item-count">31</span>
                   <span class="site-state-item-name">分类</span>
                 
               </div>
@@ -613,7 +632,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Softmax-回归"><span class="nav-number">1.</span> <span class="nav-text">Softmax 回归</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#分类问题"><span class="nav-number">1.1.</span> <span class="nav-text">分类问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Softmax-回归模型"><span class="nav-number">1.2.</span> <span class="nav-text">Softmax 回归模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Softmax-运算"><span class="nav-number">1.2.1.</span> <span class="nav-text">Softmax 运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#计算表达式"><span class="nav-number">1.2.2.</span> <span class="nav-text">计算表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#单样本分类的矢量计算表达式"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">单样本分类的矢量计算表达式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#小样本分类的矢量计算表达式"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">小样本分类的矢量计算表达式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#交叉熵损失函数"><span class="nav-number">1.2.3.</span> <span class="nav-text">交叉熵损失函数</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#C-到汇编"><span class="nav-number">1.</span> <span class="nav-text">C 到汇编</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#变量"><span class="nav-number">1.1.</span> <span class="nav-text">变量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#全局变量"><span class="nav-number">1.1.1.</span> <span class="nav-text">全局变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#局部变量"><span class="nav-number">1.1.2.</span> <span class="nav-text">*局部变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常量"><span class="nav-number">1.1.3.</span> <span class="nav-text">常量</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数调用"><span class="nav-number">1.2.</span> <span class="nav-text">函数调用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#函数调用方式"><span class="nav-number">1.2.1.</span> <span class="nav-text">函数调用方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参数传递"><span class="nav-number">1.2.2.</span> <span class="nav-text">参数传递</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#变参"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">变参</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#call"><span class="nav-number">1.2.3.</span> <span class="nav-text">call</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#准备工作（Prologue）"><span class="nav-number">1.2.4.</span> <span class="nav-text">准备工作（Prologue）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#返回值"><span class="nav-number">1.2.5.</span> <span class="nav-text">返回值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#leave-和-ret"><span class="nav-number">1.2.6.</span> <span class="nav-text">leave 和 ret</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#更多"><span class="nav-number">2.</span> <span class="nav-text">更多</span></a></li></ol></div>
             
 
           </div>
@@ -832,40 +851,7 @@
   <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
   
 
-  <script src="/js/src/algolia-search.js?v=5.1.4"></script>
-
-
-
-  
-
-  
-
-  
-
-  
-  
-
-  
-  
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
-      });
-    </script>
-
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-      });
-    </script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+  <script src="/js/src/algolia-search.js?v=5.1.4"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
 </script>
@@ -883,6 +869,19 @@
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
   
 
 
