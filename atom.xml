@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-05-13T10:22:13.068Z</updated>
+  <updated>2019-05-14T00:15:25.576Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,13 +17,55 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>data-visual-python-tools</title>
+    <title>数据可视化 - 原则</title>
+    <link href="http://yoursite.com/2019/05/14/data-visual-principles/"/>
+    <id>http://yoursite.com/2019/05/14/data-visual-principles/</id>
+    <published>2019-05-14T00:04:12.000Z</published>
+    <updated>2019-05-14T00:15:25.576Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+      <category term="数据可视化 (Data Visualization)" scheme="http://yoursite.com/categories/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96-Data-Visualization/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>数据可视化 - 引言</title>
+    <link href="http://yoursite.com/2019/05/14/data-visual-intro/"/>
+    <id>http://yoursite.com/2019/05/14/data-visual-intro/</id>
+    <published>2019-05-14T00:03:53.000Z</published>
+    <updated>2019-05-14T00:06:18.045Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+      <category term="数据可视化 (Data Visualization)" scheme="http://yoursite.com/categories/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96-Data-Visualization/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>数据可视化 - Python 中的数据可视化工具</title>
     <link href="http://yoursite.com/2019/05/13/data-visual-python-tools-intro/"/>
     <id>http://yoursite.com/2019/05/13/data-visual-python-tools-intro/</id>
     <published>2019-05-13T10:17:10.000Z</published>
-    <updated>2019-05-13T10:22:13.068Z</updated>
+    <updated>2019-05-13T11:42:41.069Z</updated>
     
     <summary type="html">
+    
+      &lt;p&gt;机器学习、数据分析过程中需要用到数据可视化，Python 是这两个领域中使用较为广泛的语言，所以这篇文章简要介绍 Python 中的数据可视化工具。&lt;/p&gt;
     
     </summary>
     
@@ -139,7 +181,7 @@
     <link href="http://yoursite.com/2019/05/08/nlp-deep-in-word2vec/"/>
     <id>http://yoursite.com/2019/05/08/nlp-deep-in-word2vec/</id>
     <published>2019-05-08T15:56:51.000Z</published>
-    <updated>2019-05-09T02:53:21.796Z</updated>
+    <updated>2019-05-13T15:01:12.676Z</updated>
     
     <summary type="html">
     
@@ -378,48 +420,6 @@
       <category term="Programming" scheme="http://yoursite.com/categories/Programming/"/>
     
       <category term="C++" scheme="http://yoursite.com/categories/Programming/C/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Python 基础：图片的 I/O</title>
-    <link href="http://yoursite.com/2019/04/28/python-image-io/"/>
-    <id>http://yoursite.com/2019/04/28/python-image-io/</id>
-    <published>2019-04-28T11:22:02.000Z</published>
-    <updated>2019-04-28T15:04:16.112Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-      <category term="Programming" scheme="http://yoursite.com/categories/Programming/"/>
-    
-      <category term="Python" scheme="http://yoursite.com/categories/Programming/Python/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Python 基础：__eq__ 和 __hash__</title>
-    <link href="http://yoursite.com/2019/04/28/python-basic-eq-hash/"/>
-    <id>http://yoursite.com/2019/04/28/python-basic-eq-hash/</id>
-    <published>2019-04-28T11:15:26.000Z</published>
-    <updated>2019-04-28T11:21:11.918Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Python 的 &lt;code&gt;object&lt;/code&gt; 也像 Java 中的 &lt;code&gt;Object&lt;/code&gt; 一样，有判断对象相等和求对象 Hash 值的函数，分别为 &lt;code&gt;__eq__&lt;/code&gt; 和 &lt;code&gt;__hash__&lt;/code&gt;&lt;/p&gt;
-    
-    </summary>
     
     
   </entry>

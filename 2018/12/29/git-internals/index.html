@@ -88,16 +88,16 @@
 <meta name="description" content="Git 内部原理由于 Git 一开始被设计成共 VCS 使用的工具集而不是一整套用户友好的 VCS，所以实际上它还包含了许多底层命令（Plumbing），像 checkout remote branch 这样的命令被称为 “Porcelain”。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Git 内部原理">
-<meta property="og:url" content="http://yoursite.com/2018/12/29/Git-内部原理/index.html">
+<meta property="og:url" content="http://yoursite.com/2018/12/29/git-internals/index.html">
 <meta property="og:site_name" content="RHANQTL">
 <meta property="og:description" content="Git 内部原理由于 Git 一开始被设计成共 VCS 使用的工具集而不是一整套用户友好的 VCS，所以实际上它还包含了许多底层命令（Plumbing），像 checkout remote branch 这样的命令被称为 “Porcelain”。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/2018/12/29/Git-内部原理/git-object-model.png">
+<meta property="og:image" content="http://yoursite.com/2018/12/29/git-internals/git-object-model.png">
 <meta property="og:updated_time" content="2018-12-30T15:03:11.268Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git 内部原理">
 <meta name="twitter:description" content="Git 内部原理由于 Git 一开始被设计成共 VCS 使用的工具集而不是一整套用户友好的 VCS，所以实际上它还包含了许多底层命令（Plumbing），像 checkout remote branch 这样的命令被称为 “Porcelain”。">
-<meta name="twitter:image" content="http://yoursite.com/2018/12/29/Git-内部原理/git-object-model.png">
+<meta name="twitter:image" content="http://yoursite.com/2018/12/29/git-internals/git-object-model.png">
 
 
 
@@ -127,7 +127,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/12/29/Git-内部原理/">
+  <link rel="canonical" href="http://yoursite.com/2018/12/29/git-internals/">
 
 
 
@@ -308,7 +308,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/29/Git-内部原理/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/29/git-internals/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Han Qi">
@@ -449,7 +449,7 @@
 </li>
 </ul>
 <h3 id="tree-对象"><a href="#tree-对象" class="headerlink" title="tree 对象"></a>tree 对象</h3><p>tree 对象可以存储文件名，也可以存储一组文件。Git 以一种类似 UNIX 文件系统但更简单的方式来存储内容，所有内容以 tree 或 blob 对象存储，tree 对象对应于 UNIX 中的目录，blob 对象则大致对应于 inode 或文件内容。一个单独的 tree 对象包含一条或多条 tree 记录，每一条记录含有一个指向 blob 或子 tree 对象的 SHA-1 指针，并附有该对象的权限模式（mode）、类型和文件名信息。</p>
-<img src="/2018/12/29/Git-内部原理/git-object-model.png" title="Git 对象模型的简化版">
+<img src="/2018/12/29/git-internals/git-object-model.png" title="Git 对象模型的简化版">
 <p>通常 Git 根据暂存区域（<code>index</code>    ）来创建并写入一个 tree。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">$ git status</span><br><span class="line">On branch master</span><br><span class="line"></span><br><span class="line">No commits yet</span><br><span class="line"></span><br><span class="line">Untracked files:</span><br><span class="line">  (use <span class="string">"git add &lt;file&gt;..."</span> to include <span class="keyword">in</span> what will be committed)</span><br><span class="line"></span><br><span class="line">        test.txt</span><br><span class="line"></span><br><span class="line">nothing added to commit but untracked files present (use <span class="string">"git add"</span> to track)</span><br><span class="line"></span><br><span class="line">$ git update-index --add --cacheinfo 100644 \</span><br><span class="line">&gt; 83baae61804e65cc73a7201a7252750c76066a30 test.txt</span><br><span class="line"></span><br><span class="line">$ git status</span><br><span class="line">On branch master</span><br><span class="line"></span><br><span class="line">No commits yet</span><br><span class="line"></span><br><span class="line">Changes to be committed:</span><br><span class="line">  (use <span class="string">"git rm --cached &lt;file&gt;..."</span> to unstage)</span><br><span class="line"></span><br><span class="line">        new file:   test.txt</span><br><span class="line"></span><br><span class="line">Changes not staged <span class="keyword">for</span> commit:</span><br><span class="line">  (use <span class="string">"git add &lt;file&gt;..."</span> to update what will be committed)</span><br><span class="line">  (use <span class="string">"git checkout -- &lt;file&gt;..."</span> to discard changes <span class="keyword">in</span> working directory)</span><br><span class="line"></span><br><span class="line">        modified:   test.txt</span><br></pre></td></tr></table></figure>
 <ul>
@@ -580,7 +580,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">116</span>
+                  <span class="site-state-item-count">118</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
