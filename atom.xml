@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-05-14T00:15:25.576Z</updated>
+  <updated>2019-05-15T10:39:20.308Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,125 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>平衡二叉查找树 - AVL 树</title>
+    <link href="http://yoursite.com/2019/05/15/algorithms-search-avl-tree/"/>
+    <id>http://yoursite.com/2019/05/15/algorithms-search-avl-tree/</id>
+    <published>2019-05-15T08:55:38.000Z</published>
+    <updated>2019-05-15T10:39:20.308Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;AVL 树得名于它的发明者 G. M. Adelson-Velsky 和 Evgenii Landis，他们在 1962 年的论文《An Algorithm for the Organization of Information》中公开了这一数据结构。&lt;/p&gt;
+&lt;p&gt;在计算机科学中，AVL 树是最早被发明的自平衡二叉查找树。AVL 树的查找、插入和删除在平均和最坏情况下的时间复杂度都是 $O(\log(n))$。增加和删除元素的操作则可能需要一次或多次树旋转，以实现树的重新平衡。[1]&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="算法 (Algorithms)" scheme="http://yoursite.com/categories/%E7%AE%97%E6%B3%95-Algorithms/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>others-recommender-systems-intro</title>
+    <link href="http://yoursite.com/2019/05/15/others-recommender-systems-intro/"/>
+    <id>http://yoursite.com/2019/05/15/others-recommender-systems-intro/</id>
+    <published>2019-05-15T07:47:06.000Z</published>
+    <updated>2019-05-15T07:48:34.894Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+      <category term="其他 (Others)" scheme="http://yoursite.com/categories/%E5%85%B6%E4%BB%96-Others/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>ml-dl-softmax</title>
+    <link href="http://yoursite.com/2019/05/15/ml-dl-softmax/"/>
+    <id>http://yoursite.com/2019/05/15/ml-dl-softmax/</id>
+    <published>2019-05-15T07:06:15.000Z</published>
+    <updated>2019-05-15T07:19:12.813Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>深度学习路线 &amp; 资料收集</title>
+    <link href="http://yoursite.com/2019/05/14/ml-dl-roadmap/"/>
+    <id>http://yoursite.com/2019/05/14/ml-dl-roadmap/</id>
+    <published>2019-05-14T13:35:19.000Z</published>
+    <updated>2019-05-14T23:59:25.852Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+      <category term="机器学习 (Machine Learning)" scheme="http://yoursite.com/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-Machine-Learning/"/>
+    
+      <category term="深度学习 (Deep Learning)" scheme="http://yoursite.com/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-Machine-Learning/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-Deep-Learning/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>ml-dl-deep-in-cnn</title>
+    <link href="http://yoursite.com/2019/05/14/ml-dl-deep-in-cnn/"/>
+    <id>http://yoursite.com/2019/05/14/ml-dl-deep-in-cnn/</id>
+    <published>2019-05-14T01:53:03.000Z</published>
+    <updated>2019-05-14T01:53:03.896Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>ml-dl-deep-in-rnn</title>
+    <link href="http://yoursite.com/2019/05/14/ml-dl-deep-in-rnn/"/>
+    <id>http://yoursite.com/2019/05/14/ml-dl-deep-in-rnn/</id>
+    <published>2019-05-14T01:52:58.000Z</published>
+    <updated>2019-05-14T01:52:58.596Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>数据可视化 - 原则</title>
@@ -253,7 +372,7 @@
     <link href="http://yoursite.com/2019/05/07/ml-nn-basic-activation-func/"/>
     <id>http://yoursite.com/2019/05/07/ml-nn-basic-activation-func/</id>
     <published>2019-05-07T10:35:45.000Z</published>
-    <updated>2019-05-07T16:18:32.354Z</updated>
+    <updated>2019-05-15T12:18:00.331Z</updated>
     
     <summary type="html">
     
@@ -261,7 +380,7 @@
     
     </summary>
     
-      <category term="Machine Learning" scheme="http://yoursite.com/categories/Machine-Learning/"/>
+      <category term="机器学习 (Machine Learning)" scheme="http://yoursite.com/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-Machine-Learning/"/>
     
     
   </entry>
@@ -284,142 +403,6 @@
       
     
     </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>kick-start-2019-round-a-2</title>
-    <link href="http://yoursite.com/2019/04/30/kick-start-2019-round-a-2/"/>
-    <id>http://yoursite.com/2019/04/30/kick-start-2019-round-a-2/</id>
-    <published>2019-04-30T02:03:53.000Z</published>
-    <updated>2019-04-30T02:03:53.339Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>cpp-stl-iterator</title>
-    <link href="http://yoursite.com/2019/04/30/cpp-stl-iterator/"/>
-    <id>http://yoursite.com/2019/04/30/cpp-stl-iterator/</id>
-    <published>2019-04-30T01:51:28.000Z</published>
-    <updated>2019-04-30T02:02:50.368Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-      <category term="Programming" scheme="http://yoursite.com/categories/Programming/"/>
-    
-      <category term="C++" scheme="http://yoursite.com/categories/Programming/C/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>C++ 学习笔记 - STL：反向迭代器</title>
-    <link href="http://yoursite.com/2019/04/30/cpp-stl-reverse-iterator/"/>
-    <id>http://yoursite.com/2019/04/30/cpp-stl-reverse-iterator/</id>
-    <published>2019-04-30T01:25:27.000Z</published>
-    <updated>2019-04-30T01:52:12.856Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-      <category term="Programming" scheme="http://yoursite.com/categories/Programming/"/>
-    
-      <category term="C++" scheme="http://yoursite.com/categories/Programming/C/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>kick-start-2019-round-a-1</title>
-    <link href="http://yoursite.com/2019/04/30/kick-start-2019-round-a-1/"/>
-    <id>http://yoursite.com/2019/04/30/kick-start-2019-round-a-1/</id>
-    <published>2019-04-30T01:20:57.000Z</published>
-    <updated>2019-04-30T02:07:53.938Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>PyTorch：torchvision.transforms</title>
-    <link href="http://yoursite.com/2019/04/28/pytorch-torchvision-transforms/"/>
-    <id>http://yoursite.com/2019/04/28/pytorch-torchvision-transforms/</id>
-    <published>2019-04-28T15:05:24.000Z</published>
-    <updated>2019-04-28T15:23:45.061Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>为什么 C++ 没有通用的 Object 类？</title>
-    <link href="http://yoursite.com/2019/04/28/cpp-basic-object-class/"/>
-    <id>http://yoursite.com/2019/04/28/cpp-basic-object-class/</id>
-    <published>2019-04-28T14:11:12.000Z</published>
-    <updated>2019-04-28T14:40:10.753Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-      <category term="Programming" scheme="http://yoursite.com/categories/Programming/"/>
-    
-      <category term="C++" scheme="http://yoursite.com/categories/Programming/C/"/>
     
     
   </entry>
