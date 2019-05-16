@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-05-15T12:38:46.062Z</updated>
+  <updated>2019-05-15T15:36:56.795Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>math-symbolic-computation-python</title>
+    <link href="http://yoursite.com/2019/05/15/math-symbolic-computation-python/"/>
+    <id>http://yoursite.com/2019/05/15/math-symbolic-computation-python/</id>
+    <published>2019-05-15T15:36:13.000Z</published>
+    <updated>2019-05-15T15:36:56.795Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>ml-dl-dropout</title>
@@ -308,15 +330,27 @@
   </entry>
   
   <entry>
-    <title>ml-dl-cnn</title>
+    <title>CNN</title>
     <link href="http://yoursite.com/2019/05/09/ml-dl-cnn/"/>
     <id>http://yoursite.com/2019/05/09/ml-dl-cnn/</id>
     <published>2019-05-09T13:26:15.000Z</published>
-    <updated>2019-05-09T13:26:16.061Z</updated>
+    <updated>2019-05-16T01:56:12.322Z</updated>
     
     <summary type="html">
     
+      
+      
+        
+        
+          
+        
+      
+    
     </summary>
+    
+      <category term="机器学习 (Machine Learning)" scheme="http://yoursite.com/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-Machine-Learning/"/>
+    
+      <category term="深度学习 (Deep Learning)" scheme="http://yoursite.com/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-Machine-Learning/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-Deep-Learning/"/>
     
     
   </entry>
@@ -389,24 +423,6 @@
       
     
     </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>机器学习 - 神经网络篇：常用激活函数</title>
-    <link href="http://yoursite.com/2019/05/07/ml-nn-basic-activation-func/"/>
-    <id>http://yoursite.com/2019/05/07/ml-nn-basic-activation-func/</id>
-    <published>2019-05-07T10:35:45.000Z</published>
-    <updated>2019-05-15T15:31:52.060Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;激活函数是神经网络重要的组成部分，本文整理了一些常见的激活函数。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="机器学习 (Machine Learning)" scheme="http://yoursite.com/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-Machine-Learning/"/>
     
     
   </entry>

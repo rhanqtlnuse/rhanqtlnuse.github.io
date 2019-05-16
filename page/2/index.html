@@ -303,6 +303,152 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/13/data-visual-python-tools-intro/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/05/13/data-visual-python-tools-intro/" itemprop="url">数据可视化 - Python 中的数据可视化工具</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-13T18:17:10+08:00">
+                2019-05-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/数据可视化-Data-Visualization/" itemprop="url" rel="index">
+                    <span itemprop="name">数据可视化 (Data Visualization)</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>机器学习、数据分析过程中需要用到数据可视化，Python 是这两个领域中使用较为广泛的语言，所以这篇文章简要介绍 Python 中的数据可视化工具。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/05/13/data-visual-python-tools-intro/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/12/ml-commonly-used-datasets/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1053,7 +1199,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/05/09/ml-dl-cnn/" itemprop="url">ml-dl-cnn</a></h1>
+                <a class="post-title-link" href="/2019/05/09/ml-dl-cnn/" itemprop="url">CNN</a></h1>
         
 
         <div class="post-meta">
@@ -1075,6 +1221,39 @@
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/机器学习-Machine-Learning/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习 (Machine Learning)</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/机器学习-Machine-Learning/深度学习-Deep-Learning/" itemprop="url" rel="index">
+                    <span itemprop="name">深度学习 (Deep Learning)</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -1105,7 +1284,27 @@
       
         
           
-            
+            <h1 id="卷积"><a href="#卷积" class="headerlink" title="卷积"></a>卷积</h1><p>卷积后输出的大小如何计算呢？我们一步一步地探究。</p>
+<ol>
+<li><p>首先，是最基本的情况：<code>padding = 0</code>, <code>stride</code> = 1</p>
+<img src="/2019/05/09/ml-dl-cnn/no_padding_no_strides.gif">
+<p>可以很容易地得出公式：</p>
+<script type="math/tex; mode=display">(n_{height} - k_{height} + 1)(n_{width} - k_{width} + 1)​</script></li>
+<li><p>然后，我们看看 padding &gt; 0，stride = 1 的情况：</p>
+<img src="/2019/05/09/ml-dl-cnn/padding_no_strides.gif">
+<p>这个也很容易得出公式：</p>
+<script type="math/tex; mode=display">(n_{height} + 2 * padding - k_{height} + 1)(n_{width} + 2 * padding - k_{width} + 1)​</script></li>
+<li><p>padding = 0, stride &gt; 1</p>
+<img src="/2019/05/09/ml-dl-cnn/no_padding_strides.gif" title="步长为 2 的情况">
+<p>相当于走了 $1 / stride$</p>
+<p>总结公式为：</p>
+<script type="math/tex; mode=display">\left\lfloor\dfrac{n_{height} - k_{height} + 1}{stride}\right\rfloor\left\lfloor\dfrac{n_{width} - k_{width} + 1}{stride}\right\rfloor</script><p>这个公式正确吗？我们来看看 $n = 7$，$k = 1$ 时的情况。此时计算出 3，但实际上应该是 4，</p>
+</li>
+<li><p>最后，我们来看 $padding \gt 0$，$stride \gt 1$ 的情况：</p>
+<img src="/2019/05/09/ml-dl-cnn/padding_strides.gif">
+<script type="math/tex; mode=display">\left\lfloor\dfrac{n_{height} + 2 * padding - k_{height} + 1}{stride}\right\rfloor\left\lfloor\dfrac{n_{width} + 2 * padding - k_{width} + 1}{stride}\right\rfloor</script></li>
+</ol>
+
           
         
       
@@ -1646,152 +1845,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/07/ml-nn-basic-activation-func/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RHANQTL">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/05/07/ml-nn-basic-activation-func/" itemprop="url">机器学习 - 神经网络篇：常用激活函数</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-07T18:35:45+08:00">
-                2019-05-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/机器学习-Machine-Learning/" itemprop="url" rel="index">
-                    <span itemprop="name">机器学习 (Machine Learning)</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>激活函数是神经网络重要的组成部分，本文整理了一些常见的激活函数。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/05/07/ml-nn-basic-activation-func/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1842,7 +1895,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">125</span>
+                  <span class="site-state-item-count">126</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
