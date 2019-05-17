@@ -85,14 +85,17 @@
 
 
 
+<meta name="description" content="梯度消失和梯度爆炸梯度消失梯度变成 0 或接近 0，导致参数不再更新。 由于梯度消失问题的存在，使得 RNN 在实际中并不能捕获太长的模式 解决办法  合适的初始化 正则化 使用 ReLU 作为激活函数，替代 tanh 和 sigmoid 等不饱和函数，因为 ReLU 的导数（梯度）是 0 或 1，所以不太会有梯度消失问题，但是可能会有 Dead ReLU 问题 LSTM &amp;amp; GRU">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ml-dl-rnn">
 <meta property="og:url" content="http://yoursite.com/2019/05/09/ml-dl-rnn/index.html">
 <meta property="og:site_name" content="RHANQTL">
+<meta property="og:description" content="梯度消失和梯度爆炸梯度消失梯度变成 0 或接近 0，导致参数不再更新。 由于梯度消失问题的存在，使得 RNN 在实际中并不能捕获太长的模式 解决办法  合适的初始化 正则化 使用 ReLU 作为激活函数，替代 tanh 和 sigmoid 等不饱和函数，因为 ReLU 的导数（梯度）是 0 或 1，所以不太会有梯度消失问题，但是可能会有 Dead ReLU 问题 LSTM &amp;amp; GRU">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-09T13:26:21.123Z">
+<meta property="og:updated_time" content="2019-05-16T03:46:07.189Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ml-dl-rnn">
+<meta name="twitter:description" content="梯度消失和梯度爆炸梯度消失梯度变成 0 或接近 0，导致参数不再更新。 由于梯度消失问题的存在，使得 RNN 在实际中并不能捕获太长的模式 解决办法  合适的初始化 正则化 使用 ReLU 作为激活函数，替代 tanh 和 sigmoid 等不饱和函数，因为 ReLU 的导数（梯度）是 0 或 1，所以不太会有梯度消失问题，但是可能会有 Dead ReLU 问题 LSTM &amp;amp; GRU">
 
 
 
@@ -376,6 +379,23 @@
 
       
         
+<h1 id="梯度消失和梯度爆炸"><a href="#梯度消失和梯度爆炸" class="headerlink" title="梯度消失和梯度爆炸"></a>梯度消失和梯度爆炸</h1><h2 id="梯度消失"><a href="#梯度消失" class="headerlink" title="梯度消失"></a>梯度消失</h2><p>梯度变成 0 或接近 0，导致参数不再更新。</p>
+<p>由于梯度消失问题的存在，使得 RNN 在实际中并不能捕获太长的模式</p>
+<p><strong>解决办法</strong></p>
+<ul>
+<li>合适的初始化</li>
+<li>正则化</li>
+<li>使用 ReLU 作为激活函数，替代 tanh 和 sigmoid 等不饱和函数，因为 ReLU 的导数（梯度）是 0 或 1，所以不太会有梯度消失问题，但是可能会有 Dead ReLU 问题</li>
+<li>LSTM &amp; GRU</li>
+</ul>
+<h2 id="梯度爆炸"><a href="#梯度爆炸" class="headerlink" title="梯度爆炸"></a>梯度爆炸</h2><p>梯度过大，变成 NaN</p>
+<p>由于浮点数 NaN 会导致程序崩溃，容易发现，所以不如梯度消失问题受关注。</p>
+<p><strong>解决办法</strong></p>
+<ul>
+<li><p>限定最大值</p>
+<script type="math/tex; mode=display">\begin{align}\textbf{if }&g_i \ge threshold \\ &g_i \leftarrow \dfrac{threshold}{\|\mathbf{g}\|}g_i\end{align}</script></li>
+</ul>
+
       
     </div>
     
@@ -463,8 +483,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -479,7 +508,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">126</span>
+                  <span class="site-state-item-count">129</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -490,7 +519,7 @@
               
               <div class="site-state-item site-state-categories">
                 
-                  <span class="site-state-item-count">35</span>
+                  <span class="site-state-item-count">38</span>
                   <span class="site-state-item-name">分类</span>
                 
               </div>
@@ -519,6 +548,22 @@
           
 
           
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/rhanqtl" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-GitHub"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="my@rhanqtl.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
 
           
           
@@ -531,6 +576,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#梯度消失和梯度爆炸"><span class="nav-number">1.</span> <span class="nav-text">梯度消失和梯度爆炸</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#梯度消失"><span class="nav-number">1.1.</span> <span class="nav-text">梯度消失</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#梯度爆炸"><span class="nav-number">1.2.</span> <span class="nav-text">梯度爆炸</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

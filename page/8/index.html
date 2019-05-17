@@ -303,6 +303,809 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/02/linux-programming-file-system/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/04/02/linux-programming-file-system/" itemprop="url">Linux 程序设计 - 基础篇：文件系统</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-02T15:46:30+08:00">
+                2019-04-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="硬盘分区"><a href="#硬盘分区" class="headerlink" title="硬盘分区"></a>硬盘分区</h1><h2 id="MBR"><a href="#MBR" class="headerlink" title="MBR"></a>MBR</h2><p>MBR（Master Boot Record，主引导记录）</p>
+<p>MBR 有如下组成部分：</p>
+<ul>
+<li><p>446 字节的程序代码，用于启动 OS</p>
+</li>
+<li><p>64 字节的分区表，最多支持 4 个分区</p>
+<blockquote>
+<p>有时在一些使用 MBR 分区的硬盘中安装双系统，可能会发现无法增加新的主分区，就是因为 MBR 最多支持 4 个主分区。</p>
+</blockquote>
+</li>
+<li><p>2 字节的 “魔数” 0x55AA</p>
+</li>
+</ul>
+<h2 id="GPT"><a href="#GPT" class="headerlink" title="GPT"></a>GPT</h2><p>GPT（GUID Partition Table，全局唯一标识分区表）</p>
+<p>在 GPT 硬盘中，分区表的位置信息存储在 <u>GPT 头</u>（GPT header）中，但是出于兼容性的考虑，硬盘的第一个扇区仍然用作 MBR（叫做保护 MBR（protective MBR）），之后才是 GPT 头，接下来就是分区表本身。</p>
+<p>为了避免分区表损坏，GPT 在硬盘最后保存了分区表的一份副本（Secondary GPT）。</p>
+<p>GPT 分区表的结构如下：</p>
+<img src="/2019/04/02/linux-programming-file-system/gpt-overview.svg.png" title="此例中，每个逻辑块为 512 字节，每个分区的记录为 128 字节。负数表示从最后的块开始倒数，使用 −1 表示最后一个块">
+<p>解释：</p>
+<ul>
+<li>在支持从 GPT 启动的 OS 中，MBR 只有一个标识为 0xEE 的分区，表示这块硬盘使用 GPT 分区表。不能识别 GPT 硬盘的 OS 通常会识别出一个未知类型的分区，并且拒绝对硬盘进行操作，除非用户特别要求删除这个分区。这就避免了错误识别并破坏硬盘中的数据的危险。另外，能够识别 GPT 分区表的操作系统会检查保护 MBR 中的分区表，如果分区类型不是 0xEE 或者 MBR 分区表中有多个项，也会拒绝对硬盘进行操作。</li>
+<li>在使用 64 位 Windows Server 2003 的机器上，最多可以创建 128 个分区，即分区表中保留了 128 个项，其中每个都是 128 字节。（EFI 标准要求分区表最小要有 16,384 字节，即 128 个分区项的大小）</li>
+</ul>
+<h1 id="什么是文件系统？"><a href="#什么是文件系统？" class="headerlink" title="什么是文件系统？"></a>什么是文件系统？</h1><p>文件系统是操作系统中存取和管理文件的部分，给文件提供了命名空间。</p>
+<p>我们先来看一下 “文件” 是什么。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/04/02/linux-programming-file-system/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/27/soft-eng-arch-attribute-driven-design/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/03/27/soft-eng-arch-attribute-driven-design/" itemprop="url">Attribute-Driven Design</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-27T15:59:40+08:00">
+                2019-03-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="ADD-是什么？"><a href="#ADD-是什么？" class="headerlink" title="ADD 是什么？"></a>ADD 是什么？</h1><ul>
+<li>Attribute-Driven Design 中的 “Attribute” 指的是软件架构的<em>质量属性</em>，ADD 是一种基于软件质量属性需求的设计过程。</li>
+<li>ADD 遵循这样一个递归的过程：根据系统或系统元素的<em>质量属性需求</em>，运用合适的架构 <em>tactic</em> 和<em>模式</em> 将系统或系统中的要素<em>分解</em></li>
+</ul>
+<h1 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h1><ul>
+<li><p>ADD 遵循 “计划 —— 行动 —— 检查” 的循环</p>
+<ol>
+<li><p>计划：根据<em>质量属性需求</em> 和<em>设计约束</em> 来选择在架构中使用何种元素</p>
+</li>
+<li><p>行动：实例化上一步得到的元素以满足功能性需求和质量属性需求</p>
+</li>
+<li><p>检查：分析上一步得到的设计，确定需求是否得到满足</p>
+</li>
+</ol>
+<p>这个过程不断循环，直到所有的 ASR 得到满足</p>
+</li>
+<li><p>ADD 的步骤</p>
+<img src="/2019/03/27/soft-eng-arch-attribute-driven-design/steps-overview.png">
+<ul>
+<li>需要注意的一处：开始 Step 1 之前需要保证所有的需求都是 Well-formed 并且已经被涉众（Stakeholder）排序</li>
+</ul>
+</li>
+</ul>
+<h1 id="ADD-输入与输出"><a href="#ADD-输入与输出" class="headerlink" title="ADD 输入与输出"></a>ADD 输入与输出</h1><ul>
+<li><p>输入</p>
+<ul>
+<li>被涉众根据业务（Business）和任务（Mission）目标进行过排序的功能性需求（Functional Requirements）、设计约束（Design Constraints）和质量属性需求（Quality Attribute Requirements）<ul>
+<li>Design constraints are decisions about a system’s design that must be incorporated into any final design of the system.</li>
+<li>某些情况下可能难以将某个特定的条件分类为任何一个，比如：<ul>
+<li>A security requirement to provide user authentication could be interpreted as a functional requirement or a quality attribute requirement.</li>
+<li>A requirement to interoperate with a particular legacy application could be interpreted as a functional requirement or a design constraint.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>输出</p>
+<ul>
+<li>ADD 的输出是就<em>角色</em>、<em>职责</em>、<em>属性</em> 和<em>软件元素</em> 之间的<em>关系</em> 而言的系统设计<ul>
+<li>软件元素（Software Element）：a computational or developmental artifact that fulfills various roles and responsibilities, has defined properties, and relates to other soft-ware elements to compose the architecture of a system</li>
+<li>角色（Role）：a set of related responsibilities</li>
+<li>职责（Responsibility）：the functionality, data, or information that a software element provides</li>
+<li>属性（Property）：additional information about a software element such as name, type, quality attribute characteristic, protocol, and so on</li>
+<li>关系（Relationship）：a definition of how two software elements are associated with or interact with one another</li>
+</ul>
+</li>
+<li>ADD 的结果使用多种架构视图记录<ul>
+<li>架构视图：Module、C&amp;C、Allocation</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="ADD-过程详述"><a href="#ADD-过程详述" class="headerlink" title="ADD 过程详述"></a>ADD 过程详述</h1><ol>
+<li><p>确认有足够的质量属性需求信息</p>
+<ul>
+<li>每个质量属性需求都应该以 “刺激 - 响应” 的形式表述</li>
+</ul>
+</li>
+<li><p>选择系统中的某个元素进行分解</p>
+<ul>
+<li>两种选择<ul>
+<li>在 ADD 流程中初次到达 Step 2：a <em>“greenfield”</em> development. The only element you can decompose is the <em>system itself</em>. By default, <em>all</em> requirements are assigned to that system.</li>
+<li>已经经过若干次 ADD 流程迭代或者来源于设计约束：a <em>partially designed system</em>. In this case, the system has been partitioned into two or more elements, and requirements have been assigned to those elements. You must <em>choose one</em> of these elements as the focus of subsequent steps.<ul>
+<li>选择元素的标准<ul>
+<li>当前关于架构的知识<ul>
+<li>是否是你能够选择的唯一元素 (e.g., the entire system or the last element left)</li>
+<li>the number of dependencies it has with other elements of the system (e.g., many or few dependencies)</li>
+</ul>
+</li>
+<li>风险和困难<ul>
+<li>how difficult it will be to achieve the element’s associated requirements</li>
+<li>how familiar you are with how to achieve the element’s associated requirements</li>
+<li>the risk involved with achieving the element’s associated requirements</li>
+</ul>
+</li>
+<li>业务（商业）标准<ul>
+<li>the role the element plays in incremental development of the system</li>
+<li>the role it plays in incremental releases of functionality (i.e., subsetability)</li>
+<li>whether it will be built, purchased, licensed, or used as open source</li>
+<li>the impact it has on time to market</li>
+<li>whether it will be implemented using legacy components</li>
+<li>the availability of personnel to address a component</li>
+</ul>
+</li>
+<li>组织标准<ul>
+<li>the impact it has on resource utilization (e.g., human and computing re-sources)</li>
+<li>the skill level involved with its development</li>
+<li>the impact it has on improving development skills in the organization</li>
+<li>someone of authority selected it</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>识别候选的架构 Driver</p>
+<ul>
+<li><p>依据需求对架构的潜在影响，第二次对需求进行排序</p>
+<ul>
+<li><p>简单地给需求分配如 “较高影响” “一般影响” “较低影响” 这样的标签</p>
+</li>
+<li><p>得到如 “(H, H)” “(M, L)” 这样的有序对，第一个分量表示需求对涉众的重要性，第二个分量表示需求对架构的潜在影响的级别</p>
+<img src="/2019/03/27/soft-eng-arch-attribute-driven-design/priority-pairs.png">
+<ul>
+<li>If more than five or six requirements are ranked (H,H), this situation might signal a risk to the project and warrant renegotiation of the priorities. If renewed discussion is not feasible, then the architect should choose the handful of requirements that he/she believes will have the most far-reaching effect on the architecture.</li>
+</ul>
+</li>
+<li><p>选择若干个（5 到 6 个）高优先级需求作为后续步骤的关注点，这些被选中的需求叫做要被分解的元素的 “候选架构 Driver”</p>
+<ul>
+<li>更深入的分析可能会剔除当前的某些候选架构 Driver，而将另一些加入到候选列表，后续步骤的目标就是识别真正的架构 Driver<ul>
+<li>“架构 Driver” 就是会对架构的结构产生影响的功能性需求、设计约束或质量属性需求</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>选择满足架构 Driver 的设计概念（Design Concept）</p>
+<ul>
+<li><p>选择主要的元素类型（major types of elements）以及它们之间的关系</p>
+<ul>
+<li>借助设计约束、质量属性需求</li>
+</ul>
+</li>
+<li><p>依照如下步骤：</p>
+<ol>
+<li><p>识别与候选架构 Driver 相关联的设计理念（Design Concern）。例如，如果质量属性需求要求可用性，那么主要的设计理念应该是错误预防、错误检测和错误回复</p>
+</li>
+<li><p>对于每个设计理念，列出可选的架构模式的列表</p>
+<ul>
+<li>识别每个架构模式的 discriminating parameter，并估计其价值<ul>
+<li>对于重启的架构模式（比如热重启和冷重启），重启花费的时间就是 discriminating parameter</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>从列表中选择合适的架构模式，记录理由</p>
+<ul>
+<li><p>如何选择合适的架构模式？一个参考是创建如下的矩阵，并考虑这些方面：</p>
+<ul>
+<li>每个架构模式的权衡（Trade-off）</li>
+<li>架构模式组合的好坏</li>
+<li>是否有互相冲突的架构模式</li>
+</ul>
+<table>
+    <tr>
+        <th></th>
+        <th colspan="2">Pattern 1</th>
+        <th colspan="2">Pattern 2</th>
+        <th>...</th>
+        <th colspan="2">Pattern n</th>
+    </tr>
+    <tr>
+        <td></td>
+        <td>Pros</td>
+        <td>Cons</td>
+        <td>Pros</td>
+        <td>Cons</td>
+        <td>...</td>
+        <td>Pros</td>
+        <td>Cons</td>
+    </tr>
+    <tr>
+        <td>Architectural driver 1</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Architectural driver 2</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>...</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Architectural driver n</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+</table>
+</li>
+</ul>
+</li>
+<li><p>Consider the patterns identified so far and decide how they relate to each other. The combination of the selected patterns results in a new pattern.</p>
+<ul>
+<li>哪些元素有联系？</li>
+<li>哪些元素没有联系？</li>
+<li>哪些功能有重叠？重叠功能可以作为如何合并模式的指示</li>
+</ul>
+</li>
+<li><p>通过不同的视图，描述已选择的模式，记录（但不需要完全的记录）</p>
+</li>
+<li><p>评估和解决设计理念中的不一致性</p>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p>实例化架构元素、分配职责</p>
+<ul>
+<li><p>正在被分解的系统元素作为父元素（Parent Element），实例化得到的元素作为子元素（Child Element）</p>
+</li>
+<li><p>同时可能会涉及到一些细化的部分</p>
+</li>
+</ul>
+</li>
+<li><p>定义实例化元素之间的接口</p>
+<ul>
+<li>供接口（Provide）和需接口（Require）</li>
+</ul>
+</li>
+<li><p>验证和精化需求、令他们作为实例化元素的约束</p>
+</li>
+</ol>
+<h1 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h1><p>对于大规模（Large-Scale）系统而言，可以将系统分为若干个块，针对这些块的设计活动可以同时进行，最终整合成一致的、能够满足涉众全部需求的完整架构。</p>
+<p>在这个示例中，我们有一个已经经过第一次迭代的大规模系统。第一次迭代的结果包含如下几个部分：</p>
+<ul>
+<li>容错（Fault-Toloerance）服务的占位符</li>
+<li>启动（Start-up）服务</li>
+<li>持久化存储（Persistent Storage）服务</li>
+<li>…</li>
+</ul>
+<p>我们的工作是对这些模块进行进一步的分解。</p>
+<p>约束/质量属性需求：</p>
+<ul>
+<li>端到端时间限制：从失效开始计算，至完全恢复系统结束<ul>
+<li>starting with the failure and ending with a fully recovered system</li>
+</ul>
+</li>
+<li>可能使用现有的服务，如 health monitoring 或者 warm restart service using a proxy</li>
+</ul>
+<h2 id="系统定义"><a href="#系统定义" class="headerlink" title="系统定义"></a>系统定义</h2><p><img src="/2019/03/27/soft-eng-arch-attribute-driven-design/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1553851602143.png" alt="1553851602143"></p>
+<p>要点：</p>
+<ul>
+<li>Update Clients <em>周期性</em>（1s）地向 Track Manager 发送数据</li>
+<li>（对于错误恢复时间的要求）Track Manager 容许<em>偶发性</em> 的丢失更新，especially during transient conditions caused by equipment failure，the Track Manager can recover from <em>two missed update</em> signals when it receives the third signal<ul>
+<li>If more than two signals are missed, the <em>operator</em> may have to assist the Track Manager in the recovery process. In other words, if a failure occurs, the processing <em>must</em> restart before <em>two seconds</em> have elapsed in order to avoid operator intervention.</li>
+</ul>
+</li>
+<li>Query Clients <em>零星地</em> 向 Track Manager 发送查询请求，并且必须<em>收到且仅收到一条</em> 回复<ul>
+<li>The response time for queries should be less than double the normal response time<br>for a particular query.</li>
+</ul>
+</li>
+<li>设计约束<ul>
+<li>容量限制：The provided processors shall have 50% spare processor and memory capacity on delivery, and the local area network (LAN) has 50% spare throughput capability. There are 100 update clients and 25 query clients. For the purposes of timing estimates, assume that there are 100 updates and 5 queries per second.</li>
+<li>持久化存储服务：This service will maintain a copy of state that is checked <em>at least once per minute</em> by the Track Manager. If all replicas of the Track Manager fail, a restart can begin from the checkpoint file.</li>
+<li>两份复制</li>
+</ul>
+</li>
+</ul>
+<h2 id="应用-ADD"><a href="#应用-ADD" class="headerlink" title="应用 ADD"></a>应用 ADD</h2><p><img src="/2019/03/27/soft-eng-arch-attribute-driven-design/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1553824629846.png" alt="1553824629846"></p>
+<ul>
+<li><p>Track Manager</p>
+<ul>
+<li><p>Strategy 1: Both elements (A and B) operate in a single processor, P1. A and B together<br>consume 50% of the processor duty cycle to handle 100 updates and 30 queries.<br>This strategy satisfies the system performance requirements.</p>
+</li>
+<li><p>Strategy 2: Element A is in processor P1, and element B is in processor P2. Together,<br>they can handle 150 update clients and 50 query clients. This strategy exceeds the system<br>performance requirements.</p>
+<ul>
+<li>Communication system bandwidth increases by 2% when the components are placed in different processors</li>
+</ul>
+<p><img src="/2019/03/27/soft-eng-arch-attribute-driven-design/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1553824753437.png" alt="1553824753437"></p>
+</li>
+</ul>
+</li>
+<li><p>Clients-Server Communication</p>
+<ul>
+<li><p>Update clients use an asynchronous communication mechanism. They send an update message, receive no reply, and are not suspended while the message is being delivered. (If a publish/subscribe service were available, it would be used instead.)</p>
+<blockquote>
+<font color="red">使用 publish/subcribe 代替异步通信？多个 publisher 一个 subscriber？</font>
+</blockquote>
+</li>
+<li><p>Query clients use a synchronous communication mechanism. They make a service<br>request and are suspended until they receive the reply</p>
+</li>
+</ul>
+</li>
+<li><p>naming service accepts the name of a requested service and returns an access code for the service. Both A and B register their interfaces with the naming service. </p>
+</li>
+<li><p>registration service refuses service to new clients if providing it would cause persistent storage to exceed its spare capacity limit.</p>
+</li>
+</ul>
+<h2 id="ADD-第二次迭代"><a href="#ADD-第二次迭代" class="headerlink" title="ADD 第二次迭代"></a>ADD 第二次迭代</h2><p>The three design concerns associated with fault-tolerance services are</p>
+<ul>
+<li>fault preparation: This concern consists of those tactics performed routinely during normal operation to ensure that when a failure occurs, a recovery can take place.</li>
+<li>fault detection: This concern consists of the tactics associated with detecting the fault and<br>notifying an element to deal with the fault.</li>
+<li>fault recovery: This concern addresses operations during a transient condition — the time<br>period between the fault occurrence and the restoration of normal operation.</li>
+</ul>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p>本文内容来自 CMU/SEI：</p>
+<p>[1] Attribute-Driven Design, Version 2.0</p>
+<p>[2] A Practical Example of Applying ADD, Version 2.0</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/27/soft-eng-arch-micro-services/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/03/27/soft-eng-arch-micro-services/" itemprop="url">微服务架构</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-27T14:40:45+08:00">
+                2019-03-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="微服务架构-vs-单体架构"><a href="#微服务架构-vs-单体架构" class="headerlink" title="微服务架构 vs. 单体架构"></a>微服务架构 vs. 单体架构</h1><ul>
+<li><p>简而言之，微服务架构风格这种开发方法，是以开发一组小型服务的方式来开发一个独立的应用系统的。其中每个小型服务都运行在<em>独立</em> 的进程中，并经常采用 HTTP 资源 API 这样轻量的机制来相互通信。这些服务围绕<em>业务功能</em> 进行构建，并能通过<em>全自动</em> 的部署机制来进行独立部署。这些微服务可以使用不同的语言来编写，并且可以使用不同的数据存储技术。对这些微服务我们仅做最低限度的集中管理。（“自治”）</p>
+</li>
+<li><p>单体架构：以单个单元的方式来构建的。对于系统的任何改变，都会涉及构建和部署上述服务端应用系统的一个新版本。</p>
+<img src="/2019/03/27/soft-eng-arch-micro-services/scale-mono.jpg">
+</li>
+</ul>
+<h1 id="微服务架构的特性"><a href="#微服务架构的特性" class="headerlink" title="微服务架构的特性"></a>微服务架构的特性</h1><p>下面所描述的所有这些共性，并不是所有的微服务架构都完全具备。</p>
+<ul>
+<li><p>“组件化” 与 “多服务”</p>
+<ul>
+<li>组件：一个组件就是一个可以独立更换和升级的软件单元。</li>
+<li>良好的微服务架构的目的，是通过内聚的服务边界和服务协议方面的演进机制，来将由于服务接口的变更导致的多个服务之间的协同修改变得最小化。</li>
+<li>比起进程内调用，远程调用更加昂贵，所以远程调用 API 接口必须是<em>粗粒度</em> 的</li>
+</ul>
+</li>
+<li><p>围绕业务功能（business capability）组织团队</p>
+<ul>
+<li><p>不再根据逻辑上的划分来组织系统（比如用户界面层、业务逻辑层和数据访问和持久化层）</p>
+</li>
+<li><p>康威定律</p>
+<blockquote>
+<p>任何设计（广义上的）系统的组织，都会产生这样一个设计，即该设计的结构与该组织的沟通结构相一致。</p>
+<p>​                                        —— 梅尔文 • 康威（Melvyn Conway）, 1967年</p>
+</blockquote>
+</li>
+<li><p>跨职能团队负责构建和运维每个产品，而每个产品被拆分为多个独立的服务，彼此通过一个<em>消息总线</em> 来通信。</p>
+</li>
+</ul>
+<blockquote>
+<p><strong>微服务应该有多大？</strong></p>
+<ul>
+<li>亚马逊的 “两个比萨团队”（即一个团队可以被两个比萨所喂饱）理念：一个团队不会多于12人</li>
+<li>对于规模较小的服务，我们已经看到一个6人的团队在支持6个服务。</li>
+</ul>
+</blockquote>
+</li>
+<li><p>“做产品” 而不是 “做项目”</p>
+<ul>
+<li>亚马逊：“谁构建，谁运行”，即一个开发团队对一个在生产环境下运行的软件负全责。<ul>
+<li>关注构建质量</li>
+</ul>
+</li>
+<li>这样的 “产品” 理念，是与业务功能的联动绑定在一起的。它不会将软件看作是一个待完成的功能集合，而是认为存在这样一个持续的关系，即软件如何能助其客户来持续增进业务功能。</li>
+</ul>
+</li>
+<li><p>智能端点（smart endpoints）与傻瓜管道（dumb pipes）</p>
+<ul>
+<li>智能端点：接收一个请求，酌情对其应用业务逻辑，并产生一个响应</li>
+<li>傻瓜管道：通过一个轻量级的消息总线来进行消息发送，除了提供可靠的异步机制（fabric）以外不做其他任何事情，智能功能存在于那些生产和消费诸多消息的各个端点，即各个服务中</li>
+<li>需要用更粗粒度的协议来替代细粒度的服务间通信</li>
+</ul>
+</li>
+<li><p>去中心化地治理技术</p>
+<blockquote>
+<p><strong>微服务和SOA</strong></p>
+<p>当我们谈起微服务时，一个常见的问题就会出现：是否微服务仅仅是十多年前所看到的“面向服务的架构”(Service Oriented Architecture, SOA)？这样问是有道理的，因为微服务风格非常类似于一些支持SOA的人所赞成的观点。然而，问题在于SOA这个词儿意味着太多不同的东西(<a href="http://martinfowler.com/bliki/ServiceOrientedAmbiguity.html)。而且大多数时候，我们所遇到的某些被称作&quot;SOA&quot;的事物，明显不同于本文所描述的风格。这通常由于它们专注于ESB，来集成各个单块应用。" target="_blank" rel="noopener">http://martinfowler.com/bliki/ServiceOrientedAmbiguity.html)。而且大多数时候，我们所遇到的某些被称作&quot;SOA&quot;的事物，明显不同于本文所描述的风格。这通常由于它们专注于ESB，来集成各个单块应用。</a></p>
+<p>特别地，我们已经看到如此之多的面向服务的拙劣实现——从将系统复杂性隐藏于ESB中的趋势，到花费数百万进行多年却没有交付任何价值的失败项目，到顽固抑制变化发生的中心化技术治理模型——以至于有时觉得其所造成的种种问题真的不堪回首。</p>
+<p>当然，在微服务社区投入使用的许多技术，源自各个开发人员将各种服务集成到各个大型组织的经验。“容错读取”(Tolerant Reader, <a href="http://martinfowler.com/bliki/TolerantReader.html)模式就是这样一个例子。对于Web的广泛使用，使得人们不再使用一些中心化的标准，而使用一些简单的协议。坦率地说，这些中心化的标准，其复杂性已经达到令人吃惊的程度（http://wiki.apache.org/ws/WebServiceSpecifications）。（任何时候，如果需要一个本体（ontology）来管理其他各个本体，那么麻烦就大了。）" target="_blank" rel="noopener">http://martinfowler.com/bliki/TolerantReader.html)模式就是这样一个例子。对于Web的广泛使用，使得人们不再使用一些中心化的标准，而使用一些简单的协议。坦率地说，这些中心化的标准，其复杂性已经达到令人吃惊的程度（http://wiki.apache.org/ws/WebServiceSpecifications）。（任何时候，如果需要一个本体（ontology）来管理其他各个本体，那么麻烦就大了。）</a></p>
+<p>这种常见的SOA的表现，已使得一些微服务的倡导者完全拒绝将自己贴上SOA的标签。尽管其他人会将微服务看作是SOA的一种形式，也许微服务就是以正确的形式来实现面向服务的SOA。不管是哪种情况，SOA意味着如此之多的不同事物，这表明用一个更加干净利落的术语来命名这种架构风格是很有价值的。</p>
+<p>“YAGNI” 或者 “You Aren’t Going To Need It”（你不会需要它）是极限编程的一条原则（<a href="http://c2.com/cgi/wiki?YouArentGonnaNeedIt）和劝诫，指的是“除非到了需要的时候，否则不要添加新功能”。" target="_blank" rel="noopener">http://c2.com/cgi/wiki?YouArentGonnaNeedIt）和劝诫，指的是“除非到了需要的时候，否则不要添加新功能”。</a></p>
+</blockquote>
+</li>
+<li><p>去中心化地管理数据</p>
+<ul>
+<li>从最抽象的层面看，这意味着各个系统对客观世界所构建的概念模型将彼此各不相同</li>
+<li>微服务架构更强调在各个服务之间进行 “无事务” 的协调，这源自微服务社区明确地认识到下述两点，即数据一致性可能只要求数据在<em>最终</em> 达到一致，并且一致性问题能够通过补偿操作来进行处理。</li>
+<li>只要修复错误的成本，与在保持更大的数据一致性却导致丢了生意所产生的成本相比，前者更低，那么这种 “非一致性” 地管理数据的权衡就是值得的。</li>
+</ul>
+</li>
+<li><p>基础设施自动化</p>
+</li>
+<li><p>容错设计</p>
+<ul>
+<li>因为服务可能在任何时候发生故障，所以下面两件事就变得很重要：<ul>
+<li>能够快速地<em>检测</em> 出故障</li>
+<li>在可能的情况下能够<em>自动恢复</em> 服务</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>演进式设计</p>
+<ul>
+<li>变化控制并不一定意味着要减少变化</li>
+<li>组件的关键属性：独立更换和升级<ul>
+<li>进行组件划分时考虑的重点</li>
+</ul>
+</li>
+<li>组件（服务）的寿命也是一个关注点（这一点在 Essential Software Architecture 中也有讲到），如果服务将来会报废，那么没有必要进行过多的长期演进的准备</li>
+<li>如果发现需要同时反复变更两个服务时，这就是它们两个需要被合并的信号</li>
+<li>必须要考虑当一个服务发生变化时，依赖它并对其进行消费的其他服务将无法工作。传统的集成方法是试图使用<em>版本化</em> 来解决这个问题。但在微服务世界中，大家更喜欢将版本化作为最后万不得已的手段来使用。我们可以通过把各个服务设计得尽量能够容错，来应对其所依赖的服务所发生的变化来避免许多版本化的工作。</li>
+</ul>
+</li>
+</ul>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p>[1] <a href="http://martinfowler.com/articles/microservices.html" target="_blank" rel="noopener">微服务原文链接</a></p>
+<p>[2] <a href="http://mp.weixin.qq.com/s__biz=MjM5MjEwNTEzOQ==&amp;mid=401500724&amp;idx=1&amp;sn=4e42fa2ffcd5732ae044fe6a387a1cc3#rd" target="_blank" rel="noopener">微服务译文链接</a></p>
+<p>[3] <a href="https://zhuanlan.zhihu.com/p/52189005" target="_blank" rel="noopener">知乎 - 阿里P8架构师谈（SOA微服务淘宝架构）：单体架构、SOA、微服务的架构设计详解</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/26/c-to-asm/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1346,378 +2149,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/27/java-basic-enum/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RHANQTL">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/01/27/java-basic-enum/" itemprop="url">Java 学习笔记 - 基础篇：枚举类</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-27T02:02:37+08:00">
-                2019-01-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/27/面向对象软件设计：UML-基础/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RHANQTL">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/01/27/面向对象软件设计：UML-基础/" itemprop="url">面向对象软件设计：UML 基础</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-27T01:56:48+08:00">
-                2019-01-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="关系"><a href="#关系" class="headerlink" title="关系"></a>关系</h1><h1 id="实体之间的关系"><a href="#实体之间的关系" class="headerlink" title="实体之间的关系"></a>实体之间的关系</h1><h2 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h2><img src="/2019/01/27/面向对象软件设计：UML-基础/dependency.jpg">
-<h2 id="关联"><a href="#关联" class="headerlink" title="关联"></a>关联</h2><img src="/2019/01/27/面向对象软件设计：UML-基础/association.jpg">
-<h2 id="聚合"><a href="#聚合" class="headerlink" title="聚合"></a>聚合</h2><img src="/2019/01/27/面向对象软件设计：UML-基础/aggregation.jpg">
-<h2 id="组合"><a href="#组合" class="headerlink" title="组合"></a>组合</h2><img src="/2019/01/27/面向对象软件设计：UML-基础/composition.jpg">
-<h2 id="抽象"><a href="#抽象" class="headerlink" title="抽象"></a>抽象</h2><h2 id="泛化"><a href="#泛化" class="headerlink" title="泛化"></a>泛化</h2><img src="/2019/01/27/面向对象软件设计：UML-基础/generalization.jpg">
-<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><img src="/2019/01/27/面向对象软件设计：UML-基础/realization.jpg">
-<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p>[1] 实体之间的关系可参见 <a href="https://javapapers.com/oops/association-aggregation-composition-abstraction-generalization-realization-dependency/" target="_blank" rel="noopener">Association, Aggregation, Composition, Abstraction, Generalization, Realization, Dependency</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/18/POJ-1753：Flip-Game/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RHANQTL">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/01/18/POJ-1753：Flip-Game/" itemprop="url">POJ 1753：Flip Game</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-18T10:54:56+08:00">
-                2019-01-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>题目链接：<a href="http://poj.org/problem?id=1753" target="_blank" rel="noopener">POJ 1753 - Flip Game</a></p>
-<p>这道题一开始想的是这样的：</p>
-<p>$C^0_{16}+ C^1_{16} + \cdots + C^{16}_{16} = 2^{16}$，对翻转的个数进行枚举，伪代码如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">procedure solve()</span><br><span class="line">    min &lt;- 17</span><br><span class="line">    possible &lt;- false</span><br><span class="line">    for i &lt;- [0, 16]</span><br><span class="line">        if flip(0, i, 0, min)</span><br><span class="line">            possible &lt;- true</span><br><span class="line">    if possible</span><br><span class="line">        print min</span><br><span class="line">    else</span><br><span class="line">        print &quot;Impossible&quot;</span><br><span class="line">        </span><br><span class="line">function flip(start, remaining, numberOfRounds, min)</span><br><span class="line">    if check()</span><br><span class="line">        min &lt;- min(min, numberOfRounds)</span><br><span class="line">        return true</span><br><span class="line">    else</span><br><span class="line">        if remaining = 0</span><br><span class="line">            return false</span><br><span class="line">        else</span><br><span class="line">            possible &lt;- false</span><br><span class="line">            for i &lt;- [start, 16 - remaining]</span><br><span class="line">                doFlip(start)</span><br><span class="line">                if flip(start + 1, remaining - 1, numberOfRounds + 1, min)</span><br><span class="line">                    possible &lt;- true</span><br><span class="line">                doFlip(start)</span><br><span class="line">            return possible</span><br></pre></td></tr></table></figure>
-<p>这样固然能够求出最后的结果，但是因为有大量的重复计算（比如翻转数为 15 的时候其实可能包含翻转数为 14 时的结果，但是因为并未保存中间结果，所以需要很多重复计算），速度极慢（我的电脑上是 27 s 左右）。另一个问题是，如果能够在翻转数为 i 时达到目标，那么就没有必要计算翻转数为 j 的情况（i &lt; j）。</p>
-<p>换一个角度想，其实这个问题是一个 0-1 选择问题：<strong>翻转/不翻转</strong>当前的棋子：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">function solve(start, numberOfRounds)</span><br><span class="line">    if check()</span><br><span class="line">        min &lt;- min(min, numberOfRounds)</span><br><span class="line">    else</span><br><span class="line">        if start &gt;= 16</span><br><span class="line">            return</span><br><span class="line">        // 不翻转</span><br><span class="line">        solve(start + 1, numberOfRounds)</span><br><span class="line">        // 翻转</span><br><span class="line">        doFlip(start)</span><br><span class="line">        solve(start + 1, numberOfRounds + 1)</span><br><span class="line">        // 恢复</span><br><span class="line">        doFlip(start)</span><br></pre></td></tr></table></figure>
-<p>这样避免了许多的重复计算，就快了很多，基本上是几十毫秒就可以计算得出结果。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1768,7 +2199,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">126</span>
+                  <span class="site-state-item-count">129</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1779,7 +2210,7 @@
               
               <div class="site-state-item site-state-categories">
                 
-                  <span class="site-state-item-count">35</span>
+                  <span class="site-state-item-count">38</span>
                   <span class="site-state-item-name">分类</span>
                 
               </div>
@@ -1807,6 +2238,22 @@
             </div>
           
 
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/rhanqtl" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-GitHub"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="my@rhanqtl.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
           
 
           

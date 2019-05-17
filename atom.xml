@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-05-15T15:36:56.795Z</updated>
+  <updated>2019-05-17T08:15:09.290Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,80 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>latex-intro</title>
+    <link href="http://yoursite.com/2019/05/17/latex-intro/"/>
+    <id>http://yoursite.com/2019/05/17/latex-intro/</id>
+    <published>2019-05-17T08:13:38.000Z</published>
+    <updated>2019-05-17T08:15:09.290Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+      <category term="LaTeX" scheme="http://yoursite.com/categories/LaTeX/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>使用 LaTeX 绘图：TikZ 教程</title>
+    <link href="http://yoursite.com/2019/05/17/latex-creating-graphics-using-tikz/"/>
+    <id>http://yoursite.com/2019/05/17/latex-creating-graphics-using-tikz/</id>
+    <published>2019-05-17T08:13:25.000Z</published>
+    <updated>2019-05-17T08:17:00.999Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+      <category term="LaTeX" scheme="http://yoursite.com/categories/LaTeX/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Lisp 的本质</title>
+    <link href="http://yoursite.com/2019/05/17/fp-lisp-the-nature-of-lisp/"/>
+    <id>http://yoursite.com/2019/05/17/fp-lisp-the-nature-of-lisp/</id>
+    <published>2019-05-17T08:05:31.000Z</published>
+    <updated>2019-05-17T08:10:58.710Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+      <category term="函数式编程 (Functional Programming)" scheme="http://yoursite.com/categories/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B-Functional-Programming/"/>
+    
+      <category term="Lisp" scheme="http://yoursite.com/categories/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B-Functional-Programming/Lisp/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>math-symbolic-computation-python</title>
@@ -320,9 +394,17 @@
     <link href="http://yoursite.com/2019/05/09/ml-dl-rnn/"/>
     <id>http://yoursite.com/2019/05/09/ml-dl-rnn/</id>
     <published>2019-05-09T13:26:21.000Z</published>
-    <updated>2019-05-09T13:26:21.123Z</updated>
+    <updated>2019-05-16T03:46:07.189Z</updated>
     
     <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
     
     </summary>
     
@@ -372,58 +454,6 @@
     
     
       <category term="NLP" scheme="http://yoursite.com/tags/NLP/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>CS224n - Assignment2</title>
-    <link href="http://yoursite.com/2019/05/08/nlp-cs224n-2019-assignment2/"/>
-    <id>http://yoursite.com/2019/05/08/nlp-cs224n-2019-assignment2/</id>
-    <published>2019-05-08T07:27:47.000Z</published>
-    <updated>2019-05-09T03:06:22.967Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
-      <category term="NLP" scheme="http://yoursite.com/categories/NLP/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>dl-basic-matrix-deriv</title>
-    <link href="http://yoursite.com/2019/05/08/ml-basic-matrix-deriv/"/>
-    <id>http://yoursite.com/2019/05/08/ml-basic-matrix-deriv/</id>
-    <published>2019-05-08T03:42:15.000Z</published>
-    <updated>2019-05-08T03:42:16.467Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>ml-nn-bias</title>
-    <link href="http://yoursite.com/2019/05/08/ml-nn-basic-bias/"/>
-    <id>http://yoursite.com/2019/05/08/ml-nn-basic-bias/</id>
-    <published>2019-05-08T01:34:15.000Z</published>
-    <updated>2019-05-08T01:35:22.543Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
     
   </entry>
   
