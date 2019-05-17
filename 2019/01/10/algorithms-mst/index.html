@@ -85,17 +85,17 @@
 
 
 
-<meta name="description" content="什么是最小生成树？最小生成树（Minimal Spanning Tree，MST）  连通且无环的无向图 边权重总和最小  MST 性质 对于图 G 的任意一个顶点 v，和 v 相关联的最短的边一定在某个 MST 中 证明：设和 v 相关联的最短的边为 e，如果某个 MST 不包含 e，那么将其加入到这个 MST 中会产生一个回路，去掉回路中某一条非 e 的边，可以得到总权重更小的 MST 由此可">
+<meta name="description" content="什么是最小生成树？最小生成树（Minimal Spanning Tree，MST）  连通且无环的无向图 边权重总和最小  MST 性质 对于图 G 的任意一个顶点 v，和 v 相关联的最短的边一定在某个 MST 中 证明：设和 v 相关联的最短的边为 e，如果某个 MST 不包含 e，那么将其加入到这个 MST 中会产生一个回路，去掉回路中某一条非 e 的边，可以得到总权重更小的 MST 由此">
 <meta property="og:type" content="article">
 <meta property="og:title" content="图论 - 基本算法：最小生成树">
 <meta property="og:url" content="http://yoursite.com/2019/01/10/algorithms-mst/index.html">
 <meta property="og:site_name" content="RHANQTL">
-<meta property="og:description" content="什么是最小生成树？最小生成树（Minimal Spanning Tree，MST）  连通且无环的无向图 边权重总和最小  MST 性质 对于图 G 的任意一个顶点 v，和 v 相关联的最短的边一定在某个 MST 中 证明：设和 v 相关联的最短的边为 e，如果某个 MST 不包含 e，那么将其加入到这个 MST 中会产生一个回路，去掉回路中某一条非 e 的边，可以得到总权重更小的 MST 由此可">
+<meta property="og:description" content="什么是最小生成树？最小生成树（Minimal Spanning Tree，MST）  连通且无环的无向图 边权重总和最小  MST 性质 对于图 G 的任意一个顶点 v，和 v 相关联的最短的边一定在某个 MST 中 证明：设和 v 相关联的最短的边为 e，如果某个 MST 不包含 e，那么将其加入到这个 MST 中会产生一个回路，去掉回路中某一条非 e 的边，可以得到总权重更小的 MST 由此">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-10T14:00:54.158Z">
+<meta property="og:updated_time" content="2019-05-17T08:55:15.264Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="图论 - 基本算法：最小生成树">
-<meta name="twitter:description" content="什么是最小生成树？最小生成树（Minimal Spanning Tree，MST）  连通且无环的无向图 边权重总和最小  MST 性质 对于图 G 的任意一个顶点 v，和 v 相关联的最短的边一定在某个 MST 中 证明：设和 v 相关联的最短的边为 e，如果某个 MST 不包含 e，那么将其加入到这个 MST 中会产生一个回路，去掉回路中某一条非 e 的边，可以得到总权重更小的 MST 由此可">
+<meta name="twitter:description" content="什么是最小生成树？最小生成树（Minimal Spanning Tree，MST）  连通且无环的无向图 边权重总和最小  MST 性质 对于图 G 的任意一个顶点 v，和 v 相关联的最短的边一定在某个 MST 中 证明：设和 v 相关联的最短的边为 e，如果某个 MST 不包含 e，那么将其加入到这个 MST 中会产生一个回路，去掉回路中某一条非 e 的边，可以得到总权重更小的 MST 由此">
 
 
 
@@ -346,6 +346,39 @@
           </span>
 
           
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法-Algorithms/" itemprop="url" rel="index">
+                    <span itemprop="name">算法 (Algorithms)</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法-Algorithms/图-Graph/" itemprop="url" rel="index">
+                    <span itemprop="name">图 (Graph)</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -378,7 +411,8 @@
       
 
       
-        <h1 id="什么是最小生成树？"><a href="#什么是最小生成树？" class="headerlink" title="什么是最小生成树？"></a>什么是最小生成树？</h1><p>最小生成树（Minimal Spanning Tree，MST）</p>
+        <a id="more"></a>
+<h1 id="什么是最小生成树？"><a href="#什么是最小生成树？" class="headerlink" title="什么是最小生成树？"></a>什么是最小生成树？</h1><p>最小生成树（Minimal Spanning Tree，MST）</p>
 <ul>
 <li>连通且无环的无向图</li>
 <li>边权重总和最小</li>
@@ -530,7 +564,7 @@
               
               <div class="site-state-item site-state-categories">
                 
-                  <span class="site-state-item-count">38</span>
+                  <span class="site-state-item-count">39</span>
                   <span class="site-state-item-name">分类</span>
                 
               </div>
@@ -823,7 +857,40 @@
   <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
   
 
-  <script src="/js/src/algolia-search.js?v=5.1.4"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+  <script src="/js/src/algolia-search.js?v=5.1.4"></script>
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
 </script>
@@ -841,19 +908,6 @@
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
-
-
-
-  
-
-  
-
-  
-
-  
-  
-
-  
   
 
 

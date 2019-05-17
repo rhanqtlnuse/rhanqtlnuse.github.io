@@ -85,21 +85,21 @@
 
 
 
-<meta name="description" content="什么是红黑树？红黑树首先是一棵二叉搜索树，具有几乎完美的平衡性质 叙述性定义红黑树是这样一棵二叉搜索树：  根结点为黑色 每个内部结点要么是黑色，要么是红色 叶结点（NIL）为黑色 颜色约束：红色结点不能有红色子结点（换言之，红色结点只能有黑色子结点） 黑色高度约束：从某结点出发到其所有后代叶结点的简单路径上，均包含相同数目的黑色结点  递归定义 ARB（Almost-RB）树：除根结点为红色之外">
+<meta name="description" content="什么是红黑树？红黑树首先是一棵二叉搜索树，具有几乎完美的平衡性质 叙述性定义红黑树是这样一棵二叉搜索树：  根结点为黑色 每个内部结点要么是黑色，要么是红色 叶结点（NIL）为黑色 颜色约束：红色结点不能有红色子结点（换言之，红色结点只能有黑色子结点） 黑色高度约束：从某结点出发到其所有后代叶结点的简单路径上，均包含相同数目的黑色结点  递归定义 ARB（Almost-RB）树：除根结点为红色之">
 <meta property="og:type" content="article">
-<meta property="og:title" content="算法设计与分析：红黑树">
+<meta property="og:title" content="红黑树">
 <meta property="og:url" content="http://yoursite.com/2018/12/04/algorithms-red-black-tree/index.html">
 <meta property="og:site_name" content="RHANQTL">
-<meta property="og:description" content="什么是红黑树？红黑树首先是一棵二叉搜索树，具有几乎完美的平衡性质 叙述性定义红黑树是这样一棵二叉搜索树：  根结点为黑色 每个内部结点要么是黑色，要么是红色 叶结点（NIL）为黑色 颜色约束：红色结点不能有红色子结点（换言之，红色结点只能有黑色子结点） 黑色高度约束：从某结点出发到其所有后代叶结点的简单路径上，均包含相同数目的黑色结点  递归定义 ARB（Almost-RB）树：除根结点为红色之外">
+<meta property="og:description" content="什么是红黑树？红黑树首先是一棵二叉搜索树，具有几乎完美的平衡性质 叙述性定义红黑树是这样一棵二叉搜索树：  根结点为黑色 每个内部结点要么是黑色，要么是红色 叶结点（NIL）为黑色 颜色约束：红色结点不能有红色子结点（换言之，红色结点只能有黑色子结点） 黑色高度约束：从某结点出发到其所有后代叶结点的简单路径上，均包含相同数目的黑色结点  递归定义 ARB（Almost-RB）树：除根结点为红色之">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/2018/12/04/algorithms-red-black-tree/insertion-cases.png">
 <meta property="og:image" content="http://yoursite.com/2018/12/04/algorithms-red-black-tree/insertion-case1.png">
 <meta property="og:image" content="http://yoursite.com/2018/12/04/algorithms-red-black-tree/insertion-case2.png">
 <meta property="og:image" content="http://yoursite.com/2018/12/04/algorithms-red-black-tree/insertion-case3.png">
-<meta property="og:updated_time" content="2018-12-09T02:38:13.898Z">
+<meta property="og:updated_time" content="2019-05-17T08:56:49.201Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="算法设计与分析：红黑树">
-<meta name="twitter:description" content="什么是红黑树？红黑树首先是一棵二叉搜索树，具有几乎完美的平衡性质 叙述性定义红黑树是这样一棵二叉搜索树：  根结点为黑色 每个内部结点要么是黑色，要么是红色 叶结点（NIL）为黑色 颜色约束：红色结点不能有红色子结点（换言之，红色结点只能有黑色子结点） 黑色高度约束：从某结点出发到其所有后代叶结点的简单路径上，均包含相同数目的黑色结点  递归定义 ARB（Almost-RB）树：除根结点为红色之外">
+<meta name="twitter:title" content="红黑树">
+<meta name="twitter:description" content="什么是红黑树？红黑树首先是一棵二叉搜索树，具有几乎完美的平衡性质 叙述性定义红黑树是这样一棵二叉搜索树：  根结点为黑色 每个内部结点要么是黑色，要么是红色 叶结点（NIL）为黑色 颜色约束：红色结点不能有红色子结点（换言之，红色结点只能有黑色子结点） 黑色高度约束：从某结点出发到其所有后代叶结点的简单路径上，均包含相同数目的黑色结点  递归定义 ARB（Almost-RB）树：除根结点为红色之">
 <meta name="twitter:image" content="http://yoursite.com/2018/12/04/algorithms-red-black-tree/insertion-cases.png">
 
 
@@ -136,7 +136,7 @@
 
 
 
-  <title>算法设计与分析：红黑树 | RHANQTL</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>红黑树 | RHANQTL</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -328,7 +328,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">算法设计与分析：红黑树</h1>
+          <h1 class="post-title" itemprop="name headline">红黑树</h1>
         
 
         <div class="post-meta">
@@ -363,8 +363,19 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Data-Structures/" itemprop="url" rel="index">
-                    <span itemprop="name">Data Structures</span>
+                  <a href="/categories/算法-Algorithms/" itemprop="url" rel="index">
+                    <span itemprop="name">算法 (Algorithms)</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法-Algorithms/树-Tree/" itemprop="url" rel="index">
+                    <span itemprop="name">树 (Tree)</span>
                   </a>
                 </span>
 
@@ -405,7 +416,8 @@
       
 
       
-        <h1 id="什么是红黑树？"><a href="#什么是红黑树？" class="headerlink" title="什么是红黑树？"></a>什么是红黑树？</h1><p>红黑树首先是一棵二叉搜索树，具有几乎完美的平衡性质</p>
+        <a id="more"></a>
+<h1 id="什么是红黑树？"><a href="#什么是红黑树？" class="headerlink" title="什么是红黑树？"></a>什么是红黑树？</h1><p>红黑树首先是一棵二叉搜索树，具有几乎完美的平衡性质</p>
 <h2 id="叙述性定义"><a href="#叙述性定义" class="headerlink" title="叙述性定义"></a>叙述性定义</h2><p>红黑树是这样一棵<strong>二叉搜索树</strong>：</p>
 <ul>
 <li>根结点为黑色</li>
@@ -464,8 +476,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/11/23/algorithms-dag-scc/" rel="next" title="算法设计与分析：图遍历算法的应用 —— DAG 和 SCC">
-                <i class="fa fa-chevron-left"></i> 算法设计与分析：图遍历算法的应用 —— DAG 和 SCC
+              <a href="/2018/11/23/algorithms-dag-scc/" rel="next" title="图遍历算法的应用 —— DAG 和 SCC">
+                <i class="fa fa-chevron-left"></i> 图遍历算法的应用 —— DAG 和 SCC
               </a>
             
           </div>
@@ -474,8 +486,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/12/04/algorithms-design-foundation/" rel="prev" title="算法设计与分析：算法设计基础">
-                算法设计与分析：算法设计基础 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/12/04/algorithms-np-completeness/" rel="prev" title="">
+                 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -564,7 +576,7 @@
               
               <div class="site-state-item site-state-categories">
                 
-                  <span class="site-state-item-count">38</span>
+                  <span class="site-state-item-count">39</span>
                   <span class="site-state-item-name">分类</span>
                 
               </div>

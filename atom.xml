@@ -69,17 +69,13 @@
     <link href="http://yoursite.com/2019/05/17/fp-lisp-the-nature-of-lisp/"/>
     <id>http://yoursite.com/2019/05/17/fp-lisp-the-nature-of-lisp/</id>
     <published>2019-05-17T08:05:31.000Z</published>
-    <updated>2019-05-17T08:33:19.398Z</updated>
+    <updated>2019-05-17T08:42:06.861Z</updated>
     
     <summary type="html">
     
-      
-      
-        
-        
-          
-        
-      
+      &lt;p&gt;原文地址：&lt;a href=&quot;https://www.defmacro.org/ramblings/lisp.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;The Nature of Lisp&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;掘金上有一篇&lt;a href=&quot;https://juejin.im/entry/59dc6d48f265da432f3012b9&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;译文&lt;/a&gt;，除了格式不太好之外，翻译还是挺不错的。&lt;/p&gt;
+&lt;p&gt;下面把原文复制过来以免原文无法访问：&lt;/p&gt;
     
     </summary>
     
@@ -143,7 +139,7 @@
     <link href="http://yoursite.com/2019/05/15/algorithms-search-avl-tree/"/>
     <id>http://yoursite.com/2019/05/15/algorithms-search-avl-tree/</id>
     <published>2019-05-15T08:55:38.000Z</published>
-    <updated>2019-05-15T10:39:20.308Z</updated>
+    <updated>2019-05-17T08:57:42.949Z</updated>
     
     <summary type="html">
     
@@ -153,6 +149,8 @@
     </summary>
     
       <category term="算法 (Algorithms)" scheme="http://yoursite.com/categories/%E7%AE%97%E6%B3%95-Algorithms/"/>
+    
+      <category term="树 (Tree)" scheme="http://yoursite.com/categories/%E7%AE%97%E6%B3%95-Algorithms/%E6%A0%91-Tree/"/>
     
     
   </entry>
