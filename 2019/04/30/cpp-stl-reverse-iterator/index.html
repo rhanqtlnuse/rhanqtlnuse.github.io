@@ -85,18 +85,18 @@
 
 
 
-<meta name="description" content="STL 提供反向迭代器 reverse_iterator，可以用于 vector list string 等。反向迭代器实际上是一个适配器，它反转给定迭代器的方向，即从末尾向前遍历的迭代器，方法为 rbegin rend crbegin crend。 rend crend 指向第一个元素的前一个位置，rbegin crbegin 指向最后一个元素：  12345678910111213141516">
+<meta name="description" content="STL 提供反向迭代器 reverse_iterator，可以用于 vector list string 等。反向迭代器实际上是一个适配器，它反转给定迭代器的方向，即从末尾向前遍历的迭代器，方法为 rbegin rend crbegin crend。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="C++ 学习笔记 - STL：反向迭代器">
 <meta property="og:url" content="http://yoursite.com/2019/04/30/cpp-stl-reverse-iterator/index.html">
 <meta property="og:site_name" content="RHANQTL">
-<meta property="og:description" content="STL 提供反向迭代器 reverse_iterator，可以用于 vector list string 等。反向迭代器实际上是一个适配器，它反转给定迭代器的方向，即从末尾向前遍历的迭代器，方法为 rbegin rend crbegin crend。 rend crend 指向第一个元素的前一个位置，rbegin crbegin 指向最后一个元素：  12345678910111213141516">
+<meta property="og:description" content="STL 提供反向迭代器 reverse_iterator，可以用于 vector list string 等。反向迭代器实际上是一个适配器，它反转给定迭代器的方向，即从末尾向前遍历的迭代器，方法为 rbegin rend crbegin crend。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/2019/04/30/cpp-stl-reverse-iterator/range-rbegin-rend.svg">
-<meta property="og:updated_time" content="2019-04-30T01:52:12.856Z">
+<meta property="og:updated_time" content="2019-05-17T09:34:13.968Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C++ 学习笔记 - STL：反向迭代器">
-<meta name="twitter:description" content="STL 提供反向迭代器 reverse_iterator，可以用于 vector list string 等。反向迭代器实际上是一个适配器，它反转给定迭代器的方向，即从末尾向前遍历的迭代器，方法为 rbegin rend crbegin crend。 rend crend 指向第一个元素的前一个位置，rbegin crbegin 指向最后一个元素：  12345678910111213141516">
+<meta name="twitter:description" content="STL 提供反向迭代器 reverse_iterator，可以用于 vector list string 等。反向迭代器实际上是一个适配器，它反转给定迭代器的方向，即从末尾向前遍历的迭代器，方法为 rbegin rend crbegin crend。">
 <meta name="twitter:image" content="http://yoursite.com/2019/04/30/cpp-stl-reverse-iterator/range-rbegin-rend.svg">
 
 
@@ -360,8 +360,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Programming/" itemprop="url" rel="index">
-                    <span itemprop="name">Programming</span>
+                  <a href="/categories/程序设计语言-Programming-Languages/" itemprop="url" rel="index">
+                    <span itemprop="name">程序设计语言 (Programming Languages)</span>
                   </a>
                 </span>
 
@@ -371,7 +371,7 @@
                 
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Programming/C/" itemprop="url" rel="index">
+                  <a href="/categories/程序设计语言-Programming-Languages/C/" itemprop="url" rel="index">
                     <span itemprop="name">C++</span>
                   </a>
                 </span>
@@ -414,6 +414,7 @@
 
       
         <p>STL 提供反向迭代器 <code>reverse_iterator</code>，可以用于 <code>vector</code> <code>list</code> <code>string</code> 等。反向迭代器实际上是一个适配器，它反转给定迭代器的方向，即从末尾向前遍历的迭代器，方法为 <code>rbegin</code> <code>rend</code> <code>crbegin</code> <code>crend</code>。</p>
+<a id="more"></a>
 <p><code>rend</code> <code>crend</code> 指向第一个元素的前一个位置，<code>rbegin</code> <code>crbegin</code> 指向最后一个元素：</p>
 <img src="/2019/04/30/cpp-stl-reverse-iterator/range-rbegin-rend.svg">
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">reverse_iterator</span><br><span class="line">rbegin() _GLIBCXX_NOEXCEPT &#123;</span><br><span class="line">    <span class="keyword">return</span> reverse_iterator(end()); </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const_reverse_iterator</span><br><span class="line">rbegin() <span class="keyword">const</span> _GLIBCXX_NOEXCEPT &#123; </span><br><span class="line">    <span class="keyword">return</span> const_reverse_iterator(end());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">reverse_iterator</span><br><span class="line">rend() _GLIBCXX_NOEXCEPT &#123;</span><br><span class="line">    <span class="keyword">return</span> reverse_iterator(begin());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const_reverse_iterator</span><br><span class="line">rend() <span class="keyword">const</span> _GLIBCXX_NOEXCEPT &#123;</span><br><span class="line">    <span class="keyword">return</span> const_reverse_iterator(begin());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">if</span> __cplusplus &gt;= 201103L</span></span><br><span class="line"></span><br><span class="line">const_reverse_iterator</span><br><span class="line">crbegin() <span class="keyword">const</span> <span class="keyword">noexcept</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> const_reverse_iterator(end());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const_reverse_iterator</span><br><span class="line">crend() <span class="keyword">const</span> <span class="keyword">noexcept</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> const_reverse_iterator(begin());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
@@ -537,7 +538,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">130</span>
+                  <span class="site-state-item-count">129</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -548,7 +549,7 @@
               
               <div class="site-state-item site-state-categories">
                 
-                  <span class="site-state-item-count">39</span>
+                  <span class="site-state-item-count">41</span>
                   <span class="site-state-item-name">分类</span>
                 
               </div>

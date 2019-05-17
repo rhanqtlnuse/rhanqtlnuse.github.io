@@ -85,17 +85,17 @@
 
 
 
-<meta name="description" content="STL 提供迭代器，可以用于遍历 vector list string 等容器。相关方法为 begin end cbegin cend。 begin cbegin 指向第一个元素，end cend 指向最后一个元素的下一个位置： 123456789101112131415161718192021222324252627282930313233iteratorbegin() _GLIBCXX_NOE">
+<meta name="description" content="STL 提供迭代器，可以用于遍历 vector list string 等容器。相关方法为 begin end cbegin cend。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="cpp-stl-iterator">
 <meta property="og:url" content="http://yoursite.com/2019/04/30/cpp-stl-iterator/index.html">
 <meta property="og:site_name" content="RHANQTL">
-<meta property="og:description" content="STL 提供迭代器，可以用于遍历 vector list string 等容器。相关方法为 begin end cbegin cend。 begin cbegin 指向第一个元素，end cend 指向最后一个元素的下一个位置： 123456789101112131415161718192021222324252627282930313233iteratorbegin() _GLIBCXX_NOE">
+<meta property="og:description" content="STL 提供迭代器，可以用于遍历 vector list string 等容器。相关方法为 begin end cbegin cend。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-30T02:02:50.368Z">
+<meta property="og:updated_time" content="2019-05-17T09:33:49.825Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="cpp-stl-iterator">
-<meta name="twitter:description" content="STL 提供迭代器，可以用于遍历 vector list string 等容器。相关方法为 begin end cbegin cend。 begin cbegin 指向第一个元素，end cend 指向最后一个元素的下一个位置： 123456789101112131415161718192021222324252627282930313233iteratorbegin() _GLIBCXX_NOE">
+<meta name="twitter:description" content="STL 提供迭代器，可以用于遍历 vector list string 等容器。相关方法为 begin end cbegin cend。">
 
 
 
@@ -358,8 +358,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Programming/" itemprop="url" rel="index">
-                    <span itemprop="name">Programming</span>
+                  <a href="/categories/程序设计语言-Programming-Languages/" itemprop="url" rel="index">
+                    <span itemprop="name">程序设计语言 (Programming Languages)</span>
                   </a>
                 </span>
 
@@ -369,7 +369,7 @@
                 
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Programming/C/" itemprop="url" rel="index">
+                  <a href="/categories/程序设计语言-Programming-Languages/C/" itemprop="url" rel="index">
                     <span itemprop="name">C++</span>
                   </a>
                 </span>
@@ -412,6 +412,7 @@
 
       
         <p>STL 提供迭代器，可以用于遍历 <code>vector</code> <code>list</code> <code>string</code> 等容器。相关方法为 <code>begin</code> <code>end</code> <code>cbegin</code> <code>cend</code>。</p>
+<a id="more"></a>
 <p><code>begin</code> <code>cbegin</code> 指向第一个元素，<code>end</code> <code>cend</code> 指向最后一个元素的下一个位置：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">iterator</span><br><span class="line">begin() _GLIBCXX_NOEXCEPT &#123;</span><br><span class="line">    <span class="keyword">return</span> iterator(<span class="keyword">this</span>-&gt;_M_impl._M_start);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const_iterator</span><br><span class="line">begin() <span class="keyword">const</span> _GLIBCXX_NOEXCEPT &#123; </span><br><span class="line">    <span class="keyword">return</span> const_iterator(<span class="keyword">this</span>-&gt;_M_impl._M_start);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">iterator</span><br><span class="line">end() _GLIBCXX_NOEXCEPT &#123;</span><br><span class="line">    <span class="keyword">return</span> iterator(<span class="keyword">this</span>-&gt;_M_impl._M_finish);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const_iterator</span><br><span class="line">end() <span class="keyword">const</span> _GLIBCXX_NOEXCEPT &#123;</span><br><span class="line">    <span class="keyword">return</span> const_iterator(<span class="keyword">this</span>-&gt;_M_impl._M_finish);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">if</span> __cplusplus &gt;= 201103L</span></span><br><span class="line"></span><br><span class="line">const_iterator</span><br><span class="line">cbegin() <span class="keyword">const</span> <span class="keyword">noexcept</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> const_iterator(<span class="keyword">this</span>-&gt;_M_impl._M_start);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const_iterator</span><br><span class="line">cend() <span class="keyword">const</span> <span class="keyword">noexcept</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> const_iterator(<span class="keyword">this</span>-&gt;_M_impl._M_finish);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
 <p>其中，<code>this-&gt;_M_impl</code>：</p>
@@ -520,7 +521,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">130</span>
+                  <span class="site-state-item-count">129</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -531,7 +532,7 @@
               
               <div class="site-state-item site-state-categories">
                 
-                  <span class="site-state-item-count">39</span>
+                  <span class="site-state-item-count">41</span>
                   <span class="site-state-item-name">分类</span>
                 
               </div>

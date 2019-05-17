@@ -1398,16 +1398,14 @@
 
       
         
-          
-            <a id="more"></a>
-<p>softmax 是机器学习（尤其是深度学习）中一个重要的函数，它将量纲不统一的输出值归一化为同一量纲下的值，可以当作概率。</p>
-<p>公式如下：</p>
-<script type="math/tex; mode=display">\text{softmax}(\mathbb{x})_i = \dfrac{\exp(x_i)}{\sum_{k=1}^K \exp(x_k)}​</script><p>其中，$x \in \mathbb{R}^n$</p>
-<p>但是这个函数会有一些问题。比如，如果 $x_i$ 很大，$\exp(x_i)$ 可能会上溢，这样得到的结果就是不正确的；又或者，每个 $\sum\limits_{k=1}^K \exp(x_k)$ 可能下溢，这样就会出现除 0 错误。</p>
-<p>为了解决上面的问题，可以使用改进的 softmax。</p>
-<script type="math/tex; mode=display">\text{softmax}(\mathbb{x})_i = \dfrac{\exp(x_i - \max_j x_j)}{\sum_{k=1}^K \exp(x_k - \max_jx_j)}</script><p>这样一来，由于 $x_i - \max\limits_jx_j \le 0$，所以分子一定小于等于 1；同样地，也至少可以保证分母为 1（最大值 - 最大值），不会出现下溢。</p>
-
-          
+          <p>softmax 是机器学习（尤其是深度学习）中一个重要的函数，它将量纲不统一的输出值归一化为同一量纲下的值，可以当作概率。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/05/15/ml-dl-softmax/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1783,7 +1781,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">130</span>
+                  <span class="site-state-item-count">129</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1794,7 +1792,7 @@
               
               <div class="site-state-item site-state-categories">
                 
-                  <span class="site-state-item-count">39</span>
+                  <span class="site-state-item-count">41</span>
                   <span class="site-state-item-name">分类</span>
                 
               </div>

@@ -178,17 +178,11 @@
     <link href="http://yoursite.com/2019/05/15/ml-dl-softmax/"/>
     <id>http://yoursite.com/2019/05/15/ml-dl-softmax/</id>
     <published>2019-05-15T07:06:15.000Z</published>
-    <updated>2019-05-17T09:03:56.082Z</updated>
+    <updated>2019-05-17T09:24:56.398Z</updated>
     
     <summary type="html">
     
-      
-      
-        
-        
-          
-        
-      
+      &lt;p&gt;softmax 是机器学习（尤其是深度学习）中一个重要的函数，它将量纲不统一的输出值归一化为同一量纲下的值，可以当作概率。&lt;/p&gt;
     
     </summary>
     
@@ -348,21 +342,15 @@
   </entry>
   
   <entry>
-    <title>Redis 学习笔记（1）</title>
+    <title>Redis 学习笔记 (1)</title>
     <link href="http://yoursite.com/2019/05/12/redis-intro/"/>
     <id>http://yoursite.com/2019/05/12/redis-intro/</id>
     <published>2019-05-12T10:26:06.000Z</published>
-    <updated>2019-05-12T13:15:58.328Z</updated>
+    <updated>2019-05-17T09:26:31.027Z</updated>
     
     <summary type="html">
     
-      
-      
-        
-        
-          
-        
-      
+      &lt;p&gt;Redis 是一个 NoSQL 的内存数据库。&lt;/p&gt;
     
     </summary>
     
@@ -376,23 +364,17 @@
     <link href="http://yoursite.com/2019/05/10/cpp-stl-algorithm-sort/"/>
     <id>http://yoursite.com/2019/05/10/cpp-stl-algorithm-sort/</id>
     <published>2019-05-10T04:01:29.000Z</published>
-    <updated>2019-05-10T08:07:11.180Z</updated>
+    <updated>2019-05-17T09:27:53.802Z</updated>
     
     <summary type="html">
     
-      
-      
-        
-        
-          
-        
-      
+      &lt;p&gt;排序是编程中经常出现的场景，C++ STL 为我们提供了一些用于排序的函数。&lt;/p&gt;
     
     </summary>
     
-      <category term="Programming Languages" scheme="http://yoursite.com/categories/Programming-Languages/"/>
+      <category term="程序设计语言 (Programming Languages)" scheme="http://yoursite.com/categories/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%AF%AD%E8%A8%80-Programming-Languages/"/>
     
-      <category term="C++" scheme="http://yoursite.com/categories/Programming-Languages/C/"/>
+      <category term="C++" scheme="http://yoursite.com/categories/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%AF%AD%E8%A8%80-Programming-Languages/C/"/>
     
     
   </entry>
@@ -402,17 +384,11 @@
     <link href="http://yoursite.com/2019/05/09/ml-dl-rnn/"/>
     <id>http://yoursite.com/2019/05/09/ml-dl-rnn/</id>
     <published>2019-05-09T13:26:21.000Z</published>
-    <updated>2019-05-17T09:01:32.412Z</updated>
+    <updated>2019-05-17T09:29:10.469Z</updated>
     
     <summary type="html">
     
-      
-      
-        
-        
-          
-        
-      
+      &lt;p&gt;RNN 擅长处理序列问题。&lt;/p&gt;
     
     </summary>
     
@@ -428,17 +404,11 @@
     <link href="http://yoursite.com/2019/05/09/ml-dl-cnn/"/>
     <id>http://yoursite.com/2019/05/09/ml-dl-cnn/</id>
     <published>2019-05-09T13:26:15.000Z</published>
-    <updated>2019-05-17T09:01:44.067Z</updated>
+    <updated>2019-05-17T09:29:47.479Z</updated>
     
     <summary type="html">
     
-      
-      
-        
-        
-          
-        
-      
+      &lt;p&gt;CV 中最经典的深度学习工具。&lt;/p&gt;
     
     </summary>
     
@@ -454,18 +424,16 @@
     <link href="http://yoursite.com/2019/05/08/nlp-deep-in-word2vec/"/>
     <id>http://yoursite.com/2019/05/08/nlp-deep-in-word2vec/</id>
     <published>2019-05-08T15:56:51.000Z</published>
-    <updated>2019-05-13T15:01:12.676Z</updated>
+    <updated>2019-05-17T09:30:46.507Z</updated>
     
     <summary type="html">
     
-      &lt;p&gt;Word2Vec 是 Google 于 2013 年提出的词向量表示法。&lt;/p&gt;
-&lt;h1 id=&quot;原始论文&quot;&gt;&lt;a href=&quot;#原始论文&quot; class=&quot;headerlink&quot; title=&quot;原始论文&quot;&gt;&lt;/a&gt;原始论文&lt;/h1&gt;&lt;p&gt;Tomas Mikolov, Ilya Sutskever, Kai Chen, Greg Corrado, Jeffrey Dean. “Distributed Representations of Words and Phrases and their Compositionality”. &lt;em&gt;Advances in Neural Information Processing Systems 26 (NIPS 2013)&lt;/em&gt;. &lt;a href=&quot;https://papers.nips.cc/paper/5021-distributed-representations-of-words-and-phrases-and-their-compositionality.pdf&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://papers.nips.cc/paper/5021-distributed-representations-of-words-and-phrases-and-their-compositionality.pdf&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Tomas Mikolov, Kai Chen, Greg Corrado, Jeffrey Dean. (2013, Jan.16). “Efficient Estimation of Word Representations in Vector Space”. &lt;em&gt;arXiv:1301.3781 [cs.CL]&lt;/em&gt;. &lt;a href=&quot;https://arxiv.org/pdf/1301.3781.pdf&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://arxiv.org/pdf/1301.3781.pdf&lt;/a&gt;&lt;/p&gt;
+      &lt;p&gt;Word2Vec 是 Google 于 2013 年提出的词向量表示法&lt;/p&gt;
     
     </summary>
     
     
-      <category term="NLP" scheme="http://yoursite.com/tags/NLP/"/>
+      <category term="自然语言处理 (Natural Language Processing)" scheme="http://yoursite.com/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86-Natural-Language-Processing/"/>
     
   </entry>
   

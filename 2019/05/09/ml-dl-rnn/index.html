@@ -85,17 +85,17 @@
 
 
 
-<meta name="description" content="梯度消失和梯度爆炸梯度消失梯度变成 0 或接近 0，导致参数不再更新。 由于梯度消失问题的存在，使得 RNN 在实际中并不能捕获太长的模式 解决办法  合适的初始化 正则化 使用 ReLU 作为激活函数，替代 tanh 和 sigmoid 等不饱和函数，因为 ReLU 的导数（梯度）是 0 或 1，所以不太会有梯度消失问题，但是可能会有 Dead ReLU 问题 LSTM &amp;amp; GRU">
+<meta name="description" content="RNN 擅长处理序列问题。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ml-dl-rnn">
 <meta property="og:url" content="http://yoursite.com/2019/05/09/ml-dl-rnn/index.html">
 <meta property="og:site_name" content="RHANQTL">
-<meta property="og:description" content="梯度消失和梯度爆炸梯度消失梯度变成 0 或接近 0，导致参数不再更新。 由于梯度消失问题的存在，使得 RNN 在实际中并不能捕获太长的模式 解决办法  合适的初始化 正则化 使用 ReLU 作为激活函数，替代 tanh 和 sigmoid 等不饱和函数，因为 ReLU 的导数（梯度）是 0 或 1，所以不太会有梯度消失问题，但是可能会有 Dead ReLU 问题 LSTM &amp;amp; GRU">
+<meta property="og:description" content="RNN 擅长处理序列问题。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-17T09:01:32.412Z">
+<meta property="og:updated_time" content="2019-05-17T09:29:10.469Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ml-dl-rnn">
-<meta name="twitter:description" content="梯度消失和梯度爆炸梯度消失梯度变成 0 或接近 0，导致参数不再更新。 由于梯度消失问题的存在，使得 RNN 在实际中并不能捕获太长的模式 解决办法  合适的初始化 正则化 使用 ReLU 作为激活函数，替代 tanh 和 sigmoid 等不饱和函数，因为 ReLU 的导数（梯度）是 0 或 1，所以不太会有梯度消失问题，但是可能会有 Dead ReLU 问题 LSTM &amp;amp; GRU">
+<meta name="twitter:description" content="RNN 擅长处理序列问题。">
 
 
 
@@ -411,10 +411,11 @@
       
 
       
-        <a id="more"></a>
+        <p>RNN 擅长处理序列问题。</p>
+<a id="more"></a>
 
 <h1 id="梯度消失和梯度爆炸"><a href="#梯度消失和梯度爆炸" class="headerlink" title="梯度消失和梯度爆炸"></a>梯度消失和梯度爆炸</h1><h2 id="梯度消失"><a href="#梯度消失" class="headerlink" title="梯度消失"></a>梯度消失</h2><p>梯度变成 0 或接近 0，导致参数不再更新。</p>
-<p>由于梯度消失问题的存在，使得 RNN 在实际中并不能捕获太长的模式</p>
+<p>虽然理论上 RNN 能够利用长序列的信息，但是由于梯度消失问题的存在，使得 RNN 在实际中并不能捕获太长的模式</p>
 <p><strong>解决办法</strong></p>
 <ul>
 <li>合适的初始化</li>
@@ -542,7 +543,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">130</span>
+                  <span class="site-state-item-count">129</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -553,7 +554,7 @@
               
               <div class="site-state-item site-state-categories">
                 
-                  <span class="site-state-item-count">39</span>
+                  <span class="site-state-item-count">41</span>
                   <span class="site-state-item-name">分类</span>
                 
               </div>

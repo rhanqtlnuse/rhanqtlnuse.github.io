@@ -899,31 +899,14 @@
 
       
         
-          
-            <h1 id="A"><a href="#A" class="headerlink" title="A"></a>A</h1><p>Ada</p>
-<h1 id="B"><a href="#B" class="headerlink" title="B"></a>B</h1><p>BCPL</p>
-<p>Brainfuck</p>
-<h1 id="C"><a href="#C" class="headerlink" title="C"></a>C</h1><p>C</p>
-<p>C++</p>
-<p>C#</p>
-<p>Clojure</p>
-<h1 id="D"><a href="#D" class="headerlink" title="D"></a>D</h1><h1 id="E"><a href="#E" class="headerlink" title="E"></a>E</h1><p>Erlang</p>
-<h1 id="F"><a href="#F" class="headerlink" title="F"></a>F</h1><p>F#</p>
-<h1 id="G"><a href="#G" class="headerlink" title="G"></a>G</h1><p>Go</p>
-<h1 id="H"><a href="#H" class="headerlink" title="H"></a>H</h1><p>Haskell</p>
-<h1 id="I"><a href="#I" class="headerlink" title="I"></a>I</h1><h1 id="J"><a href="#J" class="headerlink" title="J"></a>J</h1><p>Java</p>
-<p>JavaScript</p>
-<h1 id="K"><a href="#K" class="headerlink" title="K"></a>K</h1><p>Kotlin</p>
-<h1 id="L"><a href="#L" class="headerlink" title="L"></a>L</h1><p>Lua</p>
-<h1 id="M"><a href="#M" class="headerlink" title="M"></a>M</h1><p>MATLAB</p>
-<h1 id="N"><a href="#N" class="headerlink" title="N"></a>N</h1><h1 id="O"><a href="#O" class="headerlink" title="O"></a>O</h1><p>Octave</p>
-<h1 id="P"><a href="#P" class="headerlink" title="P"></a>P</h1><h1 id="Q"><a href="#Q" class="headerlink" title="Q"></a>Q</h1><h1 id="R"><a href="#R" class="headerlink" title="R"></a>R</h1><p>R</p>
-<p>Rust</p>
-<h1 id="S"><a href="#S" class="headerlink" title="S"></a>S</h1><p>Scala</p>
-<p>SQL</p>
-<h1 id="T"><a href="#T" class="headerlink" title="T"></a>T</h1><h1 id="U"><a href="#U" class="headerlink" title="U"></a>U</h1><h1 id="V"><a href="#V" class="headerlink" title="V"></a>V</h1><h1 id="W"><a href="#W" class="headerlink" title="W"></a>W</h1><p>Web Assembly</p>
-<h1 id="X"><a href="#X" class="headerlink" title="X"></a>X</h1><h1 id="Y"><a href="#Y" class="headerlink" title="Y"></a>Y</h1><h1 id="Z"><a href="#Z" class="headerlink" title="Z"></a>Z</h1>
-          
+          <p>本文按照字母顺序列举当今的编程语言。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/05/04/others-programming-languages-list/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1143,8 +1126,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Programming/" itemprop="url" rel="index">
-                    <span itemprop="name">Programming</span>
+                  <a href="/categories/程序设计语言-Programming-Languages/" itemprop="url" rel="index">
+                    <span itemprop="name">程序设计语言 (Programming Languages)</span>
                   </a>
                 </span>
 
@@ -1154,7 +1137,7 @@
                 
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Programming/C/" itemprop="url" rel="index">
+                  <a href="/categories/程序设计语言-Programming-Languages/C/" itemprop="url" rel="index">
                     <span itemprop="name">C++</span>
                   </a>
                 </span>
@@ -1192,14 +1175,14 @@
 
       
         
-          
-            <p>STL 提供迭代器，可以用于遍历 <code>vector</code> <code>list</code> <code>string</code> 等容器。相关方法为 <code>begin</code> <code>end</code> <code>cbegin</code> <code>cend</code>。</p>
-<p><code>begin</code> <code>cbegin</code> 指向第一个元素，<code>end</code> <code>cend</code> 指向最后一个元素的下一个位置：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">iterator</span><br><span class="line">begin() _GLIBCXX_NOEXCEPT &#123;</span><br><span class="line">    <span class="keyword">return</span> iterator(<span class="keyword">this</span>-&gt;_M_impl._M_start);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const_iterator</span><br><span class="line">begin() <span class="keyword">const</span> _GLIBCXX_NOEXCEPT &#123; </span><br><span class="line">    <span class="keyword">return</span> const_iterator(<span class="keyword">this</span>-&gt;_M_impl._M_start);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">iterator</span><br><span class="line">end() _GLIBCXX_NOEXCEPT &#123;</span><br><span class="line">    <span class="keyword">return</span> iterator(<span class="keyword">this</span>-&gt;_M_impl._M_finish);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const_iterator</span><br><span class="line">end() <span class="keyword">const</span> _GLIBCXX_NOEXCEPT &#123;</span><br><span class="line">    <span class="keyword">return</span> const_iterator(<span class="keyword">this</span>-&gt;_M_impl._M_finish);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">if</span> __cplusplus &gt;= 201103L</span></span><br><span class="line"></span><br><span class="line">const_iterator</span><br><span class="line">cbegin() <span class="keyword">const</span> <span class="keyword">noexcept</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> const_iterator(<span class="keyword">this</span>-&gt;_M_impl._M_start);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const_iterator</span><br><span class="line">cend() <span class="keyword">const</span> <span class="keyword">noexcept</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> const_iterator(<span class="keyword">this</span>-&gt;_M_impl._M_finish);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
-<p>其中，<code>this-&gt;_M_impl</code>：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// struct _Vector_base</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * typedef typename __gnu_cxx::__alloc_traits&lt;_Alloc&gt;::template</span></span><br><span class="line"><span class="comment"> *     rebind&lt;_Tp&gt;::other _Tp_alloc_type;</span></span><br><span class="line"><span class="comment"> * typedef typename __gnu_cxx::__alloc_traits&lt;_Tp_alloc_type&gt;::pointer</span></span><br><span class="line"><span class="comment"> *     pointer;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> _<span class="title">Vector_impl</span> :</span> <span class="keyword">public</span> _Tp_alloc_type &#123;</span><br><span class="line">	pointer _M_start;</span><br><span class="line">	pointer _M_finish;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    _Vector_impl _M_impl;</span><br></pre></td></tr></table></figure>
-
-          
+          <p>STL 提供迭代器，可以用于遍历 <code>vector</code> <code>list</code> <code>string</code> 等容器。相关方法为 <code>begin</code> <code>end</code> <code>cbegin</code> <code>cend</code>。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/04/30/cpp-stl-iterator/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1300,8 +1283,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Programming/" itemprop="url" rel="index">
-                    <span itemprop="name">Programming</span>
+                  <a href="/categories/程序设计语言-Programming-Languages/" itemprop="url" rel="index">
+                    <span itemprop="name">程序设计语言 (Programming Languages)</span>
                   </a>
                 </span>
 
@@ -1311,7 +1294,7 @@
                 
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Programming/C/" itemprop="url" rel="index">
+                  <a href="/categories/程序设计语言-Programming-Languages/C/" itemprop="url" rel="index">
                     <span itemprop="name">C++</span>
                   </a>
                 </span>
@@ -1349,20 +1332,14 @@
 
       
         
-          
-            <p>STL 提供反向迭代器 <code>reverse_iterator</code>，可以用于 <code>vector</code> <code>list</code> <code>string</code> 等。反向迭代器实际上是一个适配器，它反转给定迭代器的方向，即从末尾向前遍历的迭代器，方法为 <code>rbegin</code> <code>rend</code> <code>crbegin</code> <code>crend</code>。</p>
-<p><code>rend</code> <code>crend</code> 指向第一个元素的前一个位置，<code>rbegin</code> <code>crbegin</code> 指向最后一个元素：</p>
-<img src="/2019/04/30/cpp-stl-reverse-iterator/range-rbegin-rend.svg">
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">reverse_iterator</span><br><span class="line">rbegin() _GLIBCXX_NOEXCEPT &#123;</span><br><span class="line">    <span class="keyword">return</span> reverse_iterator(end()); </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const_reverse_iterator</span><br><span class="line">rbegin() <span class="keyword">const</span> _GLIBCXX_NOEXCEPT &#123; </span><br><span class="line">    <span class="keyword">return</span> const_reverse_iterator(end());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">reverse_iterator</span><br><span class="line">rend() _GLIBCXX_NOEXCEPT &#123;</span><br><span class="line">    <span class="keyword">return</span> reverse_iterator(begin());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const_reverse_iterator</span><br><span class="line">rend() <span class="keyword">const</span> _GLIBCXX_NOEXCEPT &#123;</span><br><span class="line">    <span class="keyword">return</span> const_reverse_iterator(begin());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">if</span> __cplusplus &gt;= 201103L</span></span><br><span class="line"></span><br><span class="line">const_reverse_iterator</span><br><span class="line">crbegin() <span class="keyword">const</span> <span class="keyword">noexcept</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> const_reverse_iterator(end());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const_reverse_iterator</span><br><span class="line">crend() <span class="keyword">const</span> <span class="keyword">noexcept</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> const_reverse_iterator(begin());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
-<div align="right"><font face="Courier New"><a href="https://gcc.gnu.org/onlinedocs/gcc-4.9.4/libstdc++/api/a01253_source.html" target="_blank" rel="noopener">bits/stl_iterator.h</a></font></div>
-
-<p>反向迭代器重载了 <code>++</code> 和 <code>--</code> 运算符，<code>++</code> 的语义变成了 <code>--</code>：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">reverse_iterator &amp;</span><br><span class="line"><span class="keyword">operator</span>++() &#123;</span><br><span class="line">    --current;</span><br><span class="line">    <span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">reverse_iterator</span><br><span class="line"><span class="keyword">operator</span>++(<span class="keyword">int</span>) &#123;</span><br><span class="line">    reverse_iterator __tmp = *<span class="keyword">this</span>;</span><br><span class="line">    --current;</span><br><span class="line">    <span class="keyword">return</span> __tmp;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">reverse_iterator &amp;</span><br><span class="line"><span class="keyword">operator</span>--() &#123;</span><br><span class="line">    ++current;</span><br><span class="line">    <span class="keyword">return</span> *<span class="keyword">this</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">reverse_iterator</span><br><span class="line"><span class="keyword">operator</span>--(<span class="keyword">int</span>) &#123;</span><br><span class="line">    reverse_iterator __tmp = *<span class="keyword">this</span>;</span><br><span class="line">    ++current;</span><br><span class="line">    <span class="keyword">return</span> __tmp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<div align="right"><font face="Courier New"><a href="https://gcc.gnu.org/onlinedocs/gcc-4.9.4/libstdc++/api/a01253_source.html" target="_blank" rel="noopener">bits/stl_iterator.h</a></font></div>
-
-<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p>[1] <a href="https://zh.cppreference.com/w/cpp/iterator/reverse_iterator" target="_blank" rel="noopener">cppreference - reverse iterator</a></p>
-
-          
+          <p>STL 提供反向迭代器 <code>reverse_iterator</code>，可以用于 <code>vector</code> <code>list</code> <code>string</code> 等。反向迭代器实际上是一个适配器，它反转给定迭代器的方向，即从末尾向前遍历的迭代器，方法为 <code>rbegin</code> <code>rend</code> <code>crbegin</code> <code>crend</code>。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/04/30/cpp-stl-reverse-iterator/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1719,7 +1696,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">130</span>
+                  <span class="site-state-item-count">129</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1730,7 +1707,7 @@
               
               <div class="site-state-item site-state-categories">
                 
-                  <span class="site-state-item-count">39</span>
+                  <span class="site-state-item-count">41</span>
                   <span class="site-state-item-name">分类</span>
                 
               </div>
