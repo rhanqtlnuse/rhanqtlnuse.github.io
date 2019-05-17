@@ -69,7 +69,7 @@
     <link href="http://yoursite.com/2019/05/17/fp-lisp-the-nature-of-lisp/"/>
     <id>http://yoursite.com/2019/05/17/fp-lisp-the-nature-of-lisp/</id>
     <published>2019-05-17T08:05:31.000Z</published>
-    <updated>2019-05-17T08:10:58.710Z</updated>
+    <updated>2019-05-17T08:33:19.398Z</updated>
     
     <summary type="html">
     
@@ -394,7 +394,7 @@
     <link href="http://yoursite.com/2019/05/09/ml-dl-rnn/"/>
     <id>http://yoursite.com/2019/05/09/ml-dl-rnn/</id>
     <published>2019-05-09T13:26:21.000Z</published>
-    <updated>2019-05-16T03:46:07.189Z</updated>
+    <updated>2019-05-17T08:34:14.578Z</updated>
     
     <summary type="html">
     
@@ -408,6 +408,10 @@
     
     </summary>
     
+      <category term="机器学习 (Machine Learning)" scheme="http://yoursite.com/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-Machine-Learning/"/>
+    
+      <category term="深度学习 (Deep Learning)" scheme="http://yoursite.com/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-Machine-Learning/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-Deep-Learning/"/>
+    
     
   </entry>
   
@@ -416,7 +420,7 @@
     <link href="http://yoursite.com/2019/05/09/ml-dl-cnn/"/>
     <id>http://yoursite.com/2019/05/09/ml-dl-cnn/</id>
     <published>2019-05-09T13:26:15.000Z</published>
-    <updated>2019-05-16T02:21:15.544Z</updated>
+    <updated>2019-05-17T08:34:06.854Z</updated>
     
     <summary type="html">
     
