@@ -85,17 +85,21 @@
 
 
 
-<meta name="description" content="笔记本电脑选购总结1 处理器1.1 处理器型号解析$^{[1][2][3]}$Let us start from how Intel names its processors. To put it in lay man’s words  i3 is for general use i5 is for gaming i7 is for professional use  What do these">
+<meta name="description" content="设计原则综述 软件的可维护性与复用性 面向对象软件设计复用的目标在于实现支持可维护性的复用，而这要以面向对象软件设计原则为基础，这些设计原则首先都是复用的原则，遵循这些设计原则可以有效地提高系统的复用性，同时提高系统的可维护性 面向对象设计原则也是对系统进行合理重构的指南针">
 <meta property="og:type" content="article">
-<meta property="og:title" content="笔记本电脑选购总结">
-<meta property="og:url" content="http://yoursite.com/2019/03/25/笔记本电脑选购总结/index.html">
+<meta property="og:title" content="面向对象软件设计：设计原则">
+<meta property="og:url" content="http://yoursite.com/2019/01/02/oo-design-principles/index.html">
 <meta property="og:site_name" content="RHANQTL">
-<meta property="og:description" content="笔记本电脑选购总结1 处理器1.1 处理器型号解析$^{[1][2][3]}$Let us start from how Intel names its processors. To put it in lay man’s words  i3 is for general use i5 is for gaming i7 is for professional use  What do these">
+<meta property="og:description" content="设计原则综述 软件的可维护性与复用性 面向对象软件设计复用的目标在于实现支持可维护性的复用，而这要以面向对象软件设计原则为基础，这些设计原则首先都是复用的原则，遵循这些设计原则可以有效地提高系统的复用性，同时提高系统的可维护性 面向对象设计原则也是对系统进行合理重构的指南针">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-26T07:43:44.090Z">
+<meta property="og:image" content="http://yoursite.com/2019/01/02/oo-design-principles/stack-extends-vector.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/02/oo-design-principles/stack-aggregates-vector.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/02/oo-design-principles/stack-aggregates-list.png">
+<meta property="og:updated_time" content="2019-01-03T11:35:48.982Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="笔记本电脑选购总结">
-<meta name="twitter:description" content="笔记本电脑选购总结1 处理器1.1 处理器型号解析$^{[1][2][3]}$Let us start from how Intel names its processors. To put it in lay man’s words  i3 is for general use i5 is for gaming i7 is for professional use  What do these">
+<meta name="twitter:title" content="面向对象软件设计：设计原则">
+<meta name="twitter:description" content="设计原则综述 软件的可维护性与复用性 面向对象软件设计复用的目标在于实现支持可维护性的复用，而这要以面向对象软件设计原则为基础，这些设计原则首先都是复用的原则，遵循这些设计原则可以有效地提高系统的复用性，同时提高系统的可维护性 面向对象设计原则也是对系统进行合理重构的指南针">
+<meta name="twitter:image" content="http://yoursite.com/2019/01/02/oo-design-principles/stack-extends-vector.png">
 
 
 
@@ -125,13 +129,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/03/25/笔记本电脑选购总结/">
+  <link rel="canonical" href="http://yoursite.com/2019/01/02/oo-design-principles/">
 
 
 
 
 
-  <title>笔记本电脑选购总结 | RHANQTL</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>面向对象软件设计：设计原则 | RHANQTL</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -306,7 +310,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/25/笔记本电脑选购总结/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/02/oo-design-principles/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Han Qi">
@@ -323,7 +327,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">笔记本电脑选购总结</h1>
+          <h1 class="post-title" itemprop="name headline">面向对象软件设计：设计原则</h1>
         
 
         <div class="post-meta">
@@ -335,8 +339,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-25T15:00:00+08:00">
-                2019-03-25
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-02T11:26:04+08:00">
+                2019-01-02
               </time>
             
 
@@ -345,6 +349,39 @@
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Design/" itemprop="url" rel="index">
+                    <span itemprop="name">Design</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Design/OOP/" itemprop="url" rel="index">
+                    <span itemprop="name">OOP</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -378,56 +415,73 @@
       
 
       
-        <h1 id="笔记本电脑选购总结"><a href="#笔记本电脑选购总结" class="headerlink" title="笔记本电脑选购总结"></a>笔记本电脑选购总结</h1><h2 id="1-处理器"><a href="#1-处理器" class="headerlink" title="1 处理器"></a>1 处理器</h2><h3 id="1-1-处理器型号解析-1-2-3"><a href="#1-1-处理器型号解析-1-2-3" class="headerlink" title="1.1 处理器型号解析$^{[1][2][3]}$"></a>1.1 处理器型号解析$^{[1][2][3]}$</h3><p>Let us start from how Intel names its processors. To put it in lay man’s words</p>
-<ul>
-<li>i3 is for general use</li>
-<li>i5 is for gaming</li>
-<li>i7 is for professional use</li>
-</ul>
-<p><strong>What do these numbers mean? 3,5,7 ?</strong></p>
-<p>They are simply brand modifiers to identify a certain product range.</p>
-<p><strong>What does the first digit mean?</strong></p>
-<p>Let us take the ‘4’ in i3 4160. People say that 4 means that it is a fourth generation CPU from Intel. That is not entirely correct. It is actually fourth generation. It is actually fourth generation compared to a micro architecture called ‘Clarkdale’, which was the first CPU to have integrated graphics.</p>
-<p><strong>What do the next three digits mean?</strong></p>
-<p>Intel says that they are something called SKU (Stock keeping unit) Numeric digits For ex. ‘160’ in i3 4160. A SKU is usually a string of numbers and alphabets used by the manufacturer to identify their product. In simple words it is the model number of that processor.</p>
-<p><strong>What are the letters following the digits?</strong></p>
-<p>Intel has made a guide on what those letters mean,</p>
-<ul>
-<li><p>For Desktop processors</p>
-<ul>
-<li><strong>‘k’</strong> means that the multiplier on that CPU is unlocked, Means that the processor can be overclocked.</li>
-<li><strong>‘T’</strong> refers to the CPU being power optimized. These processors have a lower TDP, They put out less heat and consumer less power</li>
-</ul>
-</li>
-<li><p>For laptop processors</p>
-<ul>
-<li><strong>‘H’</strong> means that the processor has high performance integrated graphics</li>
-<li><strong>‘HK’</strong> means that the processor has high performance integrated graphics and a unlocked multiplier</li>
-<li><strong>‘HQ’</strong> refers to high performance integrated graphics and a quad core CPU</li>
-<li><strong>‘U’</strong> means that the CPU is meant for ultra low power consumption<ul>
-<li>U前面一位数字为8，则是28W功耗的低压处理器（标准电压双核处理器功耗为35W），若前一位数字为7，则是17W功耗的低压处理器，若为0，则是15W功耗的低压处理器。</li>
-</ul>
-</li>
-<li>M：笔记本专用CPU，一般为双核，M前面一位数字是0，意味着是标准电压处理器，如果是7，则是低电压处理器。</li>
-<li>QM、MQ：（第四代开始改为MQ）：笔记本专用CPU，“Q”是“Quad”的缩写，即四核CPU。若QM前一位数字是0，则表示此产品为功耗45W的标准电压四核处理器，若为2，则表示此产品为35W功耗的低电压四核处理器，若为5，与对应为0的CPU主要规格相同，但集成的核芯显卡频率更高（如3630QM和3635QM，后者核显最大频率1.2GHz，前者则是1.15GHz）。</li>
-<li>XM：最强大的笔记本CPU，功耗一般为55W。“X”意为“Extreme”，此类型CPU完全不锁频，在散热和供电允许的情况下可以无限制超频，而即便是默认频率下，也比同一时代的其它产品强大得多。这类CPU都是工厂生产后精心挑选出来得极品，质量极佳，性能完美，但价格非常昂贵。一块XM系列的CPU批发价可达1000美金以上（普通的四核大概3，400美金一块）。</li>
-<li>PM：这个后缀表示CPU没有核显</li>
-<li>台式CPU，标准款一般没有后缀字母，若有后缀字幕“K”，则是可以超频的版本，若有后缀字幕“X”，则是顶级的至尊版（台式机至尊版CPU为6核心12线程）。</li>
-<li>M代表标准电压cpu是可以拆卸的；<br>U代表低电压节能的，可以拆卸的；<br>H是高电压的，是焊接的，不能拆卸；<br>X代表高性能，可拆卸的；<br>Q“Q”是“Quad”的缩写，即四核CPU；<br>Y代表超低电压的，除了省电，没别的优点的了，是不能拆卸的</li>
+        <h1 id="设计原则综述"><a href="#设计原则综述" class="headerlink" title="设计原则综述"></a>设计原则综述</h1><ul>
+<li>软件的可维护性与复用性<ul>
+<li>面向对象软件设计复用的目标在于实现支持可维护性的复用，而这要以面向对象软件设计原则为基础，这些设计原则首先都是复用的原则，遵循这些设计原则可以有效地提高系统的复用性，同时提高系统的可维护性</li>
+<li>面向对象设计原则也是对系统进行合理重构的指南针</li>
 </ul>
 </li>
 </ul>
-<h2 id="2-内存"><a href="#2-内存" class="headerlink" title="2 内存"></a>2 内存</h2><h2 id="3-显示器"><a href="#3-显示器" class="headerlink" title="3 显示器"></a>3 显示器</h2><h3 id="3-1-集成显卡、核芯显卡和独立显卡"><a href="#3-1-集成显卡、核芯显卡和独立显卡" class="headerlink" title="3.1 集成显卡、核芯显卡和独立显卡"></a>3.1 集成显卡、核芯显卡和独立显卡</h3><h3 id="3-2-色域"><a href="#3-2-色域" class="headerlink" title="3.2 色域"></a>3.2 色域</h3><ul>
-<li>NTSC</li>
-<li>sRGB</li>
+<a id="more"></a>
+<h1 id="单一职责原则"><a href="#单一职责原则" class="headerlink" title="单一职责原则"></a>单一职责原则</h1><ul>
+<li>定义<ul>
+<li>第一种表述：一个对象应该只包含单一的职责，并且该职责被完整地封装在一个类中</li>
+<li>第二种表述：就一个类而言，应该仅有一个引起它变化的原因</li>
 </ul>
-<h3 id="3-3-刷新率"><a href="#3-3-刷新率" class="headerlink" title="3.3 刷新率"></a>3.3 刷新率</h3><h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p>[1] <a href="https://www.quora.com/What-are-the-differences-between-U-M-QM-MQ-and-HQ-processors-of-Intel-to-consider-when-buying-a-laptop" target="_blank" rel="noopener">Quora</a></p>
-<p>[2] <a href="https://blog.51cto.com/sndapk/1564338" target="_blank" rel="noopener">Intel 笔记本 CPU 型号后缀详解 (M, U, QM, MQ, HQ, XM)</a></p>
-<p>[3] <a href="http://bbs.donglishuzhai.net/thread-735-1-1.html" target="_blank" rel="noopener">Intel 笔记本 CPU，型号后面的 U，M，H，X，MQ，HQ，QM，MX，PM 都是什么意思？</a></p>
-<p>[4] <a href="[UserBenchmark](https://cpu.userbenchmark.com/Compare/Intel-Core-i7-8550U-vs-Intel-Core-i5-8250U/m320742vsm338266">测评 1：i7-8550U vs. i5-8250U</a>)</p>
-<p>[5] <a href="https://www.notebookcheck.net/8550U-vs-8250U_9208_9206.247596.0.html" target="_blank" rel="noopener">测评 2：i7-8550U vs. i5-8250U</a></p>
-<p>[6] <a href="https://www.toptenreviews.com/computers/articles/graphics-cards-integrated-vs.-dedicated/" target="_blank" rel="noopener">Integrated vs. Dedicated</a></p>
-<h1 id="更多"><a href="#更多" class="headerlink" title="更多"></a>更多</h1><p>[1] <a href="https://www.intel.cn/content/www/cn/zh/processors/processor-numbers.html?_ga=2.39581472.2077762575.1551265326-1577174799.1551265326" target="_blank" rel="noopener">Intel 官方处理器编号文档</a></p>
+</li>
+<li>分析<ul>
+<li>一个类（模块、方法）承担的职责越多，它被复用的可能性越小，而且耦合度也会过高</li>
+<li>类的职责主要表现在两个方面：数据职责和行为职责。数据职责通过属性来体现，行为职责通过方法来体现</li>
+<li>单一职责原则是实现高内聚、低耦合的指导方针</li>
+</ul>
+</li>
+</ul>
+<p><strong>例</strong></p>
+<p>假设一个基于 Java 的 C/S 系统的登陆模块的类图如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">+--------------------------------------+</span><br><span class="line">|               Login                  |</span><br><span class="line">+--------------------------------------+</span><br><span class="line">|                                      |</span><br><span class="line">+--------------------------------------+</span><br><span class="line">| + init(): void                       |</span><br><span class="line">| + display(): void                    |</span><br><span class="line">| + validate(): boolean                |</span><br><span class="line">| + getConnection(): Connection        |</span><br><span class="line">| + findUser(String username,          |</span><br><span class="line">|            String password): boolean |</span><br><span class="line">| + main(String args[]): void          |</span><br><span class="line">+--------------------------------------+</span><br></pre></td></tr></table></figure>
+<p>进行一下分析：</p>
+<ul>
+<li><p>首先，登陆模块的作用是验证用户和密码，返回验证的结果，所以 <code>validate()</code> 方法体现了这个类的职责</p>
+</li>
+<li><p><code>findUser(...)</code> 和 <code>getConnection()</code>：这个工作是 Data 层的工作</p>
+</li>
+<li><code>main()</code>：主方法，用于运行程序，应该是启动模块的方法，而不应该由登陆模块启动整个应用</li>
+</ul>
+<p>根据以上的分析，我们应该留下 <code>init()</code> <code>display()</code> <code>validate()</code> 方法，将其他的方法（职责）交给其他的类</p>
+<p>再看，其实 <code>getConnection()</code> 方法也可以从 <code>DataService</code> 中分离出来，因为一个有一定规模的系统中，一定不止有一个 <code>DataService</code>，而所有的 <code>DataService</code> 都需要连接数据库。</p>
+<p>最终版本：</p>
+
+<h1 id="开闭原则"><a href="#开闭原则" class="headerlink" title="开闭原则"></a>开闭原则</h1><p>一个软件实体应该对扩展开放，对修改关闭。也就是说在设计一个模块的时候应该使这个模块能够在不改变内部代码/设计的情况下改变这个模块的行为（扩展）。</p>
+<ul>
+<li><p>软件实体可以指一个软件模块、一个由多个类组成的局部结构或一个独立的类</p>
+</li>
+<li><p>关键是 “抽象化”</p>
+</li>
+<li>更具体的原则：对可变性封装原则，即找到系统中的可变因素，并将其封装</li>
+</ul>
+<h1 id="里氏替换原则"><a href="#里氏替换原则" class="headerlink" title="里氏替换原则"></a>里氏替换原则</h1><p>使用基类的地方应该都能够使用相应的子类代替，而无需了解子类的细节（透明），<strong>反之不成立</strong>。</p>
+<p>所以在程序中尽量使用基类类型来对对象进行定义，而在运行时再确定其子类类型，用子类对象来替换父类对象。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">List&lt;String&gt; l = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br></pre></td></tr></table></figure>
+<h1 id="依赖倒置原则"><a href="#依赖倒置原则" class="headerlink" title="依赖倒置原则"></a>依赖倒置原则</h1><p>依赖注入</p>
+<ul>
+<li>构造注入</li>
+<li>设值注入</li>
+<li>接口注入</li>
+</ul>
+<h1 id="接口隔离原则"><a href="#接口隔离原则" class="headerlink" title="接口隔离原则"></a>接口隔离原则</h1><p>针对接口编程，不要针对实现编程</p>
+<ul>
+<li>“接口” 并不是某个语言中的语法特性（比如 Java 的 <code>interface</code>）而是合约（方法）</li>
+</ul>
+<h1 id="合成复用原则"><a href="#合成复用原则" class="headerlink" title="合成复用原则"></a>合成复用原则</h1><p>也叫 “组合/聚合复用原则”</p>
+<h2 id="与依赖倒置原则的关系"><a href="#与依赖倒置原则的关系" class="headerlink" title="与依赖倒置原则的关系"></a>与依赖倒置原则的关系</h2><p>一个经典的例子：Java 中的 Stack 类继承自 Vector</p>
+<img src="/2019/01/02/oo-design-principles/stack-extends-vector.png">
+<p>但其实仔细想想，Stack 是一个（is a）Vector 吗？</p>
+<p>并不是，Stack 只是部分地使用了 Vector 的功能，所以更合理的方式应该是 Stack 持有一个（has a）Vector 的引用，如下：</p>
+<img src="/2019/01/02/oo-design-principles/stack-aggregates-vector.png">
+<p>再进一步思考，其实 Stack 也并不是非要使用 Vector，其实它需要的只是一个<strong>顺序的容器</strong>，能够支持在一端增/删/查即可。所以可以进一步地修改，令 Vector 继承自 List，Stack 持有 List 的引用，这样我们甚至可以在运行时动态地修改 Stack 所依赖的顺序容器，而不会影响 Stack 的正常使用。这样的设计提供了更大的灵活性，同时也只给 Stack 提供了必要的接口（这里也有接口隔离原则）。</p>
+<p>将 Stack 由继承自 Vector 改为持有 Vector 的引用，遵循了合成复用原则；而将 Stack 由持有 Vector（具体类）的引用改为持有 List（抽象接口）的引用，遵循了依赖倒置原则。</p>
+<img src="/2019/01/02/oo-design-principles/stack-aggregates-list.png">
+<h1 id="迪米特法则"><a href="#迪米特法则" class="headerlink" title="迪米特法则"></a>迪米特法则</h1><p>也叫 “最少知识原则”</p>
 
       
     </div>
@@ -452,8 +506,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/02/01/cpp-basic-type-cast/" rel="next" title="C++ 学习笔记 - 基础篇：类型转换">
-                <i class="fa fa-chevron-left"></i> C++ 学习笔记 - 基础篇：类型转换
+              <a href="/2019/01/02/soft-eng-test-logical-coverage/" rel="next" title="软件测试基础：逻辑覆盖法">
+                <i class="fa fa-chevron-left"></i> 软件测试基础：逻辑覆盖法
               </a>
             
           </div>
@@ -462,8 +516,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/03/26/c-to-asm/" rel="prev" title="从 C 到汇编">
-                从 C 到汇编 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/01/02/oo-design-design-patterns/" rel="prev" title="面向对象软件设计：设计模式">
+                面向对象软件设计：设计模式 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -541,7 +595,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">129</span>
+                  <span class="site-state-item-count">130</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -619,7 +673,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#笔记本电脑选购总结"><span class="nav-number">1.</span> <span class="nav-text">笔记本电脑选购总结</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-处理器"><span class="nav-number">1.1.</span> <span class="nav-text">1 处理器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-处理器型号解析-1-2-3"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.1 处理器型号解析$^{[1][2][3]}$</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-内存"><span class="nav-number">1.2.</span> <span class="nav-text">2 内存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-显示器"><span class="nav-number">1.3.</span> <span class="nav-text">3 显示器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-集成显卡、核芯显卡和独立显卡"><span class="nav-number">1.3.1.</span> <span class="nav-text">3.1 集成显卡、核芯显卡和独立显卡</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-色域"><span class="nav-number">1.3.2.</span> <span class="nav-text">3.2 色域</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-刷新率"><span class="nav-number">1.3.3.</span> <span class="nav-text">3.3 刷新率</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">2.</span> <span class="nav-text">参考</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#更多"><span class="nav-number">3.</span> <span class="nav-text">更多</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#设计原则综述"><span class="nav-number">1.</span> <span class="nav-text">设计原则综述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#单一职责原则"><span class="nav-number">2.</span> <span class="nav-text">单一职责原则</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#开闭原则"><span class="nav-number">3.</span> <span class="nav-text">开闭原则</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#里氏替换原则"><span class="nav-number">4.</span> <span class="nav-text">里氏替换原则</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#依赖倒置原则"><span class="nav-number">5.</span> <span class="nav-text">依赖倒置原则</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#接口隔离原则"><span class="nav-number">6.</span> <span class="nav-text">接口隔离原则</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#合成复用原则"><span class="nav-number">7.</span> <span class="nav-text">合成复用原则</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#与依赖倒置原则的关系"><span class="nav-number">7.1.</span> <span class="nav-text">与依赖倒置原则的关系</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#迪米特法则"><span class="nav-number">8.</span> <span class="nav-text">迪米特法则</span></a></li></ol></div>
             
 
           </div>
@@ -845,40 +899,7 @@
   <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
   
 
-  <script src="/js/src/algolia-search.js?v=5.1.4"></script>
-
-
-
-  
-
-  
-
-  
-
-  
-  
-
-  
-  
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
-      });
-    </script>
-
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-      });
-    </script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+  <script src="/js/src/algolia-search.js?v=5.1.4"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
 </script>
@@ -896,6 +917,19 @@
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
   
 
 

@@ -72,7 +72,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="Design,OOP,">
 
 
 
@@ -85,21 +85,25 @@
 
 
 
-<meta name="description" content="设计原则综述 软件的可维护性与复用性 面向对象软件设计复用的目标在于实现支持可维护性的复用，而这要以面向对象软件设计原则为基础，这些设计原则首先都是复用的原则，遵循这些设计原则可以有效地提高系统的复用性，同时提高系统的可维护性 面向对象设计原则也是对系统进行合理重构的指南针">
+<meta name="description" content="关系实体之间的关系依赖 关联 聚合 组合 抽象泛化 实现 参考[1] 实体之间的关系可参见 Association, Aggregation, Composition, Abstraction, Generalization, Realization, Dependency">
+<meta name="keywords" content="Design,OOP">
 <meta property="og:type" content="article">
-<meta property="og:title" content="面向对象软件设计：设计原则">
-<meta property="og:url" content="http://yoursite.com/2019/01/02/面向对象软件设计：设计原则/index.html">
+<meta property="og:title" content="面向对象软件设计：UML 基础">
+<meta property="og:url" content="http://yoursite.com/2019/01/27/oo-design-foundations-of-uml/index.html">
 <meta property="og:site_name" content="RHANQTL">
-<meta property="og:description" content="设计原则综述 软件的可维护性与复用性 面向对象软件设计复用的目标在于实现支持可维护性的复用，而这要以面向对象软件设计原则为基础，这些设计原则首先都是复用的原则，遵循这些设计原则可以有效地提高系统的复用性，同时提高系统的可维护性 面向对象设计原则也是对系统进行合理重构的指南针">
+<meta property="og:description" content="关系实体之间的关系依赖 关联 聚合 组合 抽象泛化 实现 参考[1] 实体之间的关系可参见 Association, Aggregation, Composition, Abstraction, Generalization, Realization, Dependency">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/2019/01/02/面向对象软件设计：设计原则/stack-extends-vector.png">
-<meta property="og:image" content="http://yoursite.com/2019/01/02/面向对象软件设计：设计原则/stack-aggregates-vector.png">
-<meta property="og:image" content="http://yoursite.com/2019/01/02/面向对象软件设计：设计原则/stack-aggregates-list.png">
-<meta property="og:updated_time" content="2019-01-03T11:35:48.982Z">
+<meta property="og:image" content="http://yoursite.com/2019/01/27/oo-design-foundations-of-uml/dependency.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/01/27/oo-design-foundations-of-uml/association.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/01/27/oo-design-foundations-of-uml/aggregation.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/01/27/oo-design-foundations-of-uml/composition.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/01/27/oo-design-foundations-of-uml/generalization.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/01/27/oo-design-foundations-of-uml/realization.jpg">
+<meta property="og:updated_time" content="2019-01-27T17:54:24.393Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="面向对象软件设计：设计原则">
-<meta name="twitter:description" content="设计原则综述 软件的可维护性与复用性 面向对象软件设计复用的目标在于实现支持可维护性的复用，而这要以面向对象软件设计原则为基础，这些设计原则首先都是复用的原则，遵循这些设计原则可以有效地提高系统的复用性，同时提高系统的可维护性 面向对象设计原则也是对系统进行合理重构的指南针">
-<meta name="twitter:image" content="http://yoursite.com/2019/01/02/面向对象软件设计：设计原则/stack-extends-vector.png">
+<meta name="twitter:title" content="面向对象软件设计：UML 基础">
+<meta name="twitter:description" content="关系实体之间的关系依赖 关联 聚合 组合 抽象泛化 实现 参考[1] 实体之间的关系可参见 Association, Aggregation, Composition, Abstraction, Generalization, Realization, Dependency">
+<meta name="twitter:image" content="http://yoursite.com/2019/01/27/oo-design-foundations-of-uml/dependency.jpg">
 
 
 
@@ -129,13 +133,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/01/02/面向对象软件设计：设计原则/">
+  <link rel="canonical" href="http://yoursite.com/2019/01/27/oo-design-foundations-of-uml/">
 
 
 
 
 
-  <title>面向对象软件设计：设计原则 | RHANQTL</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>面向对象软件设计：UML 基础 | RHANQTL</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -310,7 +314,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/02/面向对象软件设计：设计原则/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/27/oo-design-foundations-of-uml/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Han Qi">
@@ -327,7 +331,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">面向对象软件设计：设计原则</h1>
+          <h1 class="post-title" itemprop="name headline">面向对象软件设计：UML 基础</h1>
         
 
         <div class="post-meta">
@@ -339,8 +343,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-02T11:26:04+08:00">
-                2019-01-02
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-27T01:56:48+08:00">
+                2019-01-27
               </time>
             
 
@@ -349,39 +353,6 @@
             
           </span>
 
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Design/" itemprop="url" rel="index">
-                    <span itemprop="name">Design</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Design/OOP/" itemprop="url" rel="index">
-                    <span itemprop="name">OOP</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -415,73 +386,13 @@
       
 
       
-        <h1 id="设计原则综述"><a href="#设计原则综述" class="headerlink" title="设计原则综述"></a>设计原则综述</h1><ul>
-<li>软件的可维护性与复用性<ul>
-<li>面向对象软件设计复用的目标在于实现支持可维护性的复用，而这要以面向对象软件设计原则为基础，这些设计原则首先都是复用的原则，遵循这些设计原则可以有效地提高系统的复用性，同时提高系统的可维护性</li>
-<li>面向对象设计原则也是对系统进行合理重构的指南针</li>
-</ul>
-</li>
-</ul>
-<a id="more"></a>
-<h1 id="单一职责原则"><a href="#单一职责原则" class="headerlink" title="单一职责原则"></a>单一职责原则</h1><ul>
-<li>定义<ul>
-<li>第一种表述：一个对象应该只包含单一的职责，并且该职责被完整地封装在一个类中</li>
-<li>第二种表述：就一个类而言，应该仅有一个引起它变化的原因</li>
-</ul>
-</li>
-<li>分析<ul>
-<li>一个类（模块、方法）承担的职责越多，它被复用的可能性越小，而且耦合度也会过高</li>
-<li>类的职责主要表现在两个方面：数据职责和行为职责。数据职责通过属性来体现，行为职责通过方法来体现</li>
-<li>单一职责原则是实现高内聚、低耦合的指导方针</li>
-</ul>
-</li>
-</ul>
-<p><strong>例</strong></p>
-<p>假设一个基于 Java 的 C/S 系统的登陆模块的类图如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">+--------------------------------------+</span><br><span class="line">|               Login                  |</span><br><span class="line">+--------------------------------------+</span><br><span class="line">|                                      |</span><br><span class="line">+--------------------------------------+</span><br><span class="line">| + init(): void                       |</span><br><span class="line">| + display(): void                    |</span><br><span class="line">| + validate(): boolean                |</span><br><span class="line">| + getConnection(): Connection        |</span><br><span class="line">| + findUser(String username,          |</span><br><span class="line">|            String password): boolean |</span><br><span class="line">| + main(String args[]): void          |</span><br><span class="line">+--------------------------------------+</span><br></pre></td></tr></table></figure>
-<p>进行一下分析：</p>
-<ul>
-<li><p>首先，登陆模块的作用是验证用户和密码，返回验证的结果，所以 <code>validate()</code> 方法体现了这个类的职责</p>
-</li>
-<li><p><code>findUser(...)</code> 和 <code>getConnection()</code>：这个工作是 Data 层的工作</p>
-</li>
-<li><code>main()</code>：主方法，用于运行程序，应该是启动模块的方法，而不应该由登陆模块启动整个应用</li>
-</ul>
-<p>根据以上的分析，我们应该留下 <code>init()</code> <code>display()</code> <code>validate()</code> 方法，将其他的方法（职责）交给其他的类</p>
-<p>再看，其实 <code>getConnection()</code> 方法也可以从 <code>DataService</code> 中分离出来，因为一个有一定规模的系统中，一定不止有一个 <code>DataService</code>，而所有的 <code>DataService</code> 都需要连接数据库。</p>
-<p>最终版本：</p>
-
-<h1 id="开闭原则"><a href="#开闭原则" class="headerlink" title="开闭原则"></a>开闭原则</h1><p>一个软件实体应该对扩展开放，对修改关闭。也就是说在设计一个模块的时候应该使这个模块能够在不改变内部代码/设计的情况下改变这个模块的行为（扩展）。</p>
-<ul>
-<li><p>软件实体可以指一个软件模块、一个由多个类组成的局部结构或一个独立的类</p>
-</li>
-<li><p>关键是 “抽象化”</p>
-</li>
-<li>更具体的原则：对可变性封装原则，即找到系统中的可变因素，并将其封装</li>
-</ul>
-<h1 id="里氏替换原则"><a href="#里氏替换原则" class="headerlink" title="里氏替换原则"></a>里氏替换原则</h1><p>使用基类的地方应该都能够使用相应的子类代替，而无需了解子类的细节（透明），<strong>反之不成立</strong>。</p>
-<p>所以在程序中尽量使用基类类型来对对象进行定义，而在运行时再确定其子类类型，用子类对象来替换父类对象。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">List&lt;String&gt; l = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br></pre></td></tr></table></figure>
-<h1 id="依赖倒置原则"><a href="#依赖倒置原则" class="headerlink" title="依赖倒置原则"></a>依赖倒置原则</h1><p>依赖注入</p>
-<ul>
-<li>构造注入</li>
-<li>设值注入</li>
-<li>接口注入</li>
-</ul>
-<h1 id="接口隔离原则"><a href="#接口隔离原则" class="headerlink" title="接口隔离原则"></a>接口隔离原则</h1><p>针对接口编程，不要针对实现编程</p>
-<ul>
-<li>“接口” 并不是某个语言中的语法特性（比如 Java 的 <code>interface</code>）而是合约（方法）</li>
-</ul>
-<h1 id="合成复用原则"><a href="#合成复用原则" class="headerlink" title="合成复用原则"></a>合成复用原则</h1><p>也叫 “组合/聚合复用原则”</p>
-<h2 id="与依赖倒置原则的关系"><a href="#与依赖倒置原则的关系" class="headerlink" title="与依赖倒置原则的关系"></a>与依赖倒置原则的关系</h2><p>一个经典的例子：Java 中的 Stack 类继承自 Vector</p>
-<img src="/2019/01/02/面向对象软件设计：设计原则/stack-extends-vector.png">
-<p>但其实仔细想想，Stack 是一个（is a）Vector 吗？</p>
-<p>并不是，Stack 只是部分地使用了 Vector 的功能，所以更合理的方式应该是 Stack 持有一个（has a）Vector 的引用，如下：</p>
-<img src="/2019/01/02/面向对象软件设计：设计原则/stack-aggregates-vector.png">
-<p>再进一步思考，其实 Stack 也并不是非要使用 Vector，其实它需要的只是一个<strong>顺序的容器</strong>，能够支持在一端增/删/查即可。所以可以进一步地修改，令 Vector 继承自 List，Stack 持有 List 的引用，这样我们甚至可以在运行时动态地修改 Stack 所依赖的顺序容器，而不会影响 Stack 的正常使用。这样的设计提供了更大的灵活性，同时也只给 Stack 提供了必要的接口（这里也有接口隔离原则）。</p>
-<p>将 Stack 由继承自 Vector 改为持有 Vector 的引用，遵循了合成复用原则；而将 Stack 由持有 Vector（具体类）的引用改为持有 List（抽象接口）的引用，遵循了依赖倒置原则。</p>
-<img src="/2019/01/02/面向对象软件设计：设计原则/stack-aggregates-list.png">
-<h1 id="迪米特法则"><a href="#迪米特法则" class="headerlink" title="迪米特法则"></a>迪米特法则</h1><p>也叫 “最少知识原则”</p>
+        <h1 id="关系"><a href="#关系" class="headerlink" title="关系"></a>关系</h1><h1 id="实体之间的关系"><a href="#实体之间的关系" class="headerlink" title="实体之间的关系"></a>实体之间的关系</h1><h2 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h2><img src="/2019/01/27/oo-design-foundations-of-uml/dependency.jpg">
+<h2 id="关联"><a href="#关联" class="headerlink" title="关联"></a>关联</h2><img src="/2019/01/27/oo-design-foundations-of-uml/association.jpg">
+<h2 id="聚合"><a href="#聚合" class="headerlink" title="聚合"></a>聚合</h2><img src="/2019/01/27/oo-design-foundations-of-uml/aggregation.jpg">
+<h2 id="组合"><a href="#组合" class="headerlink" title="组合"></a>组合</h2><img src="/2019/01/27/oo-design-foundations-of-uml/composition.jpg">
+<h2 id="抽象"><a href="#抽象" class="headerlink" title="抽象"></a>抽象</h2><h2 id="泛化"><a href="#泛化" class="headerlink" title="泛化"></a>泛化</h2><img src="/2019/01/27/oo-design-foundations-of-uml/generalization.jpg">
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><img src="/2019/01/27/oo-design-foundations-of-uml/realization.jpg">
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p>[1] 实体之间的关系可参见 <a href="https://javapapers.com/oops/association-aggregation-composition-abstraction-generalization-realization-dependency/" target="_blank" rel="noopener">Association, Aggregation, Composition, Abstraction, Generalization, Realization, Dependency</a></p>
 
       
     </div>
@@ -497,6 +408,14 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/Design/" rel="tag"># Design</a>
+          
+            <a href="/tags/OOP/" rel="tag"># OOP</a>
+          
+        </div>
+      
 
       
       
@@ -506,8 +425,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/01/02/soft-eng-test-logical-coverage/" rel="next" title="软件测试基础：逻辑覆盖法">
-                <i class="fa fa-chevron-left"></i> 软件测试基础：逻辑覆盖法
+              <a href="/2019/01/18/POJ-1753：Flip-Game/" rel="next" title="POJ 1753：Flip Game">
+                <i class="fa fa-chevron-left"></i> POJ 1753：Flip Game
               </a>
             
           </div>
@@ -516,8 +435,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/01/02/面向对象软件设计：设计模式/" rel="prev" title="面向对象软件设计：设计模式">
-                面向对象软件设计：设计模式 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/01/27/java-basic-enum/" rel="prev" title="Java 学习笔记 - 基础篇：枚举类">
+                Java 学习笔记 - 基础篇：枚举类 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -595,7 +514,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">129</span>
+                  <span class="site-state-item-count">130</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -673,7 +592,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#设计原则综述"><span class="nav-number">1.</span> <span class="nav-text">设计原则综述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#单一职责原则"><span class="nav-number">2.</span> <span class="nav-text">单一职责原则</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#开闭原则"><span class="nav-number">3.</span> <span class="nav-text">开闭原则</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#里氏替换原则"><span class="nav-number">4.</span> <span class="nav-text">里氏替换原则</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#依赖倒置原则"><span class="nav-number">5.</span> <span class="nav-text">依赖倒置原则</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#接口隔离原则"><span class="nav-number">6.</span> <span class="nav-text">接口隔离原则</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#合成复用原则"><span class="nav-number">7.</span> <span class="nav-text">合成复用原则</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#与依赖倒置原则的关系"><span class="nav-number">7.1.</span> <span class="nav-text">与依赖倒置原则的关系</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#迪米特法则"><span class="nav-number">8.</span> <span class="nav-text">迪米特法则</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#关系"><span class="nav-number">1.</span> <span class="nav-text">关系</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实体之间的关系"><span class="nav-number">2.</span> <span class="nav-text">实体之间的关系</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#依赖"><span class="nav-number">2.1.</span> <span class="nav-text">依赖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关联"><span class="nav-number">2.2.</span> <span class="nav-text">关联</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#聚合"><span class="nav-number">2.3.</span> <span class="nav-text">聚合</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组合"><span class="nav-number">2.4.</span> <span class="nav-text">组合</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#抽象"><span class="nav-number">2.5.</span> <span class="nav-text">抽象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#泛化"><span class="nav-number">2.6.</span> <span class="nav-text">泛化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现"><span class="nav-number">2.7.</span> <span class="nav-text">实现</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">3.</span> <span class="nav-text">参考</span></a></li></ol></div>
             
 
           </div>
