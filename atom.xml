@@ -5,9 +5,9 @@
   <subtitle>学习使我快乐</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="blog.rhanqtl.com/"/>
+  <link href="http://yoursite.com/"/>
   <updated>2019-05-17T08:29:05.521Z</updated>
-  <id>blog.rhanqtl.com/</id>
+  <id>http://yoursite.com/</id>
   
   <author>
     <name>Han Qi</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>latex-intro</title>
-    <link href="blog.rhanqtl.com/2019/05/17/latex-intro/"/>
-    <id>blog.rhanqtl.com/2019/05/17/latex-intro/</id>
+    <link href="http://yoursite.com/2019/05/17/latex-intro/"/>
+    <id>http://yoursite.com/2019/05/17/latex-intro/</id>
     <published>2019-05-17T08:13:38.000Z</published>
     <updated>2019-05-17T08:29:05.521Z</updated>
     
@@ -35,15 +35,15 @@
     
     </summary>
     
-      <category term="LaTeX" scheme="blog.rhanqtl.com/categories/LaTeX/"/>
+      <category term="LaTeX" scheme="http://yoursite.com/categories/LaTeX/"/>
     
     
   </entry>
   
   <entry>
     <title>使用 LaTeX 绘图：TikZ 教程</title>
-    <link href="blog.rhanqtl.com/2019/05/17/latex-creating-graphics-using-tikz/"/>
-    <id>blog.rhanqtl.com/2019/05/17/latex-creating-graphics-using-tikz/</id>
+    <link href="http://yoursite.com/2019/05/17/latex-creating-graphics-using-tikz/"/>
+    <id>http://yoursite.com/2019/05/17/latex-creating-graphics-using-tikz/</id>
     <published>2019-05-17T08:13:25.000Z</published>
     <updated>2019-05-17T08:28:14.340Z</updated>
     
@@ -59,15 +59,15 @@
     
     </summary>
     
-      <category term="LaTeX" scheme="blog.rhanqtl.com/categories/LaTeX/"/>
+      <category term="LaTeX" scheme="http://yoursite.com/categories/LaTeX/"/>
     
     
   </entry>
   
   <entry>
     <title>Lisp 的本质</title>
-    <link href="blog.rhanqtl.com/2019/05/17/fp-lisp-the-nature-of-lisp/"/>
-    <id>blog.rhanqtl.com/2019/05/17/fp-lisp-the-nature-of-lisp/</id>
+    <link href="http://yoursite.com/2019/05/17/fp-lisp-the-nature-of-lisp/"/>
+    <id>http://yoursite.com/2019/05/17/fp-lisp-the-nature-of-lisp/</id>
     <published>2019-05-17T08:05:31.000Z</published>
     <updated>2019-05-17T08:42:06.861Z</updated>
     
@@ -79,17 +79,17 @@
     
     </summary>
     
-      <category term="函数式编程 (Functional Programming)" scheme="blog.rhanqtl.com/categories/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B-Functional-Programming/"/>
+      <category term="函数式编程 (Functional Programming)" scheme="http://yoursite.com/categories/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B-Functional-Programming/"/>
     
-      <category term="Lisp" scheme="blog.rhanqtl.com/categories/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B-Functional-Programming/Lisp/"/>
+      <category term="Lisp" scheme="http://yoursite.com/categories/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B-Functional-Programming/Lisp/"/>
     
     
   </entry>
   
   <entry>
     <title>math-symbolic-computation-python</title>
-    <link href="blog.rhanqtl.com/2019/05/15/math-symbolic-computation-python/"/>
-    <id>blog.rhanqtl.com/2019/05/15/math-symbolic-computation-python/</id>
+    <link href="http://yoursite.com/2019/05/15/math-symbolic-computation-python/"/>
+    <id>http://yoursite.com/2019/05/15/math-symbolic-computation-python/</id>
     <published>2019-05-15T15:36:13.000Z</published>
     <updated>2019-05-17T09:02:26.037Z</updated>
     
@@ -110,8 +110,8 @@
   
   <entry>
     <title>ml-dl-dropout</title>
-    <link href="blog.rhanqtl.com/2019/05/15/ml-dl-dropout/"/>
-    <id>blog.rhanqtl.com/2019/05/15/ml-dl-dropout/</id>
+    <link href="http://yoursite.com/2019/05/15/ml-dl-dropout/"/>
+    <id>http://yoursite.com/2019/05/15/ml-dl-dropout/</id>
     <published>2019-05-15T12:37:35.000Z</published>
     <updated>2019-05-17T09:02:59.248Z</updated>
     
@@ -121,17 +121,17 @@
     
     </summary>
     
-      <category term="机器学习 (Machine Learning)" scheme="blog.rhanqtl.com/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-Machine-Learning/"/>
+      <category term="机器学习 (Machine Learning)" scheme="http://yoursite.com/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-Machine-Learning/"/>
     
-      <category term="深度学习 (Deep Learning)" scheme="blog.rhanqtl.com/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-Machine-Learning/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-Deep-Learning/"/>
+      <category term="深度学习 (Deep Learning)" scheme="http://yoursite.com/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-Machine-Learning/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-Deep-Learning/"/>
     
     
   </entry>
   
   <entry>
     <title>平衡二叉查找树 - AVL 树</title>
-    <link href="blog.rhanqtl.com/2019/05/15/algorithms-search-avl-tree/"/>
-    <id>blog.rhanqtl.com/2019/05/15/algorithms-search-avl-tree/</id>
+    <link href="http://yoursite.com/2019/05/15/algorithms-search-avl-tree/"/>
+    <id>http://yoursite.com/2019/05/15/algorithms-search-avl-tree/</id>
     <published>2019-05-15T08:55:38.000Z</published>
     <updated>2019-05-17T08:57:42.949Z</updated>
     
@@ -142,17 +142,17 @@
     
     </summary>
     
-      <category term="算法 (Algorithms)" scheme="blog.rhanqtl.com/categories/%E7%AE%97%E6%B3%95-Algorithms/"/>
+      <category term="算法 (Algorithms)" scheme="http://yoursite.com/categories/%E7%AE%97%E6%B3%95-Algorithms/"/>
     
-      <category term="树 (Tree)" scheme="blog.rhanqtl.com/categories/%E7%AE%97%E6%B3%95-Algorithms/%E6%A0%91-Tree/"/>
+      <category term="树 (Tree)" scheme="http://yoursite.com/categories/%E7%AE%97%E6%B3%95-Algorithms/%E6%A0%91-Tree/"/>
     
     
   </entry>
   
   <entry>
     <title>others-recommender-systems-intro</title>
-    <link href="blog.rhanqtl.com/2019/05/15/others-recommender-systems-intro/"/>
-    <id>blog.rhanqtl.com/2019/05/15/others-recommender-systems-intro/</id>
+    <link href="http://yoursite.com/2019/05/15/others-recommender-systems-intro/"/>
+    <id>http://yoursite.com/2019/05/15/others-recommender-systems-intro/</id>
     <published>2019-05-15T07:47:06.000Z</published>
     <updated>2019-05-17T09:03:37.769Z</updated>
     
@@ -168,15 +168,15 @@
     
     </summary>
     
-      <category term="推荐系统 (Recommender System)" scheme="blog.rhanqtl.com/categories/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F-Recommender-System/"/>
+      <category term="推荐系统 (Recommender System)" scheme="http://yoursite.com/categories/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F-Recommender-System/"/>
     
     
   </entry>
   
   <entry>
     <title>ml-dl-softmax</title>
-    <link href="blog.rhanqtl.com/2019/05/15/ml-dl-softmax/"/>
-    <id>blog.rhanqtl.com/2019/05/15/ml-dl-softmax/</id>
+    <link href="http://yoursite.com/2019/05/15/ml-dl-softmax/"/>
+    <id>http://yoursite.com/2019/05/15/ml-dl-softmax/</id>
     <published>2019-05-15T07:06:15.000Z</published>
     <updated>2019-05-17T09:24:56.398Z</updated>
     
@@ -191,8 +191,8 @@
   
   <entry>
     <title>深度学习路线 &amp; 资料收集</title>
-    <link href="blog.rhanqtl.com/2019/05/14/ml-dl-roadmap/"/>
-    <id>blog.rhanqtl.com/2019/05/14/ml-dl-roadmap/</id>
+    <link href="http://yoursite.com/2019/05/14/ml-dl-roadmap/"/>
+    <id>http://yoursite.com/2019/05/14/ml-dl-roadmap/</id>
     <published>2019-05-14T13:35:19.000Z</published>
     <updated>2019-05-17T09:02:04.383Z</updated>
     
@@ -208,17 +208,17 @@
     
     </summary>
     
-      <category term="机器学习 (Machine Learning)" scheme="blog.rhanqtl.com/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-Machine-Learning/"/>
+      <category term="机器学习 (Machine Learning)" scheme="http://yoursite.com/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-Machine-Learning/"/>
     
-      <category term="深度学习 (Deep Learning)" scheme="blog.rhanqtl.com/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-Machine-Learning/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-Deep-Learning/"/>
+      <category term="深度学习 (Deep Learning)" scheme="http://yoursite.com/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-Machine-Learning/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-Deep-Learning/"/>
     
     
   </entry>
   
   <entry>
     <title>ml-dl-deep-in-cnn</title>
-    <link href="blog.rhanqtl.com/2019/05/14/ml-dl-deep-in-cnn/"/>
-    <id>blog.rhanqtl.com/2019/05/14/ml-dl-deep-in-cnn/</id>
+    <link href="http://yoursite.com/2019/05/14/ml-dl-deep-in-cnn/"/>
+    <id>http://yoursite.com/2019/05/14/ml-dl-deep-in-cnn/</id>
     <published>2019-05-14T01:53:03.000Z</published>
     <updated>2019-05-17T09:07:38.140Z</updated>
     
@@ -239,8 +239,8 @@
   
   <entry>
     <title>ml-dl-deep-in-rnn</title>
-    <link href="blog.rhanqtl.com/2019/05/14/ml-dl-deep-in-rnn/"/>
-    <id>blog.rhanqtl.com/2019/05/14/ml-dl-deep-in-rnn/</id>
+    <link href="http://yoursite.com/2019/05/14/ml-dl-deep-in-rnn/"/>
+    <id>http://yoursite.com/2019/05/14/ml-dl-deep-in-rnn/</id>
     <published>2019-05-14T01:52:58.000Z</published>
     <updated>2019-05-17T09:07:47.819Z</updated>
     
@@ -261,8 +261,8 @@
   
   <entry>
     <title>数据可视化 - 原则</title>
-    <link href="blog.rhanqtl.com/2019/05/14/data-visual-principles/"/>
-    <id>blog.rhanqtl.com/2019/05/14/data-visual-principles/</id>
+    <link href="http://yoursite.com/2019/05/14/data-visual-principles/"/>
+    <id>http://yoursite.com/2019/05/14/data-visual-principles/</id>
     <published>2019-05-14T00:04:12.000Z</published>
     <updated>2019-05-14T00:15:25.576Z</updated>
     
@@ -278,15 +278,15 @@
     
     </summary>
     
-      <category term="数据可视化 (Data Visualization)" scheme="blog.rhanqtl.com/categories/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96-Data-Visualization/"/>
+      <category term="数据可视化 (Data Visualization)" scheme="http://yoursite.com/categories/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96-Data-Visualization/"/>
     
     
   </entry>
   
   <entry>
     <title>数据可视化 - 引言</title>
-    <link href="blog.rhanqtl.com/2019/05/14/data-visual-intro/"/>
-    <id>blog.rhanqtl.com/2019/05/14/data-visual-intro/</id>
+    <link href="http://yoursite.com/2019/05/14/data-visual-intro/"/>
+    <id>http://yoursite.com/2019/05/14/data-visual-intro/</id>
     <published>2019-05-14T00:03:53.000Z</published>
     <updated>2019-05-14T00:06:18.045Z</updated>
     
@@ -294,15 +294,15 @@
     
     </summary>
     
-      <category term="数据可视化 (Data Visualization)" scheme="blog.rhanqtl.com/categories/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96-Data-Visualization/"/>
+      <category term="数据可视化 (Data Visualization)" scheme="http://yoursite.com/categories/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96-Data-Visualization/"/>
     
     
   </entry>
   
   <entry>
     <title>数据可视化 - Python 中的数据可视化工具</title>
-    <link href="blog.rhanqtl.com/2019/05/13/data-visual-python-tools-intro/"/>
-    <id>blog.rhanqtl.com/2019/05/13/data-visual-python-tools-intro/</id>
+    <link href="http://yoursite.com/2019/05/13/data-visual-python-tools-intro/"/>
+    <id>http://yoursite.com/2019/05/13/data-visual-python-tools-intro/</id>
     <published>2019-05-13T10:17:10.000Z</published>
     <updated>2019-05-13T11:42:41.069Z</updated>
     
@@ -312,15 +312,15 @@
     
     </summary>
     
-      <category term="数据可视化 (Data Visualization)" scheme="blog.rhanqtl.com/categories/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96-Data-Visualization/"/>
+      <category term="数据可视化 (Data Visualization)" scheme="http://yoursite.com/categories/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96-Data-Visualization/"/>
     
     
   </entry>
   
   <entry>
     <title>机器学习中常用的数据集</title>
-    <link href="blog.rhanqtl.com/2019/05/12/ml-commonly-used-datasets/"/>
-    <id>blog.rhanqtl.com/2019/05/12/ml-commonly-used-datasets/</id>
+    <link href="http://yoursite.com/2019/05/12/ml-commonly-used-datasets/"/>
+    <id>http://yoursite.com/2019/05/12/ml-commonly-used-datasets/</id>
     <published>2019-05-12T15:01:58.000Z</published>
     <updated>2019-05-12T15:03:03.342Z</updated>
     
@@ -336,15 +336,15 @@
     
     </summary>
     
-      <category term="Machine Learning" scheme="blog.rhanqtl.com/categories/Machine-Learning/"/>
+      <category term="Machine Learning" scheme="http://yoursite.com/categories/Machine-Learning/"/>
     
     
   </entry>
   
   <entry>
     <title>Redis 学习笔记 (1)</title>
-    <link href="blog.rhanqtl.com/2019/05/12/redis-intro/"/>
-    <id>blog.rhanqtl.com/2019/05/12/redis-intro/</id>
+    <link href="http://yoursite.com/2019/05/12/redis-intro/"/>
+    <id>http://yoursite.com/2019/05/12/redis-intro/</id>
     <published>2019-05-12T10:26:06.000Z</published>
     <updated>2019-05-17T09:26:31.027Z</updated>
     
@@ -354,15 +354,15 @@
     
     </summary>
     
-      <category term="Redis" scheme="blog.rhanqtl.com/categories/Redis/"/>
+      <category term="Redis" scheme="http://yoursite.com/categories/Redis/"/>
     
     
   </entry>
   
   <entry>
     <title>C++ 学习笔记 - STL：排序相关函数</title>
-    <link href="blog.rhanqtl.com/2019/05/10/cpp-stl-algorithm-sort/"/>
-    <id>blog.rhanqtl.com/2019/05/10/cpp-stl-algorithm-sort/</id>
+    <link href="http://yoursite.com/2019/05/10/cpp-stl-algorithm-sort/"/>
+    <id>http://yoursite.com/2019/05/10/cpp-stl-algorithm-sort/</id>
     <published>2019-05-10T04:01:29.000Z</published>
     <updated>2019-05-17T09:27:53.802Z</updated>
     
@@ -372,17 +372,17 @@
     
     </summary>
     
-      <category term="程序设计语言 (Programming Languages)" scheme="blog.rhanqtl.com/categories/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%AF%AD%E8%A8%80-Programming-Languages/"/>
+      <category term="程序设计语言 (Programming Languages)" scheme="http://yoursite.com/categories/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%AF%AD%E8%A8%80-Programming-Languages/"/>
     
-      <category term="C++" scheme="blog.rhanqtl.com/categories/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%AF%AD%E8%A8%80-Programming-Languages/C/"/>
+      <category term="C++" scheme="http://yoursite.com/categories/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%AF%AD%E8%A8%80-Programming-Languages/C/"/>
     
     
   </entry>
   
   <entry>
     <title>ml-dl-rnn</title>
-    <link href="blog.rhanqtl.com/2019/05/09/ml-dl-rnn/"/>
-    <id>blog.rhanqtl.com/2019/05/09/ml-dl-rnn/</id>
+    <link href="http://yoursite.com/2019/05/09/ml-dl-rnn/"/>
+    <id>http://yoursite.com/2019/05/09/ml-dl-rnn/</id>
     <published>2019-05-09T13:26:21.000Z</published>
     <updated>2019-05-17T09:29:10.469Z</updated>
     
@@ -392,17 +392,17 @@
     
     </summary>
     
-      <category term="机器学习 (Machine Learning)" scheme="blog.rhanqtl.com/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-Machine-Learning/"/>
+      <category term="机器学习 (Machine Learning)" scheme="http://yoursite.com/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-Machine-Learning/"/>
     
-      <category term="深度学习 (Deep Learning)" scheme="blog.rhanqtl.com/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-Machine-Learning/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-Deep-Learning/"/>
+      <category term="深度学习 (Deep Learning)" scheme="http://yoursite.com/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-Machine-Learning/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-Deep-Learning/"/>
     
     
   </entry>
   
   <entry>
     <title>CNN</title>
-    <link href="blog.rhanqtl.com/2019/05/09/ml-dl-cnn/"/>
-    <id>blog.rhanqtl.com/2019/05/09/ml-dl-cnn/</id>
+    <link href="http://yoursite.com/2019/05/09/ml-dl-cnn/"/>
+    <id>http://yoursite.com/2019/05/09/ml-dl-cnn/</id>
     <published>2019-05-09T13:26:15.000Z</published>
     <updated>2019-05-17T09:29:47.479Z</updated>
     
@@ -412,17 +412,17 @@
     
     </summary>
     
-      <category term="机器学习 (Machine Learning)" scheme="blog.rhanqtl.com/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-Machine-Learning/"/>
+      <category term="机器学习 (Machine Learning)" scheme="http://yoursite.com/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-Machine-Learning/"/>
     
-      <category term="深度学习 (Deep Learning)" scheme="blog.rhanqtl.com/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-Machine-Learning/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-Deep-Learning/"/>
+      <category term="深度学习 (Deep Learning)" scheme="http://yoursite.com/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-Machine-Learning/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-Deep-Learning/"/>
     
     
   </entry>
   
   <entry>
     <title>深入 Word2Vec</title>
-    <link href="blog.rhanqtl.com/2019/05/08/nlp-deep-in-word2vec/"/>
-    <id>blog.rhanqtl.com/2019/05/08/nlp-deep-in-word2vec/</id>
+    <link href="http://yoursite.com/2019/05/08/nlp-deep-in-word2vec/"/>
+    <id>http://yoursite.com/2019/05/08/nlp-deep-in-word2vec/</id>
     <published>2019-05-08T15:56:51.000Z</published>
     <updated>2019-05-17T09:30:46.507Z</updated>
     
@@ -433,7 +433,7 @@
     </summary>
     
     
-      <category term="自然语言处理 (Natural Language Processing)" scheme="blog.rhanqtl.com/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86-Natural-Language-Processing/"/>
+      <category term="自然语言处理 (Natural Language Processing)" scheme="http://yoursite.com/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86-Natural-Language-Processing/"/>
     
   </entry>
   
