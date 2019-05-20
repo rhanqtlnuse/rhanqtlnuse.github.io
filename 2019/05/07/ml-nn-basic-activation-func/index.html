@@ -14,6 +14,13 @@
 
 
 
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
 
 
 
@@ -99,7 +106,7 @@
 <meta property="og:image" content="http://yoursite.com/2019/05/07/ml-nn-basic-activation-func/approx.png">
 <meta property="og:image" content="http://yoursite.com/2019/05/07/ml-nn-basic-activation-func/maxout-structure.png">
 <meta property="og:image" content="http://yoursite.com/2019/05/07/ml-nn-basic-activation-func/softplus.png">
-<meta property="og:updated_time" content="2019-05-17T09:07:28.277Z">
+<meta property="og:updated_time" content="2019-05-19T03:06:58.294Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器学习 - 神经网络篇：常用激活函数">
 <meta name="twitter:description" content="激活函数是神经网络重要的组成部分，本文整理了一些常见的激活函数。">
@@ -422,6 +429,7 @@
 <script type="math/tex; mode=display">f(tx_1 + (1 - t)x_2) \le tf(x_1) + (1-t)f(x_2)​</script><p>则称其是凸函数。其中，$x_1, x_2 \in C$，$t \in [0, 1]$</p>
 <p>如果对于任意的 $t\in(0, 1)$ 有</p>
 <script type="math/tex; mode=display">f(tx_1 + (1 - t)x_2) \lt tf(x_1) + (1-t)f(x_2)</script><p>则称函数 $f$ 是严格凸的。</p>
+<p><strong>VC 维</strong></p>
 <h1 id="Sigmoid"><a href="#Sigmoid" class="headerlink" title="Sigmoid"></a>Sigmoid</h1><script type="math/tex; mode=display">\sigma(x) = \dfrac{1}{1 + e^{-x}}</script><p>梯度：</p>
 <script type="math/tex; mode=display">\begin{align}\nabla_x \sigma(x) &= \dfrac{e^{-x}}{(1 + e^{-x})^2} \\ &= \dfrac{1}{1 + e^{-x}}\dfrac{e^{-x}}{1 + e^{-x}} \\&= \sigma(x)(1 - \sigma(x))\end{align}</script><img src="/2019/05/07/ml-nn-basic-activation-func/sigmoid.png">
 <ul>
@@ -506,11 +514,15 @@
 <h1 id="不太常用的激活函数"><a href="#不太常用的激活函数" class="headerlink" title="不太常用的激活函数"></a>不太常用的激活函数</h1><h2 id="softplus"><a href="#softplus" class="headerlink" title="softplus"></a>softplus</h2><script type="math/tex; mode=display">f(x) = \log(1 + \exp(x))</script><p>图像：</p>
 <img src="/2019/05/07/ml-nn-basic-activation-func/softplus.png">
 <p>可以看到与 ReLU 十分接近，不太推荐</p>
-<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p>[1] ReLU 的几个变种参考自：<a href="https://zh.wikipedia.org/wiki/%E7%BA%BF%E6%80%A7%E6%95%B4%E6%B5%81%E5%87%BD%E6%95%B0" target="_blank" rel="noopener">维基百科 - 线性整流函数</a></p>
+<h1 id="为什么不使用-sin、cos-作为激活函数？"><a href="#为什么不使用-sin、cos-作为激活函数？" class="headerlink" title="为什么不使用 sin、cos 作为激活函数？"></a>为什么不使用 sin、cos 作为激活函数？</h1><p>sin、cos 是极其常见的非线性函数，为什么不用他们作为激活函数呢？原因在于</p>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p>[1] ReLU 的几个变种参考自：<a href="https://zh.wikipedia.org/wiki/%E7%BA%BF%E6%80%A7%E6%95%B4%E6%B5%81%E5%87%BD%E6%95%B0" target="_blank" rel="noopener">维基百科 - 线性整流函数</a>，相应的性质分析参考自：<a href="https://www.cnblogs.com/makefile/p/activation-function.html" target="_blank" rel="noopener">ReLU 家族分析</a></p>
 <p>[2] 关于 Dead ReLU 的问题参考自：<a href="https://www.quora.com/What-is-the-dying-ReLU-problem-in-neural-networks" target="_blank" rel="noopener">Quora - What is the “dying ReLU” problem in neural networks?</a></p>
 <p>[3] 饱和函数和不饱和函数的定义参考自：<a href="https://stats.stackexchange.com/questions/174295/what-does-the-term-saturating-nonlinearities-mean" target="_blank" rel="noopener">StackExchange - What does the term saturating nonlinearities mean?</a></p>
+<p>[4] 关于使用 sin 作为激活函数的问题参考自：<a href="https://zhuanlan.zhihu.com/p/42160421" target="_blank" rel="noopener">知乎 - 神经网络的激活函数能不能用 sin？</a> 和 <a href="https://www.zhihu.com/question/52797000" target="_blank" rel="noopener">为什么神经网络的激活函数不使用 sin 类的？</a></p>
 <h1 id="延伸阅读"><a href="#延伸阅读" class="headerlink" title="延伸阅读"></a>延伸阅读</h1><p>[1] 关于神经网络中激活函数的作用，请参见如下的知乎问题：<a href="https://www.zhihu.com/question/22334626" target="_blank" rel="noopener">神经网络激励函数的作用是什么？有没有形象的解释？</a></p>
 <p>[2] 看过上面的解释之后，可能会产生疑问：ReLU 作为分段线性函数，是否与其他的非线性激活函数一样强大？可以看这个知乎问题：<a href="https://www.zhihu.com/question/58304333" target="_blank" rel="noopener">ReLU 是分段线性函数，非线性映射能力足以拟合任意函数吗？</a></p>
+<p>[3] <a href="https://www.jiqizhixin.com/articles/2017-10-10-3" target="_blank" rel="noopener">机器之心 - 26 种神经网络激活函数可视化</a></p>
+<p>[4] <a href="https://blog.csdn.net/tianyaleixiaowu/article/details/80775295" target="_blank" rel="noopener">这篇博客</a>分析了一些激活函数的优缺点</p>
 
       
     </div>
@@ -624,7 +636,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">129</span>
+                  <span class="site-state-item-count">130</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -702,7 +714,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#基本概念"><span class="nav-number">1.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Sigmoid"><span class="nav-number">2.</span> <span class="nav-text">Sigmoid</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#tanh"><span class="nav-number">3.</span> <span class="nav-text">tanh</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ReLU"><span class="nav-number">4.</span> <span class="nav-text">ReLU</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Dead-ReLU-问题"><span class="nav-number">4.1.</span> <span class="nav-text">Dead ReLU 问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#变种"><span class="nav-number">4.2.</span> <span class="nav-text">变种</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#LeakyReLU-LReLU"><span class="nav-number">4.2.1.</span> <span class="nav-text">LeakyReLU (LReLU)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Parametric-ReLU-PReLU"><span class="nav-number">4.2.2.</span> <span class="nav-text">Parametric ReLU (PReLU)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Randomized-Leaky-ReLU-RReLU"><span class="nav-number">4.2.3.</span> <span class="nav-text">Randomized Leaky ReLU (RReLU)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Noisy-ReLU"><span class="nav-number">4.2.4.</span> <span class="nav-text">Noisy ReLU</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ELU"><span class="nav-number">5.</span> <span class="nav-text">ELU</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Maxout"><span class="nav-number">6.</span> <span class="nav-text">Maxout</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#不太常用的激活函数"><span class="nav-number">7.</span> <span class="nav-text">不太常用的激活函数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#softplus"><span class="nav-number">7.1.</span> <span class="nav-text">softplus</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">8.</span> <span class="nav-text">参考资料</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#延伸阅读"><span class="nav-number">9.</span> <span class="nav-text">延伸阅读</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#基本概念"><span class="nav-number">1.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Sigmoid"><span class="nav-number">2.</span> <span class="nav-text">Sigmoid</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#tanh"><span class="nav-number">3.</span> <span class="nav-text">tanh</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ReLU"><span class="nav-number">4.</span> <span class="nav-text">ReLU</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Dead-ReLU-问题"><span class="nav-number">4.1.</span> <span class="nav-text">Dead ReLU 问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#变种"><span class="nav-number">4.2.</span> <span class="nav-text">变种</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#LeakyReLU-LReLU"><span class="nav-number">4.2.1.</span> <span class="nav-text">LeakyReLU (LReLU)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Parametric-ReLU-PReLU"><span class="nav-number">4.2.2.</span> <span class="nav-text">Parametric ReLU (PReLU)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Randomized-Leaky-ReLU-RReLU"><span class="nav-number">4.2.3.</span> <span class="nav-text">Randomized Leaky ReLU (RReLU)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Noisy-ReLU"><span class="nav-number">4.2.4.</span> <span class="nav-text">Noisy ReLU</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ELU"><span class="nav-number">5.</span> <span class="nav-text">ELU</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Maxout"><span class="nav-number">6.</span> <span class="nav-text">Maxout</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#不太常用的激活函数"><span class="nav-number">7.</span> <span class="nav-text">不太常用的激活函数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#softplus"><span class="nav-number">7.1.</span> <span class="nav-text">softplus</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#为什么不使用-sin、cos-作为激活函数？"><span class="nav-number">8.</span> <span class="nav-text">为什么不使用 sin、cos 作为激活函数？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">9.</span> <span class="nav-text">参考资料</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#延伸阅读"><span class="nav-number">10.</span> <span class="nav-text">延伸阅读</span></a></li></ol></div>
             
 
           </div>
