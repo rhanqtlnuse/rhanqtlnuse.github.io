@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+  
+  
+  <link rel="stylesheet" media="all" href="/lib/Han/dist/han.min.css?v=3.3">
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/logo.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/logo.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/logo.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.png?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="RHANQTL" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="声明：翻译自 A Beginner’s Guide to Word2Vec and Neural Word Embeddings Word2Vec 和神经词嵌入入门指南Word2Vec 介绍Word2Vec 是一个处理文本的两层神经网络。它的输入是一个文本语料库，输出是一组向量：该语料库中单词的特征向量。虽然 Word2Vec 不是深度神经网络，但它将文本转换为深度神经网络可以理解的数值形式。De">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【译】A Beginner&#39;s Guide to Word2Vec and Neural Word Embeddings">
+<meta property="og:url" content="http://yoursite.com/2019/05/20/nlp-word2vec/index.html">
+<meta property="og:site_name" content="RHANQTL">
+<meta property="og:description" content="声明：翻译自 A Beginner’s Guide to Word2Vec and Neural Word Embeddings Word2Vec 和神经词嵌入入门指南Word2Vec 介绍Word2Vec 是一个处理文本的两层神经网络。它的输入是一个文本语料库，输出是一组向量：该语料库中单词的特征向量。虽然 Word2Vec 不是深度神经网络，但它将文本转换为深度神经网络可以理解的数值形式。De">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2019/05/20/nlp-word2vec/sweden_cosine_distance.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/20/nlp-word2vec/word2vec_diagrams.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/20/nlp-word2vec/word2vec_translation.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/20/nlp-word2vec/countries_capitals.png">
+<meta property="og:updated_time" content="2019-05-20T06:55:35.797Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【译】A Beginner&#39;s Guide to Word2Vec and Neural Word Embeddings">
+<meta name="twitter:description" content="声明：翻译自 A Beginner’s Guide to Word2Vec and Neural Word Embeddings Word2Vec 和神经词嵌入入门指南Word2Vec 介绍Word2Vec 是一个处理文本的两层神经网络。它的输入是一个文本语料库，输出是一组向量：该语料库中单词的特征向量。虽然 Word2Vec 不是深度神经网络，但它将文本转换为深度神经网络可以理解的数值形式。De">
+<meta name="twitter:image" content="http://yoursite.com/2019/05/20/nlp-word2vec/sweden_cosine_distance.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/05/20/nlp-word2vec/">
+
+
+
+
+
+  <title>【译】A Beginner's Guide to Word2Vec and Neural Word Embeddings | RHANQTL</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">RHANQTL</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">学习使我快乐</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/20/nlp-word2vec/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">【译】A Beginner's Guide to Word2Vec and Neural Word Embeddings</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-20T11:02:24+08:00">
+                2019-05-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/自然语言处理-Natural-Language-Processing/" itemprop="url" rel="index">
+                    <span itemprop="name">自然语言处理 (Natural Language Processing)</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">浏览
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong>声明：</strong>翻译自 <a href="https://skymind.ai/wiki/word2vec" target="_blank" rel="noopener">A Beginner’s Guide to Word2Vec and Neural Word Embeddings</a></p>
+<h1 id="Word2Vec-和神经词嵌入入门指南"><a href="#Word2Vec-和神经词嵌入入门指南" class="headerlink" title="Word2Vec 和神经词嵌入入门指南"></a>Word2Vec 和神经词嵌入入门指南</h1><h2 id="Word2Vec-介绍"><a href="#Word2Vec-介绍" class="headerlink" title="Word2Vec 介绍"></a>Word2Vec 介绍</h2><p>Word2Vec 是一个处理文本的两层神经网络。它的输入是一个文本语料库，输出是一组向量：该语料库中单词的特征向量。虽然 Word2Vec 不是深度神经网络，但它将文本转换为深度神经网络可以理解的数值形式。Deeplearning4j 使用 Spark 和 GPU 为 Java 和 Scala 实现了一个分布式的 Word2Vec。</p>
+<p>Word2Vec 的应用场景并不局限于分析句子。它也可以应用于基因、代码、喜好、播放列表、社交媒体图以及其他可以辨别模式的语言或符号系列 (verbal or symbolic series)。</p>
+<p>为什么？因为单词就像上面提到的其他数据一样只是离散状态，我们只是在寻找这些状态之间的转换概率：它们共同发生 (co-occur) 的可能性。所以 gene2vec，like2vec 和 follower2vec 都是可能的。考虑到这一点，下面的教程会让你了解如何为各种离散和共现状态组创建神经嵌入。</p>
+<p>Word2Vec 的目的和用处是将向量空间中相似单词的向量划分为一组。也就是说，它以数学方式检测相似性。Word2Vec 创建的向量是单词特征 (feature) 的分布式 (distributed) 数字表示，这些特征包括单个单词的上下文等等。它在没有人为干预的情况下这样做（译者注：无监督）。</p>
+<p>有了足够的数据、用法和上下文，Word2Vec 可以根据过去的出现情况对单词的含义进行比较准确的猜测。这些猜测可用于建立单词之间的关联（例如 “男人” 之于 “男孩” 正如 “女人” 之于 “女孩”），或将文档聚类 (cluster) 并按主题对其进行分类。这些聚类可以构成搜索、情感分析和诸如科学研究、法律披露、电子商务和客户关系管理等多个领域的推荐的基础。</p>
+<p>Word2Vec 神经网络的输出是一个词汇表，其中每项都与一个向量相关联，这些向量可以被输入给深度学习网络或仅仅是被查询以检测单词之间的关系。</p>
+<p>测量余弦相似度 (cosine similarity)，完全不相似（相似度为 0）以 90 度角表示，而总相似度为 1 以 0 度角表示，两个向量完全重合 (overlap)；即 “Sweden” 等于 “Sweden”，而 “Norway” 与 “Sweden” 的余弦距离为 0.760124，是 “Sweden” 与其他国家的余弦相似度中最高的。</p>
+<p>以下是使用 Word2Vec 生成的与 “Sweden” 相关联的单词列表，按照接近程度排列：</p>
+<img src="/2019/05/20/nlp-word2vec/sweden_cosine_distance.png">
+<p>斯堪的纳维亚半岛 (Scandinavia) 的几个国家和几个富裕的北欧、日耳曼国家位列前九。</p>
+<h2 id="神经词嵌入"><a href="#神经词嵌入" class="headerlink" title="神经词嵌入"></a>神经词嵌入</h2><p>我们用来表示单词的向量称为神经词嵌入，这些表示很奇怪。一件事描述了另一件事，即使这两件事完全不同。正如 Elvis Costello 所说：“Writing about music is like dancing about architecture”。Word2Vec 将单词 “向量化”，这样就使自然语言成为计算机可读的 —— 我们可以开始对单词进行强大的数学运算来检测它们的相似之处。</p>
+<p>因此，神经词嵌入使用数值表示单词。这是一个简单但不太可能的转换。</p>
+<p>Word2Vec 类似于自动编码器 (autoencoder)，对向量中的每个单词进行编码，但不是通过重建来训练输入单词，而是像受限波尔兹曼机 (restricted Boltzmann machine) 那样，Word2Vec 训练单词与输入语料库中与其相邻的其他单词。</p>
+<p>它以两种方式之一来实现，或者使用上下文来预测目标词（一种称为连续词袋或 CBoW 的方法），或者使用一个词来预测目标上下文，这被称为 skip-gram。我们使用后一种方法，因为它可以在大型数据集上生成更准确的结果。</p>
+<img src="/2019/05/20/nlp-word2vec/word2vec_diagrams.png">
+<p>当分配给单词的特征向量不能用于准确预测该单词的上下文时，算法将调整向量的分量。语料库中每个单词的上下文是发回错误信号以调整特征向量的 “老师”。通过调整向量中的数值，相似（以但词的上下文判定）的词向量会更加接近。</p>
+<p>就像梵高的向日葵画是一幅二维的油画混合物，在 19 世纪 80 年代后期在巴黎的一个三维空间中代表植物物质，因此在向量中排列的 500 个数字可以代表一个单词或一组单词。</p>
+<p>这些数字将每个单词定位为 500 维向量空间中的一个点。超过三维的空间难以想象。（Geoff Hinton 在教人们想象 13 维空间时，建议学生首先描绘三维空间，然后对自己说：“十三，十三，十三。” :)</p>
+<p>一组训练得比较好的单词向量将在该空间中将相似的单词放在彼此靠近的位置。oak、elm 和 birch 这些词可能聚集在一个角落，而 war、conflict 和 strife 则挤在另一个角落里。 </p>
+<p>类似的事物和想法被证明是“接近”的。它们的相对意义已被转化为可测量的距离。质量成为数量，算法可以完成他们的工作。但相似性只是 Word2Vec 可以学习的许多关联的基础。例如，它可以衡量一种语言的单词之间的关系，并将它们映射到另一种语言。</p>
+<img src="/2019/05/20/nlp-word2vec/word2vec_translation.png">
+<p>这些向量是更全面的单词的几何位置的基础。罗马、巴黎、柏林和北京不仅彼此靠近，而且它们在向量空间中与它们首都的距离也是相似的；即 Rome - Italy = Beijing - China。如果你只知道罗马是意大利的首都，并且想知道中国的首都，那么 Rome -Italy + China 将会返回 Beijing。不开玩笑。</p>
+<img src="/2019/05/20/nlp-word2vec/countries_capitals.png">
+<h1 id="有趣的-Word2Vec-结果"><a href="#有趣的-Word2Vec-结果" class="headerlink" title="有趣的 Word2Vec 结果"></a>有趣的 Word2Vec 结果</h1><p>TODO</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/19/ml-basic-vc-dim/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Han Qi</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">131</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">42</span>
+                  <span class="site-state-item-name">分类</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/rhanqtl" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="my@rhanqtl.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Word2Vec-和神经词嵌入入门指南"><span class="nav-number">1.</span> <span class="nav-text">Word2Vec 和神经词嵌入入门指南</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Word2Vec-介绍"><span class="nav-number">1.1.</span> <span class="nav-text">Word2Vec 介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#神经词嵌入"><span class="nav-number">1.2.</span> <span class="nav-text">神经词嵌入</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#有趣的-Word2Vec-结果"><span class="nav-number">2.</span> <span class="nav-text">有趣的 Word2Vec 结果</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Han Qi</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.4"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>

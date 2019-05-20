@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-05-19T02:16:07.479Z</updated>
+  <updated>2019-05-20T06:55:35.797Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【译】A Beginner&#39;s Guide to Word2Vec and Neural Word Embeddings</title>
+    <link href="http://yoursite.com/2019/05/20/nlp-word2vec/"/>
+    <id>http://yoursite.com/2019/05/20/nlp-word2vec/</id>
+    <published>2019-05-20T03:02:24.000Z</published>
+    <updated>2019-05-20T06:55:35.797Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+      <category term="自然语言处理 (Natural Language Processing)" scheme="http://yoursite.com/categories/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86-Natural-Language-Processing/"/>
+    
+    
+  </entry>
   
   <entry>
     <title></title>
@@ -403,26 +427,6 @@
     <summary type="html">
     
       &lt;p&gt;RNN 擅长处理序列问题。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="机器学习 (Machine Learning)" scheme="http://yoursite.com/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-Machine-Learning/"/>
-    
-      <category term="深度学习 (Deep Learning)" scheme="http://yoursite.com/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-Machine-Learning/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-Deep-Learning/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>CNN</title>
-    <link href="http://yoursite.com/2019/05/09/ml-dl-cnn/"/>
-    <id>http://yoursite.com/2019/05/09/ml-dl-cnn/</id>
-    <published>2019-05-09T13:26:15.000Z</published>
-    <updated>2019-05-17T09:29:47.479Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;CV 中最经典的深度学习工具。&lt;/p&gt;
     
     </summary>
     
