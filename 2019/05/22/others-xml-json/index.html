@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+  
+  
+  <link rel="stylesheet" media="all" href="/lib/Han/dist/han.min.css?v=3.3">
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/logo.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/logo.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/logo.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.png?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="RHANQTL" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="本文介绍两种常见的数据格式 —— XML 和 JSON，并进行对比。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="XML 和 JSON">
+<meta property="og:url" content="http://yoursite.com/2019/05/22/others-xml-json/index.html">
+<meta property="og:site_name" content="RHANQTL">
+<meta property="og:description" content="本文介绍两种常见的数据格式 —— XML 和 JSON，并进行对比。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-05-22T11:58:55.618Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="XML 和 JSON">
+<meta name="twitter:description" content="本文介绍两种常见的数据格式 —— XML 和 JSON，并进行对比。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/05/22/others-xml-json/">
+
+
+
+
+
+  <title>XML 和 JSON | RHANQTL</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">RHANQTL</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">学习使我快乐</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/22/others-xml-json/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">XML 和 JSON</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-22T19:17:10+08:00">
+                2019-05-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">浏览
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本文介绍两种常见的数据格式 —— XML 和 JSON，并进行对比。</p>
+<a id="more"></a>
+<h1 id="XML"><a href="#XML" class="headerlink" title="XML"></a>XML</h1><p>XML 全称为 eXtensible Markup Language，中文为 “可扩展标记语言”。</p>
+<p>XML 由 6 个部分组成：</p>
+<ul>
+<li>处理指令</li>
+<li>根元素</li>
+<li>子元素</li>
+<li>属性</li>
+<li>内容</li>
+<li>注释</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 这是一个注释 --&gt;</span></span><br><span class="line"><span class="meta">&lt;?xml version="1.0"?&gt;</span>								<span class="comment">&lt;!-- 处理指令 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">books</span>&gt;</span>												<span class="comment">&lt;!-- 根元素 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">book</span> <span class="attr">isbn</span>=<span class="string">"978-7-111-40701-0"</span>&gt;</span>					<span class="comment">&lt;!-- 子元素，isbn 是一个属性 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>Introduction to Algorithms<span class="tag">&lt;/<span class="name">title</span>&gt;</span>	<span class="comment">&lt;!-- 标签中的文字就是内容 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">authors</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">author</span>&gt;</span>Thomas H. Cormen<span class="tag">&lt;/<span class="name">author</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">author</span>&gt;</span>Charles E. Leiserson<span class="tag">&lt;/<span class="name">author</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">author</span>&gt;</span>Ronald L. Rivest<span class="tag">&lt;/<span class="name">author</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">author</span>&gt;</span>Clifford Stein<span class="tag">&lt;/<span class="name">author</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">authors</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">book</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">book</span> <span class="attr">isbn</span>=<span class="string">"978-7-121-15535-2"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>C++ Primer<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">authors</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">author</span>&gt;</span>Stanley B. Lippman<span class="tag">&lt;/<span class="name">author</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">author</span>&gt;</span>Josee Lajoie<span class="tag">&lt;/<span class="name">author</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">author</span>&gt;</span>Barbara E. Moo<span class="tag">&lt;/<span class="name">author</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">authors</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">book</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">book</span> <span class="attr">isbn</span>=<span class="string">"978-7-111-12806-9"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>The C Programming Language<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">authors</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">author</span>&gt;</span>Brian W. Kernighan<span class="tag">&lt;/<span class="name">author</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">author</span>&gt;</span>Dennis M. Ritchie<span class="tag">&lt;/<span class="name">author</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">authors</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">book</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">books</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h1 id="JSON"><a href="#JSON" class="headerlink" title="JSON"></a>JSON</h1><p>JSON 全称为 JavaScript Object Notation，中文为 “JavaScript 对象表示”。相比于 XML，JSON 最大的特点就是简单、容易编写。同时，从名字就可以看得出来，JSON 能够无缝融入 JavaScript 中（Python 也可以），这也是一个极大的优势。</p>
+<p>JSON 是一种 key-value 格式的文本，由 6 种类型组成：</p>
+<ul>
+<li>对象 (object)</li>
+<li>数组 (array)</li>
+<li>字符串 (string)</li>
+<li>数值 (number)</li>
+<li>布尔值：<code>true</code> 或 <code>false</code></li>
+<li><code>null</code></li>
+</ul>
+<p>JSON 的官方网站列出了完整的 CFG 并且给出了图示，这里不赘述。</p>
+<p>将 XML 中的示例用 JSON 改写：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">    &#123;</span><br><span class="line">        isbn: "978-7-111-40701-0",</span><br><span class="line">        title: "Introduction to Algorithms",</span><br><span class="line">        authors: [</span><br><span class="line">            "Thomas H. Cormen",</span><br><span class="line">            "Charles E. Leiserson",</span><br><span class="line">            "Ronald L. Rivest",</span><br><span class="line">            <span class="string">"Clifford Stein"</span></span><br><span class="line">        ]</span><br><span class="line">	&#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        isbn: "978-7-121-15535-2",</span><br><span class="line">        title: "C++ Primer",</span><br><span class="line">        authors: [</span><br><span class="line">            "Stanley B. Lippman",</span><br><span class="line">        	"Josee Lajoie",</span><br><span class="line">        	<span class="string">"Barbara E. Moo"</span></span><br><span class="line">        ]</span><br><span class="line">	&#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        isbn: "978-7-111-12806-9",</span><br><span class="line">        title: "The C Programming Language",</span><br><span class="line">        authors: [</span><br><span class="line">            "Brian W. Kernighan",</span><br><span class="line">            <span class="string">"Dennis M. Ritchie"</span></span><br><span class="line">        ]</span><br><span class="line">	&#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<h1 id="对比"><a href="#对比" class="headerlink" title="对比"></a>对比</h1><ul>
+<li>JSON 通常情况下会比 XML 简单，冗余信息少，能解决大多数的需求</li>
+<li>JSON 能够直接在 JavaScript 中使用，XML 必须解析成 DOM</li>
+<li>JSON 会丢失一些信息，比如 XML 中 <code>&lt;book&gt;</code> 标签表示这是一个 Book 对象，如果想要在 JSON 中加入这个信息，就只能增加一行 <code>type: &quot;Book&quot;</code></li>
+<li>由于 XML 有 XSD，XSLT 等工具，有些应用场景 XML 比 JSON 更好用（比如将数据文件转换为 HTML）</li>
+</ul>
+<h1 id="延伸阅读"><a href="#延伸阅读" class="headerlink" title="延伸阅读"></a>延伸阅读</h1><p>[1] <a href="https://www.w3.org/XML/" target="_blank" rel="noopener">XML 官方网站</a></p>
+<p>[2] <a href="https://www.json.org/" target="_blank" rel="noopener">JSON 官方网站</a></p>
+<p>[3] <a href="https://www.zhihu.com/question/25636060" target="_blank" rel="noopener">知乎 - 为什么都反对 XML 而支持使用 JSON？</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/20/nlp-word2vec/" rel="next" title="【译】A Beginner's Guide to Word2Vec and Neural Word Embeddings">
+                <i class="fa fa-chevron-left"></i> 【译】A Beginner's Guide to Word2Vec and Neural Word Embeddings
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/05/23/others-bool/" rel="prev" title="JavaScript 中布尔运算带来的启示">
+                JavaScript 中布尔运算带来的启示 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Han Qi</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">138</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">43</span>
+                  <span class="site-state-item-name">分类</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/rhanqtl" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="my@rhanqtl.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#XML"><span class="nav-number">1.</span> <span class="nav-text">XML</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#JSON"><span class="nav-number">2.</span> <span class="nav-text">JSON</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#对比"><span class="nav-number">3.</span> <span class="nav-text">对比</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#延伸阅读"><span class="nav-number">4.</span> <span class="nav-text">延伸阅读</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Han Qi</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.4"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>

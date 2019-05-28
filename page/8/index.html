@@ -310,6 +310,1073 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/06/pta-advanced-1004/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/04/06/pta-advanced-1004/" itemprop="url">PTA 甲级 1004：Counting Leaves</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-06T16:16:21+08:00">
+                2019-04-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>A family hierarchy is usually presented by a pedigree tree. Your job is to count those family members who have no child.</p>
+<h3 id="Input-Specification"><a href="#Input-Specification" class="headerlink" title="Input Specification"></a>Input Specification</h3><p>Each input file contains one test case. Each case starts with a line containing 0&lt;<em>N</em>&lt;100, the number of nodes in a tree, and <em>M</em> (&lt;<em>N</em>), the number of non-leaf nodes. Then <em>M</em> lines follow, each in the format:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ID K ID[1] ID[2] ... ID[K]</span><br></pre></td></tr></table></figure>
+<p>where <code>ID</code> is a two-digit number representing a given non-leaf node, <code>K</code> is the number of its children, followed by a sequence of two-digit <code>ID</code>‘s of its children. For the sake of simplicity, let us fix the root ID to be <code>01</code>.</p>
+<p>The input ends with <em>N</em> being 0. That case must NOT be processed.</p>
+<h3 id="Output-Specification"><a href="#Output-Specification" class="headerlink" title="Output Specification"></a>Output Specification</h3><p>For each test case, you are supposed to count those family members who have no child <strong>for every seniority level</strong> starting from the root. The numbers must be printed in a line, separated by a space, and there must be no extra space at the end of each line.</p>
+<p>The sample case represents a tree with only 2 nodes, where <code>01</code> is the root and <code>02</code> is its only child. Hence on the root <code>01</code> level, there is <code>0</code> leaf node; and on the next level, there is <code>1</code> leaf node. Then we should output <code>0 1</code> in a line.</p>
+<h3 id="Sample-Input"><a href="#Sample-Input" class="headerlink" title="Sample Input"></a>Sample Input</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">2 1</span><br><span class="line">01 1 02</span><br></pre></td></tr></table></figure>
+<h3 id="Sample-Output"><a href="#Sample-Output" class="headerlink" title="Sample Output"></a>Sample Output</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0 1</span><br></pre></td></tr></table></figure>
+<h1 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h1><p><strong>分析：</strong>这道题很简单，就是数一棵树中叶结点的个数，层序遍历就 OK 了。</p>
+<h3 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h3><ul>
+<li>最后一个测试用例中 N = 0，这时应该直接结束</li>
+<li>输出的格式，即数与数之间只能用一个空格隔开，并且行尾不能有空白符（空格、制表符、换行）</li>
+</ul>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"><span class="keyword">import</span> java.util.Queue;</span><br><span class="line"><span class="keyword">import</span> java.util.LinkedList;</span><br><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> ROOT_ID = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">TreeNode</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> id;</span><br><span class="line">        List&lt;TreeNode&gt; children;</span><br><span class="line">        </span><br><span class="line">        TreeNode(<span class="keyword">int</span> id) &#123;</span><br><span class="line">            <span class="keyword">this</span>.id = id;</span><br><span class="line">            children = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Map&lt;Integer, TreeNode&gt; translationTable;</span><br><span class="line">    <span class="keyword">private</span> TreeNode root;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> N;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> M;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        translationTable = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;Integer&gt; <span class="title">solve</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        constructTree();</span><br><span class="line">        List&lt;Integer&gt; resultList = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        <span class="keyword">int</span> currentLevelCount = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> nextLevelCount = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> leafCount = <span class="number">0</span>;</span><br><span class="line">        Queue&lt;TreeNode&gt; q = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">        q.offer(root);</span><br><span class="line">        currentLevelCount = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (!q.isEmpty()) &#123;</span><br><span class="line">            TreeNode parent = q.poll();</span><br><span class="line">            currentLevelCount--;</span><br><span class="line">            <span class="keyword">if</span> (parent.children.isEmpty()) &#123;</span><br><span class="line">                leafCount++;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">for</span> (TreeNode child : parent.children) &#123;</span><br><span class="line">                    q.offer(child);</span><br><span class="line">                    nextLevelCount++;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (currentLevelCount == <span class="number">0</span>) &#123;</span><br><span class="line">                currentLevelCount = nextLevelCount;</span><br><span class="line">                nextLevelCount = <span class="number">0</span>;</span><br><span class="line">                resultList.add(leafCount);</span><br><span class="line">                leafCount = <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> resultList;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">constructTree</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        Scanner in = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">        N = in.nextInt();</span><br><span class="line">        M = in.nextInt();</span><br><span class="line">        <span class="keyword">if</span> (M &lt;= <span class="number">0</span>) &#123;</span><br><span class="line">            root = <span class="keyword">new</span> TreeNode(ROOT_ID);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> parentId;</span><br><span class="line">        TreeNode parent;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; M; i++) &#123;</span><br><span class="line">            parentId = in.nextInt();</span><br><span class="line">            parent = translationTable.getOrDefault(parentId, <span class="keyword">new</span> TreeNode(parentId));</span><br><span class="line">            <span class="keyword">if</span> (parentId == ROOT_ID) &#123;</span><br><span class="line">                root = parent;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">int</span> K = in.nextInt();</span><br><span class="line">            <span class="keyword">int</span> childId;</span><br><span class="line">            TreeNode child;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; K; j++) &#123;</span><br><span class="line">                childId = in.nextInt();</span><br><span class="line">                child = translationTable.getOrDefault(childId, <span class="keyword">new</span> TreeNode(childId));</span><br><span class="line">                parent.children.add(child);</span><br><span class="line">                translationTable.put(childId, child);</span><br><span class="line">            &#125;</span><br><span class="line">            translationTable.put(parentId, parent);</span><br><span class="line">        &#125;</span><br><span class="line">        in.close();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Main s = <span class="keyword">new</span> Main();</span><br><span class="line">        List&lt;Integer&gt; resultList = s.solve();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>, count = resultList.size(); i &lt; count; i++) &#123;</span><br><span class="line">            System.out.print(resultList.get(i));</span><br><span class="line">            <span class="keyword">if</span> (i != count - <span class="number">1</span>) &#123;</span><br><span class="line">                System.out.print(<span class="string">" "</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h3><ul>
+<li>根据输入的特点，可以不使用 <code>translationTable</code></li>
+<li>ID 是整数，可以使用 <code>List&lt;Integer&gt;[]</code> 代替 <code>TreeNode</code></li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/06/pta-advanced-1003/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/04/06/pta-advanced-1003/" itemprop="url">PTA 甲级 1003：Emergency</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-06T14:00:10+08:00">
+                2019-04-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>As an emergency rescue team leader of a city, you are given a special map of your country. The map shows several scattered cities connected by some roads. Amount of rescue teams in each city and the length of each road between any pair of cities are marked on the map. When there is an emergency call to you from some other city, your job is to lead your men to the place as quickly as possible, and at the mean time, call up as many hands on the way as possible.</p>
+<h3 id="Input-Specification"><a href="#Input-Specification" class="headerlink" title="Input Specification"></a>Input Specification</h3><p>Each input file contains one test case. For each test case, the first line contains 4 positive integers: <em>N</em> (≤500) - the number of cities (and the cities are numbered from 0 to <em>N</em>−1), <em>M</em> - the number of roads, <em>C</em>1 and <em>C</em>2 - the cities that you are currently in and that you must save, respectively. The next line contains <em>N</em> integers, where the <em>i</em>-th integer is the number of rescue teams in the <em>i</em>-th city. Then <em>M</em> lines follow, each describes a road with three integers <em>c</em>1, <em>c</em>2and <em>L</em>, which are the pair of cities connected by a road and the length of that road, respectively. It is guaranteed that there exists at least one path from <em>C</em>1 to <em>C</em>2.</p>
+<h3 id="Output-Specification"><a href="#Output-Specification" class="headerlink" title="Output Specification"></a>Output Specification</h3><p>For each test case, print in one line two numbers: the number of different shortest paths between <em>C</em>1 and <em>C</em>2, and the maximum amount of rescue teams you can possibly gather. All the numbers in a line must be separated by exactly one space, and there is no extra space allowed at the end of a line.</p>
+<h3 id="Sample-Input"><a href="#Sample-Input" class="headerlink" title="Sample Input"></a>Sample Input</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">5 6 0 2</span><br><span class="line">1 2 1 5 3</span><br><span class="line">0 1 1</span><br><span class="line">0 2 2</span><br><span class="line">0 3 1</span><br><span class="line">1 2 1</span><br><span class="line">2 4 1</span><br><span class="line">3 4 1</span><br></pre></td></tr></table></figure>
+<h3 id="Sample-Output"><a href="#Sample-Output" class="headerlink" title="Sample Output"></a>Sample Output</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2 4</span><br></pre></td></tr></table></figure>
+<h1 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h1><h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>最短路径问题，并且没有负权重的边，可以使用 Dijkstra 最短路径算法。</p>
+<p>处理下面两种情况：</p>
+<ul>
+<li>找到了更短的路径，即 <code>dist[u] + length(u, v) &lt; dist[v]</code>，这时需要进行：<ul>
+<li>更新最短距离：<code>dist[v] = dist[u] + length(u, v)</code></li>
+<li>更新最短路径数：<code>pathCount[v] = pathCount[u]</code></li>
+<li>更新救援队数：<code>teams[v] = teams[u] + teamsEachCity[v]</code></li>
+</ul>
+</li>
+<li>找到了距离相等的路径，这时需要进行：<ul>
+<li>更新最短路径数：<code>pathCount[v] += pathCount[u]</code></li>
+<li>如果救援队数量更多，即 <code>teams[u] + teamsEachCity[v] &gt; teams[v]</code>，更新 <code>teams[v]</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h3><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"><span class="keyword">import</span> java.util.PriorityQueue;</span><br><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span>[][] map;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span>[] teamsEachCity;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> V;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> E;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> src;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> dst;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        readInputAndInit();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">readInputAndInit</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        Scanner in = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">        </span><br><span class="line">        V = in.nextInt();</span><br><span class="line">        E = in.nextInt();</span><br><span class="line">        src = in.nextInt();</span><br><span class="line">        dst = in.nextInt();</span><br><span class="line"></span><br><span class="line">        teamsEachCity = <span class="keyword">new</span> <span class="keyword">int</span>[V];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> v = <span class="number">0</span>; v &lt; V; v++) &#123;</span><br><span class="line">            teamsEachCity[v] = in.nextInt();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        map = <span class="keyword">new</span> <span class="keyword">int</span>[V][V];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> v = <span class="number">0</span>; v &lt; V; v++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; V; j++) &#123;</span><br><span class="line">                map[v][j] = Integer.MAX_VALUE;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> c1, c2;</span><br><span class="line">        <span class="keyword">int</span> cost;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> v = <span class="number">0</span>; v &lt; E; v++) &#123;</span><br><span class="line">            c1 = in.nextInt();</span><br><span class="line">            c2 = in.nextInt();</span><br><span class="line">            cost = in.nextInt();</span><br><span class="line">            map[c1][c2] = map[c2][c1] = cost;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        in.close();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Node</span> <span class="keyword">implements</span> <span class="title">Comparable</span>&lt;<span class="title">Node</span>&gt; </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> id;</span><br><span class="line">        <span class="keyword">int</span> dist;</span><br><span class="line">        <span class="keyword">int</span> teams;</span><br><span class="line">        <span class="keyword">int</span> pathCount;</span><br><span class="line"></span><br><span class="line">        Node(<span class="keyword">int</span> id, <span class="keyword">int</span> dist, <span class="keyword">int</span> teams, <span class="keyword">int</span> pathCount) &#123;</span><br><span class="line">            <span class="keyword">this</span>.id = id;</span><br><span class="line">            <span class="keyword">this</span>.dist = dist;</span><br><span class="line">            <span class="keyword">this</span>.teams = teams;</span><br><span class="line">            <span class="keyword">this</span>.pathCount = pathCount;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compareTo</span><span class="params">(Node that)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">if</span> (dist != that.dist) &#123;</span><br><span class="line">                <span class="keyword">return</span> dist - that.dist;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">return</span> that.teams - teams;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object o)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">if</span> (o == <span class="keyword">this</span>) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (o == <span class="keyword">null</span> || o.getClass() != getClass()) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> id == ((Node) o).id;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span>[] rescue() &#123;</span><br><span class="line">        <span class="keyword">int</span>[] dist = <span class="keyword">new</span> <span class="keyword">int</span>[V];</span><br><span class="line">        Arrays.fill(dist, Integer.MAX_VALUE);</span><br><span class="line">        dist[src] = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span>[] teams = <span class="keyword">new</span> <span class="keyword">int</span>[V];</span><br><span class="line">        teams[src] = teamsEachCity[src];</span><br><span class="line">        <span class="keyword">int</span>[] pathCount = <span class="keyword">new</span> <span class="keyword">int</span>[V];</span><br><span class="line">        pathCount[src] = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">        PriorityQueue&lt;Node&gt; pq = <span class="keyword">new</span> PriorityQueue&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> v = <span class="number">0</span>; v &lt; V; v++) &#123;</span><br><span class="line">            pq.offer(<span class="keyword">new</span> Node(v, dist[v], teams[v], pathCount[v]));</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (!pq.isEmpty()) &#123;</span><br><span class="line">            Node n = pq.poll();</span><br><span class="line">            <span class="keyword">int</span> u = n.id;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> v = <span class="number">0</span>; v &lt; V; v++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (map[u][v] == Integer.MAX_VALUE) &#123;</span><br><span class="line">                    <span class="keyword">continue</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (dist[u] + map[u][v] &lt; dist[v]) &#123;</span><br><span class="line">                    dist[v] = dist[u] + map[u][v];</span><br><span class="line">                    pathCount[v] = pathCount[u];</span><br><span class="line">                    teams[v] = teams[u] + teamsEachCity[v];</span><br><span class="line">                    pq.remove(<span class="keyword">new</span> Node(v, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>));</span><br><span class="line">                    pq.offer(<span class="keyword">new</span> Node(v, dist[v], teams[v], pathCount[v]));</span><br><span class="line">                &#125; <span class="keyword">else</span> <span class="keyword">if</span> (dist[u] + map[u][v] == dist[v]) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (teams[u] + teamsEachCity[v] &gt; teams[v]) &#123;</span><br><span class="line">                        teams[v] = teams[u] + teamsEachCity[v];</span><br><span class="line">                    &#125;</span><br><span class="line">                    pathCount[v] += pathCount[u];</span><br><span class="line">                    pq.remove(<span class="keyword">new</span> Node(v, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>));</span><br><span class="line">                    pq.offer(<span class="keyword">new</span> Node(v, dist[v], teams[v], pathCount[v]));</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">int</span>[] &#123; pathCount[dst], teams[dst] &#125;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Main s = <span class="keyword">new</span> Main();</span><br><span class="line">        <span class="keyword">int</span>[] result = s.rescue();</span><br><span class="line">        System.out.println(result[<span class="number">0</span>] + <span class="string">" "</span> + result[<span class="number">1</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h3><ul>
+<li>最基本的问题是最短路径，所以可以将 <code>Node</code> 中的 <code>pathCount</code> 和 <code>teams</code> 去掉</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/05/fp-haskell-learn-haskell-fast-and-hard/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/04/05/fp-haskell-learn-haskell-fast-and-hard/" itemprop="url">Haskell 极简教程</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-05T23:39:40+08:00">
+                2019-04-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p><strong>声明：本文翻译自 <a href="http://yannesposito.com/Scratch/en/blog/Haskell-the-Hard-Way/" target="_blank" rel="noopener">Learn Haskell Fast and Hard</a></strong></p>
+<img src="/2019/04/05/fp-haskell-learn-haskell-fast-and-hard/magritte_pleasure_principle.jpg">
+<p>我坚定地相信所有的开发者都应该学习 Haskell。当然，这并不意味着每个人都要变成 Haskell 高手（super Haskell ninjas），但是你至少能发现 Haskell 能给你提供什么。学习 Haskell 能够开阔你的思路。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/04/05/fp-haskell-learn-haskell-fast-and-hard/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/03/linux-programming-advanced-network-programming/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/04/03/linux-programming-advanced-network-programming/" itemprop="url">Linux 程序设计 - 进阶篇：网络编程</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-03T23:15:24+08:00">
+                2019-04-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="网络编程基础"><a href="#网络编程基础" class="headerlink" title="网络编程基础"></a>网络编程基础</h1><p>网络编程相关的</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/02/linux-programming-toc/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/04/02/linux-programming-toc/" itemprop="url">Linux 程序设计：目录</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-02T19:41:23+08:00">
+                2019-04-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>采用自顶向下的方式，从 Shell 开始，一步一步深入，记录自己的学习成果。</p>
+<ol>
+<li><a href="">Linux 程序设计 - 基础篇：基础 Shell 命令</a></li>
+<li><a href="">Linux 程序设计 - 基础篇：<code>grep</code> 命令</a></li>
+<li><a href="">Linux 程序设计 - 基础篇：<code>sed</code> 命令</a></li>
+<li><a href="">Linux 程序设计 - 基础篇：<code>awk</code> 命令</a></li>
+<li><a href="">Linux 程序设计 - 基础篇：编写 Shell 脚本</a></li>
+<li><a href="http://blog.rhanqtl.com/2019/04/02/linux-programming-file-system/" target="_blank" rel="noopener">Linux 程序设计 - 基础篇：文件系统</a></li>
+<li><a href="">Linux 程序设计 - 进阶篇：Linux 系统调用</a></li>
+<li><a href="http://blog.rhanqtl.com/2019/04/02/linux-programming-gcc/" target="_blank" rel="noopener">Linux 程序设计 - 工具篇：GCC</a></li>
+<li><a href="http://blog.rhanqtl.com/2019/04/02/linux-programming-make-makefile/" target="_blank" rel="noopener">Linux 程序设计 - 工具篇：make 和 Makefile</a></li>
+<li><a href="http://blog.rhanqtl.com/2019/04/02/linux-programming-gdb/" target="_blank" rel="noopener">Linux 程序设计 - 工具篇：GDB</a></li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/02/linux-programming-shell-script/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/04/02/linux-programming-shell-script/" itemprop="url">Linux 程序设计 - Shell 篇：编写 Shell 脚本</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-02T17:49:00+08:00">
+                2019-04-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h1><p>Shell 中的变量实际上都是<strong>字符串</strong>。</p>
+<h2 id="预定义变量"><a href="#预定义变量" class="headerlink" title="预定义变量"></a>预定义变量</h2><h3 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>名字</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><font face="Lucida Console">PATH</font></td>
+<td>默认的命令搜索路径</td>
+</tr>
+<tr>
+<td><font face="Lucida Console">UID</font></td>
+<td></td>
+</tr>
+<tr>
+<td><font face="Lucida Console">PWD</font></td>
+<td></td>
+</tr>
+<tr>
+<td><font face="Lucida Console">PS1</font></td>
+<td></td>
+</tr>
+<tr>
+<td><font face="Lucida Console">PS2</font></td>
+<td></td>
+</tr>
+<tr>
+<td><font face="Lucida Console">TERM</font></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="自动变量"><a href="#自动变量" class="headerlink" title="自动变量"></a>自动变量</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>名字</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><font face="Lucida Console">@</font></td>
+<td></td>
+</tr>
+<tr>
+<td><font face="Lucida Console">?</font></td>
+<td></td>
+</tr>
+<tr>
+<td><font face="Lucida Console">!</font></td>
+<td></td>
+</tr>
+<tr>
+<td><font face="Lucida Console">$</font></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="用户定义变量"><a href="#用户定义变量" class="headerlink" title="用户定义变量"></a>用户定义变量</h2><p>格式：<code>&lt;variable name&gt;=&lt;value&gt;</code></p>
+<p><strong>注意：</strong><code>=</code> 两边不能有空格！</p>
+<p>Shell 中，<code>=</code> 有多重含义，可以是赋值（初始化）、也可以是比较，不同的是：</p>
+<ul>
+<li><p>如果等号两边没有空格：</p>
+<ul>
+<li><p>左侧是变量，会认为是赋值</p>
+</li>
+<li><p>如果左侧是字符串，就会当成<strong>一个</strong>字符串</p>
+</li>
+</ul>
+</li>
+<li><p>如果等号两边有空格，就是比较</p>
+</li>
+<li><p>如果只有一边有空格，错误</p>
+</li>
+</ul>
+<p>也可以用 <code>==</code>，两边也<strong>必须有空格</strong></p>
+<ul>
+<li>如果 <code>a==&quot;b&quot;</code>，<code>a</code> 的值为 <code>=&quot;b&quot;</code></li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">命令</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>[n]&lt;word</code></td>
+<td style="text-align:left">重定向标准输入</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>[n]&gt;[\</code></td>
+<td style="text-align:left">]word&lt;/code&gt;</td>
+<td>重定向标准输出</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>[n]&gt;&gt;file</code></td>
+<td style="text-align:left">以追加的方式重定向标准输出</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>[n]&lt;&amp;word</code></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>&amp;&gt;word</code> 或 <code>&gt;&amp;word</code></td>
+<td style="text-align:left">重定向标准输出和标准错误</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>&amp;&gt;&gt;word</code></td>
+<td style="text-align:left">以追加的方式重定向标准输出和标准错误</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>&lt;&lt; tag</code></td>
+<td style="text-align:left">即时文档</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>[n]&lt;&gt;word</code></td>
+<td style="text-align:left">读/写</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h1 id="生成列表"><a href="#生成列表" class="headerlink" title="生成列表"></a>生成列表</h1><p><code>{lower..upper}</code> 或 <code>反引号seq \<lower\> \<upper\>反引号</upper\></lower\></code>，注意：</p>
+<p>A sequence expression takes the form {x..y[..incr]}, where x and y are either integers or single characters, and incr, an optional increment, is an integer. When integers are supplied, the expression expands to each number between x and y, inclusive….When characters are supplied, the expression expands to each character lexicographically between x and y, inclusive. Note that both x and y must be of the same type. When the increment is supplied, it is used as the difference between each term. The default increment is 1 or -1 as appropriate.</p>
+<h1 id="控制结构"><a href="#控制结构" class="headerlink" title="控制结构"></a>控制结构</h1><h2 id="分支"><a href="#分支" class="headerlink" title="分支"></a>分支</h2><p><strong><code>if</code></strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">if bool-expression</span><br><span class="line">then</span><br><span class="line">    # statements</span><br><span class="line">elif bool-expression</span><br><span class="line">then</span><br><span class="line">    # statements</span><br><span class="line">else</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+<p><strong><code>case</code></strong></p>
+<h2 id="循环"><a href="#循环" class="headerlink" title="循环"></a>循环</h2><p><strong><code>for</code></strong></p>
+<p><strong><code>while</code></strong></p>
+<p><strong><code>until</code></strong></p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p>[1] <a href="https://www.gnu.org/software/bash/manual/html_node/Redirections.html" target="_blank" rel="noopener">GNU Shell 教程</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/02/linux-programming-gdb/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/04/02/linux-programming-gdb/" itemprop="url">Linux 程序设计 - 工具篇：GDB</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-02T16:10:45+08:00">
+                2019-04-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/02/linux-programming-gcc/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -688,1479 +1755,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/27/soft-eng-arch-attribute-driven-design/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RHANQTL">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/03/27/soft-eng-arch-attribute-driven-design/" itemprop="url">Attribute-Driven Design</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-27T15:59:40+08:00">
-                2019-03-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="ADD-是什么？"><a href="#ADD-是什么？" class="headerlink" title="ADD 是什么？"></a>ADD 是什么？</h1><ul>
-<li>Attribute-Driven Design 中的 “Attribute” 指的是软件架构的<em>质量属性</em>，ADD 是一种基于软件质量属性需求的设计过程。</li>
-<li>ADD 遵循这样一个递归的过程：根据系统或系统元素的<em>质量属性需求</em>，运用合适的架构 <em>tactic</em> 和<em>模式</em> 将系统或系统中的要素<em>分解</em></li>
-</ul>
-<h1 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h1><ul>
-<li><p>ADD 遵循 “计划 —— 行动 —— 检查” 的循环</p>
-<ol>
-<li><p>计划：根据<em>质量属性需求</em> 和<em>设计约束</em> 来选择在架构中使用何种元素</p>
-</li>
-<li><p>行动：实例化上一步得到的元素以满足功能性需求和质量属性需求</p>
-</li>
-<li><p>检查：分析上一步得到的设计，确定需求是否得到满足</p>
-</li>
-</ol>
-<p>这个过程不断循环，直到所有的 ASR 得到满足</p>
-</li>
-<li><p>ADD 的步骤</p>
-<img src="/2019/03/27/soft-eng-arch-attribute-driven-design/steps-overview.png">
-<ul>
-<li>需要注意的一处：开始 Step 1 之前需要保证所有的需求都是 Well-formed 并且已经被涉众（Stakeholder）排序</li>
-</ul>
-</li>
-</ul>
-<h1 id="ADD-输入与输出"><a href="#ADD-输入与输出" class="headerlink" title="ADD 输入与输出"></a>ADD 输入与输出</h1><ul>
-<li><p>输入</p>
-<ul>
-<li>被涉众根据业务（Business）和任务（Mission）目标进行过排序的功能性需求（Functional Requirements）、设计约束（Design Constraints）和质量属性需求（Quality Attribute Requirements）<ul>
-<li>Design constraints are decisions about a system’s design that must be incorporated into any final design of the system.</li>
-<li>某些情况下可能难以将某个特定的条件分类为任何一个，比如：<ul>
-<li>A security requirement to provide user authentication could be interpreted as a functional requirement or a quality attribute requirement.</li>
-<li>A requirement to interoperate with a particular legacy application could be interpreted as a functional requirement or a design constraint.</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>输出</p>
-<ul>
-<li>ADD 的输出是就<em>角色</em>、<em>职责</em>、<em>属性</em> 和<em>软件元素</em> 之间的<em>关系</em> 而言的系统设计<ul>
-<li>软件元素（Software Element）：a computational or developmental artifact that fulfills various roles and responsibilities, has defined properties, and relates to other soft-ware elements to compose the architecture of a system</li>
-<li>角色（Role）：a set of related responsibilities</li>
-<li>职责（Responsibility）：the functionality, data, or information that a software element provides</li>
-<li>属性（Property）：additional information about a software element such as name, type, quality attribute characteristic, protocol, and so on</li>
-<li>关系（Relationship）：a definition of how two software elements are associated with or interact with one another</li>
-</ul>
-</li>
-<li>ADD 的结果使用多种架构视图记录<ul>
-<li>架构视图：Module、C&amp;C、Allocation</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h1 id="ADD-过程详述"><a href="#ADD-过程详述" class="headerlink" title="ADD 过程详述"></a>ADD 过程详述</h1><ol>
-<li><p>确认有足够的质量属性需求信息</p>
-<ul>
-<li>每个质量属性需求都应该以 “刺激 - 响应” 的形式表述</li>
-</ul>
-</li>
-<li><p>选择系统中的某个元素进行分解</p>
-<ul>
-<li>两种选择<ul>
-<li>在 ADD 流程中初次到达 Step 2：a <em>“greenfield”</em> development. The only element you can decompose is the <em>system itself</em>. By default, <em>all</em> requirements are assigned to that system.</li>
-<li>已经经过若干次 ADD 流程迭代或者来源于设计约束：a <em>partially designed system</em>. In this case, the system has been partitioned into two or more elements, and requirements have been assigned to those elements. You must <em>choose one</em> of these elements as the focus of subsequent steps.<ul>
-<li>选择元素的标准<ul>
-<li>当前关于架构的知识<ul>
-<li>是否是你能够选择的唯一元素 (e.g., the entire system or the last element left)</li>
-<li>the number of dependencies it has with other elements of the system (e.g., many or few dependencies)</li>
-</ul>
-</li>
-<li>风险和困难<ul>
-<li>how difficult it will be to achieve the element’s associated requirements</li>
-<li>how familiar you are with how to achieve the element’s associated requirements</li>
-<li>the risk involved with achieving the element’s associated requirements</li>
-</ul>
-</li>
-<li>业务（商业）标准<ul>
-<li>the role the element plays in incremental development of the system</li>
-<li>the role it plays in incremental releases of functionality (i.e., subsetability)</li>
-<li>whether it will be built, purchased, licensed, or used as open source</li>
-<li>the impact it has on time to market</li>
-<li>whether it will be implemented using legacy components</li>
-<li>the availability of personnel to address a component</li>
-</ul>
-</li>
-<li>组织标准<ul>
-<li>the impact it has on resource utilization (e.g., human and computing re-sources)</li>
-<li>the skill level involved with its development</li>
-<li>the impact it has on improving development skills in the organization</li>
-<li>someone of authority selected it</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>识别候选的架构 Driver</p>
-<ul>
-<li><p>依据需求对架构的潜在影响，第二次对需求进行排序</p>
-<ul>
-<li><p>简单地给需求分配如 “较高影响” “一般影响” “较低影响” 这样的标签</p>
-</li>
-<li><p>得到如 “(H, H)” “(M, L)” 这样的有序对，第一个分量表示需求对涉众的重要性，第二个分量表示需求对架构的潜在影响的级别</p>
-<img src="/2019/03/27/soft-eng-arch-attribute-driven-design/priority-pairs.png">
-<ul>
-<li>If more than five or six requirements are ranked (H,H), this situation might signal a risk to the project and warrant renegotiation of the priorities. If renewed discussion is not feasible, then the architect should choose the handful of requirements that he/she believes will have the most far-reaching effect on the architecture.</li>
-</ul>
-</li>
-<li><p>选择若干个（5 到 6 个）高优先级需求作为后续步骤的关注点，这些被选中的需求叫做要被分解的元素的 “候选架构 Driver”</p>
-<ul>
-<li>更深入的分析可能会剔除当前的某些候选架构 Driver，而将另一些加入到候选列表，后续步骤的目标就是识别真正的架构 Driver<ul>
-<li>“架构 Driver” 就是会对架构的结构产生影响的功能性需求、设计约束或质量属性需求</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>选择满足架构 Driver 的设计概念（Design Concept）</p>
-<ul>
-<li><p>选择主要的元素类型（major types of elements）以及它们之间的关系</p>
-<ul>
-<li>借助设计约束、质量属性需求</li>
-</ul>
-</li>
-<li><p>依照如下步骤：</p>
-<ol>
-<li><p>识别与候选架构 Driver 相关联的设计理念（Design Concern）。例如，如果质量属性需求要求可用性，那么主要的设计理念应该是错误预防、错误检测和错误回复</p>
-</li>
-<li><p>对于每个设计理念，列出可选的架构模式的列表</p>
-<ul>
-<li>识别每个架构模式的 discriminating parameter，并估计其价值<ul>
-<li>对于重启的架构模式（比如热重启和冷重启），重启花费的时间就是 discriminating parameter</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>从列表中选择合适的架构模式，记录理由</p>
-<ul>
-<li><p>如何选择合适的架构模式？一个参考是创建如下的矩阵，并考虑这些方面：</p>
-<ul>
-<li>每个架构模式的权衡（Trade-off）</li>
-<li>架构模式组合的好坏</li>
-<li>是否有互相冲突的架构模式</li>
-</ul>
-<table>
-    <tr>
-        <th></th>
-        <th colspan="2">Pattern 1</th>
-        <th colspan="2">Pattern 2</th>
-        <th>...</th>
-        <th colspan="2">Pattern n</th>
-    </tr>
-    <tr>
-        <td></td>
-        <td>Pros</td>
-        <td>Cons</td>
-        <td>Pros</td>
-        <td>Cons</td>
-        <td>...</td>
-        <td>Pros</td>
-        <td>Cons</td>
-    </tr>
-    <tr>
-        <td>Architectural driver 1</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-    </tr>
-    <tr>
-        <td>Architectural driver 2</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-    </tr>
-    <tr>
-        <td>...</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-    </tr>
-    <tr>
-        <td>Architectural driver n</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-    </tr>
-</table>
-</li>
-</ul>
-</li>
-<li><p>Consider the patterns identified so far and decide how they relate to each other. The combination of the selected patterns results in a new pattern.</p>
-<ul>
-<li>哪些元素有联系？</li>
-<li>哪些元素没有联系？</li>
-<li>哪些功能有重叠？重叠功能可以作为如何合并模式的指示</li>
-</ul>
-</li>
-<li><p>通过不同的视图，描述已选择的模式，记录（但不需要完全的记录）</p>
-</li>
-<li><p>评估和解决设计理念中的不一致性</p>
-</li>
-</ol>
-</li>
-</ul>
-</li>
-<li><p>实例化架构元素、分配职责</p>
-<ul>
-<li><p>正在被分解的系统元素作为父元素（Parent Element），实例化得到的元素作为子元素（Child Element）</p>
-</li>
-<li><p>同时可能会涉及到一些细化的部分</p>
-</li>
-</ul>
-</li>
-<li><p>定义实例化元素之间的接口</p>
-<ul>
-<li>供接口（Provide）和需接口（Require）</li>
-</ul>
-</li>
-<li><p>验证和精化需求、令他们作为实例化元素的约束</p>
-</li>
-</ol>
-<h1 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h1><p>对于大规模（Large-Scale）系统而言，可以将系统分为若干个块，针对这些块的设计活动可以同时进行，最终整合成一致的、能够满足涉众全部需求的完整架构。</p>
-<p>在这个示例中，我们有一个已经经过第一次迭代的大规模系统。第一次迭代的结果包含如下几个部分：</p>
-<ul>
-<li>容错（Fault-Toloerance）服务的占位符</li>
-<li>启动（Start-up）服务</li>
-<li>持久化存储（Persistent Storage）服务</li>
-<li>…</li>
-</ul>
-<p>我们的工作是对这些模块进行进一步的分解。</p>
-<p>约束/质量属性需求：</p>
-<ul>
-<li>端到端时间限制：从失效开始计算，至完全恢复系统结束<ul>
-<li>starting with the failure and ending with a fully recovered system</li>
-</ul>
-</li>
-<li>可能使用现有的服务，如 health monitoring 或者 warm restart service using a proxy</li>
-</ul>
-<h2 id="系统定义"><a href="#系统定义" class="headerlink" title="系统定义"></a>系统定义</h2><p><img src="/2019/03/27/soft-eng-arch-attribute-driven-design/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1553851602143.png" alt="1553851602143"></p>
-<p>要点：</p>
-<ul>
-<li>Update Clients <em>周期性</em>（1s）地向 Track Manager 发送数据</li>
-<li>（对于错误恢复时间的要求）Track Manager 容许<em>偶发性</em> 的丢失更新，especially during transient conditions caused by equipment failure，the Track Manager can recover from <em>two missed update</em> signals when it receives the third signal<ul>
-<li>If more than two signals are missed, the <em>operator</em> may have to assist the Track Manager in the recovery process. In other words, if a failure occurs, the processing <em>must</em> restart before <em>two seconds</em> have elapsed in order to avoid operator intervention.</li>
-</ul>
-</li>
-<li>Query Clients <em>零星地</em> 向 Track Manager 发送查询请求，并且必须<em>收到且仅收到一条</em> 回复<ul>
-<li>The response time for queries should be less than double the normal response time<br>for a particular query.</li>
-</ul>
-</li>
-<li>设计约束<ul>
-<li>容量限制：The provided processors shall have 50% spare processor and memory capacity on delivery, and the local area network (LAN) has 50% spare throughput capability. There are 100 update clients and 25 query clients. For the purposes of timing estimates, assume that there are 100 updates and 5 queries per second.</li>
-<li>持久化存储服务：This service will maintain a copy of state that is checked <em>at least once per minute</em> by the Track Manager. If all replicas of the Track Manager fail, a restart can begin from the checkpoint file.</li>
-<li>两份复制</li>
-</ul>
-</li>
-</ul>
-<h2 id="应用-ADD"><a href="#应用-ADD" class="headerlink" title="应用 ADD"></a>应用 ADD</h2><p><img src="/2019/03/27/soft-eng-arch-attribute-driven-design/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1553824629846.png" alt="1553824629846"></p>
-<ul>
-<li><p>Track Manager</p>
-<ul>
-<li><p>Strategy 1: Both elements (A and B) operate in a single processor, P1. A and B together<br>consume 50% of the processor duty cycle to handle 100 updates and 30 queries.<br>This strategy satisfies the system performance requirements.</p>
-</li>
-<li><p>Strategy 2: Element A is in processor P1, and element B is in processor P2. Together,<br>they can handle 150 update clients and 50 query clients. This strategy exceeds the system<br>performance requirements.</p>
-<ul>
-<li>Communication system bandwidth increases by 2% when the components are placed in different processors</li>
-</ul>
-<p><img src="/2019/03/27/soft-eng-arch-attribute-driven-design/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1553824753437.png" alt="1553824753437"></p>
-</li>
-</ul>
-</li>
-<li><p>Clients-Server Communication</p>
-<ul>
-<li><p>Update clients use an asynchronous communication mechanism. They send an update message, receive no reply, and are not suspended while the message is being delivered. (If a publish/subscribe service were available, it would be used instead.)</p>
-<blockquote>
-<font color="red">使用 publish/subcribe 代替异步通信？多个 publisher 一个 subscriber？</font>
-</blockquote>
-</li>
-<li><p>Query clients use a synchronous communication mechanism. They make a service<br>request and are suspended until they receive the reply</p>
-</li>
-</ul>
-</li>
-<li><p>naming service accepts the name of a requested service and returns an access code for the service. Both A and B register their interfaces with the naming service. </p>
-</li>
-<li><p>registration service refuses service to new clients if providing it would cause persistent storage to exceed its spare capacity limit.</p>
-</li>
-</ul>
-<h2 id="ADD-第二次迭代"><a href="#ADD-第二次迭代" class="headerlink" title="ADD 第二次迭代"></a>ADD 第二次迭代</h2><p>The three design concerns associated with fault-tolerance services are</p>
-<ul>
-<li>fault preparation: This concern consists of those tactics performed routinely during normal operation to ensure that when a failure occurs, a recovery can take place.</li>
-<li>fault detection: This concern consists of the tactics associated with detecting the fault and<br>notifying an element to deal with the fault.</li>
-<li>fault recovery: This concern addresses operations during a transient condition — the time<br>period between the fault occurrence and the restoration of normal operation.</li>
-</ul>
-<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p>本文内容来自 CMU/SEI：</p>
-<p>[1] Attribute-Driven Design, Version 2.0</p>
-<p>[2] A Practical Example of Applying ADD, Version 2.0</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/27/soft-eng-arch-micro-services/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RHANQTL">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/03/27/soft-eng-arch-micro-services/" itemprop="url">微服务架构</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-27T14:40:45+08:00">
-                2019-03-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="微服务架构-vs-单体架构"><a href="#微服务架构-vs-单体架构" class="headerlink" title="微服务架构 vs. 单体架构"></a>微服务架构 vs. 单体架构</h1><ul>
-<li><p>简而言之，微服务架构风格这种开发方法，是以开发一组小型服务的方式来开发一个独立的应用系统的。其中每个小型服务都运行在<em>独立</em> 的进程中，并经常采用 HTTP 资源 API 这样轻量的机制来相互通信。这些服务围绕<em>业务功能</em> 进行构建，并能通过<em>全自动</em> 的部署机制来进行独立部署。这些微服务可以使用不同的语言来编写，并且可以使用不同的数据存储技术。对这些微服务我们仅做最低限度的集中管理。（“自治”）</p>
-</li>
-<li><p>单体架构：以单个单元的方式来构建的。对于系统的任何改变，都会涉及构建和部署上述服务端应用系统的一个新版本。</p>
-<img src="/2019/03/27/soft-eng-arch-micro-services/scale-mono.jpg">
-</li>
-</ul>
-<h1 id="微服务架构的特性"><a href="#微服务架构的特性" class="headerlink" title="微服务架构的特性"></a>微服务架构的特性</h1><p>下面所描述的所有这些共性，并不是所有的微服务架构都完全具备。</p>
-<ul>
-<li><p>“组件化” 与 “多服务”</p>
-<ul>
-<li>组件：一个组件就是一个可以独立更换和升级的软件单元。</li>
-<li>良好的微服务架构的目的，是通过内聚的服务边界和服务协议方面的演进机制，来将由于服务接口的变更导致的多个服务之间的协同修改变得最小化。</li>
-<li>比起进程内调用，远程调用更加昂贵，所以远程调用 API 接口必须是<em>粗粒度</em> 的</li>
-</ul>
-</li>
-<li><p>围绕业务功能（business capability）组织团队</p>
-<ul>
-<li><p>不再根据逻辑上的划分来组织系统（比如用户界面层、业务逻辑层和数据访问和持久化层）</p>
-</li>
-<li><p>康威定律</p>
-<blockquote>
-<p>任何设计（广义上的）系统的组织，都会产生这样一个设计，即该设计的结构与该组织的沟通结构相一致。</p>
-<p>​                                        —— 梅尔文 • 康威（Melvyn Conway）, 1967年</p>
-</blockquote>
-</li>
-<li><p>跨职能团队负责构建和运维每个产品，而每个产品被拆分为多个独立的服务，彼此通过一个<em>消息总线</em> 来通信。</p>
-</li>
-</ul>
-<blockquote>
-<p><strong>微服务应该有多大？</strong></p>
-<ul>
-<li>亚马逊的 “两个比萨团队”（即一个团队可以被两个比萨所喂饱）理念：一个团队不会多于12人</li>
-<li>对于规模较小的服务，我们已经看到一个6人的团队在支持6个服务。</li>
-</ul>
-</blockquote>
-</li>
-<li><p>“做产品” 而不是 “做项目”</p>
-<ul>
-<li>亚马逊：“谁构建，谁运行”，即一个开发团队对一个在生产环境下运行的软件负全责。<ul>
-<li>关注构建质量</li>
-</ul>
-</li>
-<li>这样的 “产品” 理念，是与业务功能的联动绑定在一起的。它不会将软件看作是一个待完成的功能集合，而是认为存在这样一个持续的关系，即软件如何能助其客户来持续增进业务功能。</li>
-</ul>
-</li>
-<li><p>智能端点（smart endpoints）与傻瓜管道（dumb pipes）</p>
-<ul>
-<li>智能端点：接收一个请求，酌情对其应用业务逻辑，并产生一个响应</li>
-<li>傻瓜管道：通过一个轻量级的消息总线来进行消息发送，除了提供可靠的异步机制（fabric）以外不做其他任何事情，智能功能存在于那些生产和消费诸多消息的各个端点，即各个服务中</li>
-<li>需要用更粗粒度的协议来替代细粒度的服务间通信</li>
-</ul>
-</li>
-<li><p>去中心化地治理技术</p>
-<blockquote>
-<p><strong>微服务和SOA</strong></p>
-<p>当我们谈起微服务时，一个常见的问题就会出现：是否微服务仅仅是十多年前所看到的“面向服务的架构”(Service Oriented Architecture, SOA)？这样问是有道理的，因为微服务风格非常类似于一些支持SOA的人所赞成的观点。然而，问题在于SOA这个词儿意味着太多不同的东西(<a href="http://martinfowler.com/bliki/ServiceOrientedAmbiguity.html)。而且大多数时候，我们所遇到的某些被称作&quot;SOA&quot;的事物，明显不同于本文所描述的风格。这通常由于它们专注于ESB，来集成各个单块应用。" target="_blank" rel="noopener">http://martinfowler.com/bliki/ServiceOrientedAmbiguity.html)。而且大多数时候，我们所遇到的某些被称作&quot;SOA&quot;的事物，明显不同于本文所描述的风格。这通常由于它们专注于ESB，来集成各个单块应用。</a></p>
-<p>特别地，我们已经看到如此之多的面向服务的拙劣实现——从将系统复杂性隐藏于ESB中的趋势，到花费数百万进行多年却没有交付任何价值的失败项目，到顽固抑制变化发生的中心化技术治理模型——以至于有时觉得其所造成的种种问题真的不堪回首。</p>
-<p>当然，在微服务社区投入使用的许多技术，源自各个开发人员将各种服务集成到各个大型组织的经验。“容错读取”(Tolerant Reader, <a href="http://martinfowler.com/bliki/TolerantReader.html)模式就是这样一个例子。对于Web的广泛使用，使得人们不再使用一些中心化的标准，而使用一些简单的协议。坦率地说，这些中心化的标准，其复杂性已经达到令人吃惊的程度（http://wiki.apache.org/ws/WebServiceSpecifications）。（任何时候，如果需要一个本体（ontology）来管理其他各个本体，那么麻烦就大了。）" target="_blank" rel="noopener">http://martinfowler.com/bliki/TolerantReader.html)模式就是这样一个例子。对于Web的广泛使用，使得人们不再使用一些中心化的标准，而使用一些简单的协议。坦率地说，这些中心化的标准，其复杂性已经达到令人吃惊的程度（http://wiki.apache.org/ws/WebServiceSpecifications）。（任何时候，如果需要一个本体（ontology）来管理其他各个本体，那么麻烦就大了。）</a></p>
-<p>这种常见的SOA的表现，已使得一些微服务的倡导者完全拒绝将自己贴上SOA的标签。尽管其他人会将微服务看作是SOA的一种形式，也许微服务就是以正确的形式来实现面向服务的SOA。不管是哪种情况，SOA意味着如此之多的不同事物，这表明用一个更加干净利落的术语来命名这种架构风格是很有价值的。</p>
-<p>“YAGNI” 或者 “You Aren’t Going To Need It”（你不会需要它）是极限编程的一条原则（<a href="http://c2.com/cgi/wiki?YouArentGonnaNeedIt）和劝诫，指的是“除非到了需要的时候，否则不要添加新功能”。" target="_blank" rel="noopener">http://c2.com/cgi/wiki?YouArentGonnaNeedIt）和劝诫，指的是“除非到了需要的时候，否则不要添加新功能”。</a></p>
-</blockquote>
-</li>
-<li><p>去中心化地管理数据</p>
-<ul>
-<li>从最抽象的层面看，这意味着各个系统对客观世界所构建的概念模型将彼此各不相同</li>
-<li>微服务架构更强调在各个服务之间进行 “无事务” 的协调，这源自微服务社区明确地认识到下述两点，即数据一致性可能只要求数据在<em>最终</em> 达到一致，并且一致性问题能够通过补偿操作来进行处理。</li>
-<li>只要修复错误的成本，与在保持更大的数据一致性却导致丢了生意所产生的成本相比，前者更低，那么这种 “非一致性” 地管理数据的权衡就是值得的。</li>
-</ul>
-</li>
-<li><p>基础设施自动化</p>
-</li>
-<li><p>容错设计</p>
-<ul>
-<li>因为服务可能在任何时候发生故障，所以下面两件事就变得很重要：<ul>
-<li>能够快速地<em>检测</em> 出故障</li>
-<li>在可能的情况下能够<em>自动恢复</em> 服务</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>演进式设计</p>
-<ul>
-<li>变化控制并不一定意味着要减少变化</li>
-<li>组件的关键属性：独立更换和升级<ul>
-<li>进行组件划分时考虑的重点</li>
-</ul>
-</li>
-<li>组件（服务）的寿命也是一个关注点（这一点在 Essential Software Architecture 中也有讲到），如果服务将来会报废，那么没有必要进行过多的长期演进的准备</li>
-<li>如果发现需要同时反复变更两个服务时，这就是它们两个需要被合并的信号</li>
-<li>必须要考虑当一个服务发生变化时，依赖它并对其进行消费的其他服务将无法工作。传统的集成方法是试图使用<em>版本化</em> 来解决这个问题。但在微服务世界中，大家更喜欢将版本化作为最后万不得已的手段来使用。我们可以通过把各个服务设计得尽量能够容错，来应对其所依赖的服务所发生的变化来避免许多版本化的工作。</li>
-</ul>
-</li>
-</ul>
-<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p>[1] <a href="http://martinfowler.com/articles/microservices.html" target="_blank" rel="noopener">微服务原文链接</a></p>
-<p>[2] <a href="http://mp.weixin.qq.com/s__biz=MjM5MjEwNTEzOQ==&amp;mid=401500724&amp;idx=1&amp;sn=4e42fa2ffcd5732ae044fe6a387a1cc3#rd" target="_blank" rel="noopener">微服务译文链接</a></p>
-<p>[3] <a href="https://zhuanlan.zhihu.com/p/52189005" target="_blank" rel="noopener">知乎 - 阿里P8架构师谈（SOA微服务淘宝架构）：单体架构、SOA、微服务的架构设计详解</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/26/c-to-asm/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RHANQTL">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/03/26/c-to-asm/" itemprop="url">从 C 到汇编</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-26T15:37:02+08:00">
-                2019-03-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="C-到汇编"><a href="#C-到汇编" class="headerlink" title="C 到汇编"></a>C 到汇编</h1><p>以下均为 <strong>GCC</strong> 的行为！！！</p>
-<h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><h3 id="全局变量"><a href="#全局变量" class="headerlink" title="全局变量"></a>全局变量</h3><ul>
-<li>初始化的全局变量：<code>.data</code></li>
-<li>未初始化的全局变量和<em>初始化为 0 的全局变量</em>：<code>.bss</code><ul>
-<li>这样做只需要在目标代码中放置占位符即可，不需要保存实际的数据，可以节省空间</li>
-</ul>
-</li>
-</ul>
-<h3 id="局部变量"><a href="#局部变量" class="headerlink" title="*局部变量"></a>*局部变量</h3><ul>
-<li>静态局部变量</li>
-<li><p>非静态局部变量</p>
-</li>
-<li><p>第一个局部变量的地址为 <code>-0x8(%ebp)</code>，第二个局部变量的地址为 <code>-0xc(%ebp)</code>，依此类推</p>
-</li>
-</ul>
-<h3 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h3><p>数据对象：</p>
-<p>最典型的数据对象：字符串字面量</p>
-<h2 id="函数调用"><a href="#函数调用" class="headerlink" title="函数调用"></a>函数调用</h2><h3 id="函数调用方式"><a href="#函数调用方式" class="headerlink" title="函数调用方式"></a>函数调用方式</h3><ul>
-<li><p><code>__cdecl</code></p>
-<p><code>__cdecl</code> 是 C Declaration  的缩写，表示 C 语言默认的函数调用方法：所有参数<strong>从右到左</strong>依次入栈，这些参数由<strong>调用者</strong>清除，称为手动清栈。被调用函数<strong>不要求</strong>调用者传递多少参数，调用者传递过多或者过少的参数，甚至完全不同的参数都不会产生编译阶段的错误。<strong>实现可变参数的调用只能用该方法</strong>。</p>
-</li>
-<li><p><code>__stdcall</code></p>
-<p><code>__stdcall</code> 是 Standard Call 的缩写，是 C++ 的标准调用方式：所有参数<strong>从右到左</strong>依次入栈，如果是调用类成员的话，最后一个入栈的是 <code>this</code> 指针。这些堆栈中的参数由<strong>被调用者</strong>在返回后清除，使用的指令是 <code>retn X</code>，X 表示参数占用的字节数，CPU 在 <code>retn</code> 之后自动弹出 X 个字节的堆栈空间，称为自动清栈。函数在编译的时候就<strong>必须确定</strong>参数个数，并且调用者必须严格的控制参数的生成，不能多，不能少，否则返回后会出错。</p>
-</li>
-<li><p><code>__pascal</code></p>
-<p><code>__pascal</code> 是 Pascal 语言（Delphi）的函数调用方式，也可以在 C++ 中使用，参数压栈顺序与前两者<strong>相反</strong>。返回时的清栈方式与 <code>__stdcall</code> 相同。</p>
-</li>
-<li><p><code>__fastcall</code></p>
-<p><code>__fastcall</code> 是编译器指定的快速调用方式。由于大多数的函数参数个数很少，使用堆栈传递比较费时。因此 <code>__fastcall</code> 通常规定将前两个（或若干个）参数由寄存器传递，其余参数还是通过堆栈传递。不同编译器编译的程序规定的寄存器不同，返回方式和 <code>__stdcall</code> 相当。</p>
-</li>
-<li><p><code>__thiscall</code></p>
-<p><code>__thiscall</code> 是为了解决类成员调用中 <code>this</code> 指针传递而规定的。<code>__thiscall</code> 要求把 <code>this</code> 指针放在特定寄存器中，该寄存器由编译器决定。VC 使用 <code>ecx</code>，Borland 的 C++ 编译器使用 <code>eax</code>。返回方式和 <code>__stdcall</code> 相当。</p>
-</li>
-</ul>
-<p><code>__fastcall</code> 和 <code>__thiscall</code> 涉及的寄存器由编译器决定，因此<strong>不能</strong>用作跨编译器的接口。所以 Windows 上的 COM 对象接口都定义为 <code>__stdcall</code> 调用方式。</p>
-<p>C 语言中不加说明<strong>默认</strong>函数为 <code>__cdecl</code> 方式（C 中也只能用这种方式），C++ 也一样，但是默认的调用方式可以在 IDE 环境中设置。</p>
-<p>例子：<code>f(a, b, c);</code>（汇编代码均为示意，并不是合法的）</p>
-<ul>
-<li><p><code>__cdecl</code> 调用约定：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">push c			; 参数按右到左传递</span><br><span class="line">push b</span><br><span class="line">push a</span><br><span class="line">call f			; 此处的函数名只是示例，实际上会有修饰</span><br><span class="line">add  %esp, 0xc	; 调用者平衡堆栈</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><code>__stdcall</code> 调用约定</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">push c</span><br><span class="line">push b</span><br><span class="line">push a</span><br><span class="line">call f			; 被调用者平衡堆栈</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><code>__pascal</code> 调用约定</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">push a</span><br><span class="line">push b</span><br><span class="line">push c</span><br><span class="line">call f			; 被调用者平衡堆栈</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h3 id="参数传递"><a href="#参数传递" class="headerlink" title="参数传递"></a>参数传递</h3><ul>
-<li>32 位<ul>
-<li>通过寄存器传递时有寄存器顺序约定</li>
-<li>通过栈传递：最后一个参数最先 push，第一个参数最后 push，由于堆栈是由高地址向低地址增长，这样的 push 顺序能够保证第一个参数最靠近被调用函数的栈帧，<em>便于处理变参</em>。</li>
-</ul>
-</li>
-<li>64 位<ul>
-<li>前 6 个参数：rdi, rsi, rdx, rcx, r8, r9</li>
-<li>其余参数通过栈传递，同 32 位，但每个参数按照 <em>8</em> 字节对齐</li>
-</ul>
-</li>
-</ul>
-<h4 id="变参"><a href="#变参" class="headerlink" title="变参"></a>变参</h4><p><code>va_list</code>：变参列表，<code>typedef char * va_list;</code>，也就是字节指针</p>
-<p>三个主要的宏：</p>
-<ul>
-<li><code>va_start(ap, 第一个值)</code>：将变参列表 <code>ap</code> 初始化为第一个匿名参数</li>
-<li><code>va_arg(ap, type)</code>：获取下一个类型为 <code>type</code> 的匿名参数</li>
-<li><code>va_end(ap)</code>：负责结束时的清理工作</li>
-</ul>
-<h3 id="call"><a href="#call" class="headerlink" title="call"></a><code>call</code></h3><p>CPU 执行 <code>call</code> 指令，进行两步操作：</p>
-<ol>
-<li><p>将当前的 IP 或 CS 和 IP 压入栈中</p>
-</li>
-<li><p>转移</p>
-</li>
-</ol>
-<h3 id="准备工作（Prologue）"><a href="#准备工作（Prologue）" class="headerlink" title="准备工作（Prologue）"></a>准备工作（Prologue）</h3><p>C 语言中进入被调用函数之后通常会有如下的代码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">push	%ebp</span><br><span class="line">mov		%esp, %ebp</span><br></pre></td></tr></table></figure>
-<p>所以，在调用者的栈帧中，第一项（<code>0x0(%esp)</code>）为其栈帧的栈底指针（<code>%ebp</code>）；而第二项（<code>0x4(%esp)</code>）为返回地址</p>
-<h3 id="返回值"><a href="#返回值" class="headerlink" title="返回值"></a>返回值</h3><p>通常返回值放在 <code>%eax</code> 中</p>
-<h3 id="leave-和-ret"><a href="#leave-和-ret" class="headerlink" title="leave 和 ret"></a><code>leave</code> 和 <code>ret</code></h3><h1 id="更多"><a href="#更多" class="headerlink" title="更多"></a>更多</h1><p>[1] <a href="https://stackoverflow.com/questions/4228261/understanding-the-purpose-of-some-assembly-statements" target="_blank" rel="noopener">Understanding the purpose of some assembly statements</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/25/others-computers/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RHANQTL">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/03/25/others-computers/" itemprop="url">笔记本电脑选购总结</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-25T15:00:00+08:00">
-                2019-03-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="笔记本电脑选购总结"><a href="#笔记本电脑选购总结" class="headerlink" title="笔记本电脑选购总结"></a>笔记本电脑选购总结</h1><h2 id="1-处理器"><a href="#1-处理器" class="headerlink" title="1 处理器"></a>1 处理器</h2><h3 id="1-1-处理器型号解析-1-2-3"><a href="#1-1-处理器型号解析-1-2-3" class="headerlink" title="1.1 处理器型号解析$^{[1][2][3]}$"></a>1.1 处理器型号解析$^{[1][2][3]}$</h3><p>Let us start from how Intel names its processors. To put it in lay man’s words</p>
-<ul>
-<li>i3 is for general use</li>
-<li>i5 is for gaming</li>
-<li>i7 is for professional use</li>
-</ul>
-<p><strong>What do these numbers mean? 3,5,7 ?</strong></p>
-<p>They are simply brand modifiers to identify a certain product range.</p>
-<p><strong>What does the first digit mean?</strong></p>
-<p>Let us take the ‘4’ in i3 4160. People say that 4 means that it is a fourth generation CPU from Intel. That is not entirely correct. It is actually fourth generation. It is actually fourth generation compared to a micro architecture called ‘Clarkdale’, which was the first CPU to have integrated graphics.</p>
-<p><strong>What do the next three digits mean?</strong></p>
-<p>Intel says that they are something called SKU (Stock keeping unit) Numeric digits For ex. ‘160’ in i3 4160. A SKU is usually a string of numbers and alphabets used by the manufacturer to identify their product. In simple words it is the model number of that processor.</p>
-<p><strong>What are the letters following the digits?</strong></p>
-<p>Intel has made a guide on what those letters mean,</p>
-<ul>
-<li><p>For Desktop processors</p>
-<ul>
-<li><strong>‘k’</strong> means that the multiplier on that CPU is unlocked, Means that the processor can be overclocked.</li>
-<li><strong>‘T’</strong> refers to the CPU being power optimized. These processors have a lower TDP, They put out less heat and consumer less power</li>
-</ul>
-</li>
-<li><p>For laptop processors</p>
-<ul>
-<li><strong>‘H’</strong> means that the processor has high performance integrated graphics</li>
-<li><strong>‘HK’</strong> means that the processor has high performance integrated graphics and a unlocked multiplier</li>
-<li><strong>‘HQ’</strong> refers to high performance integrated graphics and a quad core CPU</li>
-<li><strong>‘U’</strong> means that the CPU is meant for ultra low power consumption<ul>
-<li>U前面一位数字为8，则是28W功耗的低压处理器（标准电压双核处理器功耗为35W），若前一位数字为7，则是17W功耗的低压处理器，若为0，则是15W功耗的低压处理器。</li>
-</ul>
-</li>
-<li>M：笔记本专用CPU，一般为双核，M前面一位数字是0，意味着是标准电压处理器，如果是7，则是低电压处理器。</li>
-<li>QM、MQ：（第四代开始改为MQ）：笔记本专用CPU，“Q”是“Quad”的缩写，即四核CPU。若QM前一位数字是0，则表示此产品为功耗45W的标准电压四核处理器，若为2，则表示此产品为35W功耗的低电压四核处理器，若为5，与对应为0的CPU主要规格相同，但集成的核芯显卡频率更高（如3630QM和3635QM，后者核显最大频率1.2GHz，前者则是1.15GHz）。</li>
-<li>XM：最强大的笔记本CPU，功耗一般为55W。“X”意为“Extreme”，此类型CPU完全不锁频，在散热和供电允许的情况下可以无限制超频，而即便是默认频率下，也比同一时代的其它产品强大得多。这类CPU都是工厂生产后精心挑选出来得极品，质量极佳，性能完美，但价格非常昂贵。一块XM系列的CPU批发价可达1000美金以上（普通的四核大概3，400美金一块）。</li>
-<li>PM：这个后缀表示CPU没有核显</li>
-<li>台式CPU，标准款一般没有后缀字母，若有后缀字幕“K”，则是可以超频的版本，若有后缀字幕“X”，则是顶级的至尊版（台式机至尊版CPU为6核心12线程）。</li>
-<li>M代表标准电压cpu是可以拆卸的；<br>U代表低电压节能的，可以拆卸的；<br>H是高电压的，是焊接的，不能拆卸；<br>X代表高性能，可拆卸的；<br>Q“Q”是“Quad”的缩写，即四核CPU；<br>Y代表超低电压的，除了省电，没别的优点的了，是不能拆卸的</li>
-</ul>
-</li>
-</ul>
-<h2 id="2-内存"><a href="#2-内存" class="headerlink" title="2 内存"></a>2 内存</h2><h2 id="3-显示器"><a href="#3-显示器" class="headerlink" title="3 显示器"></a>3 显示器</h2><h3 id="3-1-集成显卡、核芯显卡和独立显卡"><a href="#3-1-集成显卡、核芯显卡和独立显卡" class="headerlink" title="3.1 集成显卡、核芯显卡和独立显卡"></a>3.1 集成显卡、核芯显卡和独立显卡</h3><h3 id="3-2-色域"><a href="#3-2-色域" class="headerlink" title="3.2 色域"></a>3.2 色域</h3><ul>
-<li>NTSC</li>
-<li>sRGB</li>
-</ul>
-<h3 id="3-3-刷新率"><a href="#3-3-刷新率" class="headerlink" title="3.3 刷新率"></a>3.3 刷新率</h3><h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p>[1] <a href="https://www.quora.com/What-are-the-differences-between-U-M-QM-MQ-and-HQ-processors-of-Intel-to-consider-when-buying-a-laptop" target="_blank" rel="noopener">Quora</a></p>
-<p>[2] <a href="https://blog.51cto.com/sndapk/1564338" target="_blank" rel="noopener">Intel 笔记本 CPU 型号后缀详解 (M, U, QM, MQ, HQ, XM)</a></p>
-<p>[3] <a href="http://bbs.donglishuzhai.net/thread-735-1-1.html" target="_blank" rel="noopener">Intel 笔记本 CPU，型号后面的 U，M，H，X，MQ，HQ，QM，MX，PM 都是什么意思？</a></p>
-<p>[4] <a href="[UserBenchmark](https://cpu.userbenchmark.com/Compare/Intel-Core-i7-8550U-vs-Intel-Core-i5-8250U/m320742vsm338266">测评 1：i7-8550U vs. i5-8250U</a>)</p>
-<p>[5] <a href="https://www.notebookcheck.net/8550U-vs-8250U_9208_9206.247596.0.html" target="_blank" rel="noopener">测评 2：i7-8550U vs. i5-8250U</a></p>
-<p>[6] <a href="https://www.toptenreviews.com/computers/articles/graphics-cards-integrated-vs.-dedicated/" target="_blank" rel="noopener">Integrated vs. Dedicated</a></p>
-<h1 id="更多"><a href="#更多" class="headerlink" title="更多"></a>更多</h1><p>[1] <a href="https://www.intel.cn/content/www/cn/zh/processors/processor-numbers.html?_ga=2.39581472.2077762575.1551265326-1577174799.1551265326" target="_blank" rel="noopener">Intel 官方处理器编号文档</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/01/cpp-basic-type-cast/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RHANQTL">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/02/01/cpp-basic-type-cast/" itemprop="url">C++ 学习笔记 - 基础篇：类型转换</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-01T21:46:27+08:00">
-                2019-02-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p>[1] <a href="https://stackoverflow.com/questions/332030/when-should-static-cast-dynamic-cast-const-cast-and-reinterpret-cast-be-used" target="_blank" rel="noopener">https://stackoverflow.com/questions/332030/when-should-static-cast-dynamic-cast-const-cast-and-reinterpret-cast-be-used</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/01/cpp-basic-dynamic-memory/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RHANQTL">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/02/01/cpp-basic-dynamic-memory/" itemprop="url">C++ 学习笔记 - 基础篇：动态内存管理</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-01T21:37:55+08:00">
-                2019-02-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="C-中的动态内存管理"><a href="#C-中的动态内存管理" class="headerlink" title="C 中的动态内存管理"></a>C 中的动态内存管理</h1><h2 id="malloc-free"><a href="#malloc-free" class="headerlink" title="malloc/free"></a><code>malloc</code>/<code>free</code></h2><p>头文件 <code>stdlib.h</code> 中</p>
-<ul>
-<li>Allocates/release memory<ol>
-<li>Memory allocated from ‘Heap’</li>
-<li>Returns a void*</li>
-<li>Returns NULL on failure</li>
-<li>Must specify the size required in bytes.</li>
-<li>Allocating array requires manual calculation of space.</li>
-<li>Reallocating larger chunk of memory simple (No copy constructor to worry about)</li>
-<li>They will <strong>NOT</strong> call new/delete</li>
-<li>No way to splice user code into the allocation sequence to help with low memory.</li>
-<li>malloc/free can <strong>NOT</strong> be overridden legally</li>
-</ol>
-</li>
-</ul>
-<h2 id="realloc"><a href="#realloc" class="headerlink" title="realloc"></a><code>realloc</code></h2><h1 id="C-中的动态内存管理-1"><a href="#C-中的动态内存管理-1" class="headerlink" title="C++ 中的动态内存管理"></a>C++ 中的动态内存管理</h1><h2 id="new-delete"><a href="#new-delete" class="headerlink" title="new/delete"></a><code>new</code>/<code>delete</code></h2><ul>
-<li>Allocate/release memory<ol>
-<li>Memory allocated from ‘Free Store’</li>
-<li>Returns a fully typed pointer.</li>
-<li>new (standard version) never returns a NULL (will throw on failure)</li>
-<li>Are called with Type-ID (compiler calculates the size)</li>
-<li>Has a version explicitly to handle arrays.</li>
-<li>Reallocating (to get more space) not handled intuitively (because of copy constructor).</li>
-<li>Whether they call malloc/free is implementation defined.</li>
-<li>Can add a new memory allocator to deal with low memory (set_new_handler)</li>
-<li>operator new/delete can be overridden legally</li>
-<li><strong>constructor/destructor used to initialize/destroy the object</strong></li>
-</ol>
-</li>
-</ul>
-<h2 id="重载-new-delete"><a href="#重载-new-delete" class="headerlink" title="重载 new/delete"></a>重载 <code>new</code>/<code>delete</code></h2><h2 id="智能指针"><a href="#智能指针" class="headerlink" title="智能指针"></a>智能指针</h2><p>Table comparison of the features:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"> Feature                  | new/delete                     | malloc/free                   </span><br><span class="line">--------------------------+--------------------------------+-------------------------------</span><br><span class="line"> Memory allocated from    | &apos;Free Store&apos;                   | &apos;Heap&apos;                        </span><br><span class="line"> Returns                  | Fully typed pointer            | void*                         </span><br><span class="line"> On failure               | Throws (never returns NULL)    | Returns NULL                  </span><br><span class="line"> Required size            | Calculated by compiler         | Must be specified in bytes    </span><br><span class="line"> Handling arrays          | Has an explicit version        | Requires manual calculations  </span><br><span class="line"> Reallocating             | Not handled intuitively        | Simple (no copy constructor)  </span><br><span class="line"> Call of reverse          | Implementation defined         | No                            </span><br><span class="line"> Low memory cases         | Can add a new memory allocator | Not handled by user code      </span><br><span class="line"> Overridable              | Yes                            | No                            </span><br><span class="line"> Use of (con-)/destructor | Yes                            | No</span><br></pre></td></tr></table></figure>
-<p>Technically memory allocated by new comes from the ‘Free Store’ while memory allocated by malloc comes from the ‘Heap’. Whether these two areas are the same is an implementation details, which is another reason that malloc and new can not be mixed.</p>
-<p>The only way I could think that would be beneficial to use <code>malloc</code> would be if you needed to <strong>change the size of your buffer</strong> of data. The <code>new</code> keyword does not have an analogous way like <code>realloc</code>. The <code>realloc</code> function might be able to extend the size of a chunk of memory for you more efficiently.</p>
-<p>It is worth mentioning that you cannot mix <code>new</code>/<code>free</code> and <code>malloc</code>/<code>delete</code>.</p>
-<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p>[1] <a href="https://stackoverflow.com/questions/240212/what-is-the-difference-between-new-delete-and-malloc-free" target="_blank" rel="noopener">https://stackoverflow.com/questions/240212/what-is-the-difference-between-new-delete-and-malloc-free</a></p>
-<p>[2] <a href="https://stackoverflow.com/questions/184537/in-what-cases-do-i-use-malloc-vs-new" target="_blank" rel="noopener">https://stackoverflow.com/questions/184537/in-what-cases-do-i-use-malloc-vs-new</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/28/cpp-basic-inheriant/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RHANQTL">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/01/28/cpp-basic-inheriant/" itemprop="url">C++ 学习笔记 - 基础篇：继承</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-28T09:31:48+08:00">
-                2019-01-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="综述"><a href="#综述" class="headerlink" title="综述"></a>综述</h1><p>继承是面向对象程序设计中一个重要的特性。</p>
-<h1 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h1><p>cppreference 的定义：任何类类型（以 <em>class-key</em> <code>class</code> 或 <code>struct</code> 声明者）可被声明为<em>派生</em>自一或多个<em>基类</em>，基类自身也可以派生自其基类，这组成继承层级。</p>
-<p>基类的列表提供于类声明语法的 base-clause 。 base-clause 由字符 <code>:</code> 后随一或多个 base-specifier 的逗号分隔列表组成。</p>
-<p>base-specifier 的语法如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">attr(可选) access-specifier(可选) virtual-specifier(可选) class-or-decltype</span><br></pre></td></tr></table></figure>
-<ul>
-<li>attr(C++ 11)：可选的任何数量的属性序列</li>
-<li>access-specifier：private、public、protected 之一<ul>
-<li>缺省：<code>struct</code> 为 <code>public</code>，<code>class</code> 为 <code>private</code></li>
-</ul>
-</li>
-<li>virtual-specifier：<code>virtual</code></li>
-<li>注意是可以使用 <code>decltype</code> 作为类声明符</li>
-</ul>
-<p>virtual-specifier 与 access-specifier 可以任意顺序出现。</p>
-<p>同一类不能指定于直接基类多于一次，但同一类可以既是直接又是间接基类。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Base</span> &#123;</span> &#125;;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Derived</span> :</span> Base, Base &#123; &#125;;</span><br></pre></td></tr></table></figure>
-<img src="/2019/01/28/cpp-basic-inheriant/more-than-once.png">
-<h2 id="虚基类"><a href="#虚基类" class="headerlink" title="虚基类"></a>虚基类</h2><p>对于每个指定为 <code>virtual</code> 的相异基类，最终派生类对象仅含有该类型的一个基类子对象，即使该类在继承层级中出现多次（只要它每次都以 <code>virtual</code> 继承）。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">B</span> &#123;</span> <span class="keyword">int</span> n; &#125;;</span><br><span class="line"><span class="comment">// 顺序是任意的</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">X</span> :</span> <span class="keyword">public</span> <span class="keyword">virtual</span> B &#123;&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Y</span> :</span> <span class="keyword">virtual</span> <span class="keyword">public</span> B &#123;&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Z</span> :</span> <span class="keyword">public</span> B &#123;&#125;;</span><br><span class="line"><span class="comment">// 每个 AA 类型对象拥有一个 X ，一个 Y ，一个 Z 和二个 B ：</span></span><br><span class="line"><span class="comment">// 其一是 Z 的基类，另一者为 X 与 Y 所共享</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">AA</span> :</span> X, Y, Z &#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        X::n = <span class="number">1</span>; <span class="comment">// 修改虚 B 基类子对象的成员</span></span><br><span class="line">        Y::n = <span class="number">2</span>; <span class="comment">// 修改同一虚 B 基类子对象的成员</span></span><br><span class="line">        Z::n = <span class="number">3</span>; <span class="comment">// 修改非虚 B 基类子对象的成员</span></span><br><span class="line"> </span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; X::n &lt;&lt; Y::n &lt;&lt; Z::n &lt;&lt; <span class="string">'\n'</span>; <span class="comment">// 打印 223</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>继承层级有虚基类的例子之一是标准库的 <code>iostream</code> 的继承层级： <a href="https://zh.cppreference.com/w/cpp/io/basic_istream" target="_blank" rel="noopener">std::istream</a> 与 <a href="https://zh.cppreference.com/w/cpp/io/basic_ostream" target="_blank" rel="noopener">std::ostream</a> 从 <a href="https://zh.cppreference.com/w/cpp/io/basic_ios" target="_blank" rel="noopener">std::ios</a> 使用虚继承派生。 <a href="https://zh.cppreference.com/w/cpp/io/basic_iostream" target="_blank" rel="noopener">std::iostream</a> 继承 <a href="https://zh.cppreference.com/w/cpp/io/basic_istream" target="_blank" rel="noopener">std::istream</a> 和 <a href="https://zh.cppreference.com/w/cpp/io/basic_ostream" target="_blank" rel="noopener">std::ostream</a> ，故每个 <a href="https://zh.cppreference.com/w/cpp/io/basic_iostream" target="_blank" rel="noopener">std::iostream</a> 实例含一个 <a href="https://zh.cppreference.com/w/cpp/io/basic_ostream" target="_blank" rel="noopener">std::ostream</a> 子对象、一个 <a href="https://zh.cppreference.com/w/cpp/io/basic_istream" target="_blank" rel="noopener">std::istream</a> 子对象和仅一个 <a href="https://zh.cppreference.com/w/cpp/io/basic_ios" target="_blank" rel="noopener">std::ios</a> 子对象。</p>
-<p>所有虚基类子对象在任何非虚基类子对象前初始化，故只有最终派生类于其<a href="https://zh.cppreference.com/w/cpp/language/initializer_list" target="_blank" rel="noopener">成员初始化器列表</a>调用虚基类的构造函数：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Base</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    Base(<span class="keyword">int</span> n): n(n) &#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Base()"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">X</span> :</span> <span class="keyword">virtual</span> Base &#123;</span><br><span class="line">    X(): Base(<span class="number">1</span>) &#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"X()"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Y</span> :</span> <span class="keyword">virtual</span> Base &#123;</span><br><span class="line">    Y(): Base(<span class="number">2</span>) &#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Y()"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Derived</span> :</span> X, Y &#123;</span><br><span class="line">    Derived(): Base(<span class="number">3</span>), X(), Y() &#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Derived()"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>如果创建一个 <code>Derived</code> 类对象，那么输出的顺序为：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Base()</span><br><span class="line">X()</span><br><span class="line">Y()</span><br><span class="line">Derived()</span><br></pre></td></tr></table></figure>
-<p>即使将成员初始化列表的顺序修改为 <code>Derived(): X(), Y(), Base(3)</code> 或 <code>Derived(): Base(3) { }</code>，输出顺序也相同。</p>
-<p>如果 <code>Derived(): X(), Y() { }</code> 或者 <code>Derived() { }</code>，会报错：</p>
-
-<p><code>Derived</code> 的默认构造函数调用 X 和 Y 的默认构造函数，但这些构造函数不调用 B 的构造函数，因为 B 是虚基类。这是合理的，因为按照虚基类的规定，Derived 只有一个 <code>Base</code> 子对象，所以这个初始化工作应该交给 <code>Derived</code>。</p>
-<h2 id="公有继承"><a href="#公有继承" class="headerlink" title="公有继承"></a>公有继承</h2><p>基类的所有公开成员可作为派生类的公开成员访问，基类的所有受保护成员可作为派生类的受保护成员访问（基类的私有成员决不可访问，除非设为友元）。</p>
-<p>“IS-A” 关系</p>
-<p>派生类应该维护其公开基类的类不变量，不应强化任何其所<a href="https://zh.cppreference.com/w/cpp/language/virtual" target="_blank" rel="noopener">覆写</a>的成员函数的前置条件，或弱化任何其后置条件。</p>
-<h2 id="受保护继承"><a href="#受保护继承" class="headerlink" title="受保护继承"></a>受保护继承</h2><p>基类的所有公开和受保护成员可作为派生类的受保护成员访问（基类的私有成员决不可访问，除非设为友元）。</p>
-<p>受保护继承可用于“受控制的多态”：在派生类的成员中，还有在所有进一步派生类的成员中，派生类是（ IS-A ）基类：到派生类的引用和指针可用于期待到基类的引用和指针处。</p>
-<h2 id="私有继承"><a href="#私有继承" class="headerlink" title="私有继承"></a>私有继承</h2><p>基类的所有公开和受保护成员可作为派生类的私有成员访问（基类的私有成员决不可访问，除非设为友元）。</p>
-<p>私有继承常用于基于策略的设计，因为策略常是空基类，而使用基类可以启用静多态并活用<a href="https://zh.cppreference.com/w/cpp/language/ebo" target="_blank" rel="noopener">空基类优化</a></p>
-<p>私有继承亦可用于实现合成关系（基类子对象是派生类对象的实现细节）。成员使用提供更好的封装，而且通常受到偏好，除非派生类要求访问基类的受保护成员（包含构造函数）、需要覆写基类的虚成员、需要基类构造先于或析构后于某其他基类子对象，需要共享虚基类或需要控制虚基类的构造。实现合成的成员使用亦不可应用于从<a href="https://zh.cppreference.com/w/cpp/language/parameter_pack" target="_blank" rel="noopener">参数包</a>多重继承的情况，或在编译时通过模板元编程确定基类身份的情况。</p>
-<p>同受保护继承，私有继承亦可用于受控制的多态：在派生类的成员内（但不在进一步派生类内），派生类是（ IS-A ）基类。</p>
-<h1 id="虚函数"><a href="#虚函数" class="headerlink" title="虚函数"></a>虚函数</h1><p>虚函数是 C++ 中一个与继承相关的概念。函数声明中带有 <code>virtual</code> 关键字表示函数是虚函数。只有虚函数才能被覆写（Override）。</p>
-<p><code>virtual</code> 指定符指定<strong>非静态</strong>成员函数为虚并支持动态绑定。</p>
-<p>虚函数可以不提供实现（定义）。</p>
-<p>纯虚函数：<code>声明 virtual-specifier(可选) = 0</code></p>
-<p><code>virtual int f() = 0;</code></p>
-<ul>
-<li><p>有纯虚函数的类被称为“抽象类”，不能创建其实例。</p>
-</li>
-<li><p>纯虚函数也可以提供定义（而且若析构函数为纯虚则必须提供），但是必须在类外（因为类声明的语法不允许 <code>= 0</code> 和定义同时出现）：</p>
-</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Abstract</span> &#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">int</span> <span class="title">f</span><span class="params">()</span> </span>= <span class="number">0</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> Abstract::f() &#123;</span><br><span class="line">    <span class="comment">// definition</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>无论纯虚函数是否拥有定义，从抽象类的构造函数或析构函数进行纯虚函数的虚调用属于未定义的行为，如果纯虚函数有定义，可以使用限定名进行非虚调用</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Abstract</span> &#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">int</span> <span class="title">f</span><span class="params">()</span> </span>= <span class="number">0</span>;</span><br><span class="line">    ~Abstract() &#123;</span><br><span class="line">        Abstract::f();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> Abstract::f() &#123;</span><br><span class="line">    <span class="comment">// definition</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h2 id="虚指定符"><a href="#虚指定符" class="headerlink" title="虚指定符"></a>虚指定符</h2><p><code>override</code> 和 <code>final</code>，覆写基类的虚函数，有此指定符的函数为虚函数。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2211,7 +1805,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">131</span>
+                  <span class="site-state-item-count">138</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2222,7 +1816,7 @@
               
               <div class="site-state-item site-state-categories">
                 
-                  <span class="site-state-item-count">42</span>
+                  <span class="site-state-item-count">43</span>
                   <span class="site-state-item-name">分类</span>
                 
               </div>

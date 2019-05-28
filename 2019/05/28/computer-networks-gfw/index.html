@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+  
+  
+  <link rel="stylesheet" media="all" href="/lib/Han/dist/han.min.css?v=3.3">
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/logo.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/logo.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/logo.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.png?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="RHANQTL" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="本文主要介绍 GFW 的工作原理及代理 (Proxy) 相关的知识。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GFW 的原理及代理">
+<meta property="og:url" content="http://yoursite.com/2019/05/28/computer-networks-gfw/index.html">
+<meta property="og:site_name" content="RHANQTL">
+<meta property="og:description" content="本文主要介绍 GFW 的工作原理及代理 (Proxy) 相关的知识。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2019/05/28/computer-networks-gfw/proxy.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/28/computer-networks-gfw/vpn.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/05/28/computer-networks-gfw/vpn-2.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/28/computer-networks-gfw/vpn-3.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/28/computer-networks-gfw/insecure-vpn.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/28/computer-networks-gfw/gae.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/28/computer-networks-gfw/tor-1.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/28/computer-networks-gfw/tor-2.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/28/computer-networks-gfw/tor-3.png">
+<meta property="og:updated_time" content="2019-05-28T07:17:16.746Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="GFW 的原理及代理">
+<meta name="twitter:description" content="本文主要介绍 GFW 的工作原理及代理 (Proxy) 相关的知识。">
+<meta name="twitter:image" content="http://yoursite.com/2019/05/28/computer-networks-gfw/proxy.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/05/28/computer-networks-gfw/">
+
+
+
+
+
+  <title>GFW 的原理及代理 | RHANQTL</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">RHANQTL</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">学习使我快乐</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/28/computer-networks-gfw/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">GFW 的原理及代理</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-28T08:13:28+08:00">
+                2019-05-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/计算机网络-Computer-Networks/" itemprop="url" rel="index">
+                    <span itemprop="name">计算机网络 (Computer Networks)</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">浏览
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本文主要介绍 GFW 的工作原理及代理 (Proxy) 相关的知识。</p>
+<a id="more"></a>
+<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>很多人都应该对网络限制和监控有所体会：很多公司会限制一些网站的访问；一些网盘、视频网站有时也会对你访问的内容进行监控；还有一些公共 WiFi 可能限制你只能访问 80 端口；再比如在国内无法访问 Google，Facebook，Twitter 等网站。本文介绍它们是如何限制的。</p>
+<h1 id="限制访问的原理"><a href="#限制访问的原理" class="headerlink" title="限制访问的原理"></a>限制访问的原理</h1><h2 id="DNS-缓存污染和-DNS-劫持"><a href="#DNS-缓存污染和-DNS-劫持" class="headerlink" title="DNS 缓存污染和 DNS 劫持"></a>DNS 缓存污染和 DNS 劫持</h2><p>关于 DNS 的基本知识，参考 <a href="TODO">DNS 工作原理</a>。</p>
+<p><strong>什么是 DNS 缓存污染？</strong></p>
+<p>DNS 缓存污染 (DNS cache pollution)，又称 DNS 缓存投毒 (DNS cache poisoning)，是指一些让域名指向不正确的 IP 地址的域名服务器数据包。根据 DNS 的工作原理，一旦有关网域的局域域名服务器的缓存受到污染，就会把网域内的计算机引导向错误的服务器或服务器的网址。[1]</p>
+<p><strong>什么是 DNS 劫持？</strong></p>
+<p>目前我们访问网站主要都是通过域名进行访问，而真正访问这个网站前需要通过 DNS 服务器把域名解析为 IP 地址。由于通常的域名查询没有任何认证机制，而且域名查询通常基于无连接不可靠的 UDP 协议，查询者只能接受最先到达的格式正确结果，并丢弃之后的结果。</p>
+<p>比如你使用电信、联通、移动的宽带，默认你是不需要设置任何 DNS 服务器的。这些 DNS 服务器由他们提供。一旦检测到你访问的网页是不允许的访问的，就会返回一个不存在的网页（这样访问就会超时）。而很多运营商也会使用 DNS 劫持来投放一些广告。</p>
+<p><a href="https://zh.wikipedia.org/wiki/%E5%9F%9F%E5%90%8D%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%BC%93%E5%AD%98%E6%B1%A1%E6%9F%93#%E4%B8%AD%E5%9B%BD%E9%98%B2%E7%81%AB%E9%95%B7%E5%9F%8E" target="_blank" rel="noopener">DNS 缓存污染#GFW</a></p>
+<p>解决办法：</p>
+<ol>
+<li>使用一些第三方的 DNS 服务器<ul>
+<li>比如 <a href="https://www.opendns.com/setupguide/" target="_blank" rel="noopener">OpenDNS</a>（208.67.222.222/208.67.220.220）、<a href="https://developers.google.com/speed/public-dns/" target="_blank" rel="noopener">GoogleDNS</a>（8.8.8.8）（已经被墙）</li>
+<li>安全问题</li>
+</ul>
+</li>
+<li>自己用 VPS 搭建 DNS 服务器</li>
+<li>修改机器 host 文件，直接 IP 访问（但是由于使用 DNS 污染/DNS 劫持控制访问的固有缺陷，所以还有其他的封锁方式，这种方式也不一定可用，见下面）</li>
+</ol>
+<h2 id="封锁-IP"><a href="#封锁-IP" class="headerlink" title="封锁 IP"></a>封锁 IP</h2><p>通过上面一些方式，可以绕过 DNS 污染，直接通过 IP 地址访问无法访问的网页。但是 GFW 目前也进行了大范围的 IP 封锁。虽然 Google 这种大公司有很多镜像 IP 地址，但是目前基本全部被封锁掉，有漏网的可能也坚持不了多久。而且很多小公司的服务是部署在一些第三方的主机上，所以封锁 IP 有时会误伤，封锁一个 IP 导致主机上本来可以使用的页面也无法访问了。</p>
+<p>不过目前不可能把所有国外的 IP 全部封锁掉，所以我们采用机会从国内连接到国外的 VPS，进行翻墙。</p>
+<p>解决办法：</p>
+<ol>
+<li>使用 VPS 搭建代理</li>
+<li>使用 IPv6 （IPv6 地址空间巨大，采用封地址不现实，但是目前国内只有部分高校部署了 IPv6）</li>
+</ol>
+<h2 id="封锁-HTTP-代理"><a href="#封锁-HTTP-代理" class="headerlink" title="封锁 HTTP 代理"></a>封锁 HTTP 代理</h2><p>对于没有办法搭建 VPS 的人来说，最好的办法就是使用 HTTP 代理。客户端不再直接请求目标服务器，而是请求代理服务器，代理服务器再去请求目标服务器。然后返回结果。关于 HTTP 代理可以参考《HTTP 权威指南》第六章。</p>
+<img src="/2019/05/28/computer-networks-gfw/proxy.png">
+<p>对于 HTTP 代理来说，封锁起来非常简单。因为 HTTP 协议是明文，Request Message 中就带有要请求的 URL 或 IP 地址，这样很容易就被检测到。对于 HTTPS 来说，虽然通信是进行加密了，但是在建立连接之前会给代理服务器发送 CONNECT 方法，这里也会带上要访问的远端服务器地址。如果代理服务器在国外，在出去前就会被检测到。 如果代理服务器在国内，你也出不去啊。</p>
+<p>对于 HTTP 代理，因为是明文，所以很容易被代理服务器了解你的一些数据。<strong>所以不要随便使用第三方的 HTTP 代理访问 HTTP 网站，而 HTTPS 虽然不知道你的数据，但是可以知道你去了那里。</strong></p>
+<p>解决办法：</p>
+<ol>
+<li>使用 VPS 搭建 VPN</li>
+<li>使用第三方 VPN</li>
+</ol>
+<h2 id="封锁-VPN"><a href="#封锁-VPN" class="headerlink" title="封锁 VPN"></a>封锁 VPN</h2><p>VPN 全称为 Virtual Private Network，中文翻译为 “虚拟专用网”，是一种常用于连接中、大型企业或团体与团体间的私人网络的通讯方法。VPN 的信息透过公用的网络架构（例如：互联网）来传送内联网的网络消息。它利用已加密的通道协议 (Tunneling Protocol) 来达到保密、发送端认证、消息准确性等私人消息安全效果。</p>
+<img src="/2019/05/28/computer-networks-gfw/vpn.jpg">
+<img src="/2019/05/28/computer-networks-gfw/vpn-2.png">
+<p>正常网络通信时，所有网络请求都是通过我们的物理网卡直接发送出去。而 VPN 是客户端使用相应的 VPN 协议先与 VPN 服务器进行通信，成功连接后就在操作系统内建立一个虚拟网卡，一般来说默认 PC 上所有网络通信都从这虚拟网卡上进出，经过 VPN 服务器中转之后再到达目的地。</p>
+<img src="/2019/05/28/computer-networks-gfw/vpn-3.png">
+<p>通常 VPN 协议都会对数据流进行强加密处理，从而使得第三方无法知道数据内容，这样就能够实现翻墙。但是（对于 HTTP 而言）VPN 服务器知道你干的所有事情（对于 HTTPS，它知道你去了哪）。</p>
+<p>VPN 有多种协议：OPENVPN、PPTP、L2TP/IPSec、SSLVPN、IKEv2 VPN，Cisco VPN 等。其中的 PPTP 和 L2TP 是明文传输协议。只负责传输，不负责加密。分别利用了 MPPE 和 IPSec 进行加密。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>PPTP</th>
+<th>L2TP/IPSec</th>
+<th>PENVPN</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>背景</td>
+<td>PPTP 是一个基于 PPP 的很基本的协议。PPTP 是微软 Windows 平台第一个支持的 VPN 协议。PPTP 标准并没有实际描述加密和授权特性，并且依赖于 PPP 协议的隧道来实现安全功能。</td>
+<td>L2TP 是一个在 IETF <a href="https://tools.ietf.org/html/rfc3193" target="_blank" rel="noopener">RFC 3193</a> 中被正式标准化的高级协议。推荐在需要安全加密的地方用来替代 PPTP。</td>
+<td>OpenVPN 是一个高级的开源 VPN 解决方案，由 “OpenVPN technologies” 支持，并且已经成为开源网络领域里的事实标准。OpenVPN 使用成熟的 SSL/TLS 加密协议。</td>
+</tr>
+<tr>
+<td>数据加密</td>
+<td>PPP 负载是使用微软点对点协议（Microsoft’s Point-to-Point Encryption protocol，<a href="https://en.wikipedia.org/wiki/Microsoft_Point-to-Point_Encryption" target="_blank" rel="noopener">MPPE</a>）加密。MPPE 实现了 RSA <a href="https://en.wikipedia.org/wiki/RC4" target="_blank" rel="noopener">RC4</a> 加密算法，并使用最长 128 位密钥。</td>
+<td>L2TP 负载使用标准的 IPSec 协议加密。在 <a href="https://tools.ietf.org/html/rfc4835" target="_blank" rel="noopener">RFC 4835</a> 中指定了使用 3DES 或 AES 加密算法作为保密方式。</td>
+<td>OpenVPN 使用 <a href="https://en.wikipedia.org/wiki/OpenSSL" target="_blank" rel="noopener">OpenSSL</a> 库来提供加密。OpenSSL 支持好几种不同的加密算法，如：3DES，AES，RC5 等。</td>
+</tr>
+<tr>
+<td>安装/配置</td>
+<td>Windows 所有版本和大多数其他操作系统包括移动平台都内建了对 PPTP 的支持。PPTP 只需要一个用户名和密码，以及一个服务器地址，所以安装和配置相当简单。</td>
+<td>从 2000/XP 起的所有 Windows 平台和 Mac OS X 10.3+ 都内建了 L2TP/IPSec 的支持。大多数现代的移动平台比如 iPhone 和 Android 也有内建的客户端。</td>
+<td>OpenVPN 不包含在任何操作系统中，需要安装客户端软件，但安装也是相当简单，基本上 5 分钟可以完成。</td>
+</tr>
+<tr>
+<td>速度</td>
+<td>由于使用 128 位密钥，加密开销相比 OpenVPN 使用 256位密钥要小，所以速度感觉稍快一点，但这个差异微不足道。</td>
+<td>L2TP/IPSec 将数据封装两次，所以相比其他竞争者效率稍低，速度也慢一些。</td>
+<td>当使用默认的 UDP 模式，OpenVPN 的表现是最佳的。</td>
+</tr>
+<tr>
+<td>端口</td>
+<td>PPTP 使用 TCP 1723 端口和 GRE（协议 47）。通过限制 GRE 协议，PPTP 可以轻易地被封锁。</td>
+<td>L2TP/IPSec 使用 UDP 500 端口用来初始化密钥交换，使用协议 50 用来传输 IPSec 加密的数据（ ESP ），使用 UDP 1701 端口用来初始化 L2TP 的配置，还使用 UDP 4500 端口来穿过 NAT。L2TP/IPSec 相比 OpenVPN 容易封锁，因为它依赖于固定的协议和端口。</td>
+<td>OpenVPN 可以很容易的配置为使用任何端口运行，也可以使用 UDP 或 TCP 协议。为了顺利穿越限制性的防火墙，可以将 OpenVPN 配置成使用 TCP 443 端口，因为这样就无法和标准的 HTTPS 无法区分，从而极难被封锁。</td>
+</tr>
+<tr>
+<td>稳定性/兼容性</td>
+<td>PPTP 不如 OpenVPN 可靠，也不能像 OpenVPN 那样在不稳定网络中快速恢复。另外还有部分同 GRE 协议和一些路由器的兼容性问题。</td>
+<td>L2TP/IPSec 比 OpenVPN 更复杂，为了使在 NAT 路由器下的设备可靠地使用，配置可以会更加困难。但是，只要服务器和客户端都支持 NAT 穿越，那么就没什么问题了。</td>
+<td>无论是无线网络、蜂窝网络，还是丢包和拥塞经常发生的不可靠网络，OpenVPN 都非常稳定、快速。对于那些相当不可以的连接，OpenVPN 有一个 TCP 模式可以使用，但是要牺牲一点速度，因为将 TCP 封装在 TCP 时效率不高。</td>
+</tr>
+<tr>
+<td>安全弱点</td>
+<td>微软实现的 PPTP 有一个严重的安全问题（<a href="https://www.schneier.com/paper-pptpv2.html" target="_blank" rel="noopener">serious security vulnerabilities</a>）。对于词典攻击来说 MSCHAP-v2 是很脆弱的，并且 RC4 算法也会遭到“<a href="https://en.wikipedia.org/wiki/Bit-flipping_attack" target="_blank" rel="noopener">位翻转攻击（ bit-flipping attack ）</a>”。如果保密是重要的，微软也强烈建议升级到 IPSec。</td>
+<td>IPSec 没有明显的漏洞，当和安全加密算法如 AES 一起使用时，被认为是很安全的。</td>
+<td>OpenVPN 也没有明显漏洞，当和安全加密算法如 AES 一起使用时，也被认为是相当安全的。</td>
+</tr>
+<tr>
+<td>客户端的兼容性</td>
+<td>Windows、Mac OS X、Linux、Apple iOS、Android、DD-WRT</td>
+<td>Windows、Mac OS X、Linux、Apple iOS、Android</td>
+<td>Windows、Mac OS X、Linux</td>
+</tr>
+<tr>
+<td>结论</td>
+<td>由于主要的安全漏洞，除了兼容性以外没有好的理由选择使用 PPTP。如果你的设备既不支持 L2TP/IPSec 又不支持 OpenVPN，那么 PPTP 是一个合理的选择。如果关心快速安装和简易配置，那么 L2TP/IPSec 值得考虑。</td>
+<td>L2TP/IPSec 是优秀的，但相比 OpenVPN 的高效和杰出的稳定性要落后一点。如果你使用运行 iOS 或 Android 的移动设备，那么这就是最佳的选择，因为 OpenVPN 目前还不支持这些平台。另外，如果需要快速安装，L2TP/IPSec 也是一个较佳的选择。</td>
+<td>对于所有的 Windows, Mac OS X 以及 Linux 桌面用户来说，OpenVPN 是最好的选择。OpenVPN 速度快，并且安全可信。但劣势是缺乏对移动设备的支持，另外还需要安装第三方客户端。</td>
+</tr>
+<tr>
+<td>等级</td>
+<td>1</td>
+<td>4</td>
+<td>5</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="监控"><a href="#监控" class="headerlink" title="监控"></a>监控</h2><p>对于 VPN 和其他一些加密的传输的协议来说，没有办法直接获取明文的请求信息，所以没有办法直接封锁，而是使用了监控的方式。</p>
+<h3 id="暴力破解"><a href="#暴力破解" class="headerlink" title="暴力破解"></a>暴力破解</h3><p>对于一些使用弱加密方式的协议，可以直接使用暴力破解检查传输内容。比如 PPTP 使用 MPPE 加密，但是 MPPE 是基于 RC4，对于强大的防火墙背后的超级计算机集群，破解就是几秒钟的事情。破解后明文中一旦包含了违禁内容，请求就会被封。而对应的 IP 可能会进入重点关怀列表。</p>
+<img src="/2019/05/28/computer-networks-gfw/insecure-vpn.png">
+<h3 id="特征检测"><a href="#特征检测" class="headerlink" title="特征检测"></a>特征检测</h3><p>要想成功翻墙都必须与对应的远程服务器建立连接，然后再用对应的协议进行数据处理并传输。而问题就出在这里：翻墙工具和远程服务器建立连接时，如果表现的很独特，在一大堆流量里很显眼，就会轻易被 GFW 识别出从而直接阻断连接，而 VPN（尤其是OPENVPN）和 SSH 这方面的问题尤其严重。</p>
+<h3 id="流量监控"><a href="#流量监控" class="headerlink" title="流量监控"></a>流量监控</h3><p>当一个 VPN 地址被大量人请求，并保持长时间连接时，就很容易引起关注。SSH 接口有大量数据请求。一般会结合其他特征。</p>
+<h3 id="深度包检测"><a href="#深度包检测" class="headerlink" title="深度包检测"></a>深度包检测</h3><p>深度包检测 (Deep Packet Inspection，DPI)，又称完全数据包探测 (complete packet inspection) 或信息萃取 (Information eXtraction，IX)，是一种计算机网络数据包过滤技术，用来检查通过检测点的数据包的数据部分（亦可能包含其标头），以搜索不匹配规范的协议、病毒、垃圾邮件、入侵，或以预定之准则来决定数据包是否可通过或需被路由至其他不同目的地，亦或是为了收集统计数据之目的。</p>
+<h1 id="绕过-GFW"><a href="#绕过-GFW" class="headerlink" title="绕过 GFW"></a>绕过 GFW</h1><h2 id="SOCKS-协议"><a href="#SOCKS-协议" class="headerlink" title="SOCKS 协议"></a>SOCKS 协议</h2><p>SOCKS 是一种网络传输协议，主要用于客户端与外网服务器之间通讯的中间传递。SOCKS 是 “SOCKetS” 的缩写。</p>
+<p>当防火墙内的客户端要访问外部的服务器时，就跟 SOCKS 代理服务器连接。这个代理服务器控制客户端访问外网的资格，允许的话，就将客户端的请求发往外部的服务器。</p>
+<p>这个协议最初由 David Koblas 开发，而后由 NEC 的 Ying-Da Lee 将其扩展到版本 4。最新协议是版本 5，与前一版本相比，增加支持 UDP、验证以及 IPv6。</p>
+<p>SOCKS 是 OSI 模型中会话层 (Session Layer) 的协议。</p>
+<h3 id="与-HTTP-代理的对比"><a href="#与-HTTP-代理的对比" class="headerlink" title="与 HTTP 代理的对比"></a>与 HTTP 代理的对比</h3><p>SOCKS 工作在比 HTTP 代理更低的层次：SOCKS 使用握手协议来通知代理软件其客户端试图进行的连接 SOCKS，然后尽可能透明地进行操作，而常规代理可能会解释和重写报头（例如，使用另一种底层协议，例如 FTP；然而，HTTP 代理只是将 HTTP 请求转发到所需的 HTTP 服务器）。虽然HTTP 代理有不同的使用模式，CONNECT 方法允许转发 TCP 连接；然而，SOCKS 代理还可以转发UDP 流量和反向代理，而 HTTP 代理不能。HTTP 代理通常更了解 HTTP 协议，执行更高层次的过滤（虽然通常只用于 GET 和 POST 方法，而不用于 CONNECT 方法）。</p>
+<p>Socks 代理本身协议是明文传输，虽然相对 HTTP 有一些优势，但是明文也导致 Socks 代理很容易被封。所以可以考虑对 Socks 进行加密。所以出现了 SSH Socks，对于 Mac 和 Linux 来说，不需要Client 就可以进行访问。详细可以看：<a href="https://my.oschina.net/leejun2005/blog/94401" target="_blank" rel="noopener">SSH 隧道技术简介：端口转发 &amp; SOCKS 代理</a></p>
+<p>有些地区会对一些 VPS 的 SSH 进行端口干扰。</p>
+<h3 id="Shadowsocks"><a href="#Shadowsocks" class="headerlink" title="Shadowsocks"></a>Shadowsocks</h3><p>官网：<a href="https://shadowsocks.org/en/index.html（.com" target="_blank" rel="noopener">https://shadowsocks.org/en/index.html（.com</a> 那个是卖账号的）</p>
+<p>Shadowsocks 目前不容易被封杀主要是因为：</p>
+<ul>
+<li>建立在 socks5 协议之上。socks5 是运用很广泛的协议，所以没办法直接封杀 SOCKS 5 协议</li>
+<li>使用 socks5 协议建立连接，没有使用 VPN 中的服务端身份验证和密钥协商过程，而是在服务端和客户端直接写死密钥和加密算法，所以防火墙很难找到明显的特征。</li>
+<li>Shadowsock 搭建也比较简单，所以很多人自己架设 VPS 搭建，个人使用流量也很小，没法通过流量监控方式封杀。</li>
+<li>自定义加密方式和密钥。因为加密主要是防止被检测，所以要选择安全系数高的加密方式。之前 RC4 会很容易被破解，而导致被封杀。所以现在推荐使用 AES 加密。而在客户端和服务端自定义密钥，泄露的风险相对较小。</li>
+</ul>
+<p><strong>所以如果是自己搭建的 Shadosocks 被封的概率很小，但是如果是第三方的 Shadeowsocks，密码是服务器定的，你的数据很可能遭受到中间人攻击。</strong></p>
+<p>顺便说一下，Shadowsocks 是天朝的 clowwindy 大神写的。不过 Shadowsocks 项目源码已经从 GitHub 上删除了并停止维护了，但是 release 中还有源码可以下载：<a href="https://github.com/shadowsocks/shadowsocks" target="_blank" rel="noopener">https://github.com/shadowsocks/shadowsocks</a></p>
+<h3 id="Shadowsocks-rss"><a href="#Shadowsocks-rss" class="headerlink" title="Shadowsocks-rss"></a>Shadowsocks-rss</h3><p>前面认为 Shadowssocks 特征并不是很明显，但是了解协议工作原理后会发现，SOCKS 协议本身还有有漏洞，可以被利用来检测特征，具体讨论看：<a href="https://github.com/breakwa11/shadowsocks-rss/issues/38" target="_blank" rel="noopener">ShadowSocks 协议的弱点分析和改进</a>。总结大致意思是：协议过于简单，并且格式固定，很容易被发起中间人攻击。</p>
+<p>先看看协议结构：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Address Type</th>
+<th>Destination Address</th>
+<th>Destination Port</th>
+<th>Data</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1 字节</td>
+<td>不固定</td>
+<td>2 字节</td>
+<td>不固定</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Address Type 的可能取值为 1（IPv4），3（主机名），4（IPv6）。对于 IPv4 地址，它被打包为 32 位（4 字节）大端整数。对于IPv6地址，使用紧凑表示（16字节数组）。对于hostname，目标地址的第一个字节表示长度，它将主机名的长度限制为 255，目标端口也是一个大端整数。使用指定的密码使用随机IV和预共享密钥对请求进行加密，然后它变为所谓的有效负载。</p>
+<p>The request is encrypted using the specified cipher with a random IV and the pre-shared key, it then becomes so-called payload.</p>
+<p>客户端的每一个请求都是这种格式，然后进行加密。服务器端解密然后解析。看起来没什么问题，没有密钥你无法模拟中间人攻击，也没什么明显特征。但是看看服务器处理逻辑会发现存在一些问题：</p>
+<p>客户端数据加密的算法目前用的最多的是 AES 系列，加密后在协议数据前会有 16 位的 IV。而服务器端解析后，首先判断请求是否有效，而这个判断很简单。判断的依据就是 Address Type 的那个字节，看它是不是在那三个可能取值，如果不是，立即断开连接，如果是，就尝试解析后面的地址和端口进行连接。</p>
+<p>如果能发起中间人攻击，模拟客户端请求，这个就是一个很明显的特征，如果穷举 Address Type 的各种情况（共 256 种），而其中只有 3 种情况会连接成功，那么很可能就是一个 Shadowsocks 服务器。</p>
+<p>所以只需要先劫持一条 socks5 的请求，因为 AES 加密后 Address Type 位置是固定的（第 17 位），修改这一字节，穷举 256 种情况，然后发送给服务器。如果服务器在 3 种情况没有关闭连接，就说明这个很可能是 Shadowsocks 服务器。</p>
+<p>这里的关键就是 AES 加密明文和密文对应关系。密码学不是太懂，贴帖子里面一个回复：</p>
+<blockquote>
+<p>举个例子，现在有一个协议包，共7个字节：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; 0x01, 0x08, 0x08, 0x08, 0x08, 0x00, 0x50</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>&gt;</p>
+<blockquote>
+<p>对照 socks5 协议，很明显这是一个 IPv4 包（第一个字节是 0x01），目的地是 8.8.8.8 的 80 端口。</p>
+<p>被 shadowsocks 加密了以后（密码 abc，加密方式 aes-256-cfb），数据包就变成了这样：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; 0xbb, 0x59, 0x1c, 0x4a, 0xb9, 0x0a, 0x91, 0xdc,</span><br><span class="line">&gt; 0x07, 0xef, 0x72, 0x05, 0x90, 0x42, 0xca, 0x0d,</span><br><span class="line">&gt; 0x4c, 0x3b, 0x87, 0x8e, 0xca, 0xab, 0x32</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>&gt;</p>
+<blockquote>
+<p>前 16 个字节，从 0xbb 到 0x0d，都是 IV，根据 issue 中提到的弱点和之前的总结，只需要修改 0x4c，即真正密文中的第一个字节，就可以起到修改明文中的第一个字节的效果。</p>
+<p>那就把 0x4c 修改成 0x4d 吧，解密以后的结果是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; 0x00, 0x08, 0x08, 0x08, 0x08, 0x00, 0x50</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>&gt;</p>
+<blockquote>
+<p>的确只有第一个字节被改掉了，根据 breakwa11 的理论，不难推出其他情况，其中合法的是</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; 0x4e =&gt; 0x03 (Domain Name)</span><br><span class="line">&gt; 0x49 =&gt; 0x04 (IPv6)</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>所以目前 Shadowsocks 应该是比较容易被检测出来。但是为什么没有被封掉，就不知道了。Shadowsocks-rss 这个项目的目的就是在 SS 的基础上进行一些混淆。不过目前这个项目好像也停止更新了，并且没有开源。</p>
+<p>当然如果是自己用完全可以自己修改一个私有协议（比如在 Address Type 中引入冗余），这样就没法被检测到了。但是需要同时修改服务器端、Mac 客户端、Windows 客户端和 Android 客户端。</p>
+<h2 id="GoAgent-和-GoProxy"><a href="#GoAgent-和-GoProxy" class="headerlink" title="GoAgent 和 GoProxy"></a>GoAgent 和 GoProxy</h2><p>Google App Engine 是一个开发、托管网络应用程序的平台，使用 Google 管理的数据中心。</p>
+<img src="/2019/05/28/computer-networks-gfw/gae.png">
+<p>GoAgent 的运行原理与其他代理工具基本相同，但是使用特定的中转服务器完成数据传输。它使用 Google App Engine 的服务器作为中传，将数据包发送至 Google 服务器，再由 Google 服务器转发至目的服务器，接收数据时方法也类似。由于服务器端软件基本相同，该中转服务器既可以是用户自行架设的服务器，也可以是由其他人架设的开放服务器。</p>
+<p>可以看到，GoAgent 其实也是利用 Google App Engine 作为代理，但是因为他是连接到 Google 的服务器，而国内现在 Google 大量被封，所以 GoAgent 也基本很难使用。目前 GitHub 上源码也已经删除。</p>
+<p>但是 GoAgent 本身不依赖于 Google App Engine，而且使用 Python 编写，完全可以部署到 VPS 上。</p>
+<p>GoProxy 是 GoAgent 的后续项目。</p>
+<p>还有一个 XX-NET：<a href="https://github.com/XX-net/XX-Net" target="_blank" rel="noopener">https://github.com/XX-net/XX-Net</a> 有兴趣都可以去了解下。</p>
+<h1 id="Tor"><a href="#Tor" class="headerlink" title="Tor"></a>Tor</h1><p>官网：<a href="TODO">Tor</a></p>
+<p>Tor（The Onion Router，洋葱路由器）是实现匿名通信的自由软件。Tor 是第二代洋葱路由的一种实现，用户通过 Tor 可以在因特网上进行匿名交流。</p>
+<p>下面的图来自官网的介绍。简言之，Tor 和其他翻墙方式不同，可以认为 Tor 有一群代理服务器，然后要访问远端站点，是通过随机的代理路径来完成的，数据经历了多个代理服务器的传递。它主要作用是隐藏访问者信息，而翻墙只是顺带的功能。</p>
+<p>要访问远程站点，服务器需要知道 Tor 节点，这些节点就是普通加入的用户，就像 P2P 下载一样。获取节点信息后，会随机选择一条路径访问。因为这个原因，Tor的速度可能不会很好。</p>
+<img src="/2019/05/28/computer-networks-gfw/tor-1.png">
+<img src="/2019/05/28/computer-networks-gfw/tor-2.png">
+<img src="/2019/05/28/computer-networks-gfw/tor-3.png">
+<p>而关于 Tor 的漏洞和检测看这里：<a href="http://network.pconline.com.cn/701/7017738_all.html" target="_blank" rel="noopener">Tor 真的十分安全么 其原理以及漏洞详解!</a></p>
+<p>目前有结合 Tor 和 Shadowsocks 前置代理使用的。</p>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p>[1] <a href="TODO">DNS 缓存污染</a></p>
+<p>[1] <a href="https://plus.google.com/+GhostAssassin/posts/AXgoJutf5sz" target="_blank" rel="noopener">VPN翻墙，不安全的加密，不要相信墙内公司</a></p>
+<p>[2] <a href="https://plus.google.com/+GhostAssassin/posts/c1zb7q6xKMA" target="_blank" rel="noopener">GFW的工作原理（1） ——GFW是如何识别并封锁翻墙工具的</a></p>
+<p>[3] <a href="https://plus.google.com/+GhostAssassin/posts/TpdEExwyrVj" target="_blank" rel="noopener">关于翻墙和匿名与网络安全类科普文大集合</a></p>
+<p>[4] <a href="https://gist.github.com/clowwindy/5947691" target="_blank" rel="noopener">为什么不应该用 SSL 翻墙</a></p>
+<p>[5] <a href="https://hengyunabc.github.io/something-about-science-surf-the-internet/" target="_blank" rel="noopener">科学上网的一些原理</a></p>
+<p>[6] <a href="https://superxlcr.github.io/2018/07/01/%E4%B8%8A%E7%BD%91%E9%99%90%E5%88%B6%E5%92%8C%E7%BF%BB%E5%A2%99%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86/" target="_blank" rel="noopener">上网限制和翻墙基本原理</a></p>
+<h1 id="延伸阅读"><a href="#延伸阅读" class="headerlink" title="延伸阅读"></a>延伸阅读</h1>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/27/others-xpath/" rel="next" title="others-xpath">
+                <i class="fa fa-chevron-left"></i> others-xpath
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Han Qi</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">138</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">43</span>
+                  <span class="site-state-item-name">分类</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/rhanqtl" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="my@rhanqtl.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#引言"><span class="nav-number">1.</span> <span class="nav-text">引言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#限制访问的原理"><span class="nav-number">2.</span> <span class="nav-text">限制访问的原理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#DNS-缓存污染和-DNS-劫持"><span class="nav-number">2.1.</span> <span class="nav-text">DNS 缓存污染和 DNS 劫持</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#封锁-IP"><span class="nav-number">2.2.</span> <span class="nav-text">封锁 IP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#封锁-HTTP-代理"><span class="nav-number">2.3.</span> <span class="nav-text">封锁 HTTP 代理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#封锁-VPN"><span class="nav-number">2.4.</span> <span class="nav-text">封锁 VPN</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#监控"><span class="nav-number">2.5.</span> <span class="nav-text">监控</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#暴力破解"><span class="nav-number">2.5.1.</span> <span class="nav-text">暴力破解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特征检测"><span class="nav-number">2.5.2.</span> <span class="nav-text">特征检测</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#流量监控"><span class="nav-number">2.5.3.</span> <span class="nav-text">流量监控</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#深度包检测"><span class="nav-number">2.5.4.</span> <span class="nav-text">深度包检测</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#绕过-GFW"><span class="nav-number">3.</span> <span class="nav-text">绕过 GFW</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#SOCKS-协议"><span class="nav-number">3.1.</span> <span class="nav-text">SOCKS 协议</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#与-HTTP-代理的对比"><span class="nav-number">3.1.1.</span> <span class="nav-text">与 HTTP 代理的对比</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Shadowsocks"><span class="nav-number">3.1.2.</span> <span class="nav-text">Shadowsocks</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Shadowsocks-rss"><span class="nav-number">3.1.3.</span> <span class="nav-text">Shadowsocks-rss</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GoAgent-和-GoProxy"><span class="nav-number">3.2.</span> <span class="nav-text">GoAgent 和 GoProxy</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Tor"><span class="nav-number">4.</span> <span class="nav-text">Tor</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">5.</span> <span class="nav-text">参考资料</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#延伸阅读"><span class="nav-number">6.</span> <span class="nav-text">延伸阅读</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Han Qi</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.4"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>

@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-05-20T06:55:35.797Z</updated>
+  <updated>2019-05-28T07:17:16.746Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,136 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>GFW 的原理及代理</title>
+    <link href="http://yoursite.com/2019/05/28/computer-networks-gfw/"/>
+    <id>http://yoursite.com/2019/05/28/computer-networks-gfw/</id>
+    <published>2019-05-28T00:13:28.000Z</published>
+    <updated>2019-05-28T07:17:16.746Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;本文主要介绍 GFW 的工作原理及代理 (Proxy) 相关的知识。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="计算机网络 (Computer Networks)" scheme="http://yoursite.com/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-Computer-Networks/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>others-xpath</title>
+    <link href="http://yoursite.com/2019/05/27/others-xpath/"/>
+    <id>http://yoursite.com/2019/05/27/others-xpath/</id>
+    <published>2019-05-27T14:27:37.000Z</published>
+    <updated>2019-05-27T14:27:37.782Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>javascript-intro</title>
+    <link href="http://yoursite.com/2019/05/27/javascript-intro/"/>
+    <id>http://yoursite.com/2019/05/27/javascript-intro/</id>
+    <published>2019-05-27T13:51:47.000Z</published>
+    <updated>2019-05-27T14:57:41.461Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>POJ 2632：Crashing Robots</title>
+    <link href="http://yoursite.com/2019/05/27/poj-2632/"/>
+    <id>http://yoursite.com/2019/05/27/poj-2632/</id>
+    <published>2019-05-27T11:31:23.000Z</published>
+    <updated>2019-05-27T11:33:14.119Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>POJ 题目分类</title>
+    <link href="http://yoursite.com/2019/05/27/others-poj-categories/"/>
+    <id>http://yoursite.com/2019/05/27/others-poj-categories/</id>
+    <published>2019-05-27T11:27:48.000Z</published>
+    <updated>2019-05-27T11:34:15.115Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>JavaScript 中布尔运算带来的启示</title>
+    <link href="http://yoursite.com/2019/05/23/others-bool/"/>
+    <id>http://yoursite.com/2019/05/23/others-bool/</id>
+    <published>2019-05-23T12:12:40.000Z</published>
+    <updated>2019-05-23T12:27:23.760Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;今天学 JavaScript 时，布尔运算符的规则给我留下了比较深刻的印象，让我又思考了一下布尔运算和 “短路求值”。&lt;/p&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>XML 和 JSON</title>
+    <link href="http://yoursite.com/2019/05/22/others-xml-json/"/>
+    <id>http://yoursite.com/2019/05/22/others-xml-json/</id>
+    <published>2019-05-22T11:17:10.000Z</published>
+    <updated>2019-05-22T11:58:55.618Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;本文介绍两种常见的数据格式 —— XML 和 JSON，并进行对比。&lt;/p&gt;
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>【译】A Beginner&#39;s Guide to Word2Vec and Neural Word Embeddings</title>
@@ -293,146 +423,6 @@
       
     
     </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>数据可视化 - 原则</title>
-    <link href="http://yoursite.com/2019/05/14/data-visual-principles/"/>
-    <id>http://yoursite.com/2019/05/14/data-visual-principles/</id>
-    <published>2019-05-14T00:04:12.000Z</published>
-    <updated>2019-05-14T00:15:25.576Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-      <category term="数据可视化 (Data Visualization)" scheme="http://yoursite.com/categories/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96-Data-Visualization/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>数据可视化 - 引言</title>
-    <link href="http://yoursite.com/2019/05/14/data-visual-intro/"/>
-    <id>http://yoursite.com/2019/05/14/data-visual-intro/</id>
-    <published>2019-05-14T00:03:53.000Z</published>
-    <updated>2019-05-14T00:06:18.045Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
-      <category term="数据可视化 (Data Visualization)" scheme="http://yoursite.com/categories/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96-Data-Visualization/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>数据可视化 - Python 中的数据可视化工具</title>
-    <link href="http://yoursite.com/2019/05/13/data-visual-python-tools-intro/"/>
-    <id>http://yoursite.com/2019/05/13/data-visual-python-tools-intro/</id>
-    <published>2019-05-13T10:17:10.000Z</published>
-    <updated>2019-05-13T11:42:41.069Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;机器学习、数据分析过程中需要用到数据可视化，Python 是这两个领域中使用较为广泛的语言，所以这篇文章简要介绍 Python 中的数据可视化工具。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="数据可视化 (Data Visualization)" scheme="http://yoursite.com/categories/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96-Data-Visualization/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>机器学习中常用的数据集</title>
-    <link href="http://yoursite.com/2019/05/12/ml-commonly-used-datasets/"/>
-    <id>http://yoursite.com/2019/05/12/ml-commonly-used-datasets/</id>
-    <published>2019-05-12T15:01:58.000Z</published>
-    <updated>2019-05-12T15:03:03.342Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-      <category term="Machine Learning" scheme="http://yoursite.com/categories/Machine-Learning/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Redis 学习笔记 (1)</title>
-    <link href="http://yoursite.com/2019/05/12/redis-intro/"/>
-    <id>http://yoursite.com/2019/05/12/redis-intro/</id>
-    <published>2019-05-12T10:26:06.000Z</published>
-    <updated>2019-05-17T09:26:31.027Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Redis 是一个 NoSQL 的内存数据库。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Redis" scheme="http://yoursite.com/categories/Redis/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>C++ 学习笔记 - STL：排序相关函数</title>
-    <link href="http://yoursite.com/2019/05/10/cpp-stl-algorithm-sort/"/>
-    <id>http://yoursite.com/2019/05/10/cpp-stl-algorithm-sort/</id>
-    <published>2019-05-10T04:01:29.000Z</published>
-    <updated>2019-05-17T09:27:53.802Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;排序是编程中经常出现的场景，C++ STL 为我们提供了一些用于排序的函数。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="程序设计语言 (Programming Languages)" scheme="http://yoursite.com/categories/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%AF%AD%E8%A8%80-Programming-Languages/"/>
-    
-      <category term="C++" scheme="http://yoursite.com/categories/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%AF%AD%E8%A8%80-Programming-Languages/C/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>ml-dl-rnn</title>
-    <link href="http://yoursite.com/2019/05/09/ml-dl-rnn/"/>
-    <id>http://yoursite.com/2019/05/09/ml-dl-rnn/</id>
-    <published>2019-05-09T13:26:21.000Z</published>
-    <updated>2019-05-17T09:29:10.469Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;RNN 擅长处理序列问题。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="机器学习 (Machine Learning)" scheme="http://yoursite.com/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-Machine-Learning/"/>
-    
-      <category term="深度学习 (Deep Learning)" scheme="http://yoursite.com/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-Machine-Learning/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-Deep-Learning/"/>
     
     
   </entry>
