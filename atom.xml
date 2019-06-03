@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-05-28T07:17:16.746Z</updated>
+  <updated>2019-06-03T09:58:12.826Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,11 +17,177 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>操作系统笔记 - 文件系统</title>
+    <link href="http://yoursite.com/2019/06/03/os-file-system/"/>
+    <id>http://yoursite.com/2019/06/03/os-file-system/</id>
+    <published>2019-06-03T09:50:31.000Z</published>
+    <updated>2019-06-03T09:58:12.826Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+      <category term="操作系统 (Operating System)" scheme="http://yoursite.com/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-Operating-System/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>操作系统笔记 - 引言</title>
+    <link href="http://yoursite.com/2019/06/03/os-intro/"/>
+    <id>http://yoursite.com/2019/06/03/os-intro/</id>
+    <published>2019-06-03T09:49:05.000Z</published>
+    <updated>2019-06-03T09:58:25.216Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+      <category term="操作系统 (Operating System)" scheme="http://yoursite.com/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-Operating-System/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Lecture 7a：元循环求值器 I</title>
+    <link href="http://yoursite.com/2019/06/02/others-sicp-7a/"/>
+    <id>http://yoursite.com/2019/06/02/others-sicp-7a/</id>
+    <published>2019-06-02T12:17:07.000Z</published>
+    <updated>2019-06-02T12:41:23.110Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+    
+      <category term="SICP" scheme="http://yoursite.com/tags/SICP/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>λ-演算</title>
+    <link href="http://yoursite.com/2019/06/01/theory-of-computation-lambda-calculus/"/>
+    <id>http://yoursite.com/2019/06/01/theory-of-computation-lambda-calculus/</id>
+    <published>2019-06-01T13:24:26.000Z</published>
+    <updated>2019-06-01T13:28:16.163Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+      <category term="计算理论 (Theory of Computation)" scheme="http://yoursite.com/categories/%E8%AE%A1%E7%AE%97%E7%90%86%E8%AE%BA-Theory-of-Computation/"/>
+    
+      <category term="λ-演算 (λ-Calculus)" scheme="http://yoursite.com/categories/%E8%AE%A1%E7%AE%97%E7%90%86%E8%AE%BA-Theory-of-Computation/%CE%BB-%E6%BC%94%E7%AE%97-%CE%BB-Calculus/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>C++ 学习笔记 - 基础篇：引用</title>
+    <link href="http://yoursite.com/2019/06/01/cpp-basic-reference/"/>
+    <id>http://yoursite.com/2019/06/01/cpp-basic-reference/</id>
+    <published>2019-06-01T07:01:46.000Z</published>
+    <updated>2019-06-01T07:20:18.077Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;本文详细介绍了 C++ 中的引用。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="程序设计语言 (Programming Languages)" scheme="http://yoursite.com/categories/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%AF%AD%E8%A8%80-Programming-Languages/"/>
+    
+      <category term="C++" scheme="http://yoursite.com/categories/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%AF%AD%E8%A8%80-Programming-Languages/C/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>C++ 学习资源：侯捷老师的在线课程</title>
+    <link href="http://yoursite.com/2019/05/30/cpp-resources-houjie/"/>
+    <id>http://yoursite.com/2019/05/30/cpp-resources-houjie/</id>
+    <published>2019-05-30T14:42:39.000Z</published>
+    <updated>2019-05-30T15:13:53.994Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+      <category term="程序设计语言 (Programming Languages)" scheme="http://yoursite.com/categories/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%AF%AD%E8%A8%80-Programming-Languages/"/>
+    
+      <category term="C++" scheme="http://yoursite.com/categories/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%AF%AD%E8%A8%80-Programming-Languages/C/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>【转】RESTful API 最佳实践</title>
+    <link href="http://yoursite.com/2019/05/30/others-restful-api-design/"/>
+    <id>http://yoursite.com/2019/05/30/others-restful-api-design/</id>
+    <published>2019-05-30T01:11:37.000Z</published>
+    <updated>2019-05-30T01:30:33.933Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
     <title>GFW 的原理及代理</title>
     <link href="http://yoursite.com/2019/05/28/computer-networks-gfw/"/>
     <id>http://yoursite.com/2019/05/28/computer-networks-gfw/</id>
     <published>2019-05-28T00:13:28.000Z</published>
-    <updated>2019-05-28T07:17:16.746Z</updated>
+    <updated>2019-05-28T09:33:23.995Z</updated>
     
     <summary type="html">
     
@@ -53,7 +219,7 @@
     <link href="http://yoursite.com/2019/05/27/javascript-intro/"/>
     <id>http://yoursite.com/2019/05/27/javascript-intro/</id>
     <published>2019-05-27T13:51:47.000Z</published>
-    <updated>2019-05-27T14:57:41.461Z</updated>
+    <updated>2019-05-28T09:39:16.535Z</updated>
     
     <summary type="html">
     
@@ -66,6 +232,10 @@
       
     
     </summary>
+    
+      <category term="程序设计语言 (Programming Languages)" scheme="http://yoursite.com/categories/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%AF%AD%E8%A8%80-Programming-Languages/"/>
+    
+      <category term="JavaScript" scheme="http://yoursite.com/categories/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%AF%AD%E8%A8%80-Programming-Languages/JavaScript/"/>
     
     
   </entry>
@@ -97,7 +267,7 @@
     <link href="http://yoursite.com/2019/05/27/others-poj-categories/"/>
     <id>http://yoursite.com/2019/05/27/others-poj-categories/</id>
     <published>2019-05-27T11:27:48.000Z</published>
-    <updated>2019-05-27T11:34:15.115Z</updated>
+    <updated>2019-06-01T02:30:08.539Z</updated>
     
     <summary type="html">
     
@@ -171,15 +341,17 @@
   </entry>
   
   <entry>
-    <title></title>
+    <title>VC 维</title>
     <link href="http://yoursite.com/2019/05/19/ml-basic-vc-dim/"/>
     <id>http://yoursite.com/2019/05/19/ml-basic-vc-dim/</id>
-    <published>2019-05-19T02:16:07.479Z</published>
-    <updated>2019-05-19T02:16:07.479Z</updated>
+    <published>2019-05-18T16:00:00.000Z</published>
+    <updated>2019-05-28T09:32:34.638Z</updated>
     
     <summary type="html">
     
     </summary>
+    
+      <category term="机器学习 (Machine Learning)" scheme="http://yoursite.com/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-Machine-Learning/"/>
     
     
   </entry>
@@ -260,157 +432,6 @@
     <id>http://yoursite.com/2019/05/15/math-symbolic-computation-python/</id>
     <published>2019-05-15T15:36:13.000Z</published>
     <updated>2019-05-17T09:02:26.037Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>ml-dl-dropout</title>
-    <link href="http://yoursite.com/2019/05/15/ml-dl-dropout/"/>
-    <id>http://yoursite.com/2019/05/15/ml-dl-dropout/</id>
-    <published>2019-05-15T12:37:35.000Z</published>
-    <updated>2019-05-17T09:02:59.248Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;防止过拟合的大杀器。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="机器学习 (Machine Learning)" scheme="http://yoursite.com/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-Machine-Learning/"/>
-    
-      <category term="深度学习 (Deep Learning)" scheme="http://yoursite.com/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-Machine-Learning/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-Deep-Learning/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>平衡二叉查找树 - AVL 树</title>
-    <link href="http://yoursite.com/2019/05/15/algorithms-search-avl-tree/"/>
-    <id>http://yoursite.com/2019/05/15/algorithms-search-avl-tree/</id>
-    <published>2019-05-15T08:55:38.000Z</published>
-    <updated>2019-05-17T08:57:42.949Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;AVL 树得名于它的发明者 G. M. Adelson-Velsky 和 Evgenii Landis，他们在 1962 年的论文《An Algorithm for the Organization of Information》中公开了这一数据结构。&lt;/p&gt;
-&lt;p&gt;在计算机科学中，AVL 树是最早被发明的自平衡二叉查找树。AVL 树的查找、插入和删除在平均和最坏情况下的时间复杂度都是 $O(\log(n))$。增加和删除元素的操作则可能需要一次或多次树旋转，以实现树的重新平衡。[1]&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="算法 (Algorithms)" scheme="http://yoursite.com/categories/%E7%AE%97%E6%B3%95-Algorithms/"/>
-    
-      <category term="树 (Tree)" scheme="http://yoursite.com/categories/%E7%AE%97%E6%B3%95-Algorithms/%E6%A0%91-Tree/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>others-recommender-systems-intro</title>
-    <link href="http://yoursite.com/2019/05/15/others-recommender-systems-intro/"/>
-    <id>http://yoursite.com/2019/05/15/others-recommender-systems-intro/</id>
-    <published>2019-05-15T07:47:06.000Z</published>
-    <updated>2019-05-17T09:03:37.769Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-      <category term="推荐系统 (Recommender System)" scheme="http://yoursite.com/categories/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F-Recommender-System/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>ml-dl-softmax</title>
-    <link href="http://yoursite.com/2019/05/15/ml-dl-softmax/"/>
-    <id>http://yoursite.com/2019/05/15/ml-dl-softmax/</id>
-    <published>2019-05-15T07:06:15.000Z</published>
-    <updated>2019-05-17T09:24:56.398Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;softmax 是机器学习（尤其是深度学习）中一个重要的函数，它将量纲不统一的输出值归一化为同一量纲下的值，可以当作概率。&lt;/p&gt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>深度学习路线 &amp; 资料收集</title>
-    <link href="http://yoursite.com/2019/05/14/ml-dl-roadmap/"/>
-    <id>http://yoursite.com/2019/05/14/ml-dl-roadmap/</id>
-    <published>2019-05-14T13:35:19.000Z</published>
-    <updated>2019-05-17T09:02:04.383Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-      <category term="机器学习 (Machine Learning)" scheme="http://yoursite.com/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-Machine-Learning/"/>
-    
-      <category term="深度学习 (Deep Learning)" scheme="http://yoursite.com/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-Machine-Learning/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-Deep-Learning/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>ml-dl-deep-in-cnn</title>
-    <link href="http://yoursite.com/2019/05/14/ml-dl-deep-in-cnn/"/>
-    <id>http://yoursite.com/2019/05/14/ml-dl-deep-in-cnn/</id>
-    <published>2019-05-14T01:53:03.000Z</published>
-    <updated>2019-05-17T09:07:38.140Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>ml-dl-deep-in-rnn</title>
-    <link href="http://yoursite.com/2019/05/14/ml-dl-deep-in-rnn/"/>
-    <id>http://yoursite.com/2019/05/14/ml-dl-deep-in-rnn/</id>
-    <published>2019-05-14T01:52:58.000Z</published>
-    <updated>2019-05-17T09:07:47.819Z</updated>
     
     <summary type="html">
     
