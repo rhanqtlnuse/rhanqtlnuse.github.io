@@ -2,11 +2,11 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>RHANQTL</title>
   
-  <subtitle>学习使我快乐</subtitle>
+  <subtitle>上下求索</subtitle>
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-06-03T09:58:12.826Z</updated>
+  <updated>2019-06-04T13:34:46.261Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,11 +17,157 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>操作系统笔记 - 文件系统</title>
-    <link href="http://yoursite.com/2019/06/03/os-file-system/"/>
-    <id>http://yoursite.com/2019/06/03/os-file-system/</id>
+    <title></title>
+    <link href="http://yoursite.com/2019/06/04/os-three-easy-pieces/persistence/README/"/>
+    <id>http://yoursite.com/2019/06/04/os-three-easy-pieces/persistence/README/</id>
+    <published>2019-06-04T13:31:07.725Z</published>
+    <updated>2019-06-04T13:34:46.261Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Three Easy Pieces</title>
+    <link href="http://yoursite.com/2019/06/04/os-three-easy-pieces/"/>
+    <id>http://yoursite.com/2019/06/04/os-three-easy-pieces/</id>
+    <published>2019-06-04T11:48:41.000Z</published>
+    <updated>2019-06-04T13:45:56.329Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+      <category term="操作系统 (Operating Systems)" scheme="http://yoursite.com/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-Operating-Systems/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>os-interrupt-io-part-1</title>
+    <link href="http://yoursite.com/2019/06/03/os-interrupt-io-part-1/"/>
+    <id>http://yoursite.com/2019/06/03/os-interrupt-io-part-1/</id>
+    <published>2019-06-03T12:14:07.000Z</published>
+    <updated>2019-06-03T12:14:07.775Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>os-process-part-1</title>
+    <link href="http://yoursite.com/2019/06/03/os-process-part-1/"/>
+    <id>http://yoursite.com/2019/06/03/os-process-part-1/</id>
+    <published>2019-06-03T12:13:45.000Z</published>
+    <updated>2019-06-03T12:13:45.554Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>操作系统笔记 - 内存管理 (Part I)</title>
+    <link href="http://yoursite.com/2019/06/03/os-memory-part-1/"/>
+    <id>http://yoursite.com/2019/06/03/os-memory-part-1/</id>
+    <published>2019-06-03T11:24:16.000Z</published>
+    <updated>2019-06-03T12:03:28.113Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+      <category term="操作系统 (Operating System)" scheme="http://yoursite.com/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-Operating-System/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>操作系统笔记 - 文件系统 (Part III)</title>
+    <link href="http://yoursite.com/2019/06/03/os-file-system-part-3/"/>
+    <id>http://yoursite.com/2019/06/03/os-file-system-part-3/</id>
+    <published>2019-06-03T11:15:31.000Z</published>
+    <updated>2019-06-04T11:59:21.711Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+      <category term="操作系统 (Operating System)" scheme="http://yoursite.com/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-Operating-System/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>操作系统笔记 - 文件系统 (Part II)</title>
+    <link href="http://yoursite.com/2019/06/03/os-file-system-part-2/"/>
+    <id>http://yoursite.com/2019/06/03/os-file-system-part-2/</id>
+    <published>2019-06-03T11:02:05.000Z</published>
+    <updated>2019-06-03T11:14:18.608Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+      <category term="操作系统 (Operating System)" scheme="http://yoursite.com/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-Operating-System/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>操作系统笔记 - 文件系统 (Part I)</title>
+    <link href="http://yoursite.com/2019/06/03/os-file-system-part-1/"/>
+    <id>http://yoursite.com/2019/06/03/os-file-system-part-1/</id>
     <published>2019-06-03T09:50:31.000Z</published>
-    <updated>2019-06-03T09:58:12.826Z</updated>
+    <updated>2019-06-03T11:28:14.531Z</updated>
     
     <summary type="html">
     
@@ -45,7 +191,7 @@
     <link href="http://yoursite.com/2019/06/03/os-intro/"/>
     <id>http://yoursite.com/2019/06/03/os-intro/</id>
     <published>2019-06-03T09:49:05.000Z</published>
-    <updated>2019-06-03T09:58:25.216Z</updated>
+    <updated>2019-06-03T11:08:04.019Z</updated>
     
     <summary type="html">
     
@@ -294,154 +440,6 @@
     <summary type="html">
     
       &lt;p&gt;今天学 JavaScript 时，布尔运算符的规则给我留下了比较深刻的印象，让我又思考了一下布尔运算和 “短路求值”。&lt;/p&gt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>XML 和 JSON</title>
-    <link href="http://yoursite.com/2019/05/22/others-xml-json/"/>
-    <id>http://yoursite.com/2019/05/22/others-xml-json/</id>
-    <published>2019-05-22T11:17:10.000Z</published>
-    <updated>2019-05-22T11:58:55.618Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;本文介绍两种常见的数据格式 —— XML 和 JSON，并进行对比。&lt;/p&gt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>【译】A Beginner&#39;s Guide to Word2Vec and Neural Word Embeddings</title>
-    <link href="http://yoursite.com/2019/05/20/nlp-word2vec/"/>
-    <id>http://yoursite.com/2019/05/20/nlp-word2vec/</id>
-    <published>2019-05-20T03:02:24.000Z</published>
-    <updated>2019-05-20T06:55:35.797Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-      <category term="自然语言处理 (Natural Language Processing)" scheme="http://yoursite.com/categories/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86-Natural-Language-Processing/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>VC 维</title>
-    <link href="http://yoursite.com/2019/05/19/ml-basic-vc-dim/"/>
-    <id>http://yoursite.com/2019/05/19/ml-basic-vc-dim/</id>
-    <published>2019-05-18T16:00:00.000Z</published>
-    <updated>2019-05-28T09:32:34.638Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
-      <category term="机器学习 (Machine Learning)" scheme="http://yoursite.com/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-Machine-Learning/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>latex-intro</title>
-    <link href="http://yoursite.com/2019/05/17/latex-intro/"/>
-    <id>http://yoursite.com/2019/05/17/latex-intro/</id>
-    <published>2019-05-17T08:13:38.000Z</published>
-    <updated>2019-05-17T08:29:05.521Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-      <category term="LaTeX" scheme="http://yoursite.com/categories/LaTeX/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>使用 LaTeX 绘图：TikZ 教程</title>
-    <link href="http://yoursite.com/2019/05/17/latex-creating-graphics-using-tikz/"/>
-    <id>http://yoursite.com/2019/05/17/latex-creating-graphics-using-tikz/</id>
-    <published>2019-05-17T08:13:25.000Z</published>
-    <updated>2019-05-17T08:28:14.340Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-      <category term="LaTeX" scheme="http://yoursite.com/categories/LaTeX/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Lisp 的本质</title>
-    <link href="http://yoursite.com/2019/05/17/fp-lisp-the-nature-of-lisp/"/>
-    <id>http://yoursite.com/2019/05/17/fp-lisp-the-nature-of-lisp/</id>
-    <published>2019-05-17T08:05:31.000Z</published>
-    <updated>2019-05-17T08:42:06.861Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;原文地址：&lt;a href=&quot;https://www.defmacro.org/ramblings/lisp.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;The Nature of Lisp&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;掘金上有一篇&lt;a href=&quot;https://juejin.im/entry/59dc6d48f265da432f3012b9&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;译文&lt;/a&gt;，除了格式不太好之外，翻译还是挺不错的。&lt;/p&gt;
-&lt;p&gt;下面把原文复制过来以免原文无法访问：&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="函数式编程 (Functional Programming)" scheme="http://yoursite.com/categories/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B-Functional-Programming/"/>
-    
-      <category term="Lisp" scheme="http://yoursite.com/categories/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B-Functional-Programming/Lisp/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>math-symbolic-computation-python</title>
-    <link href="http://yoursite.com/2019/05/15/math-symbolic-computation-python/"/>
-    <id>http://yoursite.com/2019/05/15/math-symbolic-computation-python/</id>
-    <published>2019-05-15T15:36:13.000Z</published>
-    <updated>2019-05-17T09:02:26.037Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
     
     </summary>
     
