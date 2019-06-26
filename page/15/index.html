@@ -310,6 +310,1001 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/14/LeetCode-695：Max-Area-of-Island/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/12/14/LeetCode-695：Max-Area-of-Island/" itemprop="url">LeetCode 695：Max Area of Island</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-14T16:19:59+08:00">
+                2018-12-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/14/LeetCode-567：Permutation-in-String/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/12/14/LeetCode-567：Permutation-in-String/" itemprop="url">LeetCode 567：Permutation in String</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-14T08:41:56+08:00">
+                2018-12-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithms/" itemprop="url" rel="index">
+                    <span itemprop="name">Algorithms</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithms/OJ/" itemprop="url" rel="index">
+                    <span itemprop="name">OJ</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithms/OJ/LeetCode/" itemprop="url" rel="index">
+                    <span itemprop="name">LeetCode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>题目描述：</p>
+<p>给定两个字符串 <strong>s1</strong> 和 <strong>s2</strong>，写一个函数来判断 <strong>s2</strong> 是否包含 <strong>s1</strong> 的排列。</p>
+<p>换句话说，第一个字符串的排列之一是第二个字符串的子串。</p>
+<p><strong>示例1：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入: s1 = &quot;ab&quot; s2 = &quot;eidbaooo&quot;</span><br><span class="line">输出: True</span><br><span class="line">解释: s2 包含 s1 的排列之一 (&quot;ba&quot;).</span><br></pre></td></tr></table></figure>
+<p><strong>示例2：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: s1= &quot;ab&quot; s2 = &quot;eidboaoo&quot;</span><br><span class="line">输出: False</span><br></pre></td></tr></table></figure>
+<p><strong>注意：</strong></p>
+<ol>
+<li>输入的字符串只包含小写字母</li>
+<li>两个字符串的长度都在 [1, 10,000] 之间</li>
+</ol>
+<p>思路：这道题刚拿到手通常第一反应是枚举所有的排列情况，然后逐个比对，但是这个方案是超时的。我们再审视一下题目：“第一个字符串的<strong>排列之一</strong>是第二个字符串的子串”，这个 “之一” 意味着 “存在”，即我们实际上不需要知道具体是哪个排列，只要能够验证存在性即可；另一方面，一个序列（Sequence）的所有排列一个最基本的特点就是其中的元素相同（包括种类和个数）。这样，我们就建立起了一个逻辑链条：</p>
+<blockquote>
+<p>​    “第一个字符串的<strong>排列之一</strong>是第二个字符串的子串” $\rightarrow$ 只需要验证存在性，一个序列所有排列的元素相同 $\rightarrow$ 只需要验证是否 <strong>s2</strong> 的某个子串与 <strong>s1</strong> 的元素相同</p>
+</blockquote>
+<p>我们上面说的 “种类” 在这里就是字母，就得到了如下的代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">checkInclusion</span><span class="params">(String s1, String s2)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (s1.length() &gt; s2.length()) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    Map&lt;Character, Integer&gt; charMap1 = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">char</span> ch : s1.toCharArray()) &#123;</span><br><span class="line">        charMap1.put(ch, charMap1.getOrDefault(ch, <span class="number">0</span>) + <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">        </span><br><span class="line">    Map&lt;Character, Integer&gt; charMap2 = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>, strLen = s1.length(); i &lt; strLen; i++) &#123;</span><br><span class="line">        <span class="keyword">char</span> ch = s2.charAt(i);</span><br><span class="line">        charMap2.put(ch, charMap2.getOrDefault(ch, <span class="number">0</span>) + <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">        </span><br><span class="line">    <span class="keyword">int</span> head = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> tail = s1.length();</span><br><span class="line">    <span class="keyword">while</span> (!charMap1.equals(charMap2)) &#123;</span><br><span class="line">        <span class="keyword">if</span> (tail &lt; s2.length()) &#123;</span><br><span class="line">            <span class="keyword">if</span> (charMap2.get(s2.charAt(head)) == <span class="number">1</span>) &#123;</span><br><span class="line">                charMap2.remove(s2.charAt(head));</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                charMap2.put(s2.charAt(head), </span><br><span class="line">                             charMap2.get(s2.charAt(head)) - <span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            charMap2.put(s2.charAt(tail),</span><br><span class="line">                         charMap2.getOrDefault(s2.charAt(tail), <span class="number">0</span>) + <span class="number">1</span>);</span><br><span class="line">            head++;</span><br><span class="line">            tail++;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>那还有没有优化的空间呢？是有的，我们再看题目的要求：“输入的字符串只包含小写字母”，这样我们能够确定这个 “map” 的大小最多是 26，而我们知道字母的字符值很容易转换成从 0 开始的整数值，另外代码中 <code>Map</code> 都是用来计数的，一个整数数组同样可以胜任这件事：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">checkInclusion</span><span class="params">(String s1, String s2)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (s1.length() &gt; s2.length())</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        <span class="keyword">int</span>[] s1map = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">26</span>];</span><br><span class="line">        <span class="keyword">int</span>[] s2map = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">26</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s1.length(); i++) &#123;</span><br><span class="line">            s1map[s1.charAt(i) - <span class="string">'a'</span>]++;</span><br><span class="line">            s2map[s2.charAt(i) - <span class="string">'a'</span>]++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">26</span>; i++)</span><br><span class="line">            <span class="keyword">if</span> (s1map[i] == s2map[i])</span><br><span class="line">                count++;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s2.length() - s1.length(); i++) &#123;</span><br><span class="line">            <span class="keyword">int</span> r = s2.charAt(i + s1.length()) - <span class="string">'a'</span>, l = s2.charAt(i) - <span class="string">'a'</span>;</span><br><span class="line">            <span class="keyword">if</span> (count == <span class="number">26</span>)</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">            s2map[r]++;</span><br><span class="line">            <span class="keyword">if</span> (s2map[r] == s1map[r])</span><br><span class="line">                count++;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (s2map[r] == s1map[r] + <span class="number">1</span>)</span><br><span class="line">                count--;</span><br><span class="line">            s2map[l]--;</span><br><span class="line">            <span class="keyword">if</span> (s2map[l] == s1map[l])</span><br><span class="line">                count++;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (s2map[l] == s1map[l] - <span class="number">1</span>)</span><br><span class="line">                count--;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> count == <span class="number">26</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这段代码其实还可以被进一步地优化，具体可以参见 <a href="https://leetcode.com/problems/permutation-in-string/discuss/102588/Java-Solution-Sliding-Window" target="_blank" rel="noopener">只用一个数组的解法</a></p>
+<p>下面进行技术总结：</p>
+<p>这道题实际上用到了一个叫做 “<a href="https://en.wikipedia.org/wiki/Sliding_window_protocol" target="_blank" rel="noopener">滑动窗口</a>” 的技术。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/12/LeetCode-226：Invert-Binary-Tree/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/12/12/LeetCode-226：Invert-Binary-Tree/" itemprop="url">LeetCode 226：Invert Binary Tree</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-12T20:02:39+08:00">
+                2018-12-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithms/" itemprop="url" rel="index">
+                    <span itemprop="name">Algorithms</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithms/OJ/" itemprop="url" rel="index">
+                    <span itemprop="name">OJ</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithms/OJ/LeetCode/" itemprop="url" rel="index">
+                    <span itemprop="name">LeetCode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>今天在一个公众号上面看到了一个故事：2015 年，<a href="https://brew.sh/" target="_blank" rel="noopener">Homebrew</a> 的作者 Max Howell 去面试 Google，据 Max Howell 称，他因为不会一道翻转二叉树被谷歌拒了。下面是大佬的原推：</p>
+<img src="/2018/12/12/LeetCode-226：Invert-Binary-Tree/original-tweet.png">
+<p>好奇的我去 LeetCode 上搜了一下，还真的有这道题，题目描述是这样的：</p>
+<p>翻转一棵二叉树。</p>
+<p><strong>样例：</strong></p>
+<p>输入：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">     4</span><br><span class="line">   /   \</span><br><span class="line">  2     7</span><br><span class="line"> / \   / \</span><br><span class="line">1   3 6   9</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">     4</span><br><span class="line">   /   \</span><br><span class="line">  7     2</span><br><span class="line"> / \   / \</span><br><span class="line">9   6 3   1</span><br></pre></td></tr></table></figure>
+<p>我的代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * public class TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode left;</span></span><br><span class="line"><span class="comment"> *     TreeNode right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) &#123; val = x; &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> TreeNode <span class="title">invertTree</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (root == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (isLeaf(root)) &#123;</span><br><span class="line">            <span class="keyword">return</span> root;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 注意这里</span></span><br><span class="line">        TreeNode tmp = root.left;</span><br><span class="line">        root.left = invertTree(root.right);</span><br><span class="line">        root.right = invertTree(tmp);</span><br><span class="line">        <span class="keyword">return</span> root;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">isLeaf</span><span class="params">(TreeNode x)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> x.left == <span class="keyword">null</span> &amp;&amp; x.right == <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>需要注意</strong>的是 <code>TreeNode tmp = root.left</code> 这条语句，直接像下面这样写的话，你就<font color="red"><b>凉</b></font>了：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">root.left = invertTree(root.right);</span><br><span class="line">root.right = invertTree(root.left);</span><br></pre></td></tr></table></figure>
+<p>输出是这样的：<code>[4,7,7,9,9,9,9]</code>，因为这里是引用，实际上就变成了树的两棵子树都是 <code>root.right</code>。（初学链表时搞不清楚指针的交换顺序也会写出这样的 Bug）</p>
+<p>所以，面试之前先自问一下有没有大佬牛逼，如果没有，就老老实实地刷几遍 LeetCode 或者 LintCode，毕竟这么牛逼的大佬都会因为写不出一道简单的算法题被拒。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/08/fp-haskell-intro/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/12/08/fp-haskell-intro/" itemprop="url">Haskell 入门</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-08T14:49:32+08:00">
+                2018-12-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/FP/" itemprop="url" rel="index">
+                    <span itemprop="name">FP</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/FP/Haskell/" itemprop="url" rel="index">
+                    <span itemprop="name">Haskell</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>函数调用在 Haskell 中拥有最高的优先级，所以 <code>succ 9 * 10</code> 的结果为 100，而不是所期望的 91</p>
+<p>Haskell 中 <code>if</code> 语句（实际上是一个表达式）的 <code>else</code> 不可省略：<code>if-then-else</code>，也就是说，必须返回一个值</p>
+<p>编写一些简单的函数（抽象），将其组合，形成更高级的抽象</p>
+<p>有两个参数的函数可以使用中缀形式：<code>div 9 3</code> 等价于 <code>9 `div` 3</code>，注意使用<strong>反引号</strong>将函数名括起来和参数的顺序</p>
+<p>变量的值不可修改！！！（更像数学中的变量，而不是编程中的变量），但可以对变量重新赋值</p>
+<p>Haskell 中<strong>不允许</strong>首字母大写的函数</p>
+<p>常量定义：<code>let &lt;var_name&gt; = &lt;value&gt;</code> 或 <code>&lt;var_name&gt; = &lt;value&gt;</code>，注意 <code>&lt;var_name&gt;</code> 首字母<strong>小写</strong>！</p>
+<h1 id="List"><a href="#List" class="headerlink" title="List"></a>List</h1><p><strong>单类型</strong>数据数据结构</p>
+<p>空 List：<code>[]</code></p>
+<h2 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h2><p>列表连接：<code>&lt;list1&gt; ++ &lt;list2&gt;</code></p>
+<p>字符串实际上是字符数组，所以可以使用 <code>&quot;hello&quot; ++ &quot; &quot; ++ &quot;world&quot;</code></p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">ghci</span>&gt; str1 = ['h', 'e', 'l', 'l', 'o']</span><br><span class="line"><span class="title">ghci</span>&gt; str2 = ['w', 'o', 'r', 'l', 'd']</span><br><span class="line"><span class="title">ghci</span>&gt; str1 ++ <span class="string">" "</span> ++ str2</span><br><span class="line"><span class="string">"hello world"</span></span><br></pre></td></tr></table></figure>
+<p>可以使用 <code>：</code> 将一个元素连接到 List 的头部（Lisp 的 <code>cons &lt;elem&gt; &lt;list&gt;</code>），<code>[1, 2, 3]</code> 实际上是 <code>1：2：3：[]</code> 的语法糖</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">ghci</span>&gt; 'h':'e':'l':'l':'o':[]</span><br><span class="line"><span class="string">"hello"</span></span><br></pre></td></tr></table></figure>
+<p>通过下标访问：<code>!!</code>，下标从 0 开始，超出范围会报错</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">ghci</span>&gt; [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>] !! <span class="number">3</span></span><br><span class="line"><span class="number">4</span></span><br></pre></td></tr></table></figure>
+<h3 id="比较大小"><a href="#比较大小" class="headerlink" title="比较大小"></a>比较大小</h3><p>当 List 中装有<strong>可比较</strong>的元素时，可以使用关系运算符比较列表的大小。从第一个元素开始比较如果能够决定结果，直接返回，否则继续向后比较。</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">ghci</span>&gt; [<span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>] &gt; [<span class="number">2</span>, <span class="number">1</span>, <span class="number">0</span>]</span><br><span class="line"><span class="type">True</span></span><br><span class="line"><span class="title">ghci</span>&gt; [<span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>] &gt; [<span class="number">2</span>, <span class="number">10</span>, <span class="number">100</span>]</span><br><span class="line"><span class="type">True</span></span><br><span class="line"><span class="title">ghci</span>&gt; [<span class="number">3</span>, <span class="number">4</span>, <span class="number">2</span>] &gt; [<span class="number">3</span>, <span class="number">4</span>]</span><br><span class="line"><span class="type">True</span></span><br><span class="line"><span class="title">ghci</span>&gt; [<span class="number">3</span>, <span class="number">4</span>, <span class="number">2</span>] &gt; [<span class="number">2</span>, <span class="number">4</span>]</span><br><span class="line"><span class="type">True</span></span><br><span class="line"><span class="title">ghci</span>&gt; [<span class="number">3</span>, <span class="number">4</span>, <span class="number">2</span>] == [<span class="number">3</span>, <span class="number">4</span>, <span class="number">2</span>]</span><br><span class="line"><span class="type">True</span></span><br></pre></td></tr></table></figure>
+<h3 id="其他常用函数"><a href="#其他常用函数" class="headerlink" title="其他常用函数"></a>其他常用函数</h3><p><code>head</code>：返回 List 的首个元素（Lisp 的 <code>car</code>）</p>
+<p><code>tail</code>：返回 List 的去除首个元素的部分（Lisp 的 <code>cdr</code>）</p>
+<p><code>last</code>：返回 List 的最后一个元素</p>
+<p><code>init</code>：返回 List 去除最后一个元素的部分</p>
+<p>注意：对空 List 使用这些函数会在运行期产生异常</p>
+<p><code>length</code></p>
+<p><code>null</code>：检查一个列表是否为空</p>
+<ul>
+<li>避免使用 <code>xs == []</code></li>
+</ul>
+<p><code>reverse</code>：将 List 反转</p>
+<p><code>take &lt;count&gt; &lt;list&gt;</code>：取出列表的前 count 个元素</p>
+<ul>
+<li>也可以使用中缀形式：<code>3 `take` [1, 2, 3, 4, 5, 6]</code></li>
+<li>如果 <code>count == 0</code>，那么返回 <code>[]</code></li>
+<li>如果 <code>count &gt;= length</code>，那么返回原 List</li>
+</ul>
+<p><code>drop &lt;count&gt; &lt;list&gt;</code>：删除 List 的前 count 个元素，与 <code>take</code> 大体相同</p>
+<p><code>maximum</code> 和 <code>minimum</code></p>
+<p><code>sum</code> 和 <code>product</code></p>
+<p><code>elem</code>：判断一个元素是否在 List 中，通常以中缀形式使用</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/07/algorithms-approx-algo/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/12/07/algorithms-approx-algo/" itemprop="url">近似算法</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-07T00:00:00+08:00">
+                2018-12-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法-Algorithms/" itemprop="url" rel="index">
+                    <span itemprop="name">算法 (Algorithms)</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>很多优化问题是 NP 难的，相应的决策问题是 NP 完备的，而我们并不总是需要精确的答案，所以可以使用高效的渐进算法。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/12/07/algorithms-approx-algo/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/06/others-bit-op-tricks/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/12/06/others-bit-op-tricks/" itemprop="url">位运算奇技淫巧</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-06T20:30:00+08:00">
+                2018-12-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Programming/" itemprop="url" rel="index">
+                    <span itemprop="name">Programming</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>Copyright @韩琦</p>
+<p><strong>转载请注明出处</strong></p>
+</blockquote>
+<h2 id="技巧-0：n-amp-0x01"><a href="#技巧-0：n-amp-0x01" class="headerlink" title="技巧 0：n &amp; 0x01"></a>技巧 0：<code>n &amp; 0x01</code></h2><p>这个方法就是用来判断 <code>n</code> 的奇偶性，但是需要注意的一点是，这个方式与 <code>n % 2</code> 的结果不太一样：<code>n &amp; 0x01</code> 总是返回 <code>0</code> 或 <code>1</code>，而当 <code>n</code> 为负数时，<code>n % 2</code> 可能返回 <code>-1</code>。因为 <code>-(a % b) == (-a) % b</code> 对任何 a，b（b $\ne$ 0）都成立</p>
+<h2 id="技巧-1：n-amp-n-1"><a href="#技巧-1：n-amp-n-1" class="headerlink" title="技巧 1：n &amp; (n - 1)"></a>技巧 1：<code>n &amp; (n - 1)</code></h2><p>位运算有很多很有意思的技巧，有一个比较常见的就是求一个整数二进制表示中 1 的个数：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">countOnes</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (num) &#123;</span><br><span class="line">        num = num &amp; (num - <span class="number">1</span>);</span><br><span class="line">        count++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> count;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其中，<code>num &amp; (num - 1)</code> 中 1 的个数比 <code>num</code> 少 1。</p>
+<p>至于这个方法的正确性，可以直观的解释一下。分两种情况：</p>
+<ul>
+<li><code>num</code> 最低位为 1。假设有：<code>num = 1010 0010 1101 0111b</code>，那么 <code>num - 1</code> 的结果为 <code>1010 0010 1101 0110b</code>，<code>num &amp; (num - 1)</code>：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">  1010 0010 1101 0111  // num</span><br><span class="line">&amp; 1010 0010 1101 0110  // num - 1</span><br><span class="line">---------------------</span><br><span class="line">  1010 0010 1101 0110  // num &amp; (num - 1)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>num</code> 最低位为 0。假设有：<code>num = 1010 1000 0000 0000b</code>，那么 <code>num - 1</code> 的结果为 <code>1010 0111 1111 1111</code>，<code>num &amp; (num - 1)</code>：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">  1010 1000 0000 0000  // num</span><br><span class="line">&amp; 1010 0111 1111 1111  // num - 1</span><br><span class="line">---------------------</span><br><span class="line">  1010 0000 0000 0000  // num &amp; (num - 1)</span><br></pre></td></tr></table></figure>
+<p><strong>例</strong>（LeetCode 338：Counting Bits）：</p>
+<p>Given a non negative integer number <strong>num</strong>. For every numbers <strong>i</strong> in the range <strong>0 ≤ i ≤ num</strong> calculate the number of 1’s in their binary representation and return them as an array.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: 2</span><br><span class="line">Output: [0,1,1]</span><br></pre></td></tr></table></figure>
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: 5</span><br><span class="line">Output: [0,1,1,2,1,2]</span><br></pre></td></tr></table></figure>
+<p><strong>Follow up:</strong></p>
+<ul>
+<li>It is very easy to come up with a solution with run time <strong>O(n*sizeof(integer))</strong>. But can you do it in linear time <strong>O(n)</strong>/possibly in a single pass?</li>
+<li>Space complexity should be <strong>O(n)</strong>.</li>
+<li>Can you do it like a boss? Do it without using any builtin function like <code>__builtin_popcount</code> in C++ or in any other language.</li>
+</ul>
+<p>思路：可以采用规约的方式，一个数 i 中 1 的个数等于比 i 少 1 的数中 1 的个数加上 1</p>
+<p>代码：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; countBits(<span class="keyword">int</span> num) &#123;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; res(num + <span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line">    <span class="comment">// 可以直接确定的是，0 中 1 的个数为 0，所以直接从 i = 1 开始</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= num; i++) &#123;</span><br><span class="line">        res[i] = res[i &amp; (i - <span class="number">1</span>)] + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其实这个问题在同样的思路下还有另一种解法：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; countBits(<span class="keyword">int</span> num) &#123;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; res(num + <span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= num; i++) &#123;</span><br><span class="line">        res[i] = res[i &gt;&gt; <span class="number">1</span>] + (i &amp; <span class="number">0x01</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="技巧-2："><a href="#技巧-2：" class="headerlink" title="技巧 2："></a>技巧 2：</h2>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/05/algorithms-union-find/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -491,6 +1486,152 @@
 <p><a href="https://www2.cs.duke.edu/courses/fall08/cps230/Lectures/L-16.pdf" target="_blank" rel="noopener">Duke - Lecture Note：Union-Find</a></p>
 
           
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/05/algorithms-correctness-verification/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/12/05/algorithms-correctness-verification/" itemprop="url">算法正确性验证</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-05T20:00:00+08:00">
+                2018-12-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法-Algorithms/" itemprop="url" rel="index">
+                    <span itemprop="name">算法 (Algorithms)</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>有时候我们写出一个算法，暂时没有条件（比如数据的限制/算力的限制/手边没有电脑等）进行实际的测试，这时候可以对齐进行证明。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/12/05/algorithms-correctness-verification/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -785,1166 +1926,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/04/others-resources/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RHANQTL">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/12/04/others-resources/" itemprop="url">干货</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-04T20:59:13+08:00">
-                2018-12-04
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="数学"><a href="#数学" class="headerlink" title="数学"></a>数学</h1><p><a href="https://www.youtube.com/user/joshstarmer" target="_blank" rel="noopener">YouTube - User - StatQuest with Josh Starmer</a></p>
-<p><a href="https://www.youtube.com/channel/UCYO_jab_esuFRV4b17AJtAw" target="_blank" rel="noopener">YouTube - Channel - 3Blue1Brown</a></p>
-<p><a href="https://jeremykun.com/primers/" target="_blank" rel="noopener">Math &amp; Programming</a></p>
-<h1 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h1><p><a href="http://www.csie.ntnu.edu.tw/~u91029/index.html" target="_blank" rel="noopener">《演算法笔记》（国立台湾师范大学，繁体）</a></p>
-<h1 id="人工智能"><a href="#人工智能" class="headerlink" title="人工智能"></a>人工智能</h1><h2 id="机器学习"><a href="#机器学习" class="headerlink" title="机器学习"></a>机器学习</h2><p><a href="https://zh.diveintodeeplearning.org/index.html" target="_blank" rel="noopener">《动手学深度学习》</a></p>
-<h2 id="自然语言处理"><a href="#自然语言处理" class="headerlink" title="自然语言处理"></a>自然语言处理</h2><p><a href="https://web.stanford.edu/~jurafsky/NLPCourseraSlides.html" target="_blank" rel="noopener">Stanford：Introduction to NLP</a></p>
-<h1 id="函数式编程"><a href="#函数式编程" class="headerlink" title="函数式编程"></a>函数式编程</h1><p><a href="https://learnyoua.haskell.sg/content/zh-cn/" target="_blank" rel="noopener">《Haskell 趣学指南》</a></p>
-<h1 id="计算机系统"><a href="#计算机系统" class="headerlink" title="计算机系统"></a>计算机系统</h1><p><a href="https://legacy.gitbook.com/@nju-ics" target="_blank" rel="noopener">NJU ICS</a> - 袁春风老师《计算机系统基础》实验</p>
-<h1 id="杂项"><a href="#杂项" class="headerlink" title="杂项"></a>杂项</h1><p>推荐一个在线的 Markdown 编辑器，可实时预览：<a href="https://stackedit.io/editor" target="_blank" rel="noopener">StackEdit</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/04/algorithms-p-np/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RHANQTL">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/12/04/algorithms-p-np/" itemprop="url">未命名</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-04T04:21:29+08:00">
-                2018-12-04
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <a id="more"></a>
-<h1 id="P-和-NP"><a href="#P-和-NP" class="headerlink" title="P 和 NP"></a>P 和 NP</h1><p>决策问题/优化问题：如果能找到决策问题的解，那么通常也能找到优化问题的解，反之成立。</p>
-<h2 id="图灵机"><a href="#图灵机" class="headerlink" title="图灵机"></a>图灵机</h2><ul>
-<li>无限长的纸带</li>
-<li>读头：读/写</li>
-<li>状态寄存器：保存当前状态</li>
-<li>（有限的）状态转换表：根据当前状态和输入进行相应动作：<ul>
-<li>写/擦</li>
-<li>移动读头</li>
-</ul>
-</li>
-</ul>
-<h2 id="停机问题"><a href="#停机问题" class="headerlink" title="停机问题"></a>停机问题</h2><p>根据任意的计算机程序的描述和相应的输入，确定这个程序是否能停机</p>
-<p>不存在对任意的程序都有效的算法。</p>
-<p>假设存在这样一个算法 halts，能够确定任意的程序是否能够停机。那么有一个程序 g：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">g</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">if</span> halts(g):</span><br><span class="line">        loop_forever()</span><br></pre></td></tr></table></figure>
-<h2 id="P-和-NP-1"><a href="#P-和-NP-1" class="headerlink" title="P 和 NP"></a>P 和 NP</h2><p>P：考虑一个决策问题 P，I 是 P 的一个实例，令 |I| 表示 I 在二进制编码下的长度。如果对于所有的 I，P 的一个算法 A 的运行时间为 (|I|)$^{O(1)}$，那么 A 就是多项式边界的。</p>
-<ul>
-<li>P 是有多项式边界的算法的决策问题的集合</li>
-<li>P 是可以在多项式时间内<strong>解决</strong>的决策问题的集合</li>
-<li>注意：在集合 P 中不代表有高效的算法，比如 $\Theta(n^{100})​$</li>
-<li>不在 P 中的问题解决代价很高，P 中的问题有闭包属性，在 P 中的性质独立于计算模型</li>
-</ul>
-<h3 id="NP"><a href="#NP" class="headerlink" title="NP"></a>NP</h3><p>NP（Non-deterministic Polynomial Time）：非确定性图灵机。如果对于问题 P 的每一个实例，NTM 在 T(|I|) 步内正确地返回了 yes 或 no，我们就说 NTM 在 T(n) 时间内解决一个决策问题 P</p>
-<ul>
-<li>NP 是所有能够被 NTM 在多项式时间内<strong>验证</strong>的问题的集合。</li>
-</ul>
-<p>算法：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">NonDeterministicAlgo(x):</span><br><span class="line">    cer = GenRndCertFree()</span><br><span class="line">    flag = Verify(cer, x)</span><br><span class="line">    if (flag == 1)</span><br><span class="line">        Output &quot;yes&quot;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>Verify 这一步是确定性的</li>
-</ul>
-<p>P $\subset$ NP</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/04/algorithms-np-completeness/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RHANQTL">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/12/04/algorithms-np-completeness/" itemprop="url">未命名</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-04T04:21:29+08:00">
-                2018-12-04
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="NP-完备性"><a href="#NP-完备性" class="headerlink" title="NP 完备性"></a>NP 完备性</h1>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/12/04/algorithms-np-completeness/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/04/algorithms-red-black-tree/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RHANQTL">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/12/04/algorithms-red-black-tree/" itemprop="url">红黑树</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-04T03:22:31+08:00">
-                2018-12-04
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法-Algorithms/" itemprop="url" rel="index">
-                    <span itemprop="name">算法 (Algorithms)</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法-Algorithms/树-Tree/" itemprop="url" rel="index">
-                    <span itemprop="name">树 (Tree)</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <a id="more"></a>
-<h1 id="什么是红黑树？"><a href="#什么是红黑树？" class="headerlink" title="什么是红黑树？"></a>什么是红黑树？</h1><p>红黑树首先是一棵二叉搜索树，具有几乎完美的平衡性质</p>
-<h2 id="叙述性定义"><a href="#叙述性定义" class="headerlink" title="叙述性定义"></a>叙述性定义</h2><p>红黑树是这样一棵<strong>二叉搜索树</strong>：</p>
-<ul>
-<li>根结点为黑色</li>
-<li>每个内部结点要么是黑色，要么是红色</li>
-<li>叶结点（NIL）为黑色</li>
-<li>颜色约束：红色结点不能有红色子结点（换言之，红色结点只能有黑色子结点）</li>
-<li>黑色高度约束：从某结点出发到其所有后代叶结点的<strong>简单路径</strong>上，均包含相同数目的黑色结点</li>
-</ul>
-<h2 id="递归定义"><a href="#递归定义" class="headerlink" title="递归定义"></a>递归定义</h2><ul>
-<li>ARB（Almost-RB）树：除根结点为红色之外，满足 RB 树其他约束</li>
-<li>定义 RB$_0$ 为空树（或外部结点），以 $h$ 表示树的<strong>黑高度</strong></li>
-<li>RB$_{h+1}$：子树可以是 RB$_h$ 或 ARB$_{h+1}$</li>
-<li>ARB$_{h+1}$：子树均为 RB$_h$</li>
-</ul>
-<h1 id="为什么要使用红黑树？"><a href="#为什么要使用红黑树？" class="headerlink" title="为什么要使用红黑树？"></a>为什么要使用红黑树？</h1><h2 id="C-中的-map"><a href="#C-中的-map" class="headerlink" title="C++ 中的 map"></a>C++ 中的 <code>map</code></h2><p>我们知道 <code>HashMap</code> 的平均时间复杂度为 O(1)（可以参考《算法导论》的相关分析），<code>map</code> 的平均时间复杂度为 $O(\lg n)$ 的，实践上是不是 <code>HashMap</code> 一定优于 <code>map</code> 呢？这里面有几个因素要考虑：</p>
-<ol>
-<li><code>HashMap</code> 内存效率比 <code>map</code> 差，这是显而易见的；</li>
-<li><code>map</code> 的查找效率实践上是非常高的，如在 1M 数据中查找一个元素，仅需要 20次 比较；</li>
-<li><code>map</code> 的查找效率比 <code>HashMap</code> 稳定，hash 最坏的情况为 $O(n)$（个人观点：无论使用什么 hash 函数，总能够找到最坏情况的键序列，虽然可以使用全域哈希的方法，但也并不是完全能够避免最坏情况，而且 hash 函数一不小心就会…，相比之下，红黑树的 $O(\lg n)$ 很稳，而且在可以接受的范围内）；</li>
-<li><code>HashMap</code> 查找时候要算 hash，这个最坏时间复杂度是 $O(m)$（M是key字符串的长度），如果你的 key 非常非常非常非常非常非常……长，基于比较的 <code>map</code> 通常只使用头几个字符进行比较，而 <code>HashMap</code> 要 $O(M)$ 地算出 hash；</li>
-<li>内存布局会影响内存局部性，对性能会有影响。</li>
-</ol>
-<h1 id="红黑树的操作-1"><a href="#红黑树的操作-1" class="headerlink" title="红黑树的操作$^{[1]}$"></a>红黑树的操作$^{[1]}$</h1><h2 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h2><p>有 4 种基本情况（完整的图示见附录 A）：</p>
-<img src="/2018/12/04/algorithms-red-black-tree/insertion-cases.png">
-<h3 id="第一种情况：重新着色"><a href="#第一种情况：重新着色" class="headerlink" title="第一种情况：重新着色"></a>第一种情况：重新着色</h3><img src="/2018/12/04/algorithms-red-black-tree/insertion-case1.png">
-<h3 id="第二种情况"><a href="#第二种情况" class="headerlink" title="第二种情况"></a>第二种情况</h3><img src="/2018/12/04/algorithms-red-black-tree/insertion-case2.png">
-<h3 id="第三种情况"><a href="#第三种情况" class="headerlink" title="第三种情况"></a>第三种情况</h3><img src="/2018/12/04/algorithms-red-black-tree/insertion-case3.png">
-<h3 id="第四种情况"><a href="#第四种情况" class="headerlink" title="第四种情况"></a>第四种情况</h3><p>这种情况最简单，因为既满足了颜色约束又没有破坏黑高度约束，所以无需调整。</p>
-<h2 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h2><p>这里会介绍两种视角，命令式视角：参考 <a href="https://www.amazon.cn/dp/B00AK7BYJY/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1544318297&amp;sr=1-1&amp;keywords=%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA" target="_blank" rel="noopener">《算法导论》</a>、<a href="https://www.amazon.cn/dp/B009OCFQ0O/ref=sr_1_1?ie=UTF8&amp;qid=1544252889&amp;sr=8-1&amp;keywords=%E7%AE%97%E6%B3%95" target="_blank" rel="noopener">《算法（第 4 版）》</a>、<a href="https://www.amazon.com/Computer-Algorithms-Introduction-Design-Analysis/dp/0201612445" target="_blank" rel="noopener">《Computer Algorithms: Introduction to Design And Analysis》</a>（以下简称《Computer Algorithms》），函数式视角（模式匹配）：参考刘新宇老师的<a href="https://www.amazon.cn/dp/B01N9JOTF6/ref=sr_1_1?ie=UTF8&amp;qid=1544252865&amp;sr=8-1&amp;keywords=%E7%AE%97%E6%B3%95%E6%96%B0%E8%A7%A3" target="_blank" rel="noopener">《算法新解》</a></p>
-<h2 id="命令式视角"><a href="#命令式视角" class="headerlink" title="命令式视角"></a>命令式视角</h2><h2 id="函数式视角：模式匹配"><a href="#函数式视角：模式匹配" class="headerlink" title="函数式视角：模式匹配"></a>函数式视角：模式匹配</h2><h1 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h1><h1 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h1><h1 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h1><h2 id="附录-A：红黑树插入、删除所有情况图示"><a href="#附录-A：红黑树插入、删除所有情况图示" class="headerlink" title="附录 A：红黑树插入、删除所有情况图示"></a>附录 A：红黑树插入、删除所有情况图示</h2><h2 id="附录-B：红黑树插入、删除实现代码"><a href="#附录-B：红黑树插入、删除实现代码" class="headerlink" title="附录 B：红黑树插入、删除实现代码"></a>附录 B：红黑树插入、删除实现代码</h2><h2 id="附录：参考"><a href="#附录：参考" class="headerlink" title="附录：参考"></a>附录：参考</h2><p>[1] Cormen, Thomas H.；Leiserson, Charles E.；Rivest, Ronald L.；Stein, Clifford. “红黑树”.《算法导论》（第 3 版）. P179</p>
-<h2 id="附录：更多资料"><a href="#附录：更多资料" class="headerlink" title="附录：更多资料"></a>附录：更多资料</h2><ul>
-<li><a href="https://www.cs.tufts.edu/comp/150FP/archive/chris-okasaki/redblack99.pdf" target="_blank" rel="noopener">纯函数式数据结构：红黑树</a></li>
-<li><a href="https://en.wikipedia.org/wiki/Red%E2%80%93black_tree" target="_blank" rel="noopener">Wikipedia：Red-Black Tree</a></li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/23/algorithms-sorting/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RHANQTL">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/11/23/algorithms-sorting/" itemprop="url">算法 - 排序</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-23T12:00:00+08:00">
-                2018-11-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Algorithms/" itemprop="url" rel="index">
-                    <span itemprop="name">Algorithms</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="排序问题和排序算法"><a href="#排序问题和排序算法" class="headerlink" title="排序问题和排序算法"></a>排序问题和排序算法</h1><p>关键操作：比较和元素移动</p>
-<h2 id="解决问题的思路"><a href="#解决问题的思路" class="headerlink" title="解决问题的思路"></a>解决问题的思路</h2><h3 id="分治"><a href="#分治" class="headerlink" title="分治"></a>分治</h3><ul>
-<li>分为 1 和 n - 1<ul>
-<li>插入排序</li>
-<li>选择排序</li>
-</ul>
-</li>
-<li>分为两个大小基本相等的部分<ul>
-<li>快速排序</li>
-<li>归并排序</li>
-</ul>
-</li>
-</ul>
-<h3 id="迭代"><a href="#迭代" class="headerlink" title="迭代"></a>迭代</h3><p>冒泡排序</p>
-<h3 id="其他思路"><a href="#其他思路" class="headerlink" title="其他思路"></a>其他思路</h3><p>基数排序</p>
-<h2 id="分治-1"><a href="#分治-1" class="headerlink" title="分治"></a>分治</h2><p>下面的算法设计都从抽象的递归算法开始，一步一步进行实现和优化。</p>
-<h3 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h3><p>思路：从列表未排序的部分取出一个元素，将其插入到已经排好序的部分。</p>
-<h4 id="抽象递归算法"><a href="#抽象递归算法" class="headerlink" title="抽象递归算法"></a>抽象递归算法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">insertionSortAbstract(L)</span><br><span class="line">    if L.length = 1</span><br><span class="line">        return</span><br><span class="line">    v &lt;- first(L)</span><br><span class="line">    insertionSortAbstract(rest(L))</span><br><span class="line">    L &lt;- insertAbstract(v, rest(L))</span><br><span class="line"></span><br><span class="line">insertAbstract(v, L)</span><br><span class="line">    if L.length = 0</span><br><span class="line">        return &#123;v&#125;</span><br><span class="line">    else if v &lt;= first(L)</span><br><span class="line">        return &#123;v&#125; + L</span><br><span class="line">    else</span><br><span class="line">        return first(L) + insertAbstract(v, rest(L))</span><br></pre></td></tr></table></figure>
-<h4 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h4><p>抽象算法中需要我们实现的部分有 4 个：</p>
-<ul>
-<li>列表的连接 <code>+</code></li>
-<li><code>first</code> 和 <code>rest</code></li>
-<li>列表的长度 <code>length</code></li>
-<li>插入</li>
-</ul>
-<h5 id="first-和-rest"><a href="#first-和-rest" class="headerlink" title="first 和 rest"></a><code>first</code> 和 <code>rest</code></h5><p>对于数组而言，这两个操作的实现比较简单。我们可以使用两个变量 start 和 end（不含），<code>first</code> 就是 A[start]，<code>rest</code> 就是 A[start+1, end)</p>
-<h5 id="列表的长度-length"><a href="#列表的长度-length" class="headerlink" title="列表的长度 length"></a>列表的长度 <code>length</code></h5><p>有了上面的 start 和 end，列表的长度就是 end - start</p>
-<h5 id="列表的连接"><a href="#列表的连接" class="headerlink" title="列表的连接 +"></a>列表的连接 <code>+</code></h5><p>由于我们的算法是原地（In-Place）的，排序之后的结果依然存放在原来的数组中，所以这个操作被隐含地实现了。</p>
-<h5 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h5><p>注意到在 <code>insertionSortAbstract</code> 中，每次都是选择当前子数组的第一个元素作为待插入元素，这样，我们可以把整个数组分为 3 个部分：start - 1，start，[start + 1, end)。每次取出第一个元素（A[start - 1]）时，start - 1 这个位置就变成了一个空位，如果待插入元素大于 A[start]，那么可以将 A[start] 移到这个位置上：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">insert(v, A, start, end)</span><br><span class="line">    if end - start = 0</span><br><span class="line">        A[start - 1] = v</span><br><span class="line">    else if v &lt;= A[start]</span><br><span class="line">        A[start - 1] = v</span><br><span class="line">    else</span><br><span class="line">        A[start - 1] = A[start]</span><br><span class="line">        insert(v, A, start + 1, end)</span><br></pre></td></tr></table></figure>
-<h4 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h4><h5 id="插入的优化"><a href="#插入的优化" class="headerlink" title="插入的优化"></a>插入的优化</h5><p>注意到在 insert 中，</p>
-<ul>
-<li>每次调用的 v 相对于当前的 A 来说总在 start - 1，所以其实前两个分支可以什么都不做</li>
-<li>insert 是尾递归</li>
-</ul>
-<p>可以将代码改成如下的迭代版本：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">insert(v, A, start, end)</span><br><span class="line">    if end - start = 0</span><br><span class="line">        return</span><br><span class="line">    for i &lt;- start to end - 1</span><br><span class="line">        if v &gt; A[i]</span><br><span class="line">            A[i - 1] &lt;- A[i]</span><br><span class="line">            A[i] &lt;- v</span><br></pre></td></tr></table></figure>
-<h5 id="插入排序的优化"><a href="#插入排序的优化" class="headerlink" title="插入排序的优化"></a>插入排序的优化</h5><p>注意到插入排序的实际计算过程是这样的：</p>
-<ol>
-<li>从最后的元素（A[end - 1]）组成的列表开始，将 A[end - 2] 插入到这个列表中</li>
-<li>将 A[end - 3] 插入到上面得到的列表中</li>
-<li>· · ·</li>
-<li>将 A[start] 插入到上面得到的列表中</li>
-</ol>
-<p>从后往前进行排序，所以我们可以这样修改现在的算法：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">insertionSort(L, start, end)</span><br><span class="line">    if end - start = 1</span><br><span class="line">        return</span><br><span class="line">    else</span><br><span class="line">        for i &lt;- end - 2 downto start</span><br><span class="line">            insert(A[i], A, i + 1, end)</span><br></pre></td></tr></table></figure>
-<p>最终版本：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">insertionSort(L, start, end)</span><br><span class="line">    if end - start = 1</span><br><span class="line">        return</span><br><span class="line">    else</span><br><span class="line">        for i &lt;- end - 2 downto start</span><br><span class="line">            for j &lt;- i to end - 2</span><br><span class="line">                if A[j] &gt; A[j + 1]</span><br><span class="line">                    A[j], A[j + 1] &lt;- A[j + 1], A[j]</span><br></pre></td></tr></table></figure>
-<h3 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h3><p>选择最小的元素：可以使用分治的方式，将数组一分为二，递归地找出最小值。</p>
-<p>其中有一个技巧，即选择最小值的过程中，被一分为二的数组只有一边能产生当前的最小值，而另一边的最小值其实就是整个数组中第二小的元素，下一次在获取最小值时可以直接用。</p>
-<p>引申出算法优化的一个技巧：在算法执行的过程中，后面的计算可能会用到前面的结果，可以将前面的结果保存下来提高效率。</p>
-<h3 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h3><p>堆实际上是数组元素的全序。</p>
-<h2 id="迭代-1"><a href="#迭代-1" class="headerlink" title="迭代"></a>迭代</h2><h2 id="基于比较的排序算法时间复杂度的下界"><a href="#基于比较的排序算法时间复杂度的下界" class="headerlink" title="基于比较的排序算法时间复杂度的下界"></a>基于比较的排序算法时间复杂度的下界</h2><h3 id="决策树"><a href="#决策树" class="headerlink" title="决策树"></a>决策树</h3><p>决策树是一个二叉树，</p>
-<ul>
-<li>每个内结点都是一次比较操作，根据比较的结果来决定下一步的方向</li>
-<li>每个叶子结点都是输入的一种排列</li>
-</ul>
-<p>对于大小为 n 的输入，共有 n! 种排列，高度为 h 的二叉树最多有 $2^h$ 个叶子结点，那么我们有：$n! \le 2^h$，即：$h \ge \log_2(n!) = \log_2((\dfrac{n}{e})^n) = \Theta(n\log n)$</p>
-<p>也就是说，基于比较的排序算法的时间复杂度不会低于 $n\log n$，有些基于比较的排序算法的渐进复杂度为 $O(n^2)$ 是因为重复了决策树中的某些路径。</p>
-<p>归并排序具有最优的渐进复杂度（上界和下界都为 $n\log  n$）。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/23/algorithms-searching/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RHANQTL">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/11/23/algorithms-searching/" itemprop="url">算法 - 搜索问题和搜索算法</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-23T12:00:00+08:00">
-                2018-11-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法-Algorithms/" itemprop="url" rel="index">
-                    <span itemprop="name">算法 (Algorithms)</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <a id="more"></a>
-<h2 id="二分搜索"><a href="#二分搜索" class="headerlink" title="二分搜索"></a>二分搜索</h2><p>如果函数 f(x) 是单调的，并且在已知区间 [a, b] 中存在某个值 c 使得 f(c) 等于给定的值 d，那么可以使用二分法来求出 c。</p>
-<h2 id="红黑树"><a href="#红黑树" class="headerlink" title="红黑树"></a>红黑树</h2><p>（注意高度与黑高度的不同！）</p>
-<h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>一个二叉搜索树，每个节点或为红色，或为黑色（所有的外部节点都为黑色），满足如下约束：</p>
-<ul>
-<li>颜色约束：红色的结点不能有红色的子结点</li>
-<li>黑高度约束：给定节点 u 的所有外部路径的<strong>黑色长度</strong>都相同</li>
-<li>根结点是黑色的</li>
-</ul>
-<p>ARB：根结点为红色，满足颜色约束和黑高度约束</p>
-<h4 id="递归定义"><a href="#递归定义" class="headerlink" title="递归定义"></a>递归定义</h4><ul>
-<li>基本情况：RB$_0$ 为外部结点</li>
-<li>ARB$_h$（h &gt;= 1）<ul>
-<li>根节点为红色</li>
-<li>两棵子树都为 RB$_{h-1}$</li>
-</ul>
-</li>
-<li>RB$_h$（h &gt;= 1）<ul>
-<li>根结点为黑色</li>
-<li>子树可以是 RB$_{h-1}$ 或 ARB$_h$</li>
-</ul>
-</li>
-</ul>
-<h3 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h3><ul>
-<li>RB$_h$ 或 ARB$_h$ 的黑高度是良定义的，为 h<ul>
-<li>“良定义” 是指根结点的所有外部路径的黑色长度都相同</li>
-</ul>
-</li>
-<li>RB$_h$<ul>
-<li>至少有 2$^h$ - 1 个黑色内部结点</li>
-<li>至多有 4$^h$ - 1 个内部结点</li>
-<li>任何一个黑色结点的深度至多是树的黑色深度的两倍</li>
-</ul>
-</li>
-<li>ARB$_h$<ul>
-<li>至少有 2$^h$ - 2 个黑色内部结点</li>
-<li>至多有 4$^h$ / 2 - 1 个内部结点</li>
-<li>任何一个黑色结点的深度至多是树的黑色深度的两倍</li>
-</ul>
-</li>
-<li>有 n 个内部结点的红黑树的黑色深度至多为 log(n+1)，树的高度至多为 2 log(n+1)</li>
-</ul>
-<h3 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h3><h4 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h4><p>思路：类似二叉搜索树，保持黑高度约束（将新插入的结点设为红色），调整树以符合颜色约束</p>
-<h5 id="4-结点簇"><a href="#4-结点簇" class="headerlink" title="4 - 结点簇"></a>4 - 结点簇</h5><h5 id="3-结点簇"><a href="#3-结点簇" class="headerlink" title="3 - 结点簇"></a>3 - 结点簇</h5><p>四种情况</p>
-<p>插入之后可能有两种情况：</p>
-<ul>
-<li>插入之后的子树既不是 RB 也不是 ARB</li>
-<li>插入之后的子树是 ARB，但树的根结点是红色的</li>
-</ul>
-<p>下面用五个常量来表示插入之后的状态。</p>
-<h5 id="插入之后树的顶端颜色状态"><a href="#插入之后树的顶端颜色状态" class="headerlink" title="插入之后树的顶端颜色状态"></a>插入之后树的顶端颜色状态</h5><ul>
-<li>ok：不需要调整</li>
-<li>rbr：插入之后的树为 RB</li>
-<li>brb：插入之后的树为 ARB，如果父结点的颜色为红色，需要调整（此时从父结点的角度来看，树的顶端颜色状态为 rrb 或 brr）</li>
-<li>rrb：插入之后的树的根结点为红色，左子树是 ARB，右子树是 RB（此时父结点一定是黑色的）。要根据父结点的情况来确定是 3-结点簇还是 4-结点簇</li>
-<li>brr：插入之后的树的根结点为红色，左子树是 RB，右子树是 ARB。调整方法与 rrb 类似</li>
-</ul>
-<h4 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h4><p>思路：类似二叉搜索树，保持颜色约束，调整树以符合黑高度约束</p>
-<ul>
-<li>如果删除之后，黑高度不变，不需要调整，删除完成</li>
-<li>如果删除之后，子树的黑高度减 1，需要调整</li>
-</ul>
-<h5 id="调整"><a href="#调整" class="headerlink" title="调整"></a>调整</h5><ul>
-<li><p>l 为红色</p>
-</li>
-<li><p>p 为红色</p>
-</li>
-<li><p>r 为红色</p>
-</li>
-<li><p>s 为红色</p>
-<ul>
-<li>这种情况下调整之后仍然不平衡，需要再次调整</li>
-</ul>
-</li>
-<li><p>全为黑色</p>
-<ul>
-<li>可能向上传递</li>
-</ul>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/23/algorithms-dag-scc/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RHANQTL">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/11/23/algorithms-dag-scc/" itemprop="url">图遍历算法的应用 —— DAG 和 SCC</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-23T12:00:00+08:00">
-                2018-11-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法-Algorithms/" itemprop="url" rel="index">
-                    <span itemprop="name">算法 (Algorithms)</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>这篇文章讲图片里算法的两个应用场景 —— 有向无环图（DAG）和强连通分量（SCC）</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/11/23/algorithms-dag-scc/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1995,7 +1976,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">152</span>
+                  <span class="site-state-item-count">159</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2006,7 +1987,7 @@
               
               <div class="site-state-item site-state-categories">
                 
-                  <span class="site-state-item-count">48</span>
+                  <span class="site-state-item-count">54</span>
                   <span class="site-state-item-name">分类</span>
                 
               </div>

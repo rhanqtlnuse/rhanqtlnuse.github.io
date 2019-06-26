@@ -99,7 +99,7 @@
 <meta property="og:site_name" content="RHANQTL">
 <meta property="og:description" content="Redis 是一个 NoSQL 的内存数据库。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-17T09:26:31.027Z">
+<meta property="og:updated_time" content="2019-06-16T09:09:14.364Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Redis 学习笔记 (1)">
 <meta name="twitter:description" content="Redis 是一个 NoSQL 的内存数据库。">
@@ -410,7 +410,10 @@
         <p>Redis 是一个 NoSQL 的内存数据库。</p>
 <a id="more"></a>
 <p>Redis 官网提供了一个<a href="http://try.redis.io/" target="_blank" rel="noopener">交互式的教程</a></p>
-<h1 id="Redis-基本数据类型"><a href="#Redis-基本数据类型" class="headerlink" title="Redis 基本数据类型"></a>Redis 基本数据类型</h1><h1 id="Redis-基本操作"><a href="#Redis-基本操作" class="headerlink" title="Redis 基本操作"></a>Redis 基本操作</h1><ul>
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>Linux/Mac 根据官网的教程即可</p>
+<p>Windows：<a href="https://github.com/microsoftarchive/redis" target="_blank" rel="noopener">Microsoft Archive</a> 下载 .msi 安装包</p>
+<h1 id="Redis-基本数据类型"><a href="#Redis-基本数据类型" class="headerlink" title="Redis 基本数据类型"></a>Redis 基本数据类型</h1><p>string list set sorted set hash</p>
+<h1 id="Redis-基本操作"><a href="#Redis-基本操作" class="headerlink" title="Redis 基本操作"></a>Redis 基本操作</h1><ul>
 <li><p><code>help [command]</code> 获取帮助</p>
 </li>
 <li><p><code>SET &lt;key&gt; &lt;value&gt;</code></p>
@@ -633,7 +636,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">152</span>
+                  <span class="site-state-item-count">159</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -644,7 +647,7 @@
               
               <div class="site-state-item site-state-categories">
                 
-                  <span class="site-state-item-count">48</span>
+                  <span class="site-state-item-count">54</span>
                   <span class="site-state-item-name">分类</span>
                 
               </div>
@@ -711,7 +714,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Redis-基本数据类型"><span class="nav-number">1.</span> <span class="nav-text">Redis 基本数据类型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Redis-基本操作"><span class="nav-number">2.</span> <span class="nav-text">Redis 基本操作</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Redis-中的数据结构"><span class="nav-number">3.</span> <span class="nav-text">Redis 中的数据结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#列表（list）"><span class="nav-number">3.1.</span> <span class="nav-text">列表（list）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#操作"><span class="nav-number">3.1.1.</span> <span class="nav-text">操作</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#集合（set）"><span class="nav-number">3.2.</span> <span class="nav-text">集合（set）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#有序集合（Sorted-Set）"><span class="nav-number">3.3.</span> <span class="nav-text">有序集合（Sorted Set）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#哈希（Hashes）"><span class="nav-number">3.4.</span> <span class="nav-text">哈希（Hashes）</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#安装"><span class="nav-number">1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Redis-基本数据类型"><span class="nav-number">2.</span> <span class="nav-text">Redis 基本数据类型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Redis-基本操作"><span class="nav-number">3.</span> <span class="nav-text">Redis 基本操作</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Redis-中的数据结构"><span class="nav-number">4.</span> <span class="nav-text">Redis 中的数据结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#列表（list）"><span class="nav-number">4.1.</span> <span class="nav-text">列表（list）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#操作"><span class="nav-number">4.1.1.</span> <span class="nav-text">操作</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#集合（set）"><span class="nav-number">4.2.</span> <span class="nav-text">集合（set）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#有序集合（Sorted-Set）"><span class="nav-number">4.3.</span> <span class="nav-text">有序集合（Sorted Set）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#哈希（Hashes）"><span class="nav-number">4.4.</span> <span class="nav-text">哈希（Hashes）</span></a></li></ol></li></ol></div>
             
 
           </div>

@@ -1,0 +1,1119 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+  
+  
+  <link rel="stylesheet" media="all" href="/lib/Han/dist/han.min.css?v=3.3">
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/logo.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/logo.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/logo.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.png?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="RHANQTL" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="资源：  OpenMP 官网（OpenMP Specification） YouTube - Intel OpenMP MSDN   MSDN：如果您在應用程式中只有一個迴圈，而它執行的時間少於 15 毫秒 (根據您電腦上的額外負荷調整)，/openmp 也許就不適當，但如果超過這個時間，倒不妨考慮使用 /openmp。  An API that may be used to explicitly">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OpenMP 入门教程">
+<meta property="og:url" content="http://yoursite.com/2019/06/26/openmp-intro/index.html">
+<meta property="og:site_name" content="RHANQTL">
+<meta property="og:description" content="资源：  OpenMP 官网（OpenMP Specification） YouTube - Intel OpenMP MSDN   MSDN：如果您在應用程式中只有一個迴圈，而它執行的時間少於 15 毫秒 (根據您電腦上的額外負荷調整)，/openmp 也許就不適當，但如果超過這個時間，倒不妨考慮使用 /openmp。  An API that may be used to explicitly">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2019/06/26/openmp-intro/Users/hanqi/AppData/Roaming/Typora/typora-user-images/1561341917319.png">
+<meta property="og:image" content="http://i68.tinypic.com/24pxv2a.gif">
+<meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Fork_join.svg/1200px-Fork_join.svg.png">
+<meta property="og:image" content="http://yoursite.com/2019/06/26/openmp-intro/Users/hanqi/AppData/Roaming/Typora/typora-user-images/1561346339528.png">
+<meta property="og:image" content="http://yoursite.com/2019/06/26/openmp-intro/Users/hanqi/AppData/Roaming/Typora/typora-user-images/1561551626830.png">
+<meta property="og:updated_time" content="2019-06-26T12:28:22.210Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="OpenMP 入门教程">
+<meta name="twitter:description" content="资源：  OpenMP 官网（OpenMP Specification） YouTube - Intel OpenMP MSDN   MSDN：如果您在應用程式中只有一個迴圈，而它執行的時間少於 15 毫秒 (根據您電腦上的額外負荷調整)，/openmp 也許就不適當，但如果超過這個時間，倒不妨考慮使用 /openmp。  An API that may be used to explicitly">
+<meta name="twitter:image" content="http://yoursite.com/2019/06/26/openmp-intro/Users/hanqi/AppData/Roaming/Typora/typora-user-images/1561341917319.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/06/26/openmp-intro/">
+
+
+
+
+
+  <title>OpenMP 入门教程 | RHANQTL</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">RHANQTL</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">上下求索</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/26/openmp-intro/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">OpenMP 入门教程</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-26T20:26:39+08:00">
+                2019-06-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/并行计算-Parallel-Computing/" itemprop="url" rel="index">
+                    <span itemprop="name">并行计算 (Parallel Computing)</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/并行计算-Parallel-Computing/OpenMP/" itemprop="url" rel="index">
+                    <span itemprop="name">OpenMP</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">浏览
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>资源：</p>
+<ul>
+<li><a href="https://www.openmp.org/" target="_blank" rel="noopener">OpenMP 官网</a>（OpenMP Specification）</li>
+<li><a href="https://www.youtube.com/watch?v=nE-xN4Bf8XI&amp;list=PLLX-Q6B8xqZ8n8bwjGdzBJ25X2utwnoEG" target="_blank" rel="noopener">YouTube - Intel OpenMP</a></li>
+<li><a href="https://docs.microsoft.com/zh-cn/cpp/parallel/openmp/openmp-in-visual-cpp?view=vs-2019" target="_blank" rel="noopener">MSDN</a></li>
+</ul>
+<blockquote>
+<p>MSDN：如果您在應用程式中只有一個迴圈，而它執行的時間少於 15 毫秒 (根據您電腦上的額外負荷調整)，/openmp 也許就不適當，但如果超過這個時間，倒不妨考慮使用 /openmp。</p>
+</blockquote>
+<p>An API that may be used to <u>explicitly</u> direct <u>multi-threaded</u>, <u>shared memory</u> parallelism. </p>
+<p>SMP</p>
+<p><strong>Components</strong></p>
+<ul>
+<li>编译器指令（Compiler Directives）</li>
+<li>运行时库例程（Runtime Library Routines）</li>
+<li>环境变量（Environment Variables）</li>
+</ul>
+<p><strong>编程模型</strong></p>
+<ul>
+<li>Explicit Parallelism, Thread Based Parallelism</li>
+<li>共享内存</li>
+<li>Fork-Join 模型<ul>
+<li>主线程在需要时创建一组线程</li>
+</ul>
+</li>
+<li>Compiler Directive Based</li>
+<li>Nested Parallelism Support</li>
+<li>Dynamic Threads</li>
+<li>I/O</li>
+<li>Memory Model </li>
+</ul>
+<p><img src="/2019/06/26/openmp-intro/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1561341917319.png" alt="1561341917319"></p>
+<p><strong>Fork-Join 模型</strong></p>
+<p><img src="http://i68.tinypic.com/24pxv2a.gif" alt="1561341934887"></p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Fork_join.svg/1200px-Fork_join.svg.png" alt=""></p>
+<p><strong>I/O</strong></p>
+<p>OpenMP specifies <u>nothing</u> about parallel I/O. This is particularly important if multiple threads attempt to write/read from the same file. It is entirely up to the programmer to insure that I/O is conducted correctly within the context of a multi-threaded program.</p>
+<p><strong>OpenMP 核心语法</strong></p>
+<p>使用 OpenMP 需要引入头文件 <code>omp.h</code></p>
+<p>OpenMP 中大多数构件是编译器指令：</p>
+<pre>
+    #pragma omp <i>construct</i> <i>[clause [clause]]</i>
+</pre>
+
+<p>OpenMP 中大多数构件应用于（至多，因为允许 orphaned directive）一个“structured block”</p>
+<blockquote>
+<p><strong>Structured Block</strong></p>
+<p>A block of one or more statements with <u>one point of entry</u> at the top and <u>one point of exit</u> at the bottom</p>
+</blockquote>
+<p><strong>OpenMP 线程交互</strong></p>
+<ul>
+<li>通过共享变量通信</li>
+<li>非故意的数据共享导致竞争条件<ul>
+<li>竞争条件 (Race condition)：程序的结果会随着线程调度的不同而变化</li>
+<li>使用同步避免数据冲突，控制竞争条件</li>
+<li>同步代价高昂，所以可以通过改变数据的访问方式最小化同步的需求</li>
+</ul>
+</li>
+</ul>
+<p><strong>线程创建：并行区 (Parallel Region)</strong></p>
+<p>每个线程都会执行一遍 structured block</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">double</span> A[<span class="number">1024</span>];</span><br><span class="line">omp_set_num_threads(<span class="number">8</span>);</span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> omp parallel</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">int</span> id = omp_get_thread_num();</span><br><span class="line">    foo(id, A);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> omp parallel num_threads(8)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// do something</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>注意：</strong>上面的 <code>A</code> 是所有线程共享的</li>
+<li>Barrier：执行完的线程会在并行区的出口点等待，直至所有的线程都完成</li>
+</ul>
+<h3 id="并行循环"><a href="#并行循环" class="headerlink" title="并行循环"></a>并行循环</h3><p><strong>SPMD vs. Work-sharing</strong></p>
+<p>前面讲的是每个线程执行相同的任务，这里讲如何切分 pathway，让每个线程完成任务的一个子集</p>
+<p><strong>循环</strong></p>
+<p>通过 <code>#pragma omp for</code> 创建，不能有大括号</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> omp parallel</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 不能通过编译</span></span><br><span class="line">    <span class="meta">#<span class="meta-keyword">pragma</span> omp for</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span> (...) &#123;</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> omp parallel</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 不能通过编译</span></span><br><span class="line">    <span class="meta">#<span class="meta-keyword">pragma</span> omp for</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; i++) &#123;</span><br><span class="line">        <span class="comment">// do something</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>如果并行区只有一个 work-sharing 的 for 循环，可以将编译器指令简写为 <code>#pragma omp parallel for</code></li>
+<li><strong>注意：</strong>上面的循环计数变量 <code>i</code> 默认是各线程私有的，可以通过子句 <code>private(i)</code> 显式地声明</li>
+</ul>
+<p>Work-sharing constructs do not launch new threads. </p>
+<p>There is no implied barrier upon entry to a work-sharing construct, however there is an implied barrier at the end of a work-sharing construct. </p>
+<p><strong>Work-Sharing 限制</strong></p>
+<ul>
+<li><p>Work-sharing 构件必须在并行区中才能并行执行</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;omp.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span> </span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"\nNO PARALLEL REGION\n"</span>);</span><br><span class="line">    <span class="meta">#<span class="meta-keyword">pragma</span> omp for</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; omp_get_num_threads(); i++) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, omp_get_thread_num());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"\nPARALLEL REGION\n"</span>);</span><br><span class="line">    <span class="meta">#<span class="meta-keyword">pragma</span> omp parallel for</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; omp_get_num_threads(); i++) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, omp_get_thread_num());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出为：</p>
+<pre>
+    NO PARALLEL REGION
+    0
+</pre>
+<pre>
+    PARALLEL REGION
+    7
+    6
+    2
+    0
+    5
+    1
+    4
+    3
+</pre>
+</li>
+<li><p>Work-sharing constructs must be encountered by all members of a team or none at all </p>
+</li>
+<li><p>Successive work-sharing constructs must be encountered in the same order by all members of a team </p>
+</li>
+</ul>
+<p><strong>Work-Sharing 类型</strong></p>
+<p><img src="/2019/06/26/openmp-intro/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1561346339528.png" alt="1561346339528"></p>
+<p><strong>Working with Loops</strong></p>
+<p><strong>注意：</strong>一定要使循环每次迭代是独立的</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> A[MAX];</span><br><span class="line"><span class="keyword">int</span> j = <span class="number">5</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; MAX; i++) &#123;</span><br><span class="line">    <span class="comment">// 每次依赖上一次的结果</span></span><br><span class="line">    j += <span class="number">2</span>;</span><br><span class="line">    A[i] = big(j);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> A[MAX];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; MAX; i++) &#123;</span><br><span class="line">    <span class="comment">// 独立</span></span><br><span class="line">    <span class="keyword">int</span> j = <span class="number">5</span> + <span class="number">2</span> * (i + <span class="number">1</span>);</span><br><span class="line">    A[i] = big(j);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="Reduction"><a href="#Reduction" class="headerlink" title="Reduction"></a>Reduction</h4><p>用于处理共享变量的情况，基本形式：<code>reduction(op: list)</code>（<code>list</code> 中的变量必须是并行区中共享的）</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">double</span> A[MAX];</span><br><span class="line"><span class="comment">// 共享变量</span></span><br><span class="line"><span class="keyword">double</span> avg = <span class="number">0.0</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; MAX; i++) &#123;</span><br><span class="line">    avg += A[i];</span><br><span class="line">&#125;</span><br><span class="line">avg /= MAX;</span><br></pre></td></tr></table></figure>
+<p>使用 <code>reduction</code> 子句：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">double</span> A[MAX];</span><br><span class="line"><span class="comment">// 共享变量</span></span><br><span class="line"><span class="keyword">double</span> avg = <span class="number">0.0</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> omp parallel for reduction(+: avg)</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; MAX; i++) &#123;</span><br><span class="line">    avg += A[i];</span><br><span class="line">&#125;</span><br><span class="line">avg /= MAX;</span><br></pre></td></tr></table></figure>
+<p><strong>私有备份初始值</strong></p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>初始值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>+</td>
+<td>0</td>
+</tr>
+<tr>
+<td>-</td>
+<td>0</td>
+</tr>
+<tr>
+<td>*</td>
+<td>1</td>
+</tr>
+<tr>
+<td>&amp;</td>
+<td>~0（<strong>注意！</strong>）</td>
+</tr>
+<tr>
+<td>\</td>
+<td></td>
+<td>0</td>
+</tr>
+<tr>
+<td>^</td>
+<td>0</td>
+</tr>
+<tr>
+<td>&amp;&amp;</td>
+<td>1</td>
+</tr>
+<tr>
+<td>\</td>
+<td>\</td>
+<td></td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="同步"><a href="#同步" class="headerlink" title="同步"></a>同步</h3><p><strong>OpenMP 同步方法</strong></p>
+<ul>
+<li><p>高级同步</p>
+<ul>
+<li><p>临界区：使用 <code>#pragma omp critical</code> 创建 </p>
+</li>
+<li><p>原子操作：使用 <code>#pragma omp atomic</code> 创建</p>
+<ul>
+<li>不同于临界区，原子操作只能应用于<u>单个</u>内存位置的更新</li>
+</ul>
+</li>
+<li><p>barrier</p>
+<ul>
+<li>使用 <code>#pragma omp barrier</code> 创建<ul>
+<li>实际上并行区中每个 structured block（包括并行区本身）的出口点（end point）都有隐式的 barrier</li>
+</ul>
+</li>
+<li>使用 <code>#pragma omp nowait</code> 禁用隐式的 barrier</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> omp parallel shared (A, B, C) private(id)</span></span><br><span class="line">&#123;</span><br><span class="line">    id = omp_get_thread_num();</span><br><span class="line">    A[id] = big_calc1(id);</span><br><span class="line">    <span class="meta">#<span class="meta-keyword">pragma</span> omp barrier</span></span><br><span class="line">    <span class="meta">#<span class="meta-keyword">pragma</span> omp for</span></span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; N; i++) &#123;</span><br><span class="line">        C[i] = big_calc3(i, A);</span><br><span class="line">    &#125;							<span class="comment">// 隐式 barrier</span></span><br><span class="line">    <span class="meta">#<span class="meta-keyword">pragma</span> omp for nowait</span></span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; N; i++) &#123;</span><br><span class="line">        B[i] = big_calc2(C, i);</span><br><span class="line">    &#125;							<span class="comment">// 隐式 barrier 被禁用</span></span><br><span class="line">    A[id] = big_calc4(id);</span><br><span class="line">&#125;								<span class="comment">// 隐式 barrier</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>ordered：使用 <code>#pragma omp ordered</code> 创建</p>
+<ul>
+<li><p>ordered region executes in the sequential order</p>
+</li>
+<li><p>注意 <code>ordered</code> 使用上比较奇怪，需要两处同时写</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> omp parallel private(tmp)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> omp for ordered reduction(+: res)</span></span><br><span class="line"><span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; N; i++) &#123;</span><br><span class="line">    tmp = neat_stuff(i);</span><br><span class="line">    <span class="meta">#<span class="meta-keyword">pragma</span> omp ordered</span></span><br><span class="line">    res += consum(tmp);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>低级同步</p>
+<ul>
+<li><p>lock <font color="red"><strong>MORE</strong></font></p>
+<ul>
+<li><p>简单锁：如果未设置简单锁，那么它就是可用的</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">omp_init_lock(<span class="keyword">omp_lock_t</span> *)</span><br><span class="line">omp_destroy_lock(<span class="keyword">omp_lock_t</span> *)</span><br><span class="line">omp_set_lock(<span class="keyword">omp_lock_t</span> *)</span><br><span class="line">omp_unset_lock(<span class="keyword">omp_lock_t</span> *)</span><br><span class="line">omp_test_lock(<span class="keyword">omp_lock_t</span> *)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>嵌套锁：如果未设置嵌套锁，或者设置了但是是被执行嵌套锁函数的线程拥有的</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">omp_init_nest_lock();</span><br><span class="line">omp_destroy_nest_lock();</span><br><span class="line">omp_set_nest_lock();</span><br><span class="line">omp_unset_nest_lock();</span><br><span class="line">omp_test_nest_lock();</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>A lock implies a memory fence (a “flush”) of all thread visible variables</p>
+</li>
+<li><p><strong>注意：</strong>线程总是访问锁的最近一份拷贝，所以无需在锁变量上使用 flush</p>
+</li>
+</ul>
+</li>
+<li><p>flush</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>执行控制</strong></p>
+<ul>
+<li><code>master</code> 构件：表示关联的 structured block 只由主线程执行，其他线程会将其跳过<ul>
+<li>没有隐式同步</li>
+</ul>
+</li>
+<li><code>single</code> 构件：表示关联的 structured block 只由一个线程执行<ul>
+<li>隐式 barrier，可以用 <code>nowait</code> 构件禁用</li>
+</ul>
+</li>
+</ul>
+<h3 id="运行时库例程"><a href="#运行时库例程" class="headerlink" title="运行时库例程"></a>运行时库例程</h3><h4 id="执行环境函数"><a href="#执行环境函数" class="headerlink" title="执行环境函数"></a>执行环境函数</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;omp.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">omp_set_num_threads</span><span class="params">(<span class="keyword">int</span> num_threads)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">omp_get_num_threads</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">omp_get_max_threads</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">omp_get_thread_num</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">omp_get_num_procs</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">omp_in_parallel</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">omp_set_dynamic</span><span class="params">(<span class="keyword">int</span> dynamic_threads)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">omp_get_dynamic</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br></pre></td></tr></table></figure>
+<p><strong>示例：使用固定数目的线程</strong></p>
+<p>步骤：</p>
+<ol>
+<li>禁用动态调整</li>
+<li>设置线程数</li>
+<li>保存线程数</li>
+</ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> num_threads;</span><br><span class="line">    omp_set_dynamic(<span class="number">0</span>);</span><br><span class="line">    omp_set_num_threads(omp_num_procs());</span><br><span class="line">    <span class="meta">#<span class="meta-keyword">pragma</span> omp parallel</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> id = omp_get_thread_num();</span><br><span class="line">        <span class="meta">#<span class="meta-keyword">pragma</span> omp single</span></span><br><span class="line">        num_threads = omp_get_num_threads();</span><br><span class="line">        <span class="comment">// do something</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>注意：</strong></p>
+<p><img src="/2019/06/26/openmp-intro/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1561551626830.png" alt="1561551626830"></p>
+<h3 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h3><p>设置默认线程数：<code>OMP_NUM_THREADS &lt;int_literal&gt;</code></p>
+<p>控制 OpenMP for 循环调度：<code>OMP_SCHEDULE &lt;schedule [, chunk_size]&gt;</code></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/06/21/classifying-fashion-mnist-using-tensorflow-inception-v3/" rel="next" title="使用 TensorFlow 和 Inception v3 分类 Fashion-MNIST">
+                <i class="fa fa-chevron-left"></i> 使用 TensorFlow 和 Inception v3 分类 Fashion-MNIST
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Han Qi</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">159</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">54</span>
+                  <span class="site-state-item-name">分类</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/rhanqtl" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="my@rhanqtl.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#并行循环"><span class="nav-number">1.</span> <span class="nav-text">并行循环</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Reduction"><span class="nav-number">1.1.</span> <span class="nav-text">Reduction</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#同步"><span class="nav-number">2.</span> <span class="nav-text">同步</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运行时库例程"><span class="nav-number">3.</span> <span class="nav-text">运行时库例程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#执行环境函数"><span class="nav-number">3.1.</span> <span class="nav-text">执行环境函数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#环境变量"><span class="nav-number">4.</span> <span class="nav-text">环境变量</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Han Qi</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.4"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>

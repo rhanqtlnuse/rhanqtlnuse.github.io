@@ -92,14 +92,17 @@
 
 
 
+<meta name="description" content="中断“中断”这个概念分为广义和狭义两种，广义的“中断”包括：  狭义的“中断”：由外设 引起的中断 异常：由应用程序触发的（非期望）中断 系统调用：由应用程序触发的（期望的）中断       中断 异常 系统调用     来源 硬件/外设 应用程序 应用程序   同步/异步 异步 同步 同步或异步（请求是同步的，但是处理/结果是同步/异步的）   响应 持续 等待 持续或等待     中断处理过程">
 <meta property="og:type" content="article">
 <meta property="og:title" content="os-interrupt-io-part-1">
 <meta property="og:url" content="http://yoursite.com/2019/06/03/os-interrupt-io-part-1/index.html">
 <meta property="og:site_name" content="RHANQTL">
+<meta property="og:description" content="中断“中断”这个概念分为广义和狭义两种，广义的“中断”包括：  狭义的“中断”：由外设 引起的中断 异常：由应用程序触发的（非期望）中断 系统调用：由应用程序触发的（期望的）中断       中断 异常 系统调用     来源 硬件/外设 应用程序 应用程序   同步/异步 异步 同步 同步或异步（请求是同步的，但是处理/结果是同步/异步的）   响应 持续 等待 持续或等待     中断处理过程">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-06-03T12:14:07.775Z">
+<meta property="og:updated_time" content="2019-06-06T02:14:13.488Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="os-interrupt-io-part-1">
+<meta name="twitter:description" content="中断“中断”这个概念分为广义和狭义两种，广义的“中断”包括：  狭义的“中断”：由外设 引起的中断 异常：由应用程序触发的（非期望）中断 系统调用：由应用程序触发的（期望的）中断       中断 异常 系统调用     来源 硬件/外设 应用程序 应用程序   同步/异步 异步 同步 同步或异步（请求是同步的，但是处理/结果是同步/异步的）   响应 持续 等待 持续或等待     中断处理过程">
 
 
 
@@ -350,6 +353,28 @@
           </span>
 
           
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/操作系统-Operating-Systems/" itemprop="url" rel="index">
+                    <span itemprop="name">操作系统 (Operating Systems)</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -382,7 +407,59 @@
       
 
       
-        
+        <h1 id="中断"><a href="#中断" class="headerlink" title="中断"></a>中断</h1><p>“中断”这个概念分为广义和狭义两种，广义的“中断”包括：</p>
+<ul>
+<li>狭义的“中断”：由<em>外设</em> 引起的中断</li>
+<li>异常：由应用程序触发的（非期望）中断</li>
+<li>系统调用：由应用程序触发的（期望的）中断</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>中断</th>
+<th>异常</th>
+<th>系统调用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>来源</strong></td>
+<td>硬件/外设</td>
+<td>应用程序</td>
+<td>应用程序</td>
+</tr>
+<tr>
+<td><strong>同步/异步</strong></td>
+<td>异步</td>
+<td>同步</td>
+<td>同步或异步<br>（请求是同步的，但是处理/结果是同步/异步的）</td>
+</tr>
+<tr>
+<td><strong>响应</strong></td>
+<td>持续</td>
+<td>等待</td>
+<td>持续或等待</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="中断处理过程"><a href="#中断处理过程" class="headerlink" title="中断处理过程"></a>中断处理过程</h3><ul>
+<li>硬件<ul>
+<li>设置中断标记</li>
+<li>设置中断号</li>
+</ul>
+</li>
+<li>软件（OS）<ul>
+<li>保存执行现场</li>
+<li>执行</li>
+<li>清除中断标记</li>
+<li>恢复执行现场</li>
+</ul>
+</li>
+</ul>
+<h3 id="中断向量表（中断描述符表）"><a href="#中断向量表（中断描述符表）" class="headerlink" title="中断向量表（中断描述符表）"></a>中断向量表（中断描述符表）</h3>
       
     </div>
     
@@ -470,8 +547,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -486,7 +572,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">152</span>
+                  <span class="site-state-item-count">159</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -497,7 +583,7 @@
               
               <div class="site-state-item site-state-categories">
                 
-                  <span class="site-state-item-count">48</span>
+                  <span class="site-state-item-count">54</span>
                   <span class="site-state-item-name">分类</span>
                 
               </div>
@@ -554,6 +640,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#中断"><span class="nav-number">1.</span> <span class="nav-text">中断</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#中断处理过程"><span class="nav-number">1.0.1.</span> <span class="nav-text">中断处理过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#中断向量表（中断描述符表）"><span class="nav-number">1.0.2.</span> <span class="nav-text">中断向量表（中断描述符表）</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
