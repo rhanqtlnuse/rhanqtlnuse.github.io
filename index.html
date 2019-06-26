@@ -413,372 +413,14 @@
 
       
         
-          
-            <p>资源：</p>
-<ul>
-<li><a href="https://www.openmp.org/" target="_blank" rel="noopener">OpenMP 官网</a>（OpenMP Specification）</li>
-<li><a href="https://www.youtube.com/watch?v=nE-xN4Bf8XI&amp;list=PLLX-Q6B8xqZ8n8bwjGdzBJ25X2utwnoEG" target="_blank" rel="noopener">YouTube - Intel OpenMP</a></li>
-<li><a href="https://docs.microsoft.com/zh-cn/cpp/parallel/openmp/openmp-in-visual-cpp?view=vs-2019" target="_blank" rel="noopener">MSDN</a></li>
-</ul>
-<blockquote>
-<p>MSDN：如果您在應用程式中只有一個迴圈，而它執行的時間少於 15 毫秒 (根據您電腦上的額外負荷調整)，/openmp 也許就不適當，但如果超過這個時間，倒不妨考慮使用 /openmp。</p>
-</blockquote>
-<p>An API that may be used to <u>explicitly</u> direct <u>multi-threaded</u>, <u>shared memory</u> parallelism. </p>
-<p>SMP</p>
-<p><strong>Components</strong></p>
-<ul>
-<li>编译器指令（Compiler Directives）</li>
-<li>运行时库例程（Runtime Library Routines）</li>
-<li>环境变量（Environment Variables）</li>
-</ul>
-<p><strong>编程模型</strong></p>
-<ul>
-<li>Explicit Parallelism, Thread Based Parallelism</li>
-<li>共享内存</li>
-<li>Fork-Join 模型<ul>
-<li>主线程在需要时创建一组线程</li>
-</ul>
-</li>
-<li>Compiler Directive Based</li>
-<li>Nested Parallelism Support</li>
-<li>Dynamic Threads</li>
-<li>I/O</li>
-<li>Memory Model </li>
-</ul>
-<p><img src="/2019/06/26/openmp-intro/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1561341917319.png" alt="1561341917319"></p>
-<p><strong>Fork-Join 模型</strong></p>
-<p><img src="http://i68.tinypic.com/24pxv2a.gif" alt="1561341934887"></p>
-<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Fork_join.svg/1200px-Fork_join.svg.png" alt=""></p>
-<p><strong>I/O</strong></p>
-<p>OpenMP specifies <u>nothing</u> about parallel I/O. This is particularly important if multiple threads attempt to write/read from the same file. It is entirely up to the programmer to insure that I/O is conducted correctly within the context of a multi-threaded program.</p>
-<p><strong>OpenMP 核心语法</strong></p>
-<p>使用 OpenMP 需要引入头文件 <code>omp.h</code></p>
-<p>OpenMP 中大多数构件是编译器指令：</p>
-<pre>
-    #pragma omp <i>construct</i> <i>[clause [clause]]</i>
-</pre>
-
-<p>OpenMP 中大多数构件应用于（至多，因为允许 orphaned directive）一个“structured block”</p>
-<blockquote>
-<p><strong>Structured Block</strong></p>
-<p>A block of one or more statements with <u>one point of entry</u> at the top and <u>one point of exit</u> at the bottom</p>
-</blockquote>
-<p><strong>OpenMP 线程交互</strong></p>
-<ul>
-<li>通过共享变量通信</li>
-<li>非故意的数据共享导致竞争条件<ul>
-<li>竞争条件 (Race condition)：程序的结果会随着线程调度的不同而变化</li>
-<li>使用同步避免数据冲突，控制竞争条件</li>
-<li>同步代价高昂，所以可以通过改变数据的访问方式最小化同步的需求</li>
-</ul>
-</li>
-</ul>
-<p><strong>线程创建：并行区 (Parallel Region)</strong></p>
-<p>每个线程都会执行一遍 structured block</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">double</span> A[<span class="number">1024</span>];</span><br><span class="line">omp_set_num_threads(<span class="number">8</span>);</span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> omp parallel</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">int</span> id = omp_get_thread_num();</span><br><span class="line">    foo(id, A);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> omp parallel num_threads(8)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// do something</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li><strong>注意：</strong>上面的 <code>A</code> 是所有线程共享的</li>
-<li>Barrier：执行完的线程会在并行区的出口点等待，直至所有的线程都完成</li>
-</ul>
-<h3 id="并行循环"><a href="#并行循环" class="headerlink" title="并行循环"></a>并行循环</h3><p><strong>SPMD vs. Work-sharing</strong></p>
-<p>前面讲的是每个线程执行相同的任务，这里讲如何切分 pathway，让每个线程完成任务的一个子集</p>
-<p><strong>循环</strong></p>
-<p>通过 <code>#pragma omp for</code> 创建，不能有大括号</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> omp parallel</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 不能通过编译</span></span><br><span class="line">    <span class="meta">#<span class="meta-keyword">pragma</span> omp for</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span> (...) &#123;</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> omp parallel</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 不能通过编译</span></span><br><span class="line">    <span class="meta">#<span class="meta-keyword">pragma</span> omp for</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; i++) &#123;</span><br><span class="line">        <span class="comment">// do something</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>如果并行区只有一个 work-sharing 的 for 循环，可以将编译器指令简写为 <code>#pragma omp parallel for</code></li>
-<li><strong>注意：</strong>上面的循环计数变量 <code>i</code> 默认是各线程私有的，可以通过子句 <code>private(i)</code> 显式地声明</li>
-</ul>
-<p>Work-sharing constructs do not launch new threads. </p>
-<p>There is no implied barrier upon entry to a work-sharing construct, however there is an implied barrier at the end of a work-sharing construct. </p>
-<p><strong>Work-Sharing 限制</strong></p>
-<ul>
-<li><p>Work-sharing 构件必须在并行区中才能并行执行</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;omp.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span> </span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"\nNO PARALLEL REGION\n"</span>);</span><br><span class="line">    <span class="meta">#<span class="meta-keyword">pragma</span> omp for</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; omp_get_num_threads(); i++) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, omp_get_thread_num());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"\nPARALLEL REGION\n"</span>);</span><br><span class="line">    <span class="meta">#<span class="meta-keyword">pragma</span> omp parallel for</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; omp_get_num_threads(); i++) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, omp_get_thread_num());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>输出为：</p>
-<pre>
-    NO PARALLEL REGION
-    0
-</pre>
-<pre>
-    PARALLEL REGION
-    7
-    6
-    2
-    0
-    5
-    1
-    4
-    3
-</pre>
-</li>
-<li><p>Work-sharing constructs must be encountered by all members of a team or none at all </p>
-</li>
-<li><p>Successive work-sharing constructs must be encountered in the same order by all members of a team </p>
-</li>
-</ul>
-<p><strong>Work-Sharing 类型</strong></p>
-<p><img src="/2019/06/26/openmp-intro/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1561346339528.png" alt="1561346339528"></p>
-<p><strong>Working with Loops</strong></p>
-<p><strong>注意：</strong>一定要使循环每次迭代是独立的</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> A[MAX];</span><br><span class="line"><span class="keyword">int</span> j = <span class="number">5</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; MAX; i++) &#123;</span><br><span class="line">    <span class="comment">// 每次依赖上一次的结果</span></span><br><span class="line">    j += <span class="number">2</span>;</span><br><span class="line">    A[i] = big(j);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> A[MAX];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; MAX; i++) &#123;</span><br><span class="line">    <span class="comment">// 独立</span></span><br><span class="line">    <span class="keyword">int</span> j = <span class="number">5</span> + <span class="number">2</span> * (i + <span class="number">1</span>);</span><br><span class="line">    A[i] = big(j);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="Reduction"><a href="#Reduction" class="headerlink" title="Reduction"></a>Reduction</h4><p>用于处理共享变量的情况，基本形式：<code>reduction(op: list)</code>（<code>list</code> 中的变量必须是并行区中共享的）</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">double</span> A[MAX];</span><br><span class="line"><span class="comment">// 共享变量</span></span><br><span class="line"><span class="keyword">double</span> avg = <span class="number">0.0</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; MAX; i++) &#123;</span><br><span class="line">    avg += A[i];</span><br><span class="line">&#125;</span><br><span class="line">avg /= MAX;</span><br></pre></td></tr></table></figure>
-<p>使用 <code>reduction</code> 子句：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">double</span> A[MAX];</span><br><span class="line"><span class="comment">// 共享变量</span></span><br><span class="line"><span class="keyword">double</span> avg = <span class="number">0.0</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> omp parallel for reduction(+: avg)</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; MAX; i++) &#123;</span><br><span class="line">    avg += A[i];</span><br><span class="line">&#125;</span><br><span class="line">avg /= MAX;</span><br></pre></td></tr></table></figure>
-<p><strong>私有备份初始值</strong></p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>运算符</th>
-<th>初始值</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>+</td>
-<td>0</td>
-</tr>
-<tr>
-<td>-</td>
-<td>0</td>
-</tr>
-<tr>
-<td>*</td>
-<td>1</td>
-</tr>
-<tr>
-<td>&amp;</td>
-<td>~0（<strong>注意！</strong>）</td>
-</tr>
-<tr>
-<td>\</td>
-<td></td>
-<td>0</td>
-</tr>
-<tr>
-<td>^</td>
-<td>0</td>
-</tr>
-<tr>
-<td>&amp;&amp;</td>
-<td>1</td>
-</tr>
-<tr>
-<td>\</td>
-<td>\</td>
-<td></td>
-<td>0</td>
-</tr>
-</tbody>
-</table>
-</div>
-<h3 id="同步"><a href="#同步" class="headerlink" title="同步"></a>同步</h3><p><strong>OpenMP 同步方法</strong></p>
-<ul>
-<li><p>高级同步</p>
-<ul>
-<li><p>临界区：使用 <code>#pragma omp critical</code> 创建 </p>
-</li>
-<li><p>原子操作：使用 <code>#pragma omp atomic</code> 创建</p>
-<ul>
-<li>不同于临界区，原子操作只能应用于<u>单个</u>内存位置的更新</li>
-</ul>
-</li>
-<li><p>barrier</p>
-<ul>
-<li>使用 <code>#pragma omp barrier</code> 创建<ul>
-<li>实际上并行区中每个 structured block（包括并行区本身）的出口点（end point）都有隐式的 barrier</li>
-</ul>
-</li>
-<li>使用 <code>#pragma omp nowait</code> 禁用隐式的 barrier</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> omp parallel shared (A, B, C) private(id)</span></span><br><span class="line">&#123;</span><br><span class="line">    id = omp_get_thread_num();</span><br><span class="line">    A[id] = big_calc1(id);</span><br><span class="line">    <span class="meta">#<span class="meta-keyword">pragma</span> omp barrier</span></span><br><span class="line">    <span class="meta">#<span class="meta-keyword">pragma</span> omp for</span></span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; N; i++) &#123;</span><br><span class="line">        C[i] = big_calc3(i, A);</span><br><span class="line">    &#125;							<span class="comment">// 隐式 barrier</span></span><br><span class="line">    <span class="meta">#<span class="meta-keyword">pragma</span> omp for nowait</span></span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; N; i++) &#123;</span><br><span class="line">        B[i] = big_calc2(C, i);</span><br><span class="line">    &#125;							<span class="comment">// 隐式 barrier 被禁用</span></span><br><span class="line">    A[id] = big_calc4(id);</span><br><span class="line">&#125;								<span class="comment">// 隐式 barrier</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>ordered：使用 <code>#pragma omp ordered</code> 创建</p>
-<ul>
-<li><p>ordered region executes in the sequential order</p>
-</li>
-<li><p>注意 <code>ordered</code> 使用上比较奇怪，需要两处同时写</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> omp parallel private(tmp)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> omp for ordered reduction(+: res)</span></span><br><span class="line"><span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; N; i++) &#123;</span><br><span class="line">    tmp = neat_stuff(i);</span><br><span class="line">    <span class="meta">#<span class="meta-keyword">pragma</span> omp ordered</span></span><br><span class="line">    res += consum(tmp);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>低级同步</p>
-<ul>
-<li><p>lock <font color="red"><strong>MORE</strong></font></p>
-<ul>
-<li><p>简单锁：如果未设置简单锁，那么它就是可用的</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">omp_init_lock(<span class="keyword">omp_lock_t</span> *)</span><br><span class="line">omp_destroy_lock(<span class="keyword">omp_lock_t</span> *)</span><br><span class="line">omp_set_lock(<span class="keyword">omp_lock_t</span> *)</span><br><span class="line">omp_unset_lock(<span class="keyword">omp_lock_t</span> *)</span><br><span class="line">omp_test_lock(<span class="keyword">omp_lock_t</span> *)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>嵌套锁：如果未设置嵌套锁，或者设置了但是是被执行嵌套锁函数的线程拥有的</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">omp_init_nest_lock();</span><br><span class="line">omp_destroy_nest_lock();</span><br><span class="line">omp_set_nest_lock();</span><br><span class="line">omp_unset_nest_lock();</span><br><span class="line">omp_test_nest_lock();</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>A lock implies a memory fence (a “flush”) of all thread visible variables</p>
-</li>
-<li><p><strong>注意：</strong>线程总是访问锁的最近一份拷贝，所以无需在锁变量上使用 flush</p>
-</li>
-</ul>
-</li>
-<li><p>flush</p>
-</li>
-</ul>
-</li>
-</ul>
-<p><strong>执行控制</strong></p>
-<ul>
-<li><code>master</code> 构件：表示关联的 structured block 只由主线程执行，其他线程会将其跳过<ul>
-<li>没有隐式同步</li>
-</ul>
-</li>
-<li><code>single</code> 构件：表示关联的 structured block 只由一个线程执行<ul>
-<li>隐式 barrier，可以用 <code>nowait</code> 构件禁用</li>
-</ul>
-</li>
-</ul>
-<h3 id="运行时库例程"><a href="#运行时库例程" class="headerlink" title="运行时库例程"></a>运行时库例程</h3><h4 id="执行环境函数"><a href="#执行环境函数" class="headerlink" title="执行环境函数"></a>执行环境函数</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;omp.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">omp_set_num_threads</span><span class="params">(<span class="keyword">int</span> num_threads)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">omp_get_num_threads</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">omp_get_max_threads</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">omp_get_thread_num</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">omp_get_num_procs</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">omp_in_parallel</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">omp_set_dynamic</span><span class="params">(<span class="keyword">int</span> dynamic_threads)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">omp_get_dynamic</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br></pre></td></tr></table></figure>
-<p><strong>示例：使用固定数目的线程</strong></p>
-<p>步骤：</p>
-<ol>
-<li>禁用动态调整</li>
-<li>设置线程数</li>
-<li>保存线程数</li>
-</ol>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> num_threads;</span><br><span class="line">    omp_set_dynamic(<span class="number">0</span>);</span><br><span class="line">    omp_set_num_threads(omp_num_procs());</span><br><span class="line">    <span class="meta">#<span class="meta-keyword">pragma</span> omp parallel</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> id = omp_get_thread_num();</span><br><span class="line">        <span class="meta">#<span class="meta-keyword">pragma</span> omp single</span></span><br><span class="line">        num_threads = omp_get_num_threads();</span><br><span class="line">        <span class="comment">// do something</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>注意：</strong></p>
-<p><img src="/2019/06/26/openmp-intro/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1561551626830.png" alt="1561551626830"></p>
-<h3 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h3><p>设置默认线程数：<code>OMP_NUM_THREADS &lt;int_literal&gt;</code></p>
-<p>控制 OpenMP for 循环调度：<code>OMP_SCHEDULE &lt;schedule [, chunk_size]&gt;</code></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/21/classifying-fashion-mnist-using-tensorflow-inception-v3/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RHANQTL">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/06/21/classifying-fashion-mnist-using-tensorflow-inception-v3/" itemprop="url">使用 TensorFlow 和 Inception v3 分类 Fashion-MNIST</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-21T09:24:23+08:00">
-                2019-06-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><strong>声明：</strong>修改自 <a href="https://medium.com/@teavanist/digit-recognition-using-tensorflow-mnist-in-jpg-inception-v3-transfer-learning-93-accuracy-501ba7eb52ea" target="_blank" rel="noopener">Digit recognition using Tensorflow : MNIST in jpg + Inception v3 transfer learning</a></p>
-<h1 id="Fashion-MNIST"><a href="#Fashion-MNIST" class="headerlink" title="Fashion-MNIST"></a>Fashion-MNIST</h1><p>Fashion-MNIST 的 <a href="https://github.com/zalandoresearch/fashion-mnist" target="_blank" rel="noopener">GitHub 地址</a></p>
-<p><strong>注意：</strong><a href="http://yann.lecun.com/exdb/mnist/" target="_blank" rel="noopener">MNIST</a> 是直接将二进制数据写在文件中，而 Fashion-MNIST 使用了 <a href="https://www.gzip.org/" target="_blank" rel="noopener">gzip</a> 的压缩格式，所以读取数据时需要使用 <a href="https://docs.python.org/3/library/gzip.html" target="_blank" rel="noopener">gzip 包</a>，官方也提供了<a href="https://github.com/zalandoresearch/fashion-mnist/blob/master/utils/mnist_reader.py" target="_blank" rel="noopener">读取工具</a></p>
-<p>我们希望使用预训练的 Inception v3 模型，但是由于 Inception v3 要求数据是三通道的，我们需要首先将 Fashion-MNIST 图片转换为 JPG 格式，这可以通过 <a href="https://pillow.readthedocs.io/en/stable/" target="_blank" rel="noopener">Pillow</a> 实现，具体的源代码参见：<a href="">TODO</a></p>
-
-          
+          <p>OpenMP 是重要的并行计算 API。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/06/26/openmp-intro/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -895,52 +537,14 @@
 
       
         
-          
-            <h1 id="Placeholder-amp-Variable"><a href="#Placeholder-amp-Variable" class="headerlink" title="Placeholder &amp; Variable"></a>Placeholder &amp; Variable</h1><h2 id="Placeholder"><a href="#Placeholder" class="headerlink" title="Placeholder"></a>Placeholder</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"></span><br><span class="line">x = tf.placeholder(tf.int32, shape=[<span class="number">3</span>],name=<span class="string">'x'</span>)</span><br><span class="line">y = tf.placeholder(tf.int32, shape=[<span class="number">3</span>],name=<span class="string">'y'</span>)</span><br><span class="line"></span><br><span class="line">sum_x = tf.reduce_sum(x,name=<span class="string">"sum_x"</span>)</span><br><span class="line">prod_y = tf.reduce_prod(y,name=<span class="string">"prod_y"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">    <span class="comment"># feed_dict 就是用给定的值将 placeholder 替换</span></span><br><span class="line">    <span class="keyword">print</span> (<span class="string">"sum(x): "</span>, sess.run(sum_x, feed_dict=&#123;x: [<span class="number">100</span>, <span class="number">200</span>, <span class="number">300</span>]&#125;))</span><br><span class="line">    <span class="keyword">print</span> (<span class="string">"prod(y): "</span>, sess.run(prod_y, feed_dict=&#123;y: [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]&#125;))</span><br></pre></td></tr></table></figure>
-<p>输出：</p>
-<pre>
-    sum(x): 600
-    prod(y): 6
-</pre>
-
-<h2 id="Variable"><a href="#Variable" class="headerlink" title="Variable"></a>Variable</h2><p>Variables are constructs which allow you to change the value stored there. Supervised learning algorithms perform multiple iterations before they arrive at final conclusion. Use variable to store the values which change as the model converges. </p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"></span><br><span class="line">W = tf.Variable([<span class="number">2.5</span>,<span class="number">4.0</span>],tf.float32, name=<span class="string">'var_W'</span>)</span><br><span class="line">x = tf.placeholder(tf.float32, name=<span class="string">'x'</span>)</span><br><span class="line">b = tf.Variable([<span class="number">5.0</span>,<span class="number">10.0</span>],tf.float32, name=<span class="string">'var_b'</span>)</span><br><span class="line">y = W * x + b</span><br><span class="line"></span><br><span class="line"><span class="comment"># global_variable_initializer() will declare all the variable we have initilized</span></span><br><span class="line">init = tf.global_variables_initializer()</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">    sess.run(init)</span><br><span class="line">    print(<span class="string">"Final result: Wx + b = "</span>, sess.run(y, feed_dict=&#123;x:[<span class="number">10</span>,<span class="number">100</span>]&#125;))</span><br><span class="line">    </span><br><span class="line"><span class="comment"># changing values</span></span><br><span class="line">number = tf.Variable(<span class="number">2</span>)</span><br><span class="line">multiplier = tf.Variable(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">init = tf.global_variables_initializer()</span><br><span class="line"></span><br><span class="line">result = number.assign(tf.multiply(number,multiplier))</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">    sess.run(init)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">10</span>):</span><br><span class="line">        print(<span class="string">"Result number * multiplier = "</span>,sess.run(result))</span><br><span class="line">        print(<span class="string">"Increment multiplier, new value = "</span>, sess.run(</span><br><span class="line">            multiplier.assign_add(<span class="number">1</span>)))</span><br></pre></td></tr></table></figure>
-<p>关于 Placeholder 和 Variable 的区别，可以参见<a href="https://stackoverflow.com/questions/36693740/whats-the-difference-between-tf-placeholder-and-tf-variable" target="_blank" rel="noopener">这个</a>回答</p>
-<h1 id="Session"><a href="#Session" class="headerlink" title="Session"></a>Session</h1><h2 id="Session-run"><a href="#Session-run" class="headerlink" title="Session.run"></a><code>Session.run</code></h2><p>下面摘录自 TensorFlow 1.13 <a href="https://www.tensorflow.org/api_docs/python/tf/Session" target="_blank" rel="noopener">文档</a>：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">run(</span><br><span class="line">    fetches,</span><br><span class="line">    feed_dict=<span class="keyword">None</span>.</span><br><span class="line">    options=<span class="keyword">None</span>,</span><br><span class="line">    run_metadata=<span class="keyword">None</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-<p>This method runs one “step” of TensorFlow computation, by running the necessary graph fragment to execute every <code>Operation</code> and evaluate every <code>Tensor</code> in <code>fetches</code>, substituting the values in<code>feed_dict</code> for the corresponding input values.</p>
-<p>Args:</p>
-<ul>
-<li><p><strong><code>fetches</code></strong>: A single graph element, a list of graph elements, or a dictionary whose values are graph elements or lists of graph elements (described above).</p>
-</li>
-<li><p><strong><code>feed_dict</code></strong>: A dictionary that maps graph elements to values (described above).</p>
-<ul>
-<li><p>The optional <code>feed_dict</code> argument allows the caller to override the value of tensors in the graph. Each key in <code>feed_dict</code> can be one of the following types:</p>
-<ul>
-<li>If the key is a <code>tf.Tensor</code>, the value may be a Python scalar, string, list, or numpy ndarray that can be converted to the same <code>dtype</code> as that tensor. Additionally, if the key is a <code>tf.placeholder</code>, the shape of the value will be checked for compatibility with the placeholder.</li>
-<li>If the key is a <code>tf.SparseTensor</code>, the value should be a <code>tf.SparseTensorValue</code>.</li>
-<li>If the key is a nested tuple of <code>Tensor</code>s or <code>SparseTensor</code>s, the value should be a nested tuple with the same structure that maps to their corresponding values as above.</li>
-</ul>
-<p>Each value in <code>feed_dict</code> must be convertible to a numpy array of the dtype of the corresponding key.</p>
-</li>
-</ul>
-</li>
-<li><p><strong><code>options</code></strong>: A [<code>RunOptions</code>] protocol buffer</p>
-</li>
-<li><p><strong><code>run_metadata</code></strong>: A [<code>RunMetadata</code>] protocol buffer</p>
-</li>
-</ul>
-<p>Returns:</p>
-<p>(same shape as the <code>fetches</code> argument) Either a single value if <code>fetches</code> is a single graph element, or a list of values if <code>fetches</code> is a list, or a dictionary with the same keys as <code>fetches</code> if that is a dictionary (described above). Order in which <code>fetches</code> operations are evaluated inside the call is undefined.</p>
-<p>Example:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">a = tf.constant([<span class="number">10</span>, <span class="number">20</span>])</span><br><span class="line">b = tf.constant([<span class="number">1.0</span>, <span class="number">2.0</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 'fetches' can be a singleton</span></span><br><span class="line">v = session.run(a)</span><br><span class="line"><span class="comment"># v is the numpy array [10, 20]</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 'fetches' can be a list.</span></span><br><span class="line">v = session.run([a, b])</span><br><span class="line"><span class="comment"># v is a Python list with 2 numpy arrays: the 1-D array [10, 20] and the</span></span><br><span class="line"><span class="comment"># 1-D array [1.0, 2.0]</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 'fetches' can be arbitrary lists, tuples, namedtuple, dicts:</span></span><br><span class="line">MyData = collections.namedtuple(<span class="string">'MyData'</span>, [<span class="string">'a'</span>, <span class="string">'b'</span>])</span><br><span class="line">v = session.run(&#123;<span class="string">'k1'</span>: MyData(a, b), <span class="string">'k2'</span>: [b, a]&#125;)</span><br><span class="line"><span class="comment"># v is a dict with</span></span><br><span class="line"><span class="comment"># v['k1'] is a MyData namedtuple with 'a' (the numpy array [10, 20]) and</span></span><br><span class="line"><span class="comment"># 'b' (the numpy array [1.0, 2.0])</span></span><br><span class="line"><span class="comment"># v['k2'] is a list with the numpy array [1.0, 2.0] and the numpy array</span></span><br><span class="line"><span class="comment"># [10, 20].</span></span><br></pre></td></tr></table></figure>
-<h1 id="保存和恢复模型"><a href="#保存和恢复模型" class="headerlink" title="保存和恢复模型"></a>保存和恢复模型</h1><p>在 TensorFlow 中，可以使用 <code>tf.train.Saver</code> 保存和恢复模型。</p>
-<p><strong>注意：</strong>只能保存/恢复 Variable</p>
-<h2 id="保存"><a href="#保存" class="headerlink" title="保存"></a>保存</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">saver = tf.train.Saver()</span><br><span class="line"></span><br><span class="line">saved_path = saver.save(sess, <span class="string">'model/feed_forward.ckpt'</span>)</span><br></pre></td></tr></table></figure>
-<h2 id="恢复"><a href="#恢复" class="headerlink" title="恢复"></a>恢复</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">saver = tf.train.Saver()</span><br></pre></td></tr></table></figure>
-<h1 id="TensorBoard"><a href="#TensorBoard" class="headerlink" title="TensorBoard"></a>TensorBoard</h1><p><a href="https://www.tensorflow.org/guide/summaries_and_tensorboard?hl=zh-cn" target="_blank" rel="noopener">TensorBoard</a></p>
-
-          
+          <p>TensorFlow 入门笔记</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/06/20/tensorflow-intro/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -987,7 +591,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/19/oo-three-characteristics/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/18/oo-three-characteristics/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Han Qi">
@@ -1006,7 +610,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/06/19/oo-three-characteristics/" itemprop="url">未命名</a></h1>
+                <a class="post-title-link" href="/2019/06/18/oo-three-characteristics/" itemprop="url">面向对象程序设计：浅谈三个基本特性</a></h1>
         
 
         <div class="post-meta">
@@ -1018,8 +622,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-19T12:12:29+08:00">
-                2019-06-19
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-18T19:20:00+08:00">
+                2019-06-18
               </time>
             
 
@@ -1057,12 +661,10 @@
 
       
         
-          <hr>
-<p>title: 面向对象程序设计：浅谈三个基本特性<br>date: 2019-06-18 19:20:00</p>
-<p>相信很多人在面试的时候都会被问到这样一个问题：面向对象编程有那些基本特性？说说你的理解。本文就记录一下个人对于这三个特性的理解。</p>
+          <p>相信很多人在面试的时候都会被问到这样一个问题：面向对象编程有哪些基本特性？说说你的理解。本文就记录一下个人对于这三个特性的理解。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/06/19/oo-three-characteristics/#more" rel="contents">
+            <a class="btn" href="/2019/06/18/oo-three-characteristics/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1132,7 +734,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/06/11/front-end-vue-intro/" itemprop="url">Vue 介绍</a></h1>
+                <a class="post-title-link" href="/2019/06/11/front-end-vue-intro/" itemprop="url">Vue 入门教程</a></h1>
         
 
         <div class="post-meta">
@@ -1216,75 +818,14 @@
 
       
         
-          
-            <a id="more"></a>
-<h1 id="使用-Vue-CLI"><a href="#使用-Vue-CLI" class="headerlink" title="使用 Vue CLI"></a>使用 Vue CLI</h1><h2 id="安装-Vue-CLI"><a href="#安装-Vue-CLI" class="headerlink" title="安装 Vue CLI"></a>安装 Vue CLI</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g vue-cli</span><br></pre></td></tr></table></figure>
-<h2 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vue init webpack &lt;project-name&gt;</span><br></pre></td></tr></table></figure>
-<p>生成的目录结构如下：</p>
-<pre>
-    ├── build/
-    ├── config/
-    ├── src/
-    |   ├── assets/
-    |   ├── components/
-    |   ├── App.vue            根组件
-    |   └── main.js
-    ├── .babelrc
-    ├── .editorconfig
-    ├── .gitignore
-    ├── .postcssrc.js
-    ├── index.html
-    ├── package.json
-    └── README.md
-</pre>
-
-<ol>
-<li><code>index.html</code></li>
-<li><code>main.js</code></li>
-<li><code>App.vue</code></li>
-</ol>
-<h1 id="Vue-组件"><a href="#Vue-组件" class="headerlink" title="Vue 组件"></a>Vue 组件</h1><p>每个 <code>.vue</code> 文件都是一个 Vue 组件，基本结构（以 <code>App.vue</code> 为例）：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- HTML 结构 --&gt;</span><br><span class="line">&lt;!-- 有且只能有一个根标签 --&gt;</span><br><span class="line">&lt;template&gt;</span><br><span class="line">	&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">        &lt;img src=&quot;./assets/logo.png&quot;/&gt;</span><br><span class="line">        &lt;!-- 调用组件 --&gt;</span><br><span class="line">        &lt;HelloWorld/&gt;</span><br><span class="line">    &lt;div/&gt;</span><br><span class="line">&lt;template/&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">    // 初始如下：</span><br><span class="line">    import HelloWorld from &apos;./components/HelloWorld&apos;</span><br><span class="line">    </span><br><span class="line">    export default &#123;</span><br><span class="line">        name: &apos;app&apos;,</span><br><span class="line">        // 组件在此处注册之后才能在上面使用</span><br><span class="line">        components: &#123;</span><br><span class="line">            HelloWorld</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style scoped&gt;</span><br><span class="line">    ...</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
-<h2 id="注册组件"><a href="#注册组件" class="headerlink" title="注册组件"></a>注册组件</h2><h3 id="全局注册组件"><a href="#全局注册组件" class="headerlink" title="全局注册组件"></a>全局注册组件</h3><p>在 <code>main.js</code> 中：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> HelloWorld <span class="keyword">from</span> <span class="string">'./components/HelloWorld'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line"></span><br><span class="line">Vue.component(<span class="string">'HelloWorld'</span>, HelloWorld);</span><br></pre></td></tr></table></figure>
-<h3 id="局部注册组件"><a href="#局部注册组件" class="headerlink" title="局部注册组件"></a>局部注册组件</h3><p>比如要在 <code>App.vue</code> 中使用 <code>HelloWorld.vue</code>：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">    import HelloWorld from &apos;./components/HelloWorld&apos;</span><br><span class="line">    </span><br><span class="line">    export default &#123;</span><br><span class="line">        name: &apos;app&apos;,</span><br><span class="line">        components: &#123;</span><br><span class="line">            // 或者 &apos;Users&apos;: Users</span><br><span class="line">            // 注意不能使用预定义的名字，比如 &apos;p&apos;</span><br><span class="line">            Users</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-<h2 id="组件-CSS-作用域"><a href="#组件-CSS-作用域" class="headerlink" title="组件 CSS 作用域"></a>组件 CSS 作用域</h2><p>在组件的 <code>&lt;style&gt;</code> 中设置的样式会被应用于全局，使用 <code>scoped</code> 将样式的作用域限制为当前组件。</p>
-<p>具体实现：给 <code>style</code> 设置一个标识符，然后在对应的标签中引用。比如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- App.vue --&gt;</span><br><span class="line">&lt;template&gt;</span><br><span class="line">   &lt;!-- ... --&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">    // ...</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style&gt;</span><br><span class="line">    h1 &#123;</span><br><span class="line">        color: blue;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- HelloWorld --&gt;</span><br><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;!-- ... --&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">    // ...</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style scoped&gt;</span><br><span class="line">    h1 &#123;</span><br><span class="line">        color: red</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
-<p>{ asset_img “scoped-style.png” }</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">"text/css"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined">        h1[data-v-469af010] &#123;</span></span><br><span class="line"><span class="undefined">            color: red;</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined">    </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">"text/css"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined">        h1 &#123;</span></span><br><span class="line"><span class="undefined">            color: blue</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined">    </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h1</span>&gt;</span>App.Vue Global Style<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">data-v-469af010</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">h1</span> <span class="attr">data-v-469af010</span>&gt;</span>HelloWorld.vue Scoped Style<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h2 id="属性传值"><a href="#属性传值" class="headerlink" title="属性传值"></a>属性传值</h2><h3 id="父组件到子组件：通过元素属性"><a href="#父组件到子组件：通过元素属性" class="headerlink" title="父组件到子组件：通过元素属性"></a>父组件到子组件：通过元素属性</h3><p>默认的 <code>App.vue</code> 中 <code>&lt;HelloWorld msg=&quot;...&quot;&gt;&lt;/HelloWorld&gt;</code> 就是向 <code>HelloWorld</code> 传值的例子。</p>
-<p>在 <code>HelloWorld</code> 中要增加 <code>props: [&quot;msg&quot;]</code>，但是官网推荐的方式是：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">props: &#123;</span><br><span class="line">    msg: &#123;</span><br><span class="line">        type: String,</span><br><span class="line">        required: true</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="子组件到父组件：事件传值"><a href="#子组件到父组件：事件传值" class="headerlink" title="子组件到父组件：事件传值"></a>子组件到父组件：事件传值</h3><ol>
-<li><p>子组件中注册事件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">methods: &#123;</span><br><span class="line">    changeTitle: function() &#123;</span><br><span class="line">		// 事件名, 事件值</span><br><span class="line">        this.$emit(&quot;titleChanged&quot;, &quot;事件传值示例&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>父组件中绑定事件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;p v-on:titleChanged=&quot;updateTitle($event)&quot;&gt;&#123;&#123; title &#125;&#125;&lt;/p&gt;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>注意这里的参数 <code>$event</code></li>
-</ul>
-</li>
-</ol>
-<h1 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h1><img src="/2019/06/11/front-end-vue-intro/lifecycle.png">
-<p>图中红色的就是所谓的“生命周期钩子”</p>
-<h1 id="页面跳转：Vue-Router"><a href="#页面跳转：Vue-Router" class="headerlink" title="页面跳转：Vue Router"></a>页面跳转：Vue Router</h1><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> VueRouter <span class="keyword">from</span> <span class="string">'vue-router'</span></span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">Vue.use(VueRouter);</span><br></pre></td></tr></table></figure>
-<h3 id="配置路由"><a href="#配置路由" class="headerlink" title="配置路由"></a>配置路由</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> router = <span class="keyword">new</span> VueRouter(&#123;</span><br><span class="line">    routes: [</span><br><span class="line">        &#123;</span><br><span class="line">            path: <span class="string">"/"</span>,</span><br><span class="line">            component: Home</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            path: <span class="string">"/hello"</span>,</span><br><span class="line">            component: HelloWorld</span><br><span class="line">        &#125;</span><br><span class="line">    ],</span><br><span class="line">    mode: <span class="string">"history"</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  router,</span><br><span class="line">  render: <span class="function"><span class="params">h</span> =&gt;</span> h(App),</span><br><span class="line">&#125;).$mount(<span class="string">'#app'</span>);</span><br></pre></td></tr></table></figure>
-<ul>
-<li>使用 <code>&lt;router-link to=&quot;...&quot;&gt;...&lt;/router-link&gt;</code> 进行页面跳转<ul>
-<li><code>&lt;a href=&quot;...&quot;&gt;...&lt;/a&gt;</code> 也可以，但是每次都会重新加载整个页面，性能问题</li>
-</ul>
-</li>
-<li>为了使页面显示出来，要在 <code>App.vue</code> 中使用 <code>&lt;router-view&gt;</code> 标签</li>
-</ul>
-<h1 id="使用-HTTP：Vue-Resource"><a href="#使用-HTTP：Vue-Resource" class="headerlink" title="使用 HTTP：Vue Resource"></a>使用 HTTP：Vue Resource</h1><h2 id="安装-1"><a href="#安装-1" class="headerlink" title="安装"></a>安装</h2><h2 id="使用-1"><a href="#使用-1" class="headerlink" title="使用"></a>使用</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> VueResource <span class="keyword">from</span> <span class="string">'vue-resource'</span></span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">Vue.use(VueResource);</span><br></pre></td></tr></table></figure>
-<p><a href="https://jsonplaceholder.typicode.com/" target="_blank" rel="noopener">JSONPlaceholder</a></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">created() &#123;</span><br><span class="line">    <span class="keyword">this</span>.$http.get(<span class="string">'https://jsonplaceholder.typicode.com/posts'</span>)</span><br><span class="line">        .then(<span class="function">(<span class="params">response</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="comment">// 操作数据</span></span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-          
+          <p>最近写一个项目用到 Vue.js，这里记录一下相关的知识。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/06/11/front-end-vue-intro/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1401,10 +942,14 @@
 
       
         
-          
-            <p><a href="https://blog.csdn.net/qq_38401919/article/details/80824432" target="_blank" rel="noopener">https://blog.csdn.net/qq_38401919/article/details/80824432</a></p>
-
-          
+          <p><a href="https://blog.csdn.net/qq_38401919/article/details/80824432" target="_blank" rel="noopener">https://blog.csdn.net/qq_38401919/article/details/80824432</a></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/06/09/others-ip-usable/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1521,9 +1066,14 @@
 
       
         
-          
-            
-          
+          <p>traceroute 是一个非常有用的网络工具</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/06/09/others-tools-traceroute/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1837,25 +1387,14 @@
 
       
         
-          
-            <a id="more"></a>
-<h1 id="Part-III-Persistence"><a href="#Part-III-Persistence" class="headerlink" title="Part III: Persistence"></a>Part III: Persistence</h1><h2 id="Chapter-36-I-O-Devices"><a href="#Chapter-36-I-O-Devices" class="headerlink" title="Chapter 36: I/O Devices"></a>Chapter 36: I/O Devices</h2><ul>
-<li>Interrupt, DMA</li>
-<li>Explicit I/O instructions, Memory Mapped I/O</li>
-<li>Device Driver</li>
-</ul>
-<h2 id="Chapter-37-Hard-Disk-Drives"><a href="#Chapter-37-Hard-Disk-Drives" class="headerlink" title="Chapter 37: Hard Disk Drives"></a>Chapter 37: Hard Disk Drives</h2><ul>
-<li>Structure of hard disk drives</li>
-<li>I/O time</li>
-<li>Hard disk scheduling</li>
-<li>Homework: <a href="persistence/disk.zip">click to download</a><ul>
-<li>Note: Original <code>disk.py</code> and <code>disk-precise.py</code> are implemented in Python 2, I modified <code>disk.py</code>.</li>
-</ul>
-</li>
-</ul>
-<h2 id="Chapter-38"><a href="#Chapter-38" class="headerlink" title="Chapter 38:"></a>Chapter 38:</h2><p>- </p>
-
-          
+          <p>《Operating Systems: Three Easy Pieces》大纲</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/06/04/os-three-easy-pieces/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1994,60 +1533,132 @@
 
       
         
+          <p>操作系统笔记：中断 (Part I)</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/06/03/os-interrupt-io-part-1/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/03/os-process-part-1/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/06/03/os-process-part-1/" itemprop="url">os-process-part-1</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-03T20:13:45+08:00">
+                2019-06-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
-            <h1 id="中断"><a href="#中断" class="headerlink" title="中断"></a>中断</h1><p>“中断”这个概念分为广义和狭义两种，广义的“中断”包括：</p>
-<ul>
-<li>狭义的“中断”：由<em>外设</em> 引起的中断</li>
-<li>异常：由应用程序触发的（非期望）中断</li>
-<li>系统调用：由应用程序触发的（期望的）中断</li>
-</ul>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th></th>
-<th>中断</th>
-<th>异常</th>
-<th>系统调用</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>来源</strong></td>
-<td>硬件/外设</td>
-<td>应用程序</td>
-<td>应用程序</td>
-</tr>
-<tr>
-<td><strong>同步/异步</strong></td>
-<td>异步</td>
-<td>同步</td>
-<td>同步或异步<br>（请求是同步的，但是处理/结果是同步/异步的）</td>
-</tr>
-<tr>
-<td><strong>响应</strong></td>
-<td>持续</td>
-<td>等待</td>
-<td>持续或等待</td>
-</tr>
-</tbody>
-</table>
-</div>
-<h3 id="中断处理过程"><a href="#中断处理过程" class="headerlink" title="中断处理过程"></a>中断处理过程</h3><ul>
-<li>硬件<ul>
-<li>设置中断标记</li>
-<li>设置中断号</li>
-</ul>
-</li>
-<li>软件（OS）<ul>
-<li>保存执行现场</li>
-<li>执行</li>
-<li>清除中断标记</li>
-<li>恢复执行现场</li>
-</ul>
-</li>
-</ul>
-<h3 id="中断向量表（中断描述符表）"><a href="#中断向量表（中断描述符表）" class="headerlink" title="中断向量表（中断描述符表）"></a>中断向量表（中断描述符表）</h3>
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
           
         
       
@@ -2132,7 +1743,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">159</span>
+                  <span class="site-state-item-count">158</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

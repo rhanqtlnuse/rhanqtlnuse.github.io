@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-06-26T12:28:22.210Z</updated>
+  <updated>2019-06-26T12:38:40.507Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -21,17 +21,11 @@
     <link href="http://yoursite.com/2019/06/26/openmp-intro/"/>
     <id>http://yoursite.com/2019/06/26/openmp-intro/</id>
     <published>2019-06-26T12:26:39.000Z</published>
-    <updated>2019-06-26T12:28:22.210Z</updated>
+    <updated>2019-06-26T12:38:40.507Z</updated>
     
     <summary type="html">
     
-      
-      
-        
-        
-          
-        
-      
+      &lt;p&gt;OpenMP 是重要的并行计算 API。&lt;/p&gt;
     
     </summary>
     
@@ -43,43 +37,15 @@
   </entry>
   
   <entry>
-    <title>使用 TensorFlow 和 Inception v3 分类 Fashion-MNIST</title>
-    <link href="http://yoursite.com/2019/06/21/classifying-fashion-mnist-using-tensorflow-inception-v3/"/>
-    <id>http://yoursite.com/2019/06/21/classifying-fashion-mnist-using-tensorflow-inception-v3/</id>
-    <published>2019-06-21T01:24:23.000Z</published>
-    <updated>2019-06-21T02:23:05.207Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
     <title>TensorFlow 入门</title>
     <link href="http://yoursite.com/2019/06/20/tensorflow-intro/"/>
     <id>http://yoursite.com/2019/06/20/tensorflow-intro/</id>
     <published>2019-06-20T07:47:00.000Z</published>
-    <updated>2019-06-20T08:59:14.122Z</updated>
+    <updated>2019-06-26T12:39:34.926Z</updated>
     
     <summary type="html">
     
-      
-      
-        
-        
-          
-        
-      
+      &lt;p&gt;TensorFlow 入门笔记&lt;/p&gt;
     
     </summary>
     
@@ -87,17 +53,15 @@
   </entry>
   
   <entry>
-    <title></title>
-    <link href="http://yoursite.com/2019/06/19/oo-three-characteristics/"/>
-    <id>http://yoursite.com/2019/06/19/oo-three-characteristics/</id>
-    <published>2019-06-19T04:12:29.548Z</published>
-    <updated>2019-06-18T11:58:28.000Z</updated>
+    <title>面向对象程序设计：浅谈三个基本特性</title>
+    <link href="http://yoursite.com/2019/06/18/oo-three-characteristics/"/>
+    <id>http://yoursite.com/2019/06/18/oo-three-characteristics/</id>
+    <published>2019-06-18T11:20:00.000Z</published>
+    <updated>2019-06-26T12:37:12.809Z</updated>
     
     <summary type="html">
     
-      &lt;hr&gt;
-&lt;p&gt;title: 面向对象程序设计：浅谈三个基本特性&lt;br&gt;date: 2019-06-18 19:20:00&lt;/p&gt;
-&lt;p&gt;相信很多人在面试的时候都会被问到这样一个问题：面向对象编程有那些基本特性？说说你的理解。本文就记录一下个人对于这三个特性的理解。&lt;/p&gt;
+      &lt;p&gt;相信很多人在面试的时候都会被问到这样一个问题：面向对象编程有哪些基本特性？说说你的理解。本文就记录一下个人对于这三个特性的理解。&lt;/p&gt;
     
     </summary>
     
@@ -105,21 +69,15 @@
   </entry>
   
   <entry>
-    <title>Vue 介绍</title>
+    <title>Vue 入门教程</title>
     <link href="http://yoursite.com/2019/06/11/front-end-vue-intro/"/>
     <id>http://yoursite.com/2019/06/11/front-end-vue-intro/</id>
     <published>2019-06-11T08:37:44.000Z</published>
-    <updated>2019-06-12T01:48:00.042Z</updated>
+    <updated>2019-06-26T12:38:11.263Z</updated>
     
     <summary type="html">
     
-      
-      
-        
-        
-          
-        
-      
+      &lt;p&gt;最近写一个项目用到 Vue.js，这里记录一下相关的知识。&lt;/p&gt;
     
     </summary>
     
@@ -135,17 +93,11 @@
     <link href="http://yoursite.com/2019/06/09/others-ip-usable/"/>
     <id>http://yoursite.com/2019/06/09/others-ip-usable/</id>
     <published>2019-06-09T08:35:56.000Z</published>
-    <updated>2019-06-09T08:37:04.923Z</updated>
+    <updated>2019-06-26T12:40:09.826Z</updated>
     
     <summary type="html">
     
-      
-      
-        
-        
-          
-        
-      
+      &lt;p&gt;&lt;a href=&quot;https://blog.csdn.net/qq_38401919/article/details/80824432&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://blog.csdn.net/qq_38401919/article/details/80824432&lt;/a&gt;&lt;/p&gt;
     
     </summary>
     
@@ -157,9 +109,11 @@
     <link href="http://yoursite.com/2019/06/09/others-tools-traceroute/"/>
     <id>http://yoursite.com/2019/06/09/others-tools-traceroute/</id>
     <published>2019-06-09T06:38:47.000Z</published>
-    <updated>2019-06-09T06:38:48.258Z</updated>
+    <updated>2019-06-26T12:40:38.334Z</updated>
     
     <summary type="html">
+    
+      &lt;p&gt;traceroute 是一个非常有用的网络工具&lt;/p&gt;
     
     </summary>
     
@@ -193,17 +147,11 @@
     <link href="http://yoursite.com/2019/06/04/os-three-easy-pieces/"/>
     <id>http://yoursite.com/2019/06/04/os-three-easy-pieces/</id>
     <published>2019-06-04T11:48:41.000Z</published>
-    <updated>2019-06-04T13:45:56.329Z</updated>
+    <updated>2019-06-26T12:41:55.661Z</updated>
     
     <summary type="html">
     
-      
-      
-        
-        
-          
-        
-      
+      &lt;p&gt;《Operating Systems: Three Easy Pieces》大纲&lt;/p&gt;
     
     </summary>
     
@@ -217,17 +165,11 @@
     <link href="http://yoursite.com/2019/06/03/os-interrupt-io-part-1/"/>
     <id>http://yoursite.com/2019/06/03/os-interrupt-io-part-1/</id>
     <published>2019-06-03T12:14:07.000Z</published>
-    <updated>2019-06-06T02:14:13.488Z</updated>
+    <updated>2019-06-26T12:43:29.006Z</updated>
     
     <summary type="html">
     
-      
-      
-        
-        
-          
-        
-      
+      &lt;p&gt;操作系统笔记：中断 (Part I)&lt;/p&gt;
     
     </summary>
     
@@ -462,6 +404,28 @@
       <category term="程序设计语言 (Programming Languages)" scheme="http://yoursite.com/categories/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%AF%AD%E8%A8%80-Programming-Languages/"/>
     
       <category term="C++" scheme="http://yoursite.com/categories/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%AF%AD%E8%A8%80-Programming-Languages/C/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>【转】RESTful API 最佳实践</title>
+    <link href="http://yoursite.com/2019/05/30/others-restful-api-design/"/>
+    <id>http://yoursite.com/2019/05/30/others-restful-api-design/</id>
+    <published>2019-05-30T01:11:37.000Z</published>
+    <updated>2019-05-30T01:30:33.933Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
     
     
   </entry>

@@ -92,17 +92,17 @@
 
 
 
-<meta name="description" content="Placeholder &amp;amp; VariablePlaceholder123456789101112import tensorflow as tfx = tf.placeholder(tf.int32, shape=[3],name=&apos;x&apos;)y = tf.placeholder(tf.int32, shape=[3],name=&apos;y&apos;)sum_x = tf.reduce_sum(x,name=">
+<meta name="description" content="TensorFlow 入门笔记">
 <meta property="og:type" content="article">
 <meta property="og:title" content="TensorFlow 入门">
 <meta property="og:url" content="http://yoursite.com/2019/06/20/tensorflow-intro/index.html">
 <meta property="og:site_name" content="RHANQTL">
-<meta property="og:description" content="Placeholder &amp;amp; VariablePlaceholder123456789101112import tensorflow as tfx = tf.placeholder(tf.int32, shape=[3],name=&apos;x&apos;)y = tf.placeholder(tf.int32, shape=[3],name=&apos;y&apos;)sum_x = tf.reduce_sum(x,name=">
+<meta property="og:description" content="TensorFlow 入门笔记">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-06-20T08:59:14.122Z">
+<meta property="og:updated_time" content="2019-06-26T12:39:34.926Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="TensorFlow 入门">
-<meta name="twitter:description" content="Placeholder &amp;amp; VariablePlaceholder123456789101112import tensorflow as tfx = tf.placeholder(tf.int32, shape=[3],name=&apos;x&apos;)y = tf.placeholder(tf.int32, shape=[3],name=&apos;y&apos;)sum_x = tf.reduce_sum(x,name=">
+<meta name="twitter:description" content="TensorFlow 入门笔记">
 
 
 
@@ -385,7 +385,10 @@
       
 
       
-        <h1 id="Placeholder-amp-Variable"><a href="#Placeholder-amp-Variable" class="headerlink" title="Placeholder &amp; Variable"></a>Placeholder &amp; Variable</h1><h2 id="Placeholder"><a href="#Placeholder" class="headerlink" title="Placeholder"></a>Placeholder</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"></span><br><span class="line">x = tf.placeholder(tf.int32, shape=[<span class="number">3</span>],name=<span class="string">'x'</span>)</span><br><span class="line">y = tf.placeholder(tf.int32, shape=[<span class="number">3</span>],name=<span class="string">'y'</span>)</span><br><span class="line"></span><br><span class="line">sum_x = tf.reduce_sum(x,name=<span class="string">"sum_x"</span>)</span><br><span class="line">prod_y = tf.reduce_prod(y,name=<span class="string">"prod_y"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">    <span class="comment"># feed_dict 就是用给定的值将 placeholder 替换</span></span><br><span class="line">    <span class="keyword">print</span> (<span class="string">"sum(x): "</span>, sess.run(sum_x, feed_dict=&#123;x: [<span class="number">100</span>, <span class="number">200</span>, <span class="number">300</span>]&#125;))</span><br><span class="line">    <span class="keyword">print</span> (<span class="string">"prod(y): "</span>, sess.run(prod_y, feed_dict=&#123;y: [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]&#125;))</span><br></pre></td></tr></table></figure>
+        <p>TensorFlow 入门笔记</p>
+<a id="more"></a>
+<p><a href="https://juejin.im/post/5b345a49f265da599c561b25" target="_blank" rel="noopener">这里</a>有一篇不错的博文</p>
+<h1 id="Placeholder-amp-Variable"><a href="#Placeholder-amp-Variable" class="headerlink" title="Placeholder &amp; Variable"></a>Placeholder &amp; Variable</h1><h2 id="Placeholder"><a href="#Placeholder" class="headerlink" title="Placeholder"></a>Placeholder</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"></span><br><span class="line">x = tf.placeholder(tf.int32, shape=[<span class="number">3</span>],name=<span class="string">'x'</span>)</span><br><span class="line">y = tf.placeholder(tf.int32, shape=[<span class="number">3</span>],name=<span class="string">'y'</span>)</span><br><span class="line"></span><br><span class="line">sum_x = tf.reduce_sum(x,name=<span class="string">"sum_x"</span>)</span><br><span class="line">prod_y = tf.reduce_prod(y,name=<span class="string">"prod_y"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">    <span class="comment"># feed_dict 就是用给定的值将 placeholder 替换</span></span><br><span class="line">    <span class="keyword">print</span> (<span class="string">"sum(x): "</span>, sess.run(sum_x, feed_dict=&#123;x: [<span class="number">100</span>, <span class="number">200</span>, <span class="number">300</span>]&#125;))</span><br><span class="line">    <span class="keyword">print</span> (<span class="string">"prod(y): "</span>, sess.run(prod_y, feed_dict=&#123;y: [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]&#125;))</span><br></pre></td></tr></table></figure>
 <p>输出：</p>
 <pre>
     sum(x): 600
@@ -452,8 +455,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/06/19/oo-three-characteristics/" rel="next" title="">
-                <i class="fa fa-chevron-left"></i> 
+              <a href="/2019/06/18/oo-three-characteristics/" rel="next" title="面向对象程序设计：浅谈三个基本特性">
+                <i class="fa fa-chevron-left"></i> 面向对象程序设计：浅谈三个基本特性
               </a>
             
           </div>
@@ -462,8 +465,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/06/21/classifying-fashion-mnist-using-tensorflow-inception-v3/" rel="prev" title="使用 TensorFlow 和 Inception v3 分类 Fashion-MNIST">
-                使用 TensorFlow 和 Inception v3 分类 Fashion-MNIST <i class="fa fa-chevron-right"></i>
+              <a href="/2019/06/26/openmp-intro/" rel="prev" title="OpenMP 入门教程">
+                OpenMP 入门教程 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -541,7 +544,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">159</span>
+                  <span class="site-state-item-count">158</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

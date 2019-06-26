@@ -92,17 +92,17 @@
 
 
 
-<meta name="description" content="声明：修改自 Digit recognition using Tensorflow : MNIST in jpg + Inception v3 transfer learning Fashion-MNISTFashion-MNIST 的 GitHub 地址 注意：MNIST 是直接将二进制数据写在文件中，而 Fashion-MNIST 使用了 gzip 的压缩格式，所以读取数据时需要使用 gzip">
+<meta name="description" content="相信很多人在面试的时候都会被问到这样一个问题：面向对象编程有哪些基本特性？说说你的理解。本文就记录一下个人对于这三个特性的理解。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="使用 TensorFlow 和 Inception v3 分类 Fashion-MNIST">
-<meta property="og:url" content="http://yoursite.com/2019/06/21/classifying-fashion-mnist-using-tensorflow-inception-v3/index.html">
+<meta property="og:title" content="面向对象程序设计：浅谈三个基本特性">
+<meta property="og:url" content="http://yoursite.com/2019/06/18/oo-three-characteristics/index.html">
 <meta property="og:site_name" content="RHANQTL">
-<meta property="og:description" content="声明：修改自 Digit recognition using Tensorflow : MNIST in jpg + Inception v3 transfer learning Fashion-MNISTFashion-MNIST 的 GitHub 地址 注意：MNIST 是直接将二进制数据写在文件中，而 Fashion-MNIST 使用了 gzip 的压缩格式，所以读取数据时需要使用 gzip">
+<meta property="og:description" content="相信很多人在面试的时候都会被问到这样一个问题：面向对象编程有哪些基本特性？说说你的理解。本文就记录一下个人对于这三个特性的理解。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-06-21T02:23:05.207Z">
+<meta property="og:updated_time" content="2019-06-26T12:37:12.809Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="使用 TensorFlow 和 Inception v3 分类 Fashion-MNIST">
-<meta name="twitter:description" content="声明：修改自 Digit recognition using Tensorflow : MNIST in jpg + Inception v3 transfer learning Fashion-MNISTFashion-MNIST 的 GitHub 地址 注意：MNIST 是直接将二进制数据写在文件中，而 Fashion-MNIST 使用了 gzip 的压缩格式，所以读取数据时需要使用 gzip">
+<meta name="twitter:title" content="面向对象程序设计：浅谈三个基本特性">
+<meta name="twitter:description" content="相信很多人在面试的时候都会被问到这样一个问题：面向对象编程有哪些基本特性？说说你的理解。本文就记录一下个人对于这三个特性的理解。">
 
 
 
@@ -132,13 +132,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/06/21/classifying-fashion-mnist-using-tensorflow-inception-v3/">
+  <link rel="canonical" href="http://yoursite.com/2019/06/18/oo-three-characteristics/">
 
 
 
 
 
-  <title>使用 TensorFlow 和 Inception v3 分类 Fashion-MNIST | RHANQTL</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>面向对象程序设计：浅谈三个基本特性 | RHANQTL</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -313,7 +313,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/21/classifying-fashion-mnist-using-tensorflow-inception-v3/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/18/oo-three-characteristics/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Han Qi">
@@ -330,7 +330,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">使用 TensorFlow 和 Inception v3 分类 Fashion-MNIST</h1>
+          <h1 class="post-title" itemprop="name headline">面向对象程序设计：浅谈三个基本特性</h1>
         
 
         <div class="post-meta">
@@ -342,8 +342,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-21T09:24:23+08:00">
-                2019-06-21
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-18T19:20:00+08:00">
+                2019-06-18
               </time>
             
 
@@ -385,10 +385,36 @@
       
 
       
-        <p><strong>声明：</strong>修改自 <a href="https://medium.com/@teavanist/digit-recognition-using-tensorflow-mnist-in-jpg-inception-v3-transfer-learning-93-accuracy-501ba7eb52ea" target="_blank" rel="noopener">Digit recognition using Tensorflow : MNIST in jpg + Inception v3 transfer learning</a></p>
-<h1 id="Fashion-MNIST"><a href="#Fashion-MNIST" class="headerlink" title="Fashion-MNIST"></a>Fashion-MNIST</h1><p>Fashion-MNIST 的 <a href="https://github.com/zalandoresearch/fashion-mnist" target="_blank" rel="noopener">GitHub 地址</a></p>
-<p><strong>注意：</strong><a href="http://yann.lecun.com/exdb/mnist/" target="_blank" rel="noopener">MNIST</a> 是直接将二进制数据写在文件中，而 Fashion-MNIST 使用了 <a href="https://www.gzip.org/" target="_blank" rel="noopener">gzip</a> 的压缩格式，所以读取数据时需要使用 <a href="https://docs.python.org/3/library/gzip.html" target="_blank" rel="noopener">gzip 包</a>，官方也提供了<a href="https://github.com/zalandoresearch/fashion-mnist/blob/master/utils/mnist_reader.py" target="_blank" rel="noopener">读取工具</a></p>
-<p>我们希望使用预训练的 Inception v3 模型，但是由于 Inception v3 要求数据是三通道的，我们需要首先将 Fashion-MNIST 图片转换为 JPG 格式，这可以通过 <a href="https://pillow.readthedocs.io/en/stable/" target="_blank" rel="noopener">Pillow</a> 实现，具体的源代码参见：<a href="">TODO</a></p>
+        <p>相信很多人在面试的时候都会被问到这样一个问题：面向对象编程有哪些基本特性？说说你的理解。本文就记录一下个人对于这三个特性的理解。</p>
+<a id="more"></a>
+<h1 id="封装"><a href="#封装" class="headerlink" title="封装"></a>封装</h1><p>我们先从封装说起。其实，“封装”这个概念并不是面向对象编程特有的，它存在于计算机科学的各处。最直接的，支持面向对象编程范式的语言，比如 C++、Java、Python 都提供了“类”的机制（Python 还有“模块”）；更进一步，其实像 C 这样的过程式的语言也提供了封装的机制 —— 函数（不同于 C++，C 中的结构体只是一种“组合”的方法）；再看远一点，我们学数据结构，都会提到“ADT”，这也是一种封装的体现；还有，我们的计算机系统就是层层建立起来的，每一层都在封装之后对外部提供了接口。</p>
+<p>封装带来的最大好处是模块化和信息隐藏（安全性）。模块化其实就是抽象，它能够：</p>
+<ul>
+<li>使得模块容易“插拔”。比如，我们可以在用户完全没有感觉的情况下，用有相同接口的新模块替换旧模块；</li>
+<li>降低心智负担。在观察、理解一个系统时，我们可以每次只关注这个系统的一个部分/层次/组件，将主要的精力放在理解当前的部分，而不是使用大量的精力在脑中维护各种复杂的调用、跳转关系。</li>
+</ul>
+<blockquote>
+<p><strong>透明</strong></p>
+<p>计算机科学中的“透明”，与我们生活中所说的“透明”是截然相反的意思：生活中常说的“透明”，指的是我们完全（能够）了解一个系统的内部构造；而计算机科学中的“透明”，则指的是我们可以完全将一个系统作为一个“黑盒子”看待，完全不需要了解其内部构造也可以毫无障碍地使用。</p>
+</blockquote>
+<h1 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h1><p>继承是为了复用。衍生类能够直接使用父类的数据、方法而不需要重新实现。当然，被继承的类也有一些控制继承的方法，比如 Java 中的 <code>final</code>、<code>public</code>、<code>protected</code> 和 <code>private</code>。</p>
+<h1 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h1><p>多态应该算得上是这三个特性中最重要的了。“多态”的本意是指一个名字在不同的场景下有不同的语义。比如如下的关系：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">class Base &#123;</span><br><span class="line">public:</span><br><span class="line">    Base(int i): m_i(i) &#123; &#125;</span><br><span class="line">    virtual void f() const &#123; std::cout &lt;&lt; &quot;Base::f()&quot; &lt;&lt; std::endl; &#125;</span><br><span class="line">private:</span><br><span class="line">    int m_i;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">class Derived : public Base &#123;</span><br><span class="line">public:</span><br><span class="line">    Derived(int i, int j): Base(i), m_j(j) &#123; &#125;</span><br><span class="line">    void f() override const &#123;</span><br><span class="line">        std::cout &lt;&lt; &quot;Derived::f()&quot; &lt;&lt; std::end;</span><br><span class="line">    &#125;</span><br><span class="line">private:</span><br><span class="line">    int m_j;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>如果是如下的代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Base &amp;r = Derived(42, 43);</span><br></pre></td></tr></table></figure>
+<p>就会输出：</p>
+<pre>
+    Derived::f()
+</pre>
+
+<p>重载也是一种多态。假设我们有如下的几个函数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">void func(int i);</span><br><span class="line">void func(int i, int j);</span><br><span class="line">void func(char i, int j);</span><br></pre></td></tr></table></figure>
+<p>如果调用的形式是 <code>func(42, 43)</code>，那么就会调用第二个函数。</p>
+<p>还有其他一些体现多态的地方。比如 C++ 中的 <code>int</code>，如果是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int i = 42;</span><br></pre></td></tr></table></figure>
+<p><code>int</code> 就代表一个类型标识符，而如果是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int i = int(&apos;a&apos;);</span><br></pre></td></tr></table></figure>
+<p>第二个 <code>int</code> 就代表类型转换函数。</p>
 
       
     </div>
@@ -413,8 +439,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/06/20/tensorflow-intro/" rel="next" title="TensorFlow 入门">
-                <i class="fa fa-chevron-left"></i> TensorFlow 入门
+              <a href="/2019/06/11/front-end-vue-intro/" rel="next" title="Vue 入门教程">
+                <i class="fa fa-chevron-left"></i> Vue 入门教程
               </a>
             
           </div>
@@ -423,8 +449,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/06/26/openmp-intro/" rel="prev" title="OpenMP 入门教程">
-                OpenMP 入门教程 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/06/20/tensorflow-intro/" rel="prev" title="TensorFlow 入门">
+                TensorFlow 入门 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -502,7 +528,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">159</span>
+                  <span class="site-state-item-count">158</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -580,7 +606,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Fashion-MNIST"><span class="nav-number">1.</span> <span class="nav-text">Fashion-MNIST</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#封装"><span class="nav-number">1.</span> <span class="nav-text">封装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#继承"><span class="nav-number">2.</span> <span class="nav-text">继承</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#多态"><span class="nav-number">3.</span> <span class="nav-text">多态</span></a></li></ol></div>
             
 
           </div>
