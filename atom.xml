@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-06-26T12:38:40.507Z</updated>
+  <updated>2019-06-28T10:31:51.393Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,11 +17,33 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>C/C++ 中的计时函数</title>
+    <link href="http://yoursite.com/2019/06/27/c-timing/"/>
+    <id>http://yoursite.com/2019/06/27/c-timing/</id>
+    <published>2019-06-27T11:22:00.000Z</published>
+    <updated>2019-06-28T10:31:51.393Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;我们可能经常遇到下面这样的需求：写了一个算法，需要计算运行时间；获取一个时间戳等等。在 Java 中，我们可以使用 &lt;code&gt;System.currentTimeMillis()&lt;/code&gt; 和 &lt;code&gt;System.nano()&lt;/code&gt;，那么在 C 和 C++ 中如何实现呢？本文介绍三种用于计时的函数。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="程序设计语言 (Programming Languages)" scheme="http://yoursite.com/categories/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%AF%AD%E8%A8%80-Programming-Languages/"/>
+    
+      <category term="C" scheme="http://yoursite.com/categories/C/"/>
+    
+      <category term="C++" scheme="http://yoursite.com/categories/C/C/"/>
+    
+    
+  </entry>
+  
+  <entry>
     <title>OpenMP 入门教程</title>
     <link href="http://yoursite.com/2019/06/26/openmp-intro/"/>
     <id>http://yoursite.com/2019/06/26/openmp-intro/</id>
     <published>2019-06-26T12:26:39.000Z</published>
-    <updated>2019-06-26T12:38:40.507Z</updated>
+    <updated>2019-06-28T08:52:07.872Z</updated>
     
     <summary type="html">
     
@@ -404,28 +426,6 @@
       <category term="程序设计语言 (Programming Languages)" scheme="http://yoursite.com/categories/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%AF%AD%E8%A8%80-Programming-Languages/"/>
     
       <category term="C++" scheme="http://yoursite.com/categories/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%AF%AD%E8%A8%80-Programming-Languages/C/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>【转】RESTful API 最佳实践</title>
-    <link href="http://yoursite.com/2019/05/30/others-restful-api-design/"/>
-    <id>http://yoursite.com/2019/05/30/others-restful-api-design/</id>
-    <published>2019-05-30T01:11:37.000Z</published>
-    <updated>2019-05-30T01:30:33.933Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
     
     
   </entry>

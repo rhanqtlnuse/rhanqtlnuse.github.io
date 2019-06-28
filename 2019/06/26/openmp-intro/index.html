@@ -104,7 +104,10 @@
 <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Fork_join.svg/1200px-Fork_join.svg.png">
 <meta property="og:image" content="http://yoursite.com/2019/06/26/openmp-intro/Users/hanqi/AppData/Roaming/Typora/typora-user-images/1561346339528.png">
 <meta property="og:image" content="http://yoursite.com/2019/06/26/openmp-intro/Users/hanqi/AppData/Roaming/Typora/typora-user-images/1561551626830.png">
-<meta property="og:updated_time" content="2019-06-26T12:38:40.507Z">
+<meta property="og:image" content="http://yoursite.com/2019/06/26/openmp-intro/Users/hanqi/AppData/Roaming/Typora/typora-user-images/1561707269759.png">
+<meta property="og:image" content="http://yoursite.com/2019/06/26/openmp-intro/data-share.png">
+<meta property="og:image" content="http://yoursite.com/2019/06/26/openmp-intro/Users/hanqi/AppData/Roaming/Typora/typora-user-images/1561710547846.png">
+<meta property="og:updated_time" content="2019-06-28T08:52:07.872Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="OpenMP 入门教程">
 <meta name="twitter:description" content="OpenMP 是重要的并行计算 API。">
@@ -666,6 +669,88 @@
 <p><img src="/2019/06/26/openmp-intro/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1561551626830.png" alt="1561551626830"></p>
 <h3 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h3><p>设置默认线程数：<code>OMP_NUM_THREADS &lt;int_literal&gt;</code></p>
 <p>控制 OpenMP for 循环调度：<code>OMP_SCHEDULE &lt;schedule [, chunk_size]&gt;</code></p>
+<p><strong>OpenMP 2.5 和 3.0 的差异</strong></p>
+<p><img src="/2019/06/26/openmp-intro/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1561707269759.png" alt="1561707269759"></p>
+<h3 id="数据环境-Data-Environment"><a href="#数据环境-Data-Environment" class="headerlink" title="数据环境 (Data Environment)"></a>数据环境 (Data Environment)</h3><p><strong>默认存储属性</strong></p>
+<ul>
+<li><p>共享内存编程模型：大多数变量默认是共享的</p>
+</li>
+<li><p>全局变量在线程间共享，包括</p>
+<ul>
+<li>全局变量（File scope variable）和静态变量</li>
+<li>动态分配的内存</li>
+</ul>
+</li>
+<li><p>不共享的情况</p>
+<ul>
+<li>从并行区调用的函数的栈变量是线程私有的</li>
+<li>语句块中的自动变量 (Automatic variable) 是私有的</li>
+</ul>
+</li>
+<li><p>示例</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 文件 a.c</span></span><br><span class="line"><span class="keyword">double</span> A[<span class="number">10</span>];					<span class="comment">// 全局变量，共享</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> index[<span class="number">10</span>];				<span class="comment">// 虽然是栈变量，但并不是</span></span><br><span class="line">    <span class="meta">#<span class="meta-keyword">pragma</span> omp parallel		<span class="comment">// 从并行区调用的函数的栈变量，共享</span></span></span><br><span class="line">    work(index);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, index[<span class="number">0</span>]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 文件 b.c</span></span><br><span class="line"><span class="keyword">extern</span> <span class="keyword">double</span> A[<span class="number">10</span>];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">work</span><span class="params">(<span class="keyword">int</span> *index)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">double</span> temp[<span class="number">10</span>];			<span class="comment">// 从并行区调用的函数的栈变量，私有</span></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">int</span> count;			<span class="comment">// static 变量，共享</span></span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<img src="/2019/06/26/openmp-intro/data-share.png">
+</li>
+</ul>
+<p><strong>更改存储属性</strong></p>
+<p>下面的子句除 <code>shared</code> 只能用于 parallel construct 外，其他的能用于 parallel 和 worksharing construct，但也<u>仅限于</u>关联的 construct，不会用于整个区域</p>
+<ul>
+<li><p><code>shared</code></p>
+</li>
+<li><p>私有</p>
+<ul>
+<li><p><code>private(var)</code> <font color="red"><strong>MORE: PPT pp. 66</strong></font></p>
+<ul>
+<li><strong>注意：</strong>如下的代码：</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> tmp;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">danger</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    tmp = <span class="number">0</span>;</span><br><span class="line">    <span class="meta">#<span class="meta-keyword">pragma</span> omp parallel private(tmp)</span></span><br><span class="line">    work();</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, tmp);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">extern</span> <span class="keyword">int</span> tmp;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">work</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    tmp = <span class="number">5</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在 OpenMP 2.5 中，<code>tmp</code> 的值未指定，而在 OpenMP 3.0 中，不同的实现可能有不同的行为：或者引用原变量，或者引用原变量的一份拷贝</p>
+</li>
+<li><p><code>firstprivate</code>：<code>private</code> 的特殊情况，用主线程的值初始化每个私有拷贝</p>
+</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">useless</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> tmp = <span class="number">0</span>;</span><br><span class="line">    <span class="meta">#<span class="meta-keyword">pragma</span> omp parallel for firstprivate(tmp)</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">1000</span>; i++) &#123;</span><br><span class="line">        <span class="comment">// 每个线程都有初值为 0 的 tmp 的拷贝</span></span><br><span class="line">        tmp += i;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// OpenMP 2.5 中未定，OpenMP 3.0 中是 0</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, tmp);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>lastprivate</code>：将私有变量最后一次迭代的值赋给全局变量 MORE</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">closer</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> tmp = <span class="number">0</span>;</span><br><span class="line">    <span class="meta">#<span class="meta-keyword">pragma</span> omp parallel for firstprivate(tmp) lastprivate(tmp)</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">1000</span>; i++) &#123;</span><br><span class="line">        <span class="comment">// 每个线程都有初值为 0 的 tmp 的拷贝</span></span><br><span class="line">        tmp += i;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// tmp = 999 * 1000 / 2</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, tmp);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>示例</p>
+<p><img src="/2019/06/26/openmp-intro/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1561710547846.png" alt="1561710547846"></p>
+<ul>
+<li>A 是共享的，B 和 C 都是线程私有的，其中，线程私有拷贝的 B 的初值不确定，线程私有拷贝的 C 的初值为 1</li>
+<li>离开并行区后，B 的值是未定义的<ul>
+<li>如果是 OpenMP 2.5，则 C 的值都是未定义的</li>
+<li>如果是 OpenMP 3.0，则 C 的值为 1</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>修改默认存储属性：<code>default (shared|none)</code></p>
+<ul>
+<li>默认 shared（例外是 task 构造）</li>
+<li>如果设置成 None，则必须要显式地指明每个变量的存储属性</li>
+</ul>
+</li>
+</ul>
+<h3 id="OpenMP-3-0-新特性：Task"><a href="#OpenMP-3-0-新特性：Task" class="headerlink" title="OpenMP 3.0 新特性：Task"></a>OpenMP 3.0 新特性：Task</h3><ul>
+<li>Task 通常默认是 firstprivate</li>
+</ul>
+<p><strong>threadprivate</strong></p>
+<ul>
+<li><p>将全局变量设为线程私有</p>
+</li>
+<li><p>不同于 private</p>
+<ul>
+<li>使用 private 会将全局变量屏蔽</li>
+<li>使用 threadprivate 能够保留全局域的访问</li>
+</ul>
+</li>
+<li><p>threadprivate 变量可以使用 copyin 或者在定义时（使用语言定义的初始化行为）初始化</p>
+</li>
+</ul>
 
       
     </div>
@@ -699,6 +784,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/06/27/c-timing/" rel="prev" title="C/C++ 中的计时函数">
+                C/C++ 中的计时函数 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -775,7 +864,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">158</span>
+                  <span class="site-state-item-count">159</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -786,7 +875,7 @@
               
               <div class="site-state-item site-state-categories">
                 
-                  <span class="site-state-item-count">54</span>
+                  <span class="site-state-item-count">56</span>
                   <span class="site-state-item-name">分类</span>
                 
               </div>
@@ -853,7 +942,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#并行循环"><span class="nav-number">1.</span> <span class="nav-text">并行循环</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Reduction"><span class="nav-number">1.1.</span> <span class="nav-text">Reduction</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#同步"><span class="nav-number">2.</span> <span class="nav-text">同步</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运行时库例程"><span class="nav-number">3.</span> <span class="nav-text">运行时库例程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#执行环境函数"><span class="nav-number">3.1.</span> <span class="nav-text">执行环境函数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#环境变量"><span class="nav-number">4.</span> <span class="nav-text">环境变量</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#并行循环"><span class="nav-number">1.</span> <span class="nav-text">并行循环</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Reduction"><span class="nav-number">1.1.</span> <span class="nav-text">Reduction</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#同步"><span class="nav-number">2.</span> <span class="nav-text">同步</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运行时库例程"><span class="nav-number">3.</span> <span class="nav-text">运行时库例程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#执行环境函数"><span class="nav-number">3.1.</span> <span class="nav-text">执行环境函数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#环境变量"><span class="nav-number">4.</span> <span class="nav-text">环境变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据环境-Data-Environment"><span class="nav-number">5.</span> <span class="nav-text">数据环境 (Data Environment)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OpenMP-3-0-新特性：Task"><span class="nav-number">6.</span> <span class="nav-text">OpenMP 3.0 新特性：Task</span></a></li></ol></div>
             
 
           </div>
