@@ -100,7 +100,7 @@
 <meta property="og:description" content="语句覆盖：程序中的每个可执行语句至少执行一次 判定覆盖（分支覆盖）：程序中的每个判定都至少获得一次 “真” 值和一次 “假” 值 条件覆盖：程序中每个判定包含的每个条件的可能取值都至少满足一次 判定/条件覆盖：判定覆盖 + 条件覆盖 组合覆盖：程序中每个判定包含的所有条件的所有取值组合都至少满足一次 路径覆盖：程序中所有可能的路径都至少执行一次">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/2019/01/02/soft-eng-test-logical-coverage/branch-coverage.png">
-<meta property="og:updated_time" content="2019-01-03T07:12:33.626Z">
+<meta property="og:updated_time" content="2019-06-30T07:10:29.882Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="软件测试基础：逻辑覆盖法">
 <meta name="twitter:description" content="语句覆盖：程序中的每个可执行语句至少执行一次 判定覆盖（分支覆盖）：程序中的每个判定都至少获得一次 “真” 值和一次 “假” 值 条件覆盖：程序中每个判定包含的每个条件的可能取值都至少满足一次 判定/条件覆盖：判定覆盖 + 条件覆盖 组合覆盖：程序中每个判定包含的所有条件的所有取值组合都至少满足一次 路径覆盖：程序中所有可能的路径都至少执行一次">
@@ -367,8 +367,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Software-Engineering/" itemprop="url" rel="index">
-                    <span itemprop="name">Software Engineering</span>
+                  <a href="/categories/软件工程-Software-Engineering/" itemprop="url" rel="index">
+                    <span itemprop="name">软件工程 (Software Engineering)</span>
                   </a>
                 </span>
 
@@ -378,8 +378,8 @@
                 
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Software-Engineering/Software-Testing/" itemprop="url" rel="index">
-                    <span itemprop="name">Software Testing</span>
+                  <a href="/categories/软件工程-Software-Engineering/软件测试-Software-Testing/" itemprop="url" rel="index">
+                    <span itemprop="name">软件测试 (Software Testing)</span>
                   </a>
                 </span>
 
@@ -508,7 +508,8 @@
 <p>|       测试用例       | 执行路径 | 覆盖条件         | 覆盖分支 |<br>| :—————————: | ———— | ———————— | ———— |<br>| x = 2，y = 6，z = 5  | acd      | -T1，T2，-T3，T4 | cd       |<br>| x = 4，y = 5，z = 15 | acd      | T1，-T2，T3，-T4 | cd       |</p>
 </li>
 </ul>
-<h1 id="判定-条件覆盖"><a href="#判定-条件覆盖" class="headerlink" title="判定/条件覆盖"></a>判定/条件覆盖</h1><p>条件 <code>x &gt; 3</code> 取真值记为 T1，取假值记为 -T1</p>
+<h1 id="判定-条件覆盖"><a href="#判定-条件覆盖" class="headerlink" title="判定/条件覆盖"></a>判定/条件覆盖</h1><p>Condition/Decision Coverage, C/DC</p>
+<p>条件 <code>x &gt; 3</code> 取真值记为 T1，取假值记为 -T1</p>
 <p>条件 <code>z &lt; 10</code> 取真值记为 T2，取假值记为 -T2</p>
 <p>条件 <code>x == 4</code> 取真值记为 T3，取假值记为 -T3</p>
 <p>条件 <code>y &gt; 5</code> 取真值记为 T4，取假值记为 -T4</p>
@@ -599,6 +600,113 @@
 </div>
 <ul>
 <li>分析：虽然实现了路径覆盖，但是并没有覆盖程序中的所有条件组合（缺少 -T1，T2，-T3，T4）。即满足了路径覆盖的测试用例并不一定满足组合覆盖。</li>
+</ul>
+<h1 id="Multiple-Condition-Coverage"><a href="#Multiple-Condition-Coverage" class="headerlink" title="Multiple Condition Coverage"></a>Multiple Condition Coverage</h1><p>条件的完全组合，代价很大，$n$ 个条件需要 $2^n$ 个测试用例，但是其中某些价值不大</p>
+<h1 id="MC-DC"><a href="#MC-DC" class="headerlink" title="MC/DC"></a>MC/DC</h1><p>Modified C/DC，最少 $n + 1$ 个，最多 $2n$ 个。</p>
+<p><strong>示例</strong> 对于如下的条件表达式，给出 100% MC/DC 覆盖率的最小测试用例集</p>
+<pre>
+    A or (B and C) or D
+</pre>
+
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+<th>D</th>
+<th>Decision</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>T</td>
+<td></td>
+<td></td>
+<td></td>
+<td>T</td>
+</tr>
+<tr>
+<td>2</td>
+<td>F</td>
+<td>F</td>
+<td>T</td>
+<td>F</td>
+<td>F</td>
+</tr>
+<tr>
+<td>3</td>
+<td>F</td>
+<td>T</td>
+<td>T</td>
+<td>F</td>
+<td>T</td>
+</tr>
+<tr>
+<td>4</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>5</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li><p>步骤</p>
+<ol>
+<li><p>先看 A</p>
+<ul>
+<li>当 A 为 true 时，决策为 true，其他的可以先不管</li>
+<li>当 A 为 false 时，我们希望最后的决策为 false，由于是逻辑或，所以需要每个条件都为 false。显然可以先把 D 设为 false，至于 B 和 C，我们可以先全设置为 false</li>
+</ul>
+<p>|      | A    | B    | C    | D    | Decision |<br>| —— | —— | —— | —— | —— | ———— |<br>| 1    | T    |      |      |      | T        |<br>| 2    | F    | F    | F    | F    | F        |</p>
+</li>
+<li><p>再看 B</p>
+<ul>
+<li>我们已经有了 B 为 false，决策为 false 的情况，现在需要找到 B 为 true，决策为 true 的情况。</li>
+<li>想让 B 能够独立产生影响，A 必须为 false</li>
+<li>至于 C 和 D，我们其实可以发现，如果将 #2 用例中 C 改为 T，那么我们新的测试用例只需要将 B 改为 T 即可</li>
+</ul>
+<p>| #    | A    | B    | C    | D    | Decision |<br>| —— | —— | —— | —— | —— | ———— |<br>| 1    | T    |      |      |      | T        |<br>| 2    | F    | F    | T    | F    | F        |<br>| 3    | F    | T    | T    | F    | T        |</p>
+</li>
+<li><p>接下来看 C</p>
+<ul>
+<li>我们已经有了 C 为 true 的用例，接下来需要找到 C 为 false 的用例</li>
+<li>同样地，想要让 C 能够单独影响结果，需要 A 为 false，B 为 true</li>
+<li>然后会发现 D 只要跟 #3 相同就可以了</li>
+</ul>
+<p>| #    | A    | B    | C    | D    | Decision |<br>| —— | —— | —— | —— | —— | ———— |<br>| 1    | T    |      |      |      | T |<br>| 2    | F    | F    | T    | F    | F        |<br>| 3    | F    | T    | T    | F    | T        |<br>| 4 | F | T | F | F | F |</p>
+</li>
+<li><p>最后看 D</p>
+<ul>
+<li>我们目前位置都是 D 为 false 的情况，现在需要 D 为 true 的情况</li>
+<li>那么同理，A 要为 false，(B and C) 要为 false，而目前为止我们找到的只要 (B and C) 为 false，最后的 Decision 就一定为 false，刚好是我们想要的，所以抄一个就行</li>
+</ul>
+<p>| #    | A    | B    | C    | D    | Decision |<br>| —— | —— | —— | —— | —— | ———— |<br>| 1    | T    | F | T | F | T |<br>| 2    | F    | F    | T    | F    | F        |<br>| 3    | F    | T    | T    | F    | T        |<br>| 4 | F | T | F | F | F |<br>| 5 | F | T | F | T | T |</p>
+</li>
+<li><p>我们还得处理一下 #1，因为后面每个用例 A 都是 false，所以也是抄一个就行</p>
+</li>
+<li><p>OK，现在有：A: (1, 2); B: (2, 3); C: (3, 4); D: (4, 5)</p>
+</li>
+</ol>
+</li>
+</ul>
+<p>有一些技巧</p>
+<ul>
+<li>在 <code>AND</code> 中，如果想要得到某个变量独立影响的效果，需要前面的全为 <code>true</code></li>
+<li>在 <code>OR</code> 中，如果想要得到，需要前面的全为 <code>false</code></li>
 </ul>
 
       
@@ -713,7 +821,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">159</span>
+                  <span class="site-state-item-count">163</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -791,7 +899,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#语句覆盖"><span class="nav-number">1.</span> <span class="nav-text">语句覆盖</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#判定覆盖"><span class="nav-number">2.</span> <span class="nav-text">判定覆盖</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#条件覆盖"><span class="nav-number">3.</span> <span class="nav-text">条件覆盖</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#判定-条件覆盖"><span class="nav-number">4.</span> <span class="nav-text">判定/条件覆盖</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#组合覆盖"><span class="nav-number">5.</span> <span class="nav-text">组合覆盖</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#路径覆盖"><span class="nav-number">6.</span> <span class="nav-text">路径覆盖</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#语句覆盖"><span class="nav-number">1.</span> <span class="nav-text">语句覆盖</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#判定覆盖"><span class="nav-number">2.</span> <span class="nav-text">判定覆盖</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#条件覆盖"><span class="nav-number">3.</span> <span class="nav-text">条件覆盖</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#判定-条件覆盖"><span class="nav-number">4.</span> <span class="nav-text">判定/条件覆盖</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#组合覆盖"><span class="nav-number">5.</span> <span class="nav-text">组合覆盖</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#路径覆盖"><span class="nav-number">6.</span> <span class="nav-text">路径覆盖</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Multiple-Condition-Coverage"><span class="nav-number">7.</span> <span class="nav-text">Multiple Condition Coverage</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#MC-DC"><span class="nav-number">8.</span> <span class="nav-text">MC/DC</span></a></li></ol></div>
             
 
           </div>

@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-06-28T10:31:51.393Z</updated>
+  <updated>2019-07-01T03:31:47.382Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,92 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>soft-eng-test-fundamentals</title>
+    <link href="http://yoursite.com/2019/07/01/soft-eng-test-fundamentals/"/>
+    <id>http://yoursite.com/2019/07/01/soft-eng-test-fundamentals/</id>
+    <published>2019-07-01T03:31:47.000Z</published>
+    <updated>2019-07-01T03:31:47.382Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>soft-eng-test-equiv-partition</title>
+    <link href="http://yoursite.com/2019/07/01/soft-eng-test-equiv-partition/"/>
+    <id>http://yoursite.com/2019/07/01/soft-eng-test-equiv-partition/</id>
+    <published>2019-07-01T02:25:06.000Z</published>
+    <updated>2019-07-01T03:32:23.381Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+      <category term="软件工程 (Software Engineering)" scheme="http://yoursite.com/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B-Software-Engineering/"/>
+    
+      <category term="软件测试 (Software Testing)" scheme="http://yoursite.com/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B-Software-Engineering/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95-Software-Testing/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>软件测试基础：控制流图</title>
+    <link href="http://yoursite.com/2019/06/30/soft-eng-test-control-flow-graph/"/>
+    <id>http://yoursite.com/2019/06/30/soft-eng-test-control-flow-graph/</id>
+    <published>2019-06-30T02:10:57.000Z</published>
+    <updated>2019-06-30T02:20:17.928Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;控制流图是我们产生测试用例的重要工具，本文介绍如何从代码生成控制流图。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="软件工程 (Software Engineering)" scheme="http://yoursite.com/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B-Software-Engineering/"/>
+    
+      <category term="软件测试 (Software Testing)" scheme="http://yoursite.com/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B-Software-Engineering/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95-Software-Testing/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>OpenMP Cheatsheet</title>
+    <link href="http://yoursite.com/2019/06/28/openmp-cheatsheet/"/>
+    <id>http://yoursite.com/2019/06/28/openmp-cheatsheet/</id>
+    <published>2019-06-28T11:03:19.000Z</published>
+    <updated>2019-06-28T12:08:25.227Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+      <category term="并行计算 (Parallel Computing)" scheme="http://yoursite.com/categories/%E5%B9%B6%E8%A1%8C%E8%AE%A1%E7%AE%97-Parallel-Computing/"/>
+    
+      <category term="OpenMP" scheme="http://yoursite.com/categories/%E5%B9%B6%E8%A1%8C%E8%AE%A1%E7%AE%97-Parallel-Computing/OpenMP/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>C/C++ 中的计时函数</title>
@@ -43,7 +129,7 @@
     <link href="http://yoursite.com/2019/06/26/openmp-intro/"/>
     <id>http://yoursite.com/2019/06/26/openmp-intro/</id>
     <published>2019-06-26T12:26:39.000Z</published>
-    <updated>2019-06-28T08:52:07.872Z</updated>
+    <updated>2019-06-29T15:35:28.180Z</updated>
     
     <summary type="html">
     
@@ -330,102 +416,6 @@
     </summary>
     
       <category term="操作系统 (Operating System)" scheme="http://yoursite.com/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-Operating-System/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Lecture 7a：元循环求值器 I</title>
-    <link href="http://yoursite.com/2019/06/02/others-sicp-7a/"/>
-    <id>http://yoursite.com/2019/06/02/others-sicp-7a/</id>
-    <published>2019-06-02T12:17:07.000Z</published>
-    <updated>2019-06-02T12:41:23.110Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-    
-      <category term="SICP" scheme="http://yoursite.com/tags/SICP/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>λ-演算</title>
-    <link href="http://yoursite.com/2019/06/01/theory-of-computation-lambda-calculus/"/>
-    <id>http://yoursite.com/2019/06/01/theory-of-computation-lambda-calculus/</id>
-    <published>2019-06-01T13:24:26.000Z</published>
-    <updated>2019-06-01T13:28:16.163Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-      <category term="计算理论 (Theory of Computation)" scheme="http://yoursite.com/categories/%E8%AE%A1%E7%AE%97%E7%90%86%E8%AE%BA-Theory-of-Computation/"/>
-    
-      <category term="λ-演算 (λ-Calculus)" scheme="http://yoursite.com/categories/%E8%AE%A1%E7%AE%97%E7%90%86%E8%AE%BA-Theory-of-Computation/%CE%BB-%E6%BC%94%E7%AE%97-%CE%BB-Calculus/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>C++ 学习笔记 - 基础篇：引用</title>
-    <link href="http://yoursite.com/2019/06/01/cpp-basic-reference/"/>
-    <id>http://yoursite.com/2019/06/01/cpp-basic-reference/</id>
-    <published>2019-06-01T07:01:46.000Z</published>
-    <updated>2019-06-01T07:20:18.077Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;本文详细介绍了 C++ 中的引用。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="程序设计语言 (Programming Languages)" scheme="http://yoursite.com/categories/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%AF%AD%E8%A8%80-Programming-Languages/"/>
-    
-      <category term="C++" scheme="http://yoursite.com/categories/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%AF%AD%E8%A8%80-Programming-Languages/C/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>C++ 学习资源：侯捷老师的在线课程</title>
-    <link href="http://yoursite.com/2019/05/30/cpp-resources-houjie/"/>
-    <id>http://yoursite.com/2019/05/30/cpp-resources-houjie/</id>
-    <published>2019-05-30T14:42:39.000Z</published>
-    <updated>2019-05-30T15:13:53.994Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-      <category term="程序设计语言 (Programming Languages)" scheme="http://yoursite.com/categories/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%AF%AD%E8%A8%80-Programming-Languages/"/>
-    
-      <category term="C++" scheme="http://yoursite.com/categories/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%AF%AD%E8%A8%80-Programming-Languages/C/"/>
     
     
   </entry>

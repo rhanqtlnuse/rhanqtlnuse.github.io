@@ -107,7 +107,10 @@
 <meta property="og:image" content="http://yoursite.com/2019/06/26/openmp-intro/Users/hanqi/AppData/Roaming/Typora/typora-user-images/1561707269759.png">
 <meta property="og:image" content="http://yoursite.com/2019/06/26/openmp-intro/data-share.png">
 <meta property="og:image" content="http://yoursite.com/2019/06/26/openmp-intro/Users/hanqi/AppData/Roaming/Typora/typora-user-images/1561710547846.png">
-<meta property="og:updated_time" content="2019-06-28T08:52:07.872Z">
+<meta property="og:image" content="http://yoursite.com/2019/06/26/openmp-intro/Users/hanqi/AppData/Roaming/Typora/typora-user-images/1561719689325.png">
+<meta property="og:image" content="http://yoursite.com/2019/06/26/openmp-intro/Users/hanqi/AppData/Roaming/Typora/typora-user-images/1561720722359.png">
+<meta property="og:image" content="http://yoursite.com/2019/06/26/openmp-intro/Users/hanqi/AppData/Roaming/Typora/typora-user-images/1561721041100.png">
+<meta property="og:updated_time" content="2019-06-29T15:35:28.180Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="OpenMP 入门教程">
 <meta name="twitter:description" content="OpenMP 是重要的并行计算 API。">
@@ -713,9 +716,27 @@
 </ul>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">useless</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> tmp = <span class="number">0</span>;</span><br><span class="line">    <span class="meta">#<span class="meta-keyword">pragma</span> omp parallel for firstprivate(tmp)</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">1000</span>; i++) &#123;</span><br><span class="line">        <span class="comment">// 每个线程都有初值为 0 的 tmp 的拷贝</span></span><br><span class="line">        tmp += i;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// OpenMP 2.5 中未定，OpenMP 3.0 中是 0</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, tmp);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ul>
-<li><code>lastprivate</code>：将私有变量最后一次迭代的值赋给全局变量 MORE</li>
+<li><code>lastprivate</code>：将私有变量最后一次迭代（在下面就是 <code>i = 999</code> 时，不管这一次迭代是什么时候出现的）的值赋给全局变量 MORE</li>
 </ul>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">closer</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> tmp = <span class="number">0</span>;</span><br><span class="line">    <span class="meta">#<span class="meta-keyword">pragma</span> omp parallel for firstprivate(tmp) lastprivate(tmp)</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">1000</span>; i++) &#123;</span><br><span class="line">        <span class="comment">// 每个线程都有初值为 0 的 tmp 的拷贝</span></span><br><span class="line">        tmp += i;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// tmp = 999 * 1000 / 2</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, tmp);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">closer</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> tmp = <span class="number">0</span>;</span><br><span class="line">    <span class="meta">#<span class="meta-keyword">pragma</span> omp parallel for firstprivate(tmp) lastprivate(tmp)</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">1000</span>; i++) &#123;</span><br><span class="line">        <span class="comment">// 每个线程都有初值为 0 的 tmp 的拷贝</span></span><br><span class="line">        tmp += i;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, tmp);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> omp parallel for firstprivate(sum) lastprivate(sum)</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">        sum += i;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"sum = %d (ID = %d)\n"</span>, sum, omp_get_thread_num());</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"Using firstprivate &amp; lastprivate:\n  sum = %d\n"</span>, sum);</span><br></pre></td></tr></table></figure>
+<p>输出结果可能是：</p>
+<pre>
+sum = 0 (ID = 0)
+sum = 1 (ID = 0)
+sum = 3 (ID = 0)
+sum = 6 (ID = 2)
+sum = 13 (ID = 2)
+sum = 8 (ID = 3)
+sum = 17 (ID = 3)
+sum = 3 (ID = 1)
+sum = 7 (ID = 1)
+sum = 12 (ID = 1)
+Using firstprivate & lastprivate:
+  sum = 17
+</pre>
+
+<p>多次运行，其中 sum 最终值为 17 不会改变，但是每次 sum = 17 (ID = 3) 出现的位置不一定</p>
 </li>
 <li><p>示例</p>
 <p><img src="/2019/06/26/openmp-intro/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1561710547846.png" alt="1561710547846"></p>
@@ -735,22 +756,51 @@
 </ul>
 </li>
 </ul>
-<h3 id="OpenMP-3-0-新特性：Task"><a href="#OpenMP-3-0-新特性：Task" class="headerlink" title="OpenMP 3.0 新特性：Task"></a>OpenMP 3.0 新特性：Task</h3><ul>
+<h3 id="Section"><a href="#Section" class="headerlink" title="Section"></a>Section</h3><p>回看 Fork-Join 模型的图</p>
+<p>使用 <code>sections</code> 和 <code>section</code> 创建</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> omp parallel</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="meta">#<span class="meta-keyword">pragma</span> omp sections</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="meta">#<span class="meta-keyword">pragma</span> omp section</span></span><br><span class="line">        x_calculation();</span><br><span class="line">        <span class="meta">#<span class="meta-keyword">pragma</span> omp section</span></span><br><span class="line">        y_calculation();</span><br><span class="line">        <span class="meta">#<span class="meta-keyword">pragma</span> omp section</span></span><br><span class="line">        z_calculation();</span><br><span class="line">    &#125;						<span class="comment">// implicit barrier</span></span><br><span class="line">&#125;							<span class="comment">// implicit barrier</span></span><br></pre></td></tr></table></figure>
+<h3 id="Loop-Work-Sharing-Construct：Schedule"><a href="#Loop-Work-Sharing-Construct：Schedule" class="headerlink" title="Loop Work-Sharing Construct：Schedule"></a>Loop Work-Sharing Construct：Schedule</h3><p>Schedule 用于控制循环迭代到线程之间的映射</p>
+<ul>
+<li><code>schedule(static[, chunk])</code>：每个线程拿到 <code>chunk</code> 大小的迭代<ul>
+<li>默认情况下？</li>
+</ul>
+</li>
+<li><code>schedule(dynamic[, chunk])</code>：每个线程从队列中取 <code>chunk</code> 大小的迭代块直到所有的迭代都被处理完<ul>
+<li>默认？</li>
+</ul>
+</li>
+<li><code>schedule(guided[, chunk])</code>：线程动态地获取迭代块，块大小的初始值比较大，并且随着计算收缩至 <code>chunk</code> 大小<ul>
+<li>默认？</li>
+</ul>
+</li>
+<li><code>schedule(runtime)</code>：从环境变量 OMP_SCHEDULE 或者 OpenMP 3.0 运行时库中获取 schedule 和 chunk size</li>
+</ul>
+<p><img src="/2019/06/26/openmp-intro/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1561719689325.png" alt="1561719689325"></p>
+<h3 id="Memory-Model"><a href="#Memory-Model" class="headerlink" title="Memory Model"></a>Memory Model</h3><p><img src="/2019/06/26/openmp-intro/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1561720722359.png" alt="1561720722359"></p>
+<p><img src="/2019/06/26/openmp-intro/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1561721041100.png" alt="1561721041100"></p>
+<h3 id="OpenMP-3-0-新特性：Task"><a href="#OpenMP-3-0-新特性：Task" class="headerlink" title="OpenMP 3.0 新特性：Task"></a>OpenMP 3.0 新特性：Task</h3><p><strong>两个活动</strong></p>
+<ul>
+<li>packaging: each encountering thread packages a new instance of a task (code + data)</li>
+<li>execution: some thread in the team executes the task at some later time</li>
+</ul>
+<ul>
 <li>Task 通常默认是 firstprivate</li>
 </ul>
 <p><strong>threadprivate</strong></p>
 <ul>
-<li><p>将全局变量设为线程私有</p>
-</li>
-<li><p>不同于 private</p>
-<ul>
+<li>将全局变量设为线程私有</li>
+<li>不同于 private<ul>
 <li>使用 private 会将全局变量屏蔽</li>
 <li>使用 threadprivate 能够保留全局域的访问</li>
 </ul>
 </li>
-<li><p>threadprivate 变量可以使用 copyin 或者在定义时（使用语言定义的初始化行为）初始化</p>
-</li>
+<li>threadprivate 变量可以使用 copyin 或者在定义时（使用语言定义的初始化行为）初始化</li>
 </ul>
+<p><strong>copyin</strong></p>
+<p><strong>copyprivate</strong></p>
+<font color="red">MORE</font>
+
+<h3 id="嵌套并行区"><a href="#嵌套并行区" class="headerlink" title="嵌套并行区"></a>嵌套并行区</h3><p>在 OpenMP 3.0 中，增强了对嵌套并行区的支持。允许在并行区中使用 <code>omp_set_num_threads</code> 设置下一级的线程数</p>
 
       
     </div>
@@ -864,7 +914,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">159</span>
+                  <span class="site-state-item-count">163</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -942,7 +992,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#并行循环"><span class="nav-number">1.</span> <span class="nav-text">并行循环</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Reduction"><span class="nav-number">1.1.</span> <span class="nav-text">Reduction</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#同步"><span class="nav-number">2.</span> <span class="nav-text">同步</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运行时库例程"><span class="nav-number">3.</span> <span class="nav-text">运行时库例程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#执行环境函数"><span class="nav-number">3.1.</span> <span class="nav-text">执行环境函数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#环境变量"><span class="nav-number">4.</span> <span class="nav-text">环境变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据环境-Data-Environment"><span class="nav-number">5.</span> <span class="nav-text">数据环境 (Data Environment)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OpenMP-3-0-新特性：Task"><span class="nav-number">6.</span> <span class="nav-text">OpenMP 3.0 新特性：Task</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#并行循环"><span class="nav-number">1.</span> <span class="nav-text">并行循环</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Reduction"><span class="nav-number">1.1.</span> <span class="nav-text">Reduction</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#同步"><span class="nav-number">2.</span> <span class="nav-text">同步</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运行时库例程"><span class="nav-number">3.</span> <span class="nav-text">运行时库例程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#执行环境函数"><span class="nav-number">3.1.</span> <span class="nav-text">执行环境函数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#环境变量"><span class="nav-number">4.</span> <span class="nav-text">环境变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据环境-Data-Environment"><span class="nav-number">5.</span> <span class="nav-text">数据环境 (Data Environment)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Section"><span class="nav-number">6.</span> <span class="nav-text">Section</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Loop-Work-Sharing-Construct：Schedule"><span class="nav-number">7.</span> <span class="nav-text">Loop Work-Sharing Construct：Schedule</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Memory-Model"><span class="nav-number">8.</span> <span class="nav-text">Memory Model</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OpenMP-3-0-新特性：Task"><span class="nav-number">9.</span> <span class="nav-text">OpenMP 3.0 新特性：Task</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#嵌套并行区"><span class="nav-number">10.</span> <span class="nav-text">嵌套并行区</span></a></li></ol></div>
             
 
           </div>
