@@ -31,21 +31,15 @@
   </entry>
   
   <entry>
-    <title>soft-eng-test-equiv-partition</title>
+    <title>软件测试：等价类划分</title>
     <link href="http://yoursite.com/2019/07/01/soft-eng-test-equiv-partition/"/>
     <id>http://yoursite.com/2019/07/01/soft-eng-test-equiv-partition/</id>
     <published>2019-07-01T02:25:06.000Z</published>
-    <updated>2019-07-01T03:32:23.381Z</updated>
+    <updated>2019-07-01T03:39:09.849Z</updated>
     
     <summary type="html">
     
-      
-      
-        
-        
-          
-        
-      
+      &lt;p&gt;由于软件的输入域非常大，所以通常不能进行穷举测试，我们只能找一些有代表性的进行测试。本文介绍一种方法：等价类划分。&lt;/p&gt;
     
     </summary>
     
