@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-07-01T03:31:47.382Z</updated>
+  <updated>2019-08-21T15:02:51.352Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,382 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>肱三头肌训练</title>
+    <link href="http://yoursite.com/2019/08/21/work-out-triceps/"/>
+    <id>http://yoursite.com/2019/08/21/work-out-triceps/</id>
+    <published>2019-08-21T14:45:51.000Z</published>
+    <updated>2019-08-21T15:02:51.352Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+      <category term="健身 (Working out)" scheme="http://yoursite.com/categories/%E5%81%A5%E8%BA%AB-Working-out/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>为什么 std::stack::pop 返回 void</title>
+    <link href="http://yoursite.com/2019/08/20/cpp-why-does-stdstackpop-returns-void/"/>
+    <id>http://yoursite.com/2019/08/20/cpp-why-does-stdstackpop-returns-void/</id>
+    <published>2019-08-20T15:22:10.000Z</published>
+    <updated>2019-08-20T15:22:48.200Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>computer-networks-从输入网址到最后浏览器呈现页面内容，中间发生了什么？</title>
+    <link href="http://yoursite.com/2019/08/19/computer-networks-%E4%BB%8E%E8%BE%93%E5%85%A5%E7%BD%91%E5%9D%80%E5%88%B0%E6%9C%80%E5%90%8E%E6%B5%8F%E8%A7%88%E5%99%A8%E5%91%88%E7%8E%B0%E9%A1%B5%E9%9D%A2%E5%86%85%E5%AE%B9%EF%BC%8C%E4%B8%AD%E9%97%B4%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88%EF%BC%9F/"/>
+    <id>http://yoursite.com/2019/08/19/computer-networks-从输入网址到最后浏览器呈现页面内容，中间发生了什么？/</id>
+    <published>2019-08-19T14:28:04.000Z</published>
+    <updated>2019-08-19T14:29:45.582Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+      <category term="计算机网络 (Computer Networks)" scheme="http://yoursite.com/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-Computer-Networks/"/>
+    
+    
+      <category term="面试" scheme="http://yoursite.com/tags/%E9%9D%A2%E8%AF%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>数的机器级表示</title>
+    <link href="http://yoursite.com/2019/08/11/comp-arch-number/"/>
+    <id>http://yoursite.com/2019/08/11/comp-arch-number/</id>
+    <published>2019-08-11T03:37:16.000Z</published>
+    <updated>2019-08-11T03:48:10.773Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>李白《侠客行》</title>
+    <link href="http://yoursite.com/2019/07/18/poems-%E6%9D%8E%E7%99%BD-%E4%BE%A0%E5%AE%A2%E8%A1%8C/"/>
+    <id>http://yoursite.com/2019/07/18/poems-李白-侠客行/</id>
+    <published>2019-07-18T11:48:10.000Z</published>
+    <updated>2019-07-18T11:48:48.277Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>algorithms-hashing</title>
+    <link href="http://yoursite.com/2019/07/18/algorithms-hashing/"/>
+    <id>http://yoursite.com/2019/07/18/algorithms-hashing/</id>
+    <published>2019-07-18T11:10:46.000Z</published>
+    <updated>2019-07-18T11:12:19.350Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+      <category term="算法 (Algorithms)" scheme="http://yoursite.com/categories/%E7%AE%97%E6%B3%95-Algorithms/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>李白《短歌行》</title>
+    <link href="http://yoursite.com/2019/07/18/poems-%E6%9D%8E%E7%99%BD-%E7%9F%AD%E6%AD%8C%E8%A1%8C/"/>
+    <id>http://yoursite.com/2019/07/18/poems-李白-短歌行/</id>
+    <published>2019-07-18T10:42:51.000Z</published>
+    <updated>2019-07-18T10:44:00.145Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>算法优化</title>
+    <link href="http://yoursite.com/2019/07/13/algorithms-optimization/"/>
+    <id>http://yoursite.com/2019/07/13/algorithms-optimization/</id>
+    <published>2019-07-13T07:38:36.000Z</published>
+    <updated>2019-07-13T07:41:14.869Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+      <category term="算法 (Algorithms)" scheme="http://yoursite.com/categories/%E7%AE%97%E6%B3%95-Algorithms/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>soft-eng-uml-sequence</title>
+    <link href="http://yoursite.com/2019/07/11/soft-eng-uml-sequence/"/>
+    <id>http://yoursite.com/2019/07/11/soft-eng-uml-sequence/</id>
+    <published>2019-07-11T13:33:19.000Z</published>
+    <updated>2019-07-11T13:33:19.942Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>进程间通信</title>
+    <link href="http://yoursite.com/2019/07/07/os-process-communication/"/>
+    <id>http://yoursite.com/2019/07/07/os-process-communication/</id>
+    <published>2019-07-07T13:24:13.000Z</published>
+    <updated>2019-07-07T13:40:50.985Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;进程间通信的 5 种方式&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="操作系統 (Operating Systems)" scheme="http://yoursite.com/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%B5%B1-Operating-Systems/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Linux - 查看系统信息</title>
+    <link href="http://yoursite.com/2019/07/05/linux-system-info/"/>
+    <id>http://yoursite.com/2019/07/05/linux-system-info/</id>
+    <published>2019-07-05T07:53:22.000Z</published>
+    <updated>2019-07-05T08:01:08.780Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;TODO&lt;/p&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>others-how-to-deep-copy-an-object</title>
+    <link href="http://yoursite.com/2019/07/05/others-how-to-deep-copy-an-object/"/>
+    <id>http://yoursite.com/2019/07/05/others-how-to-deep-copy-an-object/</id>
+    <published>2019-07-05T07:14:53.000Z</published>
+    <updated>2019-07-05T07:14:53.877Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>linux-manjaro-getting-started</title>
+    <link href="http://yoursite.com/2019/07/05/linux-manjaro-getting-started/"/>
+    <id>http://yoursite.com/2019/07/05/linux-manjaro-getting-started/</id>
+    <published>2019-07-05T03:58:30.000Z</published>
+    <updated>2019-07-05T04:17:10.249Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+      <category term="Linux" scheme="http://yoursite.com/categories/Linux/"/>
+    
+      <category term="Manjaro" scheme="http://yoursite.com/categories/Linux/Manjaro/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Linux 中的 /boot/efi 分区</title>
+    <link href="http://yoursite.com/2019/07/05/linux-boot-efi/"/>
+    <id>http://yoursite.com/2019/07/05/linux-boot-efi/</id>
+    <published>2019-07-05T03:34:12.000Z</published>
+    <updated>2019-07-05T03:36:25.265Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+      <category term="Linux" scheme="http://yoursite.com/categories/Linux/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>线性代数基础：奇异值分解</title>
+    <link href="http://yoursite.com/2019/07/03/linear-algebra-svd/"/>
+    <id>http://yoursite.com/2019/07/03/linear-algebra-svd/</id>
+    <published>2019-07-03T10:45:18.000Z</published>
+    <updated>2019-07-03T22:33:23.833Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+      <category term="数学 (Mathematics)" scheme="http://yoursite.com/categories/%E6%95%B0%E5%AD%A6-Mathematics/"/>
+    
+      <category term="线性代数 (Linear Algebra)" scheme="http://yoursite.com/categories/%E6%95%B0%E5%AD%A6-Mathematics/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0-Linear-Algebra/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>openmp-examples</title>
+    <link href="http://yoursite.com/2019/07/02/openmp-examples/"/>
+    <id>http://yoursite.com/2019/07/02/openmp-examples/</id>
+    <published>2019-07-02T10:02:41.000Z</published>
+    <updated>2019-07-02T10:06:03.373Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>linux-programming-condition-variable</title>
+    <link href="http://yoursite.com/2019/07/02/linux-programming-condition-variable/"/>
+    <id>http://yoursite.com/2019/07/02/linux-programming-condition-variable/</id>
+    <published>2019-07-02T02:11:24.000Z</published>
+    <updated>2019-07-02T02:29:12.863Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;条件变量 TODO&lt;/p&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>soft-eng-test-boundary-analysis</title>
+    <link href="http://yoursite.com/2019/07/01/soft-eng-test-boundary-analysis/"/>
+    <id>http://yoursite.com/2019/07/01/soft-eng-test-boundary-analysis/</id>
+    <published>2019-07-01T08:11:37.000Z</published>
+    <updated>2019-07-01T08:11:38.115Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>soft-eng-test-fundamentals</title>
@@ -31,11 +407,11 @@
   </entry>
   
   <entry>
-    <title>软件测试：等价类划分</title>
+    <title>软件测试基础：等价类划分</title>
     <link href="http://yoursite.com/2019/07/01/soft-eng-test-equiv-partition/"/>
     <id>http://yoursite.com/2019/07/01/soft-eng-test-equiv-partition/</id>
     <published>2019-07-01T02:25:06.000Z</published>
-    <updated>2019-07-01T03:39:09.849Z</updated>
+    <updated>2019-07-01T08:10:46.196Z</updated>
     
     <summary type="html">
     
@@ -46,370 +422,6 @@
       <category term="软件工程 (Software Engineering)" scheme="http://yoursite.com/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B-Software-Engineering/"/>
     
       <category term="软件测试 (Software Testing)" scheme="http://yoursite.com/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B-Software-Engineering/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95-Software-Testing/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>软件测试基础：控制流图</title>
-    <link href="http://yoursite.com/2019/06/30/soft-eng-test-control-flow-graph/"/>
-    <id>http://yoursite.com/2019/06/30/soft-eng-test-control-flow-graph/</id>
-    <published>2019-06-30T02:10:57.000Z</published>
-    <updated>2019-06-30T02:20:17.928Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;控制流图是我们产生测试用例的重要工具，本文介绍如何从代码生成控制流图。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="软件工程 (Software Engineering)" scheme="http://yoursite.com/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B-Software-Engineering/"/>
-    
-      <category term="软件测试 (Software Testing)" scheme="http://yoursite.com/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B-Software-Engineering/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95-Software-Testing/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>OpenMP Cheatsheet</title>
-    <link href="http://yoursite.com/2019/06/28/openmp-cheatsheet/"/>
-    <id>http://yoursite.com/2019/06/28/openmp-cheatsheet/</id>
-    <published>2019-06-28T11:03:19.000Z</published>
-    <updated>2019-06-28T12:08:25.227Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-      <category term="并行计算 (Parallel Computing)" scheme="http://yoursite.com/categories/%E5%B9%B6%E8%A1%8C%E8%AE%A1%E7%AE%97-Parallel-Computing/"/>
-    
-      <category term="OpenMP" scheme="http://yoursite.com/categories/%E5%B9%B6%E8%A1%8C%E8%AE%A1%E7%AE%97-Parallel-Computing/OpenMP/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>C/C++ 中的计时函数</title>
-    <link href="http://yoursite.com/2019/06/27/c-timing/"/>
-    <id>http://yoursite.com/2019/06/27/c-timing/</id>
-    <published>2019-06-27T11:22:00.000Z</published>
-    <updated>2019-06-28T10:31:51.393Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;我们可能经常遇到下面这样的需求：写了一个算法，需要计算运行时间；获取一个时间戳等等。在 Java 中，我们可以使用 &lt;code&gt;System.currentTimeMillis()&lt;/code&gt; 和 &lt;code&gt;System.nano()&lt;/code&gt;，那么在 C 和 C++ 中如何实现呢？本文介绍三种用于计时的函数。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="程序设计语言 (Programming Languages)" scheme="http://yoursite.com/categories/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%AF%AD%E8%A8%80-Programming-Languages/"/>
-    
-      <category term="C" scheme="http://yoursite.com/categories/C/"/>
-    
-      <category term="C++" scheme="http://yoursite.com/categories/C/C/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>OpenMP 入门教程</title>
-    <link href="http://yoursite.com/2019/06/26/openmp-intro/"/>
-    <id>http://yoursite.com/2019/06/26/openmp-intro/</id>
-    <published>2019-06-26T12:26:39.000Z</published>
-    <updated>2019-06-29T15:35:28.180Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;OpenMP 是重要的并行计算 API。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="并行计算 (Parallel Computing)" scheme="http://yoursite.com/categories/%E5%B9%B6%E8%A1%8C%E8%AE%A1%E7%AE%97-Parallel-Computing/"/>
-    
-      <category term="OpenMP" scheme="http://yoursite.com/categories/%E5%B9%B6%E8%A1%8C%E8%AE%A1%E7%AE%97-Parallel-Computing/OpenMP/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>TensorFlow 入门</title>
-    <link href="http://yoursite.com/2019/06/20/tensorflow-intro/"/>
-    <id>http://yoursite.com/2019/06/20/tensorflow-intro/</id>
-    <published>2019-06-20T07:47:00.000Z</published>
-    <updated>2019-06-26T12:39:34.926Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;TensorFlow 入门笔记&lt;/p&gt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>面向对象程序设计：浅谈三个基本特性</title>
-    <link href="http://yoursite.com/2019/06/18/oo-three-characteristics/"/>
-    <id>http://yoursite.com/2019/06/18/oo-three-characteristics/</id>
-    <published>2019-06-18T11:20:00.000Z</published>
-    <updated>2019-06-26T12:37:12.809Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;相信很多人在面试的时候都会被问到这样一个问题：面向对象编程有哪些基本特性？说说你的理解。本文就记录一下个人对于这三个特性的理解。&lt;/p&gt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Vue 入门教程</title>
-    <link href="http://yoursite.com/2019/06/11/front-end-vue-intro/"/>
-    <id>http://yoursite.com/2019/06/11/front-end-vue-intro/</id>
-    <published>2019-06-11T08:37:44.000Z</published>
-    <updated>2019-06-26T12:38:11.263Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;最近写一个项目用到 Vue.js，这里记录一下相关的知识。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="前端 (Front End)" scheme="http://yoursite.com/categories/%E5%89%8D%E7%AB%AF-Front-End/"/>
-    
-      <category term="Vue.js" scheme="http://yoursite.com/categories/%E5%89%8D%E7%AB%AF-Front-End/Vue-js/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>others-ip-usable</title>
-    <link href="http://yoursite.com/2019/06/09/others-ip-usable/"/>
-    <id>http://yoursite.com/2019/06/09/others-ip-usable/</id>
-    <published>2019-06-09T08:35:56.000Z</published>
-    <updated>2019-06-26T12:40:09.826Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;a href=&quot;https://blog.csdn.net/qq_38401919/article/details/80824432&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://blog.csdn.net/qq_38401919/article/details/80824432&lt;/a&gt;&lt;/p&gt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>others-tools-traceroute</title>
-    <link href="http://yoursite.com/2019/06/09/others-tools-traceroute/"/>
-    <id>http://yoursite.com/2019/06/09/others-tools-traceroute/</id>
-    <published>2019-06-09T06:38:47.000Z</published>
-    <updated>2019-06-26T12:40:38.334Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;traceroute 是一个非常有用的网络工具&lt;/p&gt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title></title>
-    <link href="http://yoursite.com/2019/06/04/os-three-easy-pieces/persistence/README/"/>
-    <id>http://yoursite.com/2019/06/04/os-three-easy-pieces/persistence/README/</id>
-    <published>2019-06-04T13:31:07.725Z</published>
-    <updated>2019-06-04T13:34:46.261Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Three Easy Pieces</title>
-    <link href="http://yoursite.com/2019/06/04/os-three-easy-pieces/"/>
-    <id>http://yoursite.com/2019/06/04/os-three-easy-pieces/</id>
-    <published>2019-06-04T11:48:41.000Z</published>
-    <updated>2019-06-26T12:41:55.661Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;《Operating Systems: Three Easy Pieces》大纲&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="操作系统 (Operating Systems)" scheme="http://yoursite.com/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-Operating-Systems/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>os-interrupt-io-part-1</title>
-    <link href="http://yoursite.com/2019/06/03/os-interrupt-io-part-1/"/>
-    <id>http://yoursite.com/2019/06/03/os-interrupt-io-part-1/</id>
-    <published>2019-06-03T12:14:07.000Z</published>
-    <updated>2019-06-26T12:43:29.006Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;操作系统笔记：中断 (Part I)&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="操作系统 (Operating Systems)" scheme="http://yoursite.com/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-Operating-Systems/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>os-process-part-1</title>
-    <link href="http://yoursite.com/2019/06/03/os-process-part-1/"/>
-    <id>http://yoursite.com/2019/06/03/os-process-part-1/</id>
-    <published>2019-06-03T12:13:45.000Z</published>
-    <updated>2019-06-03T12:13:45.554Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>操作系统笔记 - 内存管理 (Part I)</title>
-    <link href="http://yoursite.com/2019/06/03/os-memory-part-1/"/>
-    <id>http://yoursite.com/2019/06/03/os-memory-part-1/</id>
-    <published>2019-06-03T11:24:16.000Z</published>
-    <updated>2019-06-03T12:03:28.113Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-      <category term="操作系统 (Operating System)" scheme="http://yoursite.com/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-Operating-System/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>操作系统笔记 - 文件系统 (Part III)</title>
-    <link href="http://yoursite.com/2019/06/03/os-file-system-part-3/"/>
-    <id>http://yoursite.com/2019/06/03/os-file-system-part-3/</id>
-    <published>2019-06-03T11:15:31.000Z</published>
-    <updated>2019-06-04T11:59:21.711Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-      <category term="操作系统 (Operating System)" scheme="http://yoursite.com/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-Operating-System/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>操作系统笔记 - 文件系统 (Part II)</title>
-    <link href="http://yoursite.com/2019/06/03/os-file-system-part-2/"/>
-    <id>http://yoursite.com/2019/06/03/os-file-system-part-2/</id>
-    <published>2019-06-03T11:02:05.000Z</published>
-    <updated>2019-06-03T11:14:18.608Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-      <category term="操作系统 (Operating System)" scheme="http://yoursite.com/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-Operating-System/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>操作系统笔记 - 文件系统 (Part I)</title>
-    <link href="http://yoursite.com/2019/06/03/os-file-system-part-1/"/>
-    <id>http://yoursite.com/2019/06/03/os-file-system-part-1/</id>
-    <published>2019-06-03T09:50:31.000Z</published>
-    <updated>2019-06-03T11:28:14.531Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-      <category term="操作系统 (Operating System)" scheme="http://yoursite.com/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-Operating-System/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>操作系统笔记 - 引言</title>
-    <link href="http://yoursite.com/2019/06/03/os-intro/"/>
-    <id>http://yoursite.com/2019/06/03/os-intro/</id>
-    <published>2019-06-03T09:49:05.000Z</published>
-    <updated>2019-06-03T11:08:04.019Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-      <category term="操作系统 (Operating System)" scheme="http://yoursite.com/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-Operating-System/"/>
     
     
   </entry>

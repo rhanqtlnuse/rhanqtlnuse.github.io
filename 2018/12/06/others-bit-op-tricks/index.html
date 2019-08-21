@@ -100,7 +100,7 @@
 <meta property="og:site_name" content="RHANQTL">
 <meta property="og:description" content="Copyright @韩琦 转载请注明出处  技巧 0：n &amp;amp; 0x01这个方法就是用来判断 n 的奇偶性，但是需要注意的一点是，这个方式与 n % 2 的结果不太一样：n &amp;amp; 0x01 总是返回 0 或 1，而当 n 为负数时，n % 2 可能返回 -1。因为 -(a % b) == (-a) % b 对任何 a，b（b $\ne$ 0）都成立 技巧 1：n &amp;amp; (n">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-08T12:03:26.739Z">
+<meta property="og:updated_time" content="2019-08-15T11:28:54.935Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="位运算奇技淫巧">
 <meta name="twitter:description" content="Copyright @韩琦 转载请注明出处  技巧 0：n &amp;amp; 0x01这个方法就是用来判断 n 的奇偶性，但是需要注意的一点是，这个方式与 n % 2 的结果不太一样：n &amp;amp; 0x01 总是返回 0 或 1，而当 n 为负数时，n % 2 可能返回 -1。因为 -(a % b) == (-a) % b 对任何 a，b（b $\ne$ 0）都成立 技巧 1：n &amp;amp; (n">
@@ -442,7 +442,14 @@
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; countBits(<span class="keyword">int</span> num) &#123;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; res(num + <span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line">    <span class="comment">// 可以直接确定的是，0 中 1 的个数为 0，所以直接从 i = 1 开始</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= num; i++) &#123;</span><br><span class="line">        res[i] = res[i &amp; (i - <span class="number">1</span>)] + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>其实这个问题在同样的思路下还有另一种解法：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; countBits(<span class="keyword">int</span> num) &#123;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; res(num + <span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= num; i++) &#123;</span><br><span class="line">        res[i] = res[i &gt;&gt; <span class="number">1</span>] + (i &amp; <span class="number">0x01</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="技巧-2："><a href="#技巧-2：" class="headerlink" title="技巧 2："></a>技巧 2：</h2>
+<h2 id="技巧-2：向上-下对齐"><a href="#技巧-2：向上-下对齐" class="headerlink" title="技巧 2：向上/下对齐"></a>技巧 2：向上/下对齐</h2><p>比如想要将 <code>n</code> 对齐到</p>
+<script type="math/tex; mode=display">
+4 \times\left\lceil\dfrac{n}{4}\right\rceil</script><p>2 到 4，3 到 4，4 到 4，5 到 8</p>
+<p>只有 4 种情况：</p>
+<p>00，01，10，11</p>
+<p>使用如下的方式：<code>(n + 3) &amp; ~0x3</code></p>
+<p>0:</p>
+
       
     </div>
     
@@ -561,7 +568,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">163</span>
+                  <span class="site-state-item-count">181</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -572,7 +579,7 @@
               
               <div class="site-state-item site-state-categories">
                 
-                  <span class="site-state-item-count">56</span>
+                  <span class="site-state-item-count">61</span>
                   <span class="site-state-item-name">分类</span>
                 
               </div>
@@ -583,7 +590,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>
@@ -639,7 +646,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#技巧-0：n-amp-0x01"><span class="nav-number">1.</span> <span class="nav-text">技巧 0：n &amp; 0x01</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#技巧-1：n-amp-n-1"><span class="nav-number">2.</span> <span class="nav-text">技巧 1：n &amp; (n - 1)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#技巧-2："><span class="nav-number">3.</span> <span class="nav-text">技巧 2：</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#技巧-0：n-amp-0x01"><span class="nav-number">1.</span> <span class="nav-text">技巧 0：n &amp; 0x01</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#技巧-1：n-amp-n-1"><span class="nav-number">2.</span> <span class="nav-text">技巧 1：n &amp; (n - 1)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#技巧-2：向上-下对齐"><span class="nav-number">3.</span> <span class="nav-text">技巧 2：向上/下对齐</span></a></li></ol></div>
             
 
           </div>

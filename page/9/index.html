@@ -310,7 +310,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/18/others-damaged-qrcode-problem/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/30/kick-start-2019-round-a-1/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Han Qi">
@@ -329,7 +329,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/04/18/others-damaged-qrcode-problem/" itemprop="url">一道神奇的笔试题</a></h1>
+                <a class="post-title-link" href="/2019/04/30/kick-start-2019-round-a-1/" itemprop="url">kick-start-2019-round-a-1</a></h1>
         
 
         <div class="post-meta">
@@ -341,8 +341,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-18T21:00:01+08:00">
-                2019-04-18
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-30T09:20:57+08:00">
+                2019-04-30
               </time>
             
 
@@ -381,16 +381,160 @@
       
         
           
-            <img src="/2019/04/18/others-damaged-qrcode-problem/quiz.png">
-<p>乍一看上去完全没有头绪。</p>
-<p>但是了解了二维码的原理之后，就能解决问题：</p>
+            <p>Google Kick Start 2019</p>
+<h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><h3 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h3><p>As the football coach at your local school, you have been tasked with picking a team of exactly <strong>P</strong> students to represent your school. There are <strong>N</strong> students for you to pick from. The i-th student has a <em>skill rating</em> <strong>Si</strong>, which is a positive integer indicating how skilled they are.</p>
+<p>You have decided that a team is <em>fair</em> if it has exactly <strong>P</strong> students on it and they all have the same skill rating. That way, everyone plays as a team. Initially, it might not be possible to pick a fair team, so you will give some of the students one-on-one coaching. It takes one hour of coaching to increase the skill rating of any student by 1.</p>
+<p>The competition season is starting very soon (in fact, the first match has already started!), so you’d like to find the minimum number of hours of coaching you need to give before you are able to pick a fair team.</p>
+<h3 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h3><p>The first line of the input gives the number of test cases, <strong>T</strong>. <strong>T</strong> test cases follow. Each test case starts with a line containing the two integers <strong>N</strong> and <strong>P</strong>, the number of students and the number of students you need to pick, respectively. Then, another line follows containing <strong>N</strong> integers <strong>Si</strong>; the i-th of these is the skill of the i-th student.</p>
+<h3 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h3><p>For each test case, output one line containing <code>Case #x: y</code>, where <code>x</code> is the test case number (starting from 1) and <code>y</code> is the minimum number of hours of coaching needed, before you can pick a fair team of <strong>P</strong> students.</p>
+<h3 id="Limits"><a href="#Limits" class="headerlink" title="Limits"></a>Limits</h3><p>Time limit: 15 seconds per test set.<br>Memory limit: 1 GB.<br>1 ≤ <strong>T</strong> ≤ 100.<br>1 ≤ <strong>Si</strong> ≤ 10000, for all i.<br>2 ≤ <strong>P</strong> ≤ <strong>N</strong>.</p>
+<h4 id="Test-set-1-Visible"><a href="#Test-set-1-Visible" class="headerlink" title="Test set 1 (Visible)"></a>Test set 1 (Visible)</h4><p>2 ≤ <strong>N</strong> ≤ 1000.</p>
+<h4 id="Test-set-2-Hidden"><a href="#Test-set-2-Hidden" class="headerlink" title="Test set 2 (Hidden)"></a>Test set 2 (Hidden)</h4><p>2 ≤ <strong>N</strong> ≤ 105.</p>
+<h3 id="Sample"><a href="#Sample" class="headerlink" title="Sample"></a>Sample</h3><h4 id="Input-1"><a href="#Input-1" class="headerlink" title="Input"></a>Input</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">3</span><br><span class="line">4 3</span><br><span class="line">3 1 9 100</span><br><span class="line">6 2</span><br><span class="line">5 5 1 2 3 4</span><br><span class="line">5 5</span><br><span class="line">7 7 1 7 7</span><br></pre></td></tr></table></figure>
+<h4 id="Output-1"><a href="#Output-1" class="headerlink" title="Output"></a>Output</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Case #1: 14</span><br><span class="line">Case #2: 0</span><br><span class="line">Case #3: 6</span><br></pre></td></tr></table></figure>
+<p>In Sample Case #1, you can spend a total of 6 hours training the first student and 8 hours training the second one. This gives the first, second and third students a skill level of 9. This is the minimum time you can spend, so the answer is 14.</p>
+<p>In Sample Case #2, you can already pick a fair team (the first and second student) without having to do any coaching, so the answer is 0.</p>
+<p>In Sample Case #3, <strong>P</strong> = <strong>N</strong>, so every student will be on your team. You have to spend 6 hours training the third student, so that they have a skill of 7, like everyone else. This is the minimum time you can spend, so the answer is 6.</p>
+<h1 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h1><h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>初始的递归代码：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">search</span><span class="params">(<span class="keyword">int</span> from, <span class="keyword">int</span> studentsNeeded, <span class="keyword">int</span> maxRating, <span class="keyword">int</span> cumulativeCost)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// no enough students</span></span><br><span class="line">    <span class="keyword">if</span> (N &lt; from + studentsNeeded) &#123;</span><br><span class="line">        <span class="keyword">return</span> MAX;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (studentsNeeded == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> cumulativeCost;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 0-1 selection problem</span></span><br><span class="line">    <span class="keyword">int</span> min = MAX;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = from, to = N; i &lt; to; i++) &#123;</span><br><span class="line">        <span class="comment">// do not pick the student</span></span><br><span class="line">        <span class="keyword">int</span> t1 = search(i + <span class="number">1</span>, studentsNeeded, maxRating, cumulativeCost);</span><br><span class="line">        <span class="comment">// pick the student</span></span><br><span class="line">        <span class="keyword">int</span> t2;</span><br><span class="line">            <span class="keyword">if</span> (skillRatings[i] &gt;= maxRating) &#123;</span><br><span class="line">                t2 = search(i + <span class="number">1</span>, studentsNeeded - <span class="number">1</span>, skillRatings[i], </span><br><span class="line">                    cumulativeCost</span><br><span class="line">                    + ((P - studentsNeeded) * (skillRatings[i] - maxRating)));</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                t2 = search(i + <span class="number">1</span>, studentsNeeded - <span class="number">1</span>, maxRating, </span><br><span class="line">                    cumulativeCost + (maxRating - skillRatings[i]));</span><br><span class="line">            &#125;</span><br><span class="line">        min = MIN(min, MIN(t1, t2));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> min;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> T;</span><br><span class="line"><span class="keyword">int</span> N, P;</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; skillRatings;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">solve</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span> </span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;T);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> testCaseId = <span class="number">1</span>; testCaseId &lt;= T; testCaseId++) &#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>, &amp;N, &amp;P);</span><br><span class="line">        skillRatings = <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(N);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; i++) &#123;</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;skillRatings[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"Case #%d: %d\n"</span>, testCaseId, solve());</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">solve</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> result;</span><br><span class="line">    <span class="keyword">if</span> (P == N) &#123;</span><br><span class="line">        result = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> max = *max_element(skillRatings.cbegin(), skillRatings.cend());</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; i++) &#123;</span><br><span class="line">            result += max - skillRatings[i];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        sort(skillRatings.rbegin(), skillRatings.rend());</span><br><span class="line">        <span class="keyword">int</span> curr = <span class="number">0</span>, prev;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; P; i++) &#123;</span><br><span class="line">            curr += skillRatings[<span class="number">0</span>] - skillRatings[i];</span><br><span class="line">        &#125;</span><br><span class="line">        prev = curr;</span><br><span class="line">        <span class="keyword">int</span> min = curr;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; N - P + <span class="number">1</span>; i++) &#123;</span><br><span class="line">            curr = prev - (P - <span class="number">1</span>) * (skillRatings[i - <span class="number">1</span>] - skillRatings[i])</span><br><span class="line">                    + skillRatings[i] - skillRatings[i + P - <span class="number">1</span>];</span><br><span class="line">            prev = curr;</span><br><span class="line">            min = curr &lt; min ? curr : min;</span><br><span class="line">        &#125;</span><br><span class="line">        result = min;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/28/pytorch-torchvision-transforms/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/04/28/pytorch-torchvision-transforms/" itemprop="url">PyTorch：torchvision.transforms</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-28T23:05:24+08:00">
+                2019-04-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>PyTorch 提供了 torchvision.transforms 包，其中提供了进行如下工作的工具：</p>
 <ul>
-<li>二维码的左上、右上、左下的点是用来定位的</li>
-<li>中间的信息有很多冗余</li>
+<li>PIL.Image/numpy.ndarray 与 Tensor 互转</li>
+<li>归一化</li>
+<li>对 PIL.Image 进行裁剪、缩放等操作</li>
 </ul>
-<p>所以可以补全左上角的点：</p>
-<img src="/2019/04/18/others-damaged-qrcode-problem/completed.png">
-<p>最后扫出来是 “Artificial Intelligence”</p>
+<p>通常，在使用 torchvision.transforms 时，我们使用 transforms.Compose 将 transform 组合在一起，transform 是 callable 对象。</p>
+<p><strong>注意：</strong><code>transforms.Compose</code> 中的 transform 是按顺序执行的</p>
+<h2 id="PIL-Image-numpy-ndarray-与-Tensor-互转"><a href="#PIL-Image-numpy-ndarray-与-Tensor-互转" class="headerlink" title="PIL.Image/numpy.ndarray 与 Tensor 互转"></a>PIL.Image/numpy.ndarray 与 Tensor 互转</h2><h3 id="PIL-Image-与-Tensor"><a href="#PIL-Image-与-Tensor" class="headerlink" title="PIL.Image 与 Tensor"></a>PIL.Image 与 Tensor</h3><p>PIL.Image 的形状为 <code>(nChannels, height, width)</code></p>
+<p><strong>PIL.Image 到 Tensor</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"><span class="keyword">import</span> torchvision.transforms <span class="keyword">as</span> transforms</span><br><span class="line"></span><br><span class="line">img = Image.open(<span class="string">'pic.jpg'</span>)</span><br><span class="line">transform = transforms.ToTensor()</span><br><span class="line">tensor = transform(img)</span><br></pre></td></tr></table></figure>
+<p><strong>Tensor 到 PIL.Image</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"><span class="keyword">import</span> torchvision.transforms <span class="keyword">as</span> transforms</span><br><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"></span><br><span class="line">tensor = torch.randn((<span class="number">1</span>, <span class="number">28</span>, <span class="number">28</span>))</span><br><span class="line">transform = transforms.ToPILImage()</span><br><span class="line">img = transform(img)</span><br><span class="line">img.show()</span><br><span class="line">img.save(<span class="string">'pic.jpg'</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="numpy-ndarray-与-Tensor"><a href="#numpy-ndarray-与-Tensor" class="headerlink" title="numpy.ndarray 与 Tensor"></a>numpy.ndarray 与 Tensor</h3><p><strong>numpy.ndarray 到 Tensor</strong></p>
+<p><strong>Tensor 到 numpy.ndarray</strong></p>
+<h2 id="归一化"><a href="#归一化" class="headerlink" title="归一化"></a>归一化</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"><span class="keyword">import</span> torchvision.transforms <span class="keyword">as</span> transforms</span><br><span class="line"></span><br><span class="line">img = Image.open(<span class="string">'pic.jpg'</span>)</span><br><span class="line">transform = transforms.Compose([</span><br><span class="line">    transforms.ToTensor(),</span><br><span class="line">    transforms.Normalize(mean=(<span class="number">0.5</span>, <span class="number">0.5</span>, <span class="number">0.5</span>), std=(<span class="number">0.5</span>, <span class="number">0.5</span>, <span class="number">0.5</span>))</span><br><span class="line">])</span><br></pre></td></tr></table></figure>
+<p>其中，<code>transforms.Normalize</code> 使用如下公式进行归一化：</p>
+<script type="math/tex; mode=display">channel = \dfrac{channel - mean}{std}​</script><h2 id="裁剪、缩放"><a href="#裁剪、缩放" class="headerlink" title="裁剪、缩放"></a>裁剪、缩放</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"><span class="keyword">import</span> torchvision.transforms <span class="keyword">as</span> transforms</span><br><span class="line"></span><br><span class="line">img = Image.open(<span class="string">'pic.jpg'</span>)</span><br><span class="line"><span class="comment"># 注意 img.size 返回的是 width*height</span></span><br><span class="line">print(img.size)</span><br><span class="line">transform = transforms.Resize((<span class="number">32</span>, <span class="number">32</span>))</span><br><span class="line">img = transform(img)</span><br><span class="line">print(img.size)</span><br></pre></td></tr></table></figure>
 
           
         
@@ -439,7 +583,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/14/others-learningview-note/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/28/cpp-basic-object-class/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Han Qi">
@@ -458,7 +602,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/04/14/others-learningview-note/" itemprop="url">《学习观》笔记</a></h1>
+                <a class="post-title-link" href="/2019/04/28/cpp-basic-object-class/" itemprop="url">为什么 C++ 没有通用的 Object 类？</a></h1>
         
 
         <div class="post-meta">
@@ -470,8 +614,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-14T14:42:31+08:00">
-                2019-04-14
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-28T22:11:12+08:00">
+                2019-04-28
               </time>
             
 
@@ -480,6 +624,39 @@
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Programming/" itemprop="url" rel="index">
+                    <span itemprop="name">Programming</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Programming/C/" itemprop="url" rel="index">
+                    <span itemprop="name">C++</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -510,445 +687,594 @@
       
         
           
-            <p>《学习观》系列视频：<a href="https://space.bilibili.com/344849038/channel/detail?cid=54015" target="_blank" rel="noopener">传送门</a></p>
-<h1 id="04-应用误区"><a href="#04-应用误区" class="headerlink" title="04 应用误区"></a>04 应用误区</h1><p>拆分问题，分而治之。</p>
-<p>指数的威力：指数级的知识掌握 3 种知识，不考虑顺序，可以组合出 2$^3$ - 1 = 7 种新知识；而如果掌握 20 种知识，可以组合出 2$^{20}$ - 1 = 1048575 种新知识 —— 20 vs. 1048575</p>
-<h1 id="05-思维导图"><a href="#05-思维导图" class="headerlink" title="05 思维导图"></a>05 思维导图</h1><img src="/2019/04/14/others-learningview-note/mind-graph.png">
-<p>思维导图的核心在于<u>知识的拆分 ↑</u></p>
-<img src="/2019/04/14/others-learningview-note/principles.png">
-<p>（神经网络：输入输出、使用样本来学习参数（知识）、使用现有知识）</p>
-<h1 id="06-费曼技巧"><a href="#06-费曼技巧" class="headerlink" title="06 费曼技巧"></a>06 费曼技巧</h1><p>费曼技巧 = 学习 + 解释</p>
-<p>解释是基于新情况的（验证模型的泛化能力）</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/13/pta-advanced-1013/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RHANQTL">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/04/13/pta-advanced-1013/" itemprop="url">PTA 甲级 1013：Battle Over Cities</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-13T10:13:13+08:00">
-                2019-04-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>It is vitally important to have all the cities connected by highways in a war. If a city is occupied by the enemy, all the highways from/toward that city are closed. We must know immediately if we need to repair any other highways to keep the rest of the cities connected. Given the map of cities which have all the remaining highways marked, you are supposed to tell the number of highways need to be repaired, quickly.</p>
-<p>For example, if we have 3 cities and 2 highways connecting <em>c<strong>i</strong>t**y</em>1-<em>c<strong>i</strong>t**y</em>2 and <em>c<strong>i</strong>t**y</em>1-<em>c<strong>i</strong>t**y</em>3. Then if <em>c<strong>i</strong>t**y</em>1 is occupied by the enemy, we must have 1 highway repaired, that is the highway <em>c<strong>i</strong>t**y</em>2-<em>c<strong>i</strong>t**y</em>3.</p>
-<h3 id="Input-Specification"><a href="#Input-Specification" class="headerlink" title="Input Specification:"></a>Input Specification:</h3><p>Each input file contains one test case. Each case starts with a line containing 3 numbers <em>N</em> (&lt;1000), <em>M</em> and <em>K</em>, which are the total number of cities, the number of remaining highways, and the number of cities to be checked, respectively. Then <em>M</em> lines follow, each describes a highway by 2 integers, which are the numbers of the cities the highway connects. The cities are numbered from 1 to <em>N</em>. Finally there is a line containing <em>K</em> numbers, which represent the cities we concern.</p>
-<h3 id="Output-Specification"><a href="#Output-Specification" class="headerlink" title="Output Specification:"></a>Output Specification:</h3><p>For each of the <em>K</em> cities, output in a line the number of highways need to be repaired if that city is lost.</p>
-<h3 id="Sample-Input"><a href="#Sample-Input" class="headerlink" title="Sample Input:"></a>Sample Input:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">3 2 3</span><br><span class="line">1 2</span><br><span class="line">1 3</span><br><span class="line">1 2 3</span><br></pre></td></tr></table></figure>
-<h3 id="Sample-Output"><a href="#Sample-Output" class="headerlink" title="Sample Output:"></a>Sample Output:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1</span><br><span class="line">0</span><br><span class="line">0</span><br></pre></td></tr></table></figure>
-<h1 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h1><h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><h3 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h3><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><h4 id="使用并查集"><a href="#使用并查集" class="headerlink" title="使用并查集"></a>使用并查集</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">boolean</span>[][] map;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> N;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span>[] cities;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> K;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Main</span><span class="params">(<span class="keyword">boolean</span>[][] map, <span class="keyword">int</span>[] cities)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.map = map;</span><br><span class="line">        N = map.length - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">this</span>.cities = cities;</span><br><span class="line">        K = cities.length;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span>[] solve() &#123;</span><br><span class="line">        <span class="keyword">int</span>[] result = <span class="keyword">new</span> <span class="keyword">int</span>[K];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; K; i++) &#123;</span><br><span class="line">            <span class="keyword">final</span> <span class="keyword">int</span> u = cities[i];</span><br><span class="line"></span><br><span class="line">            <span class="keyword">int</span>[] sets = <span class="keyword">new</span> <span class="keyword">int</span>[N + <span class="number">1</span>];</span><br><span class="line">            Arrays.fill(sets, -<span class="number">1</span>);</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> x = <span class="number">1</span>; x &lt;= N; x++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (x != u) &#123;</span><br><span class="line">                    <span class="keyword">for</span> (<span class="keyword">int</span> y = <span class="number">1</span>; y &lt;= N; y++) &#123;</span><br><span class="line">                        <span class="keyword">if</span> (y != u &amp;&amp; map[x][y]) &#123;</span><br><span class="line">                            union(sets, find(sets, x), find(sets, y));</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">int</span> connectedCompCount = <span class="number">1</span>;</span><br><span class="line">            <span class="comment">// for every adjacent vertex of u</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> v = <span class="number">1</span>; v &lt;= N; v++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (!map[u][v]) &#123;</span><br><span class="line">                    <span class="keyword">continue</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> t = v + <span class="number">1</span>; t &lt;= N; t++) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (t != u) &#123;</span><br><span class="line">                        <span class="keyword">int</span> r1 = find(sets, v);</span><br><span class="line">                        <span class="keyword">int</span> r2 = find(sets, t);</span><br><span class="line">                        <span class="keyword">if</span> (r1 != r2) &#123;</span><br><span class="line">                            <span class="keyword">if</span> (!isConnected(v, t, u)) &#123;</span><br><span class="line">                                connectedCompCount++;</span><br><span class="line">                            &#125;</span><br><span class="line">                            union(sets, r1, r2);</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            result[i] = connectedCompCount - <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">isConnected</span><span class="params">(<span class="keyword">int</span> src, <span class="keyword">int</span> dst, <span class="keyword">int</span> exclude)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">boolean</span>[] visited = <span class="keyword">new</span> <span class="keyword">boolean</span>[N + <span class="number">1</span>];</span><br><span class="line">        Queue&lt;Integer&gt; q = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">        visited[src] = <span class="keyword">true</span>;</span><br><span class="line">        q.offer(src);</span><br><span class="line">        <span class="keyword">while</span> (!q.isEmpty()) &#123;</span><br><span class="line">            <span class="keyword">int</span> u = q.poll();</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> v = <span class="number">1</span>; v &lt;= N; v++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (map[u][v] &amp;&amp; v != exclude) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (v == dst) &#123;</span><br><span class="line">                        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">if</span> (!visited[v]) &#123;</span><br><span class="line">                        visited[v] = <span class="keyword">true</span>;</span><br><span class="line">                        q.offer(v);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">find</span><span class="params">(<span class="keyword">int</span>[] sets, <span class="keyword">int</span> u)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> root = u;</span><br><span class="line">        <span class="keyword">while</span> (sets[root] &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            root = sets[root];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> q = u, r;</span><br><span class="line">        <span class="keyword">while</span> (q != root) &#123;</span><br><span class="line">            r = sets[q];</span><br><span class="line">            sets[q] = root;</span><br><span class="line">            q = r;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> root;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">union</span><span class="params">(<span class="keyword">int</span>[] sets, <span class="keyword">int</span> u, <span class="keyword">int</span> v)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (u != v) &#123;</span><br><span class="line">            <span class="keyword">if</span> (sets[u] &lt;= sets[v]) &#123;</span><br><span class="line">                sets[u] += sets[v];</span><br><span class="line">                sets[v] = u;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                sets[v] += sets[u];</span><br><span class="line">                sets[u] = v;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Scanner in = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">        <span class="keyword">int</span> N = in.nextInt();</span><br><span class="line">        <span class="keyword">int</span> M = in.nextInt();</span><br><span class="line">        <span class="keyword">int</span> K = in.nextInt();</span><br><span class="line">        <span class="keyword">boolean</span>[][] map = <span class="keyword">new</span> <span class="keyword">boolean</span>[N + <span class="number">1</span>][N + <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">int</span> c1, c2;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; M; i++) &#123;</span><br><span class="line">            c1 = in.nextInt();</span><br><span class="line">            c2 = in.nextInt();</span><br><span class="line">            map[c1][c2] = map[c2][c1] = <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span>[] cities = <span class="keyword">new</span> <span class="keyword">int</span>[K];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; K; i++) &#123;</span><br><span class="line">            cities[i] = in.nextInt();</span><br><span class="line">        &#125;</span><br><span class="line">        Main s = <span class="keyword">new</span> Main(map, cities);</span><br><span class="line">        <span class="keyword">int</span>[] result = s.solve();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; K; i++) &#123;</span><br><span class="line">            System.out.println(result[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="可达性"><a href="#可达性" class="headerlink" title="可达性"></a>可达性</h1>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/13/csapp-lab-prologue/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RHANQTL">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/04/13/csapp-lab-prologue/" itemprop="url">csapp-lab-prologue</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-13T00:04:21+08:00">
-                2019-04-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/12/work-out/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RHANQTL">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/04/12/work-out/" itemprop="url">健身笔记</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-12T12:16:53+08:00">
-                2019-04-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>用于记录自己学到的、亲身验证的健身知识。</p>
-<h1 id="肌群"><a href="#肌群" class="headerlink" title="肌群"></a>肌群</h1><ul>
-<li>胸</li>
-<li>背</li>
-<li>腿、臀</li>
-<li>肩</li>
-<li>手臂</li>
-<li>腹</li>
-</ul>
-<h2 id="胸肌训练"><a href="#胸肌训练" class="headerlink" title="胸肌训练"></a>胸肌训练</h2><p>胸肌训练采用 Jeff 给出的计划，感觉比较明显。</p>
-<ol>
-<li>热身：从较小重量（5 kg）开始，每次增加 2.5 kg，直到训练重量<ul>
-<li>这个不是 Jeff 的</li>
-</ul>
-</li>
-<li>超级组 1，目标部位：整个胸大肌<ol>
-<li>杠铃卧推：4 组，6、8、10、12</li>
-<li>交叉：4 组，每组 15 RM</li>
-</ol>
-</li>
-<li>超级组 2，目标部位：上胸<ol>
-<li>哑铃上斜卧推：4 组，6、8、10、12</li>
-<li>交叉：4 组，每组 15 RM</li>
-</ol>
-</li>
-<li>超级组 3，目标部位：下胸<ol>
-<li>双杠臂屈伸：4 组</li>
-<li>交叉</li>
-</ol>
-</li>
-<li>俯卧撑</li>
-</ol>
-<h2 id="手臂"><a href="#手臂" class="headerlink" title="手臂"></a>手臂</h2><p>手臂训练采用知乎上看到的计划结合 Jeff 的一部分动作，比 Jeff 给出的计划感受更明显。</p>
+            <p><a href="http://www.stroustrup.com/bs_faq2.html#object" target="_blank" rel="noopener">Stroustrup 的 FAQ</a> 中回答了这个问题：</p>
+<blockquote>
 <ul>
-<li><p>肱二头肌</p>
-<ol>
-<li>热身</li>
-<li>曲杆杠铃宽距弯举：4 组，每组 8 到 12 RM</li>
-<li>杠铃三段式弯举：8 组，4 组宽距，4组窄距，每组 21 RM<ul>
-<li>三段式：第一段从最低点到手臂弯曲 90 度，7 个；从手臂弯曲 90 度到最高点，7 个；全程，7 RM</li>
+<li>We don’t need one: generic programming provides statically type safe alternatives in most cases. Other cases are handled using multiple inheritance.</li>
+<li>There is no useful universal class: a truly universal carries no semantics of its own.</li>
+<li>A “universal” class encourages sloppy thinking about types and interfaces and leads to excess run-time checking.</li>
+<li>Using a universal base class implies cost: Objects must be heap-allocated to be polymorphic; that implies memory and access cost. Heap objects don’t naturally support copy semantics. Heap objects don’t support simple scoped behavior (which complicates resource management). A universal base class encourages use of dynamic_cast and other run-time checking.</li>
+</ul>
+</blockquote>
+<p>翻译并整理一下：</p>
+<ul>
+<li>从根本上来讲：<ul>
+<li>不需要：<u>泛型编程</u>在大多数情况下提供了类型安全的选项，其他情况可以使用<u>多继承</u>解决</li>
+<li>没有真正有用的通用类：真正的通用类本身不携带任何语义&lt;/u&gt;</li>
 </ul>
 </li>
-<li>反握弯举，目标部位：肱肌，4 组，每组 8 到 12 RM</li>
-<li>哑铃后倾弯举（实在是不知道叫啥）：4 组，每组 8 到 12 RM<ul>
-<li>注意点：在最低点可以收缩肱三头肌以提供更长的运动距离</li>
+<li>额外的开销：<ul>
+<li>通用类会让程序员不仔细思考类型和接口，导致过多的<u>运行时检查</u></li>
+<li>使用通用的基类隐含着代价：对象必须分配在<u>堆</u>上以实现多态，这隐含着内存和访问的开销；堆对象并不能自然地支持复制语义，也不支持简单的 scoped 行为（这样会使资源管理复杂化）；通用的基类鼓励 <code>dynamic_cast</code> 和其他运行时检查的使用</li>
 </ul>
 </li>
-<li>哑铃三连弯举：3 组，每组 24 RM<ul>
-<li>三连：掌心向上，向内侧弯举；掌心向下，向内侧弯举；掌心向上，向外侧弯举；三个动作连起来作为一个完整的动作</li>
 </ul>
-</li>
-</ol>
-</li>
-<li>肱三头肌<ol>
-<li>热身</li>
-<li>超级组<ol>
-<li>杠铃窄距卧推</li>
-<li>杠铃（曲杆为佳）反手举</li>
-</ol>
-</li>
-<li>一个不知道叫啥的动作（伏尔加河的纤夫？</li>
-<li>绳索下拉</li>
-</ol>
-</li>
+<p>（<a href="http://www.stroustrup.com/bs_faq.html" target="_blank" rel="noopener">Stroustrup’s FAQ</a> 是个好东西）</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/28/python-image-io/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/04/28/python-image-io/" itemprop="url">Python 基础：图片的 I/O</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-28T19:22:02+08:00">
+                2019-04-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Programming/" itemprop="url" rel="index">
+                    <span itemprop="name">Programming</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Programming/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="PIL"><a href="#PIL" class="headerlink" title="PIL"></a>PIL</h1><p>PIL 全称为 Python Imaging Library，已经是 Python 平台事实上的图像处理标准库了。PIL 功能非常强大，但 API 却非常简单易用。</p>
+<h2 id="安装-PIL"><a href="#安装-PIL" class="headerlink" title="安装 PIL"></a>安装 PIL</h2><p><strong>通过 pip 安装</strong></p>
+<p><strong>通过 Anaconda 安装</strong></p>
+<p>Anaconda 默认带有 PIL（pillow）</p>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p><strong>读取</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h1 id="imageio"><a href="#imageio" class="headerlink" title="imageio"></a>imageio</h1><p>SciPy 的图像处理库，但是这个库即将被弃用，用 imageio 替代。</p>
+<h1 id="OpenCV"><a href="#OpenCV" class="headerlink" title="OpenCV"></a>OpenCV</h1>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/28/python-basic-eq-hash/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/04/28/python-basic-eq-hash/" itemprop="url">Python 基础：__eq__ 和 __hash__</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-28T19:15:26+08:00">
+                2019-04-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>Python 的 <code>object</code> 也像 Java 中的 <code>Object</code> 一样，有判断对象相等和求对象 Hash 值的函数，分别为 <code>__eq__</code> 和 <code>__hash__</code></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/04/28/python-basic-eq-hash/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/28/others-deecamp2019-last-question/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/04/28/others-deecamp2019-last-question/" itemprop="url">记 DeeCamp 2019 的一道笔试题</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-28T16:52:16+08:00">
+                2019-04-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>这是一篇伤感的博客。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/04/28/others-deecamp2019-last-question/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/27/ml-basic-optimize-algo/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/04/27/ml-basic-optimize-algo/" itemprop="url">【译】优化算法概述</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-27T23:16:56+08:00">
+                2019-04-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/机器学习-Machine-Learning/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习 (Machine Learning)</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <img src="/2019/04/27/ml-basic-optimize-algo/1.gif">
+<img src="/2019/04/27/ml-basic-optimize-algo/2.gif">
+<p><strong>声明：</strong>本文翻译自 <a href="http://ruder.io/optimizing-gradient-descent/index.html" target="_blank" rel="noopener">An Overview of Gradient Descent Optimization Algorithms</a></p>
+<h1 id="梯度下降的变体"><a href="#梯度下降的变体" class="headerlink" title="梯度下降的变体"></a>梯度下降的变体</h1><h2 id="批梯度下降"><a href="#批梯度下降" class="headerlink" title="批梯度下降"></a>批梯度下降</h2><h2 id="随机梯度下降"><a href="#随机梯度下降" class="headerlink" title="随机梯度下降"></a>随机梯度下降</h2><h2 id="小批量梯度下降"><a href="#小批量梯度下降" class="headerlink" title="小批量梯度下降"></a>小批量梯度下降</h2><h1 id="梯度下降优化算法"><a href="#梯度下降优化算法" class="headerlink" title="梯度下降优化算法"></a>梯度下降优化算法</h1><h2 id="Momentum"><a href="#Momentum" class="headerlink" title="Momentum"></a>Momentum</h2><h2 id="Nesterov-Accelerated-Gradient"><a href="#Nesterov-Accelerated-Gradient" class="headerlink" title="Nesterov Accelerated Gradient"></a>Nesterov Accelerated Gradient</h2><h2 id="Adagrad"><a href="#Adagrad" class="headerlink" title="Adagrad"></a>Adagrad</h2><ul>
+<li>距离当前时间步较远的时间步的影响是否应该按照某种方式削减？（比如操作系统中页面调度策略最短剩余时间的方式）</li>
+<li>为什么使用对角矩阵而不是向量？</li>
+<li>如果将学习速率的初始值设置得不合理会怎么样？</li>
 </ul>
-
+<h2 id="Adadelta"><a href="#Adadelta" class="headerlink" title="Adadelta"></a>Adadelta</h2><p>Adadelta 是 Adagrad 的扩展，它 that seeks to reduce its aggressive, monotonically decreasing learning rate. </p>
+<ul>
+<li><h2 id="RMSprop"><a href="#RMSprop" class="headerlink" title="RMSprop"></a>RMSprop</h2></li>
+</ul>
+<h2 id="Adam"><a href="#Adam" class="headerlink" title="Adam"></a>Adam</h2><p>动量</p>
+<script type="math/tex; mode=display">\begin{align}\mathbb{m} &\leftarrow \beta_1\mathbb{m} + (1 - \beta_1)\nabla_{\theta}J_{\text{minibatch}}(\theta) \\ \theta &\leftarrow \theta - \alpha\mathbb{m}\end{align}​</script><p>其中，$\beta_1 \in [0, 1]​$ 是一个超参数，通常设置为 0.9</p>
+<h3 id="自适应学习速率"><a href="#自适应学习速率" class="headerlink" title="自适应学习速率"></a>自适应学习速率</h3><p>Adaptive learning rates</p>
+<script type="math/tex; mode=display">\begin{align}\mathbb{m} & \leftarrow \beta_1\mathbb{m} + (1 - \beta_1)\nabla_{\theta}J_{\text{minibatch}}(\theta)\\ \mathbb{v} &\leftarrow \beta_2\mathbb{v} + (1 - \beta_2)(\nabla_{\theta}J_{\text{minibatch}}(\theta)\odot\nabla_{\theta}J_{\text{minibatch}}(\theta))\\ \mathbb{\theta} & \leftarrow \mathbb{\theta} - \alpha\odot\mathbb{m}/\sqrt{\mathbb{v}}\end{align}</script><p>其中，$\beta_2\in[0, 1]$ 是一个超参数，通常设置为 0.99</p>
+<h2 id="AdaMax"><a href="#AdaMax" class="headerlink" title="AdaMax"></a>AdaMax</h2><h2 id="Nadam"><a href="#Nadam" class="headerlink" title="Nadam"></a>Nadam</h2><h2 id="AMSGrad"><a href="#AMSGrad" class="headerlink" title="AMSGrad"></a>AMSGrad</h2><h2 id="算法可视化"><a href="#算法可视化" class="headerlink" title="算法可视化"></a>算法可视化</h2><h2 id="如何选择优化算法？"><a href="#如何选择优化算法？" class="headerlink" title="如何选择优化算法？"></a>如何选择优化算法？</h2><h1 id="并行化和分布化的-SGD"><a href="#并行化和分布化的-SGD" class="headerlink" title="并行化和分布化的 SGD"></a>并行化和分布化的 SGD</h1>
           
         
       
@@ -996,7 +1322,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/11/pta-advanced-1012/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/27/ml-nn-example-digit-recognization/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Han Qi">
@@ -1015,7 +1341,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/04/11/pta-advanced-1012/" itemprop="url">PTA 甲级 1012：The Best Rank</a></h1>
+                <a class="post-title-link" href="/2019/04/27/ml-nn-example-digit-recognization/" itemprop="url">示例 1：手写数字识别</a></h1>
         
 
         <div class="post-meta">
@@ -1027,8 +1353,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-11T11:19:38+08:00">
-                2019-04-11
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-27T21:16:56+08:00">
+                2019-04-27
               </time>
             
 
@@ -1067,20 +1393,13 @@
       
         
           
-            <h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>To evaluate the performance of our first year CS majored students, we consider their grades of three courses only: <code>C</code> - C Programming Language, <code>M</code> - Mathematics (Calculus or Linear Algrbra), and <code>E</code> - English. At the mean time, we encourage students by emphasizing on their best ranks — that is, among the four ranks with respect to the three courses and the average grade, we print the best rank for each student.</p>
-<p>For example, The grades of <code>C</code>, <code>M</code>, <code>E</code> and <code>A</code> - Average of 4 students are given as the following:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">StudentID  C  M  E  A</span><br><span class="line">310101     98 85 88 90</span><br><span class="line">310102     70 95 88 84</span><br><span class="line">310103     82 87 94 88</span><br><span class="line">310104     91 91 91 91</span><br></pre></td></tr></table></figure>
-<p>Then the best ranks for all the students are No.1 since the 1st one has done the best in C Programming Language, while the 2nd one in Mathematics, the 3rd one in English, and the last one in average.</p>
-<h3 id="Input-Specification"><a href="#Input-Specification" class="headerlink" title="Input Specification"></a>Input Specification</h3><p>Each input file contains one test case. Each case starts with a line containing 2 numbers <em>N</em> and <em>M</em> (≤2000), which are the total number of students, and the number of students who would check their ranks, respectively. Then <em>N</em> lines follow, each contains a student ID which is a string of 6 digits, followed by the three integer grades (in the range of [0, 100]) of that student in the order of <code>C</code>, <code>M</code>and <code>E</code>. Then there are <em>M</em> lines, each containing a student ID.</p>
-<h3 id="Output-Specification"><a href="#Output-Specification" class="headerlink" title="Output Specification"></a>Output Specification</h3><p>For each of the <em>M</em> students, print in one line the best rank for him/her, and the symbol of the corresponding rank, separated by a space.</p>
-<p>The priorities of the ranking methods are ordered as <code>A</code> &gt; <code>C</code> &gt; <code>M</code> &gt; <code>E</code>. Hence if there are two or more ways for a student to obtain the same best rank, output the one with the highest priority.</p>
-<p>If a student is not on the grading list, simply output <code>N/A</code>.</p>
-<h3 id="Sample-Input"><a href="#Sample-Input" class="headerlink" title="Sample Input"></a>Sample Input</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">5 6</span><br><span class="line">310101 98 85 88</span><br><span class="line">310102 70 95 88</span><br><span class="line">310103 82 87 94</span><br><span class="line">310104 91 91 91</span><br><span class="line">310105 85 90 90</span><br><span class="line">310101</span><br><span class="line">310102</span><br><span class="line">310103</span><br><span class="line">310104</span><br><span class="line">310105</span><br><span class="line">999999</span><br></pre></td></tr></table></figure>
-<h3 id="Sample-Output"><a href="#Sample-Output" class="headerlink" title="Sample Output"></a>Sample Output</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1 C</span><br><span class="line">1 M</span><br><span class="line">1 E</span><br><span class="line">1 A</span><br><span class="line">3 A</span><br><span class="line">N/A</span><br></pre></td></tr></table></figure>
-<h1 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h1><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><h4 id="第一次提交"><a href="#第一次提交" class="headerlink" title="第一次提交"></a>第一次提交</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> id;</span><br><span class="line">        <span class="keyword">int</span> c, m, e, a;</span><br><span class="line">        <span class="keyword">int</span> bestRank;</span><br><span class="line">        <span class="keyword">char</span> bestRankSubject;</span><br><span class="line"></span><br><span class="line">        Student(<span class="keyword">int</span> id, <span class="keyword">int</span> c, <span class="keyword">int</span> m, <span class="keyword">int</span> e) &#123;</span><br><span class="line">            <span class="keyword">this</span>.id = id;</span><br><span class="line">            <span class="keyword">this</span>.c = c;</span><br><span class="line">            <span class="keyword">this</span>.m = m;</span><br><span class="line">            <span class="keyword">this</span>.e = e;</span><br><span class="line">            a = (<span class="keyword">int</span>) Math.round((<span class="keyword">double</span>) (c + m + e) / <span class="number">3</span>);</span><br><span class="line">            bestRank = Integer.MAX_VALUE;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> String[] solve(Student[] students, <span class="keyword">int</span>[] queries) &#123;</span><br><span class="line">        rank(students, (s1, s2) -&gt; s2.a - s1.a, <span class="string">'A'</span>);</span><br><span class="line">        rank(students, (s1, s2) -&gt; s2.c - s1.c, <span class="string">'C'</span>);</span><br><span class="line">        rank(students, (s1, s2) -&gt; s2.m - s1.m, <span class="string">'M'</span>);</span><br><span class="line">        rank(students, (s1, s2) -&gt; s2.e - s1.e, <span class="string">'E'</span>);</span><br><span class="line"></span><br><span class="line">        Map&lt;Integer, Student&gt; cache = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (Student student : students) &#123;</span><br><span class="line">            cache.put(student.id, student);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        String[] result = <span class="keyword">new</span> String[queries.length];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; queries.length; i++) &#123;</span><br><span class="line">            Student s = cache.getOrDefault(queries[i], <span class="keyword">null</span>);</span><br><span class="line">            <span class="keyword">if</span> (s != <span class="keyword">null</span>) &#123;</span><br><span class="line">                result[i] = s.bestRank + <span class="string">" "</span> + s.bestRankSubject;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                result[i] = <span class="string">"N/A"</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">rank</span><span class="params">(Student[] students, Comparator&lt;Student&gt; comp, <span class="keyword">char</span> subject)</span> </span>&#123;</span><br><span class="line">        Arrays.sort(students, comp);</span><br><span class="line">        <span class="keyword">if</span> (<span class="number">1</span> &lt; students[<span class="number">0</span>].bestRank) &#123;</span><br><span class="line">            students[<span class="number">0</span>].bestRank = <span class="number">1</span>;</span><br><span class="line">            students[<span class="number">0</span>].bestRankSubject = subject;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> t = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>, length = students.length; i &lt; length; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (score(students[i], subject) &lt; score(students[i - <span class="number">1</span>], subject)) &#123;</span><br><span class="line">                t += <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (t &lt; students[i].bestRank) &#123;</span><br><span class="line">                students[i].bestRank = t;</span><br><span class="line">                students[i].bestRankSubject = subject;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">score</span><span class="params">(Student s, <span class="keyword">char</span> subject)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">switch</span> (subject) &#123;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">'C'</span>:</span><br><span class="line">            <span class="keyword">case</span> <span class="string">'c'</span>:</span><br><span class="line">                <span class="keyword">return</span> s.c;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">'M'</span>:</span><br><span class="line">            <span class="keyword">case</span> <span class="string">'m'</span>:</span><br><span class="line">                <span class="keyword">return</span> s.m;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">'E'</span>:</span><br><span class="line">            <span class="keyword">case</span> <span class="string">'e'</span>:</span><br><span class="line">                <span class="keyword">return</span> s.e;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">'A'</span>:</span><br><span class="line">            <span class="keyword">case</span> <span class="string">'a'</span>:</span><br><span class="line">                <span class="keyword">return</span> s.a;</span><br><span class="line">            <span class="keyword">default</span>:</span><br><span class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Scanner in = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">        <span class="keyword">int</span> N = in.nextInt();</span><br><span class="line">        <span class="keyword">int</span> M = in.nextInt();</span><br><span class="line">        Student[] students = <span class="keyword">new</span> Student[N];</span><br><span class="line">        <span class="keyword">int</span> id, c, m, e;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; i++) &#123;</span><br><span class="line">            id = in.nextInt();</span><br><span class="line">            c = in.nextInt();</span><br><span class="line">            m = in.nextInt();</span><br><span class="line">            e = in.nextInt();</span><br><span class="line">            students[i] = <span class="keyword">new</span> Student(id, c, m, e);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span>[] queries = <span class="keyword">new</span> <span class="keyword">int</span>[M];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; M; i++) &#123;</span><br><span class="line">            queries[i] = in.nextInt();</span><br><span class="line">        &#125;</span><br><span class="line">        in.close();</span><br><span class="line"></span><br><span class="line">        Main s = <span class="keyword">new</span> Main();</span><br><span class="line">        String[] result = s.solve(students, queries);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>, length = result.length; i &lt; length; i++) &#123;</span><br><span class="line">            System.out.print(result[i]);</span><br><span class="line">            <span class="keyword">if</span> (i != length - <span class="number">1</span>) &#123;</span><br><span class="line">                System.out.println();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>5 个用例，1 个 AC，1 个 WA，3 个 TLE</p>
-<p>分析一下这次提交：<code>rank</code> 的复杂度是 $O(n\log n)$，其他都是 $O(n)$，所以瓶颈应该在 <code>rank</code>。本来想先通过每一科目的最大值求出一些 best rank，但是发现这样做只能求出 4 个，而测试用例可能多达 2000，所以这样行不通。</p>
-<h4 id="第二次提交"><a href="#第二次提交" class="headerlink" title="第二次提交"></a>第二次提交</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> id;</span><br><span class="line">        <span class="keyword">int</span> c, m, e, a;</span><br><span class="line">        <span class="keyword">int</span> bestRank;</span><br><span class="line">        <span class="keyword">char</span> bestRankSubject;</span><br><span class="line"></span><br><span class="line">        Student(<span class="keyword">int</span> id, <span class="keyword">int</span> c, <span class="keyword">int</span> m, <span class="keyword">int</span> e) &#123;</span><br><span class="line">            <span class="keyword">this</span>.id = id;</span><br><span class="line">            <span class="keyword">this</span>.c = c;</span><br><span class="line">            <span class="keyword">this</span>.m = m;</span><br><span class="line">            <span class="keyword">this</span>.e = e;</span><br><span class="line">            a = (<span class="keyword">int</span>) Math.round((<span class="keyword">double</span>) (c + m + e) / <span class="number">3</span>);</span><br><span class="line">            bestRank = Integer.MAX_VALUE;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> String[] solve(Student[] students, <span class="keyword">int</span>[] queries) &#123;</span><br><span class="line">        rank(students, (s1, s2) -&gt; s2.a - s1.a, <span class="string">'A'</span>);</span><br><span class="line">        rank(students, (s1, s2) -&gt; s2.c - s1.c, <span class="string">'C'</span>);</span><br><span class="line">        rank(students, (s1, s2) -&gt; s2.m - s1.m, <span class="string">'M'</span>);</span><br><span class="line">        rank(students, (s1, s2) -&gt; s2.e - s1.e, <span class="string">'E'</span>);</span><br><span class="line"></span><br><span class="line">        Map&lt;Integer, Student&gt; cache = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (Student student : students) &#123;</span><br><span class="line">            cache.put(student.id, student);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        String[] result = <span class="keyword">new</span> String[queries.length];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; queries.length; i++) &#123;</span><br><span class="line">            Student s = cache.getOrDefault(queries[i], <span class="keyword">null</span>);</span><br><span class="line">            <span class="keyword">if</span> (s != <span class="keyword">null</span>) &#123;</span><br><span class="line">                result[i] = s.bestRank + <span class="string">" "</span> + s.bestRankSubject;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                result[i] = <span class="string">"N/A"</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">rank</span><span class="params">(Student[] students, Comparator&lt;Student&gt; comp, <span class="keyword">char</span> subject)</span> </span>&#123;</span><br><span class="line">        Arrays.sort(students, comp);</span><br><span class="line">        <span class="keyword">if</span> (<span class="number">1</span> &lt; students[<span class="number">0</span>].bestRank) &#123;</span><br><span class="line">            students[<span class="number">0</span>].bestRank = <span class="number">1</span>;</span><br><span class="line">            students[<span class="number">0</span>].bestRankSubject = subject;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> t = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>, length = students.length; i &lt; length; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (score(students[i], subject) &lt; score(students[i - <span class="number">1</span>], subject)) &#123;</span><br><span class="line">                t += <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (t &lt; students[i].bestRank) &#123;</span><br><span class="line">                students[i].bestRank = t;</span><br><span class="line">                students[i].bestRankSubject = subject;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">score</span><span class="params">(Student s, <span class="keyword">char</span> subject)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">switch</span> (subject) &#123;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">'C'</span>:</span><br><span class="line">            <span class="keyword">case</span> <span class="string">'c'</span>:</span><br><span class="line">                <span class="keyword">return</span> s.c;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">'M'</span>:</span><br><span class="line">            <span class="keyword">case</span> <span class="string">'m'</span>:</span><br><span class="line">                <span class="keyword">return</span> s.m;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">'E'</span>:</span><br><span class="line">            <span class="keyword">case</span> <span class="string">'e'</span>:</span><br><span class="line">                <span class="keyword">return</span> s.e;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">'A'</span>:</span><br><span class="line">            <span class="keyword">case</span> <span class="string">'a'</span>:</span><br><span class="line">                <span class="keyword">return</span> s.a;</span><br><span class="line">            <span class="keyword">default</span>:</span><br><span class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Scanner in = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">        <span class="keyword">int</span> N = in.nextInt();</span><br><span class="line">        <span class="keyword">int</span> M = in.nextInt();</span><br><span class="line">        Student[] students = <span class="keyword">new</span> Student[N];</span><br><span class="line">        <span class="keyword">int</span> id, c, m, e;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; i++) &#123;</span><br><span class="line">            id = in.nextInt();</span><br><span class="line">            c = in.nextInt();</span><br><span class="line">            m = in.nextInt();</span><br><span class="line">            e = in.nextInt();</span><br><span class="line">            students[i] = <span class="keyword">new</span> Student(id, c, m, e);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span>[] queries = <span class="keyword">new</span> <span class="keyword">int</span>[M];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; M; i++) &#123;</span><br><span class="line">            queries[i] = in.nextInt();</span><br><span class="line">        &#125;</span><br><span class="line">        in.close();</span><br><span class="line"></span><br><span class="line">        Main s = <span class="keyword">new</span> Main();</span><br><span class="line">        String[] result = s.solve(students, queries);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>, length = result.length; i &lt; length; i++) &#123;</span><br><span class="line">            System.out.print(result[i]);</span><br><span class="line">            <span class="keyword">if</span> (i != length - <span class="number">1</span>) &#123;</span><br><span class="line">                System.out.println();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+            <h1 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h1><ul>
+<li>Python </li>
+<li>PyTorch v1.0</li>
+<li>torchvision v0.2.2</li>
+<li>Jupyter Notebook</li>
+</ul>
+<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><p>在我的 <a href="https://github.com/rhanqtl/ml-examples/tree/master/digit-recognization" target="_blank" rel="noopener">GitHub 仓库</a></p>
 
           
         
@@ -1129,7 +1448,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/09/ml-nn-basic-bp/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/26/linux-programming-shell-command-sed/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Han Qi">
@@ -1148,7 +1467,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/04/09/ml-nn-basic-bp/" itemprop="url">深度学习 - 基础篇：反向传播</a></h1>
+                <a class="post-title-link" href="/2019/04/26/linux-programming-shell-command-sed/" itemprop="url">linux-programming-shell-command-sed</a></h1>
         
 
         <div class="post-meta">
@@ -1160,138 +1479,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-09T01:46:33+08:00">
-                2019-04-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>$w^{(L)} \cdot a^{(L-1)} + b^{(L-1)}$</p>
-<p>$z^{(L)}$</p>
-<p>$a^{(L)}$</p>
-<p>$C_0 = (a^{(L)} - y)^2$</p>
-<p>$\dfrac{\partial{C_0}}{\partial{w^{(L)}}} = \dfrac{\partial{z^{(L)}}}{\partial{w^{(L)}}}\dfrac{\partial{a^{(L)}}}{\partial{z^{(L)}}}\dfrac{\partial{C_0}}{\partial{a^{(L)}}}$</p>
-<p>其中，</p>
-<p>$\dfrac{\partial{z^{(L)}}}{\partial{w^{(L)}}} = a^{(L)}$</p>
-<p>$\dfrac{\partial{a^{(L)}}}{\partial{z^{(L)}}} = \sigma’(z^{(L)})$</p>
-<p>$\dfrac{\partial{C_0}}{\partial{a^{(L)}}} = 2(a^{(L)} - y)$</p>
-<p>故</p>
-<p>$\dfrac{\partial{C_0}}{\partial{w^{(L)}}} = 2a^{(L)}\sigma’(z^{(L)})(a^{(L)} - y)$</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/08/pta-advanced-1002/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RHANQTL">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/04/08/pta-advanced-1002/" itemprop="url">pta-advanced-1002</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-08T15:15:36+08:00">
-                2019-04-08
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-26T19:30:07+08:00">
+                2019-04-26
               </time>
             
 
@@ -1378,7 +1567,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/08/pta-advanced-1001/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/26/linux-programming-shell-command-awk/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Han Qi">
@@ -1397,7 +1586,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/04/08/pta-advanced-1001/" itemprop="url">pta-advanced-1001</a></h1>
+                <a class="post-title-link" href="/2019/04/26/linux-programming-shell-command-awk/" itemprop="url">linux-programming-shell-command-awk</a></h1>
         
 
         <div class="post-meta">
@@ -1409,8 +1598,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-08T15:15:32+08:00">
-                2019-04-08
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-26T19:30:03+08:00">
+                2019-04-26
               </time>
             
 
@@ -1419,6 +1608,39 @@
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/Shell/" itemprop="url" rel="index">
+                    <span itemprop="name">Shell</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -1449,126 +1671,8 @@
       
         
           
-            
-          
-        
-      
-    </div>
-    
-    
-    
+            <p><a href="https://www.tutorialspoint.com/awk/awk_overview.htm" target="_blank" rel="noopener">AWK 教程</a></p>
 
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/08/pta-advanced-1008/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RHANQTL">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/04/08/pta-advanced-1008/" itemprop="url">pta-advanced-1008</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-08T15:15:26+08:00">
-                2019-04-08
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
           
         
       
@@ -1607,7 +1711,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/8/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><a class="extend next" rel="next" href="/page/10/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/8/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/19/">19</a><a class="extend next" rel="next" href="/page/10/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1653,7 +1757,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">163</span>
+                  <span class="site-state-item-count">181</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1664,7 +1768,7 @@
               
               <div class="site-state-item site-state-categories">
                 
-                  <span class="site-state-item-count">56</span>
+                  <span class="site-state-item-count">61</span>
                   <span class="site-state-item-name">分类</span>
                 
               </div>
@@ -1675,7 +1779,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>
