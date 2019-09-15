@@ -92,17 +92,23 @@
 
 
 
-<meta name="description" content="1  整数1.1  起点：无符号数1.1.1  BCD 码1.1.2  直接使用二进制 b_{31} \times 2^{31} + b_{30} \times 2^{30} + \cdots + b_{1} \times 2^{1} + b_{0} \times 2^{0}1.2  有符号数1.2.1  源码1.2.2  反码1.2.3  补码 b_{31} \times \underline{">
+<meta name="description" content="介绍了整数和浮点数在计算机内部是如何表示的。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数的机器级表示">
 <meta property="og:url" content="http://yoursite.com/2019/08/11/comp-arch-number/index.html">
 <meta property="og:site_name" content="RHANQTL">
-<meta property="og:description" content="1  整数1.1  起点：无符号数1.1.1  BCD 码1.1.2  直接使用二进制 b_{31} \times 2^{31} + b_{30} \times 2^{30} + \cdots + b_{1} \times 2^{1} + b_{0} \times 2^{0}1.2  有符号数1.2.1  源码1.2.2  反码1.2.3  补码 b_{31} \times \underline{">
+<meta property="og:description" content="介绍了整数和浮点数在计算机内部是如何表示的。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-11T03:48:10.773Z">
+<meta property="og:image" content="http://yoursite.com/2019/08/11/comp-arch-number/Users/hanqi/AppData/Roaming/Typora/typora-user-images/1567690198419.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/11/comp-arch-number/Users/hanqi/AppData/Roaming/Typora/typora-user-images/1567690659671.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/11/comp-arch-number/Users/hanqi/AppData/Roaming/Typora/typora-user-images/1567690668197.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/11/comp-arch-number/Users/hanqi/AppData/Roaming/Typora/typora-user-images/1567690844458.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/11/comp-arch-number/Users/hanqi/AppData/Roaming/Typora/typora-user-images/1567691005402.png">
+<meta property="og:updated_time" content="2019-09-15T20:50:20.109Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数的机器级表示">
-<meta name="twitter:description" content="1  整数1.1  起点：无符号数1.1.1  BCD 码1.1.2  直接使用二进制 b_{31} \times 2^{31} + b_{30} \times 2^{30} + \cdots + b_{1} \times 2^{1} + b_{0} \times 2^{0}1.2  有符号数1.2.1  源码1.2.2  反码1.2.3  补码 b_{31} \times \underline{">
+<meta name="twitter:description" content="介绍了整数和浮点数在计算机内部是如何表示的。">
+<meta name="twitter:image" content="http://yoursite.com/2019/08/11/comp-arch-number/Users/hanqi/AppData/Roaming/Typora/typora-user-images/1567690198419.png">
 
 
 
@@ -385,14 +391,328 @@
       
 
       
-        <h1 id="1-整数"><a href="#1-整数" class="headerlink" title="1  整数"></a>1  整数</h1><h2 id="1-1-起点：无符号数"><a href="#1-1-起点：无符号数" class="headerlink" title="1.1  起点：无符号数"></a>1.1  起点：无符号数</h2><h3 id="1-1-1-BCD-码"><a href="#1-1-1-BCD-码" class="headerlink" title="1.1.1  BCD 码"></a>1.1.1  BCD 码</h3><h3 id="1-1-2-直接使用二进制"><a href="#1-1-2-直接使用二进制" class="headerlink" title="1.1.2  直接使用二进制"></a>1.1.2  直接使用二进制</h3><script type="math/tex; mode=display">
-b_{31} \times 2^{31} + b_{30} \times 2^{30} + \cdots + b_{1} \times 2^{1} + b_{0} \times 2^{0}</script><h2 id="1-2-有符号数"><a href="#1-2-有符号数" class="headerlink" title="1.2  有符号数"></a>1.2  有符号数</h2><h3 id="1-2-1-源码"><a href="#1-2-1-源码" class="headerlink" title="1.2.1  源码"></a>1.2.1  源码</h3><h3 id="1-2-2-反码"><a href="#1-2-2-反码" class="headerlink" title="1.2.2  反码"></a>1.2.2  反码</h3><h3 id="1-2-3-补码"><a href="#1-2-3-补码" class="headerlink" title="1.2.3  补码"></a>1.2.3  补码</h3><script type="math/tex; mode=display">
-b_{31} \times \underline{(-2^{31})} + b_{30} \times 2^{30} + \cdots + b_{1} \times 2^{1} + b_{0} \times 2^{0}</script><p>可以假想有无限多 bit，只是限于位宽，只列出其中的一部分，在进行符号扩展时，仅仅是将它们展现出来：</p>
+        <p>介绍了整数和浮点数在计算机内部是如何表示的。</p>
+<a id="more"></a>
+<h1 id="1-整数"><a href="#1-整数" class="headerlink" title="1  整数"></a>1  整数</h1><h2 id="1-1-起点：无符号数"><a href="#1-1-起点：无符号数" class="headerlink" title="1.1  起点：无符号数"></a>1.1  起点：无符号数</h2><h3 id="1-1-1-BCD-码"><a href="#1-1-1-BCD-码" class="headerlink" title="1.1.1  BCD 码"></a>1.1.1  BCD 码</h3><p>世界上第一台通用计算机 ENIAC 使用的是十进制表示，但是由于电路只有两个状态：电平高、电平低，所以就有了 BCD 码。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>十进制</th>
+<th>BCD 码</th>
+<th>十进制</th>
+<th>BCD 码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0000</td>
+<td>5</td>
+<td>0101</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0001</td>
+<td>6</td>
+<td>0110</td>
+</tr>
+<tr>
+<td>2</td>
+<td>0010</td>
+<td>7</td>
+<td>0111</td>
+</tr>
+<tr>
+<td>3</td>
+<td>0011</td>
+<td>8</td>
+<td>1000</td>
+</tr>
+<tr>
+<td>4</td>
+<td>0100</td>
+<td>9</td>
+<td>1001</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>可以看到，BCD 码其实有一些问题：</p>
+<ul>
+<li></li>
+<li>运算不方便</li>
+</ul>
+<h3 id="1-1-2-直接使用二进制"><a href="#1-1-2-直接使用二进制" class="headerlink" title="1.1.2  直接使用二进制"></a>1.1.2  直接使用二进制</h3><script type="math/tex; mode=display">
+b_{31} \times 2^{31} + b_{30} \times 2^{30} + \cdots + b_{1} \times 2^{1} + b_{0} \times 2^{0}</script><h2 id="1-2-有符号数"><a href="#1-2-有符号数" class="headerlink" title="1.2  有符号数"></a>1.2  有符号数</h2><h3 id="1-2-1-原码"><a href="#1-2-1-原码" class="headerlink" title="1.2.1  原码"></a>1.2.1  原码</h3><p>也叫符号和幅值 (Sign and Magnitude) 表示法，最接近十进制的表示方式</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>十进制</th>
+<th>二进制</th>
+<th>十进制</th>
+<th>二进制</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0000</td>
+<td>-0</td>
+<td>1000</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0001</td>
+<td>-1</td>
+<td>1001</td>
+</tr>
+<tr>
+<td>2</td>
+<td>0010</td>
+<td>-2</td>
+<td>1010</td>
+</tr>
+<tr>
+<td>3</td>
+<td>0011</td>
+<td>-3</td>
+<td>1011</td>
+</tr>
+<tr>
+<td>4</td>
+<td>0100</td>
+<td>-4</td>
+<td>1100</td>
+</tr>
+<tr>
+<td>5</td>
+<td>0101</td>
+<td>-5</td>
+<td>1101</td>
+</tr>
+<tr>
+<td>6</td>
+<td>0110</td>
+<td>-6</td>
+<td>1110</td>
+</tr>
+<tr>
+<td>7</td>
+<td>0111</td>
+<td>-7</td>
+<td>1111</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>容易理解，但是：</p>
+<ul>
+<li>0 的表示不唯一，不利于编程</li>
+</ul>
+<p><img src="/2019/08/11/comp-arch-number/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1567690198419.png" alt=""></p>
+<h3 id="1-2-2-移码"><a href="#1-2-2-移码" class="headerlink" title="1.2.2  移码"></a>1.2.2  移码</h3><p>Excess (biased) notion</p>
+<p>将每个数值加上一个偏置常数 (Excess/bias)</p>
+<p>通常，当编码位数为 $n$ 时，偏置常数取 $2^{n-1}$ 或 $2^{n-1} - 1$</p>
+<p>例如，$n = 4$，偏置常数为 $2^3 = 8$</p>
+<p>那么：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>十进制</th>
+<th>二进制</th>
+<th>十进制</th>
+<th>二进制</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>1000</td>
+<td>-1</td>
+<td>0111</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1001</td>
+<td>-2</td>
+<td>0110</td>
+</tr>
+<tr>
+<td>2</td>
+<td>1010</td>
+<td>-3</td>
+<td>0101</td>
+</tr>
+<tr>
+<td>3</td>
+<td>1011</td>
+<td>-4</td>
+<td>0100</td>
+</tr>
+<tr>
+<td>4</td>
+<td>1100</td>
+<td>-5</td>
+<td>0011</td>
+</tr>
+<tr>
+<td>5</td>
+<td>1101</td>
+<td>-6</td>
+<td>0010</td>
+</tr>
+<tr>
+<td>6</td>
+<td>1110</td>
+<td>-7</td>
+<td>0001</td>
+</tr>
+<tr>
+<td>7</td>
+<td>1111</td>
+<td>-8</td>
+<td>0000</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><img src="/2019/08/11/comp-arch-number/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1567690659671.png" alt="1567690659671"></p>
+<p><img src="/2019/08/11/comp-arch-number/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1567690668197.png" alt="1567690668197"></p>
+<h3 id="1-2-3-反码"><a href="#1-2-3-反码" class="headerlink" title="1.2.3  反码"></a>1.2.3  反码</h3><h3 id="1-2-4-补码"><a href="#1-2-4-补码" class="headerlink" title="1.2.4  补码"></a>1.2.4  补码</h3><p>2’s complement</p>
+<p>模运算系统</p>
+<p><img src="/2019/08/11/comp-arch-number/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1567690844458.png" alt="1567690844458"></p>
+<p><img src="/2019/08/11/comp-arch-number/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1567691005402.png" alt="1567691005402"></p>
+<script type="math/tex; mode=display">
+b_{31} \times \underline{(-2^{31})} + b_{30} \times 2^{30} + \cdots + b_{1} \times 2^{1} + b_{0} \times 2^{0}</script><script type="math/tex; mode=display">
+X_{补} = 2^{n} + X</script><script type="math/tex; mode=display">
+x + \overline{x} + 1 = 0</script><p>可以假想有无限多 bit，只是限于位宽，只列出其中的一部分，在进行<u>符号扩展</u>时，仅仅是将它们展现出来：</p>
 <pre>
     <font color="lightgray">... 1111 1111 1111 1111</font> 1111 1101 0010 1010
     <font color="lightgray">... </font>1111 1111 1111 1111 1111 1101 0010 1010
 </pre>
+#### 1.2.4.2  变形补码
 
+4's complement
+
+双符号位，用于存放可能溢出的中间结果
+
+
+
+
+# 2  浮点数
+
+## 2.1  基本表示方式
+
+对实数编码的困难在于小数点的处理，我们知道，在数学中，小数点左右两侧的位数可以有无穷多，而兼顾表示的范围以及简单性。
+
+可以使用类似科学计数法的表示方式，即
+$$
+\text{sign} \times \text{fraction} \times \text{radix}^{\text{exponent}}
+$$
+
+
+## 2.2  IEEE 754 标准
+
+<table>
+    <tr>
+        <th rowspan="2">类型</th>
+        <th rowspan="2">总位数</th>
+        <th rowspan="2">符号 (s)</th>
+        <th rowspan="2">阶码 (E)</th>
+        <th rowspan="2">尾数 (M)</th>
+        <th colspan="2">偏置值</th>
+    </tr>
+    <tr>
+        <th>十六进制</th>
+        <th>十进制</th>
+    </tr>
+    <tr>
+        <td>短浮点数</td>
+        <td>32</td>
+        <td>1</td>
+        <td>8</td>
+        <td>23</td>
+        <td>0x7F</td>
+        <td>127</td>
+    </tr>
+    <tr>
+        <td>长浮点数</td>
+        <td>64</td>
+        <td>1</td>
+        <td>11</td>
+        <td>52</td>
+        <td>0x3FF</td>
+        <td>1023</td>
+    </tr>
+    <tr>
+        <td>临时浮点数</td>
+        <td>80</td>
+        <td>1</td>
+        <td>15</td>
+        <td>64</td>
+        <td>0x3FFF</td>
+        <td>16383</td>
+    </tr>
+</table>
+
+规定（以短浮点数为例）
+
+- $E = 0​$
+
+  - $M = 0$，真值为 0，所以 0 有两种表示：
+
+    <pre>
+        s E         M
+        0 0000 0000 0000 0000 0000 0000 0000 000
+        1 0000 0000 0000 0000 0000 0000 0000 000
+    </pre>
+
+<ul>
+<li>$M \ne 0​$，为非规格化数，真值为 $(-1)^s \times \underline{0}.M \times 2 ^{\underline{-126}}​$</li>
+</ul>
+<ul>
+<li><p>$1 \le E \le 254​$，真值为 $(-1)^s \times \underline{1}.M \times 2^{E - 127}​$</p>
+</li>
+<li><p>$E = 255$</p>
+<ul>
+<li><p>$M = 0​$，为无穷，正负看符号位</p>
+<pre>
+         s E         M
+   +Inf: 0 1111 1111 0000 0000 0000 0000 0000 000
+   -Inf: 1 1111 1111 0000 0000 0000 0000 0000 000
+</pre>
+</li>
+<li><p>$M \ne 0​$，为 NaN (Not a Number)，所以 NaN 有多个位模式</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><a href="int2float.c">这里</a>提供了一份代码（注意：）</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>格式</th>
+<th>最小值</th>
+<th>最大值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>单精度</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>双精度</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
 
       
     </div>
@@ -506,7 +826,7 @@ b_{31} \times \underline{(-2^{31})} + b_{30} \times 2^{30} + \cdots + b_{1} \tim
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">181</span>
+                  <span class="site-state-item-count">188</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -584,7 +904,7 @@ b_{31} \times \underline{(-2^{31})} + b_{30} \times 2^{30} + \cdots + b_{1} \tim
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-整数"><span class="nav-number">1.</span> <span class="nav-text">1  整数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-起点：无符号数"><span class="nav-number">1.1.</span> <span class="nav-text">1.1  起点：无符号数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-1-BCD-码"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.1.1  BCD 码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-2-直接使用二进制"><span class="nav-number">1.1.2.</span> <span class="nav-text">1.1.2  直接使用二进制</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-有符号数"><span class="nav-number">1.2.</span> <span class="nav-text">1.2  有符号数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-1-源码"><span class="nav-number">1.2.1.</span> <span class="nav-text">1.2.1  源码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-2-反码"><span class="nav-number">1.2.2.</span> <span class="nav-text">1.2.2  反码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-3-补码"><span class="nav-number">1.2.3.</span> <span class="nav-text">1.2.3  补码</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-整数"><span class="nav-number">1.</span> <span class="nav-text">1  整数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-起点：无符号数"><span class="nav-number">1.1.</span> <span class="nav-text">1.1  起点：无符号数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-1-BCD-码"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.1.1  BCD 码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-2-直接使用二进制"><span class="nav-number">1.1.2.</span> <span class="nav-text">1.1.2  直接使用二进制</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-有符号数"><span class="nav-number">1.2.</span> <span class="nav-text">1.2  有符号数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-1-原码"><span class="nav-number">1.2.1.</span> <span class="nav-text">1.2.1  原码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-2-移码"><span class="nav-number">1.2.2.</span> <span class="nav-text">1.2.2  移码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-3-反码"><span class="nav-number">1.2.3.</span> <span class="nav-text">1.2.3  反码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-4-补码"><span class="nav-number">1.2.4.</span> <span class="nav-text">1.2.4  补码</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>

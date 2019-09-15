@@ -92,17 +92,17 @@
 
 
 
-<meta name="description" content="有时候我们写出一个算法，暂时没有条件（比如数据的限制/算力的限制/手边没有电脑等）进行实际的测试，这时候可以对齐进行证明。">
+<meta name="description" content="有时候我们写出一个算法，暂时没有条件（比如数据的限制/算力的限制/手边没有电脑等）进行实际的测试，这时候可以对其进行证明。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="算法正确性验证">
+<meta property="og:title" content="算法正确性证明">
 <meta property="og:url" content="http://yoursite.com/2018/12/05/algorithms-correctness-verification/index.html">
 <meta property="og:site_name" content="RHANQTL">
-<meta property="og:description" content="有时候我们写出一个算法，暂时没有条件（比如数据的限制/算力的限制/手边没有电脑等）进行实际的测试，这时候可以对齐进行证明。">
+<meta property="og:description" content="有时候我们写出一个算法，暂时没有条件（比如数据的限制/算力的限制/手边没有电脑等）进行实际的测试，这时候可以对其进行证明。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-17T08:51:05.662Z">
+<meta property="og:updated_time" content="2019-09-08T10:07:53.987Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="算法正确性验证">
-<meta name="twitter:description" content="有时候我们写出一个算法，暂时没有条件（比如数据的限制/算力的限制/手边没有电脑等）进行实际的测试，这时候可以对齐进行证明。">
+<meta name="twitter:title" content="算法正确性证明">
+<meta name="twitter:description" content="有时候我们写出一个算法，暂时没有条件（比如数据的限制/算力的限制/手边没有电脑等）进行实际的测试，这时候可以对其进行证明。">
 
 
 
@@ -138,7 +138,7 @@
 
 
 
-  <title>算法正确性验证 | RHANQTL</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>算法正确性证明 | RHANQTL</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -330,7 +330,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">算法正确性验证</h1>
+          <h1 class="post-title" itemprop="name headline">算法正确性证明</h1>
         
 
         <div class="post-meta">
@@ -407,10 +407,20 @@
       
 
       
-        <p>有时候我们写出一个算法，暂时没有条件（比如数据的限制/算力的限制/手边没有电脑等）进行实际的测试，这时候可以对齐进行证明。</p>
+        <p>有时候我们写出一个算法，暂时没有条件（比如数据的限制/算力的限制/手边没有电脑等）进行实际的测试，这时候可以对其进行证明。</p>
 <a id="more"></a>
-<h1 id="算法正确性验证"><a href="#算法正确性验证" class="headerlink" title="算法正确性验证"></a>算法正确性验证</h1><p>证明的基本方法是数学归纳法，因为数学归纳法天然的符合递归结构，对于迭代，对次数进行数学归纳。下面给出一些例子。</p>
-<h2 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h2><h2 id="迭代"><a href="#迭代" class="headerlink" title="迭代"></a>迭代</h2>
+<p>证明的基本方法是数学归纳法。下面先讲解数学归纳法，然后分别给出证明递归和证明迭代的例子给出一些例子。</p>
+<h1 id="1-数学归纳法"><a href="#1-数学归纳法" class="headerlink" title="1  数学归纳法"></a>1  数学归纳法</h1><p><strong>弱数学归纳法</strong></p>
+<p><strong>强数学归纳法</strong></p>
+<h1 id="2-递归"><a href="#2-递归" class="headerlink" title="2  递归"></a>2  递归</h1><p><strong>例 1</strong>    证明 Euclid 算法（辗转相除法）正确</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">int euclid(int a, int b) &#123;</span><br><span class="line">    if (b == 0) &#123;</span><br><span class="line">        return a;</span><br><span class="line">    &#125;</span><br><span class="line">    return euclid(b, a % b);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>证明：</strong>对 $b​$ 进行数学归纳</p>
+<ol>
+<li>$b = 0​$ 时，显然正确</li>
+<li>假设 $b &lt; k$ 时算法正确，则有 $\text{Euclid}(a, k-1) = \text{GCD}(a, k-1)$，那么当 $b = k$ 时，根据 Euclid 算法有 $\text{Euclid}(a, k) = \text{Euclid}(k, a\text{ mod }k)$，由于 $a\text{ mod }k \le k - 1$，故 $\text{Euclid}(a, k) = \text{Euclid}(k, a\text{ mod }k) = \text{GCD}(k, a\text{ mod }k)$，再根据最大公约数的性质，有 $\text{GCD}(a, k) = \text{GCD}(k, a\text{ mod }k)$，所以 $\text{Euclid}(a, k) = \text{GCD}(a, k)$</li>
+</ol>
+<p><strong>例 2</strong>    证明如下的</p>
+<h1 id="3-迭代"><a href="#3-迭代" class="headerlink" title="3  迭代"></a>3  迭代</h1>
       
     </div>
     
@@ -523,7 +533,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">181</span>
+                  <span class="site-state-item-count">188</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -601,7 +611,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#算法正确性验证"><span class="nav-number">1.</span> <span class="nav-text">算法正确性验证</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#递归"><span class="nav-number">1.1.</span> <span class="nav-text">递归</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#迭代"><span class="nav-number">1.2.</span> <span class="nav-text">迭代</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-数学归纳法"><span class="nav-number">1.</span> <span class="nav-text">1  数学归纳法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-递归"><span class="nav-number">2.</span> <span class="nav-text">2  递归</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-迭代"><span class="nav-number">3.</span> <span class="nav-text">3  迭代</span></a></li></ol></div>
             
 
           </div>

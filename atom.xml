@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-08-21T15:24:09.644Z</updated>
+  <updated>2019-09-07T12:46:15.046Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,11 +17,145 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>leetcode-969-pancake-sorting</title>
+    <link href="http://yoursite.com/2019/09/07/leetcode-969-pancake-sorting/"/>
+    <id>http://yoursite.com/2019/09/07/leetcode-969-pancake-sorting/</id>
+    <published>2019-09-07T12:46:13.000Z</published>
+    <updated>2019-09-07T12:46:15.046Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>comp-arch-floating-point-operation</title>
+    <link href="http://yoursite.com/2019/08/29/comp-arch-floating-point-operation/"/>
+    <id>http://yoursite.com/2019/08/29/comp-arch-floating-point-operation/</id>
+    <published>2019-08-29T13:36:41.000Z</published>
+    <updated>2019-08-29T14:04:38.982Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>C 语言中的数据对齐</title>
+    <link href="http://yoursite.com/2019/08/27/c-data-alignment/"/>
+    <id>http://yoursite.com/2019/08/27/c-data-alignment/</id>
+    <published>2019-08-27T12:26:22.000Z</published>
+    <updated>2019-08-29T03:09:51.437Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;本文总结 C 语言中数据对齐相关的知识，包括结构体实际大小的计算。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="C" scheme="http://yoursite.com/categories/C/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>C 语言中的宏 (Macro)</title>
+    <link href="http://yoursite.com/2019/08/24/c-macros/"/>
+    <id>http://yoursite.com/2019/08/24/c-macros/</id>
+    <published>2019-08-24T00:59:45.000Z</published>
+    <updated>2019-08-26T03:18:45.322Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;C 语言中的宏有两类：Object-like 和 Function-like，本文对二者进行了简单的介绍。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="C" scheme="http://yoursite.com/categories/C/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="http://yoursite.com/2019/08/23/work-out-%E7%A6%BB%E5%BF%83%E6%94%B6%E7%BC%A9-%E5%90%91%E5%BF%83%E6%94%B6%E7%BC%A9-%E7%AD%89%E9%95%BF%E6%94%B6%E7%BC%A9/"/>
+    <id>http://yoursite.com/2019/08/23/work-out-离心收缩-向心收缩-等长收缩/</id>
+    <published>2019-08-23T11:55:50.969Z</published>
+    <updated>2019-08-23T11:55:50.969Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>肩部训练</title>
+    <link href="http://yoursite.com/2019/08/23/work-out-shoulder/"/>
+    <id>http://yoursite.com/2019/08/23/work-out-shoulder/</id>
+    <published>2019-08-23T10:55:55.000Z</published>
+    <updated>2019-08-25T03:23:02.642Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+      <category term="健身 (Working Out)" scheme="http://yoursite.com/categories/%E5%81%A5%E8%BA%AB-Working-Out/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>肌肉纤维的种类</title>
+    <link href="http://yoursite.com/2019/08/22/work-out-types-of-muscle-fiber/"/>
+    <id>http://yoursite.com/2019/08/22/work-out-types-of-muscle-fiber/</id>
+    <published>2019-08-22T01:07:18.000Z</published>
+    <updated>2019-08-22T01:11:13.659Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+      <category term="健身 (Working Out)" scheme="http://yoursite.com/categories/%E5%81%A5%E8%BA%AB-Working-Out/"/>
+    
+    
+  </entry>
+  
+  <entry>
     <title>肱三头肌训练</title>
     <link href="http://yoursite.com/2019/08/21/work-out-triceps/"/>
     <id>http://yoursite.com/2019/08/21/work-out-triceps/</id>
     <published>2019-08-21T14:45:51.000Z</published>
-    <updated>2019-08-21T15:24:09.644Z</updated>
+    <updated>2019-08-23T10:56:41.151Z</updated>
     
     <summary type="html">
     
@@ -29,7 +163,7 @@
     
     </summary>
     
-      <category term="健身 (Working out)" scheme="http://yoursite.com/categories/%E5%81%A5%E8%BA%AB-Working-out/"/>
+      <category term="健身 (Working Out)" scheme="http://yoursite.com/categories/%E5%81%A5%E8%BA%AB-Working-Out/"/>
     
     
   </entry>
@@ -87,17 +221,11 @@
     <link href="http://yoursite.com/2019/08/11/comp-arch-number/"/>
     <id>http://yoursite.com/2019/08/11/comp-arch-number/</id>
     <published>2019-08-11T03:37:16.000Z</published>
-    <updated>2019-08-11T03:48:10.773Z</updated>
+    <updated>2019-09-15T20:50:20.109Z</updated>
     
     <summary type="html">
     
-      
-      
-        
-        
-          
-        
-      
+      &lt;p&gt;介绍了整数和浮点数在计算机内部是如何表示的。&lt;/p&gt;
     
     </summary>
     
@@ -109,7 +237,7 @@
     <link href="http://yoursite.com/2019/07/18/poems-%E6%9D%8E%E7%99%BD-%E4%BE%A0%E5%AE%A2%E8%A1%8C/"/>
     <id>http://yoursite.com/2019/07/18/poems-李白-侠客行/</id>
     <published>2019-07-18T11:48:10.000Z</published>
-    <updated>2019-07-18T11:48:48.277Z</updated>
+    <updated>2019-08-24T10:44:49.345Z</updated>
     
     <summary type="html">
     
@@ -280,142 +408,6 @@
       <category term="Linux" scheme="http://yoursite.com/categories/Linux/"/>
     
       <category term="Manjaro" scheme="http://yoursite.com/categories/Linux/Manjaro/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Linux 中的 /boot/efi 分区</title>
-    <link href="http://yoursite.com/2019/07/05/linux-boot-efi/"/>
-    <id>http://yoursite.com/2019/07/05/linux-boot-efi/</id>
-    <published>2019-07-05T03:34:12.000Z</published>
-    <updated>2019-07-05T03:36:25.265Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-      <category term="Linux" scheme="http://yoursite.com/categories/Linux/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>线性代数基础：奇异值分解</title>
-    <link href="http://yoursite.com/2019/07/03/linear-algebra-svd/"/>
-    <id>http://yoursite.com/2019/07/03/linear-algebra-svd/</id>
-    <published>2019-07-03T10:45:18.000Z</published>
-    <updated>2019-07-03T22:33:23.833Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-      <category term="数学 (Mathematics)" scheme="http://yoursite.com/categories/%E6%95%B0%E5%AD%A6-Mathematics/"/>
-    
-      <category term="线性代数 (Linear Algebra)" scheme="http://yoursite.com/categories/%E6%95%B0%E5%AD%A6-Mathematics/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0-Linear-Algebra/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>openmp-examples</title>
-    <link href="http://yoursite.com/2019/07/02/openmp-examples/"/>
-    <id>http://yoursite.com/2019/07/02/openmp-examples/</id>
-    <published>2019-07-02T10:02:41.000Z</published>
-    <updated>2019-07-02T10:06:03.373Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>linux-programming-condition-variable</title>
-    <link href="http://yoursite.com/2019/07/02/linux-programming-condition-variable/"/>
-    <id>http://yoursite.com/2019/07/02/linux-programming-condition-variable/</id>
-    <published>2019-07-02T02:11:24.000Z</published>
-    <updated>2019-07-02T02:29:12.863Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;条件变量 TODO&lt;/p&gt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>soft-eng-test-boundary-analysis</title>
-    <link href="http://yoursite.com/2019/07/01/soft-eng-test-boundary-analysis/"/>
-    <id>http://yoursite.com/2019/07/01/soft-eng-test-boundary-analysis/</id>
-    <published>2019-07-01T08:11:37.000Z</published>
-    <updated>2019-07-01T08:11:38.115Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>soft-eng-test-fundamentals</title>
-    <link href="http://yoursite.com/2019/07/01/soft-eng-test-fundamentals/"/>
-    <id>http://yoursite.com/2019/07/01/soft-eng-test-fundamentals/</id>
-    <published>2019-07-01T03:31:47.000Z</published>
-    <updated>2019-07-01T03:31:47.382Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>软件测试基础：等价类划分</title>
-    <link href="http://yoursite.com/2019/07/01/soft-eng-test-equiv-partition/"/>
-    <id>http://yoursite.com/2019/07/01/soft-eng-test-equiv-partition/</id>
-    <published>2019-07-01T02:25:06.000Z</published>
-    <updated>2019-07-01T08:10:46.196Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;由于软件的输入域非常大，所以通常不能进行穷举测试，我们只能找一些有代表性的进行测试。本文介绍一种方法：等价类划分。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="软件工程 (Software Engineering)" scheme="http://yoursite.com/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B-Software-Engineering/"/>
-    
-      <category term="软件测试 (Software Testing)" scheme="http://yoursite.com/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B-Software-Engineering/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95-Software-Testing/"/>
     
     
   </entry>
