@@ -108,7 +108,7 @@
 <meta property="og:image" content="http://yoursite.com/2019/05/28/computer-networks-gfw/tor-1.png">
 <meta property="og:image" content="http://yoursite.com/2019/05/28/computer-networks-gfw/tor-2.png">
 <meta property="og:image" content="http://yoursite.com/2019/05/28/computer-networks-gfw/tor-3.png">
-<meta property="og:updated_time" content="2019-05-28T09:33:23.995Z">
+<meta property="og:updated_time" content="2019-09-29T06:01:05.196Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="GFW 的原理及代理">
 <meta name="twitter:description" content="本文主要介绍 GFW 的工作原理及代理 (Proxy) 相关的知识。">
@@ -419,8 +419,8 @@
       
         <p>本文主要介绍 GFW 的工作原理及代理 (Proxy) 相关的知识。</p>
 <a id="more"></a>
-<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>很多人都应该对网络限制和监控有所体会：很多公司会限制一些网站的访问；一些网盘、视频网站有时也会对你访问的内容进行监控；还有一些公共 WiFi 可能限制你只能访问 80 端口；再比如在国内无法访问 Google，Facebook，Twitter 等网站。本文介绍它们是如何限制的。</p>
-<h1 id="限制访问的原理"><a href="#限制访问的原理" class="headerlink" title="限制访问的原理"></a>限制访问的原理</h1><h2 id="DNS-缓存污染和-DNS-劫持"><a href="#DNS-缓存污染和-DNS-劫持" class="headerlink" title="DNS 缓存污染和 DNS 劫持"></a>DNS 缓存污染和 DNS 劫持</h2><p>关于 DNS 的基本知识，参考 <a href="TODO">DNS 工作原理</a>。</p>
+<h1 id="0-引言"><a href="#0-引言" class="headerlink" title="0    引言"></a>0    引言</h1><p>很多人都应该对网络限制和监控有所体会：很多公司会限制一些网站的访问；一些网盘、视频网站有时也会对你访问的内容进行监控；还有一些公共 WiFi 可能限制你只能访问 80 端口；再比如在国内无法访问 Google，Facebook，Twitter 等网站。本文介绍它们是如何限制的。</p>
+<h1 id="1-限制访问的原理"><a href="#1-限制访问的原理" class="headerlink" title="1    限制访问的原理"></a>1    限制访问的原理</h1><h2 id="1-1-DNS-缓存污染和-DNS-劫持"><a href="#1-1-DNS-缓存污染和-DNS-劫持" class="headerlink" title="1.1    DNS 缓存污染和 DNS 劫持"></a>1.1    DNS 缓存污染和 DNS 劫持</h2><p>关于 DNS 的基本知识，参考 <a href="TODO">DNS 工作原理</a>。</p>
 <p><strong>什么是 DNS 缓存污染？</strong></p>
 <p>DNS 缓存污染 (DNS cache pollution)，又称 DNS 缓存投毒 (DNS cache poisoning)，是指一些让域名指向不正确的 IP 地址的域名服务器数据包。根据 DNS 的工作原理，一旦有关网域的局域域名服务器的缓存受到污染，就会把网域内的计算机引导向错误的服务器或服务器的网址。[1]</p>
 <p><strong>什么是 DNS 劫持？</strong></p>
@@ -437,14 +437,14 @@
 <li>自己用 VPS 搭建 DNS 服务器</li>
 <li>修改机器 host 文件，直接 IP 访问（但是由于使用 DNS 污染/DNS 劫持控制访问的固有缺陷，所以还有其他的封锁方式，这种方式也不一定可用，见下面）</li>
 </ol>
-<h2 id="封锁-IP"><a href="#封锁-IP" class="headerlink" title="封锁 IP"></a>封锁 IP</h2><p>通过上面一些方式，可以绕过 DNS 污染，直接通过 IP 地址访问无法访问的网页。但是 GFW 目前也进行了大范围的 IP 封锁。虽然 Google 这种大公司有很多镜像 IP 地址，但是目前基本全部被封锁掉，有漏网的可能也坚持不了多久。而且很多小公司的服务是部署在一些第三方的主机上，所以封锁 IP 有时会误伤，封锁一个 IP 导致主机上本来可以使用的页面也无法访问了。</p>
+<h2 id="1-2-封锁-IP"><a href="#1-2-封锁-IP" class="headerlink" title="1.2    封锁 IP"></a>1.2    封锁 IP</h2><p>通过上面一些方式，可以绕过 DNS 污染，直接通过 IP 地址访问无法访问的网页。但是 GFW 目前也进行了大范围的 IP 封锁。虽然 Google 这种大公司有很多镜像 IP 地址，但是目前基本全部被封锁掉，有漏网的可能也坚持不了多久。而且很多小公司的服务是部署在一些第三方的主机上，所以封锁 IP 有时会误伤，封锁一个 IP 导致主机上本来可以使用的页面也无法访问了。</p>
 <p>不过目前不可能把所有国外的 IP 全部封锁掉，所以我们采用机会从国内连接到国外的 VPS，进行翻墙。</p>
 <p>解决办法：</p>
 <ol>
 <li>使用 VPS 搭建代理</li>
 <li>使用 IPv6 （IPv6 地址空间巨大，采用封地址不现实，但是目前国内只有部分高校部署了 IPv6）</li>
 </ol>
-<h2 id="封锁-HTTP-代理"><a href="#封锁-HTTP-代理" class="headerlink" title="封锁 HTTP 代理"></a>封锁 HTTP 代理</h2><p>对于没有办法搭建 VPS 的人来说，最好的办法就是使用 HTTP 代理。客户端不再直接请求目标服务器，而是请求代理服务器，代理服务器再去请求目标服务器。然后返回结果。关于 HTTP 代理可以参考《HTTP 权威指南》第六章。</p>
+<h2 id="1-3-封锁-HTTP-代理"><a href="#1-3-封锁-HTTP-代理" class="headerlink" title="1.3    封锁 HTTP 代理"></a>1.3    封锁 HTTP 代理</h2><p>对于没有办法搭建 VPS 的人来说，最好的办法就是使用 HTTP 代理。客户端不再直接请求目标服务器，而是请求代理服务器，代理服务器再去请求目标服务器。然后返回结果。关于 HTTP 代理可以参考《HTTP 权威指南》第六章。</p>
 <img src="/2019/05/28/computer-networks-gfw/proxy.png">
 <p>对于 HTTP 代理来说，封锁起来非常简单。因为 HTTP 协议是明文，Request Message 中就带有要请求的 URL 或 IP 地址，这样很容易就被检测到。对于 HTTPS 来说，虽然通信是进行加密了，但是在建立连接之前会给代理服务器发送 CONNECT 方法，这里也会带上要访问的远端服务器地址。如果代理服务器在国外，在出去前就会被检测到。 如果代理服务器在国内，你也出不去啊。</p>
 <p>对于 HTTP 代理，因为是明文，所以很容易被代理服务器了解你的一些数据。<strong>所以不要随便使用第三方的 HTTP 代理访问 HTTP 网站，而 HTTPS 虽然不知道你的数据，但是可以知道你去了那里。</strong></p>
@@ -453,7 +453,7 @@
 <li>使用 VPS 搭建 VPN</li>
 <li>使用第三方 VPN</li>
 </ol>
-<h2 id="封锁-VPN"><a href="#封锁-VPN" class="headerlink" title="封锁 VPN"></a>封锁 VPN</h2><p>VPN 全称为 Virtual Private Network，中文翻译为 “虚拟专用网”，是一种常用于连接中、大型企业或团体与团体间的私人网络的通讯方法。VPN 的信息透过公用的网络架构（例如：互联网）来传送内联网的网络消息。它利用已加密的通道协议 (Tunneling Protocol) 来达到保密、发送端认证、消息准确性等私人消息安全效果。</p>
+<h2 id="1-4-封锁-VPN"><a href="#1-4-封锁-VPN" class="headerlink" title="1.4    封锁 VPN"></a>1.4    封锁 VPN</h2><p>VPN 全称为 Virtual Private Network，中文翻译为 “虚拟专用网”，是一种常用于连接中、大型企业或团体与团体间的私人网络的通讯方法。VPN 的信息透过公用的网络架构（例如：互联网）来传送内联网的网络消息。它利用已加密的通道协议 (Tunneling Protocol) 来达到保密、发送端认证、消息准确性等私人消息安全效果。</p>
 <img src="/2019/05/28/computer-networks-gfw/vpn.jpg">
 <img src="/2019/05/28/computer-networks-gfw/vpn-2.png">
 <p>正常网络通信时，所有网络请求都是通过我们的物理网卡直接发送出去。而 VPN 是客户端使用相应的 VPN 协议先与 VPN 服务器进行通信，成功连接后就在操作系统内建立一个虚拟网卡，一般来说默认 PC 上所有网络通信都从这虚拟网卡上进出，经过 VPN 服务器中转之后再到达目的地。</p>
@@ -540,14 +540,14 @@
 <h3 id="特征检测"><a href="#特征检测" class="headerlink" title="特征检测"></a>特征检测</h3><p>要想成功翻墙都必须与对应的远程服务器建立连接，然后再用对应的协议进行数据处理并传输。而问题就出在这里：翻墙工具和远程服务器建立连接时，如果表现的很独特，在一大堆流量里很显眼，就会轻易被 GFW 识别出从而直接阻断连接，而 VPN（尤其是OPENVPN）和 SSH 这方面的问题尤其严重。</p>
 <h3 id="流量监控"><a href="#流量监控" class="headerlink" title="流量监控"></a>流量监控</h3><p>当一个 VPN 地址被大量人请求，并保持长时间连接时，就很容易引起关注。SSH 接口有大量数据请求。一般会结合其他特征。</p>
 <h3 id="深度包检测"><a href="#深度包检测" class="headerlink" title="深度包检测"></a>深度包检测</h3><p>深度包检测 (Deep Packet Inspection，DPI)，又称完全数据包探测 (complete packet inspection) 或信息萃取 (Information eXtraction，IX)，是一种计算机网络数据包过滤技术，用来检查通过检测点的数据包的数据部分（亦可能包含其标头），以搜索不匹配规范的协议、病毒、垃圾邮件、入侵，或以预定之准则来决定数据包是否可通过或需被路由至其他不同目的地，亦或是为了收集统计数据之目的。</p>
-<h1 id="绕过-GFW"><a href="#绕过-GFW" class="headerlink" title="绕过 GFW"></a>绕过 GFW</h1><h2 id="SOCKS-协议"><a href="#SOCKS-协议" class="headerlink" title="SOCKS 协议"></a>SOCKS 协议</h2><p>SOCKS 是一种网络传输协议，主要用于客户端与外网服务器之间通讯的中间传递。SOCKS 是 “SOCKetS” 的缩写。</p>
+<h1 id="2-绕过-GFW"><a href="#2-绕过-GFW" class="headerlink" title="2    绕过 GFW"></a>2    绕过 GFW</h1><h2 id="2-1-SOCKS-协议"><a href="#2-1-SOCKS-协议" class="headerlink" title="2.1    SOCKS 协议"></a>2.1    SOCKS 协议</h2><p>SOCKS 是一种网络传输协议，主要用于客户端与外网服务器之间通讯的中间传递。SOCKS 是 “SOCKetS” 的缩写。</p>
 <p>当防火墙内的客户端要访问外部的服务器时，就跟 SOCKS 代理服务器连接。这个代理服务器控制客户端访问外网的资格，允许的话，就将客户端的请求发往外部的服务器。</p>
 <p>这个协议最初由 David Koblas 开发，而后由 NEC 的 Ying-Da Lee 将其扩展到版本 4。最新协议是版本 5，与前一版本相比，增加支持 UDP、验证以及 IPv6。</p>
 <p>SOCKS 是 OSI 模型中会话层 (Session Layer) 的协议。</p>
-<h3 id="与-HTTP-代理的对比"><a href="#与-HTTP-代理的对比" class="headerlink" title="与 HTTP 代理的对比"></a>与 HTTP 代理的对比</h3><p>SOCKS 工作在比 HTTP 代理更低的层次：SOCKS 使用握手协议来通知代理软件其客户端试图进行的连接 SOCKS，然后尽可能透明地进行操作，而常规代理可能会解释和重写报头（例如，使用另一种底层协议，例如 FTP；然而，HTTP 代理只是将 HTTP 请求转发到所需的 HTTP 服务器）。虽然HTTP 代理有不同的使用模式，CONNECT 方法允许转发 TCP 连接；然而，SOCKS 代理还可以转发UDP 流量和反向代理，而 HTTP 代理不能。HTTP 代理通常更了解 HTTP 协议，执行更高层次的过滤（虽然通常只用于 GET 和 POST 方法，而不用于 CONNECT 方法）。</p>
+<h3 id="2-1-1-与-HTTP-代理的对比"><a href="#2-1-1-与-HTTP-代理的对比" class="headerlink" title="2.1.1    与 HTTP 代理的对比"></a>2.1.1    与 HTTP 代理的对比</h3><p>SOCKS 工作在比 HTTP 代理更低的层次：SOCKS 使用握手协议来通知代理软件其客户端试图进行的连接 SOCKS，然后尽可能透明地进行操作，而常规代理可能会解释和重写报头（例如，使用另一种底层协议，例如 FTP；然而，HTTP 代理只是将 HTTP 请求转发到所需的 HTTP 服务器）。虽然HTTP 代理有不同的使用模式，CONNECT 方法允许转发 TCP 连接；然而，SOCKS 代理还可以转发UDP 流量和反向代理，而 HTTP 代理不能。HTTP 代理通常更了解 HTTP 协议，执行更高层次的过滤（虽然通常只用于 GET 和 POST 方法，而不用于 CONNECT 方法）。</p>
 <p>Socks 代理本身协议是明文传输，虽然相对 HTTP 有一些优势，但是明文也导致 Socks 代理很容易被封。所以可以考虑对 Socks 进行加密。所以出现了 SSH Socks，对于 Mac 和 Linux 来说，不需要Client 就可以进行访问。详细可以看：<a href="https://my.oschina.net/leejun2005/blog/94401" target="_blank" rel="noopener">SSH 隧道技术简介：端口转发 &amp; SOCKS 代理</a></p>
 <p>有些地区会对一些 VPS 的 SSH 进行端口干扰。</p>
-<h3 id="Shadowsocks"><a href="#Shadowsocks" class="headerlink" title="Shadowsocks"></a>Shadowsocks</h3><p>官网：<a href="https://shadowsocks.org/en/index.html（.com" target="_blank" rel="noopener">https://shadowsocks.org/en/index.html（.com</a> 那个是卖账号的）</p>
+<h3 id="2-1-2-Shadowsocks"><a href="#2-1-2-Shadowsocks" class="headerlink" title="2.1.2    Shadowsocks"></a>2.1.2    Shadowsocks</h3><p>官网：<a href="https://shadowsocks.org/en/index.html（.com" target="_blank" rel="noopener">https://shadowsocks.org/en/index.html（.com</a> 那个是卖账号的）</p>
 <p>Shadowsocks 目前不容易被封杀主要是因为：</p>
 <ul>
 <li>建立在 socks5 协议之上。socks5 是运用很广泛的协议，所以没办法直接封杀 SOCKS 5 协议</li>
@@ -557,7 +557,7 @@
 </ul>
 <p><strong>所以如果是自己搭建的 Shadosocks 被封的概率很小，但是如果是第三方的 Shadeowsocks，密码是服务器定的，你的数据很可能遭受到中间人攻击。</strong></p>
 <p>顺便说一下，Shadowsocks 是天朝的 clowwindy 大神写的。不过 Shadowsocks 项目源码已经从 GitHub 上删除了并停止维护了，但是 release 中还有源码可以下载：<a href="https://github.com/shadowsocks/shadowsocks" target="_blank" rel="noopener">https://github.com/shadowsocks/shadowsocks</a></p>
-<h3 id="Shadowsocks-rss"><a href="#Shadowsocks-rss" class="headerlink" title="Shadowsocks-rss"></a>Shadowsocks-rss</h3><p>前面认为 Shadowssocks 特征并不是很明显，但是了解协议工作原理后会发现，SOCKS 协议本身还有有漏洞，可以被利用来检测特征，具体讨论看：<a href="https://github.com/breakwa11/shadowsocks-rss/issues/38" target="_blank" rel="noopener">ShadowSocks 协议的弱点分析和改进</a>。总结大致意思是：协议过于简单，并且格式固定，很容易被发起中间人攻击。</p>
+<h3 id="2-1-3-Shadowsocks-rss"><a href="#2-1-3-Shadowsocks-rss" class="headerlink" title="2.1.3    Shadowsocks-rss"></a>2.1.3    Shadowsocks-rss</h3><p>前面认为 Shadowssocks 特征并不是很明显，但是了解协议工作原理后会发现，SOCKS 协议本身还有有漏洞，可以被利用来检测特征，具体讨论看：<a href="https://github.com/breakwa11/shadowsocks-rss/issues/38" target="_blank" rel="noopener">ShadowSocks 协议的弱点分析和改进</a>。总结大致意思是：协议过于简单，并且格式固定，很容易被发起中间人攻击。</p>
 <p>先看看协议结构：</p>
 <div class="table-container">
 <table>
@@ -609,14 +609,14 @@
 </blockquote>
 <p>所以目前 Shadowsocks 应该是比较容易被检测出来。但是为什么没有被封掉，就不知道了。Shadowsocks-rss 这个项目的目的就是在 SS 的基础上进行一些混淆。不过目前这个项目好像也停止更新了，并且没有开源。</p>
 <p>当然如果是自己用完全可以自己修改一个私有协议（比如在 Address Type 中引入冗余），这样就没法被检测到了。但是需要同时修改服务器端、Mac 客户端、Windows 客户端和 Android 客户端。</p>
-<h2 id="GoAgent-和-GoProxy"><a href="#GoAgent-和-GoProxy" class="headerlink" title="GoAgent 和 GoProxy"></a>GoAgent 和 GoProxy</h2><p>Google App Engine 是一个开发、托管网络应用程序的平台，使用 Google 管理的数据中心。</p>
+<h2 id="2-2-GoAgent-和-GoProxy"><a href="#2-2-GoAgent-和-GoProxy" class="headerlink" title="2.2    GoAgent 和 GoProxy"></a>2.2    GoAgent 和 GoProxy</h2><p>Google App Engine 是一个开发、托管网络应用程序的平台，使用 Google 管理的数据中心。</p>
 <img src="/2019/05/28/computer-networks-gfw/gae.png">
 <p>GoAgent 的运行原理与其他代理工具基本相同，但是使用特定的中转服务器完成数据传输。它使用 Google App Engine 的服务器作为中传，将数据包发送至 Google 服务器，再由 Google 服务器转发至目的服务器，接收数据时方法也类似。由于服务器端软件基本相同，该中转服务器既可以是用户自行架设的服务器，也可以是由其他人架设的开放服务器。</p>
 <p>可以看到，GoAgent 其实也是利用 Google App Engine 作为代理，但是因为他是连接到 Google 的服务器，而国内现在 Google 大量被封，所以 GoAgent 也基本很难使用。目前 GitHub 上源码也已经删除。</p>
 <p>但是 GoAgent 本身不依赖于 Google App Engine，而且使用 Python 编写，完全可以部署到 VPS 上。</p>
 <p>GoProxy 是 GoAgent 的后续项目。</p>
 <p>还有一个 XX-NET：<a href="https://github.com/XX-net/XX-Net" target="_blank" rel="noopener">https://github.com/XX-net/XX-Net</a> 有兴趣都可以去了解下。</p>
-<h1 id="Tor"><a href="#Tor" class="headerlink" title="Tor"></a>Tor</h1><p>官网：<a href="TODO">Tor</a></p>
+<h2 id="2-3-v2ray"><a href="#2-3-v2ray" class="headerlink" title="2.3    v2ray"></a>2.3    v2ray</h2><h1 id="3-Tor"><a href="#3-Tor" class="headerlink" title="3    Tor"></a>3    Tor</h1><p>官网：<a href="TODO">Tor</a></p>
 <p>Tor（The Onion Router，洋葱路由器）是实现匿名通信的自由软件。Tor 是第二代洋葱路由的一种实现，用户通过 Tor 可以在因特网上进行匿名交流。</p>
 <p>下面的图来自官网的介绍。简言之，Tor 和其他翻墙方式不同，可以认为 Tor 有一群代理服务器，然后要访问远端站点，是通过随机的代理路径来完成的，数据经历了多个代理服务器的传递。它主要作用是隐藏访问者信息，而翻墙只是顺带的功能。</p>
 <p>要访问远程站点，服务器需要知道 Tor 节点，这些节点就是普通加入的用户，就像 P2P 下载一样。获取节点信息后，会随机选择一条路径访问。因为这个原因，Tor的速度可能不会很好。</p>
@@ -745,7 +745,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">188</span>
+                  <span class="site-state-item-count">189</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -756,7 +756,7 @@
               
               <div class="site-state-item site-state-categories">
                 
-                  <span class="site-state-item-count">61</span>
+                  <span class="site-state-item-count">62</span>
                   <span class="site-state-item-name">分类</span>
                 
               </div>
@@ -823,7 +823,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#引言"><span class="nav-number">1.</span> <span class="nav-text">引言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#限制访问的原理"><span class="nav-number">2.</span> <span class="nav-text">限制访问的原理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#DNS-缓存污染和-DNS-劫持"><span class="nav-number">2.1.</span> <span class="nav-text">DNS 缓存污染和 DNS 劫持</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#封锁-IP"><span class="nav-number">2.2.</span> <span class="nav-text">封锁 IP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#封锁-HTTP-代理"><span class="nav-number">2.3.</span> <span class="nav-text">封锁 HTTP 代理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#封锁-VPN"><span class="nav-number">2.4.</span> <span class="nav-text">封锁 VPN</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#监控"><span class="nav-number">2.5.</span> <span class="nav-text">监控</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#暴力破解"><span class="nav-number">2.5.1.</span> <span class="nav-text">暴力破解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特征检测"><span class="nav-number">2.5.2.</span> <span class="nav-text">特征检测</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#流量监控"><span class="nav-number">2.5.3.</span> <span class="nav-text">流量监控</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#深度包检测"><span class="nav-number">2.5.4.</span> <span class="nav-text">深度包检测</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#绕过-GFW"><span class="nav-number">3.</span> <span class="nav-text">绕过 GFW</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#SOCKS-协议"><span class="nav-number">3.1.</span> <span class="nav-text">SOCKS 协议</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#与-HTTP-代理的对比"><span class="nav-number">3.1.1.</span> <span class="nav-text">与 HTTP 代理的对比</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Shadowsocks"><span class="nav-number">3.1.2.</span> <span class="nav-text">Shadowsocks</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Shadowsocks-rss"><span class="nav-number">3.1.3.</span> <span class="nav-text">Shadowsocks-rss</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GoAgent-和-GoProxy"><span class="nav-number">3.2.</span> <span class="nav-text">GoAgent 和 GoProxy</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Tor"><span class="nav-number">4.</span> <span class="nav-text">Tor</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">5.</span> <span class="nav-text">参考资料</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#延伸阅读"><span class="nav-number">6.</span> <span class="nav-text">延伸阅读</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0-引言"><span class="nav-number">1.</span> <span class="nav-text">0    引言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-限制访问的原理"><span class="nav-number">2.</span> <span class="nav-text">1    限制访问的原理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-DNS-缓存污染和-DNS-劫持"><span class="nav-number">2.1.</span> <span class="nav-text">1.1    DNS 缓存污染和 DNS 劫持</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-封锁-IP"><span class="nav-number">2.2.</span> <span class="nav-text">1.2    封锁 IP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-封锁-HTTP-代理"><span class="nav-number">2.3.</span> <span class="nav-text">1.3    封锁 HTTP 代理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-封锁-VPN"><span class="nav-number">2.4.</span> <span class="nav-text">1.4    封锁 VPN</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#监控"><span class="nav-number">2.5.</span> <span class="nav-text">监控</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#暴力破解"><span class="nav-number">2.5.1.</span> <span class="nav-text">暴力破解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特征检测"><span class="nav-number">2.5.2.</span> <span class="nav-text">特征检测</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#流量监控"><span class="nav-number">2.5.3.</span> <span class="nav-text">流量监控</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#深度包检测"><span class="nav-number">2.5.4.</span> <span class="nav-text">深度包检测</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-绕过-GFW"><span class="nav-number">3.</span> <span class="nav-text">2    绕过 GFW</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-SOCKS-协议"><span class="nav-number">3.1.</span> <span class="nav-text">2.1    SOCKS 协议</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-1-与-HTTP-代理的对比"><span class="nav-number">3.1.1.</span> <span class="nav-text">2.1.1    与 HTTP 代理的对比</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-2-Shadowsocks"><span class="nav-number">3.1.2.</span> <span class="nav-text">2.1.2    Shadowsocks</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-3-Shadowsocks-rss"><span class="nav-number">3.1.3.</span> <span class="nav-text">2.1.3    Shadowsocks-rss</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-GoAgent-和-GoProxy"><span class="nav-number">3.2.</span> <span class="nav-text">2.2    GoAgent 和 GoProxy</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-v2ray"><span class="nav-number">3.3.</span> <span class="nav-text">2.3    v2ray</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-Tor"><span class="nav-number">4.</span> <span class="nav-text">3    Tor</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">5.</span> <span class="nav-text">参考资料</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#延伸阅读"><span class="nav-number">6.</span> <span class="nav-text">延伸阅读</span></a></li></ol></div>
             
 
           </div>

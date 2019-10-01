@@ -310,6 +310,318 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/28/pytorch-torchvision-transforms/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/04/28/pytorch-torchvision-transforms/" itemprop="url">PyTorch：torchvision.transforms</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-28T23:05:24+08:00">
+                2019-04-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>PyTorch 提供了 torchvision.transforms 包，其中提供了进行如下工作的工具：</p>
+<ul>
+<li>PIL.Image/numpy.ndarray 与 Tensor 互转</li>
+<li>归一化</li>
+<li>对 PIL.Image 进行裁剪、缩放等操作</li>
+</ul>
+<p>通常，在使用 torchvision.transforms 时，我们使用 transforms.Compose 将 transform 组合在一起，transform 是 callable 对象。</p>
+<p><strong>注意：</strong><code>transforms.Compose</code> 中的 transform 是按顺序执行的</p>
+<h2 id="PIL-Image-numpy-ndarray-与-Tensor-互转"><a href="#PIL-Image-numpy-ndarray-与-Tensor-互转" class="headerlink" title="PIL.Image/numpy.ndarray 与 Tensor 互转"></a>PIL.Image/numpy.ndarray 与 Tensor 互转</h2><h3 id="PIL-Image-与-Tensor"><a href="#PIL-Image-与-Tensor" class="headerlink" title="PIL.Image 与 Tensor"></a>PIL.Image 与 Tensor</h3><p>PIL.Image 的形状为 <code>(nChannels, height, width)</code></p>
+<p><strong>PIL.Image 到 Tensor</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"><span class="keyword">import</span> torchvision.transforms <span class="keyword">as</span> transforms</span><br><span class="line"></span><br><span class="line">img = Image.open(<span class="string">'pic.jpg'</span>)</span><br><span class="line">transform = transforms.ToTensor()</span><br><span class="line">tensor = transform(img)</span><br></pre></td></tr></table></figure>
+<p><strong>Tensor 到 PIL.Image</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"><span class="keyword">import</span> torchvision.transforms <span class="keyword">as</span> transforms</span><br><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"></span><br><span class="line">tensor = torch.randn((<span class="number">1</span>, <span class="number">28</span>, <span class="number">28</span>))</span><br><span class="line">transform = transforms.ToPILImage()</span><br><span class="line">img = transform(img)</span><br><span class="line">img.show()</span><br><span class="line">img.save(<span class="string">'pic.jpg'</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="numpy-ndarray-与-Tensor"><a href="#numpy-ndarray-与-Tensor" class="headerlink" title="numpy.ndarray 与 Tensor"></a>numpy.ndarray 与 Tensor</h3><p><strong>numpy.ndarray 到 Tensor</strong></p>
+<p><strong>Tensor 到 numpy.ndarray</strong></p>
+<h2 id="归一化"><a href="#归一化" class="headerlink" title="归一化"></a>归一化</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"><span class="keyword">import</span> torchvision.transforms <span class="keyword">as</span> transforms</span><br><span class="line"></span><br><span class="line">img = Image.open(<span class="string">'pic.jpg'</span>)</span><br><span class="line">transform = transforms.Compose([</span><br><span class="line">    transforms.ToTensor(),</span><br><span class="line">    transforms.Normalize(mean=(<span class="number">0.5</span>, <span class="number">0.5</span>, <span class="number">0.5</span>), std=(<span class="number">0.5</span>, <span class="number">0.5</span>, <span class="number">0.5</span>))</span><br><span class="line">])</span><br></pre></td></tr></table></figure>
+<p>其中，<code>transforms.Normalize</code> 使用如下公式进行归一化：</p>
+<script type="math/tex; mode=display">channel = \dfrac{channel - mean}{std}​</script><h2 id="裁剪、缩放"><a href="#裁剪、缩放" class="headerlink" title="裁剪、缩放"></a>裁剪、缩放</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"><span class="keyword">import</span> torchvision.transforms <span class="keyword">as</span> transforms</span><br><span class="line"></span><br><span class="line">img = Image.open(<span class="string">'pic.jpg'</span>)</span><br><span class="line"><span class="comment"># 注意 img.size 返回的是 width*height</span></span><br><span class="line">print(img.size)</span><br><span class="line">transform = transforms.Resize((<span class="number">32</span>, <span class="number">32</span>))</span><br><span class="line">img = transform(img)</span><br><span class="line">print(img.size)</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/28/cpp-basic-object-class/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/04/28/cpp-basic-object-class/" itemprop="url">为什么 C++ 没有通用的 Object 类？</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-28T22:11:12+08:00">
+                2019-04-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Programming/" itemprop="url" rel="index">
+                    <span itemprop="name">Programming</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Programming/C/" itemprop="url" rel="index">
+                    <span itemprop="name">C++</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><a href="http://www.stroustrup.com/bs_faq2.html#object" target="_blank" rel="noopener">Stroustrup 的 FAQ</a> 中回答了这个问题：</p>
+<blockquote>
+<ul>
+<li>We don’t need one: generic programming provides statically type safe alternatives in most cases. Other cases are handled using multiple inheritance.</li>
+<li>There is no useful universal class: a truly universal carries no semantics of its own.</li>
+<li>A “universal” class encourages sloppy thinking about types and interfaces and leads to excess run-time checking.</li>
+<li>Using a universal base class implies cost: Objects must be heap-allocated to be polymorphic; that implies memory and access cost. Heap objects don’t naturally support copy semantics. Heap objects don’t support simple scoped behavior (which complicates resource management). A universal base class encourages use of dynamic_cast and other run-time checking.</li>
+</ul>
+</blockquote>
+<p>翻译并整理一下：</p>
+<ul>
+<li>从根本上来讲：<ul>
+<li>不需要：<u>泛型编程</u>在大多数情况下提供了类型安全的选项，其他情况可以使用<u>多继承</u>解决</li>
+<li>没有真正有用的通用类：真正的通用类本身不携带任何语义&lt;/u&gt;</li>
+</ul>
+</li>
+<li>额外的开销：<ul>
+<li>通用类会让程序员不仔细思考类型和接口，导致过多的<u>运行时检查</u></li>
+<li>使用通用的基类隐含着代价：对象必须分配在<u>堆</u>上以实现多态，这隐含着内存和访问的开销；堆对象并不能自然地支持复制语义，也不支持简单的 scoped 行为（这样会使资源管理复杂化）；通用的基类鼓励 <code>dynamic_cast</code> 和其他运行时检查的使用</li>
+</ul>
+</li>
+</ul>
+<p>（<a href="http://www.stroustrup.com/bs_faq.html" target="_blank" rel="noopener">Stroustrup’s FAQ</a> 是个好东西）</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/28/python-image-io/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1378,266 +1690,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/26/linux-programming-shell-command/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RHANQTL">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/04/26/linux-programming-shell-command/" itemprop="url">Linux 程序设计 - Shell 篇：基础命令</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-26T19:28:46+08:00">
-                2019-04-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/25/nlp-word-vector/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RHANQTL">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/04/25/nlp-word-vector/" itemprop="url">词向量</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-25T11:49:32+08:00">
-                2019-04-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/NLP/" itemprop="url" rel="index">
-                    <span itemprop="name">NLP</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1688,7 +1740,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">188</span>
+                  <span class="site-state-item-count">189</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1699,7 +1751,7 @@
               
               <div class="site-state-item site-state-categories">
                 
-                  <span class="site-state-item-count">61</span>
+                  <span class="site-state-item-count">62</span>
                   <span class="site-state-item-name">分类</span>
                 
               </div>

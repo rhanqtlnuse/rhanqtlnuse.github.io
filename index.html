@@ -310,6 +310,366 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/01/oo-design-concept-coupling-and-cohesion/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/10/01/oo-design-concept-coupling-and-cohesion/" itemprop="url">面向对象设计基本概念：耦合和内聚</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-01T16:25:38+08:00">
+                2019-10-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="0-导言"><a href="#0-导言" class="headerlink" title="0    导言"></a>0    导言</h1><h1 id="1-耦合-Coupling"><a href="#1-耦合-Coupling" class="headerlink" title="1    耦合 (Coupling)"></a>1    耦合 (Coupling)</h1><h2 id="1-1-什么是耦合？"><a href="#1-1-什么是耦合？" class="headerlink" title="1.1    什么是耦合？"></a>1.1    什么是耦合？</h2><p>Coupling is the manner and degree of interdependence <u>between software modules</u>; a measure of how closely connected two routines or modules are; the strength of the relationships between modules. [1] Coupling is the measure of the degree of interdependence between the modules. A good software will have low coupling. [2]</p>
+<h2 id="1-2-耦合的分类"><a href="#1-2-耦合的分类" class="headerlink" title="1.2    耦合的分类"></a>1.2    耦合的分类</h2><p>耦合分为 6 种，分别是：数据耦合、印记耦合、控制耦合、外部耦合、公共耦合、内容耦合，其中数据耦合是最好的，内容耦合是最差的。</p>
+<img src="/2019/10/01/oo-design-concept-coupling-and-cohesion/coupling.png" title="耦合的级别，来自 [2]">
+<p>下面依次介绍。</p>
+<h3 id="1-2-1-数据耦合-Data-Coupling"><a href="#1-2-1-数据耦合-Data-Coupling" class="headerlink" title="1.2.1    数据耦合 (Data Coupling)"></a>1.2.1    数据耦合 (Data Coupling)</h3><h4 id="1-2-1-1-定义"><a href="#1-2-1-1-定义" class="headerlink" title="1.2.1.1    定义"></a>1.2.1.1    定义</h4><p> If the dependency between the modules is based on the fact that they <u>communicate by passing only data</u>, then the modules are said to be data coupled. In data coupling, the components are independent to each other and communicating through data. Module communications <u>don’t contain tramp data</u>. This data item should be problem-related and not used for the control purpose.</p>
+<p>模块之间仅通过传递数据进行通信，并且传递的数据中仅包含必要的数据，并且数据不用于控制。</p>
+<h4 id="1-2-1-2-示例"><a href="#1-2-1-2-示例" class="headerlink" title="1.2.1.2    示例"></a>1.2.1.2    示例</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x + y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">triple</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> add(x, add(x, x));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="1-2-2-印记耦合-Stamp-Coupling"><a href="#1-2-2-印记耦合-Stamp-Coupling" class="headerlink" title="1.2.2    印记耦合 (Stamp Coupling)"></a>1.2.2    印记耦合 (Stamp Coupling)</h3><p>In stamp coupling, the <u>complete data structure</u> is passed from one module to another module. Therefore, it involves tramp data. It may be necessary due to efficiency factors - this choice made by the insightful designer, not a lazy programmer.</p>
+<p>模块之间通过传递完整的数据结构进行通信（因此传递的数据中可能包含不必要的数据）。</p>
+<h3 id="1-2-3-控制耦合-Control-Coupling"><a href="#1-2-3-控制耦合-Control-Coupling" class="headerlink" title="1.2.3    控制耦合 (Control Coupling)"></a>1.2.3    控制耦合 (Control Coupling)</h3><h4 id="1-2-3-1-定义"><a href="#1-2-3-1-定义" class="headerlink" title="1.2.3.1    定义"></a>1.2.3.1    定义</h4><p>If the modules communicate by passing control information, then they are said to be control coupled. It can be bad if parameters indicate completely different behavior and good if parameters allow factoring and reuse of functionality. </p>
+<p>模块之间通过传递控制信息进行通信。</p>
+<h4 id="1-2-3-2-示例"><a href="#1-2-3-2-示例" class="headerlink" title="1.2.3.2    示例"></a>1.2.3.2    示例</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">sort</span><span class="params">(<span class="keyword">int</span> A[], <span class="keyword">int</span> n, <span class="keyword">int</span> (*compare)(<span class="keyword">int</span> x, <span class="keyword">int</span> y))</span> </span>&#123;</span><br><span class="line">    <span class="comment">// ... 排序</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">enum</span> <span class="keyword">option_t</span> &#123; DATE, IP &#125;;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">do_work</span><span class="params">(<span class="keyword">void</span> *arg, <span class="keyword">enum</span> <span class="keyword">option_t</span> opt, <span class="keyword">void</span> *result)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">switch</span> (opt) &#123;</span><br><span class="line">        <span class="keyword">case</span> DATE:</span><br><span class="line">            <span class="comment">// ... 处理日期</span></span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> IP:</span><br><span class="line">            <span class="comment">// ... 处理 IP</span></span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"undefined option: %d"</span>, opt);</span><br><span class="line">            <span class="built_in">exit</span>(<span class="number">-1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="1-2-4-外部耦合-External-Coupling"><a href="#1-2-4-外部耦合-External-Coupling" class="headerlink" title="1.2.4    外部耦合 (External Coupling)"></a>1.2.4    外部耦合 (External Coupling)</h3><h4 id="1-2-4-1-定义"><a href="#1-2-4-1-定义" class="headerlink" title="1.2.4.1    定义"></a>1.2.4.1    定义</h4><p>In external coupling, the modules depend on other modules, external to the software being developed or to a particular type of hardware. </p>
+<p>模块依赖正在开发的软件系统外部的模块或者是特定类型的硬件。</p>
+<h4 id="1-2-4-2-示例"><a href="#1-2-4-2-示例" class="headerlink" title="1.2.4.2    示例"></a>1.2.4.2    示例</h4><p>protocol, external file, device format, etc.</p>
+<h3 id="1-2-5-公共耦合-Common-Coupling"><a href="#1-2-5-公共耦合-Common-Coupling" class="headerlink" title="1.2.5    公共耦合 (Common Coupling)"></a>1.2.5    公共耦合 (Common Coupling)</h3><h4 id="1-2-5-1-定义"><a href="#1-2-5-1-定义" class="headerlink" title="1.2.5.1    定义"></a>1.2.5.1    定义</h4><p>The modules have shared data such as global data structures. The changes in global data mean tracing back to all modules which access that data to evaluate the effect of the change. So it has got disadvantages like difficulty in reusing modules, reduced ability to control data accesses and reduced maintainability.</p>
+<p>模块之间有共享的数据（如全局数据结构）。</p>
+<h4 id="1-2-5-2-示例"><a href="#1-2-5-2-示例" class="headerlink" title="1.2.5.2    示例"></a>1.2.5.2    示例</h4><h3 id="1-2-6-内容耦合-Content-Coupling"><a href="#1-2-6-内容耦合-Content-Coupling" class="headerlink" title="1.2.6    内容耦合 (Content Coupling)"></a>1.2.6    内容耦合 (Content Coupling)</h3><h4 id="1-2-6-1-定义"><a href="#1-2-6-1-定义" class="headerlink" title="1.2.6.1    定义"></a>1.2.6.1    定义</h4><p>In a content coupling, one module can modify the data of another module or control flow is passed from one module to the other module. </p>
+<p>一个模块能够修改另一个模块的数据，或者控制流从一个模块转移到另一个模块。</p>
+<h4 id="1-2-6-2-示例"><a href="#1-2-6-2-示例" class="headerlink" title="1.2.6.2    示例"></a>1.2.6.2    示例</h4><h3 id="1-2-7-总结"><a href="#1-2-7-总结" class="headerlink" title="1.2.7    总结"></a>1.2.7    总结</h3><p>只要软件模块之间有依赖关系，就会不可避免地产生耦合。但是，哪些耦合是非常好的，哪些耦合是可容忍的，哪些耦合是必须要避免的。</p>
+<h1 id="2-内聚-Cohesion"><a href="#2-内聚-Cohesion" class="headerlink" title="2    内聚 (Cohesion)"></a>2    内聚 (Cohesion)</h1><h2 id="2-1-什么是内聚？"><a href="#2-1-什么是内聚？" class="headerlink" title="2.1    什么是内聚？"></a>2.1    什么是内聚？</h2><p>In computer programming, cohesion refers to the degree to which the elements of a module belong together. Thus, cohesion measures the strength of relationship between pieces of functionality <u>within</u> a given module. For example, in highly cohesive systems functionality is strongly related. [3]</p>
+<h2 id="2-2-内聚的分类"><a href="#2-2-内聚的分类" class="headerlink" title="2.2    内聚的分类"></a>2.2    内聚的分类</h2><img src="/2019/10/01/oo-design-concept-coupling-and-cohesion/cohesion.png" title="内聚的级别，图片来自 [2]">
+<h3 id="2-2-1-功能内聚-Functional-Cohesion"><a href="#2-2-1-功能内聚-Functional-Cohesion" class="headerlink" title="2.2.1    功能内聚 (Functional Cohesion)"></a>2.2.1    功能内聚 (Functional Cohesion)</h3><p>Functional cohesion is said to exist if different elements of a module cooperate to achieve a single function. It is an ideal situation.</p>
+<h4 id="2-2-1-2-示例"><a href="#2-2-1-2-示例" class="headerlink" title="2.2.1.2    示例"></a>2.2.1.2    示例</h4><p>a module containing all the functions required to manage employees’ pay-roll exhibits functional cohesion.</p>
+<h4 id="2-2-1-3"><a href="#2-2-1-3" class="headerlink" title="2.2.1.3"></a>2.2.1.3</h4><p>Suppose a module shows functional cohesion and we are asked to tell what the module does, then we would be able to tell it using a single sentence.</p>
+<h3 id="2-2-2-顺序内聚-Sequential-Cohesion"><a href="#2-2-2-顺序内聚-Sequential-Cohesion" class="headerlink" title="2.2.2    顺序内聚 (Sequential Cohesion)"></a>2.2.2    顺序内聚 (Sequential Cohesion)</h3><p>A module is said to possess sequential cohesion if the elements of a module form the parts of the sequence, where the output from one element of the sequence is input to the next, i.e., data flow between the parts. </p>
+<h4 id="2-2-2-2-示例"><a href="#2-2-2-2-示例" class="headerlink" title="2.2.2.2    示例"></a>2.2.2.2    示例</h4><p>in a TPS (Transaction Processing System), the get-input, validate-input, sort-input functions are grouped into one module.</p>
+<p>It occurs naturally in functional programming languages.</p>
+<h3 id="2-2-3-通信内聚-Communicational-Cohesion"><a href="#2-2-3-通信内聚-Communicational-Cohesion" class="headerlink" title="2.2.3    通信内聚 (Communicational Cohesion)"></a>2.2.3    通信内聚 (Communicational Cohesion)</h3><h4 id="2-2-3-1-定义"><a href="#2-2-3-1-定义" class="headerlink" title="2.2.3.1    定义"></a>2.2.3.1    定义</h4><p>A module is said to have communicational cohesion, if all functions of the module refer to or update the same data structure.</p>
+<h4 id="2-2-3-2-示例"><a href="#2-2-3-2-示例" class="headerlink" title="2.2.3.2    示例"></a>2.2.3.2    示例</h4><p>the set of functions defined on an array or a stack</p>
+<p>update record int the database and send it to the printer.</p>
+<h3 id="2-2-4-过程内聚-Procedural-Cohesion"><a href="#2-2-4-过程内聚-Procedural-Cohesion" class="headerlink" title="2.2.4    过程内聚 (Procedural Cohesion)"></a>2.2.4    过程内聚 (Procedural Cohesion)</h3><h4 id="2-2-4-1-定义"><a href="#2-2-4-1-定义" class="headerlink" title="2.2.4.1    定义"></a>2.2.4.1    定义</h4><p>A module is said to have procedural cohesion, if the set of functions of the module are all part of a procedure (algorithm) in which certain sequence of steps have to be carried out for achieving an objective.</p>
+<p>Elements of procedural cohesion ensure the order of execution. Actions are still weakly connected and unlikely to be reusable. </p>
+<h4 id="2-2-4-2-示例"><a href="#2-2-4-2-示例" class="headerlink" title="2.2.4.2    示例"></a>2.2.4.2    示例</h4><p>the algorithm for decoding a message.</p>
+<p>calculate student GPA, print student record, calculate cumulative GPA, print cumulative GPA.</p>
+<h4 id="2-2-4-3-与顺序内聚的区别"><a href="#2-2-4-3-与顺序内聚的区别" class="headerlink" title="2.2.4.3    与顺序内聚的区别"></a>2.2.4.3    与顺序内聚的区别</h4><h3 id="2-2-5-时间内聚-Temporal-Cohesion"><a href="#2-2-5-时间内聚-Temporal-Cohesion" class="headerlink" title="2.2.5    时间内聚 (Temporal Cohesion)"></a>2.2.5    时间内聚 (Temporal Cohesion)</h3><h4 id="2-2-5-1-定义"><a href="#2-2-5-1-定义" class="headerlink" title="2.2.5.1    定义"></a>2.2.5.1    定义</h4><p>A module is said to have temporal cohesion, if it contains functions that are related by the fact that all the functions must be executed in the same time span. The elements are related by their timing involved. </p>
+<h4 id="2-2-5-2-示例"><a href="#2-2-5-2-示例" class="headerlink" title="2.2.5.2    示例"></a>2.2.5.2    示例</h4><p>This cohesion contains the code for initializing all the parts of the system. Lots of different activities occur, all at init time.</p>
+<h3 id="2-2-6-逻辑内聚-Logical-Cohesion"><a href="#2-2-6-逻辑内聚-Logical-Cohesion" class="headerlink" title="2.2.6    逻辑内聚 (Logical Cohesion)"></a>2.2.6    逻辑内聚 (Logical Cohesion)</h3><h4 id="2-2-6-1-定义"><a href="#2-2-6-1-定义" class="headerlink" title="2.2.6.1    定义"></a>2.2.6.1    定义</h4><p>？</p>
+<h4 id="2-2-6-2-示例"><a href="#2-2-6-2-示例" class="headerlink" title="2.2.6.2    示例"></a>2.2.6.2    示例</h4><p>A component reads inputs from tape, disk, and network. All the code for these functions is in the same component. Operations are related, but the functions are significantly different.</p>
+<p>a set of print functions generating different output reports are arranged into a single module.</p>
+<h3 id="2-2-7-偶然内聚-Coincidental-Cohesion"><a href="#2-2-7-偶然内聚-Coincidental-Cohesion" class="headerlink" title="2.2.7    偶然内聚 (Coincidental Cohesion)"></a>2.2.7    偶然内聚 (Coincidental Cohesion)</h3><h4 id="2-2-7-1-定义"><a href="#2-2-7-1-定义" class="headerlink" title="2.2.7.1    定义"></a>2.2.7.1    定义</h4><p>A module is said to have coincidental cohesion if it performs a set of function or tasks that relate to each other very loosely. In this case, the module contains a random collection of functions. The elements have no conceptual relationship other than location in source code. It is likely that the functions have been put in the module out of pure coincidence without any design or thought. It is accidental and the worst form of cohesion. </p>
+<h4 id="2-2-7-2-示例"><a href="#2-2-7-2-示例" class="headerlink" title="2.2.7.2    示例"></a>2.2.7.2    示例</h4><p>print next line and reverse the characters of a string in a single component.</p>
+<h1 id="3-耦合和内聚的区别"><a href="#3-耦合和内聚的区别" class="headerlink" title="3    耦合和内聚的区别"></a>3    耦合和内聚的区别</h1><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">耦合</th>
+<th style="text-align:left">内聚</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Coupling is also called Inter-Module Binding.</td>
+<td style="text-align:left">Cohesion is also called Intra-Module Binding.</td>
+</tr>
+<tr>
+<td style="text-align:left">Coupling shows the relationships between modules.</td>
+<td style="text-align:left">Cohesion shows the relationship within the module.</td>
+</tr>
+<tr>
+<td style="text-align:left">Coupling shows the relative <strong>independence</strong> between the modules.</td>
+<td style="text-align:left">Cohesion shows the module’s relative <strong>functional</strong> strength.</td>
+</tr>
+<tr>
+<td style="text-align:left">While creating, you should aim for low coupling, i.e., dependency among modules should be less.</td>
+<td style="text-align:left">While creating you should aim for high cohesion, i.e., a cohesive component/ module focuses on a single function (i.e., single-mindedness) with little interaction with other modules of the system.</td>
+</tr>
+<tr>
+<td style="text-align:left">In coupling, modules are linked to the other modules.</td>
+<td style="text-align:left">In cohesion, the module focuses on a single thing.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h1 id="4-参考文献"><a href="#4-参考文献" class="headerlink" title="4    参考文献"></a>4    参考文献</h1><p>[1] <a href="">Wikipedia - Coupling</a></p>
+<p>[2] <a href="https://www.geeksforgeeks.org/software-engineering-coupling-and-cohesion/" target="_blank" rel="noopener">GeeksforGeeks - Software Engineering | Coupling and Cohesion</a></p>
+<p>[3] <a href="">Wikipedia - Cohesion</a></p>
+<p>[4] <a href="https://www.javatpoint.com/software-engineering-coupling-and-cohesion" target="_blank" rel="noopener">javatpoint - Coupling and Cohesion</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/25/oo-design-principles/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/09/25/oo-design-principles/" itemprop="url">面向对象软件设计：设计原则</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-25T11:26:04+08:00">
+                2019-09-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/软件设计-Software-Design/" itemprop="url" rel="index">
+                    <span itemprop="name">软件设计 (Software Design)</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="设计原则"><a href="#设计原则" class="headerlink" title="设计原则"></a>设计原则</h1><h1 id="0-导言"><a href="#0-导言" class="headerlink" title="0    导言"></a>0    导言</h1><p>软件的可维护性与复用性</p>
+<ul>
+<li>面向对象软件设计复用的目标在于实现支持可维护性的复用，而这要以面向对象软件设计原则为基础，这些设计原则首先都是复用的原则，遵循这些设计原则可以有效地提高系统的复用性，同时提高系统的可维护性</li>
+<li>面向对象设计原则也是对系统进行合理重构的指南针</li>
+</ul>
+<p>面向对象软件设计方法中，一共有 7 条重要的指导原则，分别是：</p>
+<ul>
+<li>单一职责原则 (Single Responsibility Principle，SRP)</li>
+<li>开闭原则 (Open/Close Principle，OCP)</li>
+<li>里氏替换原则 (Liskov Substitution Principle，LSP)</li>
+<li>接口隔离原则 (Interface Segregation Principle，ISP)</li>
+<li>依赖倒置原则 (Dependency Inversion Principle，DIP)</li>
+<li>合成复用原则 (Composite Reuse Principle，CRP)</li>
+<li>迪米特法则 (Law of Demeter，LoD)</li>
+</ul>
+<p>（前五条原则可以简记为 SOLID，由 Robert C. Martin 提出）</p>
+<p>下面逐一介绍。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/09/25/oo-design-principles/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/07/leetcode-969-pancake-sorting/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1418,268 +1778,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/20/cpp-why-does-stdstackpop-returns-void/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RHANQTL">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/08/20/cpp-why-does-stdstackpop-returns-void/" itemprop="url">为什么 std::stack::pop 返回 void</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-20T23:22:10+08:00">
-                2019-08-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><a href="https://cpptruths.blogspot.com/2005/10/why-does-stdstackpop-returns-void.html" target="_blank" rel="noopener">https://cpptruths.blogspot.com/2005/10/why-does-stdstackpop-returns-void.html</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/19/computer-networks-从输入网址到最后浏览器呈现页面内容，中间发生了什么？/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RHANQTL">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/08/19/computer-networks-从输入网址到最后浏览器呈现页面内容，中间发生了什么？/" itemprop="url">computer-networks-从输入网址到最后浏览器呈现页面内容，中间发生了什么？</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-19T22:28:04+08:00">
-                2019-08-19
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/计算机网络-Computer-Networks/" itemprop="url" rel="index">
-                    <span itemprop="name">计算机网络 (Computer Networks)</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><a href="https://mp.weixin.qq.com/s/3_DZKSP492uq9RfQ3eW4_A" target="_blank" rel="noopener">码农翻身：从输入网址到最后浏览器呈现页面内容，中间发生了什么？</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1730,7 +1828,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">188</span>
+                  <span class="site-state-item-count">189</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1741,7 +1839,7 @@
               
               <div class="site-state-item site-state-categories">
                 
-                  <span class="site-state-item-count">61</span>
+                  <span class="site-state-item-count">62</span>
                   <span class="site-state-item-name">分类</span>
                 
               </div>
