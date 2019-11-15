@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-10-02T03:44:54.454Z</updated>
+  <updated>2019-11-13T11:50:35.972Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,15 +17,97 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>面向对象设计基本概念：耦合和内聚</title>
-    <link href="http://yoursite.com/2019/10/01/oo-design-concept-coupling-and-cohesion/"/>
-    <id>http://yoursite.com/2019/10/01/oo-design-concept-coupling-and-cohesion/</id>
-    <published>2019-10-01T08:25:38.000Z</published>
-    <updated>2019-10-02T03:44:54.454Z</updated>
+    <title>并发程序设计：信号量和 PV 操作</title>
+    <link href="http://yoursite.com/2019/11/09/concurrency-semaphores-and-pv/"/>
+    <id>http://yoursite.com/2019/11/09/concurrency-semaphores-and-pv/</id>
+    <published>2019-11-09T04:00:00.000Z</published>
+    <updated>2019-11-13T11:50:35.972Z</updated>
     
     <summary type="html">
     
-      &lt;h1 id=&quot;0-导言&quot;&gt;&lt;a href=&quot;#0-导言&quot; class=&quot;headerlink&quot; title=&quot;0    导言&quot;&gt;&lt;/a&gt;0    导言&lt;/h1&gt;
+      &lt;h1 id=&quot;引言&quot;&gt;&lt;a href=&quot;#引言&quot; class=&quot;headerlink&quot; title=&quot;引言&quot;&gt;&lt;/a&gt;引言&lt;/h1&gt;&lt;p&gt;本文介绍并发编程中的信号量和 PV 操作&lt;/p&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>并发程序设计：条件变量</title>
+    <link href="http://yoursite.com/2019/11/09/concurrency-conditional-variable/"/>
+    <id>http://yoursite.com/2019/11/09/concurrency-conditional-variable/</id>
+    <published>2019-11-09T04:00:00.000Z</published>
+    <updated>2019-11-11T01:07:05.761Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;引言&quot;&gt;&lt;a href=&quot;#引言&quot; class=&quot;headerlink&quot; title=&quot;引言&quot;&gt;&lt;/a&gt;引言&lt;/h1&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>面向对象软件设计：设计模式</title>
+    <link href="http://yoursite.com/2019/11/02/oo-design-design-patterns/"/>
+    <id>http://yoursite.com/2019/11/02/oo-design-design-patterns/</id>
+    <published>2019-11-02T05:02:06.000Z</published>
+    <updated>2019-11-07T05:25:11.718Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;0-引言&quot;&gt;&lt;a href=&quot;#0-引言&quot; class=&quot;headerlink&quot; title=&quot;0    引言&quot;&gt;&lt;/a&gt;0    引言&lt;/h1&gt;&lt;p&gt;着眼于“变化”&lt;/p&gt;
+&lt;p&gt;分析一个设计模式的优缺点时，应该从以下几个方面着手：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;类的数量&lt;/li&gt;
+&lt;li&gt;单个类的负载&lt;/li&gt;
+&lt;li&gt;类间结构的复杂度&lt;/li&gt;
+&lt;li&gt;对设计原则的支持&lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>面向对象软件设计：UML 基础</title>
+    <link href="http://yoursite.com/2019/10/18/oo-design-foundations-of-uml/"/>
+    <id>http://yoursite.com/2019/10/18/oo-design-foundations-of-uml/</id>
+    <published>2019-10-18T01:56:48.000Z</published>
+    <updated>2019-10-18T01:58:02.490Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Design" scheme="http://yoursite.com/tags/Design/"/>
+    
+      <category term="OOP" scheme="http://yoursite.com/tags/OOP/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>面向对象设计基本概念：耦合和内聚</title>
+    <link href="http://yoursite.com/2019/10/15/oo-design-concept-coupling-and-cohesion/"/>
+    <id>http://yoursite.com/2019/10/15/oo-design-concept-coupling-and-cohesion/</id>
+    <published>2019-10-15T08:25:38.000Z</published>
+    <updated>2019-10-17T11:12:44.142Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;[TOC]&lt;/p&gt;
+&lt;h1 id=&quot;0-导言&quot;&gt;&lt;a href=&quot;#0-导言&quot; class=&quot;headerlink&quot; title=&quot;0    导言&quot;&gt;&lt;/a&gt;0    导言&lt;/h1&gt;
     
     </summary>
     
@@ -37,27 +119,16 @@
     <link href="http://yoursite.com/2019/09/25/oo-design-principles/"/>
     <id>http://yoursite.com/2019/09/25/oo-design-principles/</id>
     <published>2019-09-25T03:26:04.000Z</published>
-    <updated>2019-09-30T03:00:18.935Z</updated>
+    <updated>2019-11-13T01:42:43.975Z</updated>
     
     <summary type="html">
     
-      &lt;h1 id=&quot;设计原则&quot;&gt;&lt;a href=&quot;#设计原则&quot; class=&quot;headerlink&quot; title=&quot;设计原则&quot;&gt;&lt;/a&gt;设计原则&lt;/h1&gt;&lt;h1 id=&quot;0-导言&quot;&gt;&lt;a href=&quot;#0-导言&quot; class=&quot;headerlink&quot; title=&quot;0    导言&quot;&gt;&lt;/a&gt;0    导言&lt;/h1&gt;&lt;p&gt;软件的可维护性与复用性&lt;/p&gt;
+      &lt;h1 id=&quot;0-导言&quot;&gt;&lt;a href=&quot;#0-导言&quot; class=&quot;headerlink&quot; title=&quot;0    导言&quot;&gt;&lt;/a&gt;0    导言&lt;/h1&gt;&lt;p&gt;软件的可维护性与复用性&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;面向对象软件设计复用的目标在于实现支持可维护性的复用，而这要以面向对象软件设计原则为基础，这些设计原则首先都是复用的原则，遵循这些设计原则可以有效地提高系统的复用性，同时提高系统的可维护性&lt;/li&gt;
 &lt;li&gt;面向对象设计原则也是对系统进行合理重构的指南针&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;面向对象软件设计方法中，一共有 7 条重要的指导原则，分别是：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;单一职责原则 (Single Responsibility Principle，SRP)&lt;/li&gt;
-&lt;li&gt;开闭原则 (Open/Close Principle，OCP)&lt;/li&gt;
-&lt;li&gt;里氏替换原则 (Liskov Substitution Principle，LSP)&lt;/li&gt;
-&lt;li&gt;接口隔离原则 (Interface Segregation Principle，ISP)&lt;/li&gt;
-&lt;li&gt;依赖倒置原则 (Dependency Inversion Principle，DIP)&lt;/li&gt;
-&lt;li&gt;合成复用原则 (Composite Reuse Principle，CRP)&lt;/li&gt;
-&lt;li&gt;迪米特法则 (Law of Demeter，LoD)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;（前五条原则可以简记为 SOLID，由 Robert C. Martin 提出）&lt;/p&gt;
-&lt;p&gt;下面逐一介绍。&lt;/p&gt;
+&lt;p&gt;本文先介绍面向对象软件设计方法中一些重要的设计原则，然后再介绍用于指导职责分配的 GRASP (General Responsibility Assignment Software Patterns) 原则。&lt;/p&gt;
     
     </summary>
     
@@ -344,78 +415,6 @@
           
         
       
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>算法优化</title>
-    <link href="http://yoursite.com/2019/07/13/algorithms-optimization/"/>
-    <id>http://yoursite.com/2019/07/13/algorithms-optimization/</id>
-    <published>2019-07-13T07:38:36.000Z</published>
-    <updated>2019-07-13T07:41:14.869Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-      <category term="算法 (Algorithms)" scheme="http://yoursite.com/categories/%E7%AE%97%E6%B3%95-Algorithms/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>soft-eng-uml-sequence</title>
-    <link href="http://yoursite.com/2019/07/11/soft-eng-uml-sequence/"/>
-    <id>http://yoursite.com/2019/07/11/soft-eng-uml-sequence/</id>
-    <published>2019-07-11T13:33:19.000Z</published>
-    <updated>2019-07-11T13:33:19.942Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>进程间通信</title>
-    <link href="http://yoursite.com/2019/07/07/os-process-communication/"/>
-    <id>http://yoursite.com/2019/07/07/os-process-communication/</id>
-    <published>2019-07-07T13:24:13.000Z</published>
-    <updated>2019-07-07T13:40:50.985Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;进程间通信的 5 种方式&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="操作系統 (Operating Systems)" scheme="http://yoursite.com/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%B5%B1-Operating-Systems/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Linux - 查看系统信息</title>
-    <link href="http://yoursite.com/2019/07/05/linux-system-info/"/>
-    <id>http://yoursite.com/2019/07/05/linux-system-info/</id>
-    <published>2019-07-05T07:53:22.000Z</published>
-    <updated>2019-07-05T08:01:08.780Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;TODO&lt;/p&gt;
     
     </summary>
     
