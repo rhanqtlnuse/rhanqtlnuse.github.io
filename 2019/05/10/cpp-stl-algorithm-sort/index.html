@@ -92,17 +92,17 @@
 
 
 
-<meta name="description" content="排序是编程中经常出现的场景，C++ STL 为我们提供了一些用于排序的函数。">
+<meta name="description" content="摘要 排序是编程中经常出现的场景，C++ STL 为我们提供了一些用于排序的函数。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="C++ 学习笔记 - STL：排序相关函数">
 <meta property="og:url" content="http://yoursite.com/2019/05/10/cpp-stl-algorithm-sort/index.html">
 <meta property="og:site_name" content="RHANQTL">
-<meta property="og:description" content="排序是编程中经常出现的场景，C++ STL 为我们提供了一些用于排序的函数。">
+<meta property="og:description" content="摘要 排序是编程中经常出现的场景，C++ STL 为我们提供了一些用于排序的函数。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-17T09:27:53.802Z">
+<meta property="og:updated_time" content="2019-12-06T02:32:38.534Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C++ 学习笔记 - STL：排序相关函数">
-<meta name="twitter:description" content="排序是编程中经常出现的场景，C++ STL 为我们提供了一些用于排序的函数。">
+<meta name="twitter:description" content="摘要 排序是编程中经常出现的场景，C++ STL 为我们提供了一些用于排序的函数。">
 
 
 
@@ -418,7 +418,8 @@
       
 
       
-        <p>排序是编程中经常出现的场景，C++ STL 为我们提供了一些用于排序的函数。</p>
+        <p><strong>摘要</strong></p>
+<p>排序是编程中经常出现的场景，C++ STL 为我们提供了一些用于排序的函数。</p>
 <a id="more"></a>
 <h1 id="sort-函数"><a href="#sort-函数" class="headerlink" title="sort 函数"></a><code>sort</code> 函数</h1><p>STL 中最常用的排序函数是 <code>algorithm</code> 中的 <code>sort</code>，它的声明如下：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">RandomAccessIterator</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">void</span> <span class="title">sort</span>(</span></span><br><span class="line"><span class="class">    <span class="title">RandomAccessIterator</span> <span class="title">first</span>, </span></span><br><span class="line"><span class="class">    <span class="title">RandomAccessIterator</span> <span class="title">last</span></span></span><br><span class="line"><span class="class">);</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">RandomAccessIterator</span>, <span class="title">class</span> <span class="title">Compare</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">void</span> <span class="title">sort</span> (</span></span><br><span class="line"><span class="class">    <span class="title">RandomAccessIterator</span> <span class="title">first</span>,</span></span><br><span class="line"><span class="class">    <span class="title">RandomAccessIterator</span> <span class="title">last</span>, <span class="title">Compare</span> <span class="title">comp</span></span></span><br><span class="line"><span class="class">);</span></span><br></pre></td></tr></table></figure>
@@ -430,7 +431,7 @@
 <ul>
 <li><code>sort</code> 函数是不稳定的排序，可以使用 <code>stable_sort</code> 进行稳定排序<ul>
 <li><code>stable_sort</code> 的原型与 <code>sort</code> 相同</li>
-<li><code>sort</code> 的复杂度是 $n\log(n)​$，<code>stable_sort</code> 的复杂度为取决于具体情况，如果有足够的额外空间，算法的复杂度为 $n\log(n)​$；否则，算法的复杂度为 $n\log^2(n)​$</li>
+<li><code>sort</code> 的复杂度是 $n\log(n)$，<code>stable_sort</code> 的复杂度为取决于具体情况，如果有足够的额外空间，算法的复杂度为 $n\log(n)$；否则，算法的复杂度为 $n\log^2(n)$</li>
 </ul>
 </li>
 <li><code>sort</code> 可以用于如下的容器：<ul>
@@ -467,7 +468,7 @@
 <li>…</li>
 </ul>
 </li>
-<li>复杂度为 $n\log(\min(n,m))​$</li>
+<li>复杂度为 $n\log(\min(n,m))$</li>
 </ul>
 <h1 id="is-sorted-和-is-sorted-until"><a href="#is-sorted-和-is-sorted-until" class="headerlink" title="is_sorted 和 is_sorted_until"></a><code>is_sorted</code> 和 <code>is_sorted_until</code></h1><p>这两个函数是 C++ 11 中新增的。</p>
 <h2 id="is-sorted"><a href="#is-sorted" class="headerlink" title="is_sorted"></a><code>is_sorted</code></h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">ForwardIterator</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">bool</span> <span class="title">is_sorted</span>(<span class="title">ForwardIterator</span> <span class="title">first</span>, <span class="title">ForwardIterator</span> <span class="title">last</span>);</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">ForwardIterator</span>, <span class="title">class</span> <span class="title">Compare</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">bool</span> <span class="title">is_sorted</span>(</span></span><br><span class="line"><span class="class">    <span class="title">ForwardIterator</span> <span class="title">first</span>, </span></span><br><span class="line"><span class="class">    <span class="title">ForwardIterator</span> <span class="title">last</span>, <span class="title">Compare</span> <span class="title">comp</span></span></span><br><span class="line"><span class="class">);</span></span><br></pre></td></tr></table></figure>

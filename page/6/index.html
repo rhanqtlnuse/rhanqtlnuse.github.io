@@ -310,6 +310,310 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/03/os-file-system-part-3/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/06/03/os-file-system-part-3/" itemprop="url">操作系统笔记 - 文件系统 (Part III)</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-03T19:15:31+08:00">
+                2019-06-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/操作系统-Operating-System/" itemprop="url" rel="index">
+                    <span itemprop="name">操作系统 (Operating System)</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <a id="more"></a>
+<h1 id="磁盘"><a href="#磁盘" class="headerlink" title="磁盘"></a>磁盘</h1><h2 id="什么是磁盘？"><a href="#什么是磁盘？" class="headerlink" title="什么是磁盘？"></a>什么是磁盘？</h2><img src="/2019/06/03/os-file-system-part-3/hard-disk-structure.jpg">
+<p>图中的“Track”就是磁道，磁道是由一个个的扇区（sector，512 字节大小的块）组成的。</p>
+<p>为了提高效率，许多文件系统一次读/写 4KB（或者更多），但是只能保证一个扇区的写是原子性的。</p>
+<p>只要知道<strong>（盘面，磁道，扇区）</strong>就可以定位磁盘上的一个存储块。</p>
+<h2 id="磁盘调度"><a href="#磁盘调度" class="headerlink" title="磁盘调度"></a>磁盘调度</h2><h3 id="先来先服务"><a href="#先来先服务" class="headerlink" title="先来先服务"></a>先来先服务</h3><h3 id="最近优先"><a href="#最近优先" class="headerlink" title="最近优先"></a>最近优先</h3><h3 id="电梯调度算法"><a href="#电梯调度算法" class="headerlink" title="电梯调度算法"></a>电梯调度算法</h3><h2 id="RAID"><a href="#RAID" class="headerlink" title="RAID"></a>RAID</h2><p>RAID，Redundant Array of Independent Disks</p>
+<h1 id="索引节点"><a href="#索引节点" class="headerlink" title="索引节点"></a>索引节点</h1><h2 id="什么是索引节点？"><a href="#什么是索引节点？" class="headerlink" title="什么是索引节点？"></a>什么是索引节点？</h2><img src="/2019/06/03/os-file-system-part-3/inode.png">
+<h2 id="为什么要使用索引节点？"><a href="#为什么要使用索引节点？" class="headerlink" title="为什么要使用索引节点？"></a>为什么要使用索引节点？</h2><h2 id="Linux-中的硬链接和软链接"><a href="#Linux-中的硬链接和软链接" class="headerlink" title="Linux 中的硬链接和软链接"></a>Linux 中的硬链接和软链接</h2><p><strong>硬链接</strong></p>
+<ul>
+<li>同一个 i-node，不同名字</li>
+<li>不可跨文件系统</li>
+</ul>
+<p><strong>软链接</strong></p>
+<ul>
+<li>不同 i-node，链接文件中保存被链接文件的名字</li>
+<li>可以跨文件系统</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/03/os-file-system-part-2/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/06/03/os-file-system-part-2/" itemprop="url">操作系统笔记 - 文件系统 (Part II)</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-03T19:02:05+08:00">
+                2019-06-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/操作系统-Operating-System/" itemprop="url" rel="index">
+                    <span itemprop="name">操作系统 (Operating System)</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>其实有一个很常见的场景，就是把 U 盘插到电脑上，以 Windows 为例，U 盘使用 FAT32 文件系统，而 Windows 使用 NTFS 文件系统，他们之间是如何实现用户层面的统一的呢？答案就是 VFS。</p>
+<p>其实有一个很常见的场景，就是把 U 盘插到电脑上，以 Windows 为例，U 盘使用 FAT32 文件系统，而 Windows 使用 NTFS 文件系统，他们之间是如何实现用户层面的统一的呢？答案就是 VFS。</p>
+<p>当我们想要从电脑中拷贝一些文件的时候，我们会把 U 盘插到电脑上，然后复制 + 粘贴，等待数据传输完成就好了。那如果现在说，以 Windows 为例，U 盘使用 FAT32 文件系统，而 Windows 使用 NTFS 文件系统，他们之间是如何实现用户层面的统一的呢？答案就是 VFS。</p>
+<h1 id="什么是虚拟文件系统？"><a href="#什么是虚拟文件系统？" class="headerlink" title="什么是虚拟文件系统？"></a>什么是虚拟文件系统？</h1><p>虚拟文件系统（Virtual File System，VFS），是为了屏蔽具体的文件系统实现而产生的抽象层。</p>
+<p>我们平时所称的“文件系统”，仅仅是一个宽泛的概念，实际上有多种具体的实现，比如 Linux 中常用的 ext4、Windows 的 NTFS、U 盘常用的 FAT32，甚至 Hadoop 的 HDFS 也算一种实现。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/03/os-file-system-part-1/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1616,291 +1920,6 @@
             </a>
           </div>
           <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/27/others-xpath/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RHANQTL">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/05/27/others-xpath/" itemprop="url">others-xpath</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-27T22:27:37+08:00">
-                2019-05-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/27/javascript-intro/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RHANQTL">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/05/27/javascript-intro/" itemprop="url">javascript-intro</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-27T21:51:47+08:00">
-                2019-05-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/程序设计语言-Programming-Languages/" itemprop="url" rel="index">
-                    <span itemprop="name">程序设计语言 (Programming Languages)</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/程序设计语言-Programming-Languages/JavaScript/" itemprop="url" rel="index">
-                    <span itemprop="name">JavaScript</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="JavaScript-基本语法"><a href="#JavaScript-基本语法" class="headerlink" title="JavaScript 基本语法"></a>JavaScript 基本语法</h1><h2 id="声明提前"><a href="#声明提前" class="headerlink" title="声明提前"></a>声明提前</h2><p>使用 <code>var</code> 关键字声明/定义的变量和函数定义会被提前到代码的最前。</p>
-<h1 id="JavaScript-面向对象"><a href="#JavaScript-面向对象" class="headerlink" title="JavaScript 面向对象"></a>JavaScript 面向对象</h1><h1 id="DOM"><a href="#DOM" class="headerlink" title="DOM"></a>DOM</h1><h2 id="DOM-是什么？"><a href="#DOM-是什么？" class="headerlink" title="DOM 是什么？"></a>DOM 是什么？</h2><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Document_Object_Model/Introduction" target="_blank" rel="noopener">DOM 概述</a></p>
-<p>全称为 Document Object Model，文档对象模型。</p>
-<p>Document 即 HTML、XML 文档，Object 即，模型即关系。</p>
-<p>注意区分节点和元素！</p>
-<h2 id="文档的加载"><a href="#文档的加载" class="headerlink" title="文档的加载"></a>文档的加载</h2><p>浏览器加载文档时，是按照书写顺序执行的，所以如下的代码不能按照期望运行：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">            <span class="comment">// button 为 null</span></span></span><br><span class="line"><span class="javascript">            <span class="keyword">var</span> button = <span class="built_in">document</span>.getElementById(<span class="string">"button-1"</span>);</span></span><br><span class="line"><span class="javascript">            button.onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">                alert(<span class="string">"我是一个按钮"</span>);</span></span><br><span class="line"><span class="undefined">            &#125;    </span></span><br><span class="line"><span class="undefined">        </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">"button-1"</span>&gt;</span>点我<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<img src="/2019/05/27/javascript-intro/dom-text-order.png" title="Chrome 浏览器执行的结果">
-<p>可以为 <code>window.onload</code> 事件绑定一个事件处理器来解决这个问题。另外，我们希望加快页面的加载速度，所以可以将绑定事件的代码写在页面元素的代码之后。</p>
-<p><font color="red"><b>MORE</b></font> 这与声明提前是否冲突？</p>
-<h2 id="DOM-查询"><a href="#DOM-查询" class="headerlink" title="DOM 查询"></a>DOM 查询</h2><p><strong>注意：</strong>根据 DOM 标准，标签间的空白会被当成 Text <u>节点</u>，但是 IE8 及以下不会；而 <code>children</code> 属性则记录了所有的子<u>元素</u></p>
-<p>详见<a href="https://www.w3schools.com/js/js_htmldom_document.asp" target="_blank" rel="noopener">文档</a></p>
-<p><strong>全选练习</strong></p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>全选练习<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"checkbox"</span> <span class="attr">name</span>=<span class="string">"language"</span> <span class="attr">value</span>=<span class="string">"c"</span>/&gt;</span>C</span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"checkbox"</span> <span class="attr">name</span>=<span class="string">"language"</span> <span class="attr">value</span>=<span class="string">"cpp"</span>/&gt;</span>C++</span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"checkbox"</span> <span class="attr">name</span>=<span class="string">"language"</span> <span class="attr">value</span>=<span class="string">"java"</span>/&gt;</span>Java</span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"checkbox"</span> <span class="attr">name</span>=<span class="string">"language"</span> <span class="attr">value</span>=<span class="string">"python"</span>/&gt;</span>Python</span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"checkbox"</span> <span class="attr">name</span>=<span class="string">"language"</span> <span class="attr">value</span>=<span class="string">"haskell"</span>/&gt;</span>Haskell</span><br><span class="line">        <span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">"select-all"</span>&gt;</span>全选<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">"select-none"</span>&gt;</span>全不选<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">"de-select"</span>&gt;</span>反选<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">            <span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">                <span class="keyword">var</span> select_all_button = <span class="built_in">document</span>.getElementById(<span class="string">"select-all"</span>);</span></span><br><span class="line"><span class="javascript">                select_all_button.onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">                    <span class="keyword">var</span> checkboxes = <span class="built_in">document</span>.getElementsByName(<span class="string">"language"</span>);</span></span><br><span class="line"><span class="javascript">                    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; checkboxes.length; i++) &#123;</span></span><br><span class="line"><span class="javascript">                        checkboxes[i].checked = <span class="literal">true</span>;</span></span><br><span class="line"><span class="undefined">                    &#125;</span></span><br><span class="line"><span class="undefined">                &#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">                <span class="keyword">var</span> select_none_button = <span class="built_in">document</span>.getElementById(<span class="string">"select-none"</span>);</span></span><br><span class="line"><span class="javascript">                select_none_button.onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">                    <span class="keyword">var</span> checkboxes = <span class="built_in">document</span>.getElementsByName(<span class="string">"language"</span>);</span></span><br><span class="line"><span class="javascript">                    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; checkboxes.length; i++) &#123;</span></span><br><span class="line"><span class="javascript">                        checkboxes[i].checked = <span class="literal">false</span>;</span></span><br><span class="line"><span class="undefined">                    &#125;</span></span><br><span class="line"><span class="undefined">                &#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">                <span class="keyword">var</span> de_select_button = <span class="built_in">document</span>.getElementById(<span class="string">"de-select"</span>);</span></span><br><span class="line"><span class="javascript">                de_select_button.onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">                    <span class="keyword">var</span> checkboxes = <span class="built_in">document</span>.getElementsByName(<span class="string">"language"</span>);</span></span><br><span class="line"><span class="javascript">                    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; checkboxes.length; i++) &#123;</span></span><br><span class="line"><span class="undefined">                        checkboxes[i].checked = !checkboxes[i].checked;</span></span><br><span class="line"><span class="undefined">                    &#125;</span></span><br><span class="line"><span class="undefined">                &#125;</span></span><br><span class="line"><span class="undefined">            &#125;</span></span><br><span class="line"><span class="undefined">        </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-          
         
       
     </div>

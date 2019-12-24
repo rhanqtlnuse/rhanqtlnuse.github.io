@@ -310,6 +310,402 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/23/algorithms-sorting/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/11/23/algorithms-sorting/" itemprop="url">排序问题和排序算法</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-23T12:00:00+08:00">
+                2019-11-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法-Algorithms/" itemprop="url" rel="index">
+                    <span itemprop="name">算法 (Algorithms)</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="0-度量标准"><a href="#0-度量标准" class="headerlink" title="0    度量标准"></a>0    度量标准</h1><p>对于排序算法而言，最重要的度量标准是效率（性能），其次也需要考虑稳定性问题。所谓“稳定性”，就是指两个在某种规定下相等的元素在排序后保持排序前的相对位置，比如序列 $[ \dots , 1_a, 1_b, \dots ]$，如果排序后相对位置没有改变，则称排序算法为稳定的，否则称为不稳定的。稳定性在多键排序时很有用处。</p>
+<h1 id="1-解决问题的思路"><a href="#1-解决问题的思路" class="headerlink" title="1 解决问题的思路"></a>1 解决问题的思路</h1><ul>
+<li>迭代：冒泡排序</li>
+<li>分治<ul>
+<li>分为 1 和 n - 1<ul>
+<li>选择排序</li>
+<li>插入排序</li>
+</ul>
+</li>
+<li>分为两个大小基本相等的部分<ul>
+<li>归并排序</li>
+<li>快速排序</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>其他思路：基数排序</li>
+</ul>
+<p>// Tim Sort</p>
+<h1 id="2-迭代"><a href="#2-迭代" class="headerlink" title="2 迭代"></a>2 迭代</h1><h2 id="2-1-冒泡排序（起泡排序）"><a href="#2-1-冒泡排序（起泡排序）" class="headerlink" title="2.1 冒泡排序（起泡排序）"></a>2.1 冒泡排序（起泡排序）</h2><p>Bubble Sort</p>
+<h3 id="2-1-1-基本算法"><a href="#2-1-1-基本算法" class="headerlink" title="2.1.1 基本算法"></a>2.1.1 基本算法</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">bubbleSort</span><span class="params">(<span class="keyword">int</span> a[], <span class="keyword">int</span> lo, <span class="keyword">int</span> hi)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">while</span> (lo &lt; hi) &#123;</span><br><span class="line">        bubble(a, lo, hi--);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">bubble</span><span class="params">(<span class="keyword">int</span> a[], <span class="keyword">int</span> lo, <span class="keyword">int</span> hi)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = lo + <span class="number">1</span>; i &lt; hi; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (a[i - <span class="number">1</span>] &gt; a[i]) &#123;</span><br><span class="line">            swap(a[i - <span class="number">1</span>], a[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span> &amp;a, <span class="keyword">int</span> &amp;b)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> tmp = a;</span><br><span class="line">    a = b;</span><br><span class="line">    b = tmp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="2-1-2-图示"><a href="#2-1-2-图示" class="headerlink" title="2.1.2 图示"></a>2.1.2 图示</h3><h3 id="2-1-3-改进"><a href="#2-1-3-改进" class="headerlink" title="2.1.3 改进"></a>2.1.3 改进</h3><h4 id="2-1-3-1-改进一"><a href="#2-1-3-1-改进一" class="headerlink" title="2.1.3.1 改进一"></a>2.1.3.1 改进一</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">bubbleSort</span><span class="params">(<span class="keyword">int</span> a[], <span class="keyword">int</span> lo, <span class="keyword">int</span> hi)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">while</span> (!bubble(a, lo, hi--))</span><br><span class="line">        ;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">bubble</span><span class="params">(<span class="keyword">int</span> a[], <span class="keyword">int</span> lo, <span class="keyword">int</span> hi)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">bool</span> sorted = <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = lo + <span class="number">1</span>; i &lt; hi; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (a[i - <span class="number">1</span>] &gt; a[i]) &#123;</span><br><span class="line">            swap(a[i - <span class="number">1</span>], a[i]);</span><br><span class="line">            sorted = <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> sorted;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>《数据结构（C++ 语言版）》的习题中有这样一个问题：是否存在某个元素朝着一度远离其正确位置的方向移动？</p>
+<p><strong>情况 1</strong>&nbsp;&nbsp;&nbsp;&nbsp;元素 e 在正确位置的右边</p>
+<img src="/2019/11/23/algorithms-sorting/bubble-sort-case1.png" title="情况 1">
+<p>每次元素 e 的左边都是最大值来与 e 比较，如果要让 e 不移动，就要保证最大值 &lt;= e；另一方面，e 要向右移动，就要求 e 的右边必须 &lt; e。可以看到，这种情况下我们标出的“正确位置”并不是元素 e 的正确位置。</p>
+<p><strong>情况 2</strong>&nbsp;&nbsp;&nbsp;&nbsp;元素 e 在正确位置，向右移动</p>
+<img src="/2019/11/23/algorithms-sorting/bubble-sort-case2.png" title="情况 2">
+<p>这种情况与情况 1 类似。</p>
+<p><strong>情况 3</strong>&nbsp;&nbsp;&nbsp;&nbsp;元素 e 在正确位置，向左移动</p>
+<img src="/2019/11/23/algorithms-sorting/bubble-sort-case3.png" title="情况 3">
+<p><strong>情况 4</strong>&nbsp;&nbsp;&nbsp;&nbsp;元素 e 在正确位置的左边</p>
+<img src="/2019/11/23/algorithms-sorting/bubble-sort-case4.png" title="情况 4">
+<p>综上，我们的结论是，存在这样的序列，比如 [ 6, 7, 8, 5, 1, 2, 3, 4 ]</p>
+</blockquote>
+<h4 id="2-1-3-2-改进二"><a href="#2-1-3-2-改进二" class="headerlink" title="2.1.3.2 改进二"></a>2.1.3.2 改进二</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">bubbleSort</span><span class="params">(<span class="keyword">int</span> a[], <span class="keyword">int</span> lo, <span class="keyword">int</span> hi)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">while</span> (lo &lt; (hi = bubble(a, lo, hi)))</span><br><span class="line">        ;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">bubble</span><span class="params">(<span class="keyword">int</span> a[], <span class="keyword">int</span> lo, <span class="keyword">int</span> hi)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> last = lo;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = lo + <span class="number">1</span>; i &lt; hi; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (a[i - <span class="number">1</span>] &gt; a[i]) &#123;</span><br><span class="line">            swap(a[i - <span class="number">1</span>], a[i]);</span><br><span class="line">            last = i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="3-分治"><a href="#3-分治" class="headerlink" title="3 分治"></a>3 分治</h1><p>下面的算法设计都从抽象的递归算法开始，一步一步进行实现和优化。</p>
+<h2 id="3-1-选择排序"><a href="#3-1-选择排序" class="headerlink" title="3.1 选择排序"></a>3.1 选择排序</h2><p>有 8 种基本的选择方式：{ 从前向后，从后向前 } × { 选择最小值，选择最大值 } × { 严格不等，不严格不等 }</p>
+<ul>
+<li>从前向后，选择最小值：不稳定<ul>
+<li>比如序列 $[100_a, 100_b, 2]$，最小值为 2，与 $100_a$ 交换之后得到的序列为 $[2, 100_b, 100_a]$</li>
+</ul>
+</li>
+<li>从前向后，选择最大值：不稳定</li>
+<li>从后向前，选择最小值：</li>
+<li>从后向前，选择最大值，严格不等：稳定</li>
+</ul>
+<p>选择最小的元素：可以使用分治的方式，将数组一分为二，递归地找出最小值。</p>
+<p>其中有一个技巧，即选择最小值的过程中，被一分为二的数组只有一边能产生当前的最小值，而另一边的最小值其实就是整个数组中第二小的元素，下一次在获取最小值时可以直接用。</p>
+<p>引申出算法优化的一个技巧：在算法执行的过程中，后面的计算可能会用到前面的结果，可以将前面的结果保存下来提高效率。</p>
+<p>冒泡排序也是一种选择排序。</p>
+<h2 id="3-2-插入排序"><a href="#3-2-插入排序" class="headerlink" title="3.2 插入排序"></a>3.2 插入排序</h2><p>思路：从列表未排序的部分取出一个元素，将其插入到已经排好序的部分。</p>
+<p>逆序对</p>
+<p>输入敏感算法</p>
+<h3 id="3-2-1-抽象递归算法"><a href="#3-2-1-抽象递归算法" class="headerlink" title="3.2.1 抽象递归算法"></a>3.2.1 抽象递归算法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">insertionSortAbstract(L)</span><br><span class="line">    if L.length = 1</span><br><span class="line">        return</span><br><span class="line">    v &lt;- first(L)</span><br><span class="line">    insertionSortAbstract(rest(L))</span><br><span class="line">    L &lt;- insertAbstract(v, rest(L))</span><br><span class="line"></span><br><span class="line">insertAbstract(v, L)</span><br><span class="line">    if L.length = 0</span><br><span class="line">        return &#123;v&#125;</span><br><span class="line">    else if v &lt;= first(L)</span><br><span class="line">        return &#123;v&#125; + L</span><br><span class="line">    else</span><br><span class="line">        return first(L) + insertAbstract(v, rest(L))</span><br></pre></td></tr></table></figure>
+<h3 id="2-1-2-实现"><a href="#2-1-2-实现" class="headerlink" title="2.1.2 实现"></a>2.1.2 实现</h3><p>抽象算法中需要我们实现的部分有 4 个：</p>
+<ul>
+<li>列表的连接 <code>+</code></li>
+<li><code>first</code> 和 <code>rest</code></li>
+<li>列表的长度 <code>length</code></li>
+<li>插入</li>
+</ul>
+<h5 id="first-和-rest"><a href="#first-和-rest" class="headerlink" title="first 和 rest"></a><code>first</code> 和 <code>rest</code></h5><p>对于数组而言，这两个操作的实现比较简单。我们可以使用两个变量 start 和 end（不含），<code>first</code> 就是 A[start]，<code>rest</code> 就是 A[start+1, end)</p>
+<h5 id="列表的长度-length"><a href="#列表的长度-length" class="headerlink" title="列表的长度 length"></a>列表的长度 <code>length</code></h5><p>有了上面的 start 和 end，列表的长度就是 end - start</p>
+<h5 id="列表的连接"><a href="#列表的连接" class="headerlink" title="列表的连接 +"></a>列表的连接 <code>+</code></h5><p>由于我们的算法是原地（In-Place）的，排序之后的结果依然存放在原来的数组中，所以这个操作被隐含地实现了。</p>
+<h5 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h5><p>注意到在 <code>insertionSortAbstract</code> 中，每次都是选择当前子数组的第一个元素作为待插入元素，这样，我们可以把整个数组分为 3 个部分：start - 1，start，[start + 1, end)。每次取出第一个元素（A[start - 1]）时，start - 1 这个位置就变成了一个空位，如果待插入元素大于 A[start]，那么可以将 A[start] 移到这个位置上：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">insert(v, A, start, end)</span><br><span class="line">    if end - start = 0</span><br><span class="line">        A[start - 1] = v</span><br><span class="line">    else if v &lt;= A[start]</span><br><span class="line">        A[start - 1] = v</span><br><span class="line">    else</span><br><span class="line">        A[start - 1] = A[start]</span><br><span class="line">        insert(v, A, start + 1, end)</span><br></pre></td></tr></table></figure>
+<h4 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h4><h5 id="插入的优化"><a href="#插入的优化" class="headerlink" title="插入的优化"></a>插入的优化</h5><p>注意到在 insert 中，</p>
+<ul>
+<li>每次调用的 v 相对于当前的 A 来说总在 start - 1，所以其实前两个分支可以什么都不做</li>
+<li>insert 是尾递归</li>
+</ul>
+<p>可以将代码改成如下的迭代版本：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">insert(v, A, start, end)</span><br><span class="line">    if end - start = 0</span><br><span class="line">        return</span><br><span class="line">    for i &lt;- start to end - 1</span><br><span class="line">        if v &gt; A[i]</span><br><span class="line">            A[i - 1] &lt;- A[i]</span><br><span class="line">            A[i] &lt;- v</span><br></pre></td></tr></table></figure>
+<h5 id="插入排序的优化"><a href="#插入排序的优化" class="headerlink" title="插入排序的优化"></a>插入排序的优化</h5><p>注意到插入排序的实际计算过程是这样的：</p>
+<ol>
+<li>从最后的元素（A[end - 1]）组成的列表开始，将 A[end - 2] 插入到这个列表中</li>
+<li>将 A[end - 3] 插入到上面得到的列表中</li>
+<li>· · ·</li>
+<li>将 A[start] 插入到上面得到的列表中</li>
+</ol>
+<p>从后往前进行排序，所以我们可以这样修改现在的算法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">insertionSort(L, start, end)</span><br><span class="line">    if end - start = 1</span><br><span class="line">        return</span><br><span class="line">    else</span><br><span class="line">        for i &lt;- end - 2 downto start</span><br><span class="line">            insert(A[i], A, i + 1, end)</span><br></pre></td></tr></table></figure>
+<p>最终版本：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">insertionSort(L, start, end)</span><br><span class="line">    if end - start = 1</span><br><span class="line">        return</span><br><span class="line">    else</span><br><span class="line">        for i &lt;- end - 2 downto start</span><br><span class="line">            for j &lt;- i to end - 2</span><br><span class="line">                if A[j] &gt; A[j + 1]</span><br><span class="line">                    A[j], A[j + 1] &lt;- A[j + 1], A[j]</span><br></pre></td></tr></table></figure>
+<h3 id="希尔排序"><a href="#希尔排序" class="headerlink" title="希尔排序"></a>希尔排序</h3><h2 id="3-3-归并排序"><a href="#3-3-归并排序" class="headerlink" title="3.3 归并排序"></a>3.3 归并排序</h2><h2 id="3-4-快速排序"><a href="#3-4-快速排序" class="headerlink" title="3.4 快速排序"></a>3.4 快速排序</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">quick_sort</span><span class="params">(<span class="keyword">int</span> a[], <span class="keyword">int</span> lo, <span class="keyword">int</span> hi)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (lo &lt; hi) &#123;</span><br><span class="line">        <span class="keyword">int</span> pivot = a[lo];</span><br><span class="line">        <span class="keyword">int</span> vacant = lo;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> unknown = lo + <span class="number">1</span>; unknown &lt; hi; unknown++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (a[unknown] &lt; pivot) &#123;</span><br><span class="line">                a[vacant] = a[unknown];</span><br><span class="line">                a[unknown] = a[vacant + <span class="number">1</span>];</span><br><span class="line">                vacant++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        a[vacant] = pivot;</span><br><span class="line">        quick_sort(a, lo, vacant);</span><br><span class="line">        quick_sort(a, vacant + <span class="number">1</span>, hi);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>// 三向切分</p>
+<h3 id="3-4-2-非递归的快速排序"><a href="#3-4-2-非递归的快速排序" class="headerlink" title="3.4.2 非递归的快速排序"></a>3.4.2 非递归的快速排序</h3><p>我们其实可以发现，快速排序是对一棵树的前序遍历。</p>
+<img src="/2019/11/23/algorithms-sorting/quicksort-sequence.png">
+<h3 id="3-4-3-顺序统计量"><a href="#3-4-3-顺序统计量" class="headerlink" title="3.4.3 顺序统计量"></a>3.4.3 顺序统计量</h3><h1 id="4-基于比较的排序算法时间复杂度的下界"><a href="#4-基于比较的排序算法时间复杂度的下界" class="headerlink" title="4 基于比较的排序算法时间复杂度的下界"></a>4 基于比较的排序算法时间复杂度的下界</h1><h2 id="4-1-比较判别树"><a href="#4-1-比较判别树" class="headerlink" title="4.1 比较判别树"></a>4.1 比较判别树</h2><p>决策树是一个二叉树，</p>
+<ul>
+<li>每个内结点都是一次比较操作，根据比较的结果来决定下一步的方向</li>
+<li>每个叶子结点都是输入的一种排列</li>
+</ul>
+<p>对于大小为 n 的输入，共有 n! 种排列，高度为 h 的二叉树最多有 $2^h$ 个叶子结点，那么我们有：$n! \le 2^h$，即：$h \ge \log_2(n!) = \log_2((\dfrac{n}{e})^n) = \Theta(n\log n)$</p>
+<p>也就是说，基于比较的排序算法的时间复杂度不会低于 $n\log n$，有些基于比较的排序算法的渐进复杂度为 $O(n^2)$ 是因为重复了决策树中的某些路径。</p>
+<p>归并排序具有最优的渐进复杂度（上界和下界都为 $n\log  n$）。</p>
+<h2 id="4-2-代数判别树"><a href="#4-2-代数判别树" class="headerlink" title="4.2 代数判别树"></a>4.2 代数判别树</h2><h1 id="5-其他思路"><a href="#5-其他思路" class="headerlink" title="5 其他思路"></a>5 其他思路</h1><h2 id="5-1-基数排序"><a href="#5-1-基数排序" class="headerlink" title="5.1 基数排序"></a>5.1 基数排序</h2><h1 id="6-Tim-Sort"><a href="#6-Tim-Sort" class="headerlink" title="6 *Tim Sort"></a>6 *Tim Sort</h1>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/20/others-table-driven/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/11/20/others-table-driven/" itemprop="url">程序设计方法学：表驱动法</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-20T09:59:35+08:00">
+                2019-11-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Programming/" itemprop="url" rel="index">
+                    <span itemprop="name">Programming</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Programming/Methodology/" itemprop="url" rel="index">
+                    <span itemprop="name">Methodology</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p><strong>摘要</strong></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/11/20/others-table-driven/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/15/concurrency-monitor/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -381,6 +777,7 @@
       
         
           <p><strong>摘要</strong></p>
+<p>本文介绍并发程序设计中的管程</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/11/15/concurrency-monitor/#more" rel="contents">
@@ -1011,7 +1408,7 @@
       
         
           <p>[TOC]</p>
-<h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1>
+<p><strong>摘要</strong></p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/10/15/oo-design-concept-coupling-and-cohesion/#more" rel="contents">
@@ -1157,12 +1554,8 @@
 
       
         
-          <h1 id="0-导言"><a href="#0-导言" class="headerlink" title="0    导言"></a>0    导言</h1><p>软件的可维护性与复用性</p>
-<ul>
-<li>面向对象软件设计复用的目标在于实现支持可维护性的复用，而这要以面向对象软件设计原则为基础，这些设计原则首先都是复用的原则，遵循这些设计原则可以有效地提高系统的复用性，同时提高系统的可维护性</li>
-<li>面向对象设计原则也是对系统进行合理重构的指南针</li>
-</ul>
-<p>本文先介绍面向对象软件设计方法中一些重要的设计原则，然后再介绍用于指导职责分配的 GRASP (General Responsibility Assignment Software Patterns) 原则。</p>
+          <p><strong>摘要</strong></p>
+<p>本文介绍面向对象软件设计的设计原则，包括 Robert C. Martin 提出的 S.O.L.I.D. 原则、合成复用原则、Demeter 法则以及用于职责分配的 GRASP 原则。</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/09/25/oo-design-principles/#more" rel="contents">
@@ -1289,279 +1682,6 @@
           
             
           
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/29/comp-arch-floating-point-operation/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RHANQTL">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/08/29/comp-arch-floating-point-operation/" itemprop="url">comp-arch-floating-point-operation</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-29T21:36:41+08:00">
-                2019-08-29
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>五步：</p>
-<ol>
-<li>对阶</li>
-<li>尾数加减</li>
-<li>规格化</li>
-<li>舍入</li>
-<li>判溢出</li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/27/c-data-alignment/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RHANQTL">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/08/27/c-data-alignment/" itemprop="url">C 语言中的数据对齐</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-27T20:26:22+08:00">
-                2019-08-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/C/" itemprop="url" rel="index">
-                    <span itemprop="name">C</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>本文总结 C 语言中数据对齐相关的知识，包括结构体实际大小的计算。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/08/27/c-data-alignment/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
         
       
     </div>

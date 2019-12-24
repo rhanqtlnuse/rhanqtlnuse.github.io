@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-11-15T09:04:40.253Z</updated>
+  <updated>2019-12-24T02:36:42.967Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,15 +17,60 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>并发程序设计：管程</title>
-    <link href="http://yoursite.com/2019/11/15/concurrency-monitor/"/>
-    <id>http://yoursite.com/2019/11/15/concurrency-monitor/</id>
-    <published>2019-11-15T04:00:00.000Z</published>
-    <updated>2019-11-15T09:04:40.253Z</updated>
+    <title>排序问题和排序算法</title>
+    <link href="http://yoursite.com/2019/11/23/algorithms-sorting/"/>
+    <id>http://yoursite.com/2019/11/23/algorithms-sorting/</id>
+    <published>2019-11-23T04:00:00.000Z</published>
+    <updated>2019-12-24T02:36:42.967Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+      <category term="算法 (Algorithms)" scheme="http://yoursite.com/categories/%E7%AE%97%E6%B3%95-Algorithms/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>程序设计方法学：表驱动法</title>
+    <link href="http://yoursite.com/2019/11/20/others-table-driven/"/>
+    <id>http://yoursite.com/2019/11/20/others-table-driven/</id>
+    <published>2019-11-20T01:59:35.000Z</published>
+    <updated>2019-11-20T02:38:20.210Z</updated>
     
     <summary type="html">
     
       &lt;p&gt;&lt;strong&gt;摘要&lt;/strong&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Programming" scheme="http://yoursite.com/categories/Programming/"/>
+    
+      <category term="Methodology" scheme="http://yoursite.com/categories/Programming/Methodology/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>并发程序设计：管程</title>
+    <link href="http://yoursite.com/2019/11/15/concurrency-monitor/"/>
+    <id>http://yoursite.com/2019/11/15/concurrency-monitor/</id>
+    <published>2019-11-15T04:00:00.000Z</published>
+    <updated>2019-11-18T03:12:52.805Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;strong&gt;摘要&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;本文介绍并发程序设计中的管程&lt;/p&gt;
     
     </summary>
     
@@ -37,7 +82,7 @@
     <link href="http://yoursite.com/2019/11/09/concurrency-conditional-variables/"/>
     <id>http://yoursite.com/2019/11/09/concurrency-conditional-variables/</id>
     <published>2019-11-09T04:00:00.000Z</published>
-    <updated>2019-11-11T01:07:05.761Z</updated>
+    <updated>2019-11-17T06:23:13.814Z</updated>
     
     <summary type="html">
     
@@ -53,7 +98,7 @@
     <link href="http://yoursite.com/2019/11/09/concurrency-semaphores-and-pv/"/>
     <id>http://yoursite.com/2019/11/09/concurrency-semaphores-and-pv/</id>
     <published>2019-11-09T04:00:00.000Z</published>
-    <updated>2019-11-15T08:36:04.927Z</updated>
+    <updated>2019-12-17T02:37:38.080Z</updated>
     
     <summary type="html">
     
@@ -119,12 +164,12 @@
     <link href="http://yoursite.com/2019/10/15/oo-design-concept-coupling-and-cohesion/"/>
     <id>http://yoursite.com/2019/10/15/oo-design-concept-coupling-and-cohesion/</id>
     <published>2019-10-15T08:25:38.000Z</published>
-    <updated>2019-11-15T03:04:05.488Z</updated>
+    <updated>2019-12-15T02:27:21.722Z</updated>
     
     <summary type="html">
     
       &lt;p&gt;[TOC]&lt;/p&gt;
-&lt;h1 id=&quot;摘要&quot;&gt;&lt;a href=&quot;#摘要&quot; class=&quot;headerlink&quot; title=&quot;摘要&quot;&gt;&lt;/a&gt;摘要&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;摘要&lt;/strong&gt;&lt;/p&gt;
     
     </summary>
     
@@ -136,16 +181,12 @@
     <link href="http://yoursite.com/2019/09/25/oo-design-principles/"/>
     <id>http://yoursite.com/2019/09/25/oo-design-principles/</id>
     <published>2019-09-25T03:26:04.000Z</published>
-    <updated>2019-11-13T01:42:43.975Z</updated>
+    <updated>2019-12-15T02:34:59.408Z</updated>
     
     <summary type="html">
     
-      &lt;h1 id=&quot;0-导言&quot;&gt;&lt;a href=&quot;#0-导言&quot; class=&quot;headerlink&quot; title=&quot;0    导言&quot;&gt;&lt;/a&gt;0    导言&lt;/h1&gt;&lt;p&gt;软件的可维护性与复用性&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;面向对象软件设计复用的目标在于实现支持可维护性的复用，而这要以面向对象软件设计原则为基础，这些设计原则首先都是复用的原则，遵循这些设计原则可以有效地提高系统的复用性，同时提高系统的可维护性&lt;/li&gt;
-&lt;li&gt;面向对象设计原则也是对系统进行合理重构的指南针&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;本文先介绍面向对象软件设计方法中一些重要的设计原则，然后再介绍用于指导职责分配的 GRASP (General Responsibility Assignment Software Patterns) 原则。&lt;/p&gt;
+      &lt;p&gt;&lt;strong&gt;摘要&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;本文介绍面向对象软件设计的设计原则，包括 Robert C. Martin 提出的 S.O.L.I.D. 原则、合成复用原则、Demeter 法则以及用于职责分配的 GRASP 原则。&lt;/p&gt;
     
     </summary>
     
@@ -366,52 +407,6 @@
       &lt;p&gt;介绍了整数和浮点数在计算机内部是如何表示的。&lt;/p&gt;
     
     </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>李白《侠客行》</title>
-    <link href="http://yoursite.com/2019/07/18/poems-%E6%9D%8E%E7%99%BD-%E4%BE%A0%E5%AE%A2%E8%A1%8C/"/>
-    <id>http://yoursite.com/2019/07/18/poems-李白-侠客行/</id>
-    <published>2019-07-18T11:48:10.000Z</published>
-    <updated>2019-09-15T21:14:39.137Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>algorithms-hashing</title>
-    <link href="http://yoursite.com/2019/07/18/algorithms-hashing/"/>
-    <id>http://yoursite.com/2019/07/18/algorithms-hashing/</id>
-    <published>2019-07-18T11:10:46.000Z</published>
-    <updated>2019-07-18T11:12:19.350Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-      <category term="算法 (Algorithms)" scheme="http://yoursite.com/categories/%E7%AE%97%E6%B3%95-Algorithms/"/>
     
     
   </entry>
