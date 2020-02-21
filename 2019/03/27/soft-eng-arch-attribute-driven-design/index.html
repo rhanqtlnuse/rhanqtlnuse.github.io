@@ -1,0 +1,1263 @@
+<!DOCTYPE html>
+<html style="display: none;" lang="zh">
+    <head><meta name="generator" content="Hexo 3.8.0">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    <!--
+        © Material Theme
+        https://github.com/viosey/hexo-theme-material
+        Version: 1.5.6 -->
+    <script>
+        window.materialVersion = "1.5.6"
+        // Delete localstorage with these tags
+        window.oldVersion = [
+            'codestartv1',
+            '1.3.4',
+            '1.4.0',
+            '1.4.0b1',
+            '1.5.0',
+            '1.5.2',
+            '1.5.5'
+        ]
+    </script>
+
+    <!-- dns prefetch -->
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+
+
+
+
+
+
+
+
+
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+
+
+
+
+    <!-- Meta & Info -->
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <!-- Title -->
+    
+    <title>
+        
+            Attribute-Driven Design | 
+        
+        RHANQTL
+    </title>
+
+    <!-- Favicons -->
+    <link rel="icon shortcut" type="image/ico" href="/img/favicon.png">
+    <link rel="icon" href="/img/favicon.png">
+
+    <meta name="format-detection" content="telephone=no">
+    <meta name="description" itemprop="description" content="">
+    <meta name="keywords" content="">
+    <meta name="theme-color" content="#0097A7">
+
+    <!-- Disable Fucking Bloody Baidu Tranformation -->
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+
+    <!--[if lte IE 9]>
+        <link rel="stylesheet" href="/css/ie-blocker.css">
+
+        
+            <script src="/js/ie-blocker.en.js"></script>
+        
+    <![endif]-->
+
+    <!-- Import lsloader -->
+    <script>(function(){window.lsloader={jsRunSequence:[],jsnamemap:{},cssnamemap:{}};lsloader.removeLS=function(a){try{localStorage.removeItem(a)}catch(b){}};lsloader.setLS=function(a,c){try{localStorage.setItem(a,c)}catch(b){}};lsloader.getLS=function(a){var c="";try{c=localStorage.getItem(a)}catch(b){c=""}return c};versionString="/*"+(window.materialVersion||"unknownVersion")+"*/";lsloader.clean=function(){try{var b=[];for(var a=0;a<localStorage.length;a++){b.push(localStorage.key(a))}b.forEach(function(e){var f=lsloader.getLS(e);if(window.oldVersion){var d=window.oldVersion.reduce(function(g,h){return g||f.indexOf("/*"+h+"*/")!==-1},false);if(d){lsloader.removeLS(e)}}})}catch(c){}};lsloader.clean();lsloader.load=function(f,a,b,d){if(typeof b==="boolean"){d=b;b=undefined}d=d||false;b=b||function(){};var e;e=this.getLS(f);if(e&&e.indexOf(versionString)===-1){this.removeLS(f);this.requestResource(f,a,b,d);return}if(e){var c=e.split(versionString)[0];if(c!=a){console.log("reload:"+a);this.removeLS(f);this.requestResource(f,a,b,d);return}e=e.split(versionString)[1];if(d){this.jsRunSequence.push({name:f,code:e});this.runjs(a,f,e)}else{document.getElementById(f).appendChild(document.createTextNode(e));b()}}else{this.requestResource(f,a,b,d)}};lsloader.requestResource=function(b,e,a,c){var d=this;if(c){this.iojs(e,b,function(h,f,g){d.setLS(f,h+versionString+g);d.runjs(h,f,g)})}else{this.iocss(e,b,function(f){document.getElementById(b).appendChild(document.createTextNode(f));d.setLS(b,e+versionString+f)},a)}};lsloader.iojs=function(d,b,g){var a=this;a.jsRunSequence.push({name:b,code:""});try{var f=new XMLHttpRequest();f.open("get",d,true);f.onreadystatechange=function(){if(f.readyState==4){if((f.status>=200&&f.status<300)||f.status==304){if(f.response!=""){g(d,b,f.response);return}}a.jsfallback(d,b)}};f.send(null)}catch(c){a.jsfallback(d,b)}};lsloader.iocss=function(f,c,h,a){var b=this;try{var g=new XMLHttpRequest();g.open("get",f,true);g.onreadystatechange=function(){if(g.readyState==4){if((g.status>=200&&g.status<300)||g.status==304){if(g.response!=""){h(g.response);a();return}}b.cssfallback(f,c,a)}};g.send(null)}catch(d){b.cssfallback(f,c,a)}};lsloader.iofonts=function(f,c,h,a){var b=this;try{var g=new XMLHttpRequest();g.open("get",f,true);g.onreadystatechange=function(){if(g.readyState==4){if((g.status>=200&&g.status<300)||g.status==304){if(g.response!=""){h(g.response);a();return}}b.cssfallback(f,c,a)}};g.send(null)}catch(d){b.cssfallback(f,c,a)}};lsloader.runjs=function(f,c,e){if(!!c&&!!e){for(var b in this.jsRunSequence){if(this.jsRunSequence[b].name==c){this.jsRunSequence[b].code=e}}}if(!!this.jsRunSequence[0]&&!!this.jsRunSequence[0].code&&this.jsRunSequence[0].status!="failed"){var a=document.createElement("script");a.appendChild(document.createTextNode(this.jsRunSequence[0].code));a.type="text/javascript";document.getElementsByTagName("head")[0].appendChild(a);this.jsRunSequence.shift();if(this.jsRunSequence.length>0){this.runjs()}}else{if(!!this.jsRunSequence[0]&&this.jsRunSequence[0].status=="failed"){var d=this;var a=document.createElement("script");a.src=this.jsRunSequence[0].path;a.type="text/javascript";this.jsRunSequence[0].status="loading";a.onload=function(){d.jsRunSequence.shift();if(d.jsRunSequence.length>0){d.runjs()}};document.body.appendChild(a)}}};lsloader.tagLoad=function(b,a){this.jsRunSequence.push({name:a,code:"",path:b,status:"failed"});this.runjs()};lsloader.jsfallback=function(c,b){if(!!this.jsnamemap[b]){return}else{this.jsnamemap[b]=b}for(var a in this.jsRunSequence){if(this.jsRunSequence[a].name==b){this.jsRunSequence[a].code="";this.jsRunSequence[a].status="failed";this.jsRunSequence[a].path=c}}this.runjs()};lsloader.cssfallback=function(e,c,b){if(!!this.cssnamemap[c]){return}else{this.cssnamemap[c]=1}var d=document.createElement("link");d.type="text/css";d.href=e;d.rel="stylesheet";d.onload=d.onerror=b;var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(d,a)};lsloader.runInlineScript=function(c,b){var a=document.getElementById(b).innerText;this.jsRunSequence.push({name:c,code:a});this.runjs()}})();</script>
+
+    <!-- Import queue -->
+    <script>function Queue(){this.dataStore=[];this.offer=b;this.poll=d;this.execNext=a;this.debug=false;this.startDebug=c;function b(e){if(this.debug){console.log("Offered a Queued Function.")}if(typeof e==="function"){this.dataStore.push(e)}else{console.log("You must offer a function.")}}function d(){if(this.debug){console.log("Polled a Queued Function.")}return this.dataStore.shift()}function a(){var e=this.poll();if(e!==undefined){if(this.debug){console.log("Run a Queued Function.")}e()}}function c(){this.debug=true}}var queue=new Queue();</script>
+
+    <!-- Import CSS -->
+    
+        <style id="material_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_css","/css/material.min.css?Z7a72R1E4SxzBKR/WGctOA==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+        <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","/css/style.min.css?NKhlKQkXw/c66TR5p4wO+w==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+
+        
+
+    
+
+    
+
+    <!-- Config CSS -->
+
+<!-- Other Styles -->
+<style>
+  body, html {
+    font-family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+    overflow-x: hidden !important;
+  }
+  
+  code {
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  }
+
+  a {
+    color: #00838F;
+  }
+
+  .mdl-card__media,
+  #search-label,
+  #search-form-label:after,
+  #scheme-Paradox .hot_tags-count,
+  #scheme-Paradox .sidebar_archives-count,
+  #scheme-Paradox .sidebar-colored .sidebar-header,
+  #scheme-Paradox .sidebar-colored .sidebar-badge{
+    background-color: #0097A7 !important;
+  }
+
+  /* Sidebar User Drop Down Menu Text Color */
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus {
+    color: #0097A7 !important;
+  }
+
+  #post_entry-right-info,
+  .sidebar-colored .sidebar-nav li:hover > a,
+  .sidebar-colored .sidebar-nav li:hover > a i,
+  .sidebar-colored .sidebar-nav li > a:hover,
+  .sidebar-colored .sidebar-nav li > a:hover i,
+  .sidebar-colored .sidebar-nav li > a:focus i,
+  .sidebar-colored .sidebar-nav > .open > a,
+  .sidebar-colored .sidebar-nav > .open > a:hover,
+  .sidebar-colored .sidebar-nav > .open > a:focus,
+  #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a {
+    color: #0097A7 !important;
+  }
+
+  .toTop {
+    background: #757575 !important;
+  }
+
+  .material-layout .material-post>.material-nav,
+  .material-layout .material-index>.material-nav,
+  .material-nav a {
+    color: #757575;
+  }
+
+  #scheme-Paradox .MD-burger-layer {
+    background-color: #757575;
+  }
+
+  #scheme-Paradox #post-toc-trigger-btn {
+    color: #757575;
+  }
+
+  .post-toc a:hover {
+    color: #00838F;
+    text-decoration: underline;
+  }
+
+</style>
+
+
+<!-- Theme Background Related-->
+
+    <style>
+      body{
+        background-color: #F5F5F5;
+      }
+
+      /* blog_info bottom background */
+      #scheme-Paradox .material-layout .something-else .mdl-card__supporting-text{
+        background-color: #fff;
+      }
+    </style>
+
+
+
+
+<!-- Fade Effect -->
+
+    <style>
+      .fade {
+        transition: all 800ms linear;
+        -webkit-transform: translate3d(0,0,0);
+        -moz-transform: translate3d(0,0,0);
+        -ms-transform: translate3d(0,0,0);
+        -o-transform: translate3d(0,0,0);
+        transform: translate3d(0,0,0);
+        opacity: 1;
+      }
+
+      .fade.out{
+        opacity: 0;
+      }
+    </style>
+
+
+<!-- Import Font -->
+<!-- Import Roboto -->
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+
+
+<!-- Import Material Icons -->
+
+
+    <style id="material_icons"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_icons","/css/material-icons.css?pqhB/Rd/ab0H2+kZp0RDmw==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+
+
+
+
+    <!-- Import jQuery -->
+    
+        <script>lsloader.load("jq_js","/js/jquery.min.js?qcusAULNeBksqffqUM2+Ig==", true)</script>
+    
+
+    <!-- WebAPP Icons -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="RHANQTL">
+    <meta name="msapplication-starturl" content="http://yoursite.com/2019/03/27/soft-eng-arch-attribute-driven-design/">
+    <meta name="msapplication-navbutton-color" content="#0097A7">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="RHANQTL">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon" href="/img/favicon.png">
+
+    <!-- Site Verification -->
+    
+    
+
+    <!-- RSS -->
+    
+
+    <!-- The Open Graph protocol -->
+    <meta property="og:url" content="http://yoursite.com/2019/03/27/soft-eng-arch-attribute-driven-design/">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="Attribute-Driven Design | RHANQTL">
+    <meta property="og:image" content="/img/favicon.png">
+    <meta property="og:description" content="">
+    
+
+    
+        <meta property="article:published_time" content="Wed Mar 27 2019 15:59:40 GMT+0800">
+        <meta property="article:modified_time" content="Fri Mar 29 2019 11:37:37 GMT+0800">
+    
+
+    <!-- The Twitter Card protocol -->
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!-- Add canonical link for SEO -->
+    
+        <link rel="canonical" href="http://yoursite.com/2019/03/27/soft-eng-arch-attribute-driven-design/index.html">
+    
+
+    <!-- Structured-data for SEO -->
+    
+        
+
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage": "http://yoursite.com/2019/03/27/soft-eng-arch-attribute-driven-design/index.html",
+    "headline": "Attribute-Driven Design",
+    "datePublished": "Wed Mar 27 2019 15:59:40 GMT+0800",
+    "dateModified": "Fri Mar 29 2019 11:37:37 GMT+0800",
+    "author": {
+        "@type": "Person",
+        "name": "Han Qi",
+        "image": {
+            "@type": "ImageObject",
+            "url": "/img/avatar.png"
+        },
+        "description": "Hi, nice to meet you"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "RHANQTL",
+        "logo": {
+            "@type":"ImageObject",
+            "url": "/img/favicon.png"
+        }
+    },
+    "keywords": "",
+    "description": "",
+}
+</script>
+
+
+    
+
+    <!-- Analytics -->
+    
+    
+    
+
+    <!-- Custom Head --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    
+
+</head>
+
+
+    
+        <body id="scheme-Paradox" class="lazy">
+            <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="material-layout  mdl-js-layout has-drawer is-upgraded">
+                
+
+                <!-- Main Container -->
+                <main class="material-layout__content" id="main">
+
+                    <!-- Top Anchor -->
+                    <div id="top"></div>
+
+                    
+                        <!-- Hamburger Button -->
+                        <button class="MD-burger-icon sidebar-toggle">
+                            <span id="MD-burger-id" class="MD-burger-layer"></span>
+                        </button>
+                    
+
+                    <!-- Post TOC -->
+
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+
+    <!-- Left aligned menu below button -->
+    
+    
+    <button id="post-toc-trigger-btn" class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#ADD-是什么？"><span class="post-toc-number">1.</span> <span class="post-toc-text">ADD 是什么？</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Overview"><span class="post-toc-number">2.</span> <span class="post-toc-text">Overview</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#ADD-输入与输出"><span class="post-toc-number">3.</span> <span class="post-toc-text">ADD 输入与输出</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#ADD-过程详述"><span class="post-toc-number">4.</span> <span class="post-toc-text">ADD 过程详述</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#实例"><span class="post-toc-number">5.</span> <span class="post-toc-text">实例</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#系统定义"><span class="post-toc-number">5.1.</span> <span class="post-toc-text">系统定义</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#应用-ADD"><span class="post-toc-number">5.2.</span> <span class="post-toc-text">应用 ADD</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#ADD-第二次迭代"><span class="post-toc-number">5.3.</span> <span class="post-toc-text">ADD 第二次迭代</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#参考"><span class="post-toc-number">6.</span> <span class="post-toc-text">参考</span></a></li></ol>
+    </ul>
+    
+
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+    <!-- Paradox Post Header -->
+    
+        
+            <!-- Random Thumbnail -->
+            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
+            <script type="text/ls-javascript" id="post-thumbnail-script">
+    var randomNum = Math.floor(Math.random() * 19 + 1);
+
+    $('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
+    $('.post_thumbnail-random').addClass('lazy');
+</script>
+
+        
+    
+            <p class="article-headline-p">
+                Attribute-Driven Design
+            </p>
+        </div>
+
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/avatar.png" width="44px" height="44px" alt="Author Avatar">
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>Han Qi</strong>
+        <span>Mar 27, 2019</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
+    
+
+    <!-- Tags (bookmark) -->
+    
+
+    <!-- Share -->
+    
+        <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+
+    <!-- Share Weibo -->
+    
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=Attribute-Driven Design&url=http://yoursite.com/2019/03/27/soft-eng-arch-attribute-driven-design/index.html&pic=http://yoursite.com/img/favicon.png&searchPic=false&style=simple" target="_blank">
+            <li class="mdl-menu__item">
+                شارك على Weibo
+            </li>
+        </a>
+    
+
+    <!-- Share Twitter -->
+    
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=Attribute-Driven Design&url=http://yoursite.com/2019/03/27/soft-eng-arch-attribute-driven-design/index.html&via=Han Qi" target="_blank">
+            <li class="mdl-menu__item">
+                شارك على Twitter
+            </li>
+        </a>
+    
+
+    <!-- Share Facebook -->
+    
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2019/03/27/soft-eng-arch-attribute-driven-design/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                شارك على Facebook
+            </li>
+        </a>
+    
+
+    <!-- Share Google+ -->
+    
+        <a class="post_share-link" href="https://plus.google.com/share?url=http://yoursite.com/2019/03/27/soft-eng-arch-attribute-driven-design/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                شارك على Google+
+            </li>
+        </a>
+    
+
+    <!-- Share LinkedIn -->
+    
+        <a class="post_share-link" href="https://www.linkedin.com/shareArticle?mini=true&url=http://yoursite.com/2019/03/27/soft-eng-arch-attribute-driven-design/index.html&title=Attribute-Driven Design" target="_blank">
+            <li class="mdl-menu__item">
+                شارك على LinkedIn
+            </li>
+        </a>
+    
+
+    <!-- Share QQ -->
+    
+        <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=RHANQTL&title=Attribute-Driven Design&summary=&pics=http://yoursite.com/img/favicon.png&url=http://yoursite.com/2019/03/27/soft-eng-arch-attribute-driven-design/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                شارك على QQ
+            </li>
+        </a>
+    
+
+    <!-- Share Telegram -->
+    
+        <a class="post_share-link" href="https://telegram.me/share/url?url=http://yoursite.com/2019/03/27/soft-eng-arch-attribute-driven-design/index.html&text=Attribute-Driven Design" target="_blank">
+            <li class="mdl-menu__item">
+                شارك على Telegram
+            </li>
+        </a>
+    
+</ul>
+
+    
+</div>
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <h1 id="ADD-是什么？"><a href="#ADD-是什么？" class="headerlink" title="ADD 是什么？"></a>ADD 是什么？</h1><ul>
+<li>Attribute-Driven Design 中的 “Attribute” 指的是软件架构的<em>质量属性</em>，ADD 是一种基于软件质量属性需求的设计过程。</li>
+<li>ADD 遵循这样一个递归的过程：根据系统或系统元素的<em>质量属性需求</em>，运用合适的架构 <em>tactic</em> 和<em>模式</em> 将系统或系统中的要素<em>分解</em></li>
+</ul>
+<h1 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h1><ul>
+<li><p>ADD 遵循 “计划 —— 行动 —— 检查” 的循环</p>
+<ol>
+<li><p>计划：根据<em>质量属性需求</em> 和<em>设计约束</em> 来选择在架构中使用何种元素</p>
+</li>
+<li><p>行动：实例化上一步得到的元素以满足功能性需求和质量属性需求</p>
+</li>
+<li><p>检查：分析上一步得到的设计，确定需求是否得到满足</p>
+</li>
+</ol>
+<p>这个过程不断循环，直到所有的 ASR 得到满足</p>
+</li>
+<li><p>ADD 的步骤</p>
+<img src="/2019/03/27/soft-eng-arch-attribute-driven-design/steps-overview.png">
+<ul>
+<li>需要注意的一处：开始 Step 1 之前需要保证所有的需求都是 Well-formed 并且已经被涉众（Stakeholder）排序</li>
+</ul>
+</li>
+</ul>
+<h1 id="ADD-输入与输出"><a href="#ADD-输入与输出" class="headerlink" title="ADD 输入与输出"></a>ADD 输入与输出</h1><ul>
+<li><p>输入</p>
+<ul>
+<li>被涉众根据业务（Business）和任务（Mission）目标进行过排序的功能性需求（Functional Requirements）、设计约束（Design Constraints）和质量属性需求（Quality Attribute Requirements）<ul>
+<li>Design constraints are decisions about a system’s design that must be incorporated into any final design of the system.</li>
+<li>某些情况下可能难以将某个特定的条件分类为任何一个，比如：<ul>
+<li>A security requirement to provide user authentication could be interpreted as a functional requirement or a quality attribute requirement.</li>
+<li>A requirement to interoperate with a particular legacy application could be interpreted as a functional requirement or a design constraint.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>输出</p>
+<ul>
+<li>ADD 的输出是就<em>角色</em>、<em>职责</em>、<em>属性</em> 和<em>软件元素</em> 之间的<em>关系</em> 而言的系统设计<ul>
+<li>软件元素（Software Element）：a computational or developmental artifact that fulfills various roles and responsibilities, has defined properties, and relates to other soft-ware elements to compose the architecture of a system</li>
+<li>角色（Role）：a set of related responsibilities</li>
+<li>职责（Responsibility）：the functionality, data, or information that a software element provides</li>
+<li>属性（Property）：additional information about a software element such as name, type, quality attribute characteristic, protocol, and so on</li>
+<li>关系（Relationship）：a definition of how two software elements are associated with or interact with one another</li>
+</ul>
+</li>
+<li>ADD 的结果使用多种架构视图记录<ul>
+<li>架构视图：Module、C&amp;C、Allocation</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="ADD-过程详述"><a href="#ADD-过程详述" class="headerlink" title="ADD 过程详述"></a>ADD 过程详述</h1><ol>
+<li><p>确认有足够的质量属性需求信息</p>
+<ul>
+<li>每个质量属性需求都应该以 “刺激 - 响应” 的形式表述</li>
+</ul>
+</li>
+<li><p>选择系统中的某个元素进行分解</p>
+<ul>
+<li>两种选择<ul>
+<li>在 ADD 流程中初次到达 Step 2：a <em>“greenfield”</em> development. The only element you can decompose is the <em>system itself</em>. By default, <em>all</em> requirements are assigned to that system.</li>
+<li>已经经过若干次 ADD 流程迭代或者来源于设计约束：a <em>partially designed system</em>. In this case, the system has been partitioned into two or more elements, and requirements have been assigned to those elements. You must <em>choose one</em> of these elements as the focus of subsequent steps.<ul>
+<li>选择元素的标准<ul>
+<li>当前关于架构的知识<ul>
+<li>是否是你能够选择的唯一元素 (e.g., the entire system or the last element left)</li>
+<li>the number of dependencies it has with other elements of the system (e.g., many or few dependencies)</li>
+</ul>
+</li>
+<li>风险和困难<ul>
+<li>how difficult it will be to achieve the element’s associated requirements</li>
+<li>how familiar you are with how to achieve the element’s associated requirements</li>
+<li>the risk involved with achieving the element’s associated requirements</li>
+</ul>
+</li>
+<li>业务（商业）标准<ul>
+<li>the role the element plays in incremental development of the system</li>
+<li>the role it plays in incremental releases of functionality (i.e., subsetability)</li>
+<li>whether it will be built, purchased, licensed, or used as open source</li>
+<li>the impact it has on time to market</li>
+<li>whether it will be implemented using legacy components</li>
+<li>the availability of personnel to address a component</li>
+</ul>
+</li>
+<li>组织标准<ul>
+<li>the impact it has on resource utilization (e.g., human and computing re-sources)</li>
+<li>the skill level involved with its development</li>
+<li>the impact it has on improving development skills in the organization</li>
+<li>someone of authority selected it</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>识别候选的架构 Driver</p>
+<ul>
+<li><p>依据需求对架构的潜在影响，第二次对需求进行排序</p>
+<ul>
+<li><p>简单地给需求分配如 “较高影响” “一般影响” “较低影响” 这样的标签</p>
+</li>
+<li><p>得到如 “(H, H)” “(M, L)” 这样的有序对，第一个分量表示需求对涉众的重要性，第二个分量表示需求对架构的潜在影响的级别</p>
+<img src="/2019/03/27/soft-eng-arch-attribute-driven-design/priority-pairs.png">
+<ul>
+<li>If more than five or six requirements are ranked (H,H), this situation might signal a risk to the project and warrant renegotiation of the priorities. If renewed discussion is not feasible, then the architect should choose the handful of requirements that he/she believes will have the most far-reaching effect on the architecture.</li>
+</ul>
+</li>
+<li><p>选择若干个（5 到 6 个）高优先级需求作为后续步骤的关注点，这些被选中的需求叫做要被分解的元素的 “候选架构 Driver”</p>
+<ul>
+<li>更深入的分析可能会剔除当前的某些候选架构 Driver，而将另一些加入到候选列表，后续步骤的目标就是识别真正的架构 Driver<ul>
+<li>“架构 Driver” 就是会对架构的结构产生影响的功能性需求、设计约束或质量属性需求</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>选择满足架构 Driver 的设计概念（Design Concept）</p>
+<ul>
+<li><p>选择主要的元素类型（major types of elements）以及它们之间的关系</p>
+<ul>
+<li>借助设计约束、质量属性需求</li>
+</ul>
+</li>
+<li><p>依照如下步骤：</p>
+<ol>
+<li><p>识别与候选架构 Driver 相关联的设计理念（Design Concern）。例如，如果质量属性需求要求可用性，那么主要的设计理念应该是错误预防、错误检测和错误回复</p>
+</li>
+<li><p>对于每个设计理念，列出可选的架构模式的列表</p>
+<ul>
+<li>识别每个架构模式的 discriminating parameter，并估计其价值<ul>
+<li>对于重启的架构模式（比如热重启和冷重启），重启花费的时间就是 discriminating parameter</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>从列表中选择合适的架构模式，记录理由</p>
+<ul>
+<li><p>如何选择合适的架构模式？一个参考是创建如下的矩阵，并考虑这些方面：</p>
+<ul>
+<li>每个架构模式的权衡（Trade-off）</li>
+<li>架构模式组合的好坏</li>
+<li>是否有互相冲突的架构模式</li>
+</ul>
+<table>
+    <tr>
+        <th></th>
+        <th colspan="2">Pattern 1</th>
+        <th colspan="2">Pattern 2</th>
+        <th>...</th>
+        <th colspan="2">Pattern n</th>
+    </tr>
+    <tr>
+        <td></td>
+        <td>Pros</td>
+        <td>Cons</td>
+        <td>Pros</td>
+        <td>Cons</td>
+        <td>...</td>
+        <td>Pros</td>
+        <td>Cons</td>
+    </tr>
+    <tr>
+        <td>Architectural driver 1</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Architectural driver 2</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>...</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Architectural driver n</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+</table>
+</li>
+</ul>
+</li>
+<li><p>Consider the patterns identified so far and decide how they relate to each other. The combination of the selected patterns results in a new pattern.</p>
+<ul>
+<li>哪些元素有联系？</li>
+<li>哪些元素没有联系？</li>
+<li>哪些功能有重叠？重叠功能可以作为如何合并模式的指示</li>
+</ul>
+</li>
+<li><p>通过不同的视图，描述已选择的模式，记录（但不需要完全的记录）</p>
+</li>
+<li><p>评估和解决设计理念中的不一致性</p>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p>实例化架构元素、分配职责</p>
+<ul>
+<li><p>正在被分解的系统元素作为父元素（Parent Element），实例化得到的元素作为子元素（Child Element）</p>
+</li>
+<li><p>同时可能会涉及到一些细化的部分</p>
+</li>
+</ul>
+</li>
+<li><p>定义实例化元素之间的接口</p>
+<ul>
+<li>供接口（Provide）和需接口（Require）</li>
+</ul>
+</li>
+<li><p>验证和精化需求、令他们作为实例化元素的约束</p>
+</li>
+</ol>
+<h1 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h1><p>对于大规模（Large-Scale）系统而言，可以将系统分为若干个块，针对这些块的设计活动可以同时进行，最终整合成一致的、能够满足涉众全部需求的完整架构。</p>
+<p>在这个示例中，我们有一个已经经过第一次迭代的大规模系统。第一次迭代的结果包含如下几个部分：</p>
+<ul>
+<li>容错（Fault-Toloerance）服务的占位符</li>
+<li>启动（Start-up）服务</li>
+<li>持久化存储（Persistent Storage）服务</li>
+<li>…</li>
+</ul>
+<p>我们的工作是对这些模块进行进一步的分解。</p>
+<p>约束/质量属性需求：</p>
+<ul>
+<li>端到端时间限制：从失效开始计算，至完全恢复系统结束<ul>
+<li>starting with the failure and ending with a fully recovered system</li>
+</ul>
+</li>
+<li>可能使用现有的服务，如 health monitoring 或者 warm restart service using a proxy</li>
+</ul>
+<h2 id="系统定义"><a href="#系统定义" class="headerlink" title="系统定义"></a>系统定义</h2><p><img src="/2019/03/27/soft-eng-arch-attribute-driven-design/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1553851602143.png" alt="1553851602143"></p>
+<p>要点：</p>
+<ul>
+<li>Update Clients <em>周期性</em>（1s）地向 Track Manager 发送数据</li>
+<li>（对于错误恢复时间的要求）Track Manager 容许<em>偶发性</em> 的丢失更新，especially during transient conditions caused by equipment failure，the Track Manager can recover from <em>two missed update</em> signals when it receives the third signal<ul>
+<li>If more than two signals are missed, the <em>operator</em> may have to assist the Track Manager in the recovery process. In other words, if a failure occurs, the processing <em>must</em> restart before <em>two seconds</em> have elapsed in order to avoid operator intervention.</li>
+</ul>
+</li>
+<li>Query Clients <em>零星地</em> 向 Track Manager 发送查询请求，并且必须<em>收到且仅收到一条</em> 回复<ul>
+<li>The response time for queries should be less than double the normal response time<br>for a particular query.</li>
+</ul>
+</li>
+<li>设计约束<ul>
+<li>容量限制：The provided processors shall have 50% spare processor and memory capacity on delivery, and the local area network (LAN) has 50% spare throughput capability. There are 100 update clients and 25 query clients. For the purposes of timing estimates, assume that there are 100 updates and 5 queries per second.</li>
+<li>持久化存储服务：This service will maintain a copy of state that is checked <em>at least once per minute</em> by the Track Manager. If all replicas of the Track Manager fail, a restart can begin from the checkpoint file.</li>
+<li>两份复制</li>
+</ul>
+</li>
+</ul>
+<h2 id="应用-ADD"><a href="#应用-ADD" class="headerlink" title="应用 ADD"></a>应用 ADD</h2><p><img src="/2019/03/27/soft-eng-arch-attribute-driven-design/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1553824629846.png" alt="1553824629846"></p>
+<ul>
+<li><p>Track Manager</p>
+<ul>
+<li><p>Strategy 1: Both elements (A and B) operate in a single processor, P1. A and B together<br>consume 50% of the processor duty cycle to handle 100 updates and 30 queries.<br>This strategy satisfies the system performance requirements.</p>
+</li>
+<li><p>Strategy 2: Element A is in processor P1, and element B is in processor P2. Together,<br>they can handle 150 update clients and 50 query clients. This strategy exceeds the system<br>performance requirements.</p>
+<ul>
+<li>Communication system bandwidth increases by 2% when the components are placed in different processors</li>
+</ul>
+<p><img src="/2019/03/27/soft-eng-arch-attribute-driven-design/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1553824753437.png" alt="1553824753437"></p>
+</li>
+</ul>
+</li>
+<li><p>Clients-Server Communication</p>
+<ul>
+<li><p>Update clients use an asynchronous communication mechanism. They send an update message, receive no reply, and are not suspended while the message is being delivered. (If a publish/subscribe service were available, it would be used instead.)</p>
+<blockquote>
+<font color="red">使用 publish/subcribe 代替异步通信？多个 publisher 一个 subscriber？</font>
+</blockquote>
+</li>
+<li><p>Query clients use a synchronous communication mechanism. They make a service<br>request and are suspended until they receive the reply</p>
+</li>
+</ul>
+</li>
+<li><p>naming service accepts the name of a requested service and returns an access code for the service. Both A and B register their interfaces with the naming service. </p>
+</li>
+<li><p>registration service refuses service to new clients if providing it would cause persistent storage to exceed its spare capacity limit.</p>
+</li>
+</ul>
+<h2 id="ADD-第二次迭代"><a href="#ADD-第二次迭代" class="headerlink" title="ADD 第二次迭代"></a>ADD 第二次迭代</h2><p>The three design concerns associated with fault-tolerance services are</p>
+<ul>
+<li>fault preparation: This concern consists of those tactics performed routinely during normal operation to ensure that when a failure occurs, a recovery can take place.</li>
+<li>fault detection: This concern consists of the tactics associated with detecting the fault and<br>notifying an element to deal with the fault.</li>
+<li>fault recovery: This concern addresses operations during a transient condition — the time<br>period between the fault occurrence and the restoration of normal operation.</li>
+</ul>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p>本文内容来自 CMU/SEI：</p>
+<p>[1] Attribute-Driven Design, Version 2.0</p>
+<p>[2] A Practical Example of Applying ADD, Version 2.0</p>
+
+        
+    
+
+    
+</div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+        <a href="/2019/04/02/linux-programming-file-system/" id="post_nav-newer" class="prev-content">
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_back</i>
+            </button>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            أحدث
+        </a>
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2019/03/27/soft-eng-arch-micro-services/" id="post_nav-older" class="next-content">
+            أقدم
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
+
+
+                    
+                        <!-- Overlay For Active Sidebar -->
+<div class="sidebar-overlay"></div>
+
+<!-- Material sidebar -->
+<aside id="sidebar" class="sidebar sidebar-colored sidebar-fixed-left" role="navigation">
+    <div id="sidebar-main">
+        <!-- Sidebar Header -->
+        <div class="sidebar-header header-cover" style="background-image: url(/img/sidebar_header.png);">
+    <!-- Top bar -->
+    <div class="top-bar"></div>
+
+    <!-- Sidebar toggle button -->
+    <button type="button" class="sidebar-toggle mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" style="display: initial;" data-upgraded=",MaterialButton,MaterialRipple">
+        <i class="material-icons">clear_all</i>
+        <span class="mdl-button__ripple-container">
+            <span class="mdl-ripple">
+            </span>
+        </span>
+    </button>
+
+    <!-- Sidebar Avatar -->
+    <div class="sidebar-image">
+        <img src="/img/avatar.png" alt="Han Qi's avatar">
+    </div>
+
+    <!-- Sidebar Email -->
+    <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">
+        my@rhanqtl.com
+        <b class="caret"></b>
+    </a>
+</div>
+
+
+        <!-- Sidebar Navigation  -->
+        <ul class="nav sidebar-nav">
+    <!-- User dropdown  -->
+    <li class="dropdown">
+        <ul id="settings-dropdown" class="dropdown-menu">
+            
+                <li>
+                    <a href="#" target="_blank" title="Email Me">
+                        
+                            <i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i>
+                        
+                        Email Me
+                    </a>
+                </li>
+            
+        </ul>
+    </li>
+
+    <!-- Homepage -->
+    
+        <li id="sidebar-first-li">
+            <a href="/">
+                
+                    <i class="material-icons sidebar-material-icons">home</i>
+                
+                الرئيسية
+            </a>
+        </li>
+        
+    
+
+    <!-- Archives  -->
+    
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                
+                    <i class="material-icons sidebar-material-icons">inbox</i>
+                
+                    أرشيف
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+            <li>
+                <a class="sidebar_archives-link" href="/archives/2019/12/">December 2019<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/11/">November 2019<span class="sidebar_archives-count">6</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/10/">October 2019<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/09/">September 2019<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/08/">August 2019<span class="sidebar_archives-count">10</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/07/">July 2019<span class="sidebar_archives-count">16</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/06/">June 2019<span class="sidebar_archives-count">21</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/05/">May 2019<span class="sidebar_archives-count">36</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/04/">April 2019<span class="sidebar_archives-count">46</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/03/">March 2019<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/02/">February 2019<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/01/">January 2019<span class="sidebar_archives-count">17</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/12/">December 2018<span class="sidebar_archives-count">26</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/11/">November 2018<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/10/">October 2018<span class="sidebar_archives-count">1</span></a>
+            </li></ul>
+        </li>
+        
+    
+
+    <!-- Categories  -->
+    
+
+    <!-- Pages  -->
+    
+
+    <!-- Article Number  -->
+    
+</ul>
+
+
+        <!-- Sidebar Footer -->
+        <!--
+I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright, I will thank you so much.
+If you still want to delete the copyrights, could you still retain the first one? Which namely "Theme Material"
+It will not impact the appearance and can give developers a lot of support :)
+
+很高兴您使用并喜欢该主题，开发不易 十分谢谢与希望您可以保留一下版权声明。
+如果您仍然想删除的话 能否只保留第一项呢？即 "Theme Material"
+它不会影响美观并可以给开发者很大的支持和动力。 :)
+-->
+
+<!-- Sidebar Divider -->
+
+    <div class="sidebar-divider"></div>
+
+
+<!-- Theme Material -->
+
+    <a href="https://github.com/viosey/hexo-theme-material" class="sidebar-footer-text-a" target="_blank">
+        <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+            سمة - Material
+            <span class="sidebar-badge badge-circle">i</span>
+        </div>
+    </a>
+
+
+<!-- Help & Support -->
+<!--
+
+-->
+
+<!-- Feedback -->
+<!--
+
+-->
+
+<!-- About Theme -->
+<!--
+
+-->
+
+    </div>
+
+    <!-- Sidebar Image -->
+    
+
+</aside>
+
+                    
+
+                    
+                        <!-- Footer Top Button -->
+                        <div id="back-to-top" class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
+
+                    
+
+                    <!--Footer-->
+<footer class="mdl-mini-footer" id="bottom">
+    
+        <!-- Paradox Footer Left Section -->
+        <div class="mdl-mini-footer--left-section sns-list">
+    <!-- Twitter -->
+    
+        <a href="https://twitter.com/twitter" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-twitter">
+                <span class="visuallyhidden">Twitter</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Facebook -->
+    
+        <a href="https://www.facebook.com/facebook" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-facebook">
+                <span class="visuallyhidden">Facebook</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Google + -->
+    
+        <a href="https://www.google.com/" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-gplus">
+                <span class="visuallyhidden">Google Plus</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Weibo -->
+    
+
+    <!-- Instagram -->
+    
+
+    <!-- Tumblr -->
+    
+
+    <!-- Github -->
+    
+        <a href="https://github.com/rhanqtl" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-github">
+                <span class="visuallyhidden">Github</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- LinkedIn -->
+    
+
+    <!-- Zhihu -->
+    
+
+    <!-- Bilibili -->
+    
+
+    <!-- Telegram -->
+    
+
+    <!-- V2EX -->
+    
+
+    <!-- Segmentfault -->
+    
+</div>
+
+
+        <!--Copyright-->
+        <div id="copyright">
+            Copyright&nbsp;©&nbsp;<span year=""></span>&nbsp;RHANQTL
+            
+        </div>
+
+        <!-- Paradox Footer Right Section -->
+
+        <!--
+        I am glad you use this theme, the development is no so easy, I hope you can keep the copyright.
+        It will not impact the appearance and can give developers a lot of support :)
+
+        很高兴您使用该主题，开发不易，希望您可以保留一下版权声明。
+        它不会影响美观并可以给开发者很大的支持。 :)
+        -->
+
+        <div class="mdl-mini-footer--right-section">
+            <div>
+                <div class="footer-develop-div">Powered by <a href="https://hexo.io" target="_blank" class="footer-develop-a">Hexo</a></div>
+                <div class="footer-develop-div">Theme - <a href="https://github.com/viosey/hexo-theme-material" target="_blank" class="footer-develop-a">Material</a></div>
+            </div>
+        </div>
+    
+</footer>
+
+
+                    <!-- Import JS File -->
+
+    <script>lsloader.load("lazyload_js","/js/lazyload.min.js?1BcfzuNXqV+ntF6gq+5X3Q==", true)</script>
+
+
+
+    <script>lsloader.load("js_js","/js/js.min.js?Bn9UzEm8RrBSxqyZB0zPjA==", true)</script>
+
+
+
+    <script>lsloader.load("np_js","/js/nprogress.js?pl3Qhb9lvqR1FlyLUna1Yw==", true)</script>
+
+
+<script type="text/ls-javascript" id="NProgress-script">
+    NProgress.configure({
+        showSpinner: true
+    });
+    NProgress.start();
+    $('#nprogress .bar').css({
+        'background': '#29d'
+    });
+    $('#nprogress .peg').css({
+        'box-shadow': '0 0 10px #29d, 0 0 15px #29d'
+    });
+    $('#nprogress .spinner-icon').css({
+        'border-top-color': '#29d',
+        'border-left-color': '#29d'
+    });
+    setTimeout(function() {
+        NProgress.done();
+        $('.fade').removeClass('out');
+    }, 800);
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- UC Browser Compatible -->
+<script>
+	var agent = navigator.userAgent.toLowerCase();
+	if(agent.indexOf('ucbrowser')>0) {
+		document.write('<link rel="stylesheet" href="/css/uc.css">');
+	   alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
+	}
+</script>
+
+<!-- Import prettify js  -->
+
+
+
+<!-- Window Load -->
+<!-- add class for prettify -->
+<script type="text/ls-javascript" id="window-load">
+    $(window).on('load', function() {
+        // Post_Toc parent position fixed
+        $('.post-toc-wrap').parent('.mdl-menu__container').css('position', 'fixed');
+    });
+
+    
+    
+</script>
+
+<!-- MathJax Load-->
+
+
+<!-- Bing Background -->
+
+
+<script type="text/ls-javascript" id="lazy-load">
+    // Offer LazyLoad
+    queue.offer(function(){
+        $('.lazy').lazyload({
+            effect : 'show'
+        });
+    });
+
+    // Start Queue
+    $(document).ready(function(){
+        setInterval(function(){
+            queue.execNext();
+        },200);
+    });
+</script>
+
+<!-- Custom Footer -->
+
+
+
+<script>
+    var copyrightNow = new Date().getFullYear();
+    var textContent = document.querySelector('span[year]')
+
+    copyrightSince = 0000;
+    if (copyrightSince === copyrightNow||copyrightSince === 0000) {
+        textContent.textContent = copyrightNow
+    } else {
+        textContent.textContent = copyrightSince + ' - ' + copyrightNow
+    }
+
+    (function(){
+        var scriptList = document.querySelectorAll('script[type="text/ls-javascript"]')
+
+        for (var i = 0; i < scriptList.length; ++i) {
+            var item = scriptList[i];
+            lsloader.runInlineScript(item.id,item.id);
+        }
+    })()
+console.log('\n %c © Material Theme | Version: 1.5.6 | https://github.com/viosey/hexo-theme-material %c \n', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-left-radius:5px;border-bottom-left-radius:5px;', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-right-radius:5px;border-bottom-right-radius:5px;');
+</script>
+
+                </main>
+            </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+        </body>
+    
+</html>

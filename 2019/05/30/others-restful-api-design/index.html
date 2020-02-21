@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html style="display: none;" lang="zh">
+    <head><meta name="generator" content="Hexo 3.8.0">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    <!--
+        © Material Theme
+        https://github.com/viosey/hexo-theme-material
+        Version: 1.5.6 -->
+    <script>
+        window.materialVersion = "1.5.6"
+        // Delete localstorage with these tags
+        window.oldVersion = [
+            'codestartv1',
+            '1.3.4',
+            '1.4.0',
+            '1.4.0b1',
+            '1.5.0',
+            '1.5.2',
+            '1.5.5'
+        ]
+    </script>
+
+    <!-- dns prefetch -->
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+
+
+
+
+
+
+
+
+
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+
+
+
+
+    <!-- Meta & Info -->
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <!-- Title -->
+    
+    <title>
+        
+            【转】RESTful API 最佳实践 | 
+        
+        RHANQTL
+    </title>
+
+    <!-- Favicons -->
+    <link rel="icon shortcut" type="image/ico" href="/img/favicon.png">
+    <link rel="icon" href="/img/favicon.png">
+
+    <meta name="format-detection" content="telephone=no">
+    <meta name="description" itemprop="description" content="">
+    <meta name="keywords" content="">
+    <meta name="theme-color" content="#0097A7">
+
+    <!-- Disable Fucking Bloody Baidu Tranformation -->
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+
+    <!--[if lte IE 9]>
+        <link rel="stylesheet" href="/css/ie-blocker.css">
+
+        
+            <script src="/js/ie-blocker.en.js"></script>
+        
+    <![endif]-->
+
+    <!-- Import lsloader -->
+    <script>(function(){window.lsloader={jsRunSequence:[],jsnamemap:{},cssnamemap:{}};lsloader.removeLS=function(a){try{localStorage.removeItem(a)}catch(b){}};lsloader.setLS=function(a,c){try{localStorage.setItem(a,c)}catch(b){}};lsloader.getLS=function(a){var c="";try{c=localStorage.getItem(a)}catch(b){c=""}return c};versionString="/*"+(window.materialVersion||"unknownVersion")+"*/";lsloader.clean=function(){try{var b=[];for(var a=0;a<localStorage.length;a++){b.push(localStorage.key(a))}b.forEach(function(e){var f=lsloader.getLS(e);if(window.oldVersion){var d=window.oldVersion.reduce(function(g,h){return g||f.indexOf("/*"+h+"*/")!==-1},false);if(d){lsloader.removeLS(e)}}})}catch(c){}};lsloader.clean();lsloader.load=function(f,a,b,d){if(typeof b==="boolean"){d=b;b=undefined}d=d||false;b=b||function(){};var e;e=this.getLS(f);if(e&&e.indexOf(versionString)===-1){this.removeLS(f);this.requestResource(f,a,b,d);return}if(e){var c=e.split(versionString)[0];if(c!=a){console.log("reload:"+a);this.removeLS(f);this.requestResource(f,a,b,d);return}e=e.split(versionString)[1];if(d){this.jsRunSequence.push({name:f,code:e});this.runjs(a,f,e)}else{document.getElementById(f).appendChild(document.createTextNode(e));b()}}else{this.requestResource(f,a,b,d)}};lsloader.requestResource=function(b,e,a,c){var d=this;if(c){this.iojs(e,b,function(h,f,g){d.setLS(f,h+versionString+g);d.runjs(h,f,g)})}else{this.iocss(e,b,function(f){document.getElementById(b).appendChild(document.createTextNode(f));d.setLS(b,e+versionString+f)},a)}};lsloader.iojs=function(d,b,g){var a=this;a.jsRunSequence.push({name:b,code:""});try{var f=new XMLHttpRequest();f.open("get",d,true);f.onreadystatechange=function(){if(f.readyState==4){if((f.status>=200&&f.status<300)||f.status==304){if(f.response!=""){g(d,b,f.response);return}}a.jsfallback(d,b)}};f.send(null)}catch(c){a.jsfallback(d,b)}};lsloader.iocss=function(f,c,h,a){var b=this;try{var g=new XMLHttpRequest();g.open("get",f,true);g.onreadystatechange=function(){if(g.readyState==4){if((g.status>=200&&g.status<300)||g.status==304){if(g.response!=""){h(g.response);a();return}}b.cssfallback(f,c,a)}};g.send(null)}catch(d){b.cssfallback(f,c,a)}};lsloader.iofonts=function(f,c,h,a){var b=this;try{var g=new XMLHttpRequest();g.open("get",f,true);g.onreadystatechange=function(){if(g.readyState==4){if((g.status>=200&&g.status<300)||g.status==304){if(g.response!=""){h(g.response);a();return}}b.cssfallback(f,c,a)}};g.send(null)}catch(d){b.cssfallback(f,c,a)}};lsloader.runjs=function(f,c,e){if(!!c&&!!e){for(var b in this.jsRunSequence){if(this.jsRunSequence[b].name==c){this.jsRunSequence[b].code=e}}}if(!!this.jsRunSequence[0]&&!!this.jsRunSequence[0].code&&this.jsRunSequence[0].status!="failed"){var a=document.createElement("script");a.appendChild(document.createTextNode(this.jsRunSequence[0].code));a.type="text/javascript";document.getElementsByTagName("head")[0].appendChild(a);this.jsRunSequence.shift();if(this.jsRunSequence.length>0){this.runjs()}}else{if(!!this.jsRunSequence[0]&&this.jsRunSequence[0].status=="failed"){var d=this;var a=document.createElement("script");a.src=this.jsRunSequence[0].path;a.type="text/javascript";this.jsRunSequence[0].status="loading";a.onload=function(){d.jsRunSequence.shift();if(d.jsRunSequence.length>0){d.runjs()}};document.body.appendChild(a)}}};lsloader.tagLoad=function(b,a){this.jsRunSequence.push({name:a,code:"",path:b,status:"failed"});this.runjs()};lsloader.jsfallback=function(c,b){if(!!this.jsnamemap[b]){return}else{this.jsnamemap[b]=b}for(var a in this.jsRunSequence){if(this.jsRunSequence[a].name==b){this.jsRunSequence[a].code="";this.jsRunSequence[a].status="failed";this.jsRunSequence[a].path=c}}this.runjs()};lsloader.cssfallback=function(e,c,b){if(!!this.cssnamemap[c]){return}else{this.cssnamemap[c]=1}var d=document.createElement("link");d.type="text/css";d.href=e;d.rel="stylesheet";d.onload=d.onerror=b;var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(d,a)};lsloader.runInlineScript=function(c,b){var a=document.getElementById(b).innerText;this.jsRunSequence.push({name:c,code:a});this.runjs()}})();</script>
+
+    <!-- Import queue -->
+    <script>function Queue(){this.dataStore=[];this.offer=b;this.poll=d;this.execNext=a;this.debug=false;this.startDebug=c;function b(e){if(this.debug){console.log("Offered a Queued Function.")}if(typeof e==="function"){this.dataStore.push(e)}else{console.log("You must offer a function.")}}function d(){if(this.debug){console.log("Polled a Queued Function.")}return this.dataStore.shift()}function a(){var e=this.poll();if(e!==undefined){if(this.debug){console.log("Run a Queued Function.")}e()}}function c(){this.debug=true}}var queue=new Queue();</script>
+
+    <!-- Import CSS -->
+    
+        <style id="material_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_css","/css/material.min.css?Z7a72R1E4SxzBKR/WGctOA==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+        <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","/css/style.min.css?NKhlKQkXw/c66TR5p4wO+w==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+
+        
+
+    
+
+    
+
+    <!-- Config CSS -->
+
+<!-- Other Styles -->
+<style>
+  body, html {
+    font-family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+    overflow-x: hidden !important;
+  }
+  
+  code {
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  }
+
+  a {
+    color: #00838F;
+  }
+
+  .mdl-card__media,
+  #search-label,
+  #search-form-label:after,
+  #scheme-Paradox .hot_tags-count,
+  #scheme-Paradox .sidebar_archives-count,
+  #scheme-Paradox .sidebar-colored .sidebar-header,
+  #scheme-Paradox .sidebar-colored .sidebar-badge{
+    background-color: #0097A7 !important;
+  }
+
+  /* Sidebar User Drop Down Menu Text Color */
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus {
+    color: #0097A7 !important;
+  }
+
+  #post_entry-right-info,
+  .sidebar-colored .sidebar-nav li:hover > a,
+  .sidebar-colored .sidebar-nav li:hover > a i,
+  .sidebar-colored .sidebar-nav li > a:hover,
+  .sidebar-colored .sidebar-nav li > a:hover i,
+  .sidebar-colored .sidebar-nav li > a:focus i,
+  .sidebar-colored .sidebar-nav > .open > a,
+  .sidebar-colored .sidebar-nav > .open > a:hover,
+  .sidebar-colored .sidebar-nav > .open > a:focus,
+  #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a {
+    color: #0097A7 !important;
+  }
+
+  .toTop {
+    background: #757575 !important;
+  }
+
+  .material-layout .material-post>.material-nav,
+  .material-layout .material-index>.material-nav,
+  .material-nav a {
+    color: #757575;
+  }
+
+  #scheme-Paradox .MD-burger-layer {
+    background-color: #757575;
+  }
+
+  #scheme-Paradox #post-toc-trigger-btn {
+    color: #757575;
+  }
+
+  .post-toc a:hover {
+    color: #00838F;
+    text-decoration: underline;
+  }
+
+</style>
+
+
+<!-- Theme Background Related-->
+
+    <style>
+      body{
+        background-color: #F5F5F5;
+      }
+
+      /* blog_info bottom background */
+      #scheme-Paradox .material-layout .something-else .mdl-card__supporting-text{
+        background-color: #fff;
+      }
+    </style>
+
+
+
+
+<!-- Fade Effect -->
+
+    <style>
+      .fade {
+        transition: all 800ms linear;
+        -webkit-transform: translate3d(0,0,0);
+        -moz-transform: translate3d(0,0,0);
+        -ms-transform: translate3d(0,0,0);
+        -o-transform: translate3d(0,0,0);
+        transform: translate3d(0,0,0);
+        opacity: 1;
+      }
+
+      .fade.out{
+        opacity: 0;
+      }
+    </style>
+
+
+<!-- Import Font -->
+<!-- Import Roboto -->
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+
+
+<!-- Import Material Icons -->
+
+
+    <style id="material_icons"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_icons","/css/material-icons.css?pqhB/Rd/ab0H2+kZp0RDmw==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+
+
+
+
+    <!-- Import jQuery -->
+    
+        <script>lsloader.load("jq_js","/js/jquery.min.js?qcusAULNeBksqffqUM2+Ig==", true)</script>
+    
+
+    <!-- WebAPP Icons -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="RHANQTL">
+    <meta name="msapplication-starturl" content="http://yoursite.com/2019/05/30/others-restful-api-design/">
+    <meta name="msapplication-navbutton-color" content="#0097A7">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="RHANQTL">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon" href="/img/favicon.png">
+
+    <!-- Site Verification -->
+    
+    
+
+    <!-- RSS -->
+    
+
+    <!-- The Open Graph protocol -->
+    <meta property="og:url" content="http://yoursite.com/2019/05/30/others-restful-api-design/">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="【转】RESTful API 最佳实践 | RHANQTL">
+    <meta property="og:image" content="/img/favicon.png">
+    <meta property="og:description" content="">
+    
+
+    
+        <meta property="article:published_time" content="Thu May 30 2019 09:11:37 GMT+0800">
+        <meta property="article:modified_time" content="Thu May 30 2019 09:30:33 GMT+0800">
+    
+
+    <!-- The Twitter Card protocol -->
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!-- Add canonical link for SEO -->
+    
+        <link rel="canonical" href="http://yoursite.com/2019/05/30/others-restful-api-design/index.html">
+    
+
+    <!-- Structured-data for SEO -->
+    
+        
+
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage": "http://yoursite.com/2019/05/30/others-restful-api-design/index.html",
+    "headline": "【转】RESTful API 最佳实践",
+    "datePublished": "Thu May 30 2019 09:11:37 GMT+0800",
+    "dateModified": "Thu May 30 2019 09:30:33 GMT+0800",
+    "author": {
+        "@type": "Person",
+        "name": "Han Qi",
+        "image": {
+            "@type": "ImageObject",
+            "url": "/img/avatar.png"
+        },
+        "description": "Hi, nice to meet you"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "RHANQTL",
+        "logo": {
+            "@type":"ImageObject",
+            "url": "/img/favicon.png"
+        }
+    },
+    "keywords": "",
+    "description": "",
+}
+</script>
+
+
+    
+
+    <!-- Analytics -->
+    
+    
+    
+
+    <!-- Custom Head --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    
+
+</head>
+
+
+    
+        <body id="scheme-Paradox" class="lazy">
+            <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="material-layout  mdl-js-layout has-drawer is-upgraded">
+                
+
+                <!-- Main Container -->
+                <main class="material-layout__content" id="main">
+
+                    <!-- Top Anchor -->
+                    <div id="top"></div>
+
+                    
+                        <!-- Hamburger Button -->
+                        <button class="MD-burger-icon sidebar-toggle">
+                            <span id="MD-burger-id" class="MD-burger-layer"></span>
+                        </button>
+                    
+
+                    <!-- Post TOC -->
+
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+
+    <!-- Left aligned menu below button -->
+    
+    
+    <button id="post-toc-trigger-btn" class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#RESTful-API-最佳实践"><span class="post-toc-number">1.</span> <span class="post-toc-text">RESTful API 最佳实践</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#一、URL-设计"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">一、URL 设计</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-1-动词-宾语"><span class="post-toc-number">1.1.1.</span> <span class="post-toc-text">1.1 动词 + 宾语</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-2-动词的覆盖"><span class="post-toc-number">1.1.2.</span> <span class="post-toc-text">1.2 动词的覆盖</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-3-宾语必须是名词"><span class="post-toc-number">1.1.3.</span> <span class="post-toc-text">1.3 宾语必须是名词</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-4-复数-URL"><span class="post-toc-number">1.1.4.</span> <span class="post-toc-text">1.4 复数 URL</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-5-避免多级-URL"><span class="post-toc-number">1.1.5.</span> <span class="post-toc-text">1.5 避免多级 URL</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#二、状态码"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">二、状态码</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-1-状态码必须精确"><span class="post-toc-number">1.2.1.</span> <span class="post-toc-text">2.1 状态码必须精确</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-2-2xx-状态码"><span class="post-toc-number">1.2.2.</span> <span class="post-toc-text">2.2 2xx 状态码</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-3-3xx-状态码"><span class="post-toc-number">1.2.3.</span> <span class="post-toc-text">2.3 3xx 状态码</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-4-4xx-状态码"><span class="post-toc-number">1.2.4.</span> <span class="post-toc-text">2.4 4xx 状态码</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-5-5xx-状态码"><span class="post-toc-number">1.2.5.</span> <span class="post-toc-text">2.5 5xx 状态码</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#三、服务器回应"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">三、服务器回应</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-1-不要返回纯本文"><span class="post-toc-number">1.3.1.</span> <span class="post-toc-text">3.1 不要返回纯本文</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-2-发生错误时，不要返回-200-状态码"><span class="post-toc-number">1.3.2.</span> <span class="post-toc-text">3.2 发生错误时，不要返回 200 状态码</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-3-提供链接"><span class="post-toc-number">1.3.3.</span> <span class="post-toc-text">3.3 提供链接</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#四、参考链接"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">四、参考链接</span></a></li></ol></li></ol>
+    </ul>
+    
+
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+    <!-- Paradox Post Header -->
+    
+        
+            <!-- Random Thumbnail -->
+            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
+            <script type="text/ls-javascript" id="post-thumbnail-script">
+    var randomNum = Math.floor(Math.random() * 19 + 1);
+
+    $('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
+    $('.post_thumbnail-random').addClass('lazy');
+</script>
+
+        
+    
+            <p class="article-headline-p">
+                【转】RESTful API 最佳实践
+            </p>
+        </div>
+
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/avatar.png" width="44px" height="44px" alt="Author Avatar">
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>Han Qi</strong>
+        <span>May 30, 2019</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
+    
+
+    <!-- Tags (bookmark) -->
+    
+
+    <!-- Share -->
+    
+        <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+
+    <!-- Share Weibo -->
+    
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=【转】RESTful API 最佳实践&url=http://yoursite.com/2019/05/30/others-restful-api-design/index.html&pic=http://yoursite.com/img/favicon.png&searchPic=false&style=simple" target="_blank">
+            <li class="mdl-menu__item">
+                شارك على Weibo
+            </li>
+        </a>
+    
+
+    <!-- Share Twitter -->
+    
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=【转】RESTful API 最佳实践&url=http://yoursite.com/2019/05/30/others-restful-api-design/index.html&via=Han Qi" target="_blank">
+            <li class="mdl-menu__item">
+                شارك على Twitter
+            </li>
+        </a>
+    
+
+    <!-- Share Facebook -->
+    
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2019/05/30/others-restful-api-design/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                شارك على Facebook
+            </li>
+        </a>
+    
+
+    <!-- Share Google+ -->
+    
+        <a class="post_share-link" href="https://plus.google.com/share?url=http://yoursite.com/2019/05/30/others-restful-api-design/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                شارك على Google+
+            </li>
+        </a>
+    
+
+    <!-- Share LinkedIn -->
+    
+        <a class="post_share-link" href="https://www.linkedin.com/shareArticle?mini=true&url=http://yoursite.com/2019/05/30/others-restful-api-design/index.html&title=【转】RESTful API 最佳实践" target="_blank">
+            <li class="mdl-menu__item">
+                شارك على LinkedIn
+            </li>
+        </a>
+    
+
+    <!-- Share QQ -->
+    
+        <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=RHANQTL&title=【转】RESTful API 最佳实践&summary=&pics=http://yoursite.com/img/favicon.png&url=http://yoursite.com/2019/05/30/others-restful-api-design/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                شارك على QQ
+            </li>
+        </a>
+    
+
+    <!-- Share Telegram -->
+    
+        <a class="post_share-link" href="https://telegram.me/share/url?url=http://yoursite.com/2019/05/30/others-restful-api-design/index.html&text=【转】RESTful API 最佳实践" target="_blank">
+            <li class="mdl-menu__item">
+                شارك على Telegram
+            </li>
+        </a>
+    
+</ul>
+
+    
+</div>
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <p><strong>作者：</strong>阮一峰</p>
+<p><strong>来源：</strong><a href="https://www.ruanyifeng.com/blog/2018/10/restful-api-best-practices.html" target="_blank" rel="noopener">RESTful API 最佳实践 - 阮一峰的网络日志</a></p>
+<p><strong>本文版权归作者所有</strong></p>
+<h1 id="RESTful-API-最佳实践"><a href="#RESTful-API-最佳实践" class="headerlink" title="RESTful API 最佳实践"></a>RESTful API 最佳实践</h1><p>RESTful 是目前最流行的 API 设计规范，用于 Web 数据接口的设计。它的大原则容易把握，但是细节不容易做对。</p>
+<p>本文总结 RESTful 的设计细节，介绍如何设计出易于理解和使用的 API。</p>
+<h2 id="一、URL-设计"><a href="#一、URL-设计" class="headerlink" title="一、URL 设计"></a>一、URL 设计</h2><h3 id="1-1-动词-宾语"><a href="#1-1-动词-宾语" class="headerlink" title="1.1 动词 + 宾语"></a>1.1 动词 + 宾语</h3><p>RESTful 的核心思想就是，客户端发出的数据操作指令都是”动词 + 宾语”的结构。</p>
+<p>比如，<code>GET /articles</code> 这个命令，<code>GET</code> 是动词，<code>/articles</code> 是宾语。动词通常就是五种 HTTP 方法，对应 CRUD 操作。</p>
+<blockquote>
+<ul>
+<li>GET：读取（Read）</li>
+<li>POST：新建（Create）</li>
+<li>PUT：更新（Update）</li>
+<li>PATCH：更新（Update），通常是部分更新</li>
+<li>DELETE：删除（Delete）</li>
+</ul>
+</blockquote>
+<p>根据 HTTP 规范，动词一律大写。</p>
+<h3 id="1-2-动词的覆盖"><a href="#1-2-动词的覆盖" class="headerlink" title="1.2 动词的覆盖"></a>1.2 动词的覆盖</h3><p>有些客户端只能使用 <code>GET</code> 和 <code>POST</code> 这两种方法，服务器必须接受 <code>POST</code> 模拟其他三个方法（<code>PUT</code>、<code>PATCH</code>、<code>DELETE</code>）</p>
+<p>这时，客户端发出的 HTTP 请求，要加上 <code>X-HTTP-Method-Override</code> 属性，告诉服务器应该使用哪一个动词，覆盖POST方法。</p>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; POST /api/Person/4 HTTP/1.1  </span><br><span class="line">&gt; X-HTTP-Method-Override: PUT</span><br><span class="line">&gt; 复制代码</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>上面代码中，<code>X-HTTP-Method-Override</code> 指定本次请求的方法是 <code>PUT</code>，而不是 <code>POST</code>。</p>
+<h3 id="1-3-宾语必须是名词"><a href="#1-3-宾语必须是名词" class="headerlink" title="1.3 宾语必须是名词"></a>1.3 宾语必须是名词</h3><p>宾语就是 API 的 URL，是 HTTP 动词作用的对象。它应该是名词，不能是动词。</p>
+<p>比如，<code>/articles</code> 这个 URL 就是正确的，而下面的 URL 不是名词，所以都是错误的。</p>
+<blockquote>
+<ul>
+<li>/getAllCars</li>
+<li>/createNewCar</li>
+<li>/deleteAllRedCars</li>
+</ul>
+</blockquote>
+<h3 id="1-4-复数-URL"><a href="#1-4-复数-URL" class="headerlink" title="1.4 复数 URL"></a>1.4 复数 URL</h3><p>既然 URL 是名词，那么应该使用复数，还是单数？这没有统一的规定，但是常见的操作是读取一个集合。</p>
+<p>比如 <code>GET /articles</code>（读取所有文章），这里明显应该是复数。</p>
+<p>为了统一起见，建议都使用复数 URL，比如 <code>GET /articles/2</code> 要好于 <code>GET /article/2</code>。</p>
+<h3 id="1-5-避免多级-URL"><a href="#1-5-避免多级-URL" class="headerlink" title="1.5 避免多级 URL"></a>1.5 避免多级 URL</h3><p>常见的情况是，资源需要多级分类，因此很容易写出多级的 URL，比如获取某个作者的某一类文章。</p>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; GET /authors/12/categories/2</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>这种 URL 不利于扩展，语义也不明确，往往要想一会，才能明白含义。</p>
+<p>更好的做法是，除了第一级，其他级别都用查询字符串表达。</p>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; GET /authors/12?categories=2</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>下面是另一个例子，查询已发布的文章。你可能会设计成下面的 URL。</p>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; GET /articles/published</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>查询字符串的写法明显更好。</p>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; GET /articles?published=true</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h2 id="二、状态码"><a href="#二、状态码" class="headerlink" title="二、状态码"></a>二、状态码</h2><h3 id="2-1-状态码必须精确"><a href="#2-1-状态码必须精确" class="headerlink" title="2.1 状态码必须精确"></a>2.1 状态码必须精确</h3><p>客户端的每一次请求，服务器都必须给出回应。回应包括 HTTP 状态码和数据两部分。</p>
+<p>HTTP 状态码就是一个三位数，分成五个类别。</p>
+<blockquote>
+<ul>
+<li><code>1xx</code>：相关信息</li>
+<li><code>2xx</code>：操作成功</li>
+<li><code>3xx</code>：重定向</li>
+<li><code>4xx</code>：客户端错误</li>
+<li><code>5xx</code>：服务器错误</li>
+</ul>
+</blockquote>
+<p>这五大类总共包含 <a href="https://en.wikipedia.org/wiki/List_of_HTTP_status_codes" target="_blank" rel="noopener">100 多种</a>状态码，覆盖了绝大部分可能遇到的情况。</p>
+<p>每一种状态码都有标准的（或者约定的）解释，客户端只需查看状态码，就可以判断出发生了什么情况，所以服务器应该返回尽可能精确的状态码。</p>
+<p>API 不需要 <code>1xx</code> 状态码，下面介绍其他四类状态码的精确含义。</p>
+<h3 id="2-2-2xx-状态码"><a href="#2-2-2xx-状态码" class="headerlink" title="2.2 2xx 状态码"></a>2.2 2xx 状态码</h3><p><code>200</code> 状态码表示操作成功，但是不同的方法可以返回更精确的状态码。</p>
+<blockquote>
+<ul>
+<li>GET: 200 OK</li>
+<li>POST: 201 Created</li>
+<li>PUT: 200 OK</li>
+<li>PATCH: 200 OK</li>
+<li>DELETE: 204 No Content</li>
+</ul>
+</blockquote>
+<p>上面代码中，<code>POST</code> 返回 <code>201</code> 状态码，表示生成了新的资源；<code>DELETE</code> 返回 <code>204</code> 状态码，表示资源已经不存在。</p>
+<p>此外，<code>202 Accepted</code> 状态码表示服务器已经收到请求，但还未进行处理，会在未来再处理，通常用于异步操作。</p>
+<p>下面是一个例子。</p>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&gt; HTTP/1.1 202 Accepted</span><br><span class="line">&gt; </span><br><span class="line">&gt; &#123;</span><br><span class="line">&gt;   &quot;task&quot;: &#123;</span><br><span class="line">&gt;     &quot;href&quot;: &quot;/api/company/job-management/jobs/2130040&quot;,</span><br><span class="line">&gt;     &quot;id&quot;: &quot;2130040&quot;</span><br><span class="line">&gt;   &#125;</span><br><span class="line">&gt; &#125;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="2-3-3xx-状态码"><a href="#2-3-3xx-状态码" class="headerlink" title="2.3 3xx 状态码"></a>2.3 3xx 状态码</h3><p>API 用不到 <code>301</code> 状态码（永久重定向）和 <code>302</code> 状态码（暂时重定向，<code>307</code> 也是这个含义）</p>
+<p>因为它们可以由应用级别返回，浏览器会直接跳转，API 级别可以不考虑这两种情况。</p>
+<p>API 用到的 <code>3xx</code> 状态码，主要是 <code>303 See Other</code>，表示参考另一个 URL。</p>
+<p>它与 <code>302</code> 和 <code>307</code> 的含义一样，也是“暂时重定向”，区别在于 <code>302</code> 和 <code>307</code> 用于 <code>GET</code> 请求，而 <code>303</code> 用于 <code>POST</code>、<code>PUT</code> 和 <code>DELETE</code> 请求。</p>
+<p>收到 <code>303</code> 以后，浏览器不会自动跳转，而会让用户自己决定下一步怎么办。</p>
+<p>下面是一个例子。</p>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; HTTP/1.1 303 See Other</span><br><span class="line">&gt; Location: /api/orders/12345</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="2-4-4xx-状态码"><a href="#2-4-4xx-状态码" class="headerlink" title="2.4 4xx 状态码"></a>2.4 4xx 状态码</h3><p><code>4xx</code> 状态码表示客户端错误，主要有下面几种。</p>
+<p><code>400 Bad Request</code>：服务器不理解客户端的请求，未做任何处理。</p>
+<p><code>401 Unauthorized</code>：用户未提供身份验证凭据，或者没有通过身份验证。</p>
+<p><code>403 Forbidden</code>：用户通过了身份验证，但是不具有访问资源所需的权限。</p>
+<p><code>404 Not Found</code>：所请求的资源不存在，或不可用。</p>
+<p><code>405 Method Not Allowed</code>：用户已经通过身份验证，但是所用的 HTTP 方法不在他的权限之内。</p>
+<p><code>410 Gone</code>：所请求的资源已从这个地址转移，不再可用。</p>
+<p><code>415 Unsupported Media Type</code>：客户端要求的返回格式不支持。比如，API 只能返回 JSON 格式，但是客户端要求返回 XML 格式。</p>
+<p><code>422 Unprocessable Entity</code> ：客户端上传的附件无法处理，导致请求失败。</p>
+<p><code>429 Too Many Requests</code>：客户端的请求次数超过限额。</p>
+<h3 id="2-5-5xx-状态码"><a href="#2-5-5xx-状态码" class="headerlink" title="2.5 5xx 状态码"></a>2.5 5xx 状态码</h3><p><code>5xx</code> 状态码表示服务端错误。一般来说，API 不会向用户透露服务器的详细信息，所以只要两个状态码就够了。</p>
+<ul>
+<li><code>500 Internal Server Error</code>：客户端请求有效，服务器处理时发生了意外</li>
+<li><code>503 Service Unavailable</code>：服务器无法处理请求，一般用于网站维护状态</li>
+</ul>
+<h2 id="三、服务器回应"><a href="#三、服务器回应" class="headerlink" title="三、服务器回应"></a>三、服务器回应</h2><h3 id="3-1-不要返回纯本文"><a href="#3-1-不要返回纯本文" class="headerlink" title="3.1 不要返回纯本文"></a>3.1 不要返回纯本文</h3><p>API 返回的数据格式，不应该是纯文本，而应该是一个 JSON 对象，因为这样才能返回标准的结构化数据。</p>
+<p>所以，服务器回应的 HTTP 头的 <code>Content-Type</code> 属性要设为 <code>application/json</code>。</p>
+<p>客户端请求时，也要明确告诉服务器，可以接受 JSON 格式，即请求的 HTTP 头的 <code>ACCEPT</code> 属性也要设成 <code>application/json</code>。</p>
+<p>下面是一个例子。</p>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; GET /orders/2 HTTP/1.1 </span><br><span class="line">&gt; Accept: application/json</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="3-2-发生错误时，不要返回-200-状态码"><a href="#3-2-发生错误时，不要返回-200-状态码" class="headerlink" title="3.2 发生错误时，不要返回 200 状态码"></a>3.2 发生错误时，不要返回 200 状态码</h3><p>有一种不恰当的做法是，即使发生错误，也返回 <code>200</code> 状态码，把错误信息放在数据体里面，就像下面这样。</p>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&gt; HTTP/1.1 200 OK</span><br><span class="line">&gt; Content-Type: application/json</span><br><span class="line">&gt; </span><br><span class="line">&gt; &#123;</span><br><span class="line">&gt;   &quot;status&quot;: &quot;failure&quot;,</span><br><span class="line">&gt;   &quot;data&quot;: &#123;</span><br><span class="line">&gt;     &quot;error&quot;: &quot;Expected at least two items in list.&quot;</span><br><span class="line">&gt;   &#125;</span><br><span class="line">&gt; &#125;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>上面代码中，解析数据体以后，才能得知操作失败。</p>
+<p>这张做法实际上取消了状态码，这是完全不可取的。正确的做法是，状态码反映发生的错误，具体的错误信息放在数据体里面返回。</p>
+<p>下面是一个例子。</p>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&gt; HTTP/1.1 400 Bad Request</span><br><span class="line">&gt; Content-Type: application/json</span><br><span class="line">&gt; </span><br><span class="line">&gt; &#123;</span><br><span class="line">&gt;   &quot;error&quot;: &quot;Invalid payoad.&quot;,</span><br><span class="line">&gt;   &quot;detail&quot;: &#123;</span><br><span class="line">&gt;      &quot;surname&quot;: &quot;This field is required.&quot;</span><br><span class="line">&gt;   &#125;</span><br><span class="line">&gt; &#125;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="3-3-提供链接"><a href="#3-3-提供链接" class="headerlink" title="3.3 提供链接"></a>3.3 提供链接</h3><p>API 的使用者未必知道，URL 是怎么设计的。一个解决方法就是，在回应中，给出相关链接，便于下一步操作。</p>
+<p>这样的话，用户只要记住一个 URL，就可以发现其他的 URL。这种方法叫做 HATEOAS。</p>
+<p>举例来说，GitHub 的 API 都在 <a href="https://api.github.com/" target="_blank" rel="noopener">api.github.com</a> 这个域名。访问它，就可以得到其他 URL。</p>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&gt; &#123;</span><br><span class="line">&gt;   ...</span><br><span class="line">&gt;   &quot;feeds_url&quot;: &quot;https://api.github.com/feeds&quot;,</span><br><span class="line">&gt;   &quot;followers_url&quot;: &quot;https://api.github.com/user/followers&quot;,</span><br><span class="line">&gt;   &quot;following_url&quot;: &quot;https://api.github.com/user/following&#123;/target&#125;&quot;,</span><br><span class="line">&gt;   &quot;gists_url&quot;: &quot;https://api.github.com/gists&#123;/gist_id&#125;&quot;,</span><br><span class="line">&gt;   &quot;hub_url&quot;: &quot;https://api.github.com/hub&quot;,</span><br><span class="line">&gt;   ...</span><br><span class="line">&gt; &#125;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>上面的回应中，挑一个 URL 访问，又可以得到别的 URL。对于用户来说，不需要记住 URL 设计，只要从 api.github.com 一步步查找就可以了。</p>
+<p>HATEOAS 的格式没有统一规定，上面例子中，GitHub 将它们与其他属性放在一起。更好的做法应该是，将相关链接与其他属性分开。</p>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&gt; HTTP/1.1 200 OK</span><br><span class="line">&gt; Content-Type: application/json</span><br><span class="line">&gt; </span><br><span class="line">&gt; &#123;</span><br><span class="line">&gt;   &quot;status&quot;: &quot;In progress&quot;,</span><br><span class="line">&gt;    &quot;links&quot;: &#123;[</span><br><span class="line">&gt;     &#123; &quot;rel&quot;:&quot;cancel&quot;, &quot;method&quot;: &quot;delete&quot;, &quot;href&quot;:&quot;/api/status/12345&quot; &#125; ,</span><br><span class="line">&gt;     &#123; &quot;rel&quot;:&quot;edit&quot;, &quot;method&quot;: &quot;put&quot;, &quot;href&quot;:&quot;/api/status/12345&quot; &#125;</span><br><span class="line">&gt;   ]&#125;</span><br><span class="line">&gt; &#125;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h2 id="四、参考链接"><a href="#四、参考链接" class="headerlink" title="四、参考链接"></a>四、参考链接</h2><ul>
+<li><a href="https://blog.florimondmanca.com/restful-api-design-13-best-practices-to-make-your-users-happy" target="_blank" rel="noopener">RESTful API Design: 13 Best Practices to Make Your Users Happy</a>, by Florimond Manca</li>
+<li><a href="https://docs.microsoft.com/en-us/azure/architecture/best-practices/api-design" target="_blank" rel="noopener">API design</a>, by MicroSoft Azure</li>
+</ul>
+
+        
+    
+
+    
+</div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+        <a href="/2019/05/30/cpp-resources-houjie/" id="post_nav-newer" class="prev-content">
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_back</i>
+            </button>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            أحدث
+        </a>
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2019/05/28/computer-networks-gfw/" id="post_nav-older" class="next-content">
+            أقدم
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
+
+
+                    
+                        <!-- Overlay For Active Sidebar -->
+<div class="sidebar-overlay"></div>
+
+<!-- Material sidebar -->
+<aside id="sidebar" class="sidebar sidebar-colored sidebar-fixed-left" role="navigation">
+    <div id="sidebar-main">
+        <!-- Sidebar Header -->
+        <div class="sidebar-header header-cover" style="background-image: url(/img/sidebar_header.png);">
+    <!-- Top bar -->
+    <div class="top-bar"></div>
+
+    <!-- Sidebar toggle button -->
+    <button type="button" class="sidebar-toggle mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" style="display: initial;" data-upgraded=",MaterialButton,MaterialRipple">
+        <i class="material-icons">clear_all</i>
+        <span class="mdl-button__ripple-container">
+            <span class="mdl-ripple">
+            </span>
+        </span>
+    </button>
+
+    <!-- Sidebar Avatar -->
+    <div class="sidebar-image">
+        <img src="/img/avatar.png" alt="Han Qi's avatar">
+    </div>
+
+    <!-- Sidebar Email -->
+    <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">
+        my@rhanqtl.com
+        <b class="caret"></b>
+    </a>
+</div>
+
+
+        <!-- Sidebar Navigation  -->
+        <ul class="nav sidebar-nav">
+    <!-- User dropdown  -->
+    <li class="dropdown">
+        <ul id="settings-dropdown" class="dropdown-menu">
+            
+                <li>
+                    <a href="#" target="_blank" title="Email Me">
+                        
+                            <i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i>
+                        
+                        Email Me
+                    </a>
+                </li>
+            
+        </ul>
+    </li>
+
+    <!-- Homepage -->
+    
+        <li id="sidebar-first-li">
+            <a href="/">
+                
+                    <i class="material-icons sidebar-material-icons">home</i>
+                
+                الرئيسية
+            </a>
+        </li>
+        
+    
+
+    <!-- Archives  -->
+    
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                
+                    <i class="material-icons sidebar-material-icons">inbox</i>
+                
+                    أرشيف
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+            <li>
+                <a class="sidebar_archives-link" href="/archives/2019/12/">December 2019<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/11/">November 2019<span class="sidebar_archives-count">6</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/10/">October 2019<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/09/">September 2019<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/08/">August 2019<span class="sidebar_archives-count">10</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/07/">July 2019<span class="sidebar_archives-count">16</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/06/">June 2019<span class="sidebar_archives-count">21</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/05/">May 2019<span class="sidebar_archives-count">36</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/04/">April 2019<span class="sidebar_archives-count">46</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/03/">March 2019<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/02/">February 2019<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/01/">January 2019<span class="sidebar_archives-count">17</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/12/">December 2018<span class="sidebar_archives-count">26</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/11/">November 2018<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/10/">October 2018<span class="sidebar_archives-count">1</span></a>
+            </li></ul>
+        </li>
+        
+    
+
+    <!-- Categories  -->
+    
+
+    <!-- Pages  -->
+    
+
+    <!-- Article Number  -->
+    
+</ul>
+
+
+        <!-- Sidebar Footer -->
+        <!--
+I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright, I will thank you so much.
+If you still want to delete the copyrights, could you still retain the first one? Which namely "Theme Material"
+It will not impact the appearance and can give developers a lot of support :)
+
+很高兴您使用并喜欢该主题，开发不易 十分谢谢与希望您可以保留一下版权声明。
+如果您仍然想删除的话 能否只保留第一项呢？即 "Theme Material"
+它不会影响美观并可以给开发者很大的支持和动力。 :)
+-->
+
+<!-- Sidebar Divider -->
+
+    <div class="sidebar-divider"></div>
+
+
+<!-- Theme Material -->
+
+    <a href="https://github.com/viosey/hexo-theme-material" class="sidebar-footer-text-a" target="_blank">
+        <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+            سمة - Material
+            <span class="sidebar-badge badge-circle">i</span>
+        </div>
+    </a>
+
+
+<!-- Help & Support -->
+<!--
+
+-->
+
+<!-- Feedback -->
+<!--
+
+-->
+
+<!-- About Theme -->
+<!--
+
+-->
+
+    </div>
+
+    <!-- Sidebar Image -->
+    
+
+</aside>
+
+                    
+
+                    
+                        <!-- Footer Top Button -->
+                        <div id="back-to-top" class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
+
+                    
+
+                    <!--Footer-->
+<footer class="mdl-mini-footer" id="bottom">
+    
+        <!-- Paradox Footer Left Section -->
+        <div class="mdl-mini-footer--left-section sns-list">
+    <!-- Twitter -->
+    
+        <a href="https://twitter.com/twitter" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-twitter">
+                <span class="visuallyhidden">Twitter</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Facebook -->
+    
+        <a href="https://www.facebook.com/facebook" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-facebook">
+                <span class="visuallyhidden">Facebook</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Google + -->
+    
+        <a href="https://www.google.com/" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-gplus">
+                <span class="visuallyhidden">Google Plus</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Weibo -->
+    
+
+    <!-- Instagram -->
+    
+
+    <!-- Tumblr -->
+    
+
+    <!-- Github -->
+    
+        <a href="https://github.com/rhanqtl" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-github">
+                <span class="visuallyhidden">Github</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- LinkedIn -->
+    
+
+    <!-- Zhihu -->
+    
+
+    <!-- Bilibili -->
+    
+
+    <!-- Telegram -->
+    
+
+    <!-- V2EX -->
+    
+
+    <!-- Segmentfault -->
+    
+</div>
+
+
+        <!--Copyright-->
+        <div id="copyright">
+            Copyright&nbsp;©&nbsp;<span year=""></span>&nbsp;RHANQTL
+            
+        </div>
+
+        <!-- Paradox Footer Right Section -->
+
+        <!--
+        I am glad you use this theme, the development is no so easy, I hope you can keep the copyright.
+        It will not impact the appearance and can give developers a lot of support :)
+
+        很高兴您使用该主题，开发不易，希望您可以保留一下版权声明。
+        它不会影响美观并可以给开发者很大的支持。 :)
+        -->
+
+        <div class="mdl-mini-footer--right-section">
+            <div>
+                <div class="footer-develop-div">Powered by <a href="https://hexo.io" target="_blank" class="footer-develop-a">Hexo</a></div>
+                <div class="footer-develop-div">Theme - <a href="https://github.com/viosey/hexo-theme-material" target="_blank" class="footer-develop-a">Material</a></div>
+            </div>
+        </div>
+    
+</footer>
+
+
+                    <!-- Import JS File -->
+
+    <script>lsloader.load("lazyload_js","/js/lazyload.min.js?1BcfzuNXqV+ntF6gq+5X3Q==", true)</script>
+
+
+
+    <script>lsloader.load("js_js","/js/js.min.js?Bn9UzEm8RrBSxqyZB0zPjA==", true)</script>
+
+
+
+    <script>lsloader.load("np_js","/js/nprogress.js?pl3Qhb9lvqR1FlyLUna1Yw==", true)</script>
+
+
+<script type="text/ls-javascript" id="NProgress-script">
+    NProgress.configure({
+        showSpinner: true
+    });
+    NProgress.start();
+    $('#nprogress .bar').css({
+        'background': '#29d'
+    });
+    $('#nprogress .peg').css({
+        'box-shadow': '0 0 10px #29d, 0 0 15px #29d'
+    });
+    $('#nprogress .spinner-icon').css({
+        'border-top-color': '#29d',
+        'border-left-color': '#29d'
+    });
+    setTimeout(function() {
+        NProgress.done();
+        $('.fade').removeClass('out');
+    }, 800);
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- UC Browser Compatible -->
+<script>
+	var agent = navigator.userAgent.toLowerCase();
+	if(agent.indexOf('ucbrowser')>0) {
+		document.write('<link rel="stylesheet" href="/css/uc.css">');
+	   alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
+	}
+</script>
+
+<!-- Import prettify js  -->
+
+
+
+<!-- Window Load -->
+<!-- add class for prettify -->
+<script type="text/ls-javascript" id="window-load">
+    $(window).on('load', function() {
+        // Post_Toc parent position fixed
+        $('.post-toc-wrap').parent('.mdl-menu__container').css('position', 'fixed');
+    });
+
+    
+    
+</script>
+
+<!-- MathJax Load-->
+
+
+<!-- Bing Background -->
+
+
+<script type="text/ls-javascript" id="lazy-load">
+    // Offer LazyLoad
+    queue.offer(function(){
+        $('.lazy').lazyload({
+            effect : 'show'
+        });
+    });
+
+    // Start Queue
+    $(document).ready(function(){
+        setInterval(function(){
+            queue.execNext();
+        },200);
+    });
+</script>
+
+<!-- Custom Footer -->
+
+
+
+<script>
+    var copyrightNow = new Date().getFullYear();
+    var textContent = document.querySelector('span[year]')
+
+    copyrightSince = 0000;
+    if (copyrightSince === copyrightNow||copyrightSince === 0000) {
+        textContent.textContent = copyrightNow
+    } else {
+        textContent.textContent = copyrightSince + ' - ' + copyrightNow
+    }
+
+    (function(){
+        var scriptList = document.querySelectorAll('script[type="text/ls-javascript"]')
+
+        for (var i = 0; i < scriptList.length; ++i) {
+            var item = scriptList[i];
+            lsloader.runInlineScript(item.id,item.id);
+        }
+    })()
+console.log('\n %c © Material Theme | Version: 1.5.6 | https://github.com/viosey/hexo-theme-material %c \n', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-left-radius:5px;border-bottom-left-radius:5px;', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-right-radius:5px;border-bottom-right-radius:5px;');
+</script>
+
+                </main>
+            </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+        </body>
+    
+</html>

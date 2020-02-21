@@ -1,0 +1,1241 @@
+<!DOCTYPE html>
+<html style="display: none;" lang="zh">
+    <head><meta name="generator" content="Hexo 3.8.0">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    <!--
+        © Material Theme
+        https://github.com/viosey/hexo-theme-material
+        Version: 1.5.6 -->
+    <script>
+        window.materialVersion = "1.5.6"
+        // Delete localstorage with these tags
+        window.oldVersion = [
+            'codestartv1',
+            '1.3.4',
+            '1.4.0',
+            '1.4.0b1',
+            '1.5.0',
+            '1.5.2',
+            '1.5.5'
+        ]
+    </script>
+
+    <!-- dns prefetch -->
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+
+
+
+
+
+
+
+
+
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+
+
+
+
+    <!-- Meta & Info -->
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <!-- Title -->
+    
+    <title>
+        
+            面向对象设计基本概念：耦合和内聚 | 
+        
+        RHANQTL
+    </title>
+
+    <!-- Favicons -->
+    <link rel="icon shortcut" type="image/ico" href="/img/favicon.png">
+    <link rel="icon" href="/img/favicon.png">
+
+    <meta name="format-detection" content="telephone=no">
+    <meta name="description" itemprop="description" content="[TOC]
+摘要">
+    <meta name="keywords" content="">
+    <meta name="theme-color" content="#0097A7">
+
+    <!-- Disable Fucking Bloody Baidu Tranformation -->
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+
+    <!--[if lte IE 9]>
+        <link rel="stylesheet" href="/css/ie-blocker.css">
+
+        
+            <script src="/js/ie-blocker.en.js"></script>
+        
+    <![endif]-->
+
+    <!-- Import lsloader -->
+    <script>(function(){window.lsloader={jsRunSequence:[],jsnamemap:{},cssnamemap:{}};lsloader.removeLS=function(a){try{localStorage.removeItem(a)}catch(b){}};lsloader.setLS=function(a,c){try{localStorage.setItem(a,c)}catch(b){}};lsloader.getLS=function(a){var c="";try{c=localStorage.getItem(a)}catch(b){c=""}return c};versionString="/*"+(window.materialVersion||"unknownVersion")+"*/";lsloader.clean=function(){try{var b=[];for(var a=0;a<localStorage.length;a++){b.push(localStorage.key(a))}b.forEach(function(e){var f=lsloader.getLS(e);if(window.oldVersion){var d=window.oldVersion.reduce(function(g,h){return g||f.indexOf("/*"+h+"*/")!==-1},false);if(d){lsloader.removeLS(e)}}})}catch(c){}};lsloader.clean();lsloader.load=function(f,a,b,d){if(typeof b==="boolean"){d=b;b=undefined}d=d||false;b=b||function(){};var e;e=this.getLS(f);if(e&&e.indexOf(versionString)===-1){this.removeLS(f);this.requestResource(f,a,b,d);return}if(e){var c=e.split(versionString)[0];if(c!=a){console.log("reload:"+a);this.removeLS(f);this.requestResource(f,a,b,d);return}e=e.split(versionString)[1];if(d){this.jsRunSequence.push({name:f,code:e});this.runjs(a,f,e)}else{document.getElementById(f).appendChild(document.createTextNode(e));b()}}else{this.requestResource(f,a,b,d)}};lsloader.requestResource=function(b,e,a,c){var d=this;if(c){this.iojs(e,b,function(h,f,g){d.setLS(f,h+versionString+g);d.runjs(h,f,g)})}else{this.iocss(e,b,function(f){document.getElementById(b).appendChild(document.createTextNode(f));d.setLS(b,e+versionString+f)},a)}};lsloader.iojs=function(d,b,g){var a=this;a.jsRunSequence.push({name:b,code:""});try{var f=new XMLHttpRequest();f.open("get",d,true);f.onreadystatechange=function(){if(f.readyState==4){if((f.status>=200&&f.status<300)||f.status==304){if(f.response!=""){g(d,b,f.response);return}}a.jsfallback(d,b)}};f.send(null)}catch(c){a.jsfallback(d,b)}};lsloader.iocss=function(f,c,h,a){var b=this;try{var g=new XMLHttpRequest();g.open("get",f,true);g.onreadystatechange=function(){if(g.readyState==4){if((g.status>=200&&g.status<300)||g.status==304){if(g.response!=""){h(g.response);a();return}}b.cssfallback(f,c,a)}};g.send(null)}catch(d){b.cssfallback(f,c,a)}};lsloader.iofonts=function(f,c,h,a){var b=this;try{var g=new XMLHttpRequest();g.open("get",f,true);g.onreadystatechange=function(){if(g.readyState==4){if((g.status>=200&&g.status<300)||g.status==304){if(g.response!=""){h(g.response);a();return}}b.cssfallback(f,c,a)}};g.send(null)}catch(d){b.cssfallback(f,c,a)}};lsloader.runjs=function(f,c,e){if(!!c&&!!e){for(var b in this.jsRunSequence){if(this.jsRunSequence[b].name==c){this.jsRunSequence[b].code=e}}}if(!!this.jsRunSequence[0]&&!!this.jsRunSequence[0].code&&this.jsRunSequence[0].status!="failed"){var a=document.createElement("script");a.appendChild(document.createTextNode(this.jsRunSequence[0].code));a.type="text/javascript";document.getElementsByTagName("head")[0].appendChild(a);this.jsRunSequence.shift();if(this.jsRunSequence.length>0){this.runjs()}}else{if(!!this.jsRunSequence[0]&&this.jsRunSequence[0].status=="failed"){var d=this;var a=document.createElement("script");a.src=this.jsRunSequence[0].path;a.type="text/javascript";this.jsRunSequence[0].status="loading";a.onload=function(){d.jsRunSequence.shift();if(d.jsRunSequence.length>0){d.runjs()}};document.body.appendChild(a)}}};lsloader.tagLoad=function(b,a){this.jsRunSequence.push({name:a,code:"",path:b,status:"failed"});this.runjs()};lsloader.jsfallback=function(c,b){if(!!this.jsnamemap[b]){return}else{this.jsnamemap[b]=b}for(var a in this.jsRunSequence){if(this.jsRunSequence[a].name==b){this.jsRunSequence[a].code="";this.jsRunSequence[a].status="failed";this.jsRunSequence[a].path=c}}this.runjs()};lsloader.cssfallback=function(e,c,b){if(!!this.cssnamemap[c]){return}else{this.cssnamemap[c]=1}var d=document.createElement("link");d.type="text/css";d.href=e;d.rel="stylesheet";d.onload=d.onerror=b;var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(d,a)};lsloader.runInlineScript=function(c,b){var a=document.getElementById(b).innerText;this.jsRunSequence.push({name:c,code:a});this.runjs()}})();</script>
+
+    <!-- Import queue -->
+    <script>function Queue(){this.dataStore=[];this.offer=b;this.poll=d;this.execNext=a;this.debug=false;this.startDebug=c;function b(e){if(this.debug){console.log("Offered a Queued Function.")}if(typeof e==="function"){this.dataStore.push(e)}else{console.log("You must offer a function.")}}function d(){if(this.debug){console.log("Polled a Queued Function.")}return this.dataStore.shift()}function a(){var e=this.poll();if(e!==undefined){if(this.debug){console.log("Run a Queued Function.")}e()}}function c(){this.debug=true}}var queue=new Queue();</script>
+
+    <!-- Import CSS -->
+    
+        <style id="material_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_css","/css/material.min.css?Z7a72R1E4SxzBKR/WGctOA==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+        <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","/css/style.min.css?NKhlKQkXw/c66TR5p4wO+w==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+
+        
+
+    
+
+    
+
+    <!-- Config CSS -->
+
+<!-- Other Styles -->
+<style>
+  body, html {
+    font-family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+    overflow-x: hidden !important;
+  }
+  
+  code {
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  }
+
+  a {
+    color: #00838F;
+  }
+
+  .mdl-card__media,
+  #search-label,
+  #search-form-label:after,
+  #scheme-Paradox .hot_tags-count,
+  #scheme-Paradox .sidebar_archives-count,
+  #scheme-Paradox .sidebar-colored .sidebar-header,
+  #scheme-Paradox .sidebar-colored .sidebar-badge{
+    background-color: #0097A7 !important;
+  }
+
+  /* Sidebar User Drop Down Menu Text Color */
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus {
+    color: #0097A7 !important;
+  }
+
+  #post_entry-right-info,
+  .sidebar-colored .sidebar-nav li:hover > a,
+  .sidebar-colored .sidebar-nav li:hover > a i,
+  .sidebar-colored .sidebar-nav li > a:hover,
+  .sidebar-colored .sidebar-nav li > a:hover i,
+  .sidebar-colored .sidebar-nav li > a:focus i,
+  .sidebar-colored .sidebar-nav > .open > a,
+  .sidebar-colored .sidebar-nav > .open > a:hover,
+  .sidebar-colored .sidebar-nav > .open > a:focus,
+  #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a {
+    color: #0097A7 !important;
+  }
+
+  .toTop {
+    background: #757575 !important;
+  }
+
+  .material-layout .material-post>.material-nav,
+  .material-layout .material-index>.material-nav,
+  .material-nav a {
+    color: #757575;
+  }
+
+  #scheme-Paradox .MD-burger-layer {
+    background-color: #757575;
+  }
+
+  #scheme-Paradox #post-toc-trigger-btn {
+    color: #757575;
+  }
+
+  .post-toc a:hover {
+    color: #00838F;
+    text-decoration: underline;
+  }
+
+</style>
+
+
+<!-- Theme Background Related-->
+
+    <style>
+      body{
+        background-color: #F5F5F5;
+      }
+
+      /* blog_info bottom background */
+      #scheme-Paradox .material-layout .something-else .mdl-card__supporting-text{
+        background-color: #fff;
+      }
+    </style>
+
+
+
+
+<!-- Fade Effect -->
+
+    <style>
+      .fade {
+        transition: all 800ms linear;
+        -webkit-transform: translate3d(0,0,0);
+        -moz-transform: translate3d(0,0,0);
+        -ms-transform: translate3d(0,0,0);
+        -o-transform: translate3d(0,0,0);
+        transform: translate3d(0,0,0);
+        opacity: 1;
+      }
+
+      .fade.out{
+        opacity: 0;
+      }
+    </style>
+
+
+<!-- Import Font -->
+<!-- Import Roboto -->
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+
+
+<!-- Import Material Icons -->
+
+
+    <style id="material_icons"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_icons","/css/material-icons.css?pqhB/Rd/ab0H2+kZp0RDmw==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+
+
+
+
+    <!-- Import jQuery -->
+    
+        <script>lsloader.load("jq_js","/js/jquery.min.js?qcusAULNeBksqffqUM2+Ig==", true)</script>
+    
+
+    <!-- WebAPP Icons -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="RHANQTL">
+    <meta name="msapplication-starturl" content="http://yoursite.com/2019/10/15/oo-design-concept-coupling-and-cohesion/">
+    <meta name="msapplication-navbutton-color" content="#0097A7">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="RHANQTL">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon" href="/img/favicon.png">
+
+    <!-- Site Verification -->
+    
+    
+
+    <!-- RSS -->
+    
+
+    <!-- The Open Graph protocol -->
+    <meta property="og:url" content="http://yoursite.com/2019/10/15/oo-design-concept-coupling-and-cohesion/">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="面向对象设计基本概念：耦合和内聚 | RHANQTL">
+    <meta property="og:image" content="/img/favicon.png">
+    <meta property="og:description" content="[TOC]
+摘要">
+    
+
+    
+        <meta property="article:published_time" content="Tue Oct 15 2019 16:25:38 GMT+0800">
+        <meta property="article:modified_time" content="Sun Dec 15 2019 10:27:21 GMT+0800">
+    
+
+    <!-- The Twitter Card protocol -->
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!-- Add canonical link for SEO -->
+    
+        <link rel="canonical" href="http://yoursite.com/2019/10/15/oo-design-concept-coupling-and-cohesion/index.html">
+    
+
+    <!-- Structured-data for SEO -->
+    
+        
+
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage": "http://yoursite.com/2019/10/15/oo-design-concept-coupling-and-cohesion/index.html",
+    "headline": "面向对象设计基本概念：耦合和内聚",
+    "datePublished": "Tue Oct 15 2019 16:25:38 GMT+0800",
+    "dateModified": "Sun Dec 15 2019 10:27:21 GMT+0800",
+    "author": {
+        "@type": "Person",
+        "name": "Han Qi",
+        "image": {
+            "@type": "ImageObject",
+            "url": "/img/avatar.png"
+        },
+        "description": "Hi, nice to meet you"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "RHANQTL",
+        "logo": {
+            "@type":"ImageObject",
+            "url": "/img/favicon.png"
+        }
+    },
+    "keywords": "",
+    "description": "[TOC]
+摘要",
+}
+</script>
+
+
+    
+
+    <!-- Analytics -->
+    
+    
+    
+
+    <!-- Custom Head --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    
+
+</head>
+
+
+    
+        <body id="scheme-Paradox" class="lazy">
+            <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="material-layout  mdl-js-layout has-drawer is-upgraded">
+                
+
+                <!-- Main Container -->
+                <main class="material-layout__content" id="main">
+
+                    <!-- Top Anchor -->
+                    <div id="top"></div>
+
+                    
+                        <!-- Hamburger Button -->
+                        <button class="MD-burger-icon sidebar-toggle">
+                            <span id="MD-burger-id" class="MD-burger-layer"></span>
+                        </button>
+                    
+
+                    <!-- Post TOC -->
+
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+
+    <!-- Left aligned menu below button -->
+    
+    
+    <button id="post-toc-trigger-btn" class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#0-导言"><span class="post-toc-number">1.</span> <span class="post-toc-text">0    导言</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#1-耦合-Coupling"><span class="post-toc-number">2.</span> <span class="post-toc-text">1    耦合 (Coupling)</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-0-模块通信：连接"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">1.0    模块通信：连接</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-1-什么是耦合？"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">1.1    什么是耦合？</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-2-耦合的分类"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">1.2    耦合的分类</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-2-1-数据耦合-Data-Coupling"><span class="post-toc-number">2.3.1.</span> <span class="post-toc-text">1.2.1    数据耦合 (Data Coupling)</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-2-1-1-定义"><span class="post-toc-number">2.3.1.1.</span> <span class="post-toc-text">1.2.1.1    定义</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-2-1-2-示例"><span class="post-toc-number">2.3.1.2.</span> <span class="post-toc-text">1.2.1.2    示例</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-2-2-印记耦合-Stamp-Coupling"><span class="post-toc-number">2.3.2.</span> <span class="post-toc-text">1.2.2    印记耦合 (Stamp Coupling)</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-2-2-1-定义"><span class="post-toc-number">2.3.2.1.</span> <span class="post-toc-text">1.2.2.1    定义</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-2-2-2-解释"><span class="post-toc-number">2.3.2.2.</span> <span class="post-toc-text">1.2.2.2    解释</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-2-2-3-示例"><span class="post-toc-number">2.3.2.3.</span> <span class="post-toc-text">1.2.2.3    示例</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-2-3-控制耦合-Control-Coupling"><span class="post-toc-number">2.3.3.</span> <span class="post-toc-text">1.2.3    控制耦合 (Control Coupling)</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-2-3-1-定义"><span class="post-toc-number">2.3.3.1.</span> <span class="post-toc-text">1.2.3.1    定义</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-2-3-2-解释"><span class="post-toc-number">2.3.3.2.</span> <span class="post-toc-text">1.2.3.2    解释</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-2-3-3-示例"><span class="post-toc-number">2.3.3.3.</span> <span class="post-toc-text">1.2.3.3    示例</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-2-4-重复耦合-Coupling"><span class="post-toc-number">2.3.4.</span> <span class="post-toc-text">1.2.4    重复耦合 ( Coupling)</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-2-4-1-定义"><span class="post-toc-number">2.3.4.1.</span> <span class="post-toc-text">1.2.4.1    定义</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-2-4-2-解释"><span class="post-toc-number">2.3.4.2.</span> <span class="post-toc-text">1.2.4.2    解释</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-2-4-3-示例"><span class="post-toc-number">2.3.4.3.</span> <span class="post-toc-text">1.2.4.3    示例</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-2-5-公共耦合-Common-Coupling"><span class="post-toc-number">2.3.5.</span> <span class="post-toc-text">1.2.5    公共耦合 (Common Coupling)</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-2-5-1-定义"><span class="post-toc-number">2.3.5.1.</span> <span class="post-toc-text">1.2.5.1    定义</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-2-5-2-解释"><span class="post-toc-number">2.3.5.2.</span> <span class="post-toc-text">1.2.5.2    解释</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-2-5-3-示例"><span class="post-toc-number">2.3.5.3.</span> <span class="post-toc-text">1.2.5.3    示例</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-2-6-内容耦合-Content-Coupling"><span class="post-toc-number">2.3.6.</span> <span class="post-toc-text">1.2.6    内容耦合 (Content Coupling)</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-2-6-1-定义"><span class="post-toc-number">2.3.6.1.</span> <span class="post-toc-text">1.2.6.1    定义</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-2-6-2-示例"><span class="post-toc-number">2.3.6.2.</span> <span class="post-toc-text">1.2.6.2    示例</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-2-7-总结"><span class="post-toc-number">2.3.7.</span> <span class="post-toc-text">1.2.7    总结</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#2-内聚-Cohesion"><span class="post-toc-number">3.</span> <span class="post-toc-text">2    内聚 (Cohesion)</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-1-什么是内聚？"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">2.1    什么是内聚？</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-2-内聚的分类"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">2.2    内聚的分类</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-2-1-信息内聚-Information-Cohesion"><span class="post-toc-number">3.2.1.</span> <span class="post-toc-text">2.2.1    信息内聚 (Information Cohesion)</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-2-1-1-定义"><span class="post-toc-number">3.2.1.1.</span> <span class="post-toc-text">2.2.1.1    定义</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-2-1-2-示例"><span class="post-toc-number">3.2.1.2.</span> <span class="post-toc-text">2.2.1.2    示例</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-2-2-功能内聚-Functional-Cohesion"><span class="post-toc-number">3.2.2.</span> <span class="post-toc-text">2.2.2    功能内聚 (Functional Cohesion)</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-2-2-1-定义"><span class="post-toc-number">3.2.2.1.</span> <span class="post-toc-text">2.2.2.1    定义</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-2-2-2-解释"><span class="post-toc-number">3.2.2.2.</span> <span class="post-toc-text">2.2.2.2    解释</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-2-2-3-示例"><span class="post-toc-number">3.2.2.3.</span> <span class="post-toc-text">2.2.2.3    示例</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-2-3-通信内聚-Communicational-Cohesion"><span class="post-toc-number">3.2.3.</span> <span class="post-toc-text">2.2.3    通信内聚 (Communicational Cohesion)</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-2-3-1-定义"><span class="post-toc-number">3.2.3.1.</span> <span class="post-toc-text">2.2.3.1    定义</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-2-3-2-示例"><span class="post-toc-number">3.2.3.2.</span> <span class="post-toc-text">2.2.3.2    示例</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-2-3-3-与信息内聚的区别"><span class="post-toc-number">3.2.3.3.</span> <span class="post-toc-text">2.2.3.3    与信息内聚的区别</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-2-4-过程内聚-Procedural-Cohesion"><span class="post-toc-number">3.2.4.</span> <span class="post-toc-text">2.2.4    过程内聚 (Procedural Cohesion)</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-2-4-1-定义"><span class="post-toc-number">3.2.4.1.</span> <span class="post-toc-text">2.2.4.1    定义</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-2-4-2-示例"><span class="post-toc-number">3.2.4.2.</span> <span class="post-toc-text">2.2.4.2    示例</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-2-5-时间内聚-Temporal-Cohesion"><span class="post-toc-number">3.2.5.</span> <span class="post-toc-text">2.2.5    时间内聚 (Temporal Cohesion)</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-2-5-1-定义"><span class="post-toc-number">3.2.5.1.</span> <span class="post-toc-text">2.2.5.1    定义</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-2-5-2-示例"><span class="post-toc-number">3.2.5.2.</span> <span class="post-toc-text">2.2.5.2    示例</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-2-6-逻辑内聚-Logical-Cohesion"><span class="post-toc-number">3.2.6.</span> <span class="post-toc-text">2.2.6    逻辑内聚 (Logical Cohesion)</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-2-6-1-定义"><span class="post-toc-number">3.2.6.1.</span> <span class="post-toc-text">2.2.6.1    定义</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-2-6-2-示例"><span class="post-toc-number">3.2.6.2.</span> <span class="post-toc-text">2.2.6.2    示例</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-2-7-偶然内聚-Coincidental-Cohesion"><span class="post-toc-number">3.2.7.</span> <span class="post-toc-text">2.2.7    偶然内聚 (Coincidental Cohesion)</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-2-7-1-定义"><span class="post-toc-number">3.2.7.1.</span> <span class="post-toc-text">2.2.7.1    定义</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-2-7-2-示例"><span class="post-toc-number">3.2.7.2.</span> <span class="post-toc-text">2.2.7.2    示例</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-2-8-区别功能内聚、通信内聚、过程内聚、时间内聚"><span class="post-toc-number">3.2.8.</span> <span class="post-toc-text">2.2.8    区别功能内聚、通信内聚、过程内聚、时间内聚</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-2-9-总结"><span class="post-toc-number">3.2.9.</span> <span class="post-toc-text">2.2.9    总结</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#3-耦合和内聚的区别"><span class="post-toc-number">4.</span> <span class="post-toc-text">3    耦合和内聚的区别</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#4-关于“高内聚，低耦合”的设计方针"><span class="post-toc-number">5.</span> <span class="post-toc-text">4    关于“高内聚，低耦合”的设计方针</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#5-如何实现高内聚、低耦合？"><span class="post-toc-number">6.</span> <span class="post-toc-text">5    如何实现高内聚、低耦合？</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#6-练习题"><span class="post-toc-number">7.</span> <span class="post-toc-text">6    练习题</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#6-1-耦合"><span class="post-toc-number">7.1.</span> <span class="post-toc-text">6.1    耦合</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#6-2-内聚"><span class="post-toc-number">7.2.</span> <span class="post-toc-text">6.2    内聚</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#7-参考文献"><span class="post-toc-number">8.</span> <span class="post-toc-text">7    参考文献</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#8-练习答案"><span class="post-toc-number">9.</span> <span class="post-toc-text">8    练习答案</span></a></li></ol>
+    </ul>
+    
+
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+    <!-- Paradox Post Header -->
+    
+        
+            <!-- Random Thumbnail -->
+            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
+            <script type="text/ls-javascript" id="post-thumbnail-script">
+    var randomNum = Math.floor(Math.random() * 19 + 1);
+
+    $('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
+    $('.post_thumbnail-random').addClass('lazy');
+</script>
+
+        
+    
+            <p class="article-headline-p">
+                面向对象设计基本概念：耦合和内聚
+            </p>
+        </div>
+
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/avatar.png" width="44px" height="44px" alt="Author Avatar">
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>Han Qi</strong>
+        <span>Oct 15, 2019</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
+    
+
+    <!-- Tags (bookmark) -->
+    
+
+    <!-- Share -->
+    
+        <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+
+    <!-- Share Weibo -->
+    
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=面向对象设计基本概念：耦合和内聚&url=http://yoursite.com/2019/10/15/oo-design-concept-coupling-and-cohesion/index.html&pic=http://yoursite.com/img/favicon.png&searchPic=false&style=simple" target="_blank">
+            <li class="mdl-menu__item">
+                شارك على Weibo
+            </li>
+        </a>
+    
+
+    <!-- Share Twitter -->
+    
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=面向对象设计基本概念：耦合和内聚&url=http://yoursite.com/2019/10/15/oo-design-concept-coupling-and-cohesion/index.html&via=Han Qi" target="_blank">
+            <li class="mdl-menu__item">
+                شارك على Twitter
+            </li>
+        </a>
+    
+
+    <!-- Share Facebook -->
+    
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2019/10/15/oo-design-concept-coupling-and-cohesion/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                شارك على Facebook
+            </li>
+        </a>
+    
+
+    <!-- Share Google+ -->
+    
+        <a class="post_share-link" href="https://plus.google.com/share?url=http://yoursite.com/2019/10/15/oo-design-concept-coupling-and-cohesion/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                شارك على Google+
+            </li>
+        </a>
+    
+
+    <!-- Share LinkedIn -->
+    
+        <a class="post_share-link" href="https://www.linkedin.com/shareArticle?mini=true&url=http://yoursite.com/2019/10/15/oo-design-concept-coupling-and-cohesion/index.html&title=面向对象设计基本概念：耦合和内聚" target="_blank">
+            <li class="mdl-menu__item">
+                شارك على LinkedIn
+            </li>
+        </a>
+    
+
+    <!-- Share QQ -->
+    
+        <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=RHANQTL&title=面向对象设计基本概念：耦合和内聚&summary=&pics=http://yoursite.com/img/favicon.png&url=http://yoursite.com/2019/10/15/oo-design-concept-coupling-and-cohesion/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                شارك على QQ
+            </li>
+        </a>
+    
+
+    <!-- Share Telegram -->
+    
+        <a class="post_share-link" href="https://telegram.me/share/url?url=http://yoursite.com/2019/10/15/oo-design-concept-coupling-and-cohesion/index.html&text=面向对象设计基本概念：耦合和内聚" target="_blank">
+            <li class="mdl-menu__item">
+                شارك على Telegram
+            </li>
+        </a>
+    
+</ul>
+
+    
+</div>
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <p>[TOC]</p>
+<p><strong>摘要</strong></p>
+<a id="more"></a>
+<h1 id="0-导言"><a href="#0-导言" class="headerlink" title="0    导言"></a>0    导言</h1><p>满足需求的情况下模块之间尽可能地相互独立</p>
+<h1 id="1-耦合-Coupling"><a href="#1-耦合-Coupling" class="headerlink" title="1    耦合 (Coupling)"></a>1    耦合 (Coupling)</h1><h2 id="1-0-模块通信：连接"><a href="#1-0-模块通信：连接" class="headerlink" title="1.0    模块通信：连接"></a>1.0    模块通信：连接</h2><p>连接的强度取决于数量、调用次数、参数数量、方向等</p>
+<p>两个对象之间的连接有如下几种可能：</p>
+<ul>
+<li>方法调用</li>
+<li>访问属性</li>
+<li></li>
+<li>共享数据 </li>
+<li>对象 A 持有对象 B 引用</li>
+<li>继承</li>
+<li>隐式</li>
+</ul>
+<p>耦合分析的标准</p>
+<ul>
+<li>复杂度（参与者、范围）</li>
+</ul>
+<p><img src="/2019/10/15/oo-design-concept-coupling-and-cohesion/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1573951283942.png" alt="1573951283942"></p>
+<h2 id="1-1-什么是耦合？"><a href="#1-1-什么是耦合？" class="headerlink" title="1.1    什么是耦合？"></a>1.1    什么是耦合？</h2><p>耦合描述的是两个模块之间关系的复杂程度。</p>
+<p>Coupling is the manner and degree of interdependence <u>between software modules</u>; a measure of how closely connected two routines or modules are; the strength of the relationships between modules. [1] Coupling is the measure of the degree of interdependence between the modules. A good software will have low coupling. [2]</p>
+<h2 id="1-2-耦合的分类"><a href="#1-2-耦合的分类" class="headerlink" title="1.2    耦合的分类"></a>1.2    耦合的分类</h2><p>耦合分为 6 种，分别是：数据耦合、印记耦合、控制耦合、重复耦合（有一些资料没有这一项，取而代之的是“外部耦合”，这里以南京大学《软件工程与计算》（卷二）为准）、公共耦合、内容耦合，其中数据耦合是最好的（耦合性最低），内容耦合是最差的（耦合性最高）。</p>
+
+<p>耦合性越高，模块的划分越差，越不利于软件的变更和复用。用一个硬件的例子：</p>
+
+<p>下面依次介绍。</p>
+<h3 id="1-2-1-数据耦合-Data-Coupling"><a href="#1-2-1-数据耦合-Data-Coupling" class="headerlink" title="1.2.1    数据耦合 (Data Coupling)"></a>1.2.1    数据耦合 (Data Coupling)</h3><h4 id="1-2-1-1-定义"><a href="#1-2-1-1-定义" class="headerlink" title="1.2.1.1    定义"></a>1.2.1.1    定义</h4><p>If the dependency between the modules is based on the fact that they <u>communicate by passing <strong>only</strong> data</u>, then the modules are said to be data coupled. In data coupling, the components are independent to each other and communicating through data. Module communications <u>don’t contain tramp data</u>. This data item should be problem-related and not used for the control purpose.</p>
+<p>模块之间仅通过传递数据进行通信，并且传递的数据仅包含必要的数据，也不用于控制。</p>
+<h4 id="1-2-1-2-示例"><a href="#1-2-1-2-示例" class="headerlink" title="1.2.1.2    示例"></a>1.2.1.2    示例</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x + y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">triple</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> add(x, add(x, x));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="1-2-2-印记耦合-Stamp-Coupling"><a href="#1-2-2-印记耦合-Stamp-Coupling" class="headerlink" title="1.2.2    印记耦合 (Stamp Coupling)"></a>1.2.2    印记耦合 (Stamp Coupling)</h3><h4 id="1-2-2-1-定义"><a href="#1-2-2-1-定义" class="headerlink" title="1.2.2.1    定义"></a>1.2.2.1    定义</h4><p>In stamp coupling, the <u>complete data structure</u> is passed from one module to another module. Therefore, it involves tramp data. It may be necessary due to efficiency factors - this choice made by the insightful designer, not a lazy programmer.</p>
+<p>模块之间通过传递完整的数据结构进行通信，而被调用的模块只在该数据结构的个别组件上进行操作。</p>
+<p>反过来，如果两个方法之间建立了印记耦合，那么它们之间肯定传递了复杂数据。</p>
+<p>常见的复杂数据有集合（数组、链表等）和复合数据类型（结构体、类等）</p>
+<h4 id="1-2-2-2-解释"><a href="#1-2-2-2-解释" class="headerlink" title="1.2.2.2    解释"></a>1.2.2.2    解释</h4><h4 id="1-2-2-3-示例"><a href="#1-2-2-3-示例" class="headerlink" title="1.2.2.3    示例"></a>1.2.2.3    示例</h4><p><img src="/2019/10/15/oo-design-concept-coupling-and-cohesion/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1571153424943.png" alt="1571153424943"></p>
+<h3 id="1-2-3-控制耦合-Control-Coupling"><a href="#1-2-3-控制耦合-Control-Coupling" class="headerlink" title="1.2.3    控制耦合 (Control Coupling)"></a>1.2.3    控制耦合 (Control Coupling)</h3><h4 id="1-2-3-1-定义"><a href="#1-2-3-1-定义" class="headerlink" title="1.2.3.1    定义"></a>1.2.3.1    定义</h4><p>If the modules communicate by passing control information, then they are said to be control coupled. It can be bad if parameters indicate completely different behavior and good if parameters allow factoring and reuse of functionality. </p>
+<p>模块之间通过传递控制信息进行通信，并且控制信号会影响被调用者执行路径分支的选择。（如果控制信息有多余的信息呢？）</p>
+<p><img src="/2019/10/15/oo-design-concept-coupling-and-cohesion/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1571308210213.png" alt="1571308210213"></p>
+<p>判断控制信号的标准：</p>
+<ul>
+<li>不是有意义的数据</li>
+<li>影响执行路径</li>
+</ul>
+<h4 id="1-2-3-2-解释"><a href="#1-2-3-2-解释" class="headerlink" title="1.2.3.2    解释"></a>1.2.3.2    解释</h4><p><img src="/2019/10/15/oo-design-concept-coupling-and-cohesion/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1571153304739.png" alt="1571153304739"></p>
+<h4 id="1-2-3-3-示例"><a href="#1-2-3-3-示例" class="headerlink" title="1.2.3.3    示例"></a>1.2.3.3    示例</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">sort</span><span class="params">(<span class="keyword">int</span> A[], <span class="keyword">int</span> n, <span class="keyword">int</span> (*compare)(<span class="keyword">int</span> x, <span class="keyword">int</span> y))</span> </span>&#123;</span><br><span class="line">    <span class="comment">// ... 排序</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">enum</span> <span class="keyword">option_t</span> &#123; DATE, IP &#125;;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">do_work</span><span class="params">(<span class="keyword">void</span> *arg, <span class="keyword">enum</span> <span class="keyword">option_t</span> opt, <span class="keyword">void</span> *result)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">switch</span> (opt) &#123;</span><br><span class="line">        <span class="keyword">case</span> DATE:</span><br><span class="line">            <span class="comment">// ... 处理日期</span></span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> IP:</span><br><span class="line">            <span class="comment">// ... 处理 IP</span></span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            <span class="comment">// ... 错误处理</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="1-2-4-重复耦合-Coupling"><a href="#1-2-4-重复耦合-Coupling" class="headerlink" title="1.2.4    重复耦合 ( Coupling)"></a>1.2.4    重复耦合 ( Coupling)</h3><h4 id="1-2-4-1-定义"><a href="#1-2-4-1-定义" class="headerlink" title="1.2.4.1    定义"></a>1.2.4.1    定义</h4><p>模块之间有同样逻辑的重复代码。</p>
+<h4 id="1-2-4-2-解释"><a href="#1-2-4-2-解释" class="headerlink" title="1.2.4.2    解释"></a>1.2.4.2    解释</h4><p><img src="/2019/10/15/oo-design-concept-coupling-and-cohesion/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1571153187245.png" alt="1571153187245"></p>
+<h4 id="1-2-4-3-示例"><a href="#1-2-4-3-示例" class="headerlink" title="1.2.4.3    示例"></a>1.2.4.3    示例</h4><p><img src="/2019/10/15/oo-design-concept-coupling-and-cohesion/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1571153195678.png" alt="1571153195678"></p>
+<h3 id="1-2-5-公共耦合-Common-Coupling"><a href="#1-2-5-公共耦合-Common-Coupling" class="headerlink" title="1.2.5    公共耦合 (Common Coupling)"></a>1.2.5    公共耦合 (Common Coupling)</h3><h4 id="1-2-5-1-定义"><a href="#1-2-5-1-定义" class="headerlink" title="1.2.5.1    定义"></a>1.2.5.1    定义</h4><p>The modules have shared data such as global data structures. The changes in global data mean tracing back to all modules which access that data to evaluate the effect of the change. So it has got disadvantages like difficulty in reusing modules, reduced ability to control data accesses and reduced maintainability.</p>
+<p>模块之间有共享的数据（如全局数据结构）。</p>
+<h4 id="1-2-5-2-解释"><a href="#1-2-5-2-解释" class="headerlink" title="1.2.5.2    解释"></a>1.2.5.2    解释</h4><p><img src="/2019/10/15/oo-design-concept-coupling-and-cohesion/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1571153135945.png" alt="1571153135945"></p>
+<p><img src="/2019/10/15/oo-design-concept-coupling-and-cohesion/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1571309250552.png" alt="1571309250552"></p>
+<p>公共耦合的关键是公共环境。</p>
+<p><img src="/2019/10/15/oo-design-concept-coupling-and-cohesion/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1571308449956.png" alt="1571308449956"></p>
+<p>比如，类 A 和类 B 都访问了类 C，其中类 C 是 Java Bean，只有私有成员和针对每一个变量的 getter 和 setter，那么 A 和 B 之间就不是公共耦合。（那是什么耦合？）</p>
+<p><img src="/2019/10/15/oo-design-concept-coupling-and-cohesion/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1571308329146.png" alt="1571308329146"></p>
+<p><img src="/2019/10/15/oo-design-concept-coupling-and-cohesion/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1571308309303.png" alt="1571308309303"></p>
+<h4 id="1-2-5-3-示例"><a href="#1-2-5-3-示例" class="headerlink" title="1.2.5.3    示例"></a>1.2.5.3    示例</h4><h3 id="1-2-6-内容耦合-Content-Coupling"><a href="#1-2-6-内容耦合-Content-Coupling" class="headerlink" title="1.2.6    内容耦合 (Content Coupling)"></a>1.2.6    内容耦合 (Content Coupling)</h3><h4 id="1-2-6-1-定义"><a href="#1-2-6-1-定义" class="headerlink" title="1.2.6.1    定义"></a>1.2.6.1    定义</h4><blockquote>
+<p>In a content coupling, one module can modify the data of another module or control flow is passed from one module to the other module. </p>
+</blockquote>
+<p>一个模块直接修改或者依赖于另一个模块的内容。</p>
+<h4 id="1-2-6-2-示例"><a href="#1-2-6-2-示例" class="headerlink" title="1.2.6.2    示例"></a>1.2.6.2    示例</h4><p>模块 A 利用 goto 语句跳转到模块 B 的内部；模块 A 更改模块 B 的内部私有数据；模块 A 能够直接更改模块 B 的代码（COBOL 语言就允许这样做）</p>
+<p><img src="/2019/10/15/oo-design-concept-coupling-and-cohesion/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1571153074284.png" alt="1571153074284"></p>
+<p><img src="/2019/10/15/oo-design-concept-coupling-and-cohesion/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1571308532644.png" alt="1571308532644"></p>
+<p><img src="/2019/10/15/oo-design-concept-coupling-and-cohesion/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1571308543054.png" alt="1571308543054"></p>
+<p>GOTO Statement considered harmful</p>
+<p>破坏了模块的独立性</p>
+<h3 id="1-2-7-总结"><a href="#1-2-7-总结" class="headerlink" title="1.2.7    总结"></a>1.2.7    总结</h3><p>只要软件模块之间有依赖关系，就会不可避免地产生耦合。但其中，数据耦合是最理想的，印记耦合和控制耦合是可接受的，公共耦合应该控制使用.重复耦合、内容耦合应该避免使用。</p>
+<h1 id="2-内聚-Cohesion"><a href="#2-内聚-Cohesion" class="headerlink" title="2    内聚 (Cohesion)"></a>2    内聚 (Cohesion)</h1><h2 id="2-1-什么是内聚？"><a href="#2-1-什么是内聚？" class="headerlink" title="2.1    什么是内聚？"></a>2.1    什么是内聚？</h2><p>内聚表达的是一个模块内部的联系的紧密性。</p>
+<p>In computer programming, cohesion refers to the degree to which the elements of a module belong together. Thus, cohesion measures the strength of relationship between pieces of functionality <u>within</u> a given module. For example, in highly cohesive systems functionality is strongly related. [3]</p>
+<p>内聚服从于耦合，高内聚是为了实现低耦合。</p>
+<h2 id="2-2-内聚的分类"><a href="#2-2-内聚的分类" class="headerlink" title="2.2    内聚的分类"></a>2.2    内聚的分类</h2>
+<p>内聚性越高越好，越低越不易实现变更和复用。</p>
+<h3 id="2-2-1-信息内聚-Information-Cohesion"><a href="#2-2-1-信息内聚-Information-Cohesion" class="headerlink" title="2.2.1    信息内聚 (Information Cohesion)"></a>2.2.1    信息内聚 (Information Cohesion)</h3><h4 id="2-2-1-1-定义"><a href="#2-2-1-1-定义" class="headerlink" title="2.2.1.1    定义"></a>2.2.1.1    定义</h4><p>模块内有一系列操作，每个操作都有各自的入口点和出口点，每个操作的代码相对独立，而且所有的操作都是在相同的数据结构上完成，但是却形成一个抽象的整体。</p>
+<h4 id="2-2-1-2-示例"><a href="#2-2-1-2-示例" class="headerlink" title="2.2.1.2    示例"></a>2.2.1.2    示例</h4><p>信息内聚的模块主要用来实现抽象的数据类型。</p>
+<h3 id="2-2-2-功能内聚-Functional-Cohesion"><a href="#2-2-2-功能内聚-Functional-Cohesion" class="headerlink" title="2.2.2    功能内聚 (Functional Cohesion)"></a>2.2.2    功能内聚 (Functional Cohesion)</h3><h4 id="2-2-2-1-定义"><a href="#2-2-2-1-定义" class="headerlink" title="2.2.2.1    定义"></a>2.2.2.1    定义</h4><p>Functional cohesion is said to exist if different elements of a module cooperate to achieve a single function. It is an ideal situation.</p>
+<p>模块只执行一个单一目的的操作。</p>
+<p>要求一个模块只能有一个目标。</p>
+<p>目标一定跟需求相对应</p>
+<h4 id="2-2-2-2-解释"><a href="#2-2-2-2-解释" class="headerlink" title="2.2.2.2    解释"></a>2.2.2.2    解释</h4><p>Suppose a module shows functional cohesion and we are asked to …, then we would be able to tell it using a single sentence.</p>
+<h4 id="2-2-2-3-示例"><a href="#2-2-2-3-示例" class="headerlink" title="2.2.2.3    示例"></a>2.2.2.3    示例</h4><p>计算平方根、计算最短路径、压缩数据库</p>
+<p>a module containing all the functions required to manage employees’ pay-roll exhibits functional cohesion.</p>
+<h3 id="2-2-3-通信内聚-Communicational-Cohesion"><a href="#2-2-3-通信内聚-Communicational-Cohesion" class="headerlink" title="2.2.3    通信内聚 (Communicational Cohesion)"></a>2.2.3    通信内聚 (Communicational Cohesion)</h3><h4 id="2-2-3-1-定义"><a href="#2-2-3-1-定义" class="headerlink" title="2.2.3.1    定义"></a>2.2.3.1    定义</h4><p>A module is said to have communicational cohesion, if all functions of the module refer to or update the same data structure.</p>
+<p>模块内的操作都是针对同一数据进行的。</p>
+<h4 id="2-2-3-2-示例"><a href="#2-2-3-2-示例" class="headerlink" title="2.2.3.2    示例"></a>2.2.3.2    示例</h4><p>update record int the database and send it to the printer.</p>
+<p>查询书名、查询价格、查询出版社和查询作者。</p>
+<h4 id="2-2-3-3-与信息内聚的区别"><a href="#2-2-3-3-与信息内聚的区别" class="headerlink" title="2.2.3.3    与信息内聚的区别"></a>2.2.3.3    与信息内聚的区别</h4><p>TODO</p>
+<h3 id="2-2-4-过程内聚-Procedural-Cohesion"><a href="#2-2-4-过程内聚-Procedural-Cohesion" class="headerlink" title="2.2.4    过程内聚 (Procedural Cohesion)"></a>2.2.4    过程内聚 (Procedural Cohesion)</h3><h4 id="2-2-4-1-定义"><a href="#2-2-4-1-定义" class="headerlink" title="2.2.4.1    定义"></a>2.2.4.1    定义</h4><p>A module is said to have procedural cohesion, if the set of functions of the module are all part of a procedure (algorithm) in which certain sequence of steps have to be carried out for achieving an objective.</p>
+<p>Elements of procedural cohesion ensure the order of execution. Actions are still weakly connected and unlikely to be reusable. </p>
+<p>模块执行的多个操作，是解决同一个问题的不同步骤，这些子过程之间是有顺序关系的，即，前一个子过程的输出是下一个子过程的输入。</p>
+<p>所有的代码都有一个相同的问题。</p>
+<h4 id="2-2-4-2-示例"><a href="#2-2-4-2-示例" class="headerlink" title="2.2.4.2    示例"></a>2.2.4.2    示例</h4><p>the algorithm for decoding a message.</p>
+<p>calculate student GPA, print student record, calculate cumulative GPA, print cumulative GPA.</p>
+<p>保养车的过程依次为洗车、消除凹痕、打磨、上蜡</p>
+<h3 id="2-2-5-时间内聚-Temporal-Cohesion"><a href="#2-2-5-时间内聚-Temporal-Cohesion" class="headerlink" title="2.2.5    时间内聚 (Temporal Cohesion)"></a>2.2.5    时间内聚 (Temporal Cohesion)</h3><h4 id="2-2-5-1-定义"><a href="#2-2-5-1-定义" class="headerlink" title="2.2.5.1    定义"></a>2.2.5.1    定义</h4><p>A module is said to have temporal cohesion, if it contains functions that are related by the fact that all the functions must be executed in the same time span. The elements are related by their timing involved. </p>
+<p>模块中执行一系列操作，但是这些操作在同一时间段内发生。</p>
+<h4 id="2-2-5-2-示例"><a href="#2-2-5-2-示例" class="headerlink" title="2.2.5.2    示例"></a>2.2.5.2    示例</h4><p>This cohesion contains the code for initializing all the parts of the system. Lots of different activities occur, all at init time.</p>
+<p><img src="/2019/10/15/oo-design-concept-coupling-and-cohesion/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1571293414785.png" alt="1571293414785"></p>
+<h3 id="2-2-6-逻辑内聚-Logical-Cohesion"><a href="#2-2-6-逻辑内聚-Logical-Cohesion" class="headerlink" title="2.2.6    逻辑内聚 (Logical Cohesion)"></a>2.2.6    逻辑内聚 (Logical Cohesion)</h3><h4 id="2-2-6-1-定义"><a href="#2-2-6-1-定义" class="headerlink" title="2.2.6.1    定义"></a>2.2.6.1    定义</h4><p>模块执行一系列逻辑上相似但没有直接关联的操作。</p>
+<h4 id="2-2-6-2-示例"><a href="#2-2-6-2-示例" class="headerlink" title="2.2.6.2    示例"></a>2.2.6.2    示例</h4><p>A component reads inputs from tape, disk, and network. All the code for these functions is in the same component. Operations are related, but the functions are significantly different.</p>
+<p>a set of print functions generating different output reports are arranged into a single module.</p>
+<p><img src="/2019/10/15/oo-design-concept-coupling-and-cohesion/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1571293450452.png" alt="1571293450452"></p>
+<p><img src="/2019/10/15/oo-design-concept-coupling-and-cohesion/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1571308725445.png" alt="1571308725445"></p>
+<p><img src="/2019/10/15/oo-design-concept-coupling-and-cohesion/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1571308765299.png" alt="1571308765299"></p>
+<p>典型的是通过 switch-case 进行路径选择（控制耦合？）</p>
+<p><img src="/2019/10/15/oo-design-concept-coupling-and-cohesion/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1571308818974.png" alt="1571308818974"></p>
+<h3 id="2-2-7-偶然内聚-Coincidental-Cohesion"><a href="#2-2-7-偶然内聚-Coincidental-Cohesion" class="headerlink" title="2.2.7    偶然内聚 (Coincidental Cohesion)"></a>2.2.7    偶然内聚 (Coincidental Cohesion)</h3><h4 id="2-2-7-1-定义"><a href="#2-2-7-1-定义" class="headerlink" title="2.2.7.1    定义"></a>2.2.7.1    定义</h4><p>A module is said to have coincidental cohesion if it performs a set of function or tasks that relate to each other very loosely. In this case, the module contains a random collection of functions. The elements have no conceptual relationship other than location in source code. It is likely that the functions have been put in the module out of pure coincidence without any design or thought. It is accidental and the worst form of cohesion. </p>
+<p>模块中执行的操作毫无关系，只是恰好堆砌在这个模块内。</p>
+<h4 id="2-2-7-2-示例"><a href="#2-2-7-2-示例" class="headerlink" title="2.2.7.2    示例"></a>2.2.7.2    示例</h4><p>print next line and reverse the characters of a string in a single component.</p>
+<p><img src="/2019/10/15/oo-design-concept-coupling-and-cohesion/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1571293498291.png" alt="1571293498291"></p>
+<h3 id="2-2-8-区别功能内聚、通信内聚、过程内聚、时间内聚"><a href="#2-2-8-区别功能内聚、通信内聚、过程内聚、时间内聚" class="headerlink" title="2.2.8    区别功能内聚、通信内聚、过程内聚、时间内聚"></a>2.2.8    区别功能内聚、通信内聚、过程内聚、时间内聚</h3><p>// TODO</p>
+<h3 id="2-2-9-总结"><a href="#2-2-9-总结" class="headerlink" title="2.2.9    总结"></a>2.2.9    总结</h3><p>功能内聚和信息内聚是最好的两种，而且这两者的出发点不同，一个完全以功能（行为）为依据进行模块分解，一个以数据与功能间的相互支撑为依据进行模块分解，不可相互比较。一般而言，函数与过程应该是功能内聚的（信息内聚不适用于函数与过程），模块应该是信息内聚或功能内聚的，面向对象方法中的类应该是信息内聚与功能内聚兼顾的。</p>
+<p>偶然内聚和逻辑内聚是不能接受的，如果软件中出现这两类内聚，一定要进行优化。</p>
+<p>通信内聚、过程内聚、时间内聚这三种类型的内聚也是各自具有不同的出发点（一个是相同的数据，一个是相同的问题，一个是相同的时间），无法相互比较，这三种类型的内聚都是可以接受并且不可避免的。</p>
+<p><img src="/2019/10/15/oo-design-concept-coupling-and-cohesion/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1571293852787.png" alt="1571293852787"></p>
+<p>但是因为通信内聚、过程内聚和时间内聚比功能内聚、信息内聚要差一些，所以在设计时还需要限定这三种内聚类型的使用。</p>
+<p><img src="/2019/10/15/oo-design-concept-coupling-and-cohesion/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1571293949465.png" alt="1571293949465"></p>
+<p>中间三个是等价的</p>
+<p>用一句话描述</p>
+<ul>
+<li>如果刚好一个动词 — 功能内聚</li>
+<li>超过一个动词 — 多于一个功能，可能是通信内聚或者顺序内聚</li>
+<li>如果出现首先、其次，可能就是顺序内聚/时间内聚</li>
+<li>如果发现多个主体，可能是逻辑内聚</li>
+<li>初始化、清除等，可能是时间内聚</li>
+</ul>
+<p><img src="/2019/10/15/oo-design-concept-coupling-and-cohesion/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1573782661192.png" alt="1573782661192"></p>
+<h1 id="3-耦合和内聚的区别"><a href="#3-耦合和内聚的区别" class="headerlink" title="3    耦合和内聚的区别"></a>3    耦合和内聚的区别</h1><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">耦合</th>
+<th style="text-align:left">内聚</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Coupling is also called Inter-Module Binding.</td>
+<td style="text-align:left">Cohesion is also called Intra-Module Binding.</td>
+</tr>
+<tr>
+<td style="text-align:left">Coupling shows the relationships between modules.</td>
+<td style="text-align:left">Cohesion shows the relationship within the module.</td>
+</tr>
+<tr>
+<td style="text-align:left">Coupling shows the relative <strong>independence</strong> between the modules.</td>
+<td style="text-align:left">Cohesion shows the module’s relative <strong>functional</strong> strength.</td>
+</tr>
+<tr>
+<td style="text-align:left">While creating, you should aim for low coupling, i.e., dependency among modules should be less.</td>
+<td style="text-align:left">While creating you should aim for high cohesion, i.e., a cohesive component/module focuses on a single function (i.e., single-mindedness) with little interaction with other modules of the system.</td>
+</tr>
+<tr>
+<td style="text-align:left">In coupling, modules are linked to the other modules.</td>
+<td style="text-align:left">In cohesion, the module focuses on a single thing.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h1 id="4-关于“高内聚，低耦合”的设计方针"><a href="#4-关于“高内聚，低耦合”的设计方针" class="headerlink" title="4    关于“高内聚，低耦合”的设计方针"></a>4    关于“高内聚，低耦合”的设计方针</h1><p><a href="https://www.zhihu.com/question/347264877/answer/834378157?utm_source=qq&amp;utm_medium=social&amp;utm_oi=888212147388190720&amp;hb_wx_block=0" target="_blank" rel="noopener">知乎问题：「低耦合，高内聚」真的好吗？</a></p>
+<h1 id="5-如何实现高内聚、低耦合？"><a href="#5-如何实现高内聚、低耦合？" class="headerlink" title="5    如何实现高内聚、低耦合？"></a>5    如何实现高内聚、低耦合？</h1><p>按照功能分解的方式进行模块分割能够实现高内聚的软件设计，但并不一定能降低耦合，高内聚要从属于低耦合，低耦合才是设计的第一准则，所以按照功能分解并不是最佳的方式。</p>
+<p><img src="/2019/10/15/oo-design-concept-coupling-and-cohesion/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1571308300172.png" alt="1571308300172"></p>
+<p><img src="/2019/10/15/oo-design-concept-coupling-and-cohesion/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1571309133923.png" alt="1571309133923"></p>
+<p><img src="/2019/10/15/oo-design-concept-coupling-and-cohesion/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1571309075234.png" alt="1571309075234"></p>
+<ul>
+<li>global variables considered harmful</li>
+<li>to be explicit（Martin Fowler — To Be Explicit）</li>
+</ul>
+<p>显式 vs. 可修改性</p>
+<p><img src="/2019/10/15/oo-design-concept-coupling-and-cohesion/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1573779779046.png" alt="1573779779046"></p>
+<ul>
+<li>do not repeat（打印账单的例子）</li>
+<li>Programming to Interface (Stevens — Structured Design)</li>
+<li>Demeter 法则</li>
+<li>Interface segregation principle</li>
+<li>Liskov</li>
+</ul>
+<h1 id="6-练习题"><a href="#6-练习题" class="headerlink" title="6    练习题"></a>6    练习题</h1><p><strong>0-1</strong>    下列哪些单位可以被看作是模块化中的模块，从而适用“高内聚、低耦合”的设计思路？</p>
+<p>A. 方法    B. 数据库    C. 语句块</p>
+<p>D. 包    E. 界面    F. 类    G. 网络节点</p>
+<h2 id="6-1-耦合"><a href="#6-1-耦合" class="headerlink" title="6.1    耦合"></a>6.1    耦合</h2><p><strong>1-1</strong>    有代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Operator</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Calculator calculator;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">add</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        String[] op = &#123; <span class="string">"1"</span>, <span class="string">"2"</span>, <span class="string">"+"</span> &#125;;</span><br><span class="line">        <span class="keyword">return</span> calculator.add(op);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Calculator</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">add</span><span class="params">(String[] op)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> (Integer.parseInt(op[<span class="number">0</span>]) + Integer.parseInt(op[<span class="number">1</span>]));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>问：<code>Operator.add</code> 和 <code>Calculator.add</code> 之间是哪种类型的耦合关系？</p>
+<p><strong>1-2</strong>    有代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Store</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> List&lt;Order&gt; dailyOrders;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">giveGift</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        Gift.topTen(dailyOrders);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Gift</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">topTen</span><span class="params">(List&lt;Order&gt; orders)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">assert</span> orders.size() &gt;= <span class="number">10</span> : <span class="string">"Order not enough"</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">            Order dest = orders.get(i);</span><br><span class="line">            <span class="comment">// ...</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>1-3</strong>    有代码如下</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Vector3D</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> x;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> y;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> z;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Arch</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Vector3D baseline;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">slant</span><span class="params">(<span class="keyword">int</span> newY)</span> </span>&#123;</span><br><span class="line">        baseline.x = <span class="number">10</span>;</span><br><span class="line">        baseline.y = <span class="number">13</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>问：<code>Arch.slant</code> 和 <code>Vector3D</code> 之间是哪种类型的耦合关系？</p>
+<p><strong>1-4</strong>    有代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DoTaxes</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">double</span> rate;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">doColorado</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        SalesTaxRates str = <span class="keyword">new</span> SalesTaxRates();</span><br><span class="line">        rate = str.salesRate;</span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line">        <span class="keyword">return</span> rate;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SalesTaxRates</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">double</span> salesRate;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">double</span> adjustedSalesRate;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">getSalesRate</span><span class="params">(String region)</span> </span>&#123;</span><br><span class="line">        salesRate = <span class="keyword">new</span> DoTaxes().doColorado();</span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line">        <span class="keyword">return</span> adjustedSalesRate;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>1-5</strong>    有代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Circle</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">double</span> radius = <span class="number">0.0</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> count = <span class="number">1</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Circle</span><span class="params">(<span class="keyword">double</span> radius)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.radius = radius;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Draw</span> </span>&#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">drawShape</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            System.out.println(radius);</span><br><span class="line">            System.out.println(count);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>1-6</strong></p>
+<p><img src="/2019/10/15/oo-design-concept-coupling-and-cohesion/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1571300812476.png" alt="1571300812476"></p>
+<p><strong>1-7</strong>    判断正误：</p>
+<p><img src="/2019/10/15/oo-design-concept-coupling-and-cohesion/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1571307935243.png" alt="1571307935243"></p>
+<p><strong>1-8</strong>    判断正误：</p>
+<p><img src="/2019/10/15/oo-design-concept-coupling-and-cohesion/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1571308359786.png" alt="1571308359786"></p>
+<p><strong>1-9</strong>    判断正误：如果一个类 A 的方法总是使用类 B 的数据，那么它们之间就是内容耦合。</p>
+<h2 id="6-2-内聚"><a href="#6-2-内聚" class="headerlink" title="6.2    内聚"></a>6.2    内聚</h2><p><strong>2-1</strong>    有伪代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Process_purchases</span><br><span class="line">    total_purchases = 0;</span><br><span class="line">    get number_of_purchases;</span><br><span class="line">    DO loop_index = 1 to number_of_purchases</span><br><span class="line">        get purchases</span><br><span class="line">        total_purchases += purchase;</span><br><span class="line">    END DO</span><br><span class="line">    sales_tax = total_purchases * sales_tax_percent;</span><br><span class="line">    amount_due = total_purchases + sales_tax;</span><br><span class="line">END</span><br></pre></td></tr></table></figure>
+<p>问：这是哪种类型的内聚？</p>
+<p><strong>2-2</strong>    下面是一个类的框架代码，该类可能是哪种类型的内聚？</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Order</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 设定订单信息</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">setOrderInfo</span><span class="params">($info)</span> </span>&#123; <span class="comment">/* ... */</span> &#125;</span><br><span class="line">    <span class="comment">// 取得付款信息</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getPaymentInfo</span><span class="params">()</span> </span>&#123; <span class="comment">/* ... */</span> &#125;</span><br><span class="line">    <span class="comment">// 保存订单</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">saveOrder</span><span class="params">()</span> </span>&#123; <span class="comment">/* ... */</span> &#125;</span><br><span class="line">    <span class="comment">// 发送订单确认邮件</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">sendMail</span><span class="params">()</span> </span>&#123; <span class="comment">/* ... */</span> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>2-3</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BudgetReport</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">generateBudgetReport</span><span class="params">()</span> </span>&#123; <span class="comment">/* ... */</span> &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">saveToFile</span><span class="params">()</span> </span>&#123; <span class="comment">/* ... */</span> &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">()</span> </span>&#123; <span class="comment">/* ... */</span> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>问：哪种类型的内聚？</p>
+<p><strong>2-4 </strong>   有伪代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">void func() &#123;</span><br><span class="line">    int number_of_records = 0, total_age = 0;</span><br><span class="line">    while ( 还有记录 ) &#123;</span><br><span class="line">        total_age += age;</span><br><span class="line">        number_of_records++;</span><br><span class="line">        读取学生记录;</span><br><span class="line">    &#125;</span><br><span class="line">    打印 number_of_records 和 total_age;</span><br><span class="line">    return (number_of_records, total_age);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>2-5</strong>    下面的 SSN Check 程序的目标是：检查 SSN 的合法性，并从数据库中查询合法 SSN 的数量</p>
+<p><img src="/2019/10/15/oo-design-concept-coupling-and-cohesion/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1571298406659.png" alt="1571298406659"></p>
+<p>问：该过程是哪种类型的内聚？</p>
+<p><strong>2-6</strong>    有伪代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Init</span><br><span class="line">    打开交易记录文件;</span><br><span class="line">    提示“输入今天的日期”;</span><br><span class="line">    读取键盘输入到 today_date;</span><br><span class="line">    transaction_count = 0;</span><br><span class="line">    IF NOT EOF</span><br><span class="line">        transaction_count++;</span><br><span class="line">        读取一条交易记录;</span><br><span class="line">    ENDIF</span><br><span class="line">    打开报表文件;</span><br><span class="line">    打印页头;</span><br><span class="line">    report_total;</span><br><span class="line">END</span><br></pre></td></tr></table></figure>
+<p>该过程是哪种类型的内聚？</p>
+<p><strong>2-7</strong>    有伪代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">File_processing</span><br><span class="line">    打开员工文件;</span><br><span class="line">    读取员工记录;</span><br><span class="line">    打印页头</span><br><span class="line">    打开雇主文件</span><br><span class="line">    将 page_count 设为 1</span><br><span class="line">    将 error_flag 设为 false</span><br><span class="line">END</span><br></pre></td></tr></table></figure>
+<p><strong>2-8</strong>    有模块代码片段如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">operationA() &#123;</span><br><span class="line">    readData(data, filename1);</span><br><span class="line">    processData(data);</span><br><span class="line">    storeData(data, filename2);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">readData(data, filename) &#123; /* ... */ &#125;</span><br><span class="line"></span><br><span class="line">processData(data) &#123; /* ... */ &#125;</span><br><span class="line"></span><br><span class="line">storeData(data, filename) &#123; /* ... */ &#125;</span><br></pre></td></tr></table></figure>
+<p>问：这个模块可能是哪种类型的内聚？</p>
+<p><strong>2-9</strong>    有伪代码如下：</p>
+<p><img src="/2019/10/15/oo-design-concept-coupling-and-cohesion/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1571299646297.png" alt="1571299646297"></p>
+<p><strong>2-10</strong>    有设计类图如下：</p>
+<p><img src="/2019/10/15/oo-design-concept-coupling-and-cohesion/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1571299936885.png" alt="1571299936885"></p>
+<p><code>ConnectionPool</code> 的行为包括：获得和释放连接</p>
+<p><img src="/2019/10/15/oo-design-concept-coupling-and-cohesion/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1571299943034.png" alt="1571299943034"></p>
+<p><strong>2-11</strong></p>
+<p><img src="/2019/10/15/oo-design-concept-coupling-and-cohesion/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1571299996449.png" alt="1571299996449"></p>
+<p><strong>2-12</strong></p>
+<p><img src="/2019/10/15/oo-design-concept-coupling-and-cohesion/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1571300304484.png" alt="1571300304484"></p>
+<p><strong>2-13 </strong>   有一个电梯类的设计如下图所示</p>
+<p><img src="/2019/10/15/oo-design-concept-coupling-and-cohesion/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1571300378109.png" alt="1571300378109"></p>
+<p>其基本职责是：</p>
+<p><img src="/2019/10/15/oo-design-concept-coupling-and-cohesion/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1571300390298.png" alt="1571300390298"></p>
+<p><strong>2-14</strong>    下面的 <code>validate_checkout_request</code> 可能是哪种类型的内聚？</p>
+<p><img src="/2019/10/15/oo-design-concept-coupling-and-cohesion/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1571301317553.png" alt="1571301317553"></p>
+<p>A. 功能内聚    B. 过程内聚    C. 时间内聚</p>
+<p>D. 偶然内聚    E. 通信内聚    F. 逻辑内聚</p>
+<p><strong>2-15</strong></p>
+<p><img src="/2019/10/15/oo-design-concept-coupling-and-cohesion/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1573785145351.png" alt="1573785145351"></p>
+<p>A. 功能内聚    B. 过程内聚    C. 时间内聚</p>
+<p>D. 偶然内聚    E. 通信内聚    F. 逻辑内聚</p>
+<p><strong>2-16</strong></p>
+<p><img src="/2019/10/15/oo-design-concept-coupling-and-cohesion/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1573785836243.png" alt="1573785836243"></p>
+<p>A. 功能内聚    B. 过程内聚    C. 时间内聚</p>
+<p>D. 偶然内聚    E. 通信内聚    F. 逻辑内聚</p>
+<h1 id="7-参考文献"><a href="#7-参考文献" class="headerlink" title="7    参考文献"></a>7    参考文献</h1><p>[1] <a href="">Wikipedia - Coupling</a></p>
+<p>[2] <a href="https://www.geeksforgeeks.org/software-engineering-coupling-and-cohesion/" target="_blank" rel="noopener">GeeksforGeeks - Software Engineering | Coupling and Cohesion</a></p>
+<p>[3] <a href="">Wikipedia - Cohesion</a></p>
+<p>[4] <a href="https://www.javatpoint.com/software-engineering-coupling-and-cohesion" target="_blank" rel="noopener">javatpoint - Coupling and Cohesion</a></p>
+<p>[5] <a href="http://www.geektonight.com/cohesion-coupling-software-engineering/" target="_blank" rel="noopener">Geektonight - Cohesion and Coupling | Software Engineering</a></p>
+<p>[6] 《软件工程与计算》（卷二）软件开发的技术基础</p>
+<p>[7] <a href="http://neep.learncoder.com/content/practiceList" target="_blank" rel="noopener">学码匠</a></p>
+<h1 id="8-练习答案"><a href="#8-练习答案" class="headerlink" title="8    练习答案"></a>8    练习答案</h1><p><strong>0-1</strong>    ADF</p>
+<p><img src="/2019/10/15/oo-design-concept-coupling-and-cohesion/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1571300698190.png" alt="1571300698190"></p>
+<p><strong>1-1</strong>    印记耦合</p>
+<p><strong>1-2</strong>    印记耦合</p>
+<p><strong>1-3</strong>    内容耦合</p>
+<p><strong>1-4</strong>    内容耦合</p>
+<p><strong>1-5</strong>    内容耦合</p>
+<p><font color="Red"><strong>1-6</strong></font>    ABDFG</p>
+<p><strong>1-7</strong>    错误</p>
+<p><img src="/2019/10/15/oo-design-concept-coupling-and-cohesion/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1571307976553.png" alt="1571307976553"></p>
+<p><strong>1-8</strong>    正确</p>
+<p><img src="/2019/10/15/oo-design-concept-coupling-and-cohesion/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1571308377811.png" alt="1571308377811"></p>
+<p><strong>1-9</strong>    错误</p>
+<p><img src="/2019/10/15/oo-design-concept-coupling-and-cohesion/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1571308678618.png" alt="1571308678618"></p>
+<p><font color="red"><strong>2-1</strong></font>    顺序内聚</p>
+<p><img src="/2019/10/15/oo-design-concept-coupling-and-cohesion/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1571296973930.png" alt="1571296973930"></p>
+<p><font color="red"><strong>2-2</strong></font>    功能内聚</p>
+<p><strong>2-3</strong>    通信内聚</p>
+<p><img src="/2019/10/15/oo-design-concept-coupling-and-cohesion/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1571297596127.png" alt="1571297596127"></p>
+<p><font color="red"><strong>2-4</strong></font>    过程内聚</p>
+<p><img src="/2019/10/15/oo-design-concept-coupling-and-cohesion/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1571297846430.png" alt="1571297846430"></p>
+<p><strong>2-5</strong>    通信内聚</p>
+<p><img src="/2019/10/15/oo-design-concept-coupling-and-cohesion/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1571298432530.png" alt="1571298432530"></p>
+<p><strong>2-6</strong>    时间内聚</p>
+<p><img src="/2019/10/15/oo-design-concept-coupling-and-cohesion/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1571299327300.png" alt="1571299327300"></p>
+<p><strong>2-7</strong>    偶然内聚</p>
+<p><strong>2-8</strong>    顺序内聚</p>
+<p><img src="/2019/10/15/oo-design-concept-coupling-and-cohesion/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1571299439318.png" alt="1571299439318"></p>
+<p><font color="red"><strong>2-9</strong></font>    通信内聚</p>
+<p><img src="/2019/10/15/oo-design-concept-coupling-and-cohesion/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1571299827529.png" alt="1571299827529"></p>
+<p><strong>2-10</strong>    通信内聚</p>
+<p><img src="/2019/10/15/oo-design-concept-coupling-and-cohesion/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1571299959981.png" alt="1571299959981"></p>
+<p><font color="red"><strong>2-11</strong></font>    过程内聚</p>
+<p><img src="/2019/10/15/oo-design-concept-coupling-and-cohesion/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1571300036461.png" alt="1571300036461"></p>
+<p><strong>2-12</strong>    偶然内聚（上课讲的是过程内聚）</p>
+<p><strong>2-13</strong>    偶然内聚</p>
+<p><img src="/2019/10/15/oo-design-concept-coupling-and-cohesion/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1571300515792.png" alt="1571300515792"></p>
+<p><font color="Red"><strong>2-14</strong></font>    ACF</p>
+<p><img src="/2019/10/15/oo-design-concept-coupling-and-cohesion/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1571301407488.png" alt="1571301407488"></p>
+<p><strong>2-15</strong>    ACF</p>
+<p><strong>2-16 </strong>   B</p>
+
+        
+    
+
+    
+</div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+        <a href="/2019/10/18/oo-design-foundations-of-uml/" id="post_nav-newer" class="prev-content">
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_back</i>
+            </button>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            أحدث
+        </a>
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2019/10/03/ooc-generic-programming/" id="post_nav-older" class="next-content">
+            أقدم
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
+
+
+                    
+                        <!-- Overlay For Active Sidebar -->
+<div class="sidebar-overlay"></div>
+
+<!-- Material sidebar -->
+<aside id="sidebar" class="sidebar sidebar-colored sidebar-fixed-left" role="navigation">
+    <div id="sidebar-main">
+        <!-- Sidebar Header -->
+        <div class="sidebar-header header-cover" style="background-image: url(/img/sidebar_header.png);">
+    <!-- Top bar -->
+    <div class="top-bar"></div>
+
+    <!-- Sidebar toggle button -->
+    <button type="button" class="sidebar-toggle mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" style="display: initial;" data-upgraded=",MaterialButton,MaterialRipple">
+        <i class="material-icons">clear_all</i>
+        <span class="mdl-button__ripple-container">
+            <span class="mdl-ripple">
+            </span>
+        </span>
+    </button>
+
+    <!-- Sidebar Avatar -->
+    <div class="sidebar-image">
+        <img src="/img/avatar.png" alt="Han Qi's avatar">
+    </div>
+
+    <!-- Sidebar Email -->
+    <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">
+        my@rhanqtl.com
+        <b class="caret"></b>
+    </a>
+</div>
+
+
+        <!-- Sidebar Navigation  -->
+        <ul class="nav sidebar-nav">
+    <!-- User dropdown  -->
+    <li class="dropdown">
+        <ul id="settings-dropdown" class="dropdown-menu">
+            
+                <li>
+                    <a href="#" target="_blank" title="Email Me">
+                        
+                            <i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i>
+                        
+                        Email Me
+                    </a>
+                </li>
+            
+        </ul>
+    </li>
+
+    <!-- Homepage -->
+    
+        <li id="sidebar-first-li">
+            <a href="/">
+                
+                    <i class="material-icons sidebar-material-icons">home</i>
+                
+                الرئيسية
+            </a>
+        </li>
+        
+    
+
+    <!-- Archives  -->
+    
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                
+                    <i class="material-icons sidebar-material-icons">inbox</i>
+                
+                    أرشيف
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+            <li>
+                <a class="sidebar_archives-link" href="/archives/2019/12/">December 2019<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/11/">November 2019<span class="sidebar_archives-count">6</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/10/">October 2019<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/09/">September 2019<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/08/">August 2019<span class="sidebar_archives-count">10</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/07/">July 2019<span class="sidebar_archives-count">16</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/06/">June 2019<span class="sidebar_archives-count">21</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/05/">May 2019<span class="sidebar_archives-count">36</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/04/">April 2019<span class="sidebar_archives-count">46</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/03/">March 2019<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/02/">February 2019<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/01/">January 2019<span class="sidebar_archives-count">17</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/12/">December 2018<span class="sidebar_archives-count">26</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/11/">November 2018<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/10/">October 2018<span class="sidebar_archives-count">1</span></a>
+            </li></ul>
+        </li>
+        
+    
+
+    <!-- Categories  -->
+    
+
+    <!-- Pages  -->
+    
+
+    <!-- Article Number  -->
+    
+</ul>
+
+
+        <!-- Sidebar Footer -->
+        <!--
+I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright, I will thank you so much.
+If you still want to delete the copyrights, could you still retain the first one? Which namely "Theme Material"
+It will not impact the appearance and can give developers a lot of support :)
+
+很高兴您使用并喜欢该主题，开发不易 十分谢谢与希望您可以保留一下版权声明。
+如果您仍然想删除的话 能否只保留第一项呢？即 "Theme Material"
+它不会影响美观并可以给开发者很大的支持和动力。 :)
+-->
+
+<!-- Sidebar Divider -->
+
+    <div class="sidebar-divider"></div>
+
+
+<!-- Theme Material -->
+
+    <a href="https://github.com/viosey/hexo-theme-material" class="sidebar-footer-text-a" target="_blank">
+        <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+            سمة - Material
+            <span class="sidebar-badge badge-circle">i</span>
+        </div>
+    </a>
+
+
+<!-- Help & Support -->
+<!--
+
+-->
+
+<!-- Feedback -->
+<!--
+
+-->
+
+<!-- About Theme -->
+<!--
+
+-->
+
+    </div>
+
+    <!-- Sidebar Image -->
+    
+
+</aside>
+
+                    
+
+                    
+                        <!-- Footer Top Button -->
+                        <div id="back-to-top" class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
+
+                    
+
+                    <!--Footer-->
+<footer class="mdl-mini-footer" id="bottom">
+    
+        <!-- Paradox Footer Left Section -->
+        <div class="mdl-mini-footer--left-section sns-list">
+    <!-- Twitter -->
+    
+        <a href="https://twitter.com/twitter" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-twitter">
+                <span class="visuallyhidden">Twitter</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Facebook -->
+    
+        <a href="https://www.facebook.com/facebook" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-facebook">
+                <span class="visuallyhidden">Facebook</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Google + -->
+    
+        <a href="https://www.google.com/" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-gplus">
+                <span class="visuallyhidden">Google Plus</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Weibo -->
+    
+
+    <!-- Instagram -->
+    
+
+    <!-- Tumblr -->
+    
+
+    <!-- Github -->
+    
+        <a href="https://github.com/rhanqtl" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-github">
+                <span class="visuallyhidden">Github</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- LinkedIn -->
+    
+
+    <!-- Zhihu -->
+    
+
+    <!-- Bilibili -->
+    
+
+    <!-- Telegram -->
+    
+
+    <!-- V2EX -->
+    
+
+    <!-- Segmentfault -->
+    
+</div>
+
+
+        <!--Copyright-->
+        <div id="copyright">
+            Copyright&nbsp;©&nbsp;<span year=""></span>&nbsp;RHANQTL
+            
+        </div>
+
+        <!-- Paradox Footer Right Section -->
+
+        <!--
+        I am glad you use this theme, the development is no so easy, I hope you can keep the copyright.
+        It will not impact the appearance and can give developers a lot of support :)
+
+        很高兴您使用该主题，开发不易，希望您可以保留一下版权声明。
+        它不会影响美观并可以给开发者很大的支持。 :)
+        -->
+
+        <div class="mdl-mini-footer--right-section">
+            <div>
+                <div class="footer-develop-div">Powered by <a href="https://hexo.io" target="_blank" class="footer-develop-a">Hexo</a></div>
+                <div class="footer-develop-div">Theme - <a href="https://github.com/viosey/hexo-theme-material" target="_blank" class="footer-develop-a">Material</a></div>
+            </div>
+        </div>
+    
+</footer>
+
+
+                    <!-- Import JS File -->
+
+    <script>lsloader.load("lazyload_js","/js/lazyload.min.js?1BcfzuNXqV+ntF6gq+5X3Q==", true)</script>
+
+
+
+    <script>lsloader.load("js_js","/js/js.min.js?Bn9UzEm8RrBSxqyZB0zPjA==", true)</script>
+
+
+
+    <script>lsloader.load("np_js","/js/nprogress.js?pl3Qhb9lvqR1FlyLUna1Yw==", true)</script>
+
+
+<script type="text/ls-javascript" id="NProgress-script">
+    NProgress.configure({
+        showSpinner: true
+    });
+    NProgress.start();
+    $('#nprogress .bar').css({
+        'background': '#29d'
+    });
+    $('#nprogress .peg').css({
+        'box-shadow': '0 0 10px #29d, 0 0 15px #29d'
+    });
+    $('#nprogress .spinner-icon').css({
+        'border-top-color': '#29d',
+        'border-left-color': '#29d'
+    });
+    setTimeout(function() {
+        NProgress.done();
+        $('.fade').removeClass('out');
+    }, 800);
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- UC Browser Compatible -->
+<script>
+	var agent = navigator.userAgent.toLowerCase();
+	if(agent.indexOf('ucbrowser')>0) {
+		document.write('<link rel="stylesheet" href="/css/uc.css">');
+	   alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
+	}
+</script>
+
+<!-- Import prettify js  -->
+
+
+
+<!-- Window Load -->
+<!-- add class for prettify -->
+<script type="text/ls-javascript" id="window-load">
+    $(window).on('load', function() {
+        // Post_Toc parent position fixed
+        $('.post-toc-wrap').parent('.mdl-menu__container').css('position', 'fixed');
+    });
+
+    
+    
+</script>
+
+<!-- MathJax Load-->
+
+
+<!-- Bing Background -->
+
+
+<script type="text/ls-javascript" id="lazy-load">
+    // Offer LazyLoad
+    queue.offer(function(){
+        $('.lazy').lazyload({
+            effect : 'show'
+        });
+    });
+
+    // Start Queue
+    $(document).ready(function(){
+        setInterval(function(){
+            queue.execNext();
+        },200);
+    });
+</script>
+
+<!-- Custom Footer -->
+
+
+
+<script>
+    var copyrightNow = new Date().getFullYear();
+    var textContent = document.querySelector('span[year]')
+
+    copyrightSince = 0000;
+    if (copyrightSince === copyrightNow||copyrightSince === 0000) {
+        textContent.textContent = copyrightNow
+    } else {
+        textContent.textContent = copyrightSince + ' - ' + copyrightNow
+    }
+
+    (function(){
+        var scriptList = document.querySelectorAll('script[type="text/ls-javascript"]')
+
+        for (var i = 0; i < scriptList.length; ++i) {
+            var item = scriptList[i];
+            lsloader.runInlineScript(item.id,item.id);
+        }
+    })()
+console.log('\n %c © Material Theme | Version: 1.5.6 | https://github.com/viosey/hexo-theme-material %c \n', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-left-radius:5px;border-bottom-left-radius:5px;', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-right-radius:5px;border-bottom-right-radius:5px;');
+</script>
+
+                </main>
+            </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+        </body>
+    
+</html>

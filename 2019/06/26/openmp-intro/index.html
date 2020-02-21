@@ -1,0 +1,1349 @@
+<!DOCTYPE html>
+<html style="display: none;" lang="zh">
+    <head><meta name="generator" content="Hexo 3.8.0">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    <!--
+        © Material Theme
+        https://github.com/viosey/hexo-theme-material
+        Version: 1.5.6 -->
+    <script>
+        window.materialVersion = "1.5.6"
+        // Delete localstorage with these tags
+        window.oldVersion = [
+            'codestartv1',
+            '1.3.4',
+            '1.4.0',
+            '1.4.0b1',
+            '1.5.0',
+            '1.5.2',
+            '1.5.5'
+        ]
+    </script>
+
+    <!-- dns prefetch -->
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+
+
+
+
+
+
+
+
+
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+
+
+
+
+    <!-- Meta & Info -->
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <!-- Title -->
+    
+    <title>
+        
+            OpenMP 入门教程 | 
+        
+        RHANQTL
+    </title>
+
+    <!-- Favicons -->
+    <link rel="icon shortcut" type="image/ico" href="/img/favicon.png">
+    <link rel="icon" href="/img/favicon.png">
+
+    <meta name="format-detection" content="telephone=no">
+    <meta name="description" itemprop="description" content="OpenMP 是重要的并行计算 API。">
+    <meta name="keywords" content="">
+    <meta name="theme-color" content="#0097A7">
+
+    <!-- Disable Fucking Bloody Baidu Tranformation -->
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+
+    <!--[if lte IE 9]>
+        <link rel="stylesheet" href="/css/ie-blocker.css">
+
+        
+            <script src="/js/ie-blocker.en.js"></script>
+        
+    <![endif]-->
+
+    <!-- Import lsloader -->
+    <script>(function(){window.lsloader={jsRunSequence:[],jsnamemap:{},cssnamemap:{}};lsloader.removeLS=function(a){try{localStorage.removeItem(a)}catch(b){}};lsloader.setLS=function(a,c){try{localStorage.setItem(a,c)}catch(b){}};lsloader.getLS=function(a){var c="";try{c=localStorage.getItem(a)}catch(b){c=""}return c};versionString="/*"+(window.materialVersion||"unknownVersion")+"*/";lsloader.clean=function(){try{var b=[];for(var a=0;a<localStorage.length;a++){b.push(localStorage.key(a))}b.forEach(function(e){var f=lsloader.getLS(e);if(window.oldVersion){var d=window.oldVersion.reduce(function(g,h){return g||f.indexOf("/*"+h+"*/")!==-1},false);if(d){lsloader.removeLS(e)}}})}catch(c){}};lsloader.clean();lsloader.load=function(f,a,b,d){if(typeof b==="boolean"){d=b;b=undefined}d=d||false;b=b||function(){};var e;e=this.getLS(f);if(e&&e.indexOf(versionString)===-1){this.removeLS(f);this.requestResource(f,a,b,d);return}if(e){var c=e.split(versionString)[0];if(c!=a){console.log("reload:"+a);this.removeLS(f);this.requestResource(f,a,b,d);return}e=e.split(versionString)[1];if(d){this.jsRunSequence.push({name:f,code:e});this.runjs(a,f,e)}else{document.getElementById(f).appendChild(document.createTextNode(e));b()}}else{this.requestResource(f,a,b,d)}};lsloader.requestResource=function(b,e,a,c){var d=this;if(c){this.iojs(e,b,function(h,f,g){d.setLS(f,h+versionString+g);d.runjs(h,f,g)})}else{this.iocss(e,b,function(f){document.getElementById(b).appendChild(document.createTextNode(f));d.setLS(b,e+versionString+f)},a)}};lsloader.iojs=function(d,b,g){var a=this;a.jsRunSequence.push({name:b,code:""});try{var f=new XMLHttpRequest();f.open("get",d,true);f.onreadystatechange=function(){if(f.readyState==4){if((f.status>=200&&f.status<300)||f.status==304){if(f.response!=""){g(d,b,f.response);return}}a.jsfallback(d,b)}};f.send(null)}catch(c){a.jsfallback(d,b)}};lsloader.iocss=function(f,c,h,a){var b=this;try{var g=new XMLHttpRequest();g.open("get",f,true);g.onreadystatechange=function(){if(g.readyState==4){if((g.status>=200&&g.status<300)||g.status==304){if(g.response!=""){h(g.response);a();return}}b.cssfallback(f,c,a)}};g.send(null)}catch(d){b.cssfallback(f,c,a)}};lsloader.iofonts=function(f,c,h,a){var b=this;try{var g=new XMLHttpRequest();g.open("get",f,true);g.onreadystatechange=function(){if(g.readyState==4){if((g.status>=200&&g.status<300)||g.status==304){if(g.response!=""){h(g.response);a();return}}b.cssfallback(f,c,a)}};g.send(null)}catch(d){b.cssfallback(f,c,a)}};lsloader.runjs=function(f,c,e){if(!!c&&!!e){for(var b in this.jsRunSequence){if(this.jsRunSequence[b].name==c){this.jsRunSequence[b].code=e}}}if(!!this.jsRunSequence[0]&&!!this.jsRunSequence[0].code&&this.jsRunSequence[0].status!="failed"){var a=document.createElement("script");a.appendChild(document.createTextNode(this.jsRunSequence[0].code));a.type="text/javascript";document.getElementsByTagName("head")[0].appendChild(a);this.jsRunSequence.shift();if(this.jsRunSequence.length>0){this.runjs()}}else{if(!!this.jsRunSequence[0]&&this.jsRunSequence[0].status=="failed"){var d=this;var a=document.createElement("script");a.src=this.jsRunSequence[0].path;a.type="text/javascript";this.jsRunSequence[0].status="loading";a.onload=function(){d.jsRunSequence.shift();if(d.jsRunSequence.length>0){d.runjs()}};document.body.appendChild(a)}}};lsloader.tagLoad=function(b,a){this.jsRunSequence.push({name:a,code:"",path:b,status:"failed"});this.runjs()};lsloader.jsfallback=function(c,b){if(!!this.jsnamemap[b]){return}else{this.jsnamemap[b]=b}for(var a in this.jsRunSequence){if(this.jsRunSequence[a].name==b){this.jsRunSequence[a].code="";this.jsRunSequence[a].status="failed";this.jsRunSequence[a].path=c}}this.runjs()};lsloader.cssfallback=function(e,c,b){if(!!this.cssnamemap[c]){return}else{this.cssnamemap[c]=1}var d=document.createElement("link");d.type="text/css";d.href=e;d.rel="stylesheet";d.onload=d.onerror=b;var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(d,a)};lsloader.runInlineScript=function(c,b){var a=document.getElementById(b).innerText;this.jsRunSequence.push({name:c,code:a});this.runjs()}})();</script>
+
+    <!-- Import queue -->
+    <script>function Queue(){this.dataStore=[];this.offer=b;this.poll=d;this.execNext=a;this.debug=false;this.startDebug=c;function b(e){if(this.debug){console.log("Offered a Queued Function.")}if(typeof e==="function"){this.dataStore.push(e)}else{console.log("You must offer a function.")}}function d(){if(this.debug){console.log("Polled a Queued Function.")}return this.dataStore.shift()}function a(){var e=this.poll();if(e!==undefined){if(this.debug){console.log("Run a Queued Function.")}e()}}function c(){this.debug=true}}var queue=new Queue();</script>
+
+    <!-- Import CSS -->
+    
+        <style id="material_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_css","/css/material.min.css?Z7a72R1E4SxzBKR/WGctOA==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+        <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","/css/style.min.css?NKhlKQkXw/c66TR5p4wO+w==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+
+        
+
+    
+
+    
+
+    <!-- Config CSS -->
+
+<!-- Other Styles -->
+<style>
+  body, html {
+    font-family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+    overflow-x: hidden !important;
+  }
+  
+  code {
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  }
+
+  a {
+    color: #00838F;
+  }
+
+  .mdl-card__media,
+  #search-label,
+  #search-form-label:after,
+  #scheme-Paradox .hot_tags-count,
+  #scheme-Paradox .sidebar_archives-count,
+  #scheme-Paradox .sidebar-colored .sidebar-header,
+  #scheme-Paradox .sidebar-colored .sidebar-badge{
+    background-color: #0097A7 !important;
+  }
+
+  /* Sidebar User Drop Down Menu Text Color */
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus {
+    color: #0097A7 !important;
+  }
+
+  #post_entry-right-info,
+  .sidebar-colored .sidebar-nav li:hover > a,
+  .sidebar-colored .sidebar-nav li:hover > a i,
+  .sidebar-colored .sidebar-nav li > a:hover,
+  .sidebar-colored .sidebar-nav li > a:hover i,
+  .sidebar-colored .sidebar-nav li > a:focus i,
+  .sidebar-colored .sidebar-nav > .open > a,
+  .sidebar-colored .sidebar-nav > .open > a:hover,
+  .sidebar-colored .sidebar-nav > .open > a:focus,
+  #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a {
+    color: #0097A7 !important;
+  }
+
+  .toTop {
+    background: #757575 !important;
+  }
+
+  .material-layout .material-post>.material-nav,
+  .material-layout .material-index>.material-nav,
+  .material-nav a {
+    color: #757575;
+  }
+
+  #scheme-Paradox .MD-burger-layer {
+    background-color: #757575;
+  }
+
+  #scheme-Paradox #post-toc-trigger-btn {
+    color: #757575;
+  }
+
+  .post-toc a:hover {
+    color: #00838F;
+    text-decoration: underline;
+  }
+
+</style>
+
+
+<!-- Theme Background Related-->
+
+    <style>
+      body{
+        background-color: #F5F5F5;
+      }
+
+      /* blog_info bottom background */
+      #scheme-Paradox .material-layout .something-else .mdl-card__supporting-text{
+        background-color: #fff;
+      }
+    </style>
+
+
+
+
+<!-- Fade Effect -->
+
+    <style>
+      .fade {
+        transition: all 800ms linear;
+        -webkit-transform: translate3d(0,0,0);
+        -moz-transform: translate3d(0,0,0);
+        -ms-transform: translate3d(0,0,0);
+        -o-transform: translate3d(0,0,0);
+        transform: translate3d(0,0,0);
+        opacity: 1;
+      }
+
+      .fade.out{
+        opacity: 0;
+      }
+    </style>
+
+
+<!-- Import Font -->
+<!-- Import Roboto -->
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+
+
+<!-- Import Material Icons -->
+
+
+    <style id="material_icons"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_icons","/css/material-icons.css?pqhB/Rd/ab0H2+kZp0RDmw==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+
+
+
+
+    <!-- Import jQuery -->
+    
+        <script>lsloader.load("jq_js","/js/jquery.min.js?qcusAULNeBksqffqUM2+Ig==", true)</script>
+    
+
+    <!-- WebAPP Icons -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="RHANQTL">
+    <meta name="msapplication-starturl" content="http://yoursite.com/2019/06/26/openmp-intro/">
+    <meta name="msapplication-navbutton-color" content="#0097A7">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="RHANQTL">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon" href="/img/favicon.png">
+
+    <!-- Site Verification -->
+    
+    
+
+    <!-- RSS -->
+    
+
+    <!-- The Open Graph protocol -->
+    <meta property="og:url" content="http://yoursite.com/2019/06/26/openmp-intro/">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="OpenMP 入门教程 | RHANQTL">
+    <meta property="og:image" content="/img/favicon.png">
+    <meta property="og:description" content="OpenMP 是重要的并行计算 API。">
+    
+
+    
+        <meta property="article:published_time" content="Wed Jun 26 2019 20:26:39 GMT+0800">
+        <meta property="article:modified_time" content="Tue Jul 02 2019 12:46:22 GMT+0800">
+    
+
+    <!-- The Twitter Card protocol -->
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!-- Add canonical link for SEO -->
+    
+        <link rel="canonical" href="http://yoursite.com/2019/06/26/openmp-intro/index.html">
+    
+
+    <!-- Structured-data for SEO -->
+    
+        
+
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage": "http://yoursite.com/2019/06/26/openmp-intro/index.html",
+    "headline": "OpenMP 入门教程",
+    "datePublished": "Wed Jun 26 2019 20:26:39 GMT+0800",
+    "dateModified": "Tue Jul 02 2019 12:46:22 GMT+0800",
+    "author": {
+        "@type": "Person",
+        "name": "Han Qi",
+        "image": {
+            "@type": "ImageObject",
+            "url": "/img/avatar.png"
+        },
+        "description": "Hi, nice to meet you"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "RHANQTL",
+        "logo": {
+            "@type":"ImageObject",
+            "url": "/img/favicon.png"
+        }
+    },
+    "keywords": "",
+    "description": "OpenMP 是重要的并行计算 API。",
+}
+</script>
+
+
+    
+
+    <!-- Analytics -->
+    
+    
+    
+
+    <!-- Custom Head --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    
+
+</head>
+
+
+    
+        <body id="scheme-Paradox" class="lazy">
+            <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="material-layout  mdl-js-layout has-drawer is-upgraded">
+                
+
+                <!-- Main Container -->
+                <main class="material-layout__content" id="main">
+
+                    <!-- Top Anchor -->
+                    <div id="top"></div>
+
+                    
+                        <!-- Hamburger Button -->
+                        <button class="MD-burger-icon sidebar-toggle">
+                            <span id="MD-burger-id" class="MD-burger-layer"></span>
+                        </button>
+                    
+
+                    <!-- Post TOC -->
+
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+
+    <!-- Left aligned menu below button -->
+    
+    
+    <button id="post-toc-trigger-btn" class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#并行循环"><span class="post-toc-number">1.</span> <span class="post-toc-text">并行循环</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Reduction"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">Reduction</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#同步"><span class="post-toc-number">2.</span> <span class="post-toc-text">同步</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#运行时库例程"><span class="post-toc-number">3.</span> <span class="post-toc-text">运行时库例程</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#执行环境函数"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">执行环境函数</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#环境变量"><span class="post-toc-number">4.</span> <span class="post-toc-text">环境变量</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#数据环境-Data-Environment"><span class="post-toc-number">5.</span> <span class="post-toc-text">数据环境 (Data Environment)</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Section"><span class="post-toc-number">6.</span> <span class="post-toc-text">Section</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Loop-Work-Sharing-Construct：Schedule"><span class="post-toc-number">7.</span> <span class="post-toc-text">Loop Work-Sharing Construct：Schedule</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Memory-Model"><span class="post-toc-number">8.</span> <span class="post-toc-text">Memory Model</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#OpenMP-3-0-新特性：Task"><span class="post-toc-number">9.</span> <span class="post-toc-text">OpenMP 3.0 新特性：Task</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#嵌套并行区"><span class="post-toc-number">10.</span> <span class="post-toc-text">嵌套并行区</span></a></li></ol>
+    </ul>
+    
+
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+    <!-- Paradox Post Header -->
+    
+        
+            <!-- Random Thumbnail -->
+            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
+            <script type="text/ls-javascript" id="post-thumbnail-script">
+    var randomNum = Math.floor(Math.random() * 19 + 1);
+
+    $('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
+    $('.post_thumbnail-random').addClass('lazy');
+</script>
+
+        
+    
+            <p class="article-headline-p">
+                OpenMP 入门教程
+            </p>
+        </div>
+
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/avatar.png" width="44px" height="44px" alt="Author Avatar">
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>Han Qi</strong>
+        <span>Jun 26, 2019</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
+    
+
+    <!-- Tags (bookmark) -->
+    
+
+    <!-- Share -->
+    
+        <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+
+    <!-- Share Weibo -->
+    
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=OpenMP 入门教程&url=http://yoursite.com/2019/06/26/openmp-intro/index.html&pic=http://yoursite.com/img/favicon.png&searchPic=false&style=simple" target="_blank">
+            <li class="mdl-menu__item">
+                شارك على Weibo
+            </li>
+        </a>
+    
+
+    <!-- Share Twitter -->
+    
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=OpenMP 入门教程&url=http://yoursite.com/2019/06/26/openmp-intro/index.html&via=Han Qi" target="_blank">
+            <li class="mdl-menu__item">
+                شارك على Twitter
+            </li>
+        </a>
+    
+
+    <!-- Share Facebook -->
+    
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2019/06/26/openmp-intro/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                شارك على Facebook
+            </li>
+        </a>
+    
+
+    <!-- Share Google+ -->
+    
+        <a class="post_share-link" href="https://plus.google.com/share?url=http://yoursite.com/2019/06/26/openmp-intro/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                شارك على Google+
+            </li>
+        </a>
+    
+
+    <!-- Share LinkedIn -->
+    
+        <a class="post_share-link" href="https://www.linkedin.com/shareArticle?mini=true&url=http://yoursite.com/2019/06/26/openmp-intro/index.html&title=OpenMP 入门教程" target="_blank">
+            <li class="mdl-menu__item">
+                شارك على LinkedIn
+            </li>
+        </a>
+    
+
+    <!-- Share QQ -->
+    
+        <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=RHANQTL&title=OpenMP 入门教程&summary=&pics=http://yoursite.com/img/favicon.png&url=http://yoursite.com/2019/06/26/openmp-intro/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                شارك على QQ
+            </li>
+        </a>
+    
+
+    <!-- Share Telegram -->
+    
+        <a class="post_share-link" href="https://telegram.me/share/url?url=http://yoursite.com/2019/06/26/openmp-intro/index.html&text=OpenMP 入门教程" target="_blank">
+            <li class="mdl-menu__item">
+                شارك على Telegram
+            </li>
+        </a>
+    
+</ul>
+
+    
+</div>
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <p>OpenMP 是重要的并行计算 API。</p>
+<a id="more"></a>
+<p>资源：</p>
+<ul>
+<li><a href="https://www.openmp.org/" target="_blank" rel="noopener">OpenMP 官网</a>（OpenMP Specification）</li>
+<li><a href="https://www.youtube.com/watch?v=nE-xN4Bf8XI&amp;list=PLLX-Q6B8xqZ8n8bwjGdzBJ25X2utwnoEG" target="_blank" rel="noopener">YouTube - Intel OpenMP</a></li>
+<li><a href="https://docs.microsoft.com/zh-cn/cpp/parallel/openmp/openmp-in-visual-cpp?view=vs-2019" target="_blank" rel="noopener">MSDN</a></li>
+</ul>
+<blockquote>
+<p>MSDN：如果您在應用程式中只有一個迴圈，而它執行的時間少於 15 毫秒 (根據您電腦上的額外負荷調整)，/openmp 也許就不適當，但如果超過這個時間，倒不妨考慮使用 /openmp。</p>
+</blockquote>
+<p>An API that may be used to <u>explicitly</u> direct <u>multi-threaded</u>, <u>shared memory</u> parallelism. </p>
+<p>SMP</p>
+<p><strong>Components</strong></p>
+<ul>
+<li>编译器指令（Compiler Directives）</li>
+<li>运行时库例程（Runtime Library Routines）</li>
+<li>环境变量（Environment Variables）</li>
+</ul>
+<p><strong>编程模型</strong></p>
+<ul>
+<li>Explicit Parallelism, Thread Based Parallelism</li>
+<li>共享内存</li>
+<li>Fork-Join 模型<ul>
+<li>主线程在需要时创建一组线程</li>
+</ul>
+</li>
+<li>Compiler Directive Based</li>
+<li>Nested Parallelism Support</li>
+<li>Dynamic Threads</li>
+<li>I/O</li>
+<li>Memory Model </li>
+</ul>
+<p><img src="/2019/06/26/openmp-intro/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1561341917319.png" alt="1561341917319"></p>
+<p><strong>Fork-Join 模型</strong></p>
+<p><img src="http://i68.tinypic.com/24pxv2a.gif" alt="1561341934887"></p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Fork_join.svg/1200px-Fork_join.svg.png" alt=""></p>
+<p><strong>I/O</strong></p>
+<p>OpenMP specifies <u>nothing</u> about parallel I/O. This is particularly important if multiple threads attempt to write/read from the same file. It is entirely up to the programmer to insure that I/O is conducted correctly within the context of a multi-threaded program.</p>
+<p><strong>OpenMP 核心语法</strong></p>
+<p>使用 OpenMP 需要引入头文件 <code>omp.h</code></p>
+<p>OpenMP 中大多数构件是编译器指令：</p>
+<pre>
+    #pragma omp <i>construct</i> <i>[clause [clause]]</i>
+</pre>
+
+<p>OpenMP 中大多数构件应用于（至多，因为允许 orphaned directive）一个“structured block”</p>
+<blockquote>
+<p><strong>Structured Block</strong></p>
+<p>A block of one or more statements with <u>one point of entry</u> at the top and <u>one point of exit</u> at the bottom</p>
+</blockquote>
+<p><strong>OpenMP 线程交互</strong></p>
+<ul>
+<li>通过共享变量通信</li>
+<li>非故意的数据共享导致竞争条件<ul>
+<li>竞争条件 (Race condition)：程序的结果会随着线程调度的不同而变化</li>
+<li>使用同步避免数据冲突，控制竞争条件</li>
+<li>同步代价高昂，所以可以通过改变数据的访问方式最小化同步的需求</li>
+</ul>
+</li>
+</ul>
+<p><strong>线程创建：并行区 (Parallel Region)</strong></p>
+<p>每个线程都会执行一遍 structured block</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">double</span> A[<span class="number">1024</span>];</span><br><span class="line">omp_set_num_threads(<span class="number">8</span>);</span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> omp parallel</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">int</span> id = omp_get_thread_num();</span><br><span class="line">    foo(id, A);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> omp parallel num_threads(8)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// do something</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>注意：</strong>上面的 <code>A</code> 是所有线程共享的</li>
+<li>Barrier：执行完的线程会在并行区的出口点等待，直至所有的线程都完成</li>
+</ul>
+<h3 id="并行循环"><a href="#并行循环" class="headerlink" title="并行循环"></a>并行循环</h3><p><strong>SPMD vs. Work-sharing</strong></p>
+<p>前面讲的是每个线程执行相同的任务，这里讲如何切分 pathway，让每个线程完成任务的一个子集</p>
+<p><strong>循环</strong></p>
+<p>通过 <code>#pragma omp for</code> 创建，不能有大括号</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> omp parallel</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 不能通过编译</span></span><br><span class="line">    <span class="meta">#<span class="meta-keyword">pragma</span> omp for</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span> (...) &#123;</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> omp parallel</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 不能通过编译</span></span><br><span class="line">    <span class="meta">#<span class="meta-keyword">pragma</span> omp for</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; i++) &#123;</span><br><span class="line">        <span class="comment">// do something</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>如果并行区只有一个 work-sharing 的 for 循环，可以将编译器指令简写为 <code>#pragma omp parallel for</code></li>
+<li><strong>注意：</strong>上面的循环计数变量 <code>i</code> 默认是各线程私有的，可以通过子句 <code>private(i)</code> 显式地声明</li>
+</ul>
+<p>Work-sharing constructs do not launch new threads. </p>
+<p>There is no implied barrier upon entry to a work-sharing construct, however there is an implied barrier at the end of a work-sharing construct. </p>
+<p><strong>Work-Sharing 限制</strong></p>
+<ul>
+<li><p>Work-sharing 构件必须在并行区中才能并行执行</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;omp.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span> </span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"\nNO PARALLEL REGION\n"</span>);</span><br><span class="line">    <span class="meta">#<span class="meta-keyword">pragma</span> omp for</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; omp_get_num_threads(); i++) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, omp_get_thread_num());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"\nPARALLEL REGION\n"</span>);</span><br><span class="line">    <span class="meta">#<span class="meta-keyword">pragma</span> omp parallel for</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; omp_get_num_threads(); i++) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, omp_get_thread_num());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出为：</p>
+<pre>
+    NO PARALLEL REGION
+    0
+</pre>
+<pre>
+    PARALLEL REGION
+    7
+    6
+    2
+    0
+    5
+    1
+    4
+    3
+</pre>
+</li>
+<li><p>Work-sharing constructs must be encountered by all members of a team or none at all </p>
+</li>
+<li><p>Successive work-sharing constructs must be encountered in the same order by all members of a team </p>
+</li>
+</ul>
+<p><strong>Work-Sharing 类型</strong></p>
+<p><img src="/2019/06/26/openmp-intro/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1561346339528.png" alt="1561346339528"></p>
+<p><strong>Working with Loops</strong></p>
+<p><strong>注意：</strong>一定要使循环每次迭代是独立的</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> A[MAX];</span><br><span class="line"><span class="keyword">int</span> j = <span class="number">5</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; MAX; i++) &#123;</span><br><span class="line">    <span class="comment">// 每次依赖上一次的结果</span></span><br><span class="line">    j += <span class="number">2</span>;</span><br><span class="line">    A[i] = big(j);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> A[MAX];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; MAX; i++) &#123;</span><br><span class="line">    <span class="comment">// 独立</span></span><br><span class="line">    <span class="keyword">int</span> j = <span class="number">5</span> + <span class="number">2</span> * (i + <span class="number">1</span>);</span><br><span class="line">    A[i] = big(j);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="Reduction"><a href="#Reduction" class="headerlink" title="Reduction"></a>Reduction</h4><p>用于处理共享变量的情况，基本形式：<code>reduction(op: list)</code>（<code>list</code> 中的变量必须是并行区中共享的）</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">double</span> A[MAX];</span><br><span class="line"><span class="comment">// 共享变量</span></span><br><span class="line"><span class="keyword">double</span> avg = <span class="number">0.0</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; MAX; i++) &#123;</span><br><span class="line">    avg += A[i];</span><br><span class="line">&#125;</span><br><span class="line">avg /= MAX;</span><br></pre></td></tr></table></figure>
+<p>使用 <code>reduction</code> 子句：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">double</span> A[MAX];</span><br><span class="line"><span class="comment">// 共享变量</span></span><br><span class="line"><span class="keyword">double</span> avg = <span class="number">0.0</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> omp parallel for reduction(+: avg)</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; MAX; i++) &#123;</span><br><span class="line">    avg += A[i];</span><br><span class="line">&#125;</span><br><span class="line">avg /= MAX;</span><br></pre></td></tr></table></figure>
+<p><strong>私有备份初始值</strong></p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>初始值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>+</td>
+<td>0</td>
+</tr>
+<tr>
+<td>-</td>
+<td>0</td>
+</tr>
+<tr>
+<td>*</td>
+<td>1</td>
+</tr>
+<tr>
+<td>&amp;</td>
+<td>~0（<strong>注意！</strong>）</td>
+</tr>
+<tr>
+<td>\</td>
+<td></td>
+<td>0</td>
+</tr>
+<tr>
+<td>^</td>
+<td>0</td>
+</tr>
+<tr>
+<td>&amp;&amp;</td>
+<td>1</td>
+</tr>
+<tr>
+<td>\</td>
+<td>\</td>
+<td></td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="同步"><a href="#同步" class="headerlink" title="同步"></a>同步</h3><p><strong>OpenMP 同步方法</strong></p>
+<ul>
+<li><p>高级同步</p>
+<ul>
+<li><p>临界区：使用 <code>#pragma omp critical</code> 创建 </p>
+</li>
+<li><p>原子操作：使用 <code>#pragma omp atomic</code> 创建</p>
+<ul>
+<li>不同于临界区，原子操作只能应用于<u>单个</u>内存位置的更新</li>
+</ul>
+</li>
+<li><p>barrier</p>
+<ul>
+<li>使用 <code>#pragma omp barrier</code> 创建<ul>
+<li>实际上并行区中每个 structured block（包括并行区本身）的出口点（end point）都有隐式的 barrier</li>
+</ul>
+</li>
+<li>使用 <code>#pragma omp nowait</code> 禁用隐式的 barrier</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> omp parallel shared (A, B, C) private(id)</span></span><br><span class="line">&#123;</span><br><span class="line">    id = omp_get_thread_num();</span><br><span class="line">    A[id] = big_calc1(id);</span><br><span class="line">    <span class="meta">#<span class="meta-keyword">pragma</span> omp barrier</span></span><br><span class="line">    <span class="meta">#<span class="meta-keyword">pragma</span> omp for</span></span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; N; i++) &#123;</span><br><span class="line">        C[i] = big_calc3(i, A);</span><br><span class="line">    &#125;							<span class="comment">// 隐式 barrier</span></span><br><span class="line">    <span class="meta">#<span class="meta-keyword">pragma</span> omp for nowait</span></span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; N; i++) &#123;</span><br><span class="line">        B[i] = big_calc2(C, i);</span><br><span class="line">    &#125;							<span class="comment">// 隐式 barrier 被禁用</span></span><br><span class="line">    A[id] = big_calc4(id);</span><br><span class="line">&#125;								<span class="comment">// 隐式 barrier</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>ordered：使用 <code>#pragma omp ordered</code> 创建</p>
+<ul>
+<li><p>ordered region executes in the sequential order</p>
+</li>
+<li><p>注意 <code>ordered</code> 使用上比较奇怪，需要两处同时写</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> omp parallel private(tmp)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> omp for ordered reduction(+: res)</span></span><br><span class="line"><span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; N; i++) &#123;</span><br><span class="line">    tmp = neat_stuff(i);</span><br><span class="line">    <span class="meta">#<span class="meta-keyword">pragma</span> omp ordered</span></span><br><span class="line">    res += consum(tmp);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>低级同步</p>
+<ul>
+<li><p>lock <font color="red"><strong>MORE</strong></font></p>
+<ul>
+<li><p>简单锁：如果未设置简单锁，那么它就是可用的</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">omp_init_lock(<span class="keyword">omp_lock_t</span> *)</span><br><span class="line">omp_destroy_lock(<span class="keyword">omp_lock_t</span> *)</span><br><span class="line">omp_set_lock(<span class="keyword">omp_lock_t</span> *)</span><br><span class="line">omp_unset_lock(<span class="keyword">omp_lock_t</span> *)</span><br><span class="line">omp_test_lock(<span class="keyword">omp_lock_t</span> *)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>嵌套锁：如果未设置嵌套锁，或者设置了但是是被执行嵌套锁函数的线程拥有的</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">omp_init_nest_lock();</span><br><span class="line">omp_destroy_nest_lock();</span><br><span class="line">omp_set_nest_lock();</span><br><span class="line">omp_unset_nest_lock();</span><br><span class="line">omp_test_nest_lock();</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>A lock implies a memory fence (a “flush”) of all thread visible variables</p>
+</li>
+<li><p><strong>注意：</strong>线程总是访问锁的最近一份拷贝，所以无需在锁变量上使用 flush</p>
+</li>
+</ul>
+</li>
+<li><p>flush</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>执行控制</strong></p>
+<ul>
+<li><code>master</code> 构件：表示关联的 structured block 只由主线程执行，其他线程会将其跳过<ul>
+<li>没有隐式同步</li>
+</ul>
+</li>
+<li><code>single</code> 构件：表示关联的 structured block 只由一个线程执行<ul>
+<li>隐式 barrier，可以用 <code>nowait</code> 构件禁用</li>
+</ul>
+</li>
+</ul>
+<h3 id="运行时库例程"><a href="#运行时库例程" class="headerlink" title="运行时库例程"></a>运行时库例程</h3><h4 id="执行环境函数"><a href="#执行环境函数" class="headerlink" title="执行环境函数"></a>执行环境函数</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;omp.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">omp_set_num_threads</span><span class="params">(<span class="keyword">int</span> num_threads)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">omp_get_num_threads</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">omp_get_max_threads</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">omp_get_thread_num</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">omp_get_num_procs</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">omp_in_parallel</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">omp_set_dynamic</span><span class="params">(<span class="keyword">int</span> dynamic_threads)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">omp_get_dynamic</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br></pre></td></tr></table></figure>
+<p><strong>示例：使用固定数目的线程</strong></p>
+<p>步骤：</p>
+<ol>
+<li>禁用动态调整</li>
+<li>设置线程数</li>
+<li>保存线程数</li>
+</ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> num_threads;</span><br><span class="line">    omp_set_dynamic(<span class="number">0</span>);</span><br><span class="line">    omp_set_num_threads(omp_num_procs());</span><br><span class="line">    <span class="meta">#<span class="meta-keyword">pragma</span> omp parallel</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> id = omp_get_thread_num();</span><br><span class="line">        <span class="meta">#<span class="meta-keyword">pragma</span> omp single</span></span><br><span class="line">        num_threads = omp_get_num_threads();</span><br><span class="line">        <span class="comment">// do something</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>注意：</strong></p>
+<p><img src="/2019/06/26/openmp-intro/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1561551626830.png" alt="1561551626830"></p>
+<h3 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h3><p>设置默认线程数：<code>OMP_NUM_THREADS &lt;int_literal&gt;</code></p>
+<p>控制 OpenMP for 循环调度：<code>OMP_SCHEDULE &lt;schedule [, chunk_size]&gt;</code></p>
+<p><strong>OpenMP 2.5 和 3.0 的差异</strong></p>
+<p><img src="/2019/06/26/openmp-intro/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1561707269759.png" alt="1561707269759"></p>
+<h3 id="数据环境-Data-Environment"><a href="#数据环境-Data-Environment" class="headerlink" title="数据环境 (Data Environment)"></a>数据环境 (Data Environment)</h3><p><strong>默认存储属性</strong></p>
+<ul>
+<li><p>共享内存编程模型：大多数变量默认是共享的</p>
+</li>
+<li><p>全局变量在线程间共享，包括</p>
+<ul>
+<li>全局变量（File scope variable）和静态变量</li>
+<li>动态分配的内存</li>
+</ul>
+</li>
+<li><p>不共享的情况</p>
+<ul>
+<li>从并行区调用的函数的栈变量是线程私有的</li>
+<li>语句块中的自动变量 (Automatic variable) 是私有的</li>
+</ul>
+</li>
+<li><p>示例</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 文件 a.c</span></span><br><span class="line"><span class="keyword">double</span> A[<span class="number">10</span>];					<span class="comment">// 全局变量，共享</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> index[<span class="number">10</span>];				<span class="comment">// 虽然是栈变量，但并不是</span></span><br><span class="line">    <span class="meta">#<span class="meta-keyword">pragma</span> omp parallel		<span class="comment">// 从并行区调用的函数的栈变量，共享</span></span></span><br><span class="line">    work(index);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, index[<span class="number">0</span>]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 文件 b.c</span></span><br><span class="line"><span class="keyword">extern</span> <span class="keyword">double</span> A[<span class="number">10</span>];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">work</span><span class="params">(<span class="keyword">int</span> *index)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">double</span> temp[<span class="number">10</span>];			<span class="comment">// 从并行区调用的函数的栈变量，私有</span></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">int</span> count;			<span class="comment">// static 变量，共享</span></span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<img src="/2019/06/26/openmp-intro/data-share.png">
+</li>
+</ul>
+<p><strong>更改存储属性</strong></p>
+<p>下面的子句除 <code>shared</code> 只能用于 parallel 外，其他的能用于 parallel 和 worksharing，但也<u>仅限于</u>关联的 construct，不会用于整个区域</p>
+<ul>
+<li><p><code>shared</code></p>
+</li>
+<li><p>私有</p>
+<ul>
+<li><p><code>private(var)</code> <font color="red"><strong>MORE: PPT pp. 66</strong></font></p>
+<ul>
+<li><strong>注意：</strong>如下的代码：</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> tmp;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">danger</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    tmp = <span class="number">0</span>;</span><br><span class="line">    <span class="meta">#<span class="meta-keyword">pragma</span> omp parallel private(tmp)</span></span><br><span class="line">    work();</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, tmp);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">extern</span> <span class="keyword">int</span> tmp;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">work</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    tmp = <span class="number">5</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在 OpenMP 2.5 中，<code>tmp</code> 的值未指定，而在 OpenMP 3.0 中，不同的实现可能有不同的行为：或者引用原变量，或者引用原变量的一份拷贝</p>
+</li>
+<li><p><code>firstprivate</code>：<code>private</code> 的特殊情况，用主线程的值初始化每个私有拷贝</p>
+</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">useless</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> tmp = <span class="number">0</span>;</span><br><span class="line">    <span class="meta">#<span class="meta-keyword">pragma</span> omp parallel for firstprivate(tmp)</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">1000</span>; i++) &#123;</span><br><span class="line">        <span class="comment">// 每个线程都有初值为 0 的 tmp 的拷贝</span></span><br><span class="line">        tmp += i;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// OpenMP 2.5 中未定，OpenMP 3.0 中是 0</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, tmp);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>lastprivate</code>：将私有变量最后一次迭代（在下面就是 <code>i = 999</code> 时，不管这一次迭代是什么时候出现的）的值赋给全局变量 MORE</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">closer</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> tmp = <span class="number">0</span>;</span><br><span class="line">    <span class="meta">#<span class="meta-keyword">pragma</span> omp parallel for firstprivate(tmp) lastprivate(tmp)</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">1000</span>; i++) &#123;</span><br><span class="line">        <span class="comment">// 每个线程都有初值为 0 的 tmp 的拷贝</span></span><br><span class="line">        tmp += i;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, tmp);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> omp parallel for firstprivate(sum) lastprivate(sum)</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">        sum += i;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"sum = %d (ID = %d)\n"</span>, sum, omp_get_thread_num());</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"Using firstprivate &amp; lastprivate:\n  sum = %d\n"</span>, sum);</span><br></pre></td></tr></table></figure>
+<p>输出结果可能是：</p>
+<pre>
+sum = 0 (ID = 0)
+sum = 1 (ID = 0)
+sum = 3 (ID = 0)
+sum = 6 (ID = 2)
+sum = 13 (ID = 2)
+sum = 8 (ID = 3)
+sum = 17 (ID = 3)
+sum = 3 (ID = 1)
+sum = 7 (ID = 1)
+sum = 12 (ID = 1)
+Using firstprivate & lastprivate:
+  sum = 17
+</pre>
+
+<p>多次运行，其中 sum 最终值为 17 不会改变，但是每次 sum = 17 (ID = 3) 出现的位置不一定</p>
+</li>
+<li><p>示例</p>
+<p><img src="/2019/06/26/openmp-intro/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1561710547846.png" alt="1561710547846"></p>
+<ul>
+<li>A 是共享的，B 和 C 都是线程私有的，其中，线程私有拷贝的 B 的初值不确定，线程私有拷贝的 C 的初值为 1</li>
+<li>离开并行区后，B 的值是未定义的<ul>
+<li>如果是 OpenMP 2.5，则 C 的值都是未定义的</li>
+<li>如果是 OpenMP 3.0，则 C 的值为 1</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>修改默认存储属性：<code>default (shared|none)</code></p>
+<ul>
+<li>默认 shared（例外是 task 构造）</li>
+<li>如果设置成 None，则必须要显式地指明每个变量的存储属性</li>
+</ul>
+</li>
+</ul>
+<h3 id="Section"><a href="#Section" class="headerlink" title="Section"></a>Section</h3><p>回看 Fork-Join 模型的图</p>
+<p>使用 <code>sections</code> 和 <code>section</code> 创建</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> omp parallel</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="meta">#<span class="meta-keyword">pragma</span> omp sections</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="meta">#<span class="meta-keyword">pragma</span> omp section</span></span><br><span class="line">        x_calculation();</span><br><span class="line">        <span class="meta">#<span class="meta-keyword">pragma</span> omp section</span></span><br><span class="line">        y_calculation();</span><br><span class="line">        <span class="meta">#<span class="meta-keyword">pragma</span> omp section</span></span><br><span class="line">        z_calculation();</span><br><span class="line">    &#125;						<span class="comment">// implicit barrier</span></span><br><span class="line">&#125;							<span class="comment">// implicit barrier</span></span><br></pre></td></tr></table></figure>
+<h3 id="Loop-Work-Sharing-Construct：Schedule"><a href="#Loop-Work-Sharing-Construct：Schedule" class="headerlink" title="Loop Work-Sharing Construct：Schedule"></a>Loop Work-Sharing Construct：Schedule</h3><p>Schedule 用于控制循环迭代到线程之间的映射</p>
+<p>(在 GCC 8.1.0 中，默认是 dynamic)</p>
+<ul>
+<li><code>schedule(static[, chunk])</code>：每个线程拿到 <code>chunk</code> 大小的迭代<ul>
+<li>默认情况下？</li>
+</ul>
+</li>
+<li><code>schedule(dynamic[, chunk])</code>：每个线程从队列中取 <code>chunk</code> 大小的迭代块直到所有的迭代都被处理完<ul>
+<li>默认？</li>
+</ul>
+</li>
+<li><code>schedule(guided[, chunk])</code>：线程动态地获取迭代块，块大小的初始值比较大，并且随着计算收缩至 <code>chunk</code> 大小<ul>
+<li>默认？</li>
+</ul>
+</li>
+<li><code>schedule(runtime)</code>：从环境变量 OMP_SCHEDULE 或者 OpenMP 3.0 运行时库中获取 schedule 和 chunk size</li>
+</ul>
+<blockquote>
+<p><code>static</code> schedule means that iterations blocks are mapped statically to the execution threads in a <u>round-robin</u> fashion. The nice thing with static scheduling is that OpenMP run-time guarantees that if you have two separate loops with the same number of iterations and execute them with the same number of threads using static scheduling, then each thread will receive exactly the same iteration range(s) in both parallel regions. This is quite important on NUMA systems: if you touch some memory in the first loop, it will reside on the NUMA node where the executing thread was. Then in the second loop the same thread could access the same memory location faster since it will reside on the same NUMA node.</p>
+<p><strong>Example:</strong> </p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line">&gt; <span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;omp.h&gt;</span></span></span><br><span class="line">&gt; </span><br><span class="line">&gt; <span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span> </span>&#123;</span><br><span class="line">&gt;     omp_set_dynamic(<span class="number">0</span>);</span><br><span class="line">&gt;     omp_set_num_threads(<span class="number">4</span>);</span><br><span class="line">&gt;     <span class="meta">#<span class="meta-keyword">pragma</span> omp parallel</span></span><br><span class="line">&gt;     &#123;</span><br><span class="line">&gt;         <span class="meta">#<span class="meta-keyword">pragma</span> omp for schedule(static, 1)</span></span><br><span class="line">&gt;         <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">8</span>; i++) &#123;</span><br><span class="line">&gt;             <span class="built_in">printf</span>(<span class="string">"%d (ID = %d)\n"</span>, i, omp_get_thread_num());</span><br><span class="line">&gt;         &#125;</span><br><span class="line">&gt;     &#125;</span><br><span class="line">&gt; </span><br><span class="line">&gt;     <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&gt; &#125;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>&gt;</p>
+<blockquote>
+<p>输出：</p>
+<pre>
+    $ ./a.exe | sort
+    00 (ID = 0)
+    01 (ID = 1)
+    02 (ID = 2)
+    03 (ID = 3)
+    04 (ID = 0)
+    05 (ID = 1)
+    06 (ID = 2)
+    07 (ID = 3)
+</pre>
+
+<p>如果没有指定 chunk_size，那么（猜测）会这样计算：比如有 34 次迭代，4 个线程，首先 34 / 4 = 8，每个线程先分 8 个迭代，然后还剩 2 个，就给前两个线程平均分。注意的是最终的结果并不同于这里的逻辑，而是 9+9+8+8.</p>
+<hr>
+<p><code>dynamic</code> scheduling works on a “first come, first served” basis. Two runs with the same number of threads might (and most likely would) produce completely different “iteration space” -&gt; “threads” mappings as one can easily verify:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line">&gt; <span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;omp.h&gt;</span></span></span><br><span class="line">&gt; </span><br><span class="line">&gt; <span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span> </span>&#123;</span><br><span class="line">&gt;   <span class="keyword">int</span> i;</span><br><span class="line">&gt;   <span class="meta">#<span class="meta-keyword">pragma</span> omp parallel num_threads(8)</span></span><br><span class="line">&gt;   &#123;</span><br><span class="line">&gt;     <span class="meta">#<span class="meta-keyword">pragma</span> omp for schedule(dynamic,1)</span></span><br><span class="line">&gt;     <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; <span class="number">8</span>; i++)</span><br><span class="line">&gt;       <span class="built_in">printf</span>(<span class="string">"[1] iter %0d, tid %0d\n"</span>, i, omp_get_thread_num());</span><br><span class="line">&gt; </span><br><span class="line">&gt;     <span class="meta">#<span class="meta-keyword">pragma</span> omp for schedule(dynamic,1)</span></span><br><span class="line">&gt;     <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; <span class="number">8</span>; i++)</span><br><span class="line">&gt;       <span class="built_in">printf</span>(<span class="string">"[2] iter %0d, tid %0d\n"</span>, i, omp_get_thread_num());</span><br><span class="line">&gt;   &#125;</span><br><span class="line">&gt; </span><br><span class="line">&gt;   <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&gt; &#125;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>&gt;</p>
+<blockquote>
+<pre>
+
+</pre>
+
+
+
+</blockquote>
+<p><img src="/2019/06/26/openmp-intro/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1561719689325.png" alt="1561719689325"></p>
+<h3 id="Memory-Model"><a href="#Memory-Model" class="headerlink" title="Memory Model"></a>Memory Model</h3><p><img src="/2019/06/26/openmp-intro/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1561720722359.png" alt="1561720722359"></p>
+<p><img src="/2019/06/26/openmp-intro/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1561721041100.png" alt="1561721041100"></p>
+<h3 id="OpenMP-3-0-新特性：Task"><a href="#OpenMP-3-0-新特性：Task" class="headerlink" title="OpenMP 3.0 新特性：Task"></a>OpenMP 3.0 新特性：Task</h3><p><strong>两个活动</strong></p>
+<ul>
+<li>packaging: each encountering thread packages a new instance of a task (code + data)</li>
+<li>execution: some thread in the team executes the task at some later time</li>
+</ul>
+<ul>
+<li>Task 通常默认是 firstprivate</li>
+</ul>
+<p><strong>threadprivate</strong></p>
+<ul>
+<li>将全局变量设为线程私有</li>
+<li>不同于 private<ul>
+<li>使用 private 会将全局变量屏蔽</li>
+<li>使用 threadprivate 能够保留全局域的访问</li>
+</ul>
+</li>
+<li>threadprivate 变量可以使用 copyin 或者在定义时（使用语言定义的初始化行为）初始化</li>
+</ul>
+<p><strong>copyin</strong></p>
+<p><strong>copyprivate</strong></p>
+<font color="red">MORE</font>
+
+<h3 id="嵌套并行区"><a href="#嵌套并行区" class="headerlink" title="嵌套并行区"></a>嵌套并行区</h3><p>在 OpenMP 3.0 中，增强了对嵌套并行区的支持。允许在并行区中使用 <code>omp_set_num_threads</code> 设置下一级的线程数</p>
+
+        
+    
+
+    
+</div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+        <a href="/2019/06/27/c-timing/" id="post_nav-newer" class="prev-content">
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_back</i>
+            </button>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            أحدث
+        </a>
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2019/06/20/tensorflow-intro/" id="post_nav-older" class="next-content">
+            أقدم
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
+
+
+                    
+                        <!-- Overlay For Active Sidebar -->
+<div class="sidebar-overlay"></div>
+
+<!-- Material sidebar -->
+<aside id="sidebar" class="sidebar sidebar-colored sidebar-fixed-left" role="navigation">
+    <div id="sidebar-main">
+        <!-- Sidebar Header -->
+        <div class="sidebar-header header-cover" style="background-image: url(/img/sidebar_header.png);">
+    <!-- Top bar -->
+    <div class="top-bar"></div>
+
+    <!-- Sidebar toggle button -->
+    <button type="button" class="sidebar-toggle mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" style="display: initial;" data-upgraded=",MaterialButton,MaterialRipple">
+        <i class="material-icons">clear_all</i>
+        <span class="mdl-button__ripple-container">
+            <span class="mdl-ripple">
+            </span>
+        </span>
+    </button>
+
+    <!-- Sidebar Avatar -->
+    <div class="sidebar-image">
+        <img src="/img/avatar.png" alt="Han Qi's avatar">
+    </div>
+
+    <!-- Sidebar Email -->
+    <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">
+        my@rhanqtl.com
+        <b class="caret"></b>
+    </a>
+</div>
+
+
+        <!-- Sidebar Navigation  -->
+        <ul class="nav sidebar-nav">
+    <!-- User dropdown  -->
+    <li class="dropdown">
+        <ul id="settings-dropdown" class="dropdown-menu">
+            
+                <li>
+                    <a href="#" target="_blank" title="Email Me">
+                        
+                            <i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i>
+                        
+                        Email Me
+                    </a>
+                </li>
+            
+        </ul>
+    </li>
+
+    <!-- Homepage -->
+    
+        <li id="sidebar-first-li">
+            <a href="/">
+                
+                    <i class="material-icons sidebar-material-icons">home</i>
+                
+                الرئيسية
+            </a>
+        </li>
+        
+    
+
+    <!-- Archives  -->
+    
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                
+                    <i class="material-icons sidebar-material-icons">inbox</i>
+                
+                    أرشيف
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+            <li>
+                <a class="sidebar_archives-link" href="/archives/2019/12/">December 2019<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/11/">November 2019<span class="sidebar_archives-count">6</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/10/">October 2019<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/09/">September 2019<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/08/">August 2019<span class="sidebar_archives-count">10</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/07/">July 2019<span class="sidebar_archives-count">16</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/06/">June 2019<span class="sidebar_archives-count">21</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/05/">May 2019<span class="sidebar_archives-count">36</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/04/">April 2019<span class="sidebar_archives-count">46</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/03/">March 2019<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/02/">February 2019<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/01/">January 2019<span class="sidebar_archives-count">17</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/12/">December 2018<span class="sidebar_archives-count">26</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/11/">November 2018<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/10/">October 2018<span class="sidebar_archives-count">1</span></a>
+            </li></ul>
+        </li>
+        
+    
+
+    <!-- Categories  -->
+    
+
+    <!-- Pages  -->
+    
+
+    <!-- Article Number  -->
+    
+</ul>
+
+
+        <!-- Sidebar Footer -->
+        <!--
+I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright, I will thank you so much.
+If you still want to delete the copyrights, could you still retain the first one? Which namely "Theme Material"
+It will not impact the appearance and can give developers a lot of support :)
+
+很高兴您使用并喜欢该主题，开发不易 十分谢谢与希望您可以保留一下版权声明。
+如果您仍然想删除的话 能否只保留第一项呢？即 "Theme Material"
+它不会影响美观并可以给开发者很大的支持和动力。 :)
+-->
+
+<!-- Sidebar Divider -->
+
+    <div class="sidebar-divider"></div>
+
+
+<!-- Theme Material -->
+
+    <a href="https://github.com/viosey/hexo-theme-material" class="sidebar-footer-text-a" target="_blank">
+        <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+            سمة - Material
+            <span class="sidebar-badge badge-circle">i</span>
+        </div>
+    </a>
+
+
+<!-- Help & Support -->
+<!--
+
+-->
+
+<!-- Feedback -->
+<!--
+
+-->
+
+<!-- About Theme -->
+<!--
+
+-->
+
+    </div>
+
+    <!-- Sidebar Image -->
+    
+
+</aside>
+
+                    
+
+                    
+                        <!-- Footer Top Button -->
+                        <div id="back-to-top" class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
+
+                    
+
+                    <!--Footer-->
+<footer class="mdl-mini-footer" id="bottom">
+    
+        <!-- Paradox Footer Left Section -->
+        <div class="mdl-mini-footer--left-section sns-list">
+    <!-- Twitter -->
+    
+        <a href="https://twitter.com/twitter" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-twitter">
+                <span class="visuallyhidden">Twitter</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Facebook -->
+    
+        <a href="https://www.facebook.com/facebook" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-facebook">
+                <span class="visuallyhidden">Facebook</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Google + -->
+    
+        <a href="https://www.google.com/" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-gplus">
+                <span class="visuallyhidden">Google Plus</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Weibo -->
+    
+
+    <!-- Instagram -->
+    
+
+    <!-- Tumblr -->
+    
+
+    <!-- Github -->
+    
+        <a href="https://github.com/rhanqtl" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-github">
+                <span class="visuallyhidden">Github</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- LinkedIn -->
+    
+
+    <!-- Zhihu -->
+    
+
+    <!-- Bilibili -->
+    
+
+    <!-- Telegram -->
+    
+
+    <!-- V2EX -->
+    
+
+    <!-- Segmentfault -->
+    
+</div>
+
+
+        <!--Copyright-->
+        <div id="copyright">
+            Copyright&nbsp;©&nbsp;<span year=""></span>&nbsp;RHANQTL
+            
+        </div>
+
+        <!-- Paradox Footer Right Section -->
+
+        <!--
+        I am glad you use this theme, the development is no so easy, I hope you can keep the copyright.
+        It will not impact the appearance and can give developers a lot of support :)
+
+        很高兴您使用该主题，开发不易，希望您可以保留一下版权声明。
+        它不会影响美观并可以给开发者很大的支持。 :)
+        -->
+
+        <div class="mdl-mini-footer--right-section">
+            <div>
+                <div class="footer-develop-div">Powered by <a href="https://hexo.io" target="_blank" class="footer-develop-a">Hexo</a></div>
+                <div class="footer-develop-div">Theme - <a href="https://github.com/viosey/hexo-theme-material" target="_blank" class="footer-develop-a">Material</a></div>
+            </div>
+        </div>
+    
+</footer>
+
+
+                    <!-- Import JS File -->
+
+    <script>lsloader.load("lazyload_js","/js/lazyload.min.js?1BcfzuNXqV+ntF6gq+5X3Q==", true)</script>
+
+
+
+    <script>lsloader.load("js_js","/js/js.min.js?Bn9UzEm8RrBSxqyZB0zPjA==", true)</script>
+
+
+
+    <script>lsloader.load("np_js","/js/nprogress.js?pl3Qhb9lvqR1FlyLUna1Yw==", true)</script>
+
+
+<script type="text/ls-javascript" id="NProgress-script">
+    NProgress.configure({
+        showSpinner: true
+    });
+    NProgress.start();
+    $('#nprogress .bar').css({
+        'background': '#29d'
+    });
+    $('#nprogress .peg').css({
+        'box-shadow': '0 0 10px #29d, 0 0 15px #29d'
+    });
+    $('#nprogress .spinner-icon').css({
+        'border-top-color': '#29d',
+        'border-left-color': '#29d'
+    });
+    setTimeout(function() {
+        NProgress.done();
+        $('.fade').removeClass('out');
+    }, 800);
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- UC Browser Compatible -->
+<script>
+	var agent = navigator.userAgent.toLowerCase();
+	if(agent.indexOf('ucbrowser')>0) {
+		document.write('<link rel="stylesheet" href="/css/uc.css">');
+	   alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
+	}
+</script>
+
+<!-- Import prettify js  -->
+
+
+
+<!-- Window Load -->
+<!-- add class for prettify -->
+<script type="text/ls-javascript" id="window-load">
+    $(window).on('load', function() {
+        // Post_Toc parent position fixed
+        $('.post-toc-wrap').parent('.mdl-menu__container').css('position', 'fixed');
+    });
+
+    
+    
+</script>
+
+<!-- MathJax Load-->
+
+
+<!-- Bing Background -->
+
+
+<script type="text/ls-javascript" id="lazy-load">
+    // Offer LazyLoad
+    queue.offer(function(){
+        $('.lazy').lazyload({
+            effect : 'show'
+        });
+    });
+
+    // Start Queue
+    $(document).ready(function(){
+        setInterval(function(){
+            queue.execNext();
+        },200);
+    });
+</script>
+
+<!-- Custom Footer -->
+
+
+
+<script>
+    var copyrightNow = new Date().getFullYear();
+    var textContent = document.querySelector('span[year]')
+
+    copyrightSince = 0000;
+    if (copyrightSince === copyrightNow||copyrightSince === 0000) {
+        textContent.textContent = copyrightNow
+    } else {
+        textContent.textContent = copyrightSince + ' - ' + copyrightNow
+    }
+
+    (function(){
+        var scriptList = document.querySelectorAll('script[type="text/ls-javascript"]')
+
+        for (var i = 0; i < scriptList.length; ++i) {
+            var item = scriptList[i];
+            lsloader.runInlineScript(item.id,item.id);
+        }
+    })()
+console.log('\n %c © Material Theme | Version: 1.5.6 | https://github.com/viosey/hexo-theme-material %c \n', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-left-radius:5px;border-bottom-left-radius:5px;', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-right-radius:5px;border-bottom-right-radius:5px;');
+</script>
+
+                </main>
+            </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+        </body>
+    
+</html>

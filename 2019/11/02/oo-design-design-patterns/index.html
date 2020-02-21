@@ -1,0 +1,1257 @@
+<!DOCTYPE html>
+<html style="display: none;" lang="zh">
+    <head><meta name="generator" content="Hexo 3.8.0">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    <!--
+        © Material Theme
+        https://github.com/viosey/hexo-theme-material
+        Version: 1.5.6 -->
+    <script>
+        window.materialVersion = "1.5.6"
+        // Delete localstorage with these tags
+        window.oldVersion = [
+            'codestartv1',
+            '1.3.4',
+            '1.4.0',
+            '1.4.0b1',
+            '1.5.0',
+            '1.5.2',
+            '1.5.5'
+        ]
+    </script>
+
+    <!-- dns prefetch -->
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+
+
+
+
+
+
+
+
+
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+
+
+
+
+    <!-- Meta & Info -->
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <!-- Title -->
+    
+    <title>
+        
+            面向对象软件设计：设计模式 | 
+        
+        RHANQTL
+    </title>
+
+    <!-- Favicons -->
+    <link rel="icon shortcut" type="image/ico" href="/img/favicon.png">
+    <link rel="icon" href="/img/favicon.png">
+
+    <meta name="format-detection" content="telephone=no">
+    <meta name="description" itemprop="description" content="0    引言着眼于“变化”
+分析一个设计模式的优缺点时，应该从以下几个方面着手：
+
+类的数量
+单个类的负载
+类间结构的复杂度
+对设计原则的支持
+">
+    <meta name="keywords" content="">
+    <meta name="theme-color" content="#0097A7">
+
+    <!-- Disable Fucking Bloody Baidu Tranformation -->
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+
+    <!--[if lte IE 9]>
+        <link rel="stylesheet" href="/css/ie-blocker.css">
+
+        
+            <script src="/js/ie-blocker.en.js"></script>
+        
+    <![endif]-->
+
+    <!-- Import lsloader -->
+    <script>(function(){window.lsloader={jsRunSequence:[],jsnamemap:{},cssnamemap:{}};lsloader.removeLS=function(a){try{localStorage.removeItem(a)}catch(b){}};lsloader.setLS=function(a,c){try{localStorage.setItem(a,c)}catch(b){}};lsloader.getLS=function(a){var c="";try{c=localStorage.getItem(a)}catch(b){c=""}return c};versionString="/*"+(window.materialVersion||"unknownVersion")+"*/";lsloader.clean=function(){try{var b=[];for(var a=0;a<localStorage.length;a++){b.push(localStorage.key(a))}b.forEach(function(e){var f=lsloader.getLS(e);if(window.oldVersion){var d=window.oldVersion.reduce(function(g,h){return g||f.indexOf("/*"+h+"*/")!==-1},false);if(d){lsloader.removeLS(e)}}})}catch(c){}};lsloader.clean();lsloader.load=function(f,a,b,d){if(typeof b==="boolean"){d=b;b=undefined}d=d||false;b=b||function(){};var e;e=this.getLS(f);if(e&&e.indexOf(versionString)===-1){this.removeLS(f);this.requestResource(f,a,b,d);return}if(e){var c=e.split(versionString)[0];if(c!=a){console.log("reload:"+a);this.removeLS(f);this.requestResource(f,a,b,d);return}e=e.split(versionString)[1];if(d){this.jsRunSequence.push({name:f,code:e});this.runjs(a,f,e)}else{document.getElementById(f).appendChild(document.createTextNode(e));b()}}else{this.requestResource(f,a,b,d)}};lsloader.requestResource=function(b,e,a,c){var d=this;if(c){this.iojs(e,b,function(h,f,g){d.setLS(f,h+versionString+g);d.runjs(h,f,g)})}else{this.iocss(e,b,function(f){document.getElementById(b).appendChild(document.createTextNode(f));d.setLS(b,e+versionString+f)},a)}};lsloader.iojs=function(d,b,g){var a=this;a.jsRunSequence.push({name:b,code:""});try{var f=new XMLHttpRequest();f.open("get",d,true);f.onreadystatechange=function(){if(f.readyState==4){if((f.status>=200&&f.status<300)||f.status==304){if(f.response!=""){g(d,b,f.response);return}}a.jsfallback(d,b)}};f.send(null)}catch(c){a.jsfallback(d,b)}};lsloader.iocss=function(f,c,h,a){var b=this;try{var g=new XMLHttpRequest();g.open("get",f,true);g.onreadystatechange=function(){if(g.readyState==4){if((g.status>=200&&g.status<300)||g.status==304){if(g.response!=""){h(g.response);a();return}}b.cssfallback(f,c,a)}};g.send(null)}catch(d){b.cssfallback(f,c,a)}};lsloader.iofonts=function(f,c,h,a){var b=this;try{var g=new XMLHttpRequest();g.open("get",f,true);g.onreadystatechange=function(){if(g.readyState==4){if((g.status>=200&&g.status<300)||g.status==304){if(g.response!=""){h(g.response);a();return}}b.cssfallback(f,c,a)}};g.send(null)}catch(d){b.cssfallback(f,c,a)}};lsloader.runjs=function(f,c,e){if(!!c&&!!e){for(var b in this.jsRunSequence){if(this.jsRunSequence[b].name==c){this.jsRunSequence[b].code=e}}}if(!!this.jsRunSequence[0]&&!!this.jsRunSequence[0].code&&this.jsRunSequence[0].status!="failed"){var a=document.createElement("script");a.appendChild(document.createTextNode(this.jsRunSequence[0].code));a.type="text/javascript";document.getElementsByTagName("head")[0].appendChild(a);this.jsRunSequence.shift();if(this.jsRunSequence.length>0){this.runjs()}}else{if(!!this.jsRunSequence[0]&&this.jsRunSequence[0].status=="failed"){var d=this;var a=document.createElement("script");a.src=this.jsRunSequence[0].path;a.type="text/javascript";this.jsRunSequence[0].status="loading";a.onload=function(){d.jsRunSequence.shift();if(d.jsRunSequence.length>0){d.runjs()}};document.body.appendChild(a)}}};lsloader.tagLoad=function(b,a){this.jsRunSequence.push({name:a,code:"",path:b,status:"failed"});this.runjs()};lsloader.jsfallback=function(c,b){if(!!this.jsnamemap[b]){return}else{this.jsnamemap[b]=b}for(var a in this.jsRunSequence){if(this.jsRunSequence[a].name==b){this.jsRunSequence[a].code="";this.jsRunSequence[a].status="failed";this.jsRunSequence[a].path=c}}this.runjs()};lsloader.cssfallback=function(e,c,b){if(!!this.cssnamemap[c]){return}else{this.cssnamemap[c]=1}var d=document.createElement("link");d.type="text/css";d.href=e;d.rel="stylesheet";d.onload=d.onerror=b;var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(d,a)};lsloader.runInlineScript=function(c,b){var a=document.getElementById(b).innerText;this.jsRunSequence.push({name:c,code:a});this.runjs()}})();</script>
+
+    <!-- Import queue -->
+    <script>function Queue(){this.dataStore=[];this.offer=b;this.poll=d;this.execNext=a;this.debug=false;this.startDebug=c;function b(e){if(this.debug){console.log("Offered a Queued Function.")}if(typeof e==="function"){this.dataStore.push(e)}else{console.log("You must offer a function.")}}function d(){if(this.debug){console.log("Polled a Queued Function.")}return this.dataStore.shift()}function a(){var e=this.poll();if(e!==undefined){if(this.debug){console.log("Run a Queued Function.")}e()}}function c(){this.debug=true}}var queue=new Queue();</script>
+
+    <!-- Import CSS -->
+    
+        <style id="material_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_css","/css/material.min.css?Z7a72R1E4SxzBKR/WGctOA==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+        <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","/css/style.min.css?NKhlKQkXw/c66TR5p4wO+w==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+
+        
+
+    
+
+    
+
+    <!-- Config CSS -->
+
+<!-- Other Styles -->
+<style>
+  body, html {
+    font-family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+    overflow-x: hidden !important;
+  }
+  
+  code {
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  }
+
+  a {
+    color: #00838F;
+  }
+
+  .mdl-card__media,
+  #search-label,
+  #search-form-label:after,
+  #scheme-Paradox .hot_tags-count,
+  #scheme-Paradox .sidebar_archives-count,
+  #scheme-Paradox .sidebar-colored .sidebar-header,
+  #scheme-Paradox .sidebar-colored .sidebar-badge{
+    background-color: #0097A7 !important;
+  }
+
+  /* Sidebar User Drop Down Menu Text Color */
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus {
+    color: #0097A7 !important;
+  }
+
+  #post_entry-right-info,
+  .sidebar-colored .sidebar-nav li:hover > a,
+  .sidebar-colored .sidebar-nav li:hover > a i,
+  .sidebar-colored .sidebar-nav li > a:hover,
+  .sidebar-colored .sidebar-nav li > a:hover i,
+  .sidebar-colored .sidebar-nav li > a:focus i,
+  .sidebar-colored .sidebar-nav > .open > a,
+  .sidebar-colored .sidebar-nav > .open > a:hover,
+  .sidebar-colored .sidebar-nav > .open > a:focus,
+  #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a {
+    color: #0097A7 !important;
+  }
+
+  .toTop {
+    background: #757575 !important;
+  }
+
+  .material-layout .material-post>.material-nav,
+  .material-layout .material-index>.material-nav,
+  .material-nav a {
+    color: #757575;
+  }
+
+  #scheme-Paradox .MD-burger-layer {
+    background-color: #757575;
+  }
+
+  #scheme-Paradox #post-toc-trigger-btn {
+    color: #757575;
+  }
+
+  .post-toc a:hover {
+    color: #00838F;
+    text-decoration: underline;
+  }
+
+</style>
+
+
+<!-- Theme Background Related-->
+
+    <style>
+      body{
+        background-color: #F5F5F5;
+      }
+
+      /* blog_info bottom background */
+      #scheme-Paradox .material-layout .something-else .mdl-card__supporting-text{
+        background-color: #fff;
+      }
+    </style>
+
+
+
+
+<!-- Fade Effect -->
+
+    <style>
+      .fade {
+        transition: all 800ms linear;
+        -webkit-transform: translate3d(0,0,0);
+        -moz-transform: translate3d(0,0,0);
+        -ms-transform: translate3d(0,0,0);
+        -o-transform: translate3d(0,0,0);
+        transform: translate3d(0,0,0);
+        opacity: 1;
+      }
+
+      .fade.out{
+        opacity: 0;
+      }
+    </style>
+
+
+<!-- Import Font -->
+<!-- Import Roboto -->
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+
+
+<!-- Import Material Icons -->
+
+
+    <style id="material_icons"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_icons","/css/material-icons.css?pqhB/Rd/ab0H2+kZp0RDmw==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+
+
+
+
+    <!-- Import jQuery -->
+    
+        <script>lsloader.load("jq_js","/js/jquery.min.js?qcusAULNeBksqffqUM2+Ig==", true)</script>
+    
+
+    <!-- WebAPP Icons -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="RHANQTL">
+    <meta name="msapplication-starturl" content="http://yoursite.com/2019/11/02/oo-design-design-patterns/">
+    <meta name="msapplication-navbutton-color" content="#0097A7">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="RHANQTL">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon" href="/img/favicon.png">
+
+    <!-- Site Verification -->
+    
+    
+
+    <!-- RSS -->
+    
+
+    <!-- The Open Graph protocol -->
+    <meta property="og:url" content="http://yoursite.com/2019/11/02/oo-design-design-patterns/">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="面向对象软件设计：设计模式 | RHANQTL">
+    <meta property="og:image" content="/img/favicon.png">
+    <meta property="og:description" content="0    引言着眼于“变化”
+分析一个设计模式的优缺点时，应该从以下几个方面着手：
+
+类的数量
+单个类的负载
+类间结构的复杂度
+对设计原则的支持
+">
+    
+
+    
+        <meta property="article:published_time" content="Sat Nov 02 2019 13:02:06 GMT+0800">
+        <meta property="article:modified_time" content="Thu Nov 07 2019 13:25:11 GMT+0800">
+    
+
+    <!-- The Twitter Card protocol -->
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!-- Add canonical link for SEO -->
+    
+        <link rel="canonical" href="http://yoursite.com/2019/11/02/oo-design-design-patterns/index.html">
+    
+
+    <!-- Structured-data for SEO -->
+    
+        
+
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage": "http://yoursite.com/2019/11/02/oo-design-design-patterns/index.html",
+    "headline": "面向对象软件设计：设计模式",
+    "datePublished": "Sat Nov 02 2019 13:02:06 GMT+0800",
+    "dateModified": "Thu Nov 07 2019 13:25:11 GMT+0800",
+    "author": {
+        "@type": "Person",
+        "name": "Han Qi",
+        "image": {
+            "@type": "ImageObject",
+            "url": "/img/avatar.png"
+        },
+        "description": "Hi, nice to meet you"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "RHANQTL",
+        "logo": {
+            "@type":"ImageObject",
+            "url": "/img/favicon.png"
+        }
+    },
+    "keywords": "",
+    "description": "0    引言着眼于“变化”
+分析一个设计模式的优缺点时，应该从以下几个方面着手：
+
+类的数量
+单个类的负载
+类间结构的复杂度
+对设计原则的支持
+",
+}
+</script>
+
+
+    
+
+    <!-- Analytics -->
+    
+    
+    
+
+    <!-- Custom Head --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    
+
+</head>
+
+
+    
+        <body id="scheme-Paradox" class="lazy">
+            <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="material-layout  mdl-js-layout has-drawer is-upgraded">
+                
+
+                <!-- Main Container -->
+                <main class="material-layout__content" id="main">
+
+                    <!-- Top Anchor -->
+                    <div id="top"></div>
+
+                    
+                        <!-- Hamburger Button -->
+                        <button class="MD-burger-icon sidebar-toggle">
+                            <span id="MD-burger-id" class="MD-burger-layer"></span>
+                        </button>
+                    
+
+                    <!-- Post TOC -->
+
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+
+    <!-- Left aligned menu below button -->
+    
+    
+    <button id="post-toc-trigger-btn" class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#0-引言"><span class="post-toc-number">1.</span> <span class="post-toc-text">0    引言</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#1-创建型模式"><span class="post-toc-number">2.</span> <span class="post-toc-text">1    创建型模式</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-1-单件模式"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">1.1    单件模式</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-1-x-应对并发"><span class="post-toc-number">2.1.1.</span> <span class="post-toc-text">1.1.x    应对并发</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-1-x-1-最简单的方式：饿汉式"><span class="post-toc-number">2.1.1.1.</span> <span class="post-toc-text">1.1.x.1    最简单的方式：饿汉式</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-1-x-2-改进-1"><span class="post-toc-number">2.1.1.2.</span> <span class="post-toc-text">1.1.x.2    改进 1</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-1-x-3-改进-2"><span class="post-toc-number">2.1.1.3.</span> <span class="post-toc-text">1.1.x.3    改进 2</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-1-x-4-改进-3"><span class="post-toc-number">2.1.1.4.</span> <span class="post-toc-text">1.1.x.4    改进 3</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-2-工厂模式"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">1.2    工厂模式</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-2-1-简单工厂模式"><span class="post-toc-number">2.2.1.</span> <span class="post-toc-text">1.2.1    简单工厂模式</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-2-2-工厂方法模式"><span class="post-toc-number">2.2.2.</span> <span class="post-toc-text">1.2.2    工厂方法模式</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-2-3-抽象工厂模式-Abstract-Factory"><span class="post-toc-number">2.2.3.</span> <span class="post-toc-text">1.2.3    抽象工厂模式 (Abstract Factory)</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-3-原型模式"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">1.3    原型模式</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-4-建造者（生成器）模式"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">1.4    建造者（生成器）模式</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#2-结构型模式"><span class="post-toc-number">3.</span> <span class="post-toc-text">2    结构型模式</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-1-装饰者模式"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">2.1    装饰者模式</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#3-行为型模式"><span class="post-toc-number">4.</span> <span class="post-toc-text">3    行为型模式</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#责任链模式"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">责任链模式</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#命令模式"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">命令模式</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#访问者模式"><span class="post-toc-number">4.3.</span> <span class="post-toc-text">访问者模式</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#模板算法模式"><span class="post-toc-number">4.4.</span> <span class="post-toc-text">模板算法模式</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#策略模式"><span class="post-toc-number">4.5.</span> <span class="post-toc-text">策略模式</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#迭代器-Iterator-模式"><span class="post-toc-number">4.6.</span> <span class="post-toc-text">迭代器 (Iterator) 模式</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#4-练习"><span class="post-toc-number">5.</span> <span class="post-toc-text">4    练习</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#5-参考答案"><span class="post-toc-number">6.</span> <span class="post-toc-text">5    参考答案</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#6-参考"><span class="post-toc-number">7.</span> <span class="post-toc-text">6    参考</span></a></li></ol>
+    </ul>
+    
+
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+    <!-- Paradox Post Header -->
+    
+        
+            <!-- Random Thumbnail -->
+            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
+            <script type="text/ls-javascript" id="post-thumbnail-script">
+    var randomNum = Math.floor(Math.random() * 19 + 1);
+
+    $('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
+    $('.post_thumbnail-random').addClass('lazy');
+</script>
+
+        
+    
+            <p class="article-headline-p">
+                面向对象软件设计：设计模式
+            </p>
+        </div>
+
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/avatar.png" width="44px" height="44px" alt="Author Avatar">
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>Han Qi</strong>
+        <span>Nov 02, 2019</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
+    
+
+    <!-- Tags (bookmark) -->
+    
+
+    <!-- Share -->
+    
+        <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+
+    <!-- Share Weibo -->
+    
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=面向对象软件设计：设计模式&url=http://yoursite.com/2019/11/02/oo-design-design-patterns/index.html&pic=http://yoursite.com/img/favicon.png&searchPic=false&style=simple" target="_blank">
+            <li class="mdl-menu__item">
+                شارك على Weibo
+            </li>
+        </a>
+    
+
+    <!-- Share Twitter -->
+    
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=面向对象软件设计：设计模式&url=http://yoursite.com/2019/11/02/oo-design-design-patterns/index.html&via=Han Qi" target="_blank">
+            <li class="mdl-menu__item">
+                شارك على Twitter
+            </li>
+        </a>
+    
+
+    <!-- Share Facebook -->
+    
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2019/11/02/oo-design-design-patterns/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                شارك على Facebook
+            </li>
+        </a>
+    
+
+    <!-- Share Google+ -->
+    
+        <a class="post_share-link" href="https://plus.google.com/share?url=http://yoursite.com/2019/11/02/oo-design-design-patterns/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                شارك على Google+
+            </li>
+        </a>
+    
+
+    <!-- Share LinkedIn -->
+    
+        <a class="post_share-link" href="https://www.linkedin.com/shareArticle?mini=true&url=http://yoursite.com/2019/11/02/oo-design-design-patterns/index.html&title=面向对象软件设计：设计模式" target="_blank">
+            <li class="mdl-menu__item">
+                شارك على LinkedIn
+            </li>
+        </a>
+    
+
+    <!-- Share QQ -->
+    
+        <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=RHANQTL&title=面向对象软件设计：设计模式&summary=&pics=http://yoursite.com/img/favicon.png&url=http://yoursite.com/2019/11/02/oo-design-design-patterns/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                شارك على QQ
+            </li>
+        </a>
+    
+
+    <!-- Share Telegram -->
+    
+        <a class="post_share-link" href="https://telegram.me/share/url?url=http://yoursite.com/2019/11/02/oo-design-design-patterns/index.html&text=面向对象软件设计：设计模式" target="_blank">
+            <li class="mdl-menu__item">
+                شارك على Telegram
+            </li>
+        </a>
+    
+</ul>
+
+    
+</div>
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <h1 id="0-引言"><a href="#0-引言" class="headerlink" title="0    引言"></a>0    引言</h1><p>着眼于“变化”</p>
+<p>分析一个设计模式的优缺点时，应该从以下几个方面着手：</p>
+<ul>
+<li>类的数量</li>
+<li>单个类的负载</li>
+<li>类间结构的复杂度</li>
+<li>对设计原则的支持</li>
+</ul>
+<a id="more"></a>
+<p>了解设计模式不仅要了解静态结构，还需要了解动态结构，其中最有效的是顺序图。</p>
+<h1 id="1-创建型模式"><a href="#1-创建型模式" class="headerlink" title="1    创建型模式"></a>1    创建型模式</h1><h2 id="1-1-单件模式"><a href="#1-1-单件模式" class="headerlink" title="1.1    单件模式"></a>1.1    单件模式</h2><p>单件模式的实质是编程语言提供的构造方法无法满足需要，甚至会带来负效果，所以在实现单件时需要屏蔽编程语言提供的构造方法，然后再提供新的构造接口</p>
+<p><img src="/2019/11/02/oo-design-design-patterns/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1573103563589.png" alt="1573103563589"></p>
+<p><img src="/2019/11/02/oo-design-design-patterns/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1573103569194.png" alt="1573103569194"></p>
+<h3 id="1-1-x-应对并发"><a href="#1-1-x-应对并发" class="headerlink" title="1.1.x    应对并发"></a>1.1.x    应对并发</h3><p>使用 Java 演示</p>
+<h4 id="1-1-x-1-最简单的方式：饿汉式"><a href="#1-1-x-1-最简单的方式：饿汉式" class="headerlink" title="1.1.x.1    最简单的方式：饿汉式"></a>1.1.x.1    最简单的方式：饿汉式</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Singleton uniqueInstance = <span class="keyword">new</span> Singleton();</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span> </span>&#123; <span class="comment">/* ... */</span> &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> uniqueInstance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在这种方式中，我们把创建对象的职责交给 JVM，会导致类加载比较慢</p>
+<h4 id="1-1-x-2-改进-1"><a href="#1-1-x-2-改进-1" class="headerlink" title="1.1.x.2    改进 1"></a>1.1.x.2    改进 1</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Singleton uniqueInstance;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span> </span>&#123; <span class="comment">/* ... */</span> &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">synchronized</span> (Singleton.class) &#123;</span><br><span class="line">            <span class="keyword">if</span> (uniqueInstance == <span class="keyword">null</span>) &#123;</span><br><span class="line">                uniqueInstance = <span class="keyword">new</span> Singleton();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> uniqueInstance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这种方式使用同步避免了多线程访问的错误，但是由于每个线程都要进入临界区，会影响性能。</p>
+<h4 id="1-1-x-3-改进-2"><a href="#1-1-x-3-改进-2" class="headerlink" title="1.1.x.3    改进 2"></a>1.1.x.3    改进 2</h4><p>不难发现，其实只有创建 <code>uniqueInstance</code> 时需要同步，之后的每次 <code>getInstance</code> 都会导致临界区内的 <code>if</code> 判断失效。所以，我们对改进有如下的期望：</p>
+<ul>
+<li><p>只在第一次（即 <code>uniqueInstance == null</code> 时）才进行创建</p>
+</li>
+<li><p>之后的每次都直接返回</p>
+</li>
+</ul>
+<p>因此，我们可以改为下面这种方式：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">volatile</span> Singleton uniqueInstance;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span> </span>&#123; <span class="comment">/* ... */</span> &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (uniqueInstance == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (Singleton.class) &#123;</span><br><span class="line">                <span class="keyword">if</span> (uniqueInstance == <span class="keyword">null</span>) &#123;</span><br><span class="line">                    uniqueInstance = <span class="keyword">new</span> Singleton();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> uniqueInstance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>应该注意到有两点不同：</p>
+<ul>
+<li>在临界区中又判断了一次 <code>uniqueInstance == null</code></li>
+<li><code>uniqueInstance</code> 多了 <code>volatile</code> 修饰符</li>
+</ul>
+<p>第一点是因为有可能多个线程在第一次判断时同时判定 <code>uniqueInstance</code> 为 <code>null</code>，这样它们都会进入临界区，如果不进行第二次判断，就会导致 <code>Singleton</code> 被创建多次，从而起不到我们想要的只创建一次的效果。</p>
+<p>第二点跟 JVM 的机制有关。因为 <code>uniqueInstance = new Singleton()</code> 并不是原子操作，JVM 大概做了下面 3 件事情：</p>
+<ol>
+<li>首先是会给 <code>uniqueInstance</code> 分配内存</li>
+<li>调用 <code>Singleton</code> 的构造方法来初始化成员变量</li>
+<li>将 <code>uniqueInstance</code> 对象指向分配的内存空间</li>
+</ol>
+<p>但是在 JVM 的即时编译器中存在指令重排序的优化。也就是说上面的第二步和第三步的顺序是不能保证的，最终的执行顺序可能是 1-2-3 也可能是 1-3-2。如果是后者，则在 3 执行完毕、2 未执行之前，被线程二抢占了，这时 instance 已经是非 <code>null</code> 了（但却没有初始化），所以线程二会直接返回 instance，最终导致错误。</p>
+<p><code>volatile</code> 关键字除了可以使得变量在不同线程间具有可见性，还可以阻止 JVM 将指令重排序。</p>
+<h4 id="1-1-x-4-改进-3"><a href="#1-1-x-4-改进-3" class="headerlink" title="1.1.x.4    改进 3"></a>1.1.x.4    改进 3</h4><p>不用加锁，也能实现懒加载</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">SingletonHolder</span> </span>&#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Singleton uniqueInstance = <span class="keyword">new</span> Singleton();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> SingletonHolder.uniqueInstance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这种方式同样利用了类加载器的机制来保证初始化 <code>uniqueInstance</code> 时只有一个线程，它跟第一种方式不同的是，当 <code>Singleton</code> 类被装载时，<code>uniqueInstance</code> 不一定被初始化，因为 <code>SingletonHolder</code> 类没有被主动使用，只有在调用 <code>getInstance</code> 方法时，才会装载 <code>SingletonHolder</code> 类，从而实例化 <code>uniqueInstance</code>。</p>
+<h2 id="1-2-工厂模式"><a href="#1-2-工厂模式" class="headerlink" title="1.2    工厂模式"></a>1.2    工厂模式</h2><h3 id="1-2-1-简单工厂模式"><a href="#1-2-1-简单工厂模式" class="headerlink" title="1.2.1    简单工厂模式"></a>1.2.1    简单工厂模式</h3><p><img src="/2019/11/02/oo-design-design-patterns/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1573103815585.png" alt="1573103815585"></p>
+<p><img src="/2019/11/02/oo-design-design-patterns/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1573103829946.png" alt="1573103829946"></p>
+<h3 id="1-2-2-工厂方法模式"><a href="#1-2-2-工厂方法模式" class="headerlink" title="1.2.2    工厂方法模式"></a>1.2.2    工厂方法模式</h3><img src="/2019/11/02/oo-design-design-patterns/factory-method-pattern.png">
+<p><img src="/2019/11/02/oo-design-design-patterns/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1573103698645.png" alt="1573103698645"></p>
+<p><img src="/2019/11/02/oo-design-design-patterns/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1573103728151.png" alt="1573103728151"></p>
+<p><img src="/2019/11/02/oo-design-design-patterns/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1573103757565.png" alt="1573103757565"></p>
+<font color="red">xxxxxxxxx</font>
+
+<p><img src="/2019/11/02/oo-design-design-patterns/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1573103740888.png" alt="1573103740888"></p>
+<font color="red">xxxxxxxxx</font>
+
+<h3 id="1-2-3-抽象工厂模式-Abstract-Factory"><a href="#1-2-3-抽象工厂模式-Abstract-Factory" class="headerlink" title="1.2.3    抽象工厂模式 (Abstract Factory)"></a>1.2.3    抽象工厂模式 (Abstract Factory)</h3><p>抽象工厂中的每一个 createProduct 方法都使用了 Factory Method 模式</p>
+<p>抽象工厂的关键在于工厂本身是有抽象继承结构的</p>
+<h2 id="1-3-原型模式"><a href="#1-3-原型模式" class="headerlink" title="1.3    原型模式"></a>1.3    原型模式</h2><h2 id="1-4-建造者（生成器）模式"><a href="#1-4-建造者（生成器）模式" class="headerlink" title="1.4    建造者（生成器）模式"></a>1.4    建造者（生成器）模式</h2><h1 id="2-结构型模式"><a href="#2-结构型模式" class="headerlink" title="2    结构型模式"></a>2    结构型模式</h1><h2 id="2-1-装饰者模式"><a href="#2-1-装饰者模式" class="headerlink" title="2.1    装饰者模式"></a>2.1    装饰者模式</h2><h1 id="3-行为型模式"><a href="#3-行为型模式" class="headerlink" title="3    行为型模式"></a>3    行为型模式</h1><p>行为型模式涉及到<strong>算法</strong>和对象间<strong>职责的分配</strong>，不仅描述对象或类的模式，还描述它们之间的<strong>通信</strong>模式。</p>
+<ul>
+<li><p>行为类模式：使用继承机制在类间分派行为</p>
+</li>
+<li><p>行为对象模式：适用对象复合而不是继承</p>
+<ul>
+<li>一个重要的问题是对等的对象如何相互了解对方</li>
+</ul>
+</li>
+</ul>
+<h2 id="责任链模式"><a href="#责任链模式" class="headerlink" title="责任链模式"></a>责任链模式</h2><p>责任链上的每一个对象都可以处理请求或者将请求转发（Forward）给下一个对象</p>
+<ul>
+<li>适用场景<ul>
+<li>有多个对象可以处理同一个请求，哪个对象处理该请求需要在运行时动态确定</li>
+<li>想在不明确指定接收者的情况下，向多个对象中的一个提交一个请求</li>
+<li>可处理一个请求的对象集合应被动态指定</li>
+</ul>
+</li>
+</ul>
+<h2 id="命令模式"><a href="#命令模式" class="headerlink" title="命令模式"></a>命令模式</h2><h2 id="访问者模式"><a href="#访问者模式" class="headerlink" title="访问者模式"></a>访问者模式</h2><p>视角的转变：对象结构 $\rightarrow$ 操作</p>
+<p>如果有额外的参数怎么办？变成实现类的属性，在构造时传入，相当于多个参数：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Element</span>;</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ConcreteElementA</span>;</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ConcreteElementB</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Visitor</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">visit</span><span class="params">(ConcreteElementA &amp;e)</span> </span>= <span class="number">0</span>;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">visit</span><span class="params">(ConcreteElementB &amp;e)</span> </span>= <span class="number">0</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ExampleVisitor</span> :</span> <span class="keyword">public</span> Visitor &#123;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">int</span> _dummy;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    explicit ExampleVisitor(int i): _dummy(i) &#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">visit</span><span class="params">(ConcreteElementA &amp;e)</span> override </span>&#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"visit(ConcreteElementA&amp;) "</span></span><br><span class="line">                  &lt;&lt; _dummy &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">visit</span><span class="params">(ConcreteElementB &amp;e)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"visit(ConcreteElementB&amp;) "</span></span><br><span class="line">                  &lt;&lt; _dummy &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Element</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">accept</span><span class="params">(Visitor *visitor)</span> </span>= <span class="number">0</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ConcreteElementA</span> :</span> <span class="keyword">public</span> Element &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">accept</span><span class="params">(Visitor *visitor)</span> </span>&#123;</span><br><span class="line">        visitor-&gt;visit(*<span class="keyword">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ConcreteElementB</span> :</span> <span class="keyword">public</span> Element &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">accept</span><span class="params">(Visitor *visitor)</span> </span>&#123;</span><br><span class="line">        visitor-&gt;visit(*<span class="keyword">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    ConcreteElementA a;</span><br><span class="line">    ConcreteElementB b;</span><br><span class="line">    a.accept(<span class="keyword">new</span> ExampleVisitor(<span class="number">3</span>));</span><br><span class="line">    b.accept(<span class="keyword">new</span> ExampleVisitor(<span class="number">5</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="模板算法模式"><a href="#模板算法模式" class="headerlink" title="模板算法模式"></a>模板算法模式</h2><h2 id="策略模式"><a href="#策略模式" class="headerlink" title="策略模式"></a>策略模式</h2><img src="/2019/11/02/oo-design-design-patterns/strategy-pattern.png">
+<h2 id="迭代器-Iterator-模式"><a href="#迭代器-Iterator-模式" class="headerlink" title="迭代器 (Iterator) 模式"></a>迭代器 (Iterator) 模式</h2><p>迭代器模式实际上违反了面向对象设计中的“数据与行为相集中”原则</p>
+<p><img src="/2019/11/02/oo-design-design-patterns/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1573103639019.png" alt="1573103639019"></p>
+<p><img src="/2019/11/02/oo-design-design-patterns/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1573103683982.png" alt="1573103683982"></p>
+<p><img src="/2019/11/02/oo-design-design-patterns/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1573103659742.png" alt="1573103659742"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Menu menu = <span class="keyword">new</span> Menu();</span><br><span class="line">List&lt;MenuItem&gt; menuItems = menu.getMenuItems();</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; menuItems.size(); i++) &#123;</span><br><span class="line">    printMenu(menuItems.get(i));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>现在，如果要把 <code>menuItems</code> 由 <code>List</code> 改为数组，应该怎么做呢？</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Menu menu = <span class="keyword">new</span> Menu();</span><br><span class="line">MenuItem[] menuItems = menu.getMenuItems();</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; menuItems.length; i++) &#123;</span><br><span class="line">    printMenu(menuItems[i]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这仅仅是一个很小的片段，如果是一段很长的代码，就需要费很大力气才能完成修改。</p>
+<p>实际上，这段代码两个严重的问题：</p>
+<ul>
+<li>Menu 对外展示了不一致的抽象层次，即用户应该只需要知道 Menu 是 MenuItem 的容器，而不应该了解具体的存储方式</li>
+<li>没有避免用户修改的机制</li>
+</ul>
+<p>可以如下改进：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Menu</span> <span class="keyword">implements</span> <span class="title">Iterable</span>&lt;<span class="title">MenuItem</span>&gt; </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> MenuItem[] menuItems;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Menu</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>(<span class="keyword">new</span> ArrayList&lt;&gt;());</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">     * 这里需要提供 List 参数并不代表内部一定是 List 存储</span></span><br><span class="line"><span class="comment">     * 如果需要把 menuItems 返回给外界，也不需要有一致的容器类型</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Menu</span><span class="params">(List&lt;MenuItem&gt; menuItems)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.menuItems = <span class="keyword">new</span> MenuItem[menuItems.size()];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; menuItems.size(); i++) &#123;</span><br><span class="line">            <span class="keyword">this</span>.menuItems[i] = menuItems.get(i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MenuIterator</span> <span class="keyword">implements</span> <span class="title">Iterator</span>&lt;<span class="title">MenuItem</span>&gt; </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> current = <span class="number">0</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasNext</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> current &lt; menuItems.length;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> MenuItem <span class="title">next</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> menuItems[current++];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> Iterator <span class="title">iterator</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> MenuIterator();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样，我们在遍历的时候，只需要得到相应的 <code>Iterator</code>，而不需要了解具体用什么存储的，另外，也防止了用户修改内容。</p>
+<h1 id="4-练习"><a href="#4-练习" class="headerlink" title="4    练习"></a>4    练习</h1><p><strong>1</strong>    下面哪个设计模式很好地体现了“组合优于继承”的面向对象设计原则？</p>
+<ol>
+<li>Composite</li>
+<li>Bridge</li>
+<li>Adapter</li>
+<li>Decorator</li>
+<li>Factory Method</li>
+</ol>
+<p><strong>2</strong></p>
+<p><img src="/2019/11/02/oo-design-design-patterns/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1573092611655.png" alt="1573092611655"></p>
+<p>现在有另一个类 S 也需要执行 Observable 行为，但是该类已经继承了类 A，你所使用的编程语言不支持多继承，应该使用哪个设计模式解决该问题？</p>
+<p><strong>3</strong></p>
+<p><img src="/2019/11/02/oo-design-design-patterns/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1573092780479.png" alt="1573092780479"></p>
+<p><strong>4</strong></p>
+<p><img src="/2019/11/02/oo-design-design-patterns/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1573092822538.png" alt="1573092822538"></p>
+<p><strong>5</strong>    有代码如下：</p>
+<p><img src="/2019/11/02/oo-design-design-patterns/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1573094793126.png" alt="1573094793126"></p>
+<p>请问该设计使用了哪个设计模式？</p>
+<p><strong>6</strong>    有代码如下：</p>
+<p><img src="/2019/11/02/oo-design-design-patterns/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1573095129079.png" alt="1573095129079"></p>
+<p>下面说法正确的是：</p>
+<ol>
+<li>质量没有问题</li>
+<li>质量有问题，应该使用 Factory Method 加以改进</li>
+<li>质量有问题，应该使用 Factory 模式加以改进</li>
+<li>质量有问题，应该使用 Template Method 模式加以改进</li>
+</ol>
+<p><strong>7</strong></p>
+<p><img src="/2019/11/02/oo-design-design-patterns/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1573095274606.png" alt="1573095274606"></p>
+<img src="/2019/11/02/oo-design-design-patterns/exercise-7-1.png">
+<p>代码二</p>
+<img src="/2019/11/02/oo-design-design-patterns/exercise-7-2.png">
+<p><strong>8</strong></p>
+<p><img src="/2019/11/02/oo-design-design-patterns/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1573095504537.png" alt="1573095504537"></p>
+<p><img src="/2019/11/02/oo-design-design-patterns/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1573095514392.png" alt="1573095514392"></p>
+<p>你认为哪个设计模式适合处理该问题？</p>
+<p><strong>9</strong></p>
+<p><img src="/2019/11/02/oo-design-design-patterns/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1573095664194.png" alt="1573095664194"></p>
+<p><img src="/2019/11/02/oo-design-design-patterns/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1573095673656.png" alt="1573095673656"></p>
+<p><img src="/2019/11/02/oo-design-design-patterns/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1573095683161.png" alt="1573095683161"></p>
+<ol>
+<li>使用了 Template Method</li>
+<li>使用了 Abstract Factory</li>
+<li>违反了 OCP</li>
+<li>上述说法均不正确</li>
+</ol>
+<p><strong>10</strong></p>
+<p><img src="/2019/11/02/oo-design-design-patterns/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1573095856142.png" alt="1573095856142"></p>
+<p><strong>11</strong></p>
+<p><img src="/2019/11/02/oo-design-design-patterns/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1573097521186.png" alt="1573097521186"></p>
+<p><strong>12</strong></p>
+<p><img src="/2019/11/02/oo-design-design-patterns/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1573102139560.png" alt="1573102139560"></p>
+<p><img src="/2019/11/02/oo-design-design-patterns/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1573102148436.png" alt="1573102148436"></p>
+<p>该设计方案使用了哪种设计模式？</p>
+<p><strong>13</strong></p>
+<p><img src="/2019/11/02/oo-design-design-patterns/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1573102241413.png" alt="1573102241413"></p>
+<p><strong>14</strong></p>
+<p><img src="/2019/11/02/oo-design-design-patterns/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1573102412985.png" alt="1573102412985"></p>
+<img src="/2019/11/02/oo-design-design-patterns/exercise-14.png">
+<p>关于上述代码，下面说法正确的是：</p>
+<ol>
+<li>现在代码质量很好，无需处理</li>
+<li>CandyBarBin.restock 方法内部使用了复杂的多分支判定，应该将其中代码抽离出去建立 Factory</li>
+<li>CandyBarBin.restock 方法内部使用了复杂的多分支判定，应该为 CandyBarBin 建立子类，基于多态消除该多分支判定</li>
+<li>CandyBarBin.restock 方法内部使用了复杂的多分支判定，但因涉及对象创建问题，所以虽然质量不佳，但无法处理</li>
+</ol>
+<p><strong>15</strong>（多选）</p>
+<p><img src="/2019/11/02/oo-design-design-patterns/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1573102893054.png" alt="1573102893054"></p>
+<p>游戏的创建代码如下：</p>
+<p><img src="/2019/11/02/oo-design-design-patterns/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1573102909548.png" alt="1573102909548"></p>
+<p><img src="/2019/11/02/oo-design-design-patterns/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1573102919483.png" alt="1573102919483"></p>
+<p><img src="/2019/11/02/oo-design-design-patterns/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1573102927563.png" alt="1573102927563"></p>
+<p><img src="/2019/11/02/oo-design-design-patterns/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1573102933301.png" alt="1573102933301"></p>
+<p><img src="/2019/11/02/oo-design-design-patterns/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1573102938985.png" alt="1573102938985"></p>
+<p>关于该修正代码方案，下列说法正确的是：</p>
+<ol>
+<li>使用了 Template Method 模式</li>
+<li>使用了 Factory Method 模式</li>
+<li>使用了 Builder 模式</li>
+<li>没有使用任何设计模式</li>
+</ol>
+<p><strong>16</strong>    </p>
+<p><img src="/2019/11/02/oo-design-design-patterns/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1573103185914.png" alt="1573103185914"></p>
+<p><strong>17</strong></p>
+<p><img src="/2019/11/02/oo-design-design-patterns/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1573103857623.png" alt="1573103857623"></p>
+<p><strong>18</strong>    有类图如下</p>
+<img src="/2019/11/02/oo-design-design-patterns/exercise-18-1.png">
+<p><img src="/2019/11/02/oo-design-design-patterns/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1573104020233.png" alt="1573104020233"></p>
+<p>现在武器的使用有约定：Queen 使用 Knife，Troll 使用 BowAndArrow，King 使用 Sword，Knight 使用 Axe，那么 setWeapon 方法应该如何处理？给出实现方案</p>
+<p><strong>19</strong></p>
+<p><img src="/2019/11/02/oo-design-design-patterns/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1573104265285.png" alt="1573104265285"></p>
+<h1 id="5-参考答案"><a href="#5-参考答案" class="headerlink" title="5    参考答案"></a>5    参考答案</h1><p><strong>1</strong>    Adapter</p>
+<p><img src="/2019/11/02/oo-design-design-patterns/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1573092585664.png" alt="1573092585664"></p>
+<p><strong>2</strong>    Adapter</p>
+<p><img src="/2019/11/02/oo-design-design-patterns/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1573092749444.png" alt="1573092749444"></p>
+<p><strong>3</strong>    Adapter</p>
+<p><img src="/2019/11/02/oo-design-design-patterns/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1573092795462.png" alt="1573092795462"></p>
+<p><strong>4</strong>    Singleton</p>
+<p><img src="/2019/11/02/oo-design-design-patterns/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1573092874889.png" alt="1573092874889"></p>
+<p><strong>5</strong>    Factory Method</p>
+<p><img src="/2019/11/02/oo-design-design-patterns/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1573095103663.png" alt="1573095103663"></p>
+<p><strong>6</strong>    质量有问题，应该使用 Factory Method 加以改进</p>
+<p><img src="/2019/11/02/oo-design-design-patterns/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1573095244237.png" alt="1573095244237"></p>
+<font color="red">**7**</font>    Adapter
+
+![1573095456698](C:\Users\hanqi\AppData\Roaming\Typora\typora-user-images\1573095456698.png)
+
+
+
+**8**    Abstract Factory
+
+![1573095555862](C:\Users\hanqi\AppData\Roaming\Typora\typora-user-images\1573095555862.png)
+
+
+
+**9**    使用了 Abstract Factory
+
+![1573095736393](C:\Users\hanqi\AppData\Roaming\Typora\typora-user-images\1573095736393.png)
+
+
+
+<font color="Red">**10**</font>    Strategy
+
+这种情况下不适合使用继承，应该使用组合
+
+![1573095880066](C:\Users\hanqi\AppData\Roaming\Typora\typora-user-images\1573095880066.png)
+
+
+
+**11**    使用 Factory Method，将创建具体 Manipulator 类的行为交由 Figure 的子类型来完成
+
+
+
+**12**    Factory Method
+
+![1573102203816](C:\Users\hanqi\AppData\Roaming\Typora\typora-user-images\1573102203816.png)
+
+
+
+**13**    Factory Method
+
+![1573102262374](C:\Users\hanqi\AppData\Roaming\Typora\typora-user-images\1573102262374.png)
+
+
+
+**14**    CandyBarBin.restock 方法内部使用了复杂的多分支判定，应该将其中代码抽离出去建立 Factory
+
+
+
+<font color="red">**15**</font>    1 和 2
+
+![1573103025371](C:\Users\hanqi\AppData\Roaming\Typora\typora-user-images\1573103025371.png)
+
+
+
+**16**    没有
+
+![1573103196432](C:\Users\hanqi\AppData\Roaming\Typora\typora-user-images\1573103196432.png)
+
+
+
+**17**    Adapter
+
+![1573103888397](C:\Users\hanqi\AppData\Roaming\Typora\typora-user-images\1573103888397.png)
+
+
+
+<font color="red">**18**</font>
+
+<p><img src="/2019/11/02/oo-design-design-patterns/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1573103928151.png" alt="1573103928151"></p>
+<p>这样不违反 Liskov 替换原则吗？</p>
+<p>个人认为应该如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> Queen::setWeapon() &#123;</span><br><span class="line">    <span class="keyword">this</span>-&gt;weapon = <span class="keyword">new</span> KnifeWeaponBehaviour();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>19</strong></p>
+<p><img src="/2019/11/02/oo-design-design-patterns/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1573104248474.png" alt="1573104248474"></p>
+<h1 id="6-参考"><a href="#6-参考" class="headerlink" title="6    参考"></a>6    参考</h1><p>[1] Erich Gamma，Richard Helm，Ralph Johnson，John Vlissides. <a href="https://book.douban.com/subject/1052241/" target="_blank" rel="noopener">《设计模式：可复用面向对象软件的基础》</a></p>
+<p>[2] <a href="https://book.douban.com/subject/2243615/" target="_blank" rel="noopener">《Head First 设计模式》</a></p>
+
+        
+    
+
+    
+</div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+        <a href="/2019/11/09/concurrency-conditional-variables/" id="post_nav-newer" class="prev-content">
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_back</i>
+            </button>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            أحدث
+        </a>
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2019/10/18/oo-design-foundations-of-uml/" id="post_nav-older" class="next-content">
+            أقدم
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
+
+
+                    
+                        <!-- Overlay For Active Sidebar -->
+<div class="sidebar-overlay"></div>
+
+<!-- Material sidebar -->
+<aside id="sidebar" class="sidebar sidebar-colored sidebar-fixed-left" role="navigation">
+    <div id="sidebar-main">
+        <!-- Sidebar Header -->
+        <div class="sidebar-header header-cover" style="background-image: url(/img/sidebar_header.png);">
+    <!-- Top bar -->
+    <div class="top-bar"></div>
+
+    <!-- Sidebar toggle button -->
+    <button type="button" class="sidebar-toggle mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" style="display: initial;" data-upgraded=",MaterialButton,MaterialRipple">
+        <i class="material-icons">clear_all</i>
+        <span class="mdl-button__ripple-container">
+            <span class="mdl-ripple">
+            </span>
+        </span>
+    </button>
+
+    <!-- Sidebar Avatar -->
+    <div class="sidebar-image">
+        <img src="/img/avatar.png" alt="Han Qi's avatar">
+    </div>
+
+    <!-- Sidebar Email -->
+    <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">
+        my@rhanqtl.com
+        <b class="caret"></b>
+    </a>
+</div>
+
+
+        <!-- Sidebar Navigation  -->
+        <ul class="nav sidebar-nav">
+    <!-- User dropdown  -->
+    <li class="dropdown">
+        <ul id="settings-dropdown" class="dropdown-menu">
+            
+                <li>
+                    <a href="#" target="_blank" title="Email Me">
+                        
+                            <i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i>
+                        
+                        Email Me
+                    </a>
+                </li>
+            
+        </ul>
+    </li>
+
+    <!-- Homepage -->
+    
+        <li id="sidebar-first-li">
+            <a href="/">
+                
+                    <i class="material-icons sidebar-material-icons">home</i>
+                
+                الرئيسية
+            </a>
+        </li>
+        
+    
+
+    <!-- Archives  -->
+    
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                
+                    <i class="material-icons sidebar-material-icons">inbox</i>
+                
+                    أرشيف
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+            <li>
+                <a class="sidebar_archives-link" href="/archives/2019/12/">December 2019<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/11/">November 2019<span class="sidebar_archives-count">6</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/10/">October 2019<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/09/">September 2019<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/08/">August 2019<span class="sidebar_archives-count">10</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/07/">July 2019<span class="sidebar_archives-count">16</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/06/">June 2019<span class="sidebar_archives-count">21</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/05/">May 2019<span class="sidebar_archives-count">36</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/04/">April 2019<span class="sidebar_archives-count">46</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/03/">March 2019<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/02/">February 2019<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/01/">January 2019<span class="sidebar_archives-count">17</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/12/">December 2018<span class="sidebar_archives-count">26</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/11/">November 2018<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/10/">October 2018<span class="sidebar_archives-count">1</span></a>
+            </li></ul>
+        </li>
+        
+    
+
+    <!-- Categories  -->
+    
+
+    <!-- Pages  -->
+    
+
+    <!-- Article Number  -->
+    
+</ul>
+
+
+        <!-- Sidebar Footer -->
+        <!--
+I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright, I will thank you so much.
+If you still want to delete the copyrights, could you still retain the first one? Which namely "Theme Material"
+It will not impact the appearance and can give developers a lot of support :)
+
+很高兴您使用并喜欢该主题，开发不易 十分谢谢与希望您可以保留一下版权声明。
+如果您仍然想删除的话 能否只保留第一项呢？即 "Theme Material"
+它不会影响美观并可以给开发者很大的支持和动力。 :)
+-->
+
+<!-- Sidebar Divider -->
+
+    <div class="sidebar-divider"></div>
+
+
+<!-- Theme Material -->
+
+    <a href="https://github.com/viosey/hexo-theme-material" class="sidebar-footer-text-a" target="_blank">
+        <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+            سمة - Material
+            <span class="sidebar-badge badge-circle">i</span>
+        </div>
+    </a>
+
+
+<!-- Help & Support -->
+<!--
+
+-->
+
+<!-- Feedback -->
+<!--
+
+-->
+
+<!-- About Theme -->
+<!--
+
+-->
+
+    </div>
+
+    <!-- Sidebar Image -->
+    
+
+</aside>
+
+                    
+
+                    
+                        <!-- Footer Top Button -->
+                        <div id="back-to-top" class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
+
+                    
+
+                    <!--Footer-->
+<footer class="mdl-mini-footer" id="bottom">
+    
+        <!-- Paradox Footer Left Section -->
+        <div class="mdl-mini-footer--left-section sns-list">
+    <!-- Twitter -->
+    
+        <a href="https://twitter.com/twitter" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-twitter">
+                <span class="visuallyhidden">Twitter</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Facebook -->
+    
+        <a href="https://www.facebook.com/facebook" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-facebook">
+                <span class="visuallyhidden">Facebook</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Google + -->
+    
+        <a href="https://www.google.com/" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-gplus">
+                <span class="visuallyhidden">Google Plus</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Weibo -->
+    
+
+    <!-- Instagram -->
+    
+
+    <!-- Tumblr -->
+    
+
+    <!-- Github -->
+    
+        <a href="https://github.com/rhanqtl" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-github">
+                <span class="visuallyhidden">Github</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- LinkedIn -->
+    
+
+    <!-- Zhihu -->
+    
+
+    <!-- Bilibili -->
+    
+
+    <!-- Telegram -->
+    
+
+    <!-- V2EX -->
+    
+
+    <!-- Segmentfault -->
+    
+</div>
+
+
+        <!--Copyright-->
+        <div id="copyright">
+            Copyright&nbsp;©&nbsp;<span year=""></span>&nbsp;RHANQTL
+            
+        </div>
+
+        <!-- Paradox Footer Right Section -->
+
+        <!--
+        I am glad you use this theme, the development is no so easy, I hope you can keep the copyright.
+        It will not impact the appearance and can give developers a lot of support :)
+
+        很高兴您使用该主题，开发不易，希望您可以保留一下版权声明。
+        它不会影响美观并可以给开发者很大的支持。 :)
+        -->
+
+        <div class="mdl-mini-footer--right-section">
+            <div>
+                <div class="footer-develop-div">Powered by <a href="https://hexo.io" target="_blank" class="footer-develop-a">Hexo</a></div>
+                <div class="footer-develop-div">Theme - <a href="https://github.com/viosey/hexo-theme-material" target="_blank" class="footer-develop-a">Material</a></div>
+            </div>
+        </div>
+    
+</footer>
+
+
+                    <!-- Import JS File -->
+
+    <script>lsloader.load("lazyload_js","/js/lazyload.min.js?1BcfzuNXqV+ntF6gq+5X3Q==", true)</script>
+
+
+
+    <script>lsloader.load("js_js","/js/js.min.js?Bn9UzEm8RrBSxqyZB0zPjA==", true)</script>
+
+
+
+    <script>lsloader.load("np_js","/js/nprogress.js?pl3Qhb9lvqR1FlyLUna1Yw==", true)</script>
+
+
+<script type="text/ls-javascript" id="NProgress-script">
+    NProgress.configure({
+        showSpinner: true
+    });
+    NProgress.start();
+    $('#nprogress .bar').css({
+        'background': '#29d'
+    });
+    $('#nprogress .peg').css({
+        'box-shadow': '0 0 10px #29d, 0 0 15px #29d'
+    });
+    $('#nprogress .spinner-icon').css({
+        'border-top-color': '#29d',
+        'border-left-color': '#29d'
+    });
+    setTimeout(function() {
+        NProgress.done();
+        $('.fade').removeClass('out');
+    }, 800);
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- UC Browser Compatible -->
+<script>
+	var agent = navigator.userAgent.toLowerCase();
+	if(agent.indexOf('ucbrowser')>0) {
+		document.write('<link rel="stylesheet" href="/css/uc.css">');
+	   alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
+	}
+</script>
+
+<!-- Import prettify js  -->
+
+
+
+<!-- Window Load -->
+<!-- add class for prettify -->
+<script type="text/ls-javascript" id="window-load">
+    $(window).on('load', function() {
+        // Post_Toc parent position fixed
+        $('.post-toc-wrap').parent('.mdl-menu__container').css('position', 'fixed');
+    });
+
+    
+    
+</script>
+
+<!-- MathJax Load-->
+
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
+        tex2jax: { inlineMath: [ ["$", "$"], ["\\(","\\)"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno",skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']},
+        TeX: {  noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } }, Macros: { href: "{}" } },
+        messageStyle: "none"
+    });
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+    <script type="text/javascript" src="/js/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+
+
+<!-- Bing Background -->
+
+
+<script type="text/ls-javascript" id="lazy-load">
+    // Offer LazyLoad
+    queue.offer(function(){
+        $('.lazy').lazyload({
+            effect : 'show'
+        });
+    });
+
+    // Start Queue
+    $(document).ready(function(){
+        setInterval(function(){
+            queue.execNext();
+        },200);
+    });
+</script>
+
+<!-- Custom Footer -->
+
+
+
+<script>
+    var copyrightNow = new Date().getFullYear();
+    var textContent = document.querySelector('span[year]')
+
+    copyrightSince = 0000;
+    if (copyrightSince === copyrightNow||copyrightSince === 0000) {
+        textContent.textContent = copyrightNow
+    } else {
+        textContent.textContent = copyrightSince + ' - ' + copyrightNow
+    }
+
+    (function(){
+        var scriptList = document.querySelectorAll('script[type="text/ls-javascript"]')
+
+        for (var i = 0; i < scriptList.length; ++i) {
+            var item = scriptList[i];
+            lsloader.runInlineScript(item.id,item.id);
+        }
+    })()
+console.log('\n %c © Material Theme | Version: 1.5.6 | https://github.com/viosey/hexo-theme-material %c \n', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-left-radius:5px;border-bottom-left-radius:5px;', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-right-radius:5px;border-bottom-right-radius:5px;');
+</script>
+
+                </main>
+            </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+        </body>
+    
+</html>

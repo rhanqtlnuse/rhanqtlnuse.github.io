@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html style="display: none;" lang="zh">
+    <head><meta name="generator" content="Hexo 3.8.0">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    <!--
+        © Material Theme
+        https://github.com/viosey/hexo-theme-material
+        Version: 1.5.6 -->
+    <script>
+        window.materialVersion = "1.5.6"
+        // Delete localstorage with these tags
+        window.oldVersion = [
+            'codestartv1',
+            '1.3.4',
+            '1.4.0',
+            '1.4.0b1',
+            '1.5.0',
+            '1.5.2',
+            '1.5.5'
+        ]
+    </script>
+
+    <!-- dns prefetch -->
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+
+
+
+
+
+
+
+
+
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+
+
+
+
+    <!-- Meta & Info -->
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <!-- Title -->
+    
+    <title>
+        
+            排序问题和排序算法 | 
+        
+        RHANQTL
+    </title>
+
+    <!-- Favicons -->
+    <link rel="icon shortcut" type="image/ico" href="/img/favicon.png">
+    <link rel="icon" href="/img/favicon.png">
+
+    <meta name="format-detection" content="telephone=no">
+    <meta name="description" itemprop="description" content="摘要">
+    <meta name="keywords" content="">
+    <meta name="theme-color" content="#0097A7">
+
+    <!-- Disable Fucking Bloody Baidu Tranformation -->
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+
+    <!--[if lte IE 9]>
+        <link rel="stylesheet" href="/css/ie-blocker.css">
+
+        
+            <script src="/js/ie-blocker.en.js"></script>
+        
+    <![endif]-->
+
+    <!-- Import lsloader -->
+    <script>(function(){window.lsloader={jsRunSequence:[],jsnamemap:{},cssnamemap:{}};lsloader.removeLS=function(a){try{localStorage.removeItem(a)}catch(b){}};lsloader.setLS=function(a,c){try{localStorage.setItem(a,c)}catch(b){}};lsloader.getLS=function(a){var c="";try{c=localStorage.getItem(a)}catch(b){c=""}return c};versionString="/*"+(window.materialVersion||"unknownVersion")+"*/";lsloader.clean=function(){try{var b=[];for(var a=0;a<localStorage.length;a++){b.push(localStorage.key(a))}b.forEach(function(e){var f=lsloader.getLS(e);if(window.oldVersion){var d=window.oldVersion.reduce(function(g,h){return g||f.indexOf("/*"+h+"*/")!==-1},false);if(d){lsloader.removeLS(e)}}})}catch(c){}};lsloader.clean();lsloader.load=function(f,a,b,d){if(typeof b==="boolean"){d=b;b=undefined}d=d||false;b=b||function(){};var e;e=this.getLS(f);if(e&&e.indexOf(versionString)===-1){this.removeLS(f);this.requestResource(f,a,b,d);return}if(e){var c=e.split(versionString)[0];if(c!=a){console.log("reload:"+a);this.removeLS(f);this.requestResource(f,a,b,d);return}e=e.split(versionString)[1];if(d){this.jsRunSequence.push({name:f,code:e});this.runjs(a,f,e)}else{document.getElementById(f).appendChild(document.createTextNode(e));b()}}else{this.requestResource(f,a,b,d)}};lsloader.requestResource=function(b,e,a,c){var d=this;if(c){this.iojs(e,b,function(h,f,g){d.setLS(f,h+versionString+g);d.runjs(h,f,g)})}else{this.iocss(e,b,function(f){document.getElementById(b).appendChild(document.createTextNode(f));d.setLS(b,e+versionString+f)},a)}};lsloader.iojs=function(d,b,g){var a=this;a.jsRunSequence.push({name:b,code:""});try{var f=new XMLHttpRequest();f.open("get",d,true);f.onreadystatechange=function(){if(f.readyState==4){if((f.status>=200&&f.status<300)||f.status==304){if(f.response!=""){g(d,b,f.response);return}}a.jsfallback(d,b)}};f.send(null)}catch(c){a.jsfallback(d,b)}};lsloader.iocss=function(f,c,h,a){var b=this;try{var g=new XMLHttpRequest();g.open("get",f,true);g.onreadystatechange=function(){if(g.readyState==4){if((g.status>=200&&g.status<300)||g.status==304){if(g.response!=""){h(g.response);a();return}}b.cssfallback(f,c,a)}};g.send(null)}catch(d){b.cssfallback(f,c,a)}};lsloader.iofonts=function(f,c,h,a){var b=this;try{var g=new XMLHttpRequest();g.open("get",f,true);g.onreadystatechange=function(){if(g.readyState==4){if((g.status>=200&&g.status<300)||g.status==304){if(g.response!=""){h(g.response);a();return}}b.cssfallback(f,c,a)}};g.send(null)}catch(d){b.cssfallback(f,c,a)}};lsloader.runjs=function(f,c,e){if(!!c&&!!e){for(var b in this.jsRunSequence){if(this.jsRunSequence[b].name==c){this.jsRunSequence[b].code=e}}}if(!!this.jsRunSequence[0]&&!!this.jsRunSequence[0].code&&this.jsRunSequence[0].status!="failed"){var a=document.createElement("script");a.appendChild(document.createTextNode(this.jsRunSequence[0].code));a.type="text/javascript";document.getElementsByTagName("head")[0].appendChild(a);this.jsRunSequence.shift();if(this.jsRunSequence.length>0){this.runjs()}}else{if(!!this.jsRunSequence[0]&&this.jsRunSequence[0].status=="failed"){var d=this;var a=document.createElement("script");a.src=this.jsRunSequence[0].path;a.type="text/javascript";this.jsRunSequence[0].status="loading";a.onload=function(){d.jsRunSequence.shift();if(d.jsRunSequence.length>0){d.runjs()}};document.body.appendChild(a)}}};lsloader.tagLoad=function(b,a){this.jsRunSequence.push({name:a,code:"",path:b,status:"failed"});this.runjs()};lsloader.jsfallback=function(c,b){if(!!this.jsnamemap[b]){return}else{this.jsnamemap[b]=b}for(var a in this.jsRunSequence){if(this.jsRunSequence[a].name==b){this.jsRunSequence[a].code="";this.jsRunSequence[a].status="failed";this.jsRunSequence[a].path=c}}this.runjs()};lsloader.cssfallback=function(e,c,b){if(!!this.cssnamemap[c]){return}else{this.cssnamemap[c]=1}var d=document.createElement("link");d.type="text/css";d.href=e;d.rel="stylesheet";d.onload=d.onerror=b;var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(d,a)};lsloader.runInlineScript=function(c,b){var a=document.getElementById(b).innerText;this.jsRunSequence.push({name:c,code:a});this.runjs()}})();</script>
+
+    <!-- Import queue -->
+    <script>function Queue(){this.dataStore=[];this.offer=b;this.poll=d;this.execNext=a;this.debug=false;this.startDebug=c;function b(e){if(this.debug){console.log("Offered a Queued Function.")}if(typeof e==="function"){this.dataStore.push(e)}else{console.log("You must offer a function.")}}function d(){if(this.debug){console.log("Polled a Queued Function.")}return this.dataStore.shift()}function a(){var e=this.poll();if(e!==undefined){if(this.debug){console.log("Run a Queued Function.")}e()}}function c(){this.debug=true}}var queue=new Queue();</script>
+
+    <!-- Import CSS -->
+    
+        <style id="material_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_css","/css/material.min.css?Z7a72R1E4SxzBKR/WGctOA==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+        <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","/css/style.min.css?NKhlKQkXw/c66TR5p4wO+w==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+
+        
+
+    
+
+    
+
+    <!-- Config CSS -->
+
+<!-- Other Styles -->
+<style>
+  body, html {
+    font-family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+    overflow-x: hidden !important;
+  }
+  
+  code {
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  }
+
+  a {
+    color: #00838F;
+  }
+
+  .mdl-card__media,
+  #search-label,
+  #search-form-label:after,
+  #scheme-Paradox .hot_tags-count,
+  #scheme-Paradox .sidebar_archives-count,
+  #scheme-Paradox .sidebar-colored .sidebar-header,
+  #scheme-Paradox .sidebar-colored .sidebar-badge{
+    background-color: #0097A7 !important;
+  }
+
+  /* Sidebar User Drop Down Menu Text Color */
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus {
+    color: #0097A7 !important;
+  }
+
+  #post_entry-right-info,
+  .sidebar-colored .sidebar-nav li:hover > a,
+  .sidebar-colored .sidebar-nav li:hover > a i,
+  .sidebar-colored .sidebar-nav li > a:hover,
+  .sidebar-colored .sidebar-nav li > a:hover i,
+  .sidebar-colored .sidebar-nav li > a:focus i,
+  .sidebar-colored .sidebar-nav > .open > a,
+  .sidebar-colored .sidebar-nav > .open > a:hover,
+  .sidebar-colored .sidebar-nav > .open > a:focus,
+  #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a {
+    color: #0097A7 !important;
+  }
+
+  .toTop {
+    background: #757575 !important;
+  }
+
+  .material-layout .material-post>.material-nav,
+  .material-layout .material-index>.material-nav,
+  .material-nav a {
+    color: #757575;
+  }
+
+  #scheme-Paradox .MD-burger-layer {
+    background-color: #757575;
+  }
+
+  #scheme-Paradox #post-toc-trigger-btn {
+    color: #757575;
+  }
+
+  .post-toc a:hover {
+    color: #00838F;
+    text-decoration: underline;
+  }
+
+</style>
+
+
+<!-- Theme Background Related-->
+
+    <style>
+      body{
+        background-color: #F5F5F5;
+      }
+
+      /* blog_info bottom background */
+      #scheme-Paradox .material-layout .something-else .mdl-card__supporting-text{
+        background-color: #fff;
+      }
+    </style>
+
+
+
+
+<!-- Fade Effect -->
+
+    <style>
+      .fade {
+        transition: all 800ms linear;
+        -webkit-transform: translate3d(0,0,0);
+        -moz-transform: translate3d(0,0,0);
+        -ms-transform: translate3d(0,0,0);
+        -o-transform: translate3d(0,0,0);
+        transform: translate3d(0,0,0);
+        opacity: 1;
+      }
+
+      .fade.out{
+        opacity: 0;
+      }
+    </style>
+
+
+<!-- Import Font -->
+<!-- Import Roboto -->
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+
+
+<!-- Import Material Icons -->
+
+
+    <style id="material_icons"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_icons","/css/material-icons.css?pqhB/Rd/ab0H2+kZp0RDmw==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+
+
+
+
+    <!-- Import jQuery -->
+    
+        <script>lsloader.load("jq_js","/js/jquery.min.js?qcusAULNeBksqffqUM2+Ig==", true)</script>
+    
+
+    <!-- WebAPP Icons -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="RHANQTL">
+    <meta name="msapplication-starturl" content="http://yoursite.com/2019/11/23/algorithms-sorting/">
+    <meta name="msapplication-navbutton-color" content="#0097A7">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="RHANQTL">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon" href="/img/favicon.png">
+
+    <!-- Site Verification -->
+    
+    
+
+    <!-- RSS -->
+    
+
+    <!-- The Open Graph protocol -->
+    <meta property="og:url" content="http://yoursite.com/2019/11/23/algorithms-sorting/">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="排序问题和排序算法 | RHANQTL">
+    <meta property="og:image" content="/img/favicon.png">
+    <meta property="og:description" content="摘要">
+    
+
+    
+        <meta property="article:published_time" content="Sat Nov 23 2019 12:00:00 GMT+0800">
+        <meta property="article:modified_time" content="Thu Dec 26 2019 11:15:24 GMT+0800">
+    
+
+    <!-- The Twitter Card protocol -->
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!-- Add canonical link for SEO -->
+    
+        <link rel="canonical" href="http://yoursite.com/2019/11/23/algorithms-sorting/index.html">
+    
+
+    <!-- Structured-data for SEO -->
+    
+        
+
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage": "http://yoursite.com/2019/11/23/algorithms-sorting/index.html",
+    "headline": "排序问题和排序算法",
+    "datePublished": "Sat Nov 23 2019 12:00:00 GMT+0800",
+    "dateModified": "Thu Dec 26 2019 11:15:24 GMT+0800",
+    "author": {
+        "@type": "Person",
+        "name": "Han Qi",
+        "image": {
+            "@type": "ImageObject",
+            "url": "/img/avatar.png"
+        },
+        "description": "Hi, nice to meet you"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "RHANQTL",
+        "logo": {
+            "@type":"ImageObject",
+            "url": "/img/favicon.png"
+        }
+    },
+    "keywords": "",
+    "description": "摘要",
+}
+</script>
+
+
+    
+
+    <!-- Analytics -->
+    
+    
+    
+
+    <!-- Custom Head --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    
+
+</head>
+
+
+    
+        <body id="scheme-Paradox" class="lazy">
+            <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="material-layout  mdl-js-layout has-drawer is-upgraded">
+                
+
+                <!-- Main Container -->
+                <main class="material-layout__content" id="main">
+
+                    <!-- Top Anchor -->
+                    <div id="top"></div>
+
+                    
+                        <!-- Hamburger Button -->
+                        <button class="MD-burger-icon sidebar-toggle">
+                            <span id="MD-burger-id" class="MD-burger-layer"></span>
+                        </button>
+                    
+
+                    <!-- Post TOC -->
+
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+
+    <!-- Left aligned menu below button -->
+    
+    
+    <button id="post-toc-trigger-btn" class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#0-nbsp-nbsp-nbsp-nbsp-度量标准"><span class="post-toc-number">1.</span> <span class="post-toc-text">0    度量标准</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#1-nbsp-nbsp-nbsp-nbsp-解决问题的思路"><span class="post-toc-number">2.</span> <span class="post-toc-text">1    解决问题的思路</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#2-nbsp-nbsp-nbsp-nbsp-迭代"><span class="post-toc-number">3.</span> <span class="post-toc-text">2    迭代</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-1-nbsp-nbsp-nbsp-nbsp-冒泡排序（起泡排序）"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">2.1    冒泡排序（起泡排序）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-1-1-nbsp-nbsp-nbsp-nbsp-基本算法"><span class="post-toc-number">3.1.1.</span> <span class="post-toc-text">2.1.1    基本算法</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-1-2-nbsp-nbsp-nbsp-nbsp-图示"><span class="post-toc-number">3.1.2.</span> <span class="post-toc-text">2.1.2    图示</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-1-3-nbsp-nbsp-nbsp-nbsp-改进"><span class="post-toc-number">3.1.3.</span> <span class="post-toc-text">2.1.3    改进</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-1-3-1-nbsp-nbsp-nbsp-nbsp-改进一"><span class="post-toc-number">3.1.3.1.</span> <span class="post-toc-text">2.1.3.1    改进一</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-1-3-2-改进二"><span class="post-toc-number">3.1.3.2.</span> <span class="post-toc-text">2.1.3.2 改进二</span></a></li></ol></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#3-nbsp-nbsp-nbsp-nbsp-分治"><span class="post-toc-number">4.</span> <span class="post-toc-text">3    分治</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-1-nbsp-nbsp-nbsp-nbsp-选择排序"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">3.1    选择排序</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-1-2-nbsp-nbsp-nbsp-nbsp-锦标赛排序"><span class="post-toc-number">4.1.1.</span> <span class="post-toc-text">3.1.2    锦标赛排序</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-1-3-nbsp-nbsp-nbsp-nbsp-堆排序"><span class="post-toc-number">4.1.2.</span> <span class="post-toc-text">3.1.3    堆排序</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-2-nbsp-nbsp-nbsp-nbsp-插入排序"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">3.2    插入排序</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-2-1-抽象递归算法"><span class="post-toc-number">4.2.1.</span> <span class="post-toc-text">3.2.1 抽象递归算法</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-1-2-实现"><span class="post-toc-number">4.2.2.</span> <span class="post-toc-text">2.1.2 实现</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#first-和-rest"><span class="post-toc-number">4.2.2.0.1.</span> <span class="post-toc-text">first 和 rest</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#列表的长度-length"><span class="post-toc-number">4.2.2.0.2.</span> <span class="post-toc-text">列表的长度 length</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#列表的连接"><span class="post-toc-number">4.2.2.0.3.</span> <span class="post-toc-text">列表的连接 +</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#插入"><span class="post-toc-number">4.2.2.0.4.</span> <span class="post-toc-text">插入</span></a></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#优化"><span class="post-toc-number">4.2.2.1.</span> <span class="post-toc-text">优化</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#插入的优化"><span class="post-toc-number">4.2.2.1.1.</span> <span class="post-toc-text">插入的优化</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#插入排序的优化"><span class="post-toc-number">4.2.2.1.2.</span> <span class="post-toc-text">插入排序的优化</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#希尔排序"><span class="post-toc-number">4.2.3.</span> <span class="post-toc-text">希尔排序</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-3-nbsp-nbsp-nbsp-nbsp-归并排序"><span class="post-toc-number">4.3.</span> <span class="post-toc-text">3.3    归并排序</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-3-1-nbsp-nbsp-nbsp-nbsp-自顶向下"><span class="post-toc-number">4.3.1.</span> <span class="post-toc-text">3.3.1    自顶向下</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-3-2-nbsp-nbsp-nbsp-nbsp-自底向上"><span class="post-toc-number">4.3.2.</span> <span class="post-toc-text">3.3.2    自底向上</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-3-3-nbsp-nbsp-nbsp-nbsp-链表的归并排序"><span class="post-toc-number">4.3.3.</span> <span class="post-toc-text">3.3.3    链表的归并排序</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-4-nbsp-nbsp-nbsp-nbsp-快速排序"><span class="post-toc-number">4.4.</span> <span class="post-toc-text">3.4    快速排序</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-4-2-非递归的快速排序"><span class="post-toc-number">4.4.1.</span> <span class="post-toc-text">3.4.2 非递归的快速排序</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-4-3-顺序统计量"><span class="post-toc-number">4.4.2.</span> <span class="post-toc-text">3.4.3 顺序统计量</span></a></li></ol></li></ol><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#4-基于比较的排序算法时间复杂度的下界"><span class="post-toc-number">5.</span> <span class="post-toc-text">4 基于比较的排序算法时间复杂度的下界</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-1-比较判别树"><span class="post-toc-number">5.1.</span> <span class="post-toc-text">4.1 比较判别树</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-2-代数判别树"><span class="post-toc-number">5.2.</span> <span class="post-toc-text">4.2 代数判别树</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#5-其他思路"><span class="post-toc-number">6.</span> <span class="post-toc-text">5 其他思路</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#5-1-基数排序"><span class="post-toc-number">6.1.</span> <span class="post-toc-text">5.1 基数排序</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#6-Tim-Sort"><span class="post-toc-number">7.</span> <span class="post-toc-text">6 *Tim Sort</span></a></li>
+    </ul>
+    
+
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+    <!-- Paradox Post Header -->
+    
+        
+            <!-- Random Thumbnail -->
+            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
+            <script type="text/ls-javascript" id="post-thumbnail-script">
+    var randomNum = Math.floor(Math.random() * 19 + 1);
+
+    $('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
+    $('.post_thumbnail-random').addClass('lazy');
+</script>
+
+        
+    
+            <p class="article-headline-p">
+                排序问题和排序算法
+            </p>
+        </div>
+
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/avatar.png" width="44px" height="44px" alt="Author Avatar">
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>Han Qi</strong>
+        <span>Nov 23, 2019</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
+    
+
+    <!-- Tags (bookmark) -->
+    
+
+    <!-- Share -->
+    
+        <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+
+    <!-- Share Weibo -->
+    
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=排序问题和排序算法&url=http://yoursite.com/2019/11/23/algorithms-sorting/index.html&pic=http://yoursite.com/img/favicon.png&searchPic=false&style=simple" target="_blank">
+            <li class="mdl-menu__item">
+                شارك على Weibo
+            </li>
+        </a>
+    
+
+    <!-- Share Twitter -->
+    
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=排序问题和排序算法&url=http://yoursite.com/2019/11/23/algorithms-sorting/index.html&via=Han Qi" target="_blank">
+            <li class="mdl-menu__item">
+                شارك على Twitter
+            </li>
+        </a>
+    
+
+    <!-- Share Facebook -->
+    
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2019/11/23/algorithms-sorting/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                شارك على Facebook
+            </li>
+        </a>
+    
+
+    <!-- Share Google+ -->
+    
+        <a class="post_share-link" href="https://plus.google.com/share?url=http://yoursite.com/2019/11/23/algorithms-sorting/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                شارك على Google+
+            </li>
+        </a>
+    
+
+    <!-- Share LinkedIn -->
+    
+        <a class="post_share-link" href="https://www.linkedin.com/shareArticle?mini=true&url=http://yoursite.com/2019/11/23/algorithms-sorting/index.html&title=排序问题和排序算法" target="_blank">
+            <li class="mdl-menu__item">
+                شارك على LinkedIn
+            </li>
+        </a>
+    
+
+    <!-- Share QQ -->
+    
+        <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=RHANQTL&title=排序问题和排序算法&summary=&pics=http://yoursite.com/img/favicon.png&url=http://yoursite.com/2019/11/23/algorithms-sorting/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                شارك على QQ
+            </li>
+        </a>
+    
+
+    <!-- Share Telegram -->
+    
+        <a class="post_share-link" href="https://telegram.me/share/url?url=http://yoursite.com/2019/11/23/algorithms-sorting/index.html&text=排序问题和排序算法" target="_blank">
+            <li class="mdl-menu__item">
+                شارك على Telegram
+            </li>
+        </a>
+    
+</ul>
+
+    
+</div>
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <p><strong>摘要</strong></p>
+<a id="more"></a>
+<h1 id="0-nbsp-nbsp-nbsp-nbsp-度量标准"><a href="#0-nbsp-nbsp-nbsp-nbsp-度量标准" class="headerlink" title="0&nbsp;&nbsp;&nbsp;&nbsp;度量标准"></a>0&nbsp;&nbsp;&nbsp;&nbsp;度量标准</h1><p>对于排序算法而言，最重要的度量标准是效率（性能），其次也需要考虑稳定性问题。所谓“稳定性”，就是指两个在某种规定下相等的元素在排序后保持排序前的相对位置，比如序列 $[ \dots , 1_a, 1_b, \dots ]$，如果排序后相对位置没有改变，则称排序算法为稳定的，否则称为不稳定的。稳定性在多键排序时很有用处。</p>
+<h1 id="1-nbsp-nbsp-nbsp-nbsp-解决问题的思路"><a href="#1-nbsp-nbsp-nbsp-nbsp-解决问题的思路" class="headerlink" title="1&nbsp;&nbsp;&nbsp;&nbsp;解决问题的思路"></a>1&nbsp;&nbsp;&nbsp;&nbsp;解决问题的思路</h1><ul>
+<li>迭代：冒泡排序</li>
+<li>分治<ul>
+<li>分为 1 和 n - 1<ul>
+<li>选择排序</li>
+<li>插入排序</li>
+</ul>
+</li>
+<li>分为两个大小基本相等的部分<ul>
+<li>归并排序</li>
+<li>快速排序</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>其他思路：基数排序</li>
+</ul>
+<p>// Tim Sort</p>
+<h1 id="2-nbsp-nbsp-nbsp-nbsp-迭代"><a href="#2-nbsp-nbsp-nbsp-nbsp-迭代" class="headerlink" title="2&nbsp;&nbsp;&nbsp;&nbsp;迭代"></a>2&nbsp;&nbsp;&nbsp;&nbsp;迭代</h1><h2 id="2-1-nbsp-nbsp-nbsp-nbsp-冒泡排序（起泡排序）"><a href="#2-1-nbsp-nbsp-nbsp-nbsp-冒泡排序（起泡排序）" class="headerlink" title="2.1&nbsp;&nbsp;&nbsp;&nbsp;冒泡排序（起泡排序）"></a>2.1&nbsp;&nbsp;&nbsp;&nbsp;冒泡排序（起泡排序）</h2><p>Bubble Sort</p>
+<h3 id="2-1-1-nbsp-nbsp-nbsp-nbsp-基本算法"><a href="#2-1-1-nbsp-nbsp-nbsp-nbsp-基本算法" class="headerlink" title="2.1.1&nbsp;&nbsp;&nbsp;&nbsp;基本算法"></a>2.1.1&nbsp;&nbsp;&nbsp;&nbsp;基本算法</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">bubbleSort</span><span class="params">(<span class="keyword">int</span> a[], <span class="keyword">int</span> lo, <span class="keyword">int</span> hi)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">while</span> (lo &lt; hi) &#123;</span><br><span class="line">        bubble(a, lo, hi--);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">bubble</span><span class="params">(<span class="keyword">int</span> a[], <span class="keyword">int</span> lo, <span class="keyword">int</span> hi)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = lo + <span class="number">1</span>; i &lt; hi; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (a[i - <span class="number">1</span>] &gt; a[i]) &#123;</span><br><span class="line">            swap(a[i - <span class="number">1</span>], a[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span> &amp;a, <span class="keyword">int</span> &amp;b)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> tmp = a;</span><br><span class="line">    a = b;</span><br><span class="line">    b = tmp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="2-1-2-nbsp-nbsp-nbsp-nbsp-图示"><a href="#2-1-2-nbsp-nbsp-nbsp-nbsp-图示" class="headerlink" title="2.1.2&nbsp;&nbsp;&nbsp;&nbsp;图示"></a>2.1.2&nbsp;&nbsp;&nbsp;&nbsp;图示</h3><h3 id="2-1-3-nbsp-nbsp-nbsp-nbsp-改进"><a href="#2-1-3-nbsp-nbsp-nbsp-nbsp-改进" class="headerlink" title="2.1.3&nbsp;&nbsp;&nbsp;&nbsp;改进"></a>2.1.3&nbsp;&nbsp;&nbsp;&nbsp;改进</h3><h4 id="2-1-3-1-nbsp-nbsp-nbsp-nbsp-改进一"><a href="#2-1-3-1-nbsp-nbsp-nbsp-nbsp-改进一" class="headerlink" title="2.1.3.1&nbsp;&nbsp;&nbsp;&nbsp;改进一"></a>2.1.3.1&nbsp;&nbsp;&nbsp;&nbsp;改进一</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">bubbleSort</span><span class="params">(<span class="keyword">int</span> a[], <span class="keyword">int</span> lo, <span class="keyword">int</span> hi)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">while</span> (!bubble(a, lo, hi--))</span><br><span class="line">        ;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">bubble</span><span class="params">(<span class="keyword">int</span> a[], <span class="keyword">int</span> lo, <span class="keyword">int</span> hi)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">bool</span> sorted = <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = lo + <span class="number">1</span>; i &lt; hi; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (a[i - <span class="number">1</span>] &gt; a[i]) &#123;</span><br><span class="line">            swap(a[i - <span class="number">1</span>], a[i]);</span><br><span class="line">            sorted = <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> sorted;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>迭代的次数 = 发生交换的次数 + 1</p>
+<p>// TODO</p>
+<p>依然存在继续改进的空间！</p>
+<blockquote>
+<p>《数据结构（C++ 语言版）》的习题中有这样一个问题：是否存在某个元素朝着一度远离其正确位置的方向移动？</p>
+<p><strong>情况 1</strong>&nbsp;&nbsp;&nbsp;&nbsp;元素 e 在正确位置的右边</p>
+<img src="/2019/11/23/algorithms-sorting/bubble-sort-case1.png" title="情况 1">
+<p>每次元素 e 的左边都是最大值来与 e 比较，如果要让 e 不移动，就要保证最大值 &lt;= e；另一方面，e 要向右移动，就要求 e 的右边必须 &lt; e。可以看到，这种情况下我们标出的“正确位置”并不是元素 e 的正确位置。</p>
+<p><strong>情况 2</strong>&nbsp;&nbsp;&nbsp;&nbsp;元素 e 在正确位置，向右移动</p>
+<img src="/2019/11/23/algorithms-sorting/bubble-sort-case2.png" title="情况 2">
+<p>这种情况与情况 1 类似。</p>
+<p><strong>情况 3</strong>&nbsp;&nbsp;&nbsp;&nbsp;元素 e 在正确位置，向左移动</p>
+<img src="/2019/11/23/algorithms-sorting/bubble-sort-case3.png" title="情况 3">
+<p><strong>情况 4</strong>&nbsp;&nbsp;&nbsp;&nbsp;元素 e 在正确位置的左边</p>
+<img src="/2019/11/23/algorithms-sorting/bubble-sort-case4.png" title="情况 4">
+<p>综上，我们的结论是，存在这样的序列，比如 [ 6, 7, 8, 5, 1, 2, 3, 4 ]</p>
+<p>书中给出的答案是 [ n, n - 1, 1, 2, …, n - 2 ]</p>
+</blockquote>
+<h4 id="2-1-3-2-改进二"><a href="#2-1-3-2-改进二" class="headerlink" title="2.1.3.2 改进二"></a>2.1.3.2 改进二</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">bubbleSort</span><span class="params">(<span class="keyword">int</span> a[], <span class="keyword">int</span> lo, <span class="keyword">int</span> hi)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">while</span> (lo &lt; (hi = bubble(a, lo, hi)))</span><br><span class="line">        ;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">bubble</span><span class="params">(<span class="keyword">int</span> a[], <span class="keyword">int</span> lo, <span class="keyword">int</span> hi)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> last = lo;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = lo + <span class="number">1</span>; i &lt; hi; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (a[i - <span class="number">1</span>] &gt; a[i]) &#123;</span><br><span class="line">            swap(a[i - <span class="number">1</span>], a[i]);</span><br><span class="line">            last = i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="3-nbsp-nbsp-nbsp-nbsp-分治"><a href="#3-nbsp-nbsp-nbsp-nbsp-分治" class="headerlink" title="3&nbsp;&nbsp;&nbsp;&nbsp;分治"></a>3&nbsp;&nbsp;&nbsp;&nbsp;分治</h1><p>下面的算法设计都从抽象的递归算法开始，一步一步进行实现和优化。</p>
+<h2 id="3-1-nbsp-nbsp-nbsp-nbsp-选择排序"><a href="#3-1-nbsp-nbsp-nbsp-nbsp-选择排序" class="headerlink" title="3.1&nbsp;&nbsp;&nbsp;&nbsp;选择排序"></a>3.1&nbsp;&nbsp;&nbsp;&nbsp;选择排序</h2><p>有 8 种基本的选择方式：{ 从前向后，从后向前 } × { 选择最小值，选择最大值 } × { 严格不等，不严格不等 }</p>
+<ul>
+<li>从前向后，选择最小值：不稳定<ul>
+<li>比如序列 $[100_a, 100_b, 2]$，最小值为 2，与 $100_a$ 交换之后得到的序列为 $[2, 100_b, 100_a]$</li>
+</ul>
+</li>
+<li>从前向后，选择最大值：不稳定</li>
+<li>从后向前，选择最小值：</li>
+<li>从后向前，选择最大值，严格不等：稳定</li>
+</ul>
+<p>选择最小的元素：可以使用分治的方式，将数组一分为二，递归地找出最小值。</p>
+<p>其中有一个技巧，即选择最小值的过程中，被一分为二的数组只有一边能产生当前的最小值，而另一边的最小值其实就是整个数组中第二小的元素，下一次在获取最小值时可以直接用。</p>
+<p>引申出算法优化的一个技巧：在算法执行的过程中，后面的计算可能会用到前面的结果，可以将前面的结果保存下来提高效率。</p>
+<p>冒泡排序也是一种选择排序。</p>
+<p>虽然选择排序是 $\Theta(n^2)$，与冒泡排序在最坏情况下相同，但是，选择排序在每一趟迭代中总是只需要 1 次交换，大大减少了交换的次数</p>
+<h3 id="3-1-2-nbsp-nbsp-nbsp-nbsp-锦标赛排序"><a href="#3-1-2-nbsp-nbsp-nbsp-nbsp-锦标赛排序" class="headerlink" title="3.1.2&nbsp;&nbsp;&nbsp;&nbsp;锦标赛排序"></a>3.1.2&nbsp;&nbsp;&nbsp;&nbsp;锦标赛排序</h3><h3 id="3-1-3-nbsp-nbsp-nbsp-nbsp-堆排序"><a href="#3-1-3-nbsp-nbsp-nbsp-nbsp-堆排序" class="headerlink" title="3.1.3&nbsp;&nbsp;&nbsp;&nbsp;堆排序"></a>3.1.3&nbsp;&nbsp;&nbsp;&nbsp;堆排序</h3><h2 id="3-2-nbsp-nbsp-nbsp-nbsp-插入排序"><a href="#3-2-nbsp-nbsp-nbsp-nbsp-插入排序" class="headerlink" title="3.2&nbsp;&nbsp;&nbsp;&nbsp;插入排序"></a>3.2&nbsp;&nbsp;&nbsp;&nbsp;插入排序</h2><p>思路：从列表未排序的部分取出一个元素，将其插入到已经排好序的部分。</p>
+<p>逆序对</p>
+<p>输入敏感算法</p>
+<h3 id="3-2-1-抽象递归算法"><a href="#3-2-1-抽象递归算法" class="headerlink" title="3.2.1 抽象递归算法"></a>3.2.1 抽象递归算法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">insertionSortAbstract(L)</span><br><span class="line">    if L.length = 1</span><br><span class="line">        return</span><br><span class="line">    v &lt;- first(L)</span><br><span class="line">    insertionSortAbstract(rest(L))</span><br><span class="line">    L &lt;- insertAbstract(v, rest(L))</span><br><span class="line"></span><br><span class="line">insertAbstract(v, L)</span><br><span class="line">    if L.length = 0</span><br><span class="line">        return &#123;v&#125;</span><br><span class="line">    else if v &lt;= first(L)</span><br><span class="line">        return &#123;v&#125; + L</span><br><span class="line">    else</span><br><span class="line">        return first(L) + insertAbstract(v, rest(L))</span><br></pre></td></tr></table></figure>
+<h3 id="2-1-2-实现"><a href="#2-1-2-实现" class="headerlink" title="2.1.2 实现"></a>2.1.2 实现</h3><p>抽象算法中需要我们实现的部分有 4 个：</p>
+<ul>
+<li>列表的连接 <code>+</code></li>
+<li><code>first</code> 和 <code>rest</code></li>
+<li>列表的长度 <code>length</code></li>
+<li>插入</li>
+</ul>
+<h5 id="first-和-rest"><a href="#first-和-rest" class="headerlink" title="first 和 rest"></a><code>first</code> 和 <code>rest</code></h5><p>对于数组而言，这两个操作的实现比较简单。我们可以使用两个变量 start 和 end（不含），<code>first</code> 就是 A[start]，<code>rest</code> 就是 A[start+1, end)</p>
+<h5 id="列表的长度-length"><a href="#列表的长度-length" class="headerlink" title="列表的长度 length"></a>列表的长度 <code>length</code></h5><p>有了上面的 start 和 end，列表的长度就是 end - start</p>
+<h5 id="列表的连接"><a href="#列表的连接" class="headerlink" title="列表的连接 +"></a>列表的连接 <code>+</code></h5><p>由于我们的算法是原地（In-Place）的，排序之后的结果依然存放在原来的数组中，所以这个操作被隐含地实现了。</p>
+<h5 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h5><p>注意到在 <code>insertionSortAbstract</code> 中，每次都是选择当前子数组的第一个元素作为待插入元素，这样，我们可以把整个数组分为 3 个部分：start - 1，start，[start + 1, end)。每次取出第一个元素（A[start - 1]）时，start - 1 这个位置就变成了一个空位，如果待插入元素大于 A[start]，那么可以将 A[start] 移到这个位置上：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">insert(v, A, start, end)</span><br><span class="line">    if end - start = 0</span><br><span class="line">        A[start - 1] = v</span><br><span class="line">    else if v &lt;= A[start]</span><br><span class="line">        A[start - 1] = v</span><br><span class="line">    else</span><br><span class="line">        A[start - 1] = A[start]</span><br><span class="line">        insert(v, A, start + 1, end)</span><br></pre></td></tr></table></figure>
+<h4 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h4><h5 id="插入的优化"><a href="#插入的优化" class="headerlink" title="插入的优化"></a>插入的优化</h5><p>注意到在 insert 中，</p>
+<ul>
+<li>每次调用的 v 相对于当前的 A 来说总在 start - 1，所以其实前两个分支可以什么都不做</li>
+<li>insert 是尾递归</li>
+</ul>
+<p>可以将代码改成如下的迭代版本：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">insert(v, A, start, end)</span><br><span class="line">    if end - start = 0</span><br><span class="line">        return</span><br><span class="line">    for i &lt;- start to end - 1</span><br><span class="line">        if v &gt; A[i]</span><br><span class="line">            A[i - 1] &lt;- A[i]</span><br><span class="line">            A[i] &lt;- v</span><br></pre></td></tr></table></figure>
+<h5 id="插入排序的优化"><a href="#插入排序的优化" class="headerlink" title="插入排序的优化"></a>插入排序的优化</h5><p>注意到插入排序的实际计算过程是这样的：</p>
+<ol>
+<li>从最后的元素（A[end - 1]）组成的列表开始，将 A[end - 2] 插入到这个列表中</li>
+<li>将 A[end - 3] 插入到上面得到的列表中</li>
+<li>· · ·</li>
+<li>将 A[start] 插入到上面得到的列表中</li>
+</ol>
+<p>从后往前进行排序，所以我们可以这样修改现在的算法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">insertionSort(L, start, end)</span><br><span class="line">    if end - start = 1</span><br><span class="line">        return</span><br><span class="line">    else</span><br><span class="line">        for i &lt;- end - 2 downto start</span><br><span class="line">            insert(A[i], A, i + 1, end)</span><br></pre></td></tr></table></figure>
+<p>最终版本：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">insertionSort(L, start, end)</span><br><span class="line">    if end - start = 1</span><br><span class="line">        return</span><br><span class="line">    else</span><br><span class="line">        for i &lt;- end - 2 downto start</span><br><span class="line">            for j &lt;- i to end - 2</span><br><span class="line">                if A[j] &gt; A[j + 1]</span><br><span class="line">                    A[j], A[j + 1] &lt;- A[j + 1], A[j]</span><br></pre></td></tr></table></figure>
+<p>分析</p>
+<p>Backward Analysis</p>
+<p>$O(I + n)$</p>
+<h3 id="希尔排序"><a href="#希尔排序" class="headerlink" title="希尔排序"></a>希尔排序</h3><h2 id="3-3-nbsp-nbsp-nbsp-nbsp-归并排序"><a href="#3-3-nbsp-nbsp-nbsp-nbsp-归并排序" class="headerlink" title="3.3&nbsp;&nbsp;&nbsp;&nbsp;归并排序"></a>3.3&nbsp;&nbsp;&nbsp;&nbsp;归并排序</h2><p>冯 · 诺伊曼提出的</p>
+<h3 id="3-3-1-nbsp-nbsp-nbsp-nbsp-自顶向下"><a href="#3-3-1-nbsp-nbsp-nbsp-nbsp-自顶向下" class="headerlink" title="3.3.1&nbsp;&nbsp;&nbsp;&nbsp;自顶向下"></a>3.3.1&nbsp;&nbsp;&nbsp;&nbsp;自顶向下</h3><h3 id="3-3-2-nbsp-nbsp-nbsp-nbsp-自底向上"><a href="#3-3-2-nbsp-nbsp-nbsp-nbsp-自底向上" class="headerlink" title="3.3.2&nbsp;&nbsp;&nbsp;&nbsp;自底向上"></a>3.3.2&nbsp;&nbsp;&nbsp;&nbsp;自底向上</h3><h3 id="3-3-3-nbsp-nbsp-nbsp-nbsp-链表的归并排序"><a href="#3-3-3-nbsp-nbsp-nbsp-nbsp-链表的归并排序" class="headerlink" title="3.3.3&nbsp;&nbsp;&nbsp;&nbsp;链表的归并排序"></a>3.3.3&nbsp;&nbsp;&nbsp;&nbsp;链表的归并排序</h3><blockquote>
+<p><strong>多路归并</strong></p>
+</blockquote>
+<h2 id="3-4-nbsp-nbsp-nbsp-nbsp-快速排序"><a href="#3-4-nbsp-nbsp-nbsp-nbsp-快速排序" class="headerlink" title="3.4&nbsp;&nbsp;&nbsp;&nbsp;快速排序"></a>3.4&nbsp;&nbsp;&nbsp;&nbsp;快速排序</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">quick_sort</span><span class="params">(<span class="keyword">int</span> a[], <span class="keyword">int</span> lo, <span class="keyword">int</span> hi)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (lo &lt; hi) &#123;</span><br><span class="line">        <span class="keyword">int</span> pivot = a[lo];</span><br><span class="line">        <span class="keyword">int</span> vacant = lo;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> unknown = lo + <span class="number">1</span>; unknown &lt; hi; unknown++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (a[unknown] &lt; pivot) &#123;</span><br><span class="line">                a[vacant] = a[unknown];</span><br><span class="line">                a[unknown] = a[vacant + <span class="number">1</span>];</span><br><span class="line">                vacant++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        a[vacant] = pivot;</span><br><span class="line">        quick_sort(a, lo, vacant);</span><br><span class="line">        quick_sort(a, vacant + <span class="number">1</span>, hi);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>// 三向切分</p>
+<h3 id="3-4-2-非递归的快速排序"><a href="#3-4-2-非递归的快速排序" class="headerlink" title="3.4.2 非递归的快速排序"></a>3.4.2 非递归的快速排序</h3><p>我们其实可以发现，快速排序是对一棵树的前序遍历。</p>
+<img src="/2019/11/23/algorithms-sorting/quicksort-sequence.png">
+<h3 id="3-4-3-顺序统计量"><a href="#3-4-3-顺序统计量" class="headerlink" title="3.4.3 顺序统计量"></a>3.4.3 顺序统计量</h3><h1 id="4-基于比较的排序算法时间复杂度的下界"><a href="#4-基于比较的排序算法时间复杂度的下界" class="headerlink" title="4 基于比较的排序算法时间复杂度的下界"></a>4 基于比较的排序算法时间复杂度的下界</h1><h2 id="4-1-比较判别树"><a href="#4-1-比较判别树" class="headerlink" title="4.1 比较判别树"></a>4.1 比较判别树</h2><p>决策树是一个二叉树，</p>
+<ul>
+<li>每个内结点都是一次比较操作，根据比较的结果来决定下一步的方向</li>
+<li>每个叶子结点都是输入的一种排列</li>
+</ul>
+<p>对于大小为 n 的输入，共有 n! 种排列，高度为 h 的二叉树最多有 $2^h$ 个叶子结点，那么我们有：$n! \le 2^h$，即：$h \ge \log_2(n!) = \log_2((\dfrac{n}{e})^n) = \Theta(n\log n)$</p>
+<p>也就是说，基于比较的排序算法的时间复杂度不会低于 $n\log n$，有些基于比较的排序算法的渐进复杂度为 $O(n^2)$ 是因为重复了决策树中的某些路径。</p>
+<p>归并排序具有最优的渐进复杂度（上界和下界都为 $n\log  n$）。</p>
+<h2 id="4-2-代数判别树"><a href="#4-2-代数判别树" class="headerlink" title="4.2 代数判别树"></a>4.2 代数判别树</h2><h1 id="5-其他思路"><a href="#5-其他思路" class="headerlink" title="5 其他思路"></a>5 其他思路</h1><h2 id="5-1-基数排序"><a href="#5-1-基数排序" class="headerlink" title="5.1 基数排序"></a>5.1 基数排序</h2><h1 id="6-Tim-Sort"><a href="#6-Tim-Sort" class="headerlink" title="6 *Tim Sort"></a>6 *Tim Sort</h1>
+        
+    
+
+    
+</div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+        <a href="/2019/12/26/algorithms-prerequisites/" id="post_nav-newer" class="prev-content">
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_back</i>
+            </button>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            أحدث
+        </a>
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2019/11/20/others-table-driven/" id="post_nav-older" class="next-content">
+            أقدم
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
+
+
+                    
+                        <!-- Overlay For Active Sidebar -->
+<div class="sidebar-overlay"></div>
+
+<!-- Material sidebar -->
+<aside id="sidebar" class="sidebar sidebar-colored sidebar-fixed-left" role="navigation">
+    <div id="sidebar-main">
+        <!-- Sidebar Header -->
+        <div class="sidebar-header header-cover" style="background-image: url(/img/sidebar_header.png);">
+    <!-- Top bar -->
+    <div class="top-bar"></div>
+
+    <!-- Sidebar toggle button -->
+    <button type="button" class="sidebar-toggle mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" style="display: initial;" data-upgraded=",MaterialButton,MaterialRipple">
+        <i class="material-icons">clear_all</i>
+        <span class="mdl-button__ripple-container">
+            <span class="mdl-ripple">
+            </span>
+        </span>
+    </button>
+
+    <!-- Sidebar Avatar -->
+    <div class="sidebar-image">
+        <img src="/img/avatar.png" alt="Han Qi's avatar">
+    </div>
+
+    <!-- Sidebar Email -->
+    <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">
+        my@rhanqtl.com
+        <b class="caret"></b>
+    </a>
+</div>
+
+
+        <!-- Sidebar Navigation  -->
+        <ul class="nav sidebar-nav">
+    <!-- User dropdown  -->
+    <li class="dropdown">
+        <ul id="settings-dropdown" class="dropdown-menu">
+            
+                <li>
+                    <a href="#" target="_blank" title="Email Me">
+                        
+                            <i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i>
+                        
+                        Email Me
+                    </a>
+                </li>
+            
+        </ul>
+    </li>
+
+    <!-- Homepage -->
+    
+        <li id="sidebar-first-li">
+            <a href="/">
+                
+                    <i class="material-icons sidebar-material-icons">home</i>
+                
+                الرئيسية
+            </a>
+        </li>
+        
+    
+
+    <!-- Archives  -->
+    
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                
+                    <i class="material-icons sidebar-material-icons">inbox</i>
+                
+                    أرشيف
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+            <li>
+                <a class="sidebar_archives-link" href="/archives/2019/12/">December 2019<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/11/">November 2019<span class="sidebar_archives-count">6</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/10/">October 2019<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/09/">September 2019<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/08/">August 2019<span class="sidebar_archives-count">10</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/07/">July 2019<span class="sidebar_archives-count">16</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/06/">June 2019<span class="sidebar_archives-count">21</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/05/">May 2019<span class="sidebar_archives-count">36</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/04/">April 2019<span class="sidebar_archives-count">46</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/03/">March 2019<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/02/">February 2019<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/01/">January 2019<span class="sidebar_archives-count">17</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/12/">December 2018<span class="sidebar_archives-count">26</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/11/">November 2018<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/10/">October 2018<span class="sidebar_archives-count">1</span></a>
+            </li></ul>
+        </li>
+        
+    
+
+    <!-- Categories  -->
+    
+
+    <!-- Pages  -->
+    
+
+    <!-- Article Number  -->
+    
+</ul>
+
+
+        <!-- Sidebar Footer -->
+        <!--
+I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright, I will thank you so much.
+If you still want to delete the copyrights, could you still retain the first one? Which namely "Theme Material"
+It will not impact the appearance and can give developers a lot of support :)
+
+很高兴您使用并喜欢该主题，开发不易 十分谢谢与希望您可以保留一下版权声明。
+如果您仍然想删除的话 能否只保留第一项呢？即 "Theme Material"
+它不会影响美观并可以给开发者很大的支持和动力。 :)
+-->
+
+<!-- Sidebar Divider -->
+
+    <div class="sidebar-divider"></div>
+
+
+<!-- Theme Material -->
+
+    <a href="https://github.com/viosey/hexo-theme-material" class="sidebar-footer-text-a" target="_blank">
+        <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+            سمة - Material
+            <span class="sidebar-badge badge-circle">i</span>
+        </div>
+    </a>
+
+
+<!-- Help & Support -->
+<!--
+
+-->
+
+<!-- Feedback -->
+<!--
+
+-->
+
+<!-- About Theme -->
+<!--
+
+-->
+
+    </div>
+
+    <!-- Sidebar Image -->
+    
+
+</aside>
+
+                    
+
+                    
+                        <!-- Footer Top Button -->
+                        <div id="back-to-top" class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
+
+                    
+
+                    <!--Footer-->
+<footer class="mdl-mini-footer" id="bottom">
+    
+        <!-- Paradox Footer Left Section -->
+        <div class="mdl-mini-footer--left-section sns-list">
+    <!-- Twitter -->
+    
+        <a href="https://twitter.com/twitter" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-twitter">
+                <span class="visuallyhidden">Twitter</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Facebook -->
+    
+        <a href="https://www.facebook.com/facebook" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-facebook">
+                <span class="visuallyhidden">Facebook</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Google + -->
+    
+        <a href="https://www.google.com/" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-gplus">
+                <span class="visuallyhidden">Google Plus</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Weibo -->
+    
+
+    <!-- Instagram -->
+    
+
+    <!-- Tumblr -->
+    
+
+    <!-- Github -->
+    
+        <a href="https://github.com/rhanqtl" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-github">
+                <span class="visuallyhidden">Github</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- LinkedIn -->
+    
+
+    <!-- Zhihu -->
+    
+
+    <!-- Bilibili -->
+    
+
+    <!-- Telegram -->
+    
+
+    <!-- V2EX -->
+    
+
+    <!-- Segmentfault -->
+    
+</div>
+
+
+        <!--Copyright-->
+        <div id="copyright">
+            Copyright&nbsp;©&nbsp;<span year=""></span>&nbsp;RHANQTL
+            
+        </div>
+
+        <!-- Paradox Footer Right Section -->
+
+        <!--
+        I am glad you use this theme, the development is no so easy, I hope you can keep the copyright.
+        It will not impact the appearance and can give developers a lot of support :)
+
+        很高兴您使用该主题，开发不易，希望您可以保留一下版权声明。
+        它不会影响美观并可以给开发者很大的支持。 :)
+        -->
+
+        <div class="mdl-mini-footer--right-section">
+            <div>
+                <div class="footer-develop-div">Powered by <a href="https://hexo.io" target="_blank" class="footer-develop-a">Hexo</a></div>
+                <div class="footer-develop-div">Theme - <a href="https://github.com/viosey/hexo-theme-material" target="_blank" class="footer-develop-a">Material</a></div>
+            </div>
+        </div>
+    
+</footer>
+
+
+                    <!-- Import JS File -->
+
+    <script>lsloader.load("lazyload_js","/js/lazyload.min.js?1BcfzuNXqV+ntF6gq+5X3Q==", true)</script>
+
+
+
+    <script>lsloader.load("js_js","/js/js.min.js?Bn9UzEm8RrBSxqyZB0zPjA==", true)</script>
+
+
+
+    <script>lsloader.load("np_js","/js/nprogress.js?pl3Qhb9lvqR1FlyLUna1Yw==", true)</script>
+
+
+<script type="text/ls-javascript" id="NProgress-script">
+    NProgress.configure({
+        showSpinner: true
+    });
+    NProgress.start();
+    $('#nprogress .bar').css({
+        'background': '#29d'
+    });
+    $('#nprogress .peg').css({
+        'box-shadow': '0 0 10px #29d, 0 0 15px #29d'
+    });
+    $('#nprogress .spinner-icon').css({
+        'border-top-color': '#29d',
+        'border-left-color': '#29d'
+    });
+    setTimeout(function() {
+        NProgress.done();
+        $('.fade').removeClass('out');
+    }, 800);
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- UC Browser Compatible -->
+<script>
+	var agent = navigator.userAgent.toLowerCase();
+	if(agent.indexOf('ucbrowser')>0) {
+		document.write('<link rel="stylesheet" href="/css/uc.css">');
+	   alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
+	}
+</script>
+
+<!-- Import prettify js  -->
+
+
+
+<!-- Window Load -->
+<!-- add class for prettify -->
+<script type="text/ls-javascript" id="window-load">
+    $(window).on('load', function() {
+        // Post_Toc parent position fixed
+        $('.post-toc-wrap').parent('.mdl-menu__container').css('position', 'fixed');
+    });
+
+    
+    
+</script>
+
+<!-- MathJax Load-->
+
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
+        tex2jax: { inlineMath: [ ["$", "$"], ["\\(","\\)"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno",skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']},
+        TeX: {  noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } }, Macros: { href: "{}" } },
+        messageStyle: "none"
+    });
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+    <script type="text/javascript" src="/js/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+
+
+<!-- Bing Background -->
+
+
+<script type="text/ls-javascript" id="lazy-load">
+    // Offer LazyLoad
+    queue.offer(function(){
+        $('.lazy').lazyload({
+            effect : 'show'
+        });
+    });
+
+    // Start Queue
+    $(document).ready(function(){
+        setInterval(function(){
+            queue.execNext();
+        },200);
+    });
+</script>
+
+<!-- Custom Footer -->
+
+
+
+<script>
+    var copyrightNow = new Date().getFullYear();
+    var textContent = document.querySelector('span[year]')
+
+    copyrightSince = 0000;
+    if (copyrightSince === copyrightNow||copyrightSince === 0000) {
+        textContent.textContent = copyrightNow
+    } else {
+        textContent.textContent = copyrightSince + ' - ' + copyrightNow
+    }
+
+    (function(){
+        var scriptList = document.querySelectorAll('script[type="text/ls-javascript"]')
+
+        for (var i = 0; i < scriptList.length; ++i) {
+            var item = scriptList[i];
+            lsloader.runInlineScript(item.id,item.id);
+        }
+    })()
+console.log('\n %c © Material Theme | Version: 1.5.6 | https://github.com/viosey/hexo-theme-material %c \n', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-left-radius:5px;border-bottom-left-radius:5px;', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-right-radius:5px;border-bottom-right-radius:5px;');
+</script>
+
+                </main>
+            </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+        </body>
+    
+</html>

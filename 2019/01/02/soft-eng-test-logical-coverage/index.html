@@ -1,0 +1,1252 @@
+<!DOCTYPE html>
+<html style="display: none;" lang="zh">
+    <head><meta name="generator" content="Hexo 3.8.0">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    <!--
+        © Material Theme
+        https://github.com/viosey/hexo-theme-material
+        Version: 1.5.6 -->
+    <script>
+        window.materialVersion = "1.5.6"
+        // Delete localstorage with these tags
+        window.oldVersion = [
+            'codestartv1',
+            '1.3.4',
+            '1.4.0',
+            '1.4.0b1',
+            '1.5.0',
+            '1.5.2',
+            '1.5.5'
+        ]
+    </script>
+
+    <!-- dns prefetch -->
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+
+
+
+
+
+
+
+
+
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+
+
+
+
+    <!-- Meta & Info -->
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <!-- Title -->
+    
+    <title>
+        
+            软件测试基础：逻辑覆盖法 | 
+        
+        RHANQTL
+    </title>
+
+    <!-- Favicons -->
+    <link rel="icon shortcut" type="image/ico" href="/img/favicon.png">
+    <link rel="icon" href="/img/favicon.png">
+
+    <meta name="format-detection" content="telephone=no">
+    <meta name="description" itemprop="description" content="
+语句覆盖：程序中的每个可执行语句至少执行一次
+判定覆盖（分支覆盖）：程序中的每个判定都至少获得一次 “真” 值和一次 “假” 值
+条件覆盖：程序中每个判定包含的每个条件的可能取值都至少满足一次
+判定/条件覆盖：判定覆盖 + 条件覆盖
+组合覆盖：程序中每个判定包含的所有条件的所有取值组合都至少满足一次
+路径覆盖：程序中所有可能的路径都至少执行一次
+">
+    <meta name="keywords" content="">
+    <meta name="theme-color" content="#0097A7">
+
+    <!-- Disable Fucking Bloody Baidu Tranformation -->
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+
+    <!--[if lte IE 9]>
+        <link rel="stylesheet" href="/css/ie-blocker.css">
+
+        
+            <script src="/js/ie-blocker.en.js"></script>
+        
+    <![endif]-->
+
+    <!-- Import lsloader -->
+    <script>(function(){window.lsloader={jsRunSequence:[],jsnamemap:{},cssnamemap:{}};lsloader.removeLS=function(a){try{localStorage.removeItem(a)}catch(b){}};lsloader.setLS=function(a,c){try{localStorage.setItem(a,c)}catch(b){}};lsloader.getLS=function(a){var c="";try{c=localStorage.getItem(a)}catch(b){c=""}return c};versionString="/*"+(window.materialVersion||"unknownVersion")+"*/";lsloader.clean=function(){try{var b=[];for(var a=0;a<localStorage.length;a++){b.push(localStorage.key(a))}b.forEach(function(e){var f=lsloader.getLS(e);if(window.oldVersion){var d=window.oldVersion.reduce(function(g,h){return g||f.indexOf("/*"+h+"*/")!==-1},false);if(d){lsloader.removeLS(e)}}})}catch(c){}};lsloader.clean();lsloader.load=function(f,a,b,d){if(typeof b==="boolean"){d=b;b=undefined}d=d||false;b=b||function(){};var e;e=this.getLS(f);if(e&&e.indexOf(versionString)===-1){this.removeLS(f);this.requestResource(f,a,b,d);return}if(e){var c=e.split(versionString)[0];if(c!=a){console.log("reload:"+a);this.removeLS(f);this.requestResource(f,a,b,d);return}e=e.split(versionString)[1];if(d){this.jsRunSequence.push({name:f,code:e});this.runjs(a,f,e)}else{document.getElementById(f).appendChild(document.createTextNode(e));b()}}else{this.requestResource(f,a,b,d)}};lsloader.requestResource=function(b,e,a,c){var d=this;if(c){this.iojs(e,b,function(h,f,g){d.setLS(f,h+versionString+g);d.runjs(h,f,g)})}else{this.iocss(e,b,function(f){document.getElementById(b).appendChild(document.createTextNode(f));d.setLS(b,e+versionString+f)},a)}};lsloader.iojs=function(d,b,g){var a=this;a.jsRunSequence.push({name:b,code:""});try{var f=new XMLHttpRequest();f.open("get",d,true);f.onreadystatechange=function(){if(f.readyState==4){if((f.status>=200&&f.status<300)||f.status==304){if(f.response!=""){g(d,b,f.response);return}}a.jsfallback(d,b)}};f.send(null)}catch(c){a.jsfallback(d,b)}};lsloader.iocss=function(f,c,h,a){var b=this;try{var g=new XMLHttpRequest();g.open("get",f,true);g.onreadystatechange=function(){if(g.readyState==4){if((g.status>=200&&g.status<300)||g.status==304){if(g.response!=""){h(g.response);a();return}}b.cssfallback(f,c,a)}};g.send(null)}catch(d){b.cssfallback(f,c,a)}};lsloader.iofonts=function(f,c,h,a){var b=this;try{var g=new XMLHttpRequest();g.open("get",f,true);g.onreadystatechange=function(){if(g.readyState==4){if((g.status>=200&&g.status<300)||g.status==304){if(g.response!=""){h(g.response);a();return}}b.cssfallback(f,c,a)}};g.send(null)}catch(d){b.cssfallback(f,c,a)}};lsloader.runjs=function(f,c,e){if(!!c&&!!e){for(var b in this.jsRunSequence){if(this.jsRunSequence[b].name==c){this.jsRunSequence[b].code=e}}}if(!!this.jsRunSequence[0]&&!!this.jsRunSequence[0].code&&this.jsRunSequence[0].status!="failed"){var a=document.createElement("script");a.appendChild(document.createTextNode(this.jsRunSequence[0].code));a.type="text/javascript";document.getElementsByTagName("head")[0].appendChild(a);this.jsRunSequence.shift();if(this.jsRunSequence.length>0){this.runjs()}}else{if(!!this.jsRunSequence[0]&&this.jsRunSequence[0].status=="failed"){var d=this;var a=document.createElement("script");a.src=this.jsRunSequence[0].path;a.type="text/javascript";this.jsRunSequence[0].status="loading";a.onload=function(){d.jsRunSequence.shift();if(d.jsRunSequence.length>0){d.runjs()}};document.body.appendChild(a)}}};lsloader.tagLoad=function(b,a){this.jsRunSequence.push({name:a,code:"",path:b,status:"failed"});this.runjs()};lsloader.jsfallback=function(c,b){if(!!this.jsnamemap[b]){return}else{this.jsnamemap[b]=b}for(var a in this.jsRunSequence){if(this.jsRunSequence[a].name==b){this.jsRunSequence[a].code="";this.jsRunSequence[a].status="failed";this.jsRunSequence[a].path=c}}this.runjs()};lsloader.cssfallback=function(e,c,b){if(!!this.cssnamemap[c]){return}else{this.cssnamemap[c]=1}var d=document.createElement("link");d.type="text/css";d.href=e;d.rel="stylesheet";d.onload=d.onerror=b;var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(d,a)};lsloader.runInlineScript=function(c,b){var a=document.getElementById(b).innerText;this.jsRunSequence.push({name:c,code:a});this.runjs()}})();</script>
+
+    <!-- Import queue -->
+    <script>function Queue(){this.dataStore=[];this.offer=b;this.poll=d;this.execNext=a;this.debug=false;this.startDebug=c;function b(e){if(this.debug){console.log("Offered a Queued Function.")}if(typeof e==="function"){this.dataStore.push(e)}else{console.log("You must offer a function.")}}function d(){if(this.debug){console.log("Polled a Queued Function.")}return this.dataStore.shift()}function a(){var e=this.poll();if(e!==undefined){if(this.debug){console.log("Run a Queued Function.")}e()}}function c(){this.debug=true}}var queue=new Queue();</script>
+
+    <!-- Import CSS -->
+    
+        <style id="material_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_css","/css/material.min.css?Z7a72R1E4SxzBKR/WGctOA==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+        <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","/css/style.min.css?NKhlKQkXw/c66TR5p4wO+w==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+
+        
+
+    
+
+    
+
+    <!-- Config CSS -->
+
+<!-- Other Styles -->
+<style>
+  body, html {
+    font-family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+    overflow-x: hidden !important;
+  }
+  
+  code {
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  }
+
+  a {
+    color: #00838F;
+  }
+
+  .mdl-card__media,
+  #search-label,
+  #search-form-label:after,
+  #scheme-Paradox .hot_tags-count,
+  #scheme-Paradox .sidebar_archives-count,
+  #scheme-Paradox .sidebar-colored .sidebar-header,
+  #scheme-Paradox .sidebar-colored .sidebar-badge{
+    background-color: #0097A7 !important;
+  }
+
+  /* Sidebar User Drop Down Menu Text Color */
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus {
+    color: #0097A7 !important;
+  }
+
+  #post_entry-right-info,
+  .sidebar-colored .sidebar-nav li:hover > a,
+  .sidebar-colored .sidebar-nav li:hover > a i,
+  .sidebar-colored .sidebar-nav li > a:hover,
+  .sidebar-colored .sidebar-nav li > a:hover i,
+  .sidebar-colored .sidebar-nav li > a:focus i,
+  .sidebar-colored .sidebar-nav > .open > a,
+  .sidebar-colored .sidebar-nav > .open > a:hover,
+  .sidebar-colored .sidebar-nav > .open > a:focus,
+  #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a {
+    color: #0097A7 !important;
+  }
+
+  .toTop {
+    background: #757575 !important;
+  }
+
+  .material-layout .material-post>.material-nav,
+  .material-layout .material-index>.material-nav,
+  .material-nav a {
+    color: #757575;
+  }
+
+  #scheme-Paradox .MD-burger-layer {
+    background-color: #757575;
+  }
+
+  #scheme-Paradox #post-toc-trigger-btn {
+    color: #757575;
+  }
+
+  .post-toc a:hover {
+    color: #00838F;
+    text-decoration: underline;
+  }
+
+</style>
+
+
+<!-- Theme Background Related-->
+
+    <style>
+      body{
+        background-color: #F5F5F5;
+      }
+
+      /* blog_info bottom background */
+      #scheme-Paradox .material-layout .something-else .mdl-card__supporting-text{
+        background-color: #fff;
+      }
+    </style>
+
+
+
+
+<!-- Fade Effect -->
+
+    <style>
+      .fade {
+        transition: all 800ms linear;
+        -webkit-transform: translate3d(0,0,0);
+        -moz-transform: translate3d(0,0,0);
+        -ms-transform: translate3d(0,0,0);
+        -o-transform: translate3d(0,0,0);
+        transform: translate3d(0,0,0);
+        opacity: 1;
+      }
+
+      .fade.out{
+        opacity: 0;
+      }
+    </style>
+
+
+<!-- Import Font -->
+<!-- Import Roboto -->
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+
+
+<!-- Import Material Icons -->
+
+
+    <style id="material_icons"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_icons","/css/material-icons.css?pqhB/Rd/ab0H2+kZp0RDmw==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+
+
+
+
+    <!-- Import jQuery -->
+    
+        <script>lsloader.load("jq_js","/js/jquery.min.js?qcusAULNeBksqffqUM2+Ig==", true)</script>
+    
+
+    <!-- WebAPP Icons -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="RHANQTL">
+    <meta name="msapplication-starturl" content="http://yoursite.com/2019/01/02/soft-eng-test-logical-coverage/">
+    <meta name="msapplication-navbutton-color" content="#0097A7">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="RHANQTL">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon" href="/img/favicon.png">
+
+    <!-- Site Verification -->
+    
+    
+
+    <!-- RSS -->
+    
+
+    <!-- The Open Graph protocol -->
+    <meta property="og:url" content="http://yoursite.com/2019/01/02/soft-eng-test-logical-coverage/">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="软件测试基础：逻辑覆盖法 | RHANQTL">
+    <meta property="og:image" content="/img/favicon.png">
+    <meta property="og:description" content="
+语句覆盖：程序中的每个可执行语句至少执行一次
+判定覆盖（分支覆盖）：程序中的每个判定都至少获得一次 “真” 值和一次 “假” 值
+条件覆盖：程序中每个判定包含的每个条件的可能取值都至少满足一次
+判定/条件覆盖：判定覆盖 + 条件覆盖
+组合覆盖：程序中每个判定包含的所有条件的所有取值组合都至少满足一次
+路径覆盖：程序中所有可能的路径都至少执行一次
+">
+    
+
+    
+        <meta property="article:published_time" content="Wed Jan 02 2019 10:45:06 GMT+0800">
+        <meta property="article:modified_time" content="Sun Jun 30 2019 15:10:29 GMT+0800">
+    
+
+    <!-- The Twitter Card protocol -->
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!-- Add canonical link for SEO -->
+    
+        <link rel="canonical" href="http://yoursite.com/2019/01/02/soft-eng-test-logical-coverage/index.html">
+    
+
+    <!-- Structured-data for SEO -->
+    
+        
+
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage": "http://yoursite.com/2019/01/02/soft-eng-test-logical-coverage/index.html",
+    "headline": "软件测试基础：逻辑覆盖法",
+    "datePublished": "Wed Jan 02 2019 10:45:06 GMT+0800",
+    "dateModified": "Sun Jun 30 2019 15:10:29 GMT+0800",
+    "author": {
+        "@type": "Person",
+        "name": "Han Qi",
+        "image": {
+            "@type": "ImageObject",
+            "url": "/img/avatar.png"
+        },
+        "description": "Hi, nice to meet you"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "RHANQTL",
+        "logo": {
+            "@type":"ImageObject",
+            "url": "/img/favicon.png"
+        }
+    },
+    "keywords": "",
+    "description": "
+语句覆盖：程序中的每个可执行语句至少执行一次
+判定覆盖（分支覆盖）：程序中的每个判定都至少获得一次 “真” 值和一次 “假” 值
+条件覆盖：程序中每个判定包含的每个条件的可能取值都至少满足一次
+判定/条件覆盖：判定覆盖 + 条件覆盖
+组合覆盖：程序中每个判定包含的所有条件的所有取值组合都至少满足一次
+路径覆盖：程序中所有可能的路径都至少执行一次
+",
+}
+</script>
+
+
+    
+
+    <!-- Analytics -->
+    
+    
+    
+
+    <!-- Custom Head --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    
+
+</head>
+
+
+    
+        <body id="scheme-Paradox" class="lazy">
+            <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="material-layout  mdl-js-layout has-drawer is-upgraded">
+                
+
+                <!-- Main Container -->
+                <main class="material-layout__content" id="main">
+
+                    <!-- Top Anchor -->
+                    <div id="top"></div>
+
+                    
+                        <!-- Hamburger Button -->
+                        <button class="MD-burger-icon sidebar-toggle">
+                            <span id="MD-burger-id" class="MD-burger-layer"></span>
+                        </button>
+                    
+
+                    <!-- Post TOC -->
+
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+
+    <!-- Left aligned menu below button -->
+    
+    
+    <button id="post-toc-trigger-btn" class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#语句覆盖"><span class="post-toc-number">1.</span> <span class="post-toc-text">语句覆盖</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#判定覆盖"><span class="post-toc-number">2.</span> <span class="post-toc-text">判定覆盖</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#条件覆盖"><span class="post-toc-number">3.</span> <span class="post-toc-text">条件覆盖</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#判定-条件覆盖"><span class="post-toc-number">4.</span> <span class="post-toc-text">判定/条件覆盖</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#组合覆盖"><span class="post-toc-number">5.</span> <span class="post-toc-text">组合覆盖</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#路径覆盖"><span class="post-toc-number">6.</span> <span class="post-toc-text">路径覆盖</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Multiple-Condition-Coverage"><span class="post-toc-number">7.</span> <span class="post-toc-text">Multiple Condition Coverage</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#MC-DC"><span class="post-toc-number">8.</span> <span class="post-toc-text">MC/DC</span></a></li></ol>
+    </ul>
+    
+
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+    <!-- Paradox Post Header -->
+    
+        
+            <!-- Random Thumbnail -->
+            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
+            <script type="text/ls-javascript" id="post-thumbnail-script">
+    var randomNum = Math.floor(Math.random() * 19 + 1);
+
+    $('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
+    $('.post_thumbnail-random').addClass('lazy');
+</script>
+
+        
+    
+            <p class="article-headline-p">
+                软件测试基础：逻辑覆盖法
+            </p>
+        </div>
+
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/avatar.png" width="44px" height="44px" alt="Author Avatar">
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>Han Qi</strong>
+        <span>Jan 02, 2019</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
+    
+
+    <!-- Tags (bookmark) -->
+    
+
+    <!-- Share -->
+    
+        <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+
+    <!-- Share Weibo -->
+    
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=软件测试基础：逻辑覆盖法&url=http://yoursite.com/2019/01/02/soft-eng-test-logical-coverage/index.html&pic=http://yoursite.com/img/favicon.png&searchPic=false&style=simple" target="_blank">
+            <li class="mdl-menu__item">
+                شارك على Weibo
+            </li>
+        </a>
+    
+
+    <!-- Share Twitter -->
+    
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=软件测试基础：逻辑覆盖法&url=http://yoursite.com/2019/01/02/soft-eng-test-logical-coverage/index.html&via=Han Qi" target="_blank">
+            <li class="mdl-menu__item">
+                شارك على Twitter
+            </li>
+        </a>
+    
+
+    <!-- Share Facebook -->
+    
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2019/01/02/soft-eng-test-logical-coverage/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                شارك على Facebook
+            </li>
+        </a>
+    
+
+    <!-- Share Google+ -->
+    
+        <a class="post_share-link" href="https://plus.google.com/share?url=http://yoursite.com/2019/01/02/soft-eng-test-logical-coverage/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                شارك على Google+
+            </li>
+        </a>
+    
+
+    <!-- Share LinkedIn -->
+    
+        <a class="post_share-link" href="https://www.linkedin.com/shareArticle?mini=true&url=http://yoursite.com/2019/01/02/soft-eng-test-logical-coverage/index.html&title=软件测试基础：逻辑覆盖法" target="_blank">
+            <li class="mdl-menu__item">
+                شارك على LinkedIn
+            </li>
+        </a>
+    
+
+    <!-- Share QQ -->
+    
+        <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=RHANQTL&title=软件测试基础：逻辑覆盖法&summary=&pics=http://yoursite.com/img/favicon.png&url=http://yoursite.com/2019/01/02/soft-eng-test-logical-coverage/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                شارك على QQ
+            </li>
+        </a>
+    
+
+    <!-- Share Telegram -->
+    
+        <a class="post_share-link" href="https://telegram.me/share/url?url=http://yoursite.com/2019/01/02/soft-eng-test-logical-coverage/index.html&text=软件测试基础：逻辑覆盖法" target="_blank">
+            <li class="mdl-menu__item">
+                شارك على Telegram
+            </li>
+        </a>
+    
+</ul>
+
+    
+</div>
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <ul>
+<li>语句覆盖：程序中的每个可执行语句至少执行一次</li>
+<li>判定覆盖（分支覆盖）：程序中的每个判定都至少获得一次 “真” 值和一次 “假” 值</li>
+<li>条件覆盖：程序中每个判定包含的每个条件的可能取值都至少满足一次</li>
+<li>判定/条件覆盖：判定覆盖 + 条件覆盖</li>
+<li>组合覆盖：程序中每个判定包含的所有条件的所有取值组合都至少满足一次</li>
+<li>路径覆盖：程序中所有可能的路径都至少执行一次</li>
+</ul>
+<a id="more"></a>
+<p>以下面的代码片段为例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doWork</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y, <span class="keyword">int</span> z)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> j = <span class="number">0</span>, k = <span class="number">0</span>;            <span class="comment">// 语句块 a</span></span><br><span class="line">    <span class="keyword">if</span> (x &gt; <span class="number">3</span> &amp;&amp; z &lt; <span class="number">10</span>) &#123;</span><br><span class="line">        k = x * y - <span class="number">1</span>;           <span class="comment">// 语句块 b</span></span><br><span class="line">        j = Math.sqrt(k);</span><br><span class="line">    &#125;                            <span class="comment">// 语句块 c</span></span><br><span class="line">    <span class="keyword">if</span> (x == <span class="number">4</span> || y &gt; <span class="number">5</span>) &#123;</span><br><span class="line">        j = x * y + <span class="number">10</span>;          <span class="comment">// 语句块 d</span></span><br><span class="line">    &#125;</span><br><span class="line">    j = j % <span class="number">3</span>;                   <span class="comment">// 语句块 e</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="语句覆盖"><a href="#语句覆盖" class="headerlink" title="语句覆盖"></a>语句覆盖</h1><p>设 <code>x &gt; 3 &amp;&amp; z &lt; 10</code> 为真为 $T_1$，为假 $-T_1$；<code>x == 4 || y &gt; 5</code> 为真为 $T_2$，为假 $-T_2$</p>
+<p>只需要设计一个满足 <code>(x &gt; 3 &amp;&amp; z &lt; 10) &amp;&amp; (x == 4 || y &gt; 5)</code> 的测试用例即可。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">   (x &gt; 3 &amp;&amp; z &lt; 10) &amp;&amp; (x == 4 || y &gt; 5)</span><br><span class="line">=&gt; ((x &gt; 3 &amp;&amp; z &lt; 10) &amp;&amp; x == 4) || ((x &gt; 3 &amp;&amp; z &lt; 10) &amp;&amp; y &gt; 5)</span><br><span class="line">=&gt; ((x == 4) || (x &gt; 3 &amp;&amp; y &gt; 5)) &amp;&amp; z &lt; 10</span><br></pre></td></tr></table></figure>
+<p><code>x = 4, y = 5, z = 5</code></p>
+<ul>
+<li>分析：语句覆盖能够保证所有的语句都得到执行，但是发现不了判定中运算逻辑的错误，即它并不是⼀种充分的检验⽅法。例如在第⼀个判定 <code>((x &gt; 3) &amp;&amp; (z &lt; 10))</code> 中把 <code>&amp;&amp;</code> 错误的写成了 <code>||</code>，这时仍使⽤该测试⽤例，则程序仍会按照 abd 执⾏。可以说语句覆盖是最弱的逻辑覆盖准则。</li>
+</ul>
+<h1 id="判定覆盖"><a href="#判定覆盖" class="headerlink" title="判定覆盖"></a>判定覆盖</h1><p>也叫分支覆盖</p>
+<p>设 <code>x &gt; 3 &amp;&amp; z &lt; 10</code> 为真为 T1，为假 -T1；<code>x == 4 || y &gt; 5</code> 为真为 $T_2$，为假 - T2</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">测试用例</th>
+<th style="text-align:center">执行路径</th>
+<th style="text-align:center">覆盖条件</th>
+<th style="text-align:center">覆盖分支</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">x = 4，y = 5，z = 5</td>
+<td style="text-align:center">abd</td>
+<td style="text-align:center">T1，T2</td>
+<td style="text-align:center">bd</td>
+</tr>
+<tr>
+<td style="text-align:center">x = 2，y = 5，z = 5</td>
+<td style="text-align:center">ace</td>
+<td style="text-align:center">-T1，-T2</td>
+<td style="text-align:center">ce</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li><p>分析：上述两个测试⽤例不仅满⾜了判定覆盖，同时还做到语句覆盖。从这点看似乎判定覆盖⽐语句覆盖更强⼀些，但仍然⽆法确定判定内部条件的错误。例如把第⼆个判定中的条件 <code>y &gt; 5</code> 错误写为 <code>y &lt; 5</code>，使⽤上述测试⽤例，照样能按原路径执⾏⽽不影响结果。因此，需要有更强的逻辑覆盖准则去检验判定内的条件。</p>
+</li>
+<li><p>判定覆盖更广泛的含义应该是使得每一个判定获得每一种可能的结果至少一次</p>
+<img src="/2019/01/02/soft-eng-test-logical-coverage/branch-coverage.png">
+</li>
+</ul>
+<h1 id="条件覆盖"><a href="#条件覆盖" class="headerlink" title="条件覆盖"></a>条件覆盖</h1><p>条件 <code>x &gt; 3</code> 取真值记为 T1，取假值记为 -T1</p>
+<p>条件 <code>z &lt; 10</code> 取真值记为 T2，取假值记为 -T2</p>
+<p>条件 <code>x == 4</code> 取真值记为 T3，取假值记为 -T3</p>
+<p>条件 <code>y &gt; 5</code> 取真值记为 T4，取假值记为 -T4</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">测试用例</th>
+<th style="text-align:center">执行路径</th>
+<th style="text-align:center">覆盖条件</th>
+<th style="text-align:center">覆盖分支</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">x = 4，y = 6，z = 5</td>
+<td style="text-align:center">abd</td>
+<td style="text-align:center">T1，T2，T3，T4</td>
+<td style="text-align:center">bd</td>
+</tr>
+<tr>
+<td style="text-align:center">x = 2，y = 5，z = 10</td>
+<td style="text-align:center">ace</td>
+<td style="text-align:center">-T1，-T2，-T3，-T4</td>
+<td style="text-align:center">ce</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li><p>分析：上例同时达到了条件覆盖和判定覆盖，但并不意味着条件覆盖一定能够满足判定覆盖：</p>
+<p>|       测试用例       | 执行路径 | 覆盖条件         | 覆盖分支 |<br>| :—————————: | ———— | ———————— | ———— |<br>| x = 2，y = 6，z = 5  | acd      | -T1，T2，-T3，T4 | cd       |<br>| x = 4，y = 5，z = 15 | acd      | T1，-T2，T3，-T4 | cd       |</p>
+</li>
+</ul>
+<h1 id="判定-条件覆盖"><a href="#判定-条件覆盖" class="headerlink" title="判定/条件覆盖"></a>判定/条件覆盖</h1><p>Condition/Decision Coverage, C/DC</p>
+<p>条件 <code>x &gt; 3</code> 取真值记为 T1，取假值记为 -T1</p>
+<p>条件 <code>z &lt; 10</code> 取真值记为 T2，取假值记为 -T2</p>
+<p>条件 <code>x == 4</code> 取真值记为 T3，取假值记为 -T3</p>
+<p>条件 <code>y &gt; 5</code> 取真值记为 T4，取假值记为 -T4</p>
+<p>同条件覆盖</p>
+<ul>
+<li>分析：判定/条件覆盖法的问题在于布尔表达式的短路求值。例如对于 <code>x &gt; 3 &amp;&amp; z &lt; 10</code> 这个判定，如果 <code>x &gt; 3</code> 为假，则不会继续判断 <code>z &lt; 10</code> 这个条件，这样如果这个条件有错，无法检查出来。</li>
+</ul>
+<h1 id="组合覆盖"><a href="#组合覆盖" class="headerlink" title="组合覆盖"></a>组合覆盖</h1><p>条件 <code>x &gt; 3</code> 取真值记为 T1，取假值记为 -T1</p>
+<p>条件 <code>z &lt; 10</code> 取真值记为 T2，取假值记为 -T2</p>
+<p>条件 <code>x == 4</code> 取真值记为 T3，取假值记为 -T3</p>
+<p>条件 <code>y &gt; 5</code> 取真值记为 T4，取假值记为 -T4</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>测试用例</th>
+<th>执行路径</th>
+<th>覆盖条件</th>
+<th>覆盖组合</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>x = 4，y = 6，z = 5</td>
+<td>abd</td>
+<td>T1，T2，T3，T4</td>
+<td></td>
+</tr>
+<tr>
+<td>x = 4，y = 5，z = 15</td>
+<td>acd</td>
+<td>T1，-T2，T3，-T4</td>
+<td></td>
+</tr>
+<tr>
+<td>x = 2，y = 6，z = 5</td>
+<td>acd</td>
+<td>-T1，T2，-T3，T4</td>
+<td></td>
+</tr>
+<tr>
+<td>x = 2，y = 5，z = 15</td>
+<td>ace</td>
+<td>-T1，-T2，-T3，-T4</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>分析：覆盖了所有 8 种条件取值的组合，覆盖了所有判定的真假分支，但是却丢失了一条路径 abe</li>
+</ul>
+<h1 id="路径覆盖"><a href="#路径覆盖" class="headerlink" title="路径覆盖"></a>路径覆盖</h1><p>条件 <code>x &gt; 3</code> 取真值记为 T1，取假值记为 -T1</p>
+<p>条件 <code>z &lt; 10</code> 取真值记为 T2，取假值记为 -T2</p>
+<p>条件 <code>x == 4</code> 取真值记为 T3，取假值记为 -T3</p>
+<p>条件 <code>y &gt; 5</code> 取真值记为 T4，取假值记为 -T4</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>测试用例</th>
+<th>执行路径</th>
+<th>覆盖条件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>x = 4，y = 6，z = 5</td>
+<td>abd</td>
+<td>T1，T2，T3，T4</td>
+</tr>
+<tr>
+<td>x = 4，y = 5，z = 15</td>
+<td>acd</td>
+<td>T1，-T2，T3，-T4</td>
+</tr>
+<tr>
+<td>x = 2，y = 5，z = 15</td>
+<td>ace</td>
+<td>-T1，-T2，-T3，-T4</td>
+</tr>
+<tr>
+<td>x = 5，y = 5，z = 5</td>
+<td>abe</td>
+<td>T1，T2，-T3，-T4</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>分析：虽然实现了路径覆盖，但是并没有覆盖程序中的所有条件组合（缺少 -T1，T2，-T3，T4）。即满足了路径覆盖的测试用例并不一定满足组合覆盖。</li>
+</ul>
+<h1 id="Multiple-Condition-Coverage"><a href="#Multiple-Condition-Coverage" class="headerlink" title="Multiple Condition Coverage"></a>Multiple Condition Coverage</h1><p>条件的完全组合，代价很大，$n$ 个条件需要 $2^n$ 个测试用例，但是其中某些价值不大</p>
+<h1 id="MC-DC"><a href="#MC-DC" class="headerlink" title="MC/DC"></a>MC/DC</h1><p>Modified C/DC，最少 $n + 1$ 个，最多 $2n$ 个。</p>
+<p><strong>示例</strong> 对于如下的条件表达式，给出 100% MC/DC 覆盖率的最小测试用例集</p>
+<pre>
+    A or (B and C) or D
+</pre>
+
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+<th>D</th>
+<th>Decision</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>T</td>
+<td></td>
+<td></td>
+<td></td>
+<td>T</td>
+</tr>
+<tr>
+<td>2</td>
+<td>F</td>
+<td>F</td>
+<td>T</td>
+<td>F</td>
+<td>F</td>
+</tr>
+<tr>
+<td>3</td>
+<td>F</td>
+<td>T</td>
+<td>T</td>
+<td>F</td>
+<td>T</td>
+</tr>
+<tr>
+<td>4</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>5</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li><p>步骤</p>
+<ol>
+<li><p>先看 A</p>
+<ul>
+<li>当 A 为 true 时，决策为 true，其他的可以先不管</li>
+<li>当 A 为 false 时，我们希望最后的决策为 false，由于是逻辑或，所以需要每个条件都为 false。显然可以先把 D 设为 false，至于 B 和 C，我们可以先全设置为 false</li>
+</ul>
+<p>|      | A    | B    | C    | D    | Decision |<br>| —— | —— | —— | —— | —— | ———— |<br>| 1    | T    |      |      |      | T        |<br>| 2    | F    | F    | F    | F    | F        |</p>
+</li>
+<li><p>再看 B</p>
+<ul>
+<li>我们已经有了 B 为 false，决策为 false 的情况，现在需要找到 B 为 true，决策为 true 的情况。</li>
+<li>想让 B 能够独立产生影响，A 必须为 false</li>
+<li>至于 C 和 D，我们其实可以发现，如果将 #2 用例中 C 改为 T，那么我们新的测试用例只需要将 B 改为 T 即可</li>
+</ul>
+<p>| #    | A    | B    | C    | D    | Decision |<br>| —— | —— | —— | —— | —— | ———— |<br>| 1    | T    |      |      |      | T        |<br>| 2    | F    | F    | T    | F    | F        |<br>| 3    | F    | T    | T    | F    | T        |</p>
+</li>
+<li><p>接下来看 C</p>
+<ul>
+<li>我们已经有了 C 为 true 的用例，接下来需要找到 C 为 false 的用例</li>
+<li>同样地，想要让 C 能够单独影响结果，需要 A 为 false，B 为 true</li>
+<li>然后会发现 D 只要跟 #3 相同就可以了</li>
+</ul>
+<p>| #    | A    | B    | C    | D    | Decision |<br>| —— | —— | —— | —— | —— | ———— |<br>| 1    | T    |      |      |      | T |<br>| 2    | F    | F    | T    | F    | F        |<br>| 3    | F    | T    | T    | F    | T        |<br>| 4 | F | T | F | F | F |</p>
+</li>
+<li><p>最后看 D</p>
+<ul>
+<li>我们目前位置都是 D 为 false 的情况，现在需要 D 为 true 的情况</li>
+<li>那么同理，A 要为 false，(B and C) 要为 false，而目前为止我们找到的只要 (B and C) 为 false，最后的 Decision 就一定为 false，刚好是我们想要的，所以抄一个就行</li>
+</ul>
+<p>| #    | A    | B    | C    | D    | Decision |<br>| —— | —— | —— | —— | —— | ———— |<br>| 1    | T    | F | T | F | T |<br>| 2    | F    | F    | T    | F    | F        |<br>| 3    | F    | T    | T    | F    | T        |<br>| 4 | F | T | F | F | F |<br>| 5 | F | T | F | T | T |</p>
+</li>
+<li><p>我们还得处理一下 #1，因为后面每个用例 A 都是 false，所以也是抄一个就行</p>
+</li>
+<li><p>OK，现在有：A: (1, 2); B: (2, 3); C: (3, 4); D: (4, 5)</p>
+</li>
+</ol>
+</li>
+</ul>
+<p>有一些技巧</p>
+<ul>
+<li>在 <code>AND</code> 中，如果想要得到某个变量独立影响的效果，需要前面的全为 <code>true</code></li>
+<li>在 <code>OR</code> 中，如果想要得到，需要前面的全为 <code>false</code></li>
+</ul>
+
+        
+    
+
+    
+</div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+        <a href="/2019/01/04/computer-networks-http/" id="post_nav-newer" class="prev-content">
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_back</i>
+            </button>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            أحدث
+        </a>
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2019/01/01/cpp-stl-lower-bound-upper-bound/" id="post_nav-older" class="next-content">
+            أقدم
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
+
+
+                    
+                        <!-- Overlay For Active Sidebar -->
+<div class="sidebar-overlay"></div>
+
+<!-- Material sidebar -->
+<aside id="sidebar" class="sidebar sidebar-colored sidebar-fixed-left" role="navigation">
+    <div id="sidebar-main">
+        <!-- Sidebar Header -->
+        <div class="sidebar-header header-cover" style="background-image: url(/img/sidebar_header.png);">
+    <!-- Top bar -->
+    <div class="top-bar"></div>
+
+    <!-- Sidebar toggle button -->
+    <button type="button" class="sidebar-toggle mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" style="display: initial;" data-upgraded=",MaterialButton,MaterialRipple">
+        <i class="material-icons">clear_all</i>
+        <span class="mdl-button__ripple-container">
+            <span class="mdl-ripple">
+            </span>
+        </span>
+    </button>
+
+    <!-- Sidebar Avatar -->
+    <div class="sidebar-image">
+        <img src="/img/avatar.png" alt="Han Qi's avatar">
+    </div>
+
+    <!-- Sidebar Email -->
+    <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">
+        my@rhanqtl.com
+        <b class="caret"></b>
+    </a>
+</div>
+
+
+        <!-- Sidebar Navigation  -->
+        <ul class="nav sidebar-nav">
+    <!-- User dropdown  -->
+    <li class="dropdown">
+        <ul id="settings-dropdown" class="dropdown-menu">
+            
+                <li>
+                    <a href="#" target="_blank" title="Email Me">
+                        
+                            <i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i>
+                        
+                        Email Me
+                    </a>
+                </li>
+            
+        </ul>
+    </li>
+
+    <!-- Homepage -->
+    
+        <li id="sidebar-first-li">
+            <a href="/">
+                
+                    <i class="material-icons sidebar-material-icons">home</i>
+                
+                الرئيسية
+            </a>
+        </li>
+        
+    
+
+    <!-- Archives  -->
+    
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                
+                    <i class="material-icons sidebar-material-icons">inbox</i>
+                
+                    أرشيف
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+            <li>
+                <a class="sidebar_archives-link" href="/archives/2019/12/">December 2019<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/11/">November 2019<span class="sidebar_archives-count">6</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/10/">October 2019<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/09/">September 2019<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/08/">August 2019<span class="sidebar_archives-count">10</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/07/">July 2019<span class="sidebar_archives-count">16</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/06/">June 2019<span class="sidebar_archives-count">21</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/05/">May 2019<span class="sidebar_archives-count">36</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/04/">April 2019<span class="sidebar_archives-count">46</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/03/">March 2019<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/02/">February 2019<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/01/">January 2019<span class="sidebar_archives-count">17</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/12/">December 2018<span class="sidebar_archives-count">26</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/11/">November 2018<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/10/">October 2018<span class="sidebar_archives-count">1</span></a>
+            </li></ul>
+        </li>
+        
+    
+
+    <!-- Categories  -->
+    
+
+    <!-- Pages  -->
+    
+
+    <!-- Article Number  -->
+    
+</ul>
+
+
+        <!-- Sidebar Footer -->
+        <!--
+I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright, I will thank you so much.
+If you still want to delete the copyrights, could you still retain the first one? Which namely "Theme Material"
+It will not impact the appearance and can give developers a lot of support :)
+
+很高兴您使用并喜欢该主题，开发不易 十分谢谢与希望您可以保留一下版权声明。
+如果您仍然想删除的话 能否只保留第一项呢？即 "Theme Material"
+它不会影响美观并可以给开发者很大的支持和动力。 :)
+-->
+
+<!-- Sidebar Divider -->
+
+    <div class="sidebar-divider"></div>
+
+
+<!-- Theme Material -->
+
+    <a href="https://github.com/viosey/hexo-theme-material" class="sidebar-footer-text-a" target="_blank">
+        <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+            سمة - Material
+            <span class="sidebar-badge badge-circle">i</span>
+        </div>
+    </a>
+
+
+<!-- Help & Support -->
+<!--
+
+-->
+
+<!-- Feedback -->
+<!--
+
+-->
+
+<!-- About Theme -->
+<!--
+
+-->
+
+    </div>
+
+    <!-- Sidebar Image -->
+    
+
+</aside>
+
+                    
+
+                    
+                        <!-- Footer Top Button -->
+                        <div id="back-to-top" class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
+
+                    
+
+                    <!--Footer-->
+<footer class="mdl-mini-footer" id="bottom">
+    
+        <!-- Paradox Footer Left Section -->
+        <div class="mdl-mini-footer--left-section sns-list">
+    <!-- Twitter -->
+    
+        <a href="https://twitter.com/twitter" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-twitter">
+                <span class="visuallyhidden">Twitter</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Facebook -->
+    
+        <a href="https://www.facebook.com/facebook" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-facebook">
+                <span class="visuallyhidden">Facebook</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Google + -->
+    
+        <a href="https://www.google.com/" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-gplus">
+                <span class="visuallyhidden">Google Plus</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Weibo -->
+    
+
+    <!-- Instagram -->
+    
+
+    <!-- Tumblr -->
+    
+
+    <!-- Github -->
+    
+        <a href="https://github.com/rhanqtl" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-github">
+                <span class="visuallyhidden">Github</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- LinkedIn -->
+    
+
+    <!-- Zhihu -->
+    
+
+    <!-- Bilibili -->
+    
+
+    <!-- Telegram -->
+    
+
+    <!-- V2EX -->
+    
+
+    <!-- Segmentfault -->
+    
+</div>
+
+
+        <!--Copyright-->
+        <div id="copyright">
+            Copyright&nbsp;©&nbsp;<span year=""></span>&nbsp;RHANQTL
+            
+        </div>
+
+        <!-- Paradox Footer Right Section -->
+
+        <!--
+        I am glad you use this theme, the development is no so easy, I hope you can keep the copyright.
+        It will not impact the appearance and can give developers a lot of support :)
+
+        很高兴您使用该主题，开发不易，希望您可以保留一下版权声明。
+        它不会影响美观并可以给开发者很大的支持。 :)
+        -->
+
+        <div class="mdl-mini-footer--right-section">
+            <div>
+                <div class="footer-develop-div">Powered by <a href="https://hexo.io" target="_blank" class="footer-develop-a">Hexo</a></div>
+                <div class="footer-develop-div">Theme - <a href="https://github.com/viosey/hexo-theme-material" target="_blank" class="footer-develop-a">Material</a></div>
+            </div>
+        </div>
+    
+</footer>
+
+
+                    <!-- Import JS File -->
+
+    <script>lsloader.load("lazyload_js","/js/lazyload.min.js?1BcfzuNXqV+ntF6gq+5X3Q==", true)</script>
+
+
+
+    <script>lsloader.load("js_js","/js/js.min.js?Bn9UzEm8RrBSxqyZB0zPjA==", true)</script>
+
+
+
+    <script>lsloader.load("np_js","/js/nprogress.js?pl3Qhb9lvqR1FlyLUna1Yw==", true)</script>
+
+
+<script type="text/ls-javascript" id="NProgress-script">
+    NProgress.configure({
+        showSpinner: true
+    });
+    NProgress.start();
+    $('#nprogress .bar').css({
+        'background': '#29d'
+    });
+    $('#nprogress .peg').css({
+        'box-shadow': '0 0 10px #29d, 0 0 15px #29d'
+    });
+    $('#nprogress .spinner-icon').css({
+        'border-top-color': '#29d',
+        'border-left-color': '#29d'
+    });
+    setTimeout(function() {
+        NProgress.done();
+        $('.fade').removeClass('out');
+    }, 800);
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- UC Browser Compatible -->
+<script>
+	var agent = navigator.userAgent.toLowerCase();
+	if(agent.indexOf('ucbrowser')>0) {
+		document.write('<link rel="stylesheet" href="/css/uc.css">');
+	   alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
+	}
+</script>
+
+<!-- Import prettify js  -->
+
+
+
+<!-- Window Load -->
+<!-- add class for prettify -->
+<script type="text/ls-javascript" id="window-load">
+    $(window).on('load', function() {
+        // Post_Toc parent position fixed
+        $('.post-toc-wrap').parent('.mdl-menu__container').css('position', 'fixed');
+    });
+
+    
+    
+</script>
+
+<!-- MathJax Load-->
+
+
+<!-- Bing Background -->
+
+
+<script type="text/ls-javascript" id="lazy-load">
+    // Offer LazyLoad
+    queue.offer(function(){
+        $('.lazy').lazyload({
+            effect : 'show'
+        });
+    });
+
+    // Start Queue
+    $(document).ready(function(){
+        setInterval(function(){
+            queue.execNext();
+        },200);
+    });
+</script>
+
+<!-- Custom Footer -->
+
+
+
+<script>
+    var copyrightNow = new Date().getFullYear();
+    var textContent = document.querySelector('span[year]')
+
+    copyrightSince = 0000;
+    if (copyrightSince === copyrightNow||copyrightSince === 0000) {
+        textContent.textContent = copyrightNow
+    } else {
+        textContent.textContent = copyrightSince + ' - ' + copyrightNow
+    }
+
+    (function(){
+        var scriptList = document.querySelectorAll('script[type="text/ls-javascript"]')
+
+        for (var i = 0; i < scriptList.length; ++i) {
+            var item = scriptList[i];
+            lsloader.runInlineScript(item.id,item.id);
+        }
+    })()
+console.log('\n %c © Material Theme | Version: 1.5.6 | https://github.com/viosey/hexo-theme-material %c \n', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-left-radius:5px;border-bottom-left-radius:5px;', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-right-radius:5px;border-bottom-right-radius:5px;');
+</script>
+
+                </main>
+            </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+        </body>
+    
+</html>
