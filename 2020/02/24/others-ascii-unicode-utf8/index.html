@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.8.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="如题">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ASCII、Unicode 和 UTF">
+<meta property="og:url" content="http://yoursite.com/2020/02/24/others-ascii-unicode-utf8/index.html">
+<meta property="og:site_name" content="RHANQTL">
+<meta property="og:description" content="如题">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-02-28T14:59:43.627Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ASCII、Unicode 和 UTF">
+<meta name="twitter:description" content="如题">
+
+<link rel="canonical" href="http://yoursite.com/2020/02/24/others-ascii-unicode-utf8/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
+  };
+</script>
+
+  <title>ASCII、Unicode 和 UTF | RHANQTL</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Cambiar a barra de navegación">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">RHANQTL</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">上下求索</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Inicio</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archivo</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block " lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/24/others-ascii-unicode-utf8/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          ASCII、Unicode 和 UTF
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Publicado el</span>
+
+              <time title="Creado por: 2020-02-24 08:06:30" itemprop="dateCreated datePublished" datetime="2020-02-24T08:06:30+08:00">2020-02-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Editado el</span>
+                <time title="Modificado por: 2020-02-28 22:59:43" itemprop="dateModified" datetime="2020-02-28T22:59:43+08:00">2020-02-28</time>
+              </span>
+
+          
+            <div class="post-description">如题</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="1-nbsp-nbsp-nbsp-nbsp-ASCII-码"><a href="#1-nbsp-nbsp-nbsp-nbsp-ASCII-码" class="headerlink" title="1&nbsp;&nbsp;&nbsp;&nbsp;ASCII 码"></a>1&nbsp;&nbsp;&nbsp;&nbsp;ASCII 码</h1><p>ASCII 码是比较早（不是最早）的一种字符编码，最初占 8 位（计算机中最小的寻址单元）只支持 128 个字符（字母只支持英文字母），最高位被规定为 0</p>
+<blockquote>
+<p>在计算机的上古时代，内存非常宝贵。为了节省内存，人们使用 BCDIC，也叫“6 位字符编码系统”。这套编码系统最多表示 2<sup>6</sup> = 64 种字符，减去数字，控制字符等等，发现剩下的不够52个英文字母，于是BCDIC干脆只保存大写字母。于是，一些这个时期诞生的语言：Assembly(汇编)、Fortran，都是整篇的大写。后来ASCII，也就是7位编码方案诞生了，人们有小写字母用了，回头一看以前的汇编代码全是大写，突然开始大小写混用还有点不习惯…一不做二不休，既然大写了就全大写，新人如果爱拿小写写，编译器就一律无视。编译的时候大小写干脆没区别。</p>
+</blockquote>
+<h2 id="1-2-nbsp-nbsp-nbsp-nbsp-扩展-ASCII-码"><a href="#1-2-nbsp-nbsp-nbsp-nbsp-扩展-ASCII-码" class="headerlink" title="1.2&nbsp;&nbsp;&nbsp;&nbsp;扩展 ASCII 码"></a>1.2&nbsp;&nbsp;&nbsp;&nbsp;扩展 ASCII 码</h2><p>使用 ASCII 码会导致一个问题：除英文字母之外的文字无法表示，比如法语中带注音符号的字母和德语中的变音字母。所以，后来出现了「扩展 ASCII 码」，即在原来 ASCII 码的基础上，利用了剩余的 128 个（0x80 到 0xff）位置，编入了新的符号。比如，法语中的 <code>é</code> 的编码为 130（二进制 <code>10000010</code>）。这样一来，这些欧洲国家使用的编码体系，可以表示最多 256 个符号。</p>
+<p>但是问题就这样出现了 —— <strong>不同的国家有不同的字母</strong>，即使它们都使用 256 个符号的编码方式，代表的字母却不一样。比如，130 在法语编码中代表了 <code>é</code>，在希伯来语编码中却代表了字母 <code>Gimel</code>（<code>ג</code>），在俄语编码中又会代表另一个符号。</p>
+<p>然而，在亚洲有更让人头疼的问题。亚洲语言有更多的字符和字形需要被存储 —— 仅汉字就多达 10 万左右，一个字节已经不够用了。所以他们开始使用两个字节来存储字符，这被称作 DBCS（双字节编码方案），比如，简体中文常见的编码方式是 GB2312（对 ASCII 的中文扩展）。在 DBCS 中，字符串操作变得很蛋疼 —— 应该怎么做 str++ 或 str—？</p>
+<p>这些问题成为了系统开发者的噩梦。例如，为了把软件卖到全世界，MS DOS 必须支持所有风格的 ASCII 码。他们提出了「内码表」这一概念。例如，你需要告诉 DOS（通过 <code>chcp</code> 命令）你想使用保加利亚语的内码表，它才能显示保加利亚字母。内码表的更换会应用到整个系统。这对使用多种语言工作的人来说是一个问题，因为他们必须频繁的在几个内码表之间来回切换。</p>
+<p>内码表并不是一个简洁的解决方案，它只是为了让编码系统可以正常工作而提出的一项 hack 技术或者说是简单的修正。</p>
+<h1 id="2-nbsp-nbsp-nbsp-nbsp-Unicode"><a href="#2-nbsp-nbsp-nbsp-nbsp-Unicode" class="headerlink" title="2&nbsp;&nbsp;&nbsp;&nbsp;Unicode"></a>2&nbsp;&nbsp;&nbsp;&nbsp;Unicode</h1><p>Context</p>
+<h2 id="Key-Concepts"><a href="#Key-Concepts" class="headerlink" title="Key Concepts"></a>Key Concepts</h2><p>Let’s level set on some ideas:</p>
+<p><strong>Ideas and data are different.</strong> The concept of “A” is something different than marks on paper, the sound “aaay” or the number 65 stored inside a computer.</p>
+<p><strong>One idea has many possible encodings.</strong> An encoding is just a method to transform an idea (like the letter “A”) into raw data (bits and bytes). The idea of “A” can be encoded many different ways. Encodings differ in efficiency and compatibility.</p>
+<p><strong>Know thy encoding.</strong> When reading data, you must know the encoding used in order to interpret it properly. This is a simple but important concept. If you see the number 65 in binary, what does it really mean? “A” in ASCII? Your age? Your IQ? Unless there is some context, you’d never know. Imagine if someone came up to you and said “65”. You’d have no idea what they were talking about. Now imagine they came up and said “The following number is an ASCII character: 65”. Weird, yes, but see how much clearer it is?</p>
+<p>Embrace the philosophy that a concept and the data that stores it are different. Let it rustle around in your mind…</p>
+<h2 id="2-1-nbsp-nbsp-nbsp-nbsp-字符集-vs-字符编码"><a href="#2-1-nbsp-nbsp-nbsp-nbsp-字符集-vs-字符编码" class="headerlink" title="2.1&nbsp;&nbsp;&nbsp;&nbsp;字符集 vs. 字符编码"></a>2.1&nbsp;&nbsp;&nbsp;&nbsp;字符集 vs. 字符编码</h2><p>Character set is an idea while encoding is data</p>
+<p>在 ASCII 及之前的时代并不需要显式区分这两个概念</p>
+<h2 id="2-2-nbsp-nbsp-nbsp-nbsp-Unicode"><a href="#2-2-nbsp-nbsp-nbsp-nbsp-Unicode" class="headerlink" title="2.2&nbsp;&nbsp;&nbsp;&nbsp;Unicode"></a>2.2&nbsp;&nbsp;&nbsp;&nbsp;Unicode</h2><p>为了解决各地（国）编码不统一的问题，ISO 提出了 Universal Multiple-Octet Coded Character set，简称 UCS，俗称 Unicode。</p>
+<p>Unicode 就像一个电话本，标记着字符和数（官方术语是码位 (Code Point)）之间的映射关系。总是用U+开头。<strong>理论上</strong>每种语言中的每种字符都被Unicode协会指定了一个神奇数字。这种编码总是以 U+ 开头，比如「中」的 Unicode 编码就是 U+4e2d。</p>
+<p>Unicode并不涉及字符是怎么在字节中表示的，它仅仅指定了字符对应的数字，仅此而已。</p>
+<p>Unicode 规定使用 2 字节表示一个字符，所以对于 ASCII 中的半角字符，Unicode 维持其编码，只是将高字节设为全 0，这就引出了一个问题：存储空间的浪费。如果一个文本中全是 ASCII 字符，那么占用的存储空间将会有一半是浪费的！为了解决这个问题，就有了 UTF</p>
+<p>关于Unicode的其它误解包括：Unicode支持的字符上限是65536个，Unicode字符必须占两个字节。告诉你这些的人应该去换换脑子了。严格来说，Unicode 是没有“长度”这一说的，它是抽象的字符，只有Unicode<strong>的编码</strong>才有具体的字节长度。</p>
+<p>记住，Unicode只是一个用来映射字符和数字的标准。它对支持字符的数量没有限制，也不要求字符必须占两个、三个或者其它任意数量的字节。</p>
+<p>Unicode字符是怎样被编码成内存中的字节这是另外的话题，它是被UTF(Unicode Transformation Formats)定义的。</p>
+<p>Unicode itself is a mapping, it defines codepoints and a codepoint is a number, associated with <em>usually</em> a character. I say usually because there are concepts like combining characters. You may be familiar with things like accents, or umlauts. Those can be used with another character, such as an <code>a</code> or a <code>u</code> to create a new logical character. A character therefore can consist of 1 or more codepoints.</p>
+<p>To be useful in computing systems we need to choose a representation for this information. Those are the various unicode encodings, such as utf-8, utf-16le, utf-32 etc. They are distinguished largely by the size of of their codeunits. UTF-32 is the simplest encoding, it has a codeunit that is 32bits, which means an individual codepoint fits comfortably into a codeunit. The other encodings will have situations where a codepoint will need multiple codeunits, or that particular codepoint can’t be represented in the encoding at all (this is a problem for instance with UCS-2).</p>
+<p>Because of the flexibility of combining characters, even within a given encoding the number of bytes per character can vary depending on the character and the normalization form. This is a protocol for dealing with characters which have more than one representation (you can say <code>&quot;an &#39;a&#39; with an accent&quot;</code> which is 2 codepoints, one of which is a combining char or <code>&quot;accented &#39;a&#39;&quot;</code> which is one codepoint).</p>
+<h1 id="3-nbsp-nbsp-nbsp-nbsp-UTF"><a href="#3-nbsp-nbsp-nbsp-nbsp-UTF" class="headerlink" title="3&nbsp;&nbsp;&nbsp;&nbsp;UTF"></a>3&nbsp;&nbsp;&nbsp;&nbsp;UTF</h1><h2 id="3-1-nbsp-nbsp-nbsp-nbsp-UTF-16-UCS-2"><a href="#3-1-nbsp-nbsp-nbsp-nbsp-UTF-16-UCS-2" class="headerlink" title="3.1&nbsp;&nbsp;&nbsp;&nbsp;UTF-16 / UCS-2"></a>3.1&nbsp;&nbsp;&nbsp;&nbsp;UTF-16 / UCS-2</h2><p>UCS-2 / UTF-16 is nice and simple, but boy it does waste some bits. Not only does it double ASCII, but the converted ASCII might not even be readable due to the null characters.</p>
+<p>另一个流行的可变长度编码方案是UTF-16，它使用2个或者4个字节来存储字符。然而，人们逐渐意识到UTF-16可能会浪费存储空间，但那是另一个话题了。</p>
+<p>在UTF-8中，0-127号的字符用1个字节来表示，使用和US-ASCII相同的编码。这意味着1980年代写的文档用UTF-8打开一点问题都没有。只有128号及以上的字符才用2个，3个或者4个字节来表示。因此，UTF-8被称作可变长度编码。</p>
+<h2 id="3-2-nbsp-nbsp-nbsp-nbsp-UTF-8"><a href="#3-2-nbsp-nbsp-nbsp-nbsp-UTF-8" class="headerlink" title="3.2&nbsp;&nbsp;&nbsp;&nbsp;UTF-8"></a>3.2&nbsp;&nbsp;&nbsp;&nbsp;UTF-8</h2><p>The ‘8’ means it uses 8-bit blocks to represent a character.</p>
+<p>UTF-8 remains a simple, single-byte, ASCII-compatible encoding method, as long as no characters greater than 127 are directly present. This means that an HTML document technically declared to be encoded as UTF-8 can remain a normal single-byte ASCII file. The document can remain so even though it may contain Unicode characters above 127, as long as all characters above 127 are referred to indirectly by ampersand entities.（所谓“ampersand entity”就是以 <code>&amp;</code> 开头的特殊形式，比如“中”在这种表示法中就是 <code>&amp;#20013;</code>）</p>
+<p>Unicode 在很长一段时间内无法推广，直到互联网的出现，为解决 Unicode 如何在网络上传输的问题，于是面向传输的众多 UTF（UCS Transfer Format）标准出现了，顾名思义，UTF-8 就是每次 8 个位传输数据，而 UTF-16 就是每次 16 个位。UTF-8 就是在互联网上使用最广的一种 Unicode 的实现方式，这是为传输而设计的编码，并使编码无国界，这样就可以显示全世界上所有文化的字符了。UTF-8 最大的一个特点，就是它是一种变长的编码方式。它可以使用 1 到 4 个字节表示一个符号，根据不同的符号而变化字节长度，当字符在 ASCII 码的范围时，就用一个字节表示，保留了ASCII 字符一个字节的编码作为它的一部分（需要注意的是 Unicode 一个中文字符占 2 个字节，而 UTF-8 一个中文字符占 3 个字节）。从 Unicode 到 UTF-8 并不是直接的对应，而是要过一些算法和规则来转换：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Unicode（十六进制）</th>
+<th>UTF-8（二进制）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>0000 0000</code> - <code>0000 007F</code></td>
+<td><code>0xxxxxxx</code></td>
+</tr>
+<tr>
+<td><code>0000 0080</code> - <code>0000 07FF</code></td>
+<td><code>110xxxxx 10xxxxxx</code></td>
+</tr>
+<tr>
+<td><code>0000 0800</code> - <code>0000 FFFF</code></td>
+<td><code>1110xxxx 10xxxxxx 10xxxxxx</code></td>
+</tr>
+<tr>
+<td><code>0001 0000</code> - <code>0010 FFFF</code></td>
+<td><code>11110xxx 10xxxxxx 10xxxxxx 10xxxxxx</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>In any case, UTF-8 still needs a header to indicate how the text was encoded. Otherwise, it could be interpreted as straight ASCII with some codepage to handle values above 127. It still uses the U+FEFF codepoint as a BOM, but the BOM itself is encoded in UTF-8 (clever, eh?).</p>
+<p>需要注意的是，Unicode 是<strong>字符集</strong>，而 UTF-8 是<strong>编码规则</strong>。字符集为每一个字符分配一个唯一的 ID（学名为码位/码点/code point），编码规则是将 code point 转换为字节序列的规则。</p>
+<blockquote>
+</blockquote>
+<h2 id="3-2-nbsp-nbsp-nbsp-nbsp-字符的存储"><a href="#3-2-nbsp-nbsp-nbsp-nbsp-字符的存储" class="headerlink" title="3.2&nbsp;&nbsp;&nbsp;&nbsp;字符的存储"></a>3.2&nbsp;&nbsp;&nbsp;&nbsp;字符的存储</h2><p>通常，在内存中使用 Unicode 来表示字符，而使用 UTF 来存储字符，这样：</p>
+<ul>
+<li>取字符时只需要总是取 2 个字节即可，节省了处理（计算）的时间，提高处理效率</li>
+<li>存储/传输字符时可以节省空间/带宽，提高传输效率</li>
+</ul>
+<p>其中，Unicode 称为程序 “内码”，UTF 称为程序 “外码”。</p>
+<p><strong>小端 (Little Endian) vs. 大端 (Big Endian)</strong></p>
+<p><em>Endian<strong>读作</strong>End-ian<strong>或者</strong>Indian<strong>。这个术语的起源可以追溯到格列佛游记。（小说中，小人国为水煮蛋应该从大的一端（</strong>Big-End<strong>）剥开还是小的一端（</strong>Little-End<strong>）剥开而争论，争论的双方分别被称为</strong>“<strong>大端派</strong>”<strong>和</strong>“<strong>小端派</strong>”**。）</em></p>
+<p>低字节序和高字节序只是一个关于在内存中存储和读取一段字节（被称作words）的约定。这意味着当你让计算机用UTF-16把字母A（占两个字节）存在内存中时，使用哪种字节序方案决定了你把第一个字节放在第二个字节的前面还是后面。这么说有点不太容易懂，让我们来看一个例子：当你使用UTF-16存下来自你朋友的附件时，在不同的系统中它的后半部分可能是这样的：</p>
+<p><em>00 68 <strong>00 65</strong> 00 6C <strong>00 6C</strong> 00 6F</em>（高字节序，高位字节被存在前面）</p>
+<p><em>68 00 <strong>65 00</strong> 6C 00 <strong>6C 00</strong> 6F 00</em>（低字节序，低位字节被存在前面）</p>
+<p>字节序方案只是一个微处理器架构设计者的偏好问题，例如，Intel使用低字节序，Motorola使用高字节序。</p>
+<p><strong>字节顺序标记(BOM)</strong></p>
+<p>如果你经常要在高低字节序的系统间转换文档，并且希望区分字节序，还有一种奇怪的约定，被称作BOM。BOM是一个设计得很巧妙的字符，用来放在文档的开头告诉阅读器该文档的字节序。在UTF-16中，它是通过在第一个字节放置FE FF来实现的。在不同字节序的文档中，它会被显示成FF FE或者FE FF，清楚的把这篇文档的字节序告诉了解释器。</p>
+<p>BOM尽管很有用，但并不是很简洁，因为还有一个类似的概念，称作「魔术字」(Magic Byte)，很多年来一直被用来表明文件的格式。BOM和魔术字间的关系一直没有被清楚的定义过，因此有的解释器会搞混它们。</p>
+<p>If you open a UCS-2 string and see FEFF, the data is in the right byte order and can be used directly. If you see FFFE, the data came from another type of machine, and needs to be converted to your architecture.</p>
+<p>The BOM is actually a valid Unicode character – what if someone sent a file without a header, and that character was actually part of the file?</p>
+<ol>
+<li>这个世界上从来没有纯文本这回事，如果你想读出一个字符串，你必须知道它的编码。</li>
+<li>Unicode 是一个简单的标准，用来把字符映射到数字上。Unicode协会的人会帮你处理所有幕后的问题，包括为新字符指定编码。</li>
+<li>Unicode并不告诉你字符是怎么编码成字节的。这是被编码方案决定的，通过UTF来指定。</li>
+<li>还有最重要的：永远记得通过 <code>Content-Type</code> 或者 <code>meta charset</code> 标签来显式指定你的文档的编码。这样浏览器就不需要猜测你使用的编码了，他们会准确的使用你指定的编码来渲染文档。</li>
+</ol>
+<p><strong>字符映射表</strong></p>
+<p>Windows 的功能</p>
+<h1 id="4-nbsp-nbsp-nbsp-nbsp-在-C-C-中处理非-ASCII-字符"><a href="#4-nbsp-nbsp-nbsp-nbsp-在-C-C-中处理非-ASCII-字符" class="headerlink" title="4&nbsp;&nbsp;&nbsp;&nbsp;在 C/C++ 中处理非 ASCII 字符"></a>4&nbsp;&nbsp;&nbsp;&nbsp;在 C/C++ 中处理非 ASCII 字符</h1><p>不同于 Java，C/C++ 中的 <code>char</code> 仅有 1 个字节，只能表示 ASCII 字符</p>
+<h1 id="4-nbsp-nbsp-nbsp-nbsp-参考资料"><a href="#4-nbsp-nbsp-nbsp-nbsp-参考资料" class="headerlink" title="4&nbsp;&nbsp;&nbsp;&nbsp;参考资料"></a>4&nbsp;&nbsp;&nbsp;&nbsp;参考资料</h1><p>[1] <a href="https://www.ruanyifeng.com/blog/2007/10/ascii_unicode_and_utf-8.html" target="_blank" rel="noopener">阮一峰 - 字符编码笔记：ASCII，Unicode 和 UTF-8</a></p>
+<p>[2] <a href="https://www.zhihu.com/question/23374078" target="_blank" rel="noopener">知乎 - Unicode 和 UTF-8 有什么区别？</a></p>
+<p>[3] <a href="https://www.zhihu.com/question/52346583" target="_blank" rel="noopener">知乎 - 计算机中为何不直接使用 UTF-8 编码进行存储而要使用 Unicode 再转换成 UTF-8？</a></p>
+<p>[4] <a href="https://www.freebuf.com/articles/others-articles/25623.html" target="_blank" rel="noopener">学点编码知识又不会死：Unicode 的流言终结者和编码大揭秘</a></p>
+<p>[5] <a href="https://www.zhihu.com/question/32299073/answer/93489156" target="_blank" rel="noopener">https://www.zhihu.com/question/32299073/answer/93489156</a></p>
+<p>[6] <a href="https://betterexplained.com/articles/unicode/" target="_blank" rel="noopener">https://betterexplained.com/articles/unicode/</a></p>
+<h1 id="5-nbsp-nbsp-nbsp-nbsp-更多"><a href="#5-nbsp-nbsp-nbsp-nbsp-更多" class="headerlink" title="5&nbsp;&nbsp;&nbsp;&nbsp;更多"></a>5&nbsp;&nbsp;&nbsp;&nbsp;更多</h1><p>[1] <a href="https://www.joelonsoftware.com/2003/10/08/the-absolute-minimum-every-software-developer-absolutely-positively-must-know-about-unicode-and-character-sets-no-excuses/" target="_blank" rel="noopener">The Absolute Minimum Every Software Developer Absolutely, Positively Must Know About Unicode and Character Sets (No Excuses!)</a></p>
+<p>[2] <a href="https://www.ietf.org/rfc/rfc3629.txt" target="_blank" rel="noopener">RFC3629: UTF-8, a transformation format of ISO 10646</a></p>
+<p>[3] <a href="https://www.fileformat.info/info/unicode/utf8test.htm" target="_blank" rel="noopener">UTF-8 Test Page</a></p>
+<p>[4] <a href="https://www.cl.cam.ac.uk/~mgk25/ucs/utf-8-history.txt" target="_blank" rel="noopener">https://www.cl.cam.ac.uk/~mgk25/ucs/utf-8-history.txt</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/12/27/algorithms-tsinghua-data-structures-mooc-pa-1-3/" rel="prev" title="清华数据结构 MOOC | Programming Assignment 1-3">
+      <i class="fa fa-chevron-left"></i> 清华数据结构 MOOC | Programming Assignment 1-3
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/02/29/how-to-write-literature-review/" rel="next" title="如何写作文献综述 (Literature Review)">
+      如何写作文献综述 (Literature Review) <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Tabla de contenidos
+        </li>
+        <li class="sidebar-nav-overview">
+          Inicio
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-nbsp-nbsp-nbsp-nbsp-ASCII-码"><span class="nav-number">1.</span> <span class="nav-text">1    ASCII 码</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-nbsp-nbsp-nbsp-nbsp-扩展-ASCII-码"><span class="nav-number">1.1.</span> <span class="nav-text">1.2    扩展 ASCII 码</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-nbsp-nbsp-nbsp-nbsp-Unicode"><span class="nav-number">2.</span> <span class="nav-text">2    Unicode</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Key-Concepts"><span class="nav-number">2.1.</span> <span class="nav-text">Key Concepts</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-nbsp-nbsp-nbsp-nbsp-字符集-vs-字符编码"><span class="nav-number">2.2.</span> <span class="nav-text">2.1    字符集 vs. 字符编码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-nbsp-nbsp-nbsp-nbsp-Unicode"><span class="nav-number">2.3.</span> <span class="nav-text">2.2    Unicode</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-nbsp-nbsp-nbsp-nbsp-UTF"><span class="nav-number">3.</span> <span class="nav-text">3    UTF</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-nbsp-nbsp-nbsp-nbsp-UTF-16-UCS-2"><span class="nav-number">3.1.</span> <span class="nav-text">3.1    UTF-16 / UCS-2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-nbsp-nbsp-nbsp-nbsp-UTF-8"><span class="nav-number">3.2.</span> <span class="nav-text">3.2    UTF-8</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-nbsp-nbsp-nbsp-nbsp-字符的存储"><span class="nav-number">3.3.</span> <span class="nav-text">3.2    字符的存储</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-nbsp-nbsp-nbsp-nbsp-在-C-C-中处理非-ASCII-字符"><span class="nav-number">4.</span> <span class="nav-text">4    在 C/C++ 中处理非 ASCII 字符</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-nbsp-nbsp-nbsp-nbsp-参考资料"><span class="nav-number">5.</span> <span class="nav-text">4    参考资料</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-nbsp-nbsp-nbsp-nbsp-更多"><span class="nav-number">6.</span> <span class="nav-text">5    更多</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Han Qi</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">198</span>
+          <span class="site-state-item-name">entradas</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">61</span>
+        <span class="site-state-item-name">categorías</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Han Qi</span>
+</div>
+  <div class="powered-by">Creado mediante <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Tema – <a href="https://muse.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.7.2
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
