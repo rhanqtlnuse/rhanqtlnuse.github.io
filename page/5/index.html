@@ -145,6 +145,270 @@
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/03/linear-algebra-svd/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/07/03/linear-algebra-svd/" class="post-title-link" itemprop="url">线性代数基础：奇异值分解</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-07-03 18:45:18" itemprop="dateCreated datePublished" datetime="2019-07-03T18:45:18+08:00">2019-07-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-07-04 06:33:23" itemprop="dateModified" datetime="2019-07-04T06:33:23+08:00">2019-07-04</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/数学-Mathematics/" itemprop="url" rel="index"><span itemprop="name">数学 (Mathematics)</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/数学-Mathematics/线性代数-Linear-Algebra/" itemprop="url" rel="index"><span itemprop="name">线性代数 (Linear Algebra)</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="奇异值分解的计算方法"><a href="#奇异值分解的计算方法" class="headerlink" title="奇异值分解的计算方法"></a>奇异值分解的计算方法</h1><p>奇异值分解的一般形式：</p>
+<script type="math/tex; mode=display">
+A_{m \times n} = U_{m \times m}\Sigma_{m \times n} (V_{n \times n})^T</script><p>对于某个矩阵 $A$，奇异值分解的过程如下：</p>
+<ol>
+<li><p>计算 $A^TA$ 的特征值，即解方程</p>
+<script type="math/tex; mode=display">
+(A^TA)v_i = \lambda_i v_i</script></li>
+<li><p>上面的列向量 $v_i$ 拼起来就是 $V​$</p>
+</li>
+<li><p>计算 $U$ 只需要同样的步骤，计算 $AA^T$ 即可</p>
+<script type="math/tex; mode=display">
+(AA^T)u_i = \lambda_iu_i</script></li>
+<li><p>$\Sigma$</p>
+<script type="math/tex; mode=display">
+\sigma_i = \sqrt{\lambda_i}</script></li>
+<li><p>这里的σ就是上面说的奇异值，u就是上面说的左奇异向量。奇异值σ跟特征值类似，在矩阵Σ中也是从大到小排列，而且σ的减少特别的快，在很多情况下，前10%甚至1%的奇异值的和就占了全部的奇异值之和的99%以上了。也就是说，我们也可以用前r大的奇异值来近似描述矩阵，这里定义一下部分奇异值分解：</p>
+</li>
+</ol>
+<p><strong>检验</strong></p>
+<p>我们先对下面的矩阵进行奇异值分解：</p>
+<script type="math/tex; mode=display">
+M = \left[\begin{matrix}
+0 & 1 \\
+1 & 1 \\
+1 & 0
+\end{matrix}\right]</script><ol>
+<li><p>首先计算 $M^TM$</p>
+<script type="math/tex; mode=display">
+\begin{align*}
+M^TM &= \left[\begin{matrix}
+2 & 1 \\
+1 & 2
+\end{matrix}\right] \\
+MM^T &= \left[\begin{matrix}
+1 & 1 & 0 \\
+1 & 2 & 1 \\
+0 & 1 & 1
+\end{matrix}\right]
+\end{align*}</script></li>
+<li><p>计算 $M^TM$ 的特征值、特征向量</p>
+<script type="math/tex; mode=display">
+\begin{align*}
+
+|\lambda E - M^TM| &= \left|\left[\begin{matrix}
+
+\end{matrix}\right] - \left[\begin{matrix}
+\end{matrix}\right]\right| \\
+\\
+&= \left|\begin{matrix}
+\end{matrix}
+\right| \\
+\\
+&= \left|\begin{matrix}
+\end{matrix}\right|\\
+\\
+&= \left|\begin{matrix}
+\end{matrix}\right|\\
+\\
+\end{align*}</script></li>
+<li><p>求得</p>
+</li>
+</ol>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p>[1] <a href="https://www.cnblogs.com/pinard/p/6251584.html" target="_blank" rel="noopener">SVD</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/02/openmp-examples/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/07/02/openmp-examples/" class="post-title-link" itemprop="url">openmp-examples</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2019-07-02 18:02:41 / 修改时间：18:06:03" itemprop="dateCreated datePublished" datetime="2019-07-02T18:02:41+08:00">2019-07-02</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="1-计算圆周率"><a href="#1-计算圆周率" class="headerlink" title="1 计算圆周率"></a>1 计算圆周率</h1><h2 id="1-1-级数展开"><a href="#1-1-级数展开" class="headerlink" title="1.1 级数展开"></a>1.1 级数展开</h2><h2 id="1-2-概率法"><a href="#1-2-概率法" class="headerlink" title="1.2 概率法"></a>1.2 概率法</h2><h1 id="2-计算积分"><a href="#2-计算积分" class="headerlink" title="2 计算积分"></a>2 计算积分</h1>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/02/linux-programming-condition-variable/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/07/02/linux-programming-condition-variable/" class="post-title-link" itemprop="url">linux-programming-condition-variable</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2019-07-02 10:11:24 / 修改时间：10:29:12" itemprop="dateCreated datePublished" datetime="2019-07-02T10:11:24+08:00">2019-07-02</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>条件变量 TODO</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/07/02/linux-programming-condition-variable/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/01/soft-eng-test-boundary-analysis/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -673,235 +937,6 @@
   
   
 
-        
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/20/tensorflow-intro/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RHANQTL">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/06/20/tensorflow-intro/" class="post-title-link" itemprop="url">TensorFlow 入门</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-06-20 15:47:00" itemprop="dateCreated datePublished" datetime="2019-06-20T15:47:00+08:00">2019-06-20</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-06-26 20:39:34" itemprop="dateModified" datetime="2019-06-26T20:39:34+08:00">2019-06-26</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>TensorFlow 入门笔记</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/06/20/tensorflow-intro/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/18/oo-three-characteristics/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RHANQTL">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/06/18/oo-three-characteristics/" class="post-title-link" itemprop="url">面向对象程序设计：浅谈三个基本特性</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-06-18 19:20:00" itemprop="dateCreated datePublished" datetime="2019-06-18T19:20:00+08:00">2019-06-18</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-06-26 20:37:12" itemprop="dateModified" datetime="2019-06-26T20:37:12+08:00">2019-06-26</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>相信很多人在面试的时候都会被问到这样一个问题：面向对象编程有哪些基本特性？说说你的理解。本文就记录一下个人对于这三个特性的理解。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/06/18/oo-three-characteristics/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/11/front-end-vue-intro/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RHANQTL">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/06/11/front-end-vue-intro/" class="post-title-link" itemprop="url">Vue 入门教程</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-06-11 16:37:44" itemprop="dateCreated datePublished" datetime="2019-06-11T16:37:44+08:00">2019-06-11</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-06-26 20:38:11" itemprop="dateModified" datetime="2019-06-26T20:38:11+08:00">2019-06-26</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/前端-Front-End/" itemprop="url" rel="index"><span itemprop="name">前端 (Front End)</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/前端-Front-End/Vue-js/" itemprop="url" rel="index"><span itemprop="name">Vue.js</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>最近写一个项目用到 Vue.js，这里记录一下相关的知识。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/06/11/front-end-vue-intro/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -972,7 +1007,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">198</span>
+          <span class="site-state-item-count">200</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -981,7 +1016,7 @@
         <span class="site-state-item-name">分类</span>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">10</span>
         <span class="site-state-item-name">标签</span>
       </div>
   </nav>

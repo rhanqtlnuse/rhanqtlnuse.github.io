@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.8.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="困难">
+<meta name="keywords" content="回溯 (Backtracking),动态规划 (Dynamic Programming)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LeetCode 10：正则表达式匹配">
+<meta property="og:url" content="http://yoursite.com/2020/03/12/leetcode-10-regex-matching/index.html">
+<meta property="og:site_name" content="RHANQTL">
+<meta property="og:description" content="困难">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-03-12T12:37:56.782Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="LeetCode 10：正则表达式匹配">
+<meta name="twitter:description" content="困难">
+
+<link rel="canonical" href="http://yoursite.com/2020/03/12/leetcode-10-regex-matching/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
+  };
+</script>
+
+  <title>LeetCode 10：正则表达式匹配 | RHANQTL</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">RHANQTL</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">上下求索</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/12/leetcode-10-regex-matching/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          LeetCode 10：正则表达式匹配
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-03-12 19:48:05 / 修改时间：20:37:56" itemprop="dateCreated datePublished" datetime="2020-03-12T19:48:05+08:00">2020-03-12</time>
+            </span>
+
+          
+            <div class="post-description">困难</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>题目见 <a href="https://leetcode-cn.com/problems/regular-expression-matching/" target="_blank" rel="noopener">LeetCode</a></p>
+<p>回溯题。</p>
+<p>思路其实并不难。一共有三种字符，但实际上我们可以将它们分为两类：</p>
+<ul>
+<li>用于进行字面匹配的字符：字母和 <code>.</code></li>
+<li>量词：<code>*</code> 和缺省</li>
+</ul>
+<p>所以一共有四种组合：</p>
+<ul>
+<li>字母 + 缺省</li>
+<li>字母 + <code>*</code></li>
+<li><code>.</code> + 缺省</li>
+<li><code>.</code> + <code>*</code></li>
+</ul>
+<p>关键就是对这四种组合的处理，再加上判断字母和字母匹配的逻辑就好了。</p>
+<p>有这样几种情况：</p>
+<ul>
+<li>s[i] == p[j]（p[j] 是字母）<ul>
+<li>如果 p[j] 后面带 *，那么我们就要分别考察<ul>
+<li>与 <code>p[j]*</code> 匹配 0 次（即越过）</li>
+<li>与 <code>p[j]*</code> 匹配多次</li>
+</ul>
+</li>
+<li>如果 p[j] 后面不带 *，那就好办了，i 和 j 都可以继续向前</li>
+</ul>
+</li>
+<li>s[i] != p[j]（p[j] 是字母）<ul>
+<li>这种情况下唯一的可能就是能够跳过 p[j]，即 p[j] 带 <em>，如果 p[j] 不带 `\</em>`，说明无法匹配</li>
+</ul>
+</li>
+<li>p[j] == ‘.’<ul>
+<li>由于 ‘.’ 能够匹配任意字符，所以实际上这种情况下的逻辑与 s[i] == p[j] 的处理相同</li>
+</ul>
+</li>
+</ul>
+<p>递归基：</p>
+<ul>
+<li>如果 p 是空串，意味着只能够匹配 <code>&quot;&quot;</code>，s 是否是空串就能够决定</li>
+<li>如果 s 是空串，就要注意了，p 不一定为空，只要<strong>能够匹配空串</strong>即可，具体如下：<ul>
+<li>如果 p 能够匹配空串，其中的每一个部分一定都是带 <code>*</code> 的，因此其长度必然是偶数；</li>
+<li>接着考察每一个偶数位置（如果从 0 开始就是索引为奇数的位置）是否是 <code>*</code></li>
+</ul>
+</li>
+</ul>
+<p>另外，还有一个问题：当遇到 <code>&lt;token&gt;*</code> 时，可能每次都会产生两个分支，因此，我们要看是否能够对这里进行优化。</p>
+<p>事实上是可以的，因为可能会出现 <code>&quot;a*a*a*a*a*a*a*a*a*&quot;</code> 这样的数据，而显然后面的 <code>a*</code> 都是没有意义的，可以将它们合并。</p>
+<p>完整代码如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cctype&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">bool</span> <span class="title">is_nullable</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span> &amp;p, <span class="keyword">const</span> <span class="keyword">int</span> pp)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (pp == p.length()) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">if</span> ((p.length() - pp) % <span class="number">2</span> == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = pp + <span class="number">1</span>; i &lt; p.length(); i += <span class="number">2</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (p[i] != <span class="string">'*'</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isMatch</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span> s, <span class="keyword">const</span> <span class="built_in">string</span> p)</span> </span>&#123;</span><br><span class="line">        __s = s;</span><br><span class="line">        __p.clear();</span><br><span class="line">        <span class="keyword">const</span> <span class="keyword">int</span> length = p.length();</span><br><span class="line">        <span class="keyword">if</span> (length &gt;= <span class="number">4</span>) &#123;</span><br><span class="line">            <span class="keyword">int</span> i;</span><br><span class="line">            <span class="keyword">if</span>      (p[<span class="number">1</span>] == <span class="string">'*'</span>) __p += p.substr(<span class="number">0</span>, i = <span class="number">2</span>);</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (p[<span class="number">2</span>] == <span class="string">'*'</span>) __p += p.substr(<span class="number">0</span>, i = <span class="number">3</span>);</span><br><span class="line">            <span class="keyword">else</span>                  __p += p.substr(<span class="number">0</span>, i = <span class="number">2</span>);</span><br><span class="line">            <span class="keyword">while</span> (i &lt; length) &#123;</span><br><span class="line">                <span class="keyword">if</span> (i + <span class="number">1</span> &lt; length &amp;&amp; p[i + <span class="number">1</span>] == <span class="string">'*'</span>) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (p.substr(i - <span class="number">2</span>, <span class="number">2</span>) != p.substr(i, <span class="number">2</span>)) &#123;</span><br><span class="line">                        __p += p.substr(i, <span class="number">2</span>);</span><br><span class="line">                    &#125;</span><br><span class="line">                    i += <span class="number">2</span>;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    __p.push_back(p[i++]);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            __p = p;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> __search(<span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="built_in">string</span> __s, __p;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">bool</span> __search(<span class="keyword">int</span> ps, <span class="keyword">int</span> pp) &#123;</span><br><span class="line">        <span class="keyword">if</span> (ps == __s.length()) <span class="keyword">return</span> is_nullable(__p, pp);</span><br><span class="line">        <span class="keyword">if</span> (ps &lt; __s.length() &amp;&amp; pp == __p.length()) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="comment">// 因为 s 中只会出现字母，所以如果第一个条件成立，就意味着 __p[pp] 也是字母</span></span><br><span class="line">        <span class="keyword">if</span> (__s[ps] == __p[pp] || __p[pp] == <span class="string">'.'</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (pp + <span class="number">1</span> &lt; __p.length() &amp;&amp; __p[pp + <span class="number">1</span>] == <span class="string">'*'</span>) &#123;</span><br><span class="line">                <span class="keyword">return</span> __search(ps + <span class="number">1</span>, pp) || __search(ps, pp + <span class="number">2</span>);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">return</span> __search(ps + <span class="number">1</span>, pp + <span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> pp + <span class="number">1</span> &lt; __p.length() </span><br><span class="line">                    &amp;&amp; __p[pp + <span class="number">1</span>] == <span class="string">'*'</span> </span><br><span class="line">                    &amp;&amp; __search(ps, pp + <span class="number">2</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/回溯-Backtracking/" rel="tag"># 回溯 (Backtracking)</a>
+              <a href="/tags/动态规划-Dynamic-Programming/" rel="tag"># 动态规划 (Dynamic Programming)</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/03/11/leetcode-11-container-with-most-water/" rel="prev" title="leetcode 11 container with most water">
+      <i class="fa fa-chevron-left"></i> leetcode 11 container with most water
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/03/13/linux-programming-shell-command-awk/" rel="next" title="Linux 编程 | Shell | AWK">
+      Linux 编程 | Shell | AWK <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Han Qi</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">200</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">61</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Han Qi</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://muse.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.7.2
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
