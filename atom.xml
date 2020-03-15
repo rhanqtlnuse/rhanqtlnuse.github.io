@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-03-14T05:56:41.868Z</updated>
+  <updated>2020-03-15T06:37:41.267Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,11 +17,47 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>乐理 | 和弦的构成</title>
+    <link href="http://yoursite.com/2020/03/15/music-structures-of-chords/"/>
+    <id>http://yoursite.com/2020/03/15/music-structures-of-chords/</id>
+    <published>2020-03-15T06:34:31.000Z</published>
+    <updated>2020-03-15T06:37:41.267Z</updated>
+    
+    <summary type="html">
+    
+      如题
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>LeetCode 668：乘法表中第 k 小的数</title>
+    <link href="http://yoursite.com/2020/03/15/leetcode-668-kth-smallest-number-in-multiplication-table/"/>
+    <id>http://yoursite.com/2020/03/15/leetcode-668-kth-smallest-number-in-multiplication-table/</id>
+    <published>2020-03-15T03:58:58.000Z</published>
+    <updated>2020-03-15T04:01:45.039Z</updated>
+    
+    <summary type="html">
+    
+      如题
+    
+    </summary>
+    
+    
+      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
+    
+      <category term="二分查找 (Binary Search)" scheme="http://yoursite.com/tags/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE-Binary-Search/"/>
+    
+  </entry>
+  
+  <entry>
     <title>LeetCode 25：K 个一组翻转链表</title>
     <link href="http://yoursite.com/2020/03/14/leetcode-25-reverse-nodes-in-k-group/"/>
     <id>http://yoursite.com/2020/03/14/leetcode-25-reverse-nodes-in-k-group/</id>
     <published>2020-03-14T01:52:35.000Z</published>
-    <updated>2020-03-14T05:56:41.868Z</updated>
+    <updated>2020-03-15T03:58:06.398Z</updated>
     
     <summary type="html">
     
@@ -335,39 +371,6 @@
 &lt;p&gt;&lt;strong&gt;摘要&lt;/strong&gt;&lt;/p&gt;
     
     </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>C | 泛型编程</title>
-    <link href="http://yoursite.com/2019/10/03/ooc-generic-programming/"/>
-    <id>http://yoursite.com/2019/10/03/ooc-generic-programming/</id>
-    <published>2019-10-03T04:00:01.000Z</published>
-    <updated>2020-02-21T08:41:49.999Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>面向对象软件设计：设计原则</title>
-    <link href="http://yoursite.com/2019/09/25/oo-design-principles/"/>
-    <id>http://yoursite.com/2019/09/25/oo-design-principles/</id>
-    <published>2019-09-25T03:26:04.000Z</published>
-    <updated>2019-12-15T02:34:59.408Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;strong&gt;摘要&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;本文介绍面向对象软件设计的设计原则，包括 Robert C. Martin 提出的 S.O.L.I.D. 原则、合成复用原则、Demeter 法则以及用于职责分配的 GRASP 原则。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="软件设计 (Software Design)" scheme="http://yoursite.com/categories/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1-Software-Design/"/>
     
     
   </entry>
