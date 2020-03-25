@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 3.8.0">
@@ -74,12 +74,12 @@
   .use-motion .logo-line-before i { left: initial; }
   .use-motion .logo-line-after i { right: initial; }
   </style>
-</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</noscript>
 
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container use-motion">
+  <div class="container use-motion">
     <div class="headband"></div>
 
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -263,7 +263,7 @@
 <li>酒鬼步行、随机游走、赌博</li>
 <li>生死过程、泊松点过程</li>
 <li>非马尔可夫的例子：取硬币问题<ul>
-<li>假设有一个零钱包，包含 5 个 25 美分的硬币，5 个 10 美分，5 个 5 美分，并且一个接一个地从钱包中随机抽取硬币放在桌子上。如果 $X_ {n}$ 表示取出 $n$ 个硬币之后桌子上硬币的总价值，其中 $X_0 = 0$，那么序列 ${ X_n:n\in\mathbb{N}}$ 不是马尔可夫过程。</li>
+<li>假设有一个零钱包，包含 5 个 25 美分的硬币，5 个 10 美分，5 个 5 美分，并且一个接一个地从钱包中随机抽取硬币放在桌子上。如果 $X_ {n}$ 表示取出 $n$ 个硬币之后桌子上硬币的总价值，其中 $X_0 = 0$，那么序列 $\{ X_n:n\in\mathbb{N}\}$ 不是马尔可夫过程。</li>
 <li>假设我们取了 6 次硬币，5 枚 5 美分的硬币和 1 枚 25 美分的硬币，那么当前 $X_6 = 0.5$，那么我们下一次取硬币的概率会受到影响：比如以后不能再取面值为 5 美分的硬币，那么我们可以确定 $X_7 \ge 0.6$ 的概率为 1。而如果我们不知道当前已经取出的硬币的情况，我们可能会推断出，当前取了 4 个 10 美分的硬币和 2 个 5 美分的硬币，这样 $X_7 \ge 0.6$ 的概率为 $\dfrac{2}{3}$，与之前的 1 不同，也就是说，<strong>状态之间转移的概率受到了影响</strong>！</li>
 <li>这个场景可以建模为马尔可夫过程，我们可以定义 $X_n$ 表示第 n 次取硬币后桌子上各种硬币的数量，比如，$X_6 = 1, 0, 5$ 表示第 6 次抽取后桌子上有 1 枚 25 美分的硬币，5 枚 5 美分的硬币。这个新模型将由 216（$= 6 \times 6 \times 6$ ）种可能状态表示</li>
 </ul>
@@ -329,8 +329,8 @@
       <i class="fa fa-chevron-left"></i> C++ 学习笔记 - STL：map
     </a></div>
       <div class="post-nav-item">
-    <a href="/2019/01/18/POJ-1753：Flip-Game/" rel="next" title="POJ 1753：Flip Game">
-      POJ 1753：Flip Game <i class="fa fa-chevron-right"></i>
+    <a href="/2019/01/18/poj-1753-Flip-Game/" rel="next" title="POJ 1753. Flip Game">
+      POJ 1753. Flip Game <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -405,16 +405,16 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">204</span>
+          <span class="site-state-item-count">222</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
-        <span class="site-state-item-count">63</span>
+        <span class="site-state-item-count">74</span>
         <span class="site-state-item-name">分类</span>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-count">35</span>
         <span class="site-state-item-name">标签</span>
       </div>
   </nav>
@@ -470,7 +470,7 @@
   <script src="/lib/velocity/velocity.ui.min.js"></script>
 <script src="/js/utils.js"></script><script src="/js/motion.js"></script>
 <script src="/js/schemes/muse.js"></script>
-<script src="/js/next-boot.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<script src="/js/next-boot.js"></script>
 
 
 
@@ -491,6 +491,61 @@
 
 
   
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 

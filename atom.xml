@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-03-15T11:28:21.207Z</updated>
+  <updated>2020-03-25T06:53:12.854Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>算法 | 二分查找</title>
-    <link href="http://yoursite.com/2020/03/15/algorithms-binary-search/"/>
-    <id>http://yoursite.com/2020/03/15/algorithms-binary-search/</id>
-    <published>2020-03-15T08:21:26.000Z</published>
-    <updated>2020-03-15T11:28:21.207Z</updated>
+    <title>健身 | 什么是离心收缩、向心收缩和等长收缩？</title>
+    <link href="http://yoursite.com/2020/03/25/work-out-%E7%A6%BB%E5%BF%83%E6%94%B6%E7%BC%A9-%E5%90%91%E5%BF%83%E6%94%B6%E7%BC%A9-%E7%AD%89%E9%95%BF%E6%94%B6%E7%BC%A9/"/>
+    <id>http://yoursite.com/2020/03/25/work-out-离心收缩-向心收缩-等长收缩/</id>
+    <published>2020-03-24T16:00:00.000Z</published>
+    <updated>2020-03-25T06:53:12.854Z</updated>
     
     <summary type="html">
     
@@ -29,21 +29,17 @@
     
     </summary>
     
-      <category term="算法 (Algorithms)" scheme="http://yoursite.com/categories/%E7%AE%97%E6%B3%95-Algorithms/"/>
-    
-      <category term="查找" scheme="http://yoursite.com/categories/%E7%AE%97%E6%B3%95-Algorithms/%E6%9F%A5%E6%89%BE/"/>
-    
-      <category term="二分查找 (Binary Search)" scheme="http://yoursite.com/categories/%E7%AE%97%E6%B3%95-Algorithms/%E6%9F%A5%E6%89%BE/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE-Binary-Search/"/>
+      <category term="健身 (Working Out)" scheme="http://yoursite.com/categories/%E5%81%A5%E8%BA%AB-Working-Out/"/>
     
     
   </entry>
   
   <entry>
-    <title>乐理 | 和弦的构成</title>
-    <link href="http://yoursite.com/2020/03/15/music-structures-of-chords/"/>
-    <id>http://yoursite.com/2020/03/15/music-structures-of-chords/</id>
-    <published>2020-03-15T06:34:31.000Z</published>
-    <updated>2020-03-15T06:37:41.267Z</updated>
+    <title>在 Ruby on Rails 项目中使用测试工具 RSpec 和 Autotest</title>
+    <link href="http://yoursite.com/2020/03/24/using-rspec-and-autotest-with-ruby-on-rails/"/>
+    <id>http://yoursite.com/2020/03/24/using-rspec-and-autotest-with-ruby-on-rails/</id>
+    <published>2020-03-24T07:06:00.000Z</published>
+    <updated>2020-03-25T06:57:20.868Z</updated>
     
     <summary type="html">
     
@@ -52,14 +48,64 @@
     </summary>
     
     
+      <category term="Ruby on Rails" scheme="http://yoursite.com/tags/Ruby-on-Rails/"/>
+    
+      <category term="TDD" scheme="http://yoursite.com/tags/TDD/"/>
+    
+      <category term="RSpec" scheme="http://yoursite.com/tags/RSpec/"/>
+    
   </entry>
   
   <entry>
-    <title>LeetCode 668：乘法表中第 k 小的数</title>
-    <link href="http://yoursite.com/2020/03/15/leetcode-668-kth-smallest-number-in-multiplication-table/"/>
-    <id>http://yoursite.com/2020/03/15/leetcode-668-kth-smallest-number-in-multiplication-table/</id>
-    <published>2020-03-15T03:58:58.000Z</published>
-    <updated>2020-03-15T04:01:45.039Z</updated>
+    <title>在 Ruby on Rails 项目中使用 BDD 工具 Cucumber</title>
+    <link href="http://yoursite.com/2020/03/24/using-cucumber-with-ruby-on-rails/"/>
+    <id>http://yoursite.com/2020/03/24/using-cucumber-with-ruby-on-rails/</id>
+    <published>2020-03-24T06:59:00.000Z</published>
+    <updated>2020-03-25T06:57:31.375Z</updated>
+    
+    <summary type="html">
+    
+      如题
+    
+    </summary>
+    
+    
+      <category term="Ruby on Rails" scheme="http://yoursite.com/tags/Ruby-on-Rails/"/>
+    
+      <category term="BDD" scheme="http://yoursite.com/tags/BDD/"/>
+    
+      <category term="Cucumber" scheme="http://yoursite.com/tags/Cucumber/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>在 Ruby on Rails 项目中使用 BDD 工具 Cucumber</title>
+    <link href="http://yoursite.com/2020/03/24/using-swagger-with-ruby-on-rails/"/>
+    <id>http://yoursite.com/2020/03/24/using-swagger-with-ruby-on-rails/</id>
+    <published>2020-03-24T06:59:00.000Z</published>
+    <updated>2020-03-25T06:57:10.400Z</updated>
+    
+    <summary type="html">
+    
+      如题
+    
+    </summary>
+    
+    
+      <category term="Ruby on Rails" scheme="http://yoursite.com/tags/Ruby-on-Rails/"/>
+    
+      <category term="BDD" scheme="http://yoursite.com/tags/BDD/"/>
+    
+      <category term="Cucumber" scheme="http://yoursite.com/tags/Cucumber/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>LeetCode | 面试题 17 - 16. 按摩师</title>
+    <link href="http://yoursite.com/2020/03/24/leetcode-interview-17-16/"/>
+    <id>http://yoursite.com/2020/03/24/leetcode-interview-17-16/</id>
+    <published>2020-03-24T00:52:00.000Z</published>
+    <updated>2020-03-24T03:06:00.931Z</updated>
     
     <summary type="html">
     
@@ -70,16 +116,238 @@
     
       <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
     
-      <category term="二分查找 (Binary Search)" scheme="http://yoursite.com/tags/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE-Binary-Search/"/>
+  </entry>
+  
+  <entry>
+    <title>在 WSL 上安装 Ruby 和 Ruby on Rails</title>
+    <link href="http://yoursite.com/2020/03/23/install-ruby-and-rails-on-wsl/"/>
+    <id>http://yoursite.com/2020/03/23/install-ruby-and-rails-on-wsl/</id>
+    <published>2020-03-23T11:00:00.000Z</published>
+    <updated>2020-03-24T12:23:08.366Z</updated>
+    
+    <summary type="html">
+    
+      如题
+    
+    </summary>
+    
+      <category term="Ruby" scheme="http://yoursite.com/categories/Ruby/"/>
+    
+      <category term="Ruby on Rails" scheme="http://yoursite.com/categories/Ruby/Ruby-on-Rails/"/>
+    
     
   </entry>
   
   <entry>
-    <title>LeetCode 25：K 个一组翻转链表</title>
-    <link href="http://yoursite.com/2020/03/14/leetcode-25-reverse-nodes-in-k-group/"/>
-    <id>http://yoursite.com/2020/03/14/leetcode-25-reverse-nodes-in-k-group/</id>
-    <published>2020-03-14T01:52:35.000Z</published>
-    <updated>2020-03-15T03:58:06.398Z</updated>
+    <title>数据库 | MySQL | 性能剖析</title>
+    <link href="http://yoursite.com/2020/03/23/database-mysql-profiling/"/>
+    <id>http://yoursite.com/2020/03/23/database-mysql-profiling/</id>
+    <published>2020-03-23T03:00:49.000Z</published>
+    <updated>2020-03-23T03:07:28.689Z</updated>
+    
+    <summary type="html">
+    
+      如题
+    
+    </summary>
+    
+      <category term="数据库 (Database)" scheme="http://yoursite.com/categories/%E6%95%B0%E6%8D%AE%E5%BA%93-Database/"/>
+    
+      <category term="MySQL" scheme="http://yoursite.com/categories/%E6%95%B0%E6%8D%AE%E5%BA%93-Database/MySQL/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Linux | 适用于 Windows 的 Linux 子系统</title>
+    <link href="http://yoursite.com/2020/03/23/linux-windows-subsystem-for-linux/"/>
+    <id>http://yoursite.com/2020/03/23/linux-windows-subsystem-for-linux/</id>
+    <published>2020-03-23T02:20:17.000Z</published>
+    <updated>2020-03-23T06:22:42.851Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>数据库 | MySQL | 查询优化</title>
+    <link href="http://yoursite.com/2020/03/23/database-mysql-query-optimization/"/>
+    <id>http://yoursite.com/2020/03/23/database-mysql-query-optimization/</id>
+    <published>2020-03-23T01:31:42.000Z</published>
+    <updated>2020-03-23T06:22:47.582Z</updated>
+    
+    <summary type="html">
+    
+      如题
+    
+    </summary>
+    
+      <category term="数据库 (Database)" scheme="http://yoursite.com/categories/%E6%95%B0%E6%8D%AE%E5%BA%93-Database/"/>
+    
+      <category term="MySQL" scheme="http://yoursite.com/categories/%E6%95%B0%E6%8D%AE%E5%BA%93-Database/MySQL/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Ruby | Gemfile</title>
+    <link href="http://yoursite.com/2020/03/22/ruby-gemfile/"/>
+    <id>http://yoursite.com/2020/03/22/ruby-gemfile/</id>
+    <published>2020-03-22T04:32:52.000Z</published>
+    <updated>2020-03-25T07:07:29.921Z</updated>
+    
+    <summary type="html">
+    
+      如题
+    
+    </summary>
+    
+      <category term="Ruby" scheme="http://yoursite.com/categories/Ruby/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>manachers-algorithm-linear-time-longest-palindromic-substring</title>
+    <link href="http://yoursite.com/2020/03/22/manachers-algorithm-linear-time-longest-palindromic-substring/"/>
+    <id>http://yoursite.com/2020/03/22/manachers-algorithm-linear-time-longest-palindromic-substring/</id>
+    <published>2020-03-22T01:07:21.000Z</published>
+    <updated>2020-03-22T01:08:03.463Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>使用 Ruby 构建 RESTful API</title>
+    <link href="http://yoursite.com/2020/03/20/building-a-restful-api-with-ruby-on-rails/"/>
+    <id>http://yoursite.com/2020/03/20/building-a-restful-api-with-ruby-on-rails/</id>
+    <published>2020-03-20T11:07:13.000Z</published>
+    <updated>2020-03-24T11:12:25.954Z</updated>
+    
+    <summary type="html">
+    
+      使用 Ruby on Rails + mongoDB
+    
+    </summary>
+    
+      <category term="Ruby" scheme="http://yoursite.com/categories/Ruby/"/>
+    
+    
+      <category term="RESTful API" scheme="http://yoursite.com/tags/RESTful-API/"/>
+    
+      <category term="Ruby" scheme="http://yoursite.com/tags/Ruby/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>MySQL | EXPLAIN</title>
+    <link href="http://yoursite.com/2020/03/20/database-mysql-explain/"/>
+    <id>http://yoursite.com/2020/03/20/database-mysql-explain/</id>
+    <published>2020-03-20T08:20:03.000Z</published>
+    <updated>2020-03-20T08:22:02.131Z</updated>
+    
+    <summary type="html">
+    
+      MySQL 中 EXPLAIN 工具的笔记
+    
+    </summary>
+    
+      <category term="数据库 (Database)" scheme="http://yoursite.com/categories/%E6%95%B0%E6%8D%AE%E5%BA%93-Database/"/>
+    
+      <category term="MySQL" scheme="http://yoursite.com/categories/%E6%95%B0%E6%8D%AE%E5%BA%93-Database/MySQL/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>LeetCode 1250. 检查「好数组」</title>
+    <link href="http://yoursite.com/2020/03/19/leetcode-1250-check-if-it-is-a-good-array/"/>
+    <id>http://yoursite.com/2020/03/19/leetcode-1250-check-if-it-is-a-good-array/</id>
+    <published>2020-03-19T02:03:24.000Z</published>
+    <updated>2020-03-19T11:54:04.194Z</updated>
+    
+    <summary type="html">
+    
+      难度：困难
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>LeetCode 409. 最长回文串</title>
+    <link href="http://yoursite.com/2020/03/19/leetcode-409-longest-palindrome/"/>
+    <id>http://yoursite.com/2020/03/19/leetcode-409-longest-palindrome/</id>
+    <published>2020-03-19T01:23:21.000Z</published>
+    <updated>2020-03-19T01:59:53.315Z</updated>
+    
+    <summary type="html">
+    
+      难度：简单
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>高性能 MySQL | 各种类型的索引</title>
+    <link href="http://yoursite.com/2020/03/18/database-mysql-index/"/>
+    <id>http://yoursite.com/2020/03/18/database-mysql-index/</id>
+    <published>2020-03-18T06:33:09.000Z</published>
+    <updated>2020-03-18T07:44:10.625Z</updated>
+    
+    <summary type="html">
+    
+      解释 MySQL 中各种索引的含义
+    
+    </summary>
+    
+      <category term="数据库 (Database)" scheme="http://yoursite.com/categories/%E6%95%B0%E6%8D%AE%E5%BA%93-Database/"/>
+    
+      <category term="MySQL" scheme="http://yoursite.com/categories/%E6%95%B0%E6%8D%AE%E5%BA%93-Database/MySQL/"/>
+    
+      <category term="索引 (Index)" scheme="http://yoursite.com/categories/%E6%95%B0%E6%8D%AE%E5%BA%93-Database/MySQL/%E7%B4%A2%E5%BC%95-Index/"/>
+    
+    
+      <category term="数据库(Database)" scheme="http://yoursite.com/tags/%E6%95%B0%E6%8D%AE%E5%BA%93-Database/"/>
+    
+      <category term="MySQL" scheme="http://yoursite.com/tags/MySQL/"/>
+    
+      <category term="索引 (Index)" scheme="http://yoursite.com/tags/%E7%B4%A2%E5%BC%95-Index/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>OJ 经验教训总结</title>
+    <link href="http://yoursite.com/2020/03/17/others-oj-experience/"/>
+    <id>http://yoursite.com/2020/03/17/others-oj-experience/</id>
+    <published>2020-03-17T10:25:33.000Z</published>
+    <updated>2020-03-19T01:56:17.730Z</updated>
     
     <summary type="html">
     
@@ -91,11 +359,11 @@
   </entry>
   
   <entry>
-    <title>LeetCode | 面试题 57 - II. 和为 s 的连续正数序列</title>
-    <link href="http://yoursite.com/2020/03/13/leetcode-interview-57-2/"/>
-    <id>http://yoursite.com/2020/03/13/leetcode-interview-57-2/</id>
-    <published>2020-03-13T15:47:55.000Z</published>
-    <updated>2020-03-13T15:51:11.626Z</updated>
+    <title>LeetCode 959. 由斜杠划分区域</title>
+    <link href="http://yoursite.com/2020/03/17/leetcode-959-regions-cut-by-slashes/"/>
+    <id>http://yoursite.com/2020/03/17/leetcode-959-regions-cut-by-slashes/</id>
+    <published>2020-03-17T08:09:33.000Z</published>
+    <updated>2020-03-17T08:18:52.017Z</updated>
     
     <summary type="html">
     
@@ -103,280 +371,54 @@
     
     </summary>
     
+      <category term="图 (Graph)" scheme="http://yoursite.com/categories/%E5%9B%BE-Graph/"/>
+    
+      <category term="并查集 (Union-Find)" scheme="http://yoursite.com/categories/%E5%9B%BE-Graph/%E5%B9%B6%E6%9F%A5%E9%9B%86-Union-Find/"/>
+    
+    
+      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
+    
+      <category term="图 (Graph)" scheme="http://yoursite.com/tags/%E5%9B%BE-Graph/"/>
+    
+      <category term="连通块 (Connected Component)" scheme="http://yoursite.com/tags/%E8%BF%9E%E9%80%9A%E5%9D%97-Connected-Component/"/>
+    
+      <category term="并查集 (Union-Find)" scheme="http://yoursite.com/tags/%E5%B9%B6%E6%9F%A5%E9%9B%86-Union-Find/"/>
     
   </entry>
   
   <entry>
-    <title>Linux 编程 | Shell | AWK</title>
-    <link href="http://yoursite.com/2020/03/13/linux-programming-shell-command-awk/"/>
-    <id>http://yoursite.com/2020/03/13/linux-programming-shell-command-awk/</id>
-    <published>2020-03-13T01:30:03.000Z</published>
-    <updated>2020-03-13T04:18:32.242Z</updated>
+    <title>LeetCode 115. 不同的子序列</title>
+    <link href="http://yoursite.com/2020/03/17/leetcode-115-distinct-subsequences/"/>
+    <id>http://yoursite.com/2020/03/17/leetcode-115-distinct-subsequences/</id>
+    <published>2020-03-17T03:28:06.000Z</published>
+    <updated>2020-03-17T03:42:32.118Z</updated>
     
     <summary type="html">
     
-      基于 Gawk
+      如题
     
     </summary>
     
-      <category term="Linux" scheme="http://yoursite.com/categories/Linux/"/>
-    
-      <category term="Shell" scheme="http://yoursite.com/categories/Linux/Shell/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>LeetCode 10：正则表达式匹配</title>
-    <link href="http://yoursite.com/2020/03/12/leetcode-10-regex-matching/"/>
-    <id>http://yoursite.com/2020/03/12/leetcode-10-regex-matching/</id>
-    <published>2020-03-12T11:48:05.000Z</published>
-    <updated>2020-03-12T12:37:56.782Z</updated>
-    
-    <summary type="html">
-    
-      困难
-    
-    </summary>
-    
-    
-      <category term="回溯 (Backtracking)" scheme="http://yoursite.com/tags/%E5%9B%9E%E6%BA%AF-Backtracking/"/>
     
       <category term="动态规划 (Dynamic Programming)" scheme="http://yoursite.com/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92-Dynamic-Programming/"/>
     
-  </entry>
-  
-  <entry>
-    <title>LeetCode 11：盛水最多的容器</title>
-    <link href="http://yoursite.com/2020/03/11/leetcode-11-container-with-most-water/"/>
-    <id>http://yoursite.com/2020/03/11/leetcode-11-container-with-most-water/</id>
-    <published>2020-03-11T04:40:50.000Z</published>
-    <updated>2020-03-14T01:55:02.048Z</updated>
-    
-    <summary type="html">
-    
-      LeetCode 11
-    
-    </summary>
-    
+      <category term="0-1 背包" scheme="http://yoursite.com/tags/0-1-%E8%83%8C%E5%8C%85/"/>
     
   </entry>
   
   <entry>
-    <title>如何写作文献综述 (Literature Review)</title>
-    <link href="http://yoursite.com/2020/02/29/how-to-write-literature-review/"/>
-    <id>http://yoursite.com/2020/02/29/how-to-write-literature-review/</id>
-    <published>2020-02-29T07:23:02.000Z</published>
-    <updated>2020-02-29T07:31:09.912Z</updated>
+    <title>Vim | 配置</title>
+    <link href="http://yoursite.com/2020/03/15/others-vim-config/"/>
+    <id>http://yoursite.com/2020/03/15/others-vim-config/</id>
+    <published>2020-03-15T15:15:42.000Z</published>
+    <updated>2020-03-16T06:34:50.360Z</updated>
     
     <summary type="html">
     
-      如题
+      记录 Vim 一些配置选项
     
     </summary>
     
-    
-  </entry>
-  
-  <entry>
-    <title>ASCII、Unicode 和 UTF</title>
-    <link href="http://yoursite.com/2020/02/24/others-ascii-unicode-utf8/"/>
-    <id>http://yoursite.com/2020/02/24/others-ascii-unicode-utf8/</id>
-    <published>2020-02-24T00:06:30.000Z</published>
-    <updated>2020-02-28T14:59:43.627Z</updated>
-    
-    <summary type="html">
-    
-      如题
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>清华数据结构 MOOC | Programming Assignment 1-3</title>
-    <link href="http://yoursite.com/2019/12/27/algorithms-tsinghua-data-structures-mooc-pa-1-3/"/>
-    <id>http://yoursite.com/2019/12/27/algorithms-tsinghua-data-structures-mooc-pa-1-3/</id>
-    <published>2019-12-27T02:39:00.000Z</published>
-    <updated>2019-12-27T02:48:15.342Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;strong&gt;摘要&lt;/strong&gt;&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="数据结构与算法 (Data Structures and Algorithms)" scheme="http://yoursite.com/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-Data-Structures-and-Algorithms/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>数据结构 | 栈与队列</title>
-    <link href="http://yoursite.com/2019/12/26/algorithms-stack-and-queue/"/>
-    <id>http://yoursite.com/2019/12/26/algorithms-stack-and-queue/</id>
-    <published>2019-12-26T05:00:00.000Z</published>
-    <updated>2019-12-27T01:52:21.798Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;strong&gt;摘要&lt;/strong&gt;&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="算法 (Algorithms)" scheme="http://yoursite.com/categories/%E7%AE%97%E6%B3%95-Algorithms/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>算法 | 前置知识</title>
-    <link href="http://yoursite.com/2019/12/26/algorithms-prerequisites/"/>
-    <id>http://yoursite.com/2019/12/26/algorithms-prerequisites/</id>
-    <published>2019-12-26T04:00:00.000Z</published>
-    <updated>2019-12-27T02:32:16.472Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;strong&gt;摘要&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;介绍学习数据结构与算法的前置知识。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="算法 (Algorithms)" scheme="http://yoursite.com/categories/%E7%AE%97%E6%B3%95-Algorithms/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>排序问题和排序算法</title>
-    <link href="http://yoursite.com/2019/11/23/algorithms-sorting/"/>
-    <id>http://yoursite.com/2019/11/23/algorithms-sorting/</id>
-    <published>2019-11-23T04:00:00.000Z</published>
-    <updated>2019-12-26T03:15:24.406Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;strong&gt;摘要&lt;/strong&gt;&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="算法 (Algorithms)" scheme="http://yoursite.com/categories/%E7%AE%97%E6%B3%95-Algorithms/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>程序设计方法学：表驱动法</title>
-    <link href="http://yoursite.com/2019/11/20/others-table-driven/"/>
-    <id>http://yoursite.com/2019/11/20/others-table-driven/</id>
-    <published>2019-11-20T01:59:35.000Z</published>
-    <updated>2019-11-20T02:38:20.210Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;strong&gt;摘要&lt;/strong&gt;&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Programming" scheme="http://yoursite.com/categories/Programming/"/>
-    
-      <category term="Methodology" scheme="http://yoursite.com/categories/Programming/Methodology/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>并发程序设计：管程</title>
-    <link href="http://yoursite.com/2019/11/15/concurrency-monitor/"/>
-    <id>http://yoursite.com/2019/11/15/concurrency-monitor/</id>
-    <published>2019-11-15T04:00:00.000Z</published>
-    <updated>2019-11-18T03:12:52.805Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;strong&gt;摘要&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;本文介绍并发程序设计中的管程&lt;/p&gt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>并发程序设计：条件变量</title>
-    <link href="http://yoursite.com/2019/11/09/concurrency-conditional-variables/"/>
-    <id>http://yoursite.com/2019/11/09/concurrency-conditional-variables/</id>
-    <published>2019-11-09T04:00:00.000Z</published>
-    <updated>2019-11-17T06:23:13.814Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;引言&quot;&gt;&lt;a href=&quot;#引言&quot; class=&quot;headerlink&quot; title=&quot;引言&quot;&gt;&lt;/a&gt;引言&lt;/h1&gt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>并发程序设计：信号量和 PV 操作</title>
-    <link href="http://yoursite.com/2019/11/09/concurrency-semaphores-and-pv/"/>
-    <id>http://yoursite.com/2019/11/09/concurrency-semaphores-and-pv/</id>
-    <published>2019-11-09T04:00:00.000Z</published>
-    <updated>2019-12-17T02:37:38.080Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;引言&quot;&gt;&lt;a href=&quot;#引言&quot; class=&quot;headerlink&quot; title=&quot;引言&quot;&gt;&lt;/a&gt;引言&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;摘要&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;本文介绍并发编程中的信号量和 PV 操作&lt;/p&gt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>面向对象软件设计：设计模式</title>
-    <link href="http://yoursite.com/2019/11/02/oo-design-design-patterns/"/>
-    <id>http://yoursite.com/2019/11/02/oo-design-design-patterns/</id>
-    <published>2019-11-02T05:02:06.000Z</published>
-    <updated>2019-11-07T05:25:11.718Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;0-引言&quot;&gt;&lt;a href=&quot;#0-引言&quot; class=&quot;headerlink&quot; title=&quot;0    引言&quot;&gt;&lt;/a&gt;0    引言&lt;/h1&gt;&lt;p&gt;着眼于“变化”&lt;/p&gt;
-&lt;p&gt;分析一个设计模式的优缺点时，应该从以下几个方面着手：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;类的数量&lt;/li&gt;
-&lt;li&gt;单个类的负载&lt;/li&gt;
-&lt;li&gt;类间结构的复杂度&lt;/li&gt;
-&lt;li&gt;对设计原则的支持&lt;/li&gt;
-&lt;/ul&gt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>面向对象软件设计：UML 基础</title>
-    <link href="http://yoursite.com/2019/10/18/oo-design-foundations-of-uml/"/>
-    <id>http://yoursite.com/2019/10/18/oo-design-foundations-of-uml/</id>
-    <published>2019-10-18T01:56:48.000Z</published>
-    <updated>2020-02-20T14:44:45.074Z</updated>
-    
-    <summary type="html">
-    
-      本文介绍 UML 图中实体之间的关系
-    
-    </summary>
-    
-    
-      <category term="Design" scheme="http://yoursite.com/tags/Design/"/>
-    
-      <category term="OOP" scheme="http://yoursite.com/tags/OOP/"/>
     
   </entry>
   

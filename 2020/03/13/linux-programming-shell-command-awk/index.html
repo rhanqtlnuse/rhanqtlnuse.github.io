@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 3.8.0">
@@ -27,7 +27,7 @@
 <meta property="og:site_name" content="RHANQTL">
 <meta property="og:description" content="基于 Gawk">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-03-13T04:18:32.242Z">
+<meta property="og:updated_time" content="2020-03-20T08:23:45.770Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux 编程 | Shell | AWK">
 <meta name="twitter:description" content="基于 Gawk">
@@ -73,12 +73,12 @@
   .use-motion .logo-line-before i { left: initial; }
   .use-motion .logo-line-after i { right: initial; }
   </style>
-</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</noscript>
 
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container use-motion">
+  <div class="container use-motion">
     <div class="headband"></div>
 
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -191,10 +191,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-03-13 09:30:03 / 修改时间：12:18:32" itemprop="dateCreated datePublished" datetime="2020-03-13T09:30:03+08:00">2020-03-13</time>
+              <time title="创建时间：2020-03-13 09:30:03" itemprop="dateCreated datePublished" datetime="2020-03-13T09:30:03+08:00">2020-03-13</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-20 16:23:45" itemprop="dateModified" datetime="2020-03-20T16:23:45+08:00">2020-03-20</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -272,7 +278,7 @@
 <p>变量</p>
 <ul>
 <li>与 Shell 不同，引用变量不需要 <script type="math/tex">`，如果加上 `</script> 表示引用变量所指的某一行</li>
-<li><code>\$<u>n</u></code>：表示输入的第 n 个字段（可以理解成列），<code>$0</code> 表示整行</li>
+<li><code>$<u>n</u></code>：表示输入的第 n 个字段（可以理解成列），<code>$0</code> 表示整行</li>
 </ul>
 <p>向内部的 AWK 脚本传参</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># NOTE - this script does not work!</span></span><br><span class="line"></span><br><span class="line">column=<span class="string">"<span class="variable">$1</span>"</span></span><br><span class="line">awk <span class="string">'&#123;print $column&#125;'</span></span><br></pre></td></tr></table></figure>
@@ -293,6 +299,7 @@
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p>[1] <a href="https://www.grymoire.com/Unix/Awk.html" target="_blank" rel="noopener">UNIX Tutorials | AWK</a></p>
 <p>[2] <a href="">GNU 官方文档 | GAWK</a></p>
 <p><a href="https://www.tutorialspoint.com/awk/awk_overview.htm" target="_blank" rel="noopener">AWK 教程</a></p>
+<p><a href="https://man.linuxde.net/awk" target="_blank" rel="noopener">https://man.linuxde.net/awk</a></p>
 
     </div>
 
@@ -388,16 +395,16 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">204</span>
+          <span class="site-state-item-count">222</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
-        <span class="site-state-item-count">63</span>
+        <span class="site-state-item-count">74</span>
         <span class="site-state-item-name">分类</span>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-count">35</span>
         <span class="site-state-item-name">标签</span>
       </div>
   </nav>
@@ -453,7 +460,7 @@
   <script src="/lib/velocity/velocity.ui.min.js"></script>
 <script src="/js/utils.js"></script><script src="/js/motion.js"></script>
 <script src="/js/schemes/muse.js"></script>
-<script src="/js/next-boot.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<script src="/js/next-boot.js"></script>
 
 
 
@@ -474,6 +481,61 @@
 
 
   
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 

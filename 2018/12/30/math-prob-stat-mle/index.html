@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 3.8.0">
@@ -73,12 +73,12 @@
   .use-motion .logo-line-before i { left: initial; }
   .use-motion .logo-line-after i { right: initial; }
   </style>
-</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</noscript>
 
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container use-motion">
+  <div class="container use-motion">
     <div class="headband"></div>
 
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -231,12 +231,12 @@
 <ul>
 <li>基于似然函数 $\mathcal{L}(\theta;x)$</li>
 </ul>
-<p>有一个统计模型，例如一组分布 ${f(\cdot;\theta | \theta\in\Theta)}$，其中，$\theta$ 表示模型的参数（可能是多维的）。极大似然的方法就是找到使得似然函数 $\mathcal{L}(\theta;x)$ 取得最大值的模型参数 $\theta$。</p>
+<p>有一个统计模型，例如一组分布 $\{f(\cdot;\theta\ |\ \theta\in\Theta)\}$，其中，$\theta$ 表示模型的参数（可能是多维的）。极大似然的方法就是找到使得似然函数 $\mathcal{L}(\theta;x)$ 取得最大值的模型参数 $\theta$。</p>
 <p>直觉上，这个方法选择了使得数据有最大可能性的参数值</p>
 <p>极大似然估计：</p>
 <script type="math/tex; mode=display">\hat{\theta}\in\{\underset{\theta\in\Theta}{\mathrm{arg\,max}}\ \mathcal{L}(\theta;x)\}</script><p>实践中，通常使用自然对数的似然函数（对数似然）更方便：</p>
 <script type="math/tex; mode=display">\ell(\theta;x)=\ln\mathcal{L}(\theta;x)</script><p>或者平均值：</p>
-<script type="math/tex; mode=display">\hat{\ell}(\theta;x)=\dfrac{1}{n}\ln\mathcal{L}(\theta;x)</script><h1 id="与贝叶斯推断的关系"><a href="#与贝叶斯推断的关系" class="headerlink" title="与贝叶斯推断的关系"></a>与贝叶斯推断的关系</h1><p>$\begin{align}\underset{\theta\in\Theta}{\mathrm{arg\,max}} \mathrm{P}(\theta | x_1,x_2,\dots,x_n) &amp;=\underset{\theta\in\Theta}{\mathrm{arg\,max}} \dfrac{f(x_1,x_2,\dots,x_n | \theta)P(\theta)}{\mathrm{P}(x_1,x_2,\dots,x_n)} \ &amp;=\underset{\theta\in\Theta}{\mathrm{arg\,max}} f(x_1,x_2,\dots,x_n | \theta)P(\theta)\end{align}$</p>
+<script type="math/tex; mode=display">\hat{\ell}(\theta;x)=\dfrac{1}{n}\ln\mathcal{L}(\theta;x)</script><h1 id="与贝叶斯推断的关系"><a href="#与贝叶斯推断的关系" class="headerlink" title="与贝叶斯推断的关系"></a>与贝叶斯推断的关系</h1><p>$\begin{align}\underset{\theta\in\Theta}{\mathrm{arg\,max}}\ \mathrm{P}(\theta\ |\ x_1,x_2,\dots,x_n) &amp;=\underset{\theta\in\Theta}{\mathrm{arg\,max}}\ \dfrac{f(x_1,x_2,\dots,x_n\ |\ \theta)P(\theta)}{\mathrm{P}(x_1,x_2,\dots,x_n)} \\ &amp;=\underset{\theta\in\Theta}{\mathrm{arg\,max}}\ f(x_1,x_2,\dots,x_n\ |\ \theta)P(\theta)\end{align}$</p>
 <h1 id="Examples"><a href="#Examples" class="headerlink" title="Examples"></a>Examples</h1>
     </div>
 
@@ -256,7 +256,7 @@
       <i class="fa fa-chevron-left"></i> Git 内部原理
     </a></div>
       <div class="post-nav-item">
-    <a href="/2018/12/30/database-hierarchical-data/" rel="next" title="在数据库中存储层次结构数据">
+    <a href="/2018/12/30/database-how-to-persist-hierarchical-data/" rel="next" title="在数据库中存储层次结构数据">
       在数据库中存储层次结构数据 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
@@ -332,16 +332,16 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">204</span>
+          <span class="site-state-item-count">222</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
-        <span class="site-state-item-count">63</span>
+        <span class="site-state-item-count">74</span>
         <span class="site-state-item-name">分类</span>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-count">35</span>
         <span class="site-state-item-name">标签</span>
       </div>
   </nav>
@@ -397,7 +397,7 @@
   <script src="/lib/velocity/velocity.ui.min.js"></script>
 <script src="/js/utils.js"></script><script src="/js/motion.js"></script>
 <script src="/js/schemes/muse.js"></script>
-<script src="/js/next-boot.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<script src="/js/next-boot.js"></script>
 
 
 
@@ -418,6 +418,61 @@
 
 
   
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 

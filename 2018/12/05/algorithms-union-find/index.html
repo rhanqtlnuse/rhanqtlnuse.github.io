@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 3.8.0">
@@ -75,12 +75,12 @@
   .use-motion .logo-line-before i { left: initial; }
   .use-motion .logo-line-after i { right: initial; }
   </style>
-</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</noscript>
 
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container use-motion">
+  <div class="container use-motion">
     <div class="headband"></div>
 
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -253,7 +253,7 @@
 </table>
 </div>
 <p>可以看到，这个函数增长的很快（宇宙中原子个数有 $10^{80}$ 个，而 $2^{65536}$ 比 $10^{80}$ 还要大，所以通常情况下 $i$ 最多为 5）。我们要使用的函数是其反函数：</p>
-<p>$log^*(n) = \min{ i | H(i) \ge n } = \min{ i | \log_2\log_2\cdots\log_2n \le 1 }$，其中 $\log$ 有 $i$ 次，“迭代对数”的名字也因此而来。</p>
+<p>$log^*(n) = \min\{\ i\ |\ H(i) \ge n\ \} = \min\{\ i\ | \log_2\log_2\cdots\log_2n \le 1\ \}$，其中 $\log$ 有 $i$ 次，“迭代对数”的名字也因此而来。</p>
 <h3 id="结点的分组"><a href="#结点的分组" class="headerlink" title="结点的分组"></a>结点的分组</h3><p>我们依据 $H(i)$（或 $log^*(n)$）将结点分为如下的组：</p>
 <div class="table-container">
 <table>
@@ -285,9 +285,9 @@
 <p>下面是来自维基百科的一幅图，将每个分组看作一个桶（Bucket）：</p>
 <p><img src="/union-find-analysis-bucket.jpg" alt=""></p>
 <p>对于某一次 Find 操作 $A_i$，将结点到根的路径上的所有结点作为一个集合 $X_i$，将集合 $X_i$ 分为如下三组：</p>
-<p>$Y_i = { \mu \in X_i | \mu 为根或根的直接子结点 }$</p>
-<p>$Z_i = { \mu \in X_i - Y_i | g(\mu) \lt g(p_i(\mu)) }$</p>
-<p>$W_i = { \mu \in X_i - Y_i | g(\mu) = g(p_i(\mu)) }$</p>
+<p>$Y_i = \{\ \mu \in X_i\ |\ \mu\ 为根或根的直接子结点\ \}$</p>
+<p>$Z_i = \{\ \mu \in X_i - Y_i\ |\ g(\mu) \lt g(p_i(\mu))\ \}$</p>
+<p>$W_i = \{\ \mu \in X_i - Y_i\ |\ g(\mu) = g(p_i(\mu))\ \}$</p>
 <p>某次 Find 操作的代价是上面三个集合中每个点的代价的总和。</p>
 <p>那么我们可以得到如下的分析：</p>
 <ul>
@@ -405,16 +405,16 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">204</span>
+          <span class="site-state-item-count">222</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
-        <span class="site-state-item-count">63</span>
+        <span class="site-state-item-count">74</span>
         <span class="site-state-item-name">分类</span>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-count">35</span>
         <span class="site-state-item-name">标签</span>
       </div>
   </nav>
@@ -470,7 +470,7 @@
   <script src="/lib/velocity/velocity.ui.min.js"></script>
 <script src="/js/utils.js"></script><script src="/js/motion.js"></script>
 <script src="/js/schemes/muse.js"></script>
-<script src="/js/next-boot.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<script src="/js/next-boot.js"></script>
 
 
 
@@ -491,6 +491,61 @@
 
 
   
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 

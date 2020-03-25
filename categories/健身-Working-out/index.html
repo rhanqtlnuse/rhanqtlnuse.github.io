@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 3.8.0">
@@ -69,12 +69,12 @@
   .use-motion .logo-line-before i { left: initial; }
   .use-motion .logo-line-after i { right: initial; }
   </style>
-</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</noscript>
 
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container use-motion">
+  <div class="container use-motion">
     <div class="headband"></div>
 
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -173,6 +173,29 @@
 
       
     <div class="collection-year">
+      <h1 class="collection-header">2020</h1>
+    </div>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <div class="post-meta">
+        <time itemprop="dateCreated"
+              datetime="2020-03-25T00:00:00+08:00"
+              content="2020-03-25">
+          03-25
+        </time>
+      </div>
+
+      <h2 class="post-title">
+          <a class="post-title-link" href="/2020/03/25/work-out-离心收缩-向心收缩-等长收缩/" itemprop="url">
+            <span itemprop="name">健身 | 什么是离心收缩、向心收缩和等长收缩？</span>
+          </a>
+      </h2>
+
+    </header>
+  </article>
+    <div class="collection-year">
       <h1 class="collection-header">2019</h1>
     </div>
 
@@ -189,7 +212,7 @@
 
       <h2 class="post-title">
           <a class="post-title-link" href="/2019/08/23/work-out-shoulder/" itemprop="url">
-            <span itemprop="name">肩部训练</span>
+            <span itemprop="name">健身 | 肩部训练</span>
           </a>
       </h2>
 
@@ -209,7 +232,7 @@
 
       <h2 class="post-title">
           <a class="post-title-link" href="/2019/08/22/work-out-types-of-muscle-fiber/" itemprop="url">
-            <span itemprop="name">肌肉纤维的种类</span>
+            <span itemprop="name">健身 | 肌肉纤维的种类</span>
           </a>
       </h2>
 
@@ -229,7 +252,27 @@
 
       <h2 class="post-title">
           <a class="post-title-link" href="/2019/08/21/work-out-triceps/" itemprop="url">
-            <span itemprop="name">肱三头肌训练</span>
+            <span itemprop="name">健身 | 肱三头肌训练</span>
+          </a>
+      </h2>
+
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <div class="post-meta">
+        <time itemprop="dateCreated"
+              datetime="2019-04-12T12:16:53+08:00"
+              content="2019-04-12">
+          04-12
+        </time>
+      </div>
+
+      <h2 class="post-title">
+          <a class="post-title-link" href="/2019/04/12/work-out/" itemprop="url">
+            <span itemprop="name">健身 | 健身笔记</span>
           </a>
       </h2>
 
@@ -307,16 +350,16 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">204</span>
+          <span class="site-state-item-count">222</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
-        <span class="site-state-item-count">63</span>
+        <span class="site-state-item-count">74</span>
         <span class="site-state-item-name">分类</span>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-count">35</span>
         <span class="site-state-item-name">标签</span>
       </div>
   </nav>
@@ -372,7 +415,7 @@
   <script src="/lib/velocity/velocity.ui.min.js"></script>
 <script src="/js/utils.js"></script><script src="/js/motion.js"></script>
 <script src="/js/schemes/muse.js"></script>
-<script src="/js/next-boot.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<script src="/js/next-boot.js"></script>
 
 
 
@@ -393,6 +436,61 @@
 
 
   
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 

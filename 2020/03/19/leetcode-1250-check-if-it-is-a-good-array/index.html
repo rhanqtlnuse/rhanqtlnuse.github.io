@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.8.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="难度：困难">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LeetCode 1250. 检查「好数组」">
+<meta property="og:url" content="http://yoursite.com/2020/03/19/leetcode-1250-check-if-it-is-a-good-array/index.html">
+<meta property="og:site_name" content="RHANQTL">
+<meta property="og:description" content="难度：困难">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-03-19T11:54:04.194Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="LeetCode 1250. 检查「好数组」">
+<meta name="twitter:description" content="难度：困难">
+
+<link rel="canonical" href="http://yoursite.com/2020/03/19/leetcode-1250-check-if-it-is-a-good-array/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
+  };
+</script>
+
+  <title>LeetCode 1250. 检查「好数组」 | RHANQTL</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">RHANQTL</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">上下求索</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>站点地图</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/19/leetcode-1250-check-if-it-is-a-good-array/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          LeetCode 1250. 检查「好数组」
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-03-19 10:03:24 / 修改时间：19:54:04" itemprop="dateCreated datePublished" datetime="2020-03-19T10:03:24+08:00">2020-03-19</time>
+            </span>
+
+          
+            <div class="post-description">难度：困难</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>题面见 <a href="https://leetcode-cn.com/problems/check-if-it-is-a-good-array/" target="_blank" rel="noopener">LeetCode</a></p>
+<p><strong>直观</strong></p>
+<p>看上去没什么头绪：范围太大了，枚举子集还好说，但是找到一组「任意整数」感觉就很困难，因此，我们不能真的去尝试找一组任意整数，而应该是寻找使得这样一组任意整数存在的条件。</p>
+<p><strong>观察</strong></p>
+<p>尝试几组数：</p>
+<pre>
+    [12,5,7,23] => true -- 5 * 3 + 7 * (-2) = 1
+    [29,6,10]   => true -- 29 * (-1) + 6 * 5 = 1
+    [3,6]       => false
+    [2,6,12]    => false
+    [5,6,12]    => true -- 5 * 5 + 6 * (-4) = 1
+    [12,18,30]  => false
+</pre>
+
+<p>是否发现了一点眉目？为 true 的几个，出现在结果中的元素分别为：</p>
+<pre>
+    [5,7]
+    [29,6,10]
+    [5,6,12]
+</pre>
+
+<p>它们的最大公约数为 1，而其余的几组，无论如何也找不到这样的组合。以最后一组为例：</p>
+<pre>
+    [12] [18] [30] [12,18] [12,30] [18,30] [12,18,30]
+</pre>
+
+<p>最大公约数均不为 1。</p>
+<p>其实可以简单的通过数学公式演示一下。如果一组数 $x_1, x_2, \dots, x_n$ 有最大公约数 <code>g != 1</code>，那么它们可以表示成</p>
+<pre>
+    [k<sub>1</sub>g, k<sub>2</sub>g, ..., k<sub>n</sub>g]
+</pre>
+
+<p>将每一个乘一个任意<strong>整数</strong> c<sub>i</sub>，它们的和为</p>
+<pre>
+    (c<sub>1</sub>k<sub>1</sub> + c<sub>2</sub>k<sub>2</sub> + ... + c<sub>n</sub>k<sub>n</sub>)g
+</pre>
+
+<p>因为</p>
+<pre>
+    c<sub>1</sub>k<sub>1</sub> + c<sub>2</sub>k<sub>2</sub> + ... + c<sub>n</sub>k<sub>n</sub>
+</pre>
+
+<p>为整数，因此整个和一定是 <code>g</code> 的整数倍，所以不可能为 1</p>
+<p>那么 <code>g == 1</code> 的时候是不是一定能找到这样一组任意整数呢？根据提示里的 <a href="https://en.wikipedia.org/wiki/Bézout&#39;s_identity" target="_blank" rel="noopener">Bézout’s 引理</a>，确实是这样：</p>
+<blockquote>
+<p>Bézout’s identity can be extended to more than two integers: if</p>
+<script type="math/tex; mode=display">
+\gcd(a_1, a_2, \dots, a_n) = d</script><p>then there are integers $x_1, x_2, \dots, x_n$ such that</p>
+<script type="math/tex; mode=display">
+d = a_1x_1 + a_2x_2 + \dots + a_nx_n</script><p>has the following properties:</p>
+<ul>
+<li>$d$ is the smallest positive integer of this form</li>
+<li>every number of this form is a multiple of $d$</li>
+</ul>
+<p>裴蜀定理能够扩展到多个整数的情况：如果</p>
+<script type="math/tex; mode=display">
+\gcd(a_1, a_2, \dots, a_n) = d</script><p>那么存在整数 $x_1, x_2, \dots, x_n$ 使得等式</p>
+<script type="math/tex; mode=display">
+d = a_1x_1 + a_2x_2 + \dots + a_nx_n</script><p>有如下的性质：</p>
+<ul>
+<li>$d$ 是满足这个等式的最小的正整数</li>
+<li>每个满足这个等式的数都是 $d$ 的倍数</li>
+</ul>
+<p>特别的，如果 $a_1,a_2,\dots,a_n$ 互质，那么存在整数 $x_1,x_2,\dots,x_n$  使得 $d$ = 1</p>
+</blockquote>
+<p>因此，通过枚举子集 + 判断多个整数的最大公约数，我们能够解决这个问题。</p>
+<blockquote>
+<p><strong>计算多个整数的最大公约数</strong></p>
+<p>最大公约数的性质：$x_1,x_2,\dots,x_n$ 的最大公约数</p>
+<script type="math/tex; mode=display">
+\gcd(x_1, x_2, \dots, x_n)</script><p>等于</p>
+<script type="math/tex; mode=display">
+\gcd(\gcd(x_1,x_2),\dots)</script><p>也就是说，多个数最大公约数与计算顺序无关。</p>
+</blockquote>
+<p>但是，真的需要枚举子集吗？实际上是不用的。注意到当数组中有一个子集的最大公约数为 1 时，根据上面的性质，整个数组的最大公约数也一定为 1，因此，只需要求整个数组的最大公约数即可。更进一步地，其实可以在最大公约数为 1 时立即终止，不必计算到末尾。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/03/19/leetcode-409-longest-palindrome/" rel="prev" title="LeetCode 409. 最长回文串">
+      <i class="fa fa-chevron-left"></i> LeetCode 409. 最长回文串
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/03/20/database-mysql-explain/" rel="next" title="MySQL | EXPLAIN">
+      MySQL | EXPLAIN <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Han Qi</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">222</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">74</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">35</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Han Qi</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://muse.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.7.2
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>

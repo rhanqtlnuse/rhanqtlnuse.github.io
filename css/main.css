@@ -1162,7 +1162,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #e9a2ff;
+  background: #d97ca2;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2118,6 +2118,13 @@ ul.breadcrumb li + li:last-child {
 }
 .tag-cloud a:hover {
   color: #222 !important;
+}
+mjx-container[jax="CHTML"][display="true"],
+.has-jax {
+  overflow: auto hidden;
+}
+mjx-container + br {
+  display: none;
 }
 @media (max-width: 767px) {
   .header-inner,

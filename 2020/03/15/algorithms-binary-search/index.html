@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 3.8.0">
@@ -28,7 +28,7 @@
 <meta property="og:description" content="如题">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/2020/03/15/algorithms-binary-search/logn-vs-n.png">
-<meta property="og:updated_time" content="2020-03-15T11:28:21.207Z">
+<meta property="og:updated_time" content="2020-03-15T12:03:44.260Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="算法 | 二分查找">
 <meta name="twitter:description" content="如题">
@@ -75,12 +75,12 @@
   .use-motion .logo-line-before i { left: initial; }
   .use-motion .logo-line-after i { right: initial; }
   </style>
-</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</noscript>
 
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container use-motion">
+  <div class="container use-motion">
     <div class="headband"></div>
 
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -195,7 +195,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-03-15 16:21:26 / 修改时间：19:28:21" itemprop="dateCreated datePublished" datetime="2020-03-15T16:21:26+08:00">2020-03-15</time>
+              <time title="创建时间：2020-03-15 16:21:26 / 修改时间：20:03:44" itemprop="dateCreated datePublished" datetime="2020-03-15T16:21:26+08:00">2020-03-15</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -233,12 +233,22 @@
 <p>这种方法在找到对应的 key 时立即返回，看上去效率好像挺高，但实际上不平衡。</p>
 <h2 id="2-2-nbsp-nbsp-nbsp-nbsp-斐波那契查找"><a href="#2-2-nbsp-nbsp-nbsp-nbsp-斐波那契查找" class="headerlink" title="2.2&nbsp;&nbsp;&nbsp;&nbsp;斐波那契查找"></a>2.2&nbsp;&nbsp;&nbsp;&nbsp;斐波那契查找</h2><p>为了解决上一节发现的问题，有人提出了斐波那契查找，想法是，既然左右不平衡，那么能不能让每次分给左边多一点，右边少一点？</p>
 <p>斐波那契的近似</p>
-<h2 id="2-3-nbsp-nbsp-nbsp-nbsp-二分查找改进和-lower-bound-upper-bound"><a href="#2-3-nbsp-nbsp-nbsp-nbsp-二分查找改进和-lower-bound-upper-bound" class="headerlink" title="2.3&nbsp;&nbsp;&nbsp;&nbsp;二分查找改进和 lower_bound/upper_bound"></a>2.3&nbsp;&nbsp;&nbsp;&nbsp;二分查找改进和 lower_bound/upper_bound</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">binarySearch</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span> arr[], <span class="keyword">const</span> <span class="keyword">int</span> n, <span class="keyword">const</span> <span class="keyword">int</span> key)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> lo = <span class="number">0</span>, hi = n;</span><br><span class="line">    <span class="keyword">while</span> (lo &lt; hi) &#123;</span><br><span class="line">        <span class="keyword">int</span> mi = lo + (hi - lo) / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span> ()</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> lo - <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="2-3-nbsp-nbsp-nbsp-nbsp-二分查找改进和-lower-bound"><a href="#2-3-nbsp-nbsp-nbsp-nbsp-二分查找改进和-lower-bound" class="headerlink" title="2.3&nbsp;&nbsp;&nbsp;&nbsp;二分查找改进和 lower_bound"></a>2.3&nbsp;&nbsp;&nbsp;&nbsp;二分查找改进和 lower_bound</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">binarySearch</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span> arr[], <span class="keyword">const</span> <span class="keyword">int</span> n, <span class="keyword">const</span> <span class="keyword">int</span> key)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> lo = <span class="number">0</span>, hi = n;</span><br><span class="line">    <span class="keyword">while</span> (lo &lt; hi) &#123;</span><br><span class="line">        <span class="keyword">int</span> mi = lo + (hi - lo) / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span> (key &lt; arr[mi]) hi = mi;</span><br><span class="line">        <span class="keyword">else</span>               lo = mi + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> lo - <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这个实现能够找到不大于 <code>key</code> 的最大的元素（相等的元素找到最后面的），在 <code>key</code> 比数组中所有的值都小时，会返回 -1</p>
+<blockquote>
+<p>也可以这样实现：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="function"><span class="keyword">int</span> <span class="title">binarySearch</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span> arr[], <span class="keyword">const</span> <span class="keyword">int</span> n, <span class="keyword">const</span> <span class="keyword">int</span> key)</span> </span>&#123;</span><br><span class="line">&gt;     <span class="keyword">int</span> lo = <span class="number">0</span>, hi = n;</span><br><span class="line">&gt;     <span class="keyword">while</span> (lo &lt; hi) &#123;</span><br><span class="line">&gt;         <span class="keyword">if</span> (key &lt;= arr[mi]) hi = mi;</span><br><span class="line">&gt;         <span class="keyword">else</span>                lo = mi + <span class="number">1</span>;</span><br><span class="line">&gt;     &#125;</span><br><span class="line">&gt;     <span class="keyword">return</span> lo;</span><br><span class="line">&gt; &#125;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>&gt;</p>
+<blockquote>
+<p>找到不小于 <code>key</code> 的最小的元素（相等的元素找到最前面的）</p>
+</blockquote>
+<p>它能够使得左右代价平衡，同时更容易与其他一些</p>
 <blockquote>
 <p><strong>TIPS</strong>&nbsp;&nbsp;&nbsp;&nbsp;这里采用了邓公在《数据结构》MOOC 中使用的条件书写方式，这种方式能够更加直观地显示出前进的方向。</p>
 <p><strong>TIPS</strong>&nbsp;&nbsp;&nbsp;&nbsp;为了避免整数溢出，这里使用</p>
 <pre>
-    mi = (hi - lo) / 2 + lo;
+    mi = lo + (hi - lo) / 2;
 </pre>
 
 <p>代替</p>
@@ -248,7 +258,13 @@
 
 </blockquote>
 <h1 id="3-nbsp-nbsp-nbsp-nbsp-案例"><a href="#3-nbsp-nbsp-nbsp-nbsp-案例" class="headerlink" title="3&nbsp;&nbsp;&nbsp;&nbsp;案例"></a>3&nbsp;&nbsp;&nbsp;&nbsp;案例</h1><p>明确查找的对象</p>
-<h2 id="3-x-nbsp-nbsp-nbsp-nbsp-牛顿法求根"><a href="#3-x-nbsp-nbsp-nbsp-nbsp-牛顿法求根" class="headerlink" title="3.x&nbsp;&nbsp;&nbsp;&nbsp;牛顿法求根"></a>3.x&nbsp;&nbsp;&nbsp;&nbsp;牛顿法求根</h2><h2 id="3-x-nbsp-nbsp-nbsp-nbsp-Peak-Find"><a href="#3-x-nbsp-nbsp-nbsp-nbsp-Peak-Find" class="headerlink" title="3.x&nbsp;&nbsp;&nbsp;&nbsp;Peak Find"></a>3.x&nbsp;&nbsp;&nbsp;&nbsp;Peak Find</h2><h2 id="3-x-nbsp-nbsp-nbsp-nbsp-在旋转数组中寻找第-k-大的值"><a href="#3-x-nbsp-nbsp-nbsp-nbsp-在旋转数组中寻找第-k-大的值" class="headerlink" title="3.x&nbsp;&nbsp;&nbsp;&nbsp;在旋转数组中寻找第 k 大的值"></a>3.x&nbsp;&nbsp;&nbsp;&nbsp;在旋转数组中寻找第 k 大的值</h2><h2 id="3-x-nbsp-nbsp-nbsp-nbsp-LeetCode-668"><a href="#3-x-nbsp-nbsp-nbsp-nbsp-LeetCode-668" class="headerlink" title="3.x&nbsp;&nbsp;&nbsp;&nbsp;LeetCode 668"></a>3.x&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://leetcode-cn.com/problems/kth-smallest-number-in-multiplication-table/" target="_blank" rel="noopener">LeetCode 668</a></h2><h1 id="4-nbsp-nbsp-nbsp-nbsp-与二叉树的联系"><a href="#4-nbsp-nbsp-nbsp-nbsp-与二叉树的联系" class="headerlink" title="4&nbsp;&nbsp;&nbsp;&nbsp;与二叉树的联系"></a>4&nbsp;&nbsp;&nbsp;&nbsp;与二叉树的联系</h1>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* return type */</span> binarySearch(<span class="comment">/* argument list ... */</span>) &#123;</span><br><span class="line">    <span class="keyword">int</span> lo = <span class="comment">/* ... */</span>, hi = <span class="comment">/* ... */</span>;</span><br><span class="line">    <span class="keyword">while</span> (lo &lt; hi) &#123;</span><br><span class="line">        <span class="keyword">int</span> mi = lo + (hi - lo) / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span> (<span class="comment">/* some condition */</span>) lo = mi + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">else</span>                      hi = mi;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="comment">/* target */</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="3-x-nbsp-nbsp-nbsp-nbsp-在逆序数组中查找"><a href="#3-x-nbsp-nbsp-nbsp-nbsp-在逆序数组中查找" class="headerlink" title="3.x&nbsp;&nbsp;&nbsp;&nbsp;在逆序数组中查找"></a>3.x&nbsp;&nbsp;&nbsp;&nbsp;在逆序数组中查找</h2><h2 id="3-x-nbsp-nbsp-nbsp-nbsp-Peak-Find"><a href="#3-x-nbsp-nbsp-nbsp-nbsp-Peak-Find" class="headerlink" title="3.x&nbsp;&nbsp;&nbsp;&nbsp;Peak Find"></a>3.x&nbsp;&nbsp;&nbsp;&nbsp;Peak Find</h2><h2 id="3-x-nbsp-nbsp-nbsp-nbsp-在旋转数组中寻找第-k-大的值"><a href="#3-x-nbsp-nbsp-nbsp-nbsp-在旋转数组中寻找第-k-大的值" class="headerlink" title="3.x&nbsp;&nbsp;&nbsp;&nbsp;在旋转数组中寻找第 k 大的值"></a>3.x&nbsp;&nbsp;&nbsp;&nbsp;在旋转数组中寻找第 k 大的值</h2><h2 id="3-x-nbsp-nbsp-nbsp-nbsp-牛顿法求根"><a href="#3-x-nbsp-nbsp-nbsp-nbsp-牛顿法求根" class="headerlink" title="3.x&nbsp;&nbsp;&nbsp;&nbsp;牛顿法求根"></a>3.x&nbsp;&nbsp;&nbsp;&nbsp;牛顿法求根</h2><p>二分法不止对数组有效，</p>
+<figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">define</span></span> (<span class="name"><span class="builtin-name">sqrt</span></span> x)</span><br><span class="line">  </span><br><span class="line">  (<span class="name"><span class="builtin-name">define</span></span> eps <span class="number">0.0001</span>)</span><br><span class="line">  </span><br><span class="line">  (<span class="name"><span class="builtin-name">define</span></span> (<span class="name">good-enough?</span> guess)</span><br><span class="line">    (<span class="name"><span class="builtin-name">&lt;</span></span> (<span class="name"><span class="builtin-name">abs</span></span> (<span class="name"><span class="builtin-name">-</span></span> x (<span class="name">square</span> guess))) eps))</span><br><span class="line">  </span><br><span class="line">  (<span class="name"><span class="builtin-name">define</span></span> (<span class="name">improve</span> guess)</span><br><span class="line">    (<span class="name"><span class="builtin-name">/</span></span> (<span class="name"><span class="builtin-name">+</span></span> x guess) <span class="number">2</span>))</span><br><span class="line"></span><br><span class="line">  (<span class="name"><span class="builtin-name">define</span></span> (<span class="name">sqrt-iter</span> guess)</span><br><span class="line">    (<span class="name"><span class="builtin-name">if</span></span> (<span class="name">good-enough?</span> guess)</span><br><span class="line">        guess</span><br><span class="line">        (<span class="name">sqrt-iter</span> (<span class="name">improve</span> guess))))</span><br><span class="line">  </span><br><span class="line">  (<span class="name">sqrt-iter</span> <span class="number">1.0</span>))</span><br></pre></td></tr></table></figure>
+<p>翻译成 C++：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">constexpr</span> <span class="keyword">double</span> EPS = <span class="number">0.0001</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">isGoodEnough</span><span class="params">(<span class="keyword">const</span> <span class="keyword">double</span> x, <span class="keyword">const</span> <span class="keyword">double</span> guess)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">abs</span>(x - guess * guess) &lt; EPS;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">improve</span><span class="params">(<span class="keyword">const</span> <span class="keyword">double</span> x, <span class="keyword">const</span> <span class="keyword">double</span> guess)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (x + guess) / <span class="number">2</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">sqrt</span><span class="params">(<span class="keyword">const</span> <span class="keyword">double</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">double</span> guess = <span class="number">1.0</span>;</span><br><span class="line">    <span class="keyword">while</span> (!isGoodEnough(x, guess)) &#123;</span><br><span class="line">        guess = improve(x, guess);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> guess;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>实际上就是在执行一个二分的过程。</p>
+<h2 id="3-x-nbsp-nbsp-nbsp-nbsp-LeetCode-668"><a href="#3-x-nbsp-nbsp-nbsp-nbsp-LeetCode-668" class="headerlink" title="3.x&nbsp;&nbsp;&nbsp;&nbsp;LeetCode 668"></a>3.x&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://leetcode-cn.com/problems/kth-smallest-number-in-multiplication-table/" target="_blank" rel="noopener">LeetCode 668</a></h2><h1 id="4-nbsp-nbsp-nbsp-nbsp-与二叉树的联系"><a href="#4-nbsp-nbsp-nbsp-nbsp-与二叉树的联系" class="headerlink" title="4&nbsp;&nbsp;&nbsp;&nbsp;与二叉树的联系"></a>4&nbsp;&nbsp;&nbsp;&nbsp;与二叉树的联系</h1>
     </div>
 
     
@@ -266,7 +282,10 @@
     <a href="/2020/03/15/music-structures-of-chords/" rel="prev" title="乐理 | 和弦的构成">
       <i class="fa fa-chevron-left"></i> 乐理 | 和弦的构成
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2020/03/15/others-vim-config/" rel="next" title="Vim | 配置">
+      Vim | 配置 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -326,7 +345,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-nbsp-nbsp-nbsp-nbsp-什么是二分查找？为什么需要二分查找"><span class="nav-number">1.</span> <span class="nav-text">1    什么是二分查找？为什么需要二分查找</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-nbsp-nbsp-nbsp-nbsp-二分查找的实现及分析"><span class="nav-number">2.</span> <span class="nav-text">2    二分查找的实现及分析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-nbsp-nbsp-nbsp-nbsp-最常见的写法"><span class="nav-number">2.1.</span> <span class="nav-text">2.1    最常见的写法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-nbsp-nbsp-nbsp-nbsp-斐波那契查找"><span class="nav-number">2.2.</span> <span class="nav-text">2.2    斐波那契查找</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-nbsp-nbsp-nbsp-nbsp-二分查找改进和-lower-bound-upper-bound"><span class="nav-number">2.3.</span> <span class="nav-text">2.3    二分查找改进和 lower_bound/upper_bound</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-nbsp-nbsp-nbsp-nbsp-案例"><span class="nav-number">3.</span> <span class="nav-text">3    案例</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-x-nbsp-nbsp-nbsp-nbsp-牛顿法求根"><span class="nav-number">3.1.</span> <span class="nav-text">3.x    牛顿法求根</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-x-nbsp-nbsp-nbsp-nbsp-Peak-Find"><span class="nav-number">3.2.</span> <span class="nav-text">3.x    Peak Find</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-x-nbsp-nbsp-nbsp-nbsp-在旋转数组中寻找第-k-大的值"><span class="nav-number">3.3.</span> <span class="nav-text">3.x    在旋转数组中寻找第 k 大的值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-x-nbsp-nbsp-nbsp-nbsp-LeetCode-668"><span class="nav-number">3.4.</span> <span class="nav-text">3.x    LeetCode 668</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-nbsp-nbsp-nbsp-nbsp-与二叉树的联系"><span class="nav-number">4.</span> <span class="nav-text">4    与二叉树的联系</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-nbsp-nbsp-nbsp-nbsp-什么是二分查找？为什么需要二分查找"><span class="nav-number">1.</span> <span class="nav-text">1    什么是二分查找？为什么需要二分查找</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-nbsp-nbsp-nbsp-nbsp-二分查找的实现及分析"><span class="nav-number">2.</span> <span class="nav-text">2    二分查找的实现及分析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-nbsp-nbsp-nbsp-nbsp-最常见的写法"><span class="nav-number">2.1.</span> <span class="nav-text">2.1    最常见的写法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-nbsp-nbsp-nbsp-nbsp-斐波那契查找"><span class="nav-number">2.2.</span> <span class="nav-text">2.2    斐波那契查找</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-nbsp-nbsp-nbsp-nbsp-二分查找改进和-lower-bound"><span class="nav-number">2.3.</span> <span class="nav-text">2.3    二分查找改进和 lower_bound</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-nbsp-nbsp-nbsp-nbsp-案例"><span class="nav-number">3.</span> <span class="nav-text">3    案例</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-x-nbsp-nbsp-nbsp-nbsp-在逆序数组中查找"><span class="nav-number">3.1.</span> <span class="nav-text">3.x    在逆序数组中查找</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-x-nbsp-nbsp-nbsp-nbsp-Peak-Find"><span class="nav-number">3.2.</span> <span class="nav-text">3.x    Peak Find</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-x-nbsp-nbsp-nbsp-nbsp-在旋转数组中寻找第-k-大的值"><span class="nav-number">3.3.</span> <span class="nav-text">3.x    在旋转数组中寻找第 k 大的值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-x-nbsp-nbsp-nbsp-nbsp-牛顿法求根"><span class="nav-number">3.4.</span> <span class="nav-text">3.x    牛顿法求根</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-x-nbsp-nbsp-nbsp-nbsp-LeetCode-668"><span class="nav-number">3.5.</span> <span class="nav-text">3.x    LeetCode 668</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-nbsp-nbsp-nbsp-nbsp-与二叉树的联系"><span class="nav-number">4.</span> <span class="nav-text">4    与二叉树的联系</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -340,16 +359,16 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">204</span>
+          <span class="site-state-item-count">222</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
-        <span class="site-state-item-count">63</span>
+        <span class="site-state-item-count">74</span>
         <span class="site-state-item-name">分类</span>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-count">35</span>
         <span class="site-state-item-name">标签</span>
       </div>
   </nav>
@@ -405,7 +424,7 @@
   <script src="/lib/velocity/velocity.ui.min.js"></script>
 <script src="/js/utils.js"></script><script src="/js/motion.js"></script>
 <script src="/js/schemes/muse.js"></script>
-<script src="/js/next-boot.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<script src="/js/next-boot.js"></script>
 
 
 
@@ -426,6 +445,61 @@
 
 
   
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 
