@@ -79,11 +79,11 @@
   </entry>
   
   <entry>
-    <title>在 Ruby on Rails 项目中使用 BDD 工具 Cucumber</title>
+    <title>在 Ruby on Rails 项目中使用 Swagger</title>
     <link href="http://yoursite.com/2020/03/24/using-swagger-with-ruby-on-rails/"/>
     <id>http://yoursite.com/2020/03/24/using-swagger-with-ruby-on-rails/</id>
     <published>2020-03-24T06:59:00.000Z</published>
-    <updated>2020-03-25T06:57:10.400Z</updated>
+    <updated>2020-03-25T07:33:33.406Z</updated>
     
     <summary type="html">
     
@@ -94,9 +94,7 @@
     
       <category term="Ruby on Rails" scheme="http://yoursite.com/tags/Ruby-on-Rails/"/>
     
-      <category term="BDD" scheme="http://yoursite.com/tags/BDD/"/>
-    
-      <category term="Cucumber" scheme="http://yoursite.com/tags/Cucumber/"/>
+      <category term="Swagger" scheme="http://yoursite.com/tags/Swagger/"/>
     
   </entry>
   
