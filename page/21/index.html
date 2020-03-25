@@ -165,6 +165,64 @@
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/21/LeetCode-148：Sort-List/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/12/21/LeetCode-148：Sort-List/" class="post-title-link" itemprop="url">LeetCode 148：Sort List</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2018-12-21 19:24:08 / 修改时间：19:24:09" itemprop="dateCreated datePublished" datetime="2018-12-21T19:24:08+08:00">2018-12-21</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/18/LintCode-692：Sliding-Window-Unique-Elements-Sum/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -963,275 +1021,6 @@
   
   
 
-        
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/06/others-bit-op-tricks/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RHANQTL">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/12/06/others-bit-op-tricks/" class="post-title-link" itemprop="url">位运算奇技淫巧</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2018-12-06 20:30:00" itemprop="dateCreated datePublished" datetime="2018-12-06T20:30:00+08:00">2018-12-06</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-11 10:17:54" itemprop="dateModified" datetime="2020-03-11T10:17:54+08:00">2020-03-11</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Programming/" itemprop="url" rel="index"><span itemprop="name">Programming</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <blockquote>
-<p>Copyright @韩琦</p>
-<p><strong>转载请注明出处</strong></p>
-</blockquote>
-<h1 id="技巧-0：n-amp-0x01"><a href="#技巧-0：n-amp-0x01" class="headerlink" title="技巧 0：n &amp; 0x01"></a>技巧 0：<code>n &amp; 0x01</code></h1><p>这个方法就是用来判断 <code>n</code> 的奇偶性，但是需要注意的一点是，这个方式与 <code>n % 2</code> 的结果不太一样：<code>n &amp; 0x01</code> 总是返回 <code>0</code> 或 <code>1</code>，而当 <code>n</code> 为负数时，<code>n % 2</code> 可能返回 <code>-1</code>。因为 <code>-(a % b) == (-a) % b</code> 对任何 a，b（b $\ne$ 0）都成立</p>
-<h1 id="技巧-1：n-amp-n-1"><a href="#技巧-1：n-amp-n-1" class="headerlink" title="技巧 1：n &amp; (n - 1)"></a>技巧 1：<code>n &amp; (n - 1)</code></h1><p>位运算有很多很有意思的技巧，有一个比较常见的就是求一个整数二进制表示中 1 的个数：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">countOnes</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (num) &#123;</span><br><span class="line">        num = num &amp; (num - <span class="number">1</span>);</span><br><span class="line">        count++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> count;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>其中，<code>num &amp; (num - 1)</code> 中 1 的个数比 <code>num</code> 少 1。</p>
-<p>至于这个方法的正确性，可以直观的解释一下。分两种情况：</p>
-<ul>
-<li><code>num</code> 最低位为 1。假设有：<code>num = 1010 0010 1101 0111b</code>，那么 <code>num - 1</code> 的结果为 <code>1010 0010 1101 0110b</code>，<code>num &amp; (num - 1)</code>：</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">  1010 0010 1101 0111  // num</span><br><span class="line">&amp; 1010 0010 1101 0110  // num - 1</span><br><span class="line">---------------------</span><br><span class="line">  1010 0010 1101 0110  // num &amp; (num - 1)</span><br></pre></td></tr></table></figure>
-<ul>
-<li><code>num</code> 最低位为 0。假设有：<code>num = 1010 1000 0000 0000b</code>，那么 <code>num - 1</code> 的结果为 <code>1010 0111 1111 1111</code>，<code>num &amp; (num - 1)</code>：</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">  1010 1000 0000 0000  // num</span><br><span class="line">&amp; 1010 0111 1111 1111  // num - 1</span><br><span class="line">---------------------</span><br><span class="line">  1010 0000 0000 0000  // num &amp; (num - 1)</span><br></pre></td></tr></table></figure>
-<p><strong>例</strong>（LeetCode 338：Counting Bits）：</p>
-<p>Given a non negative integer number <strong>num</strong>. For every numbers <strong>i</strong> in the range <strong>0 ≤ i ≤ num</strong> calculate the number of 1’s in their binary representation and return them as an array.</p>
-<p><strong>Example 1:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: 2</span><br><span class="line">Output: [0,1,1]</span><br></pre></td></tr></table></figure>
-<p><strong>Example 2:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: 5</span><br><span class="line">Output: [0,1,1,2,1,2]</span><br></pre></td></tr></table></figure>
-<p><strong>Follow up:</strong></p>
-<ul>
-<li>It is very easy to come up with a solution with run time <strong>O(n*sizeof(integer))</strong>. But can you do it in linear time <strong>O(n)</strong>/possibly in a single pass?</li>
-<li>Space complexity should be <strong>O(n)</strong>.</li>
-<li>Can you do it like a boss? Do it without using any builtin function like <code>__builtin_popcount</code> in C++ or in any other language.</li>
-</ul>
-<p>思路：可以采用规约的方式，一个数 i 中 1 的个数等于比 i 少 1 的数中 1 的个数加上 1</p>
-<p>代码：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; countBits(<span class="keyword">int</span> num) &#123;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; res(num + <span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line">    <span class="comment">// 可以直接确定的是，0 中 1 的个数为 0，所以直接从 i = 1 开始</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= num; i++) &#123;</span><br><span class="line">        res[i] = res[i &amp; (i - <span class="number">1</span>)] + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>其实这个问题在同样的思路下还有另一种解法：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; countBits(<span class="keyword">int</span> num) &#123;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; res(num + <span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= num; i++) &#123;</span><br><span class="line">        res[i] = res[i &gt;&gt; <span class="number">1</span>] + (i &amp; <span class="number">0x01</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="技巧-2：向上-下对齐"><a href="#技巧-2：向上-下对齐" class="headerlink" title="技巧 2：向上/下对齐"></a>技巧 2：向上/下对齐</h1><p>比如想要将 <code>n</code> 对齐到</p>
-<script type="math/tex; mode=display">
-4 \times\left\lceil\dfrac{n}{4}\right\rceil</script><p>2 到 4，3 到 4，4 到 4，5 到 8</p>
-<p>只有 4 种情况：</p>
-<p>00，01，10，11</p>
-<p>使用如下的方式：<code>(n + 3) &amp; ~0x3</code></p>
-<p>0:</p>
-<h1 id="技巧-3：只用位运算实现加法"><a href="#技巧-3：只用位运算实现加法" class="headerlink" title="技巧 3：只用位运算实现加法"></a>技巧 3：只用位运算实现加法</h1><p>先来分析一下：</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>$A_i$</th>
-<th>$B_i$</th>
-<th>$C_{i-1}$</th>
-<th>$S_i$</th>
-<th>$C_i$</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-</tr>
-<tr>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-<td>1</td>
-<td>0</td>
-</tr>
-<tr>
-<td>0</td>
-<td>1</td>
-<td>0</td>
-<td>1</td>
-<td>0</td>
-</tr>
-<tr>
-<td>0</td>
-<td>0</td>
-<td>1</td>
-<td>1</td>
-<td>0</td>
-</tr>
-<tr>
-<td>1</td>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-<td>1</td>
-</tr>
-<tr>
-<td>1</td>
-<td>0</td>
-<td>1</td>
-<td>0</td>
-<td>1</td>
-</tr>
-<tr>
-<td>0</td>
-<td>1</td>
-<td>1</td>
-<td>0</td>
-<td>1</td>
-</tr>
-<tr>
-<td>1</td>
-<td>1</td>
-<td>1</td>
-<td>1</td>
-<td>1</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>显然，$S_i = A_i \oplus B_i \oplus C_{i-1}$</p>
-<script type="math/tex; mode=display">
-\begin{align*}
-C_i &= A_i B_i \overline{C_{i-1}} + A_i \overline{B_i} C_{i-1}
-       + \overline{A_i} B_i C_{i-1} + A_i B_i C_{i-1} \\
-    &= A_i B_i + (A_i \overline{B_i} + \overline{A_i} B_i)\ C_{i-1} \\
-    &= A_i B_i + (A_i \oplus B_i)\ C_{i-1} \\
-\end{align*}</script><p><a href="add.c">实现代码</a></p>
-<h1 id="技巧-4：不用乘法实现乘-0-1"><a href="#技巧-4：不用乘法实现乘-0-1" class="headerlink" title="技巧 4：不用乘法实现乘 0/1"></a>技巧 4：不用乘法实现乘 0/1</h1><p>如果仅考虑 0，解决办法很简单，任何数乘 0 还得 0，因此可以直接 <strong>n &amp; 0 = 0</strong>，但是如果要让 0/1 能够以相同的操作处理，这个方法就行不通了，不过，它还是给我们提供了一点思路。</p>
-<p>任何数乘 1 还是其本身，即 n <em> 1 = n，从二进制的角度来说，就是 n 的二进制没有变化，因此，这个逻辑其实也可以用 <em>*n &amp; 0xffff = n</em></em> 表达。注意到 ~0xffff = 0。</p>
-<p>有一个很特别的地方：在有符号整数中，-1 的表示是全 1，经过一次按位非，就能够得到全 0，它可以由 0 减 1 得到；同样地，0 可以由 1 减 1 得到，经过一次按位非就能够得到全 1，这样我们就能够表达我们的乘 0/1 逻辑了：</p>
-<div style="text-align: center">
-    partial_product = n &amp;  ~(bit - 1)
-</div>
-
-<p>这个方法被我用来解 <a href="https://leetcode-cn.com/problems/qiu-12n-lcof/solution/da-ying-wo-bie-zai-ifelse-zou-tian-xia-liao-hao-ma/" target="_blank" rel="noopener">《剑指 Offer》面试题 64：求 1+2+…+n</a>，但实际上有更优雅的解决办法，见 <a href="others-bool">bool 相关</a></p>
-<h1 id="技巧-5：交换相邻的奇数-偶数"><a href="#技巧-5：交换相邻的奇数-偶数" class="headerlink" title="技巧 5：交换相邻的奇数/偶数"></a>技巧 5：交换相邻的奇数/偶数</h1><p>异或有很多神奇的用法，比如交换两个整数：</p>
-<pre>
-    int a = 2, b = 3;
-    a = a ^ b;
-    b = a ^ b;
-    a = a ^ b;
-    // a = 3, b = 2
-</pre>
-
-<p>这一部分介绍一个更神奇的技巧，可以交换 1/2，3/4 这样的奇偶对。</p>
-<p>异或真值表：</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>A</th>
-<th>B</th>
-<th>A ^ B</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-</tr>
-<tr>
-<td>0</td>
-<td>1</td>
-<td>1</td>
-</tr>
-<tr>
-<td>1</td>
-<td>0</td>
-<td>1</td>
-</tr>
-<tr>
-<td>1</td>
-<td>1</td>
-<td>0</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>特别注意第 2 行和第 4 行：<strong>与 1 异或能够将 1 变成 0，将 0 变成 1</strong>。</p>
-<p>先看一种比较简单的情况：交换 0/1、2/3、4/5 这样的对。这是很容易的：</p>
-<pre>
-    0 ^ 1 = 1    1 ^ 1 = 0
-    2 ^ 1 = 3    3 ^ 1 = 2
-</pre>
-
-<p>1 — 0001</p>
-<p>2 — 0010</p>
-<p>互转的最简单的方法就是 1 + 1，2 - 1，但我们希望的是对奇数偶数通用的计算过程，这时候异或就能派上用场了。</p>
-<p>我们之前说，与 1 异或能够将 1 变成 0，将 0 变成 1，其实就相当于给奇数 -1，给偶数 +1，因此，我们必须想办法先将 1/2 的奇偶性反转。</p>
-<ul>
-<li>+1<ul>
-<li>1 + 1 = 2，2 ^ 1 = 3，3 - 1 = 2；</li>
-<li>2 + 1 = 3，3 ^ 1 = 2，2 - 1 = 1</li>
-</ul>
-</li>
-<li>-1<ul>
-<li><strong>1</strong> - 1 = 0，0 ^ 1 = <strong>1</strong>，1 + 1 = <strong>2</strong>；</li>
-<li><strong>2</strong> - 1 = 1，1 ^ 1 = <strong>0</strong>，0 + 1 = <strong>1</strong></li>
-</ul>
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1302,12 +1091,12 @@ C_i &= A_i B_i \overline{C_{i-1}} + A_i \overline{B_i} C_{i-1}
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">222</span>
+          <span class="site-state-item-count">223</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
-        <span class="site-state-item-count">74</span>
+        <span class="site-state-item-count">75</span>
         <span class="site-state-item-name">分类</span>
       </div>
       <div class="site-state-item site-state-tags">
