@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-03-25T10:39:58.633Z</updated>
+  <updated>2020-03-26T13:37:11.150Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,24 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>数据库 | 存储层次结构数据</title>
+    <link href="http://yoursite.com/2020/03/26/database-dealing-with-hierarchical-data/"/>
+    <id>http://yoursite.com/2020/03/26/database-dealing-with-hierarchical-data/</id>
+    <published>2020-03-26T05:37:15.000Z</published>
+    <updated>2020-03-26T13:37:11.150Z</updated>
+    
+    <summary type="html">
+    
+      如题
+    
+    </summary>
+    
+      <category term="数据库 (Database)" scheme="http://yoursite.com/categories/%E6%95%B0%E6%8D%AE%E5%BA%93-Database/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>数据库 | SELECT 语句的执行顺序</title>
@@ -401,26 +419,6 @@
       <category term="连通块 (Connected Component)" scheme="http://yoursite.com/tags/%E8%BF%9E%E9%80%9A%E5%9D%97-Connected-Component/"/>
     
       <category term="并查集 (Union-Find)" scheme="http://yoursite.com/tags/%E5%B9%B6%E6%9F%A5%E9%9B%86-Union-Find/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>LeetCode 115. 不同的子序列</title>
-    <link href="http://yoursite.com/2020/03/17/leetcode-115-distinct-subsequences/"/>
-    <id>http://yoursite.com/2020/03/17/leetcode-115-distinct-subsequences/</id>
-    <published>2020-03-17T03:28:06.000Z</published>
-    <updated>2020-03-17T03:42:32.118Z</updated>
-    
-    <summary type="html">
-    
-      如题
-    
-    </summary>
-    
-    
-      <category term="动态规划 (Dynamic Programming)" scheme="http://yoursite.com/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92-Dynamic-Programming/"/>
-    
-      <category term="0-1 背包" scheme="http://yoursite.com/tags/0-1-%E8%83%8C%E5%8C%85/"/>
     
   </entry>
   
