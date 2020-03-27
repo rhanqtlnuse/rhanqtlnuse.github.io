@@ -29,7 +29,7 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/2020/03/26/database-dealing-with-hierarchical-data/Users/rhanqtl/AppData/Roaming/Typora/typora-user-images/image-20200326102340412.png">
 <meta property="og:image" content="http://yoursite.com/2020/03/26/database-dealing-with-hierarchical-data/Users/rhanqtl/AppData/Roaming/Typora/typora-user-images/image-20200326102352629.png">
-<meta property="og:image" content="http://yoursite.com/2020/03/26/database-dealing-with-hierarchical-data/Users/rhanqtl/AppData/Roaming/Typora/typora-user-images/image-20200326120741223.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/26/database-dealing-with-hierarchical-data/top-down-comparison.png">
 <meta property="og:image" content="http://yoursite.com/2020/03/26/database-dealing-with-hierarchical-data/Users/rhanqtl/AppData/Roaming/Typora/typora-user-images/image-20200326142433870.png">
 <meta property="og:image" content="http://yoursite.com/2020/03/26/database-dealing-with-hierarchical-data/Users/rhanqtl/AppData/Roaming/Typora/typora-user-images/image-20200326175809836.png">
 <meta property="og:image" content="http://yoursite.com/2020/03/26/database-dealing-with-hierarchical-data/Users/rhanqtl/AppData/Roaming/Typora/typora-user-images/image-20200326180341776.png">
@@ -38,11 +38,12 @@
 <meta property="og:image" content="http://yoursite.com/2020/03/26/database-dealing-with-hierarchical-data/Users/rhanqtl/AppData/Roaming/Typora/typora-user-images/image-20200326202137473.png">
 <meta property="og:image" content="http://yoursite.com/2020/03/26/database-dealing-with-hierarchical-data/Users/rhanqtl/AppData/Roaming/Typora/typora-user-images/image-20200326202545812.png">
 <meta property="og:image" content="http://yoursite.com/2020/03/26/database-dealing-with-hierarchical-data/Users/rhanqtl/AppData/Roaming/Typora/typora-user-images/image-20200326203157729.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/26/database-dealing-with-hierarchical-data/Users/rhanqtl/AppData/Roaming/Typora/typora-user-images/image-20200326213800933.png">
 <meta property="og:image" content="http://yoursite.com/2020/03/26/database-dealing-with-hierarchical-data/bug-report-comments-example.png">
 <meta property="og:image" content="http://yoursite.com/2020/03/26/database-dealing-with-hierarchical-data/adjacency-model.png">
 <meta property="og:image" content="http://yoursite.com/2020/03/26/database-dealing-with-hierarchical-data/nested-sets-model.png">
 <meta property="og:image" content="http://yoursite.com/2020/03/26/database-dealing-with-hierarchical-data/nested-sets-model-insert.png">
-<meta property="og:updated_time" content="2020-03-26T13:37:11.150Z">
+<meta property="og:updated_time" content="2020-03-27T01:16:43.128Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据库 | 存储层次结构数据">
 <meta name="twitter:description" content="如题">
@@ -207,10 +208,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-03-26 13:37:15 / 修改时间：21:37:11" itemprop="dateCreated datePublished" datetime="2020-03-26T13:37:15+08:00">2020-03-26</time>
+              <time title="创建时间：2020-03-26 13:37:15" itemprop="dateCreated datePublished" datetime="2020-03-26T13:37:15+08:00">2020-03-26</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-27 09:16:43" itemprop="dateModified" datetime="2020-03-27T09:16:43+08:00">2020-03-27</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -261,29 +268,34 @@
 <p>总结：只要对象的类型相同、而对象之间的层数可变，其关系就应该被建模为树结构</p>
 <p>如果树的深度固定 / 所有叶节点的深度相同，只需要多次连接即可，问题就在于这两个条件很难满足，多数情况下需要处理的是深度可变的情况。</p>
 <h1 id="2-nbsp-nbsp-nbsp-nbsp-用-SQL-数据库描述树结构"><a href="#2-nbsp-nbsp-nbsp-nbsp-用-SQL-数据库描述树结构" class="headerlink" title="2&nbsp;&nbsp;&nbsp;&nbsp;用 SQL 数据库描述树结构"></a>2&nbsp;&nbsp;&nbsp;&nbsp;用 SQL 数据库描述树结构</h1><ul>
-<li><p>邻接模型 (adjacency model)：父记录的 ID 作为子记录的属性</p>
-<p>| Name        | Null?    | Type         |<br>| —————- | ———— | —————— |<br>| ID          | NOT NULL | NUMBER       |<br>| PARENT_ID   |          | NUMBER       |<br>| DESCRIPTION | NOT NULL | VARCHAR(120) |<br>| COMMANDER   |          | VARCHAR(120) |</p>
-<ul>
-<li>三个索引：在 ID（主键）上的唯一索引、在 PARENT_ID 上的索引和在 COMMANDER 上的索引</li>
+<li>邻接模型 (adjacency model)：父记录的 ID 作为子记录的属性（想想并查集 (Union-Find)）<ul>
+<li>Schema：adjacency_model(id, parent_id, description, commander)</li>
+<li>索引<ul>
+<li>在 ID（主键）上的唯一索引</li>
+<li>在 PARENT_ID 上的索引</li>
+<li>在 COMMANDER 上的索引</li>
 </ul>
 </li>
-<li><p>物化路径模型（路径枚举模型）(materialized path model)：在每个节点的记录中附加上它在树中位置的描述数据。在物化路径模型中，某个节点的路径是其所有后代的前缀，属于同一祖先的节点有非空的公共前缀</p>
-<p>| Name              | Null?    | Type         |<br>| ————————- | ———— | —————— |<br>| MATERIALIZED_PATH | NOT NULL | VARCHAR(25)  |<br>| DESCRIPTION       | NOT NULL | VARCHAR(120) |<br>| COMMANDER         |          | VARCHAR(120) |</p>
-<ul>
-<li>两个索引：在 MATERIALIZED_PATH（主键）上的唯一索引、在 COMMANDER 上的索引</li>
 </ul>
 </li>
-<li><p>嵌套集合模型 (nested set model)：每个节点被赋予一对数，某节点的两个数所圈定的区间能够包括所有后代节点的区间（赋予 left_num 和 right_num 的方式就是 DFS 中计算活动区间的方式），叶子元素是 left_num + 1 == right_num 的元素</p>
-<p>| Name        | Null?    | Type         |<br>| —————- | ———— | —————— |<br>| DESCRIPTION |          | VARCHAR(120) |<br>| COMMANDER   |          | VARCHAR(120) |<br>| LEFT_NUM    | NOT NULL | NUMBER       |<br>| RIGHT_NUM   | NOT NULL | NUMBER       |</p>
-<ul>
+<li>物化路径模型（路径枚举模型）(materialized path model)：在每个节点的记录中附加上它在树中位置的描述数据。在物化路径模型中，某个节点的路径是其所有后代的前缀，属于同一祖先的节点有非空的公共前缀<ul>
+<li>Schema：materialized_path_model(materialized_path, description, commander)</li>
+<li>索引<ul>
+<li>在 MATERIALIZED_PATH（主键）上的唯一索引</li>
+<li>在 COMMANDER 上的索引</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>嵌套集合模型 (nested sets model)：每个节点被赋予一对数，某节点的两个数所圈定的区间能够包括所有后代节点的区间（赋予 left_num 和 right_num 的方式就是 DFS 中计算活动区间的方式），叶子元素是 left_num + 1 == right_num 的元素<ul>
+<li>Schema：nested_sets_model(description, commander, left_num, right_num)</li>
 <li>复合主键：(left_num, right_num)，在 commander 上的索引</li>
 </ul>
 </li>
-<li><p>嵌套间隔模型 (nested interval model)</p>
-</li>
+<li>嵌套间隔模型 (nested interval model)：这里不讨论</li>
 </ul>
 <h1 id="3-nbsp-nbsp-nbsp-nbsp-用-SQL-访问树结构"><a href="#3-nbsp-nbsp-nbsp-nbsp-用-SQL-访问树结构" class="headerlink" title="3&nbsp;&nbsp;&nbsp;&nbsp;用 SQL 访问树结构"></a>3&nbsp;&nbsp;&nbsp;&nbsp;用 SQL 访问树结构</h1><blockquote>
-<p>使用 ORACLE</p>
+<p>使用 Oracle 数据库</p>
 </blockquote>
 <p><img src="/2020/03/26/database-dealing-with-hierarchical-data/Users\rhanqtl\AppData\Roaming\Typora\typora-user-images\image-20200326102340412.png" alt="image-20200326102340412"></p>
 <p><img src="/2020/03/26/database-dealing-with-hierarchical-data/Users\rhanqtl\AppData\Roaming\Typora\typora-user-images\image-20200326102352629.png" alt="image-20200326102352629"></p>
@@ -294,11 +306,11 @@
 </blockquote>
 <h3 id="3-1-2-nbsp-nbsp-nbsp-nbsp-物化路径模型"><a href="#3-1-2-nbsp-nbsp-nbsp-nbsp-物化路径模型" class="headerlink" title="3.1.2&nbsp;&nbsp;&nbsp;&nbsp;物化路径模型"></a>3.1.2&nbsp;&nbsp;&nbsp;&nbsp;物化路径模型</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">SELECT LPAD(a.description, </span><br><span class="line">            LENGTH(a.description)</span><br><span class="line">          + LENGTH(materialized_path)</span><br><span class="line">          - LENGTH(REPLACE(materialized_path, &apos;.&apos;, &apos;&apos;))),</span><br><span class="line">       a.commander</span><br><span class="line">FROM materialized_model a,</span><br><span class="line">     materialized_model b</span><br><span class="line">WHERE a.materialized_path LIKE b.materialized_path || &apos;%&apos;</span><br><span class="line">      AND b.commander = &apos;General de Dominuque Vandamme&apos;;</span><br><span class="line">ORDER BY a.materialized_path;</span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>注意：排序字段 <code>materialized_path</code> 是字符串，因此排序结果可能与期望的结果有偏差，比如 10.2 排在 2.3 之前。另外，字符集编码可能也会有影响。</p>
+<p>注意：排序字段 <code>materialized_path</code> 是字符串，因此排序结果可能与期望的结果有偏差，比如 10.2 排在 2.3 之前（当然，可以通过改变分隔符纠正过来）。另外，字符集编码可能也会有影响。</p>
 </blockquote>
 <h3 id="3-1-3-nbsp-nbsp-nbsp-nbsp-嵌套集合模型"><a href="#3-1-3-nbsp-nbsp-nbsp-nbsp-嵌套集合模型" class="headerlink" title="3.1.3&nbsp;&nbsp;&nbsp;&nbsp;嵌套集合模型"></a>3.1.3&nbsp;&nbsp;&nbsp;&nbsp;嵌套集合模型</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">SELECT LPAD(description, LENGTH(description) + depth) AS description,</span><br><span class="line">       commander</span><br><span class="line">FROM (SELECT COUNT(c.left_num) AS depth,</span><br><span class="line">             a.description,</span><br><span class="line">             a.commander,</span><br><span class="line">             a.left_num</span><br><span class="line">      FROM nested_sets_model a,</span><br><span class="line">           nested_sets_model b,</span><br><span class="line">           nested_sets_model c</span><br><span class="line">      WHERE a.left_num BETWEEN c.left_num AND c.right_num</span><br><span class="line">        AND c.left_num BETWEEN b.left_num AND b.right_num</span><br><span class="line">        AND b.commander = &apos;General de Dominique Vandamme&apos;</span><br><span class="line">      GROUP BY a.description,</span><br><span class="line">               a.commander,</span><br><span class="line">               a.left_num)</span><br><span class="line">ORDER BY left_num;</span><br></pre></td></tr></table></figure>
 <h3 id="3-1-4-nbsp-nbsp-nbsp-nbsp-比较"><a href="#3-1-4-nbsp-nbsp-nbsp-nbsp-比较" class="headerlink" title="3.1.4&nbsp;&nbsp;&nbsp;&nbsp;比较"></a>3.1.4&nbsp;&nbsp;&nbsp;&nbsp;比较</h3><p>执行每个查询 5000 次，每秒返回的记录数，以邻接模型为参照的情况</p>
-<p><img src="/2020/03/26/database-dealing-with-hierarchical-data/Users\rhanqtl\AppData\Roaming\Typora\typora-user-images\image-20200326120741223.png" alt="image-20200326120741223"></p>
+<img src="/2020/03/26/database-dealing-with-hierarchical-data/top-down-comparison.png" title="图-1&nbsp;&nbsp;Vandamme 查询的性能比较">
 <ul>
 <li>邻接模型的性能最好，但是 <code>CONNECT BY</code> 访问树具有过程性本质</li>
 <li>物化路径模型可能是因为计算深度和缩进函数</li>
@@ -609,6 +621,7 @@
 <p>跨层次计算百分比正是递归 <code>with</code> 语句的用武之地（个人理解，因为 <code>CONNECT BY</code> 不能传递参数而 <code>with</code> 递归查询可以）：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">WITH recursive_composition(actual_pct, component_id)</span><br><span class="line">AS (SELECT a.pct, </span><br><span class="line">           a.component_id</span><br><span class="line">    FROM composition a, </span><br><span class="line">         components b</span><br><span class="line">    WHERE a.recipe_id = b.component_id</span><br><span class="line">      AND b.component_name = &apos;Philter #5&apos;</span><br><span class="line">    UNION ALL</span><br><span class="line">    SELECT parent.pct * child.pct,</span><br><span class="line">           child.component_id</span><br><span class="line">    FROM recursive_composition parent</span><br><span class="line">         composition child</span><br><span class="line">    WHERE child.recipe_id = parent.component_id)</span><br><span class="line">SELECT x.component_name, SUM(y.actual_pct)</span><br><span class="line">FROM recursive_composition y,</span><br><span class="line">     components x</span><br><span class="line">WHERE x.component_id = y.component_id</span><br><span class="line">  AND x.component_type = &apos;I&apos;</span><br><span class="line">GROUP BY x.component_name;</span><br></pre></td></tr></table></figure>
 <p>总结：访问树的语法越复杂，越容易以纯 SQL 来解决较复杂的问题</p>
+<p><img src="/2020/03/26/database-dealing-with-hierarchical-data/Users\rhanqtl\AppData\Roaming\Typora\typora-user-images\image-20200326213800933.png" alt="image-20200326213800933"></p>
 <img src="/2020/03/26/database-dealing-with-hierarchical-data/bug-report-comments-example.png">
 <h1 id="邻接（表）模型"><a href="#邻接（表）模型" class="headerlink" title="邻接（表）模型"></a>邻接（表）模型</h1><img src="/2020/03/26/database-dealing-with-hierarchical-data/adjacency-model.png" title="邻接模型，实际上是一棵 Inverse Tree">
 <h1 id="嵌套集合模型"><a href="#嵌套集合模型" class="headerlink" title="嵌套集合模型"></a>嵌套集合模型</h1><img src="/2020/03/26/database-dealing-with-hierarchical-data/nested-sets-model.png">
@@ -693,7 +706,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-nbsp-nbsp-nbsp-nbsp-树状结构-vs-主从关系"><span class="nav-number">1.</span> <span class="nav-text">1    树状结构 vs. 主从关系</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-nbsp-nbsp-nbsp-nbsp-用-SQL-数据库描述树结构"><span class="nav-number">2.</span> <span class="nav-text">2    用 SQL 数据库描述树结构</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-nbsp-nbsp-nbsp-nbsp-用-SQL-访问树结构"><span class="nav-number">3.</span> <span class="nav-text">3    用 SQL 访问树结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-nbsp-nbsp-nbsp-nbsp-自顶向下的-Vandamme-查询"><span class="nav-number">3.1.</span> <span class="nav-text">3.1    自顶向下的 Vandamme 查询</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-1-nbsp-nbsp-nbsp-nbsp-邻接模型"><span class="nav-number">3.1.1.</span> <span class="nav-text">3.1.1    邻接模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-2-nbsp-nbsp-nbsp-nbsp-物化路径模型"><span class="nav-number">3.1.2.</span> <span class="nav-text">3.1.2    物化路径模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-3-nbsp-nbsp-nbsp-nbsp-嵌套集合模型"><span class="nav-number">3.1.3.</span> <span class="nav-text">3.1.3    嵌套集合模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-4-nbsp-nbsp-nbsp-nbsp-比较"><span class="nav-number">3.1.4.</span> <span class="nav-text">3.1.4    比较</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-nbsp-nbsp-nbsp-nbsp-自底向上的-Highland-查询"><span class="nav-number">3.2.</span> <span class="nav-text">3.2    自底向上的 Highland 查询</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-1-nbsp-nbsp-nbsp-nbsp-邻接模型"><span class="nav-number">3.2.1.</span> <span class="nav-text">3.2.1    邻接模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-2-nbsp-nbsp-nbsp-nbsp-物化路径模型"><span class="nav-number">3.2.2.</span> <span class="nav-text">3.2.2    物化路径模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-3-nbsp-nbsp-nbsp-nbsp-嵌套集合模型"><span class="nav-number">3.2.3.</span> <span class="nav-text">3.2.3    嵌套集合模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-4-nbsp-nbsp-nbsp-nbsp-比较"><span class="nav-number">3.2.4.</span> <span class="nav-text">3.2.4    比较</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-nbsp-nbsp-nbsp-nbsp-聚合查询"><span class="nav-number">3.3.</span> <span class="nav-text">3.3    聚合查询</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-1-nbsp-nbsp-nbsp-nbsp-对叶节点中的值做聚合"><span class="nav-number">3.3.1.</span> <span class="nav-text">3.3.1    对叶节点中的值做聚合</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-1-1-nbsp-nbsp-nbsp-nbsp-邻接模型"><span class="nav-number">3.3.1.1.</span> <span class="nav-text">3.3.1.1    邻接模型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-1-2-nbsp-nbsp-nbsp-nbsp-物化路径"><span class="nav-number">3.3.1.2.</span> <span class="nav-text">3.3.1.2    物化路径</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-1-3-nbsp-nbsp-nbsp-nbsp-比较"><span class="nav-number">3.3.1.3.</span> <span class="nav-text">3.3.1.3    比较</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-2-nbsp-nbsp-nbsp-nbsp-散布在各层的百分比"><span class="nav-number">3.3.2.</span> <span class="nav-text">3.3.2    散布在各层的百分比</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#邻接（表）模型"><span class="nav-number">4.</span> <span class="nav-text">邻接（表）模型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#嵌套集合模型"><span class="nav-number">5.</span> <span class="nav-text">嵌套集合模型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#物化路径模型"><span class="nav-number">6.</span> <span class="nav-text">物化路径模型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">7.</span> <span class="nav-text">参考</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-nbsp-nbsp-nbsp-nbsp-树状结构-vs-主从关系"><span class="nav-text">1    树状结构 vs. 主从关系</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-nbsp-nbsp-nbsp-nbsp-用-SQL-数据库描述树结构"><span class="nav-text">2    用 SQL 数据库描述树结构</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-nbsp-nbsp-nbsp-nbsp-用-SQL-访问树结构"><span class="nav-text">3    用 SQL 访问树结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-nbsp-nbsp-nbsp-nbsp-自顶向下的-Vandamme-查询"><span class="nav-text">3.1    自顶向下的 Vandamme 查询</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-1-nbsp-nbsp-nbsp-nbsp-邻接模型"><span class="nav-text">3.1.1    邻接模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-2-nbsp-nbsp-nbsp-nbsp-物化路径模型"><span class="nav-text">3.1.2    物化路径模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-3-nbsp-nbsp-nbsp-nbsp-嵌套集合模型"><span class="nav-text">3.1.3    嵌套集合模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-4-nbsp-nbsp-nbsp-nbsp-比较"><span class="nav-text">3.1.4    比较</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-nbsp-nbsp-nbsp-nbsp-自底向上的-Highland-查询"><span class="nav-text">3.2    自底向上的 Highland 查询</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-1-nbsp-nbsp-nbsp-nbsp-邻接模型"><span class="nav-text">3.2.1    邻接模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-2-nbsp-nbsp-nbsp-nbsp-物化路径模型"><span class="nav-text">3.2.2    物化路径模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-3-nbsp-nbsp-nbsp-nbsp-嵌套集合模型"><span class="nav-text">3.2.3    嵌套集合模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-4-nbsp-nbsp-nbsp-nbsp-比较"><span class="nav-text">3.2.4    比较</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-nbsp-nbsp-nbsp-nbsp-聚合查询"><span class="nav-text">3.3    聚合查询</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-1-nbsp-nbsp-nbsp-nbsp-对叶节点中的值做聚合"><span class="nav-text">3.3.1    对叶节点中的值做聚合</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-1-1-nbsp-nbsp-nbsp-nbsp-邻接模型"><span class="nav-text">3.3.1.1    邻接模型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-1-2-nbsp-nbsp-nbsp-nbsp-物化路径"><span class="nav-text">3.3.1.2    物化路径</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-1-3-nbsp-nbsp-nbsp-nbsp-比较"><span class="nav-text">3.3.1.3    比较</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-2-nbsp-nbsp-nbsp-nbsp-散布在各层的百分比"><span class="nav-text">3.3.2    散布在各层的百分比</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#邻接（表）模型"><span class="nav-text">邻接（表）模型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#嵌套集合模型"><span class="nav-text">嵌套集合模型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#物化路径模型"><span class="nav-text">物化路径模型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-text">参考</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
