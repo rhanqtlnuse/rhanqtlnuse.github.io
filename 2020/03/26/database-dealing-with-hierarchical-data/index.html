@@ -43,7 +43,7 @@
 <meta property="og:image" content="http://yoursite.com/2020/03/26/database-dealing-with-hierarchical-data/adjacency-model.png">
 <meta property="og:image" content="http://yoursite.com/2020/03/26/database-dealing-with-hierarchical-data/nested-sets-model.png">
 <meta property="og:image" content="http://yoursite.com/2020/03/26/database-dealing-with-hierarchical-data/nested-sets-model-insert.png">
-<meta property="og:updated_time" content="2020-03-27T01:23:15.738Z">
+<meta property="og:updated_time" content="2020-03-27T01:26:26.099Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据库 | 存储层次结构数据">
 <meta name="twitter:description" content="如题">
@@ -216,7 +216,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-27 09:23:15" itemprop="dateModified" datetime="2020-03-27T09:23:15+08:00">2020-03-27</time>
+                <time title="修改时间：2020-03-27 09:26:26" itemprop="dateModified" datetime="2020-03-27T09:26:26+08:00">2020-03-27</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -271,9 +271,9 @@
 <li>邻接模型 (adjacency model)：父记录的 ID 作为子记录的属性（想想并查集 (Union-Find)）<ul>
 <li>Schema：adjacency_model(id, parent_id, description, commander)</li>
 <li>索引<ul>
-<li>在 ID（主键）上的唯一索引</li>
-<li>在 PARENT_ID 上的索引</li>
-<li>在 COMMANDER 上的索引</li>
+<li>在主键 id 上的唯一索引</li>
+<li>在 parent_id 上的索引</li>
+<li>在 commander 上的索引</li>
 </ul>
 </li>
 </ul>
@@ -281,15 +281,19 @@
 <li>物化路径模型（路径枚举模型）(materialized path model)：在每个节点的记录中附加上它在树中位置的描述数据。在物化路径模型中，某个节点的路径是其所有后代的前缀，属于同一祖先的节点有非空的公共前缀<ul>
 <li>Schema：materialized_path_model(materialized_path, description, commander)</li>
 <li>索引<ul>
-<li>在 MATERIALIZED_PATH（主键）上的唯一索引</li>
-<li>在 COMMANDER 上的索引</li>
+<li>在主键 materialized_path 上的唯一索引</li>
+<li>在 commander 上的索引</li>
 </ul>
 </li>
 </ul>
 </li>
 <li>嵌套集合模型 (nested sets model)：每个节点被赋予一对数，某节点的两个数所圈定的区间能够包括所有后代节点的区间（赋予 left_num 和 right_num 的方式就是 DFS 中计算活动区间的方式），叶子元素是 left_num + 1 == right_num 的元素<ul>
-<li>Schema：nested_sets_model(description, commander, left_num, right_num)</li>
-<li>复合主键：(left_num, right_num)，在 commander 上的索引</li>
+<li>Schema：nested_sets_model(left_num, right_num, description, commander)</li>
+<li>索引<ul>
+<li>复合主键 (left_num, right_num)</li>
+<li>在 commander 上的索引</li>
+</ul>
+</li>
 </ul>
 </li>
 <li>嵌套间隔模型 (nested interval model)：这里不讨论</li>
@@ -351,108 +355,12 @@
 <p>总结：无论是自顶向下还是自底向上，树的访问本质上都是顺序操作，所以比较慢</p>
 <h2 id="3-3-nbsp-nbsp-nbsp-nbsp-聚合查询"><a href="#3-3-nbsp-nbsp-nbsp-nbsp-聚合查询" class="headerlink" title="3.3&nbsp;&nbsp;&nbsp;&nbsp;聚合查询"></a>3.3&nbsp;&nbsp;&nbsp;&nbsp;聚合查询</h2><p><img src="/2020/03/26/database-dealing-with-hierarchical-data/Users\rhanqtl\AppData\Roaming\Typora\typora-user-images\image-20200326180719909.png" alt="image-20200326180719909"></p>
 <p>新的数据结构：</p>
-<p><strong>UNITS</strong></p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Null?</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>id</code></td>
-<td>NOT NULL</td>
-<td>NUMBER</td>
-</tr>
-<tr>
-<td><code>name</code></td>
-<td>NOT NULL</td>
-<td>VARCHAR(120)</td>
-</tr>
-<tr>
-<td><code>commander</code></td>
-<td>NOT NULL</td>
-<td>VARCHAR(120)</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div style="text-align: center;"><strong>UNIT_LINKS_ADJACENCY</strong></div>
-
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Null?</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>id</code></td>
-<td>NOT NULL</td>
-<td>NUMBER</td>
-</tr>
-<tr>
-<td><code>parent_id</code></td>
-<td>NOT NULL</td>
-<td>NUMBER</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p><strong>UNIT_LINKS_PATH</strong></p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Null?</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>id</code></td>
-<td>NOT NULL</td>
-<td>NUMBER</td>
-</tr>
-<tr>
-<td><code>parent_id</code></td>
-<td>NOT NULL</td>
-<td>NUMBER</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p><strong>UNIT_STRENGTH</strong></p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Null?</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>id</code></td>
-<td>NOT NULL</td>
-<td>NUMBER</td>
-</tr>
-<tr>
-<td><code>men</code></td>
-<td>NOT NULL</td>
-<td>NUMBER</td>
-</tr>
-</tbody>
-</table>
-</div>
+<ul>
+<li>units(id, name, commander)</li>
+<li>unit_links_adjacency(id, parent_id)</li>
+<li>unit_links_path(id, path)</li>
+<li>unit_strength(id, men)</li>
+</ul>
 <h3 id="3-3-1-nbsp-nbsp-nbsp-nbsp-对叶节点中的值做聚合"><a href="#3-3-1-nbsp-nbsp-nbsp-nbsp-对叶节点中的值做聚合" class="headerlink" title="3.3.1&nbsp;&nbsp;&nbsp;&nbsp;对叶节点中的值做聚合"></a>3.3.1&nbsp;&nbsp;&nbsp;&nbsp;对叶节点中的值做聚合</h3><h4 id="3-3-1-1-nbsp-nbsp-nbsp-nbsp-邻接模型"><a href="#3-3-1-1-nbsp-nbsp-nbsp-nbsp-邻接模型" class="headerlink" title="3.3.1.1&nbsp;&nbsp;&nbsp;&nbsp;邻接模型"></a>3.3.1.1&nbsp;&nbsp;&nbsp;&nbsp;邻接模型</h4><p>查询第三军的总人数</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">SELECT SUM(men)</span><br><span class="line">FROM UNIT_STRENGTH</span><br><span class="line">WHERE id IN (SELECT id</span><br><span class="line">             FROM unit_links_adjacency</span><br><span class="line">             START WITH parent_id = 1</span><br><span class="line">             CONNECT BY parent_id = PRIOR id);</span><br></pre></td></tr></table></figure>
 <p>查询每级战斗单元的人数</p>
@@ -646,7 +554,10 @@
     <a href="/2020/03/25/database-select-queries-order-of-execution/" rel="prev" title="数据库 | SELECT 语句的执行顺序">
       <i class="fa fa-chevron-left"></i> 数据库 | SELECT 语句的执行顺序
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2020/03/27/database-thinking-sql-statements/" rel="next" title="数据库 | 思考 SQL 语句">
+      数据库 | 思考 SQL 语句 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -720,12 +631,12 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">223</span>
+          <span class="site-state-item-count">226</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
-        <span class="site-state-item-count">75</span>
+        <span class="site-state-item-count">73</span>
         <span class="site-state-item-name">分类</span>
       </div>
       <div class="site-state-item site-state-tags">

@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.8.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="如题">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Arch Linux + Windows 双系统安装">
+<meta property="og:url" content="http://yoursite.com/2020/03/31/linux-archlinux-windows-dual-boot/index.html">
+<meta property="og:site_name" content="RHANQTL">
+<meta property="og:description" content="如题">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2020/03/31/linux-archlinux-windows-dual-boot/efi-system-partition.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/31/linux-archlinux-windows-dual-boot/recovery-partition.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/31/linux-archlinux-windows-dual-boot/microsoft-basic-data.png">
+<meta property="og:updated_time" content="2020-03-31T05:35:02.901Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Arch Linux + Windows 双系统安装">
+<meta name="twitter:description" content="如题">
+<meta name="twitter:image" content="http://yoursite.com/2020/03/31/linux-archlinux-windows-dual-boot/efi-system-partition.png">
+
+<link rel="canonical" href="http://yoursite.com/2020/03/31/linux-archlinux-windows-dual-boot/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
+  };
+</script>
+
+  <title>Arch Linux + Windows 双系统安装 | RHANQTL</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">RHANQTL</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">上下求索</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>站点地图</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/31/linux-archlinux-windows-dual-boot/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Arch Linux + Windows 双系统安装
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-03-31 12:27:38 / 修改时间：13:35:02" itemprop="dateCreated datePublished" datetime="2020-03-31T12:27:38+08:00">2020-03-31</time>
+            </span>
+
+          
+            <div class="post-description">如题</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="1-nbsp-nbsp-nbsp-nbsp-开始安装之前"><a href="#1-nbsp-nbsp-nbsp-nbsp-开始安装之前" class="headerlink" title="1&nbsp;&nbsp;&nbsp;&nbsp;开始安装之前"></a>1&nbsp;&nbsp;&nbsp;&nbsp;开始安装之前</h1><h2 id="1-1-nbsp-nbsp-nbsp-nbsp-我的系统"><a href="#1-1-nbsp-nbsp-nbsp-nbsp-我的系统" class="headerlink" title="1.1&nbsp;&nbsp;&nbsp;&nbsp;我的系统"></a>1.1&nbsp;&nbsp;&nbsp;&nbsp;我的系统</h2><p>小米笔记本 Pro 15.6’</p>
+<p>Windows 10 企业版 64 位</p>
+<p><a href="https://wiki.archlinux.org/index.php/Unified_Extensible_Firmware_Interface" target="_blank" rel="noopener">UEFI</a> + <a href="https://wiki.archlinux.org/index.php/Partitioning#GUID_Partition_Table" target="_blank" rel="noopener">GPT</a></p>
+<h2 id="1-2-nbsp-nbsp-nbsp-nbsp-准备工作"><a href="#1-2-nbsp-nbsp-nbsp-nbsp-准备工作" class="headerlink" title="1.2&nbsp;&nbsp;&nbsp;&nbsp;准备工作"></a>1.2&nbsp;&nbsp;&nbsp;&nbsp;准备工作</h2><p>需要网络</p>
+<p>分区，（当然，你也可以在 Arch Linux 的 Live CD 中进行分区）</p>
+<ol>
+<li><p>右键单击“此电脑”，选择“管理”</p>
+</li>
+<li><p>单击“磁盘管理”</p>
+</li>
+<li><p>留意几个重要的分区：</p>
+<ul>
+<li><p>EFI 系统分区 (EFI System Partition)，文件系统格式为 FAT32</p>
+<img src="/2020/03/31/linux-archlinux-windows-dual-boot/efi-system-partition.png">
+</li>
+<li><p>恢复分区 (Recovery Partition)</p>
+<img src="/2020/03/31/linux-archlinux-windows-dual-boot/recovery-partition.png">
+</li>
+<li><p>保留分区 (Reserved Partition)</p>
+</li>
+<li><p>数据分区，比如 C:、D:，注意不要破坏操作系统的安装盘（最常见的情况就是 C:），在 Arch Linux 中应该带有“Microsoft basic data”字样。文件系统格式为 NTFS</p>
+<img src="/2020/03/31/linux-archlinux-windows-dual-boot/microsoft-basic-data.png">
+</li>
+</ul>
+</li>
+<li><p>根据官网的<a href="https://wiki.archlinux.org/index.php/Partitioning#UEFI/GPT_example_layout" target="_blank" rel="noopener">示例</a>，建议至少分配 10G，通过“压缩卷”</p>
+<ul>
+<li>结合自身需求，Arch Linux 基本安装只需要 800MB 磁盘空间</li>
+</ul>
+</li>
+<li><p>分区方案如下：512MB <a href="https://wiki.archlinux.org/index.php/EFI_system_partition" target="_blank" rel="noopener">ESP</a> / 7GB 根 (<code>/</code>) 分区/ 512MB 交换分区（也可以不设置交换分区，而是使用<a href="https://wiki.archlinux.org/index.php/Swap#Swap_file" target="_blank" rel="noopener">交换文件</a>） / 2GB 主目录 (<code>home</code>)</p>
+</li>
+</ol>
+<p>从 <a href="https://www.archlinux.org/download/" target="_blank" rel="noopener">Arch Linux 官网</a>获取 ISO 镜像的下载地址（或者直接在<a href="https://mirrors.tuna.tsinghua.edu.cn/archlinux/iso/" target="_blank" rel="noopener">清华大学开源软件镜像站</a>下载）</p>
+<p>制作 Live CD，推荐使用 <a href="https://rufus.ie/" target="_blank" rel="noopener">Rufus</a>（用 dd 模式写入）</p>
+<p>插入 U 盘，重启</p>
+<p>进入 UEFI，将 U 盘置于启动顺序第一位，保存更改并退出</p>
+<p>在 Arch Linux 的菜单中选择第一个，然后就可以看到提示符了</p>
+<h1 id="2-nbsp-nbsp-nbsp-nbsp-安装-Arch-Linux"><a href="#2-nbsp-nbsp-nbsp-nbsp-安装-Arch-Linux" class="headerlink" title="2&nbsp;&nbsp;&nbsp;&nbsp;安装 Arch Linux"></a>2&nbsp;&nbsp;&nbsp;&nbsp;安装 Arch Linux</h1><h2 id="2-1-nbsp-nbsp-nbsp-nbsp-联网"><a href="#2-1-nbsp-nbsp-nbsp-nbsp-联网" class="headerlink" title="2.1&nbsp;&nbsp;&nbsp;&nbsp;联网"></a>2.1&nbsp;&nbsp;&nbsp;&nbsp;联网</h2><blockquote>
+<p>这里是连接 WiFi 的办法</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># ip link</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># ping archlinux.org</span><br></pre></td></tr></table></figure>
+<h2 id="2-2-nbsp-nbsp-nbsp-nbsp-更新系统时钟"><a href="#2-2-nbsp-nbsp-nbsp-nbsp-更新系统时钟" class="headerlink" title="2.2&nbsp;&nbsp;&nbsp;&nbsp;更新系统时钟"></a>2.2&nbsp;&nbsp;&nbsp;&nbsp;更新系统时钟</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># timedatectl set-ntp true</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># timedatectl set-timezone Asia/Shanghai</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># timedatectl status</span><br></pre></td></tr></table></figure>
+<h2 id="2-3-nbsp-nbsp-nbsp-nbsp-格式化分区"><a href="#2-3-nbsp-nbsp-nbsp-nbsp-格式化分区" class="headerlink" title="2.3&nbsp;&nbsp;&nbsp;&nbsp;格式化分区"></a>2.3&nbsp;&nbsp;&nbsp;&nbsp;格式化分区</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># fdisk -l</span><br></pre></td></tr></table></figure>
+<p>找到之前分好的分区，这里以 <code>/dev/sda</code> 为例，假设</p>
+<ul>
+<li>EFI 系统分区是 <code>/dev/sda3</code></li>
+<li>根分区是 <code>/dev/sda4</code></li>
+<li>交换分区是 <code>/dev/sda5</code></li>
+<li>主目录是 <code>/dev/sda6</code></li>
+</ul>
+<p>注意将这一节出现的所有 <code>/dev/sda</code> 和 <code>/dev/sdaX</code> 替换成你自己的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># fdisk /dev/sda</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">(m for help):</span><br></pre></td></tr></table></figure>
+<p>输入 <code>t</code>，回车，输入 3，即 EFI 系统分区的分区号（注意替换！），回车，输入 1，指定分区类型为 EFI System（通过 <code>l</code> 可以列出所有的分区类型），回车</p>
+<p>输入 <code>t</code>，回车，输入 5，即交换分区的分区好（注意替换！），回车，输入 19，指定分区类型为 Linux Swap，回车</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># mkfs.fat -F32 /dev/sda3</span><br><span class="line"># mkfs.ext4 /dev/sda4</span><br><span class="line"># mkswap /dev/sda5</span><br><span class="line"># swapon /dev/sda5</span><br><span class="line"># mkfs.ext4 /dev/sda6</span><br></pre></td></tr></table></figure>
+<p>挂载分区</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># mount /dev/sda4 /mnt</span><br><span class="line"># mkdir /mnt/boot &amp;&amp; mount /dev/sda3 /mnt/boot</span><br><span class="line"># mkdir /mnt/home &amp;&amp; mount /dev/sda6 /mnt/home</span><br></pre></td></tr></table></figure>
+<h2 id="2-4-nbsp-nbsp-nbsp-nbsp-安装基本包和内核"><a href="#2-4-nbsp-nbsp-nbsp-nbsp-安装基本包和内核" class="headerlink" title="2.4&nbsp;&nbsp;&nbsp;&nbsp;安装基本包和内核"></a>2.4&nbsp;&nbsp;&nbsp;&nbsp;安装基本包和内核</h2><p>设置镜像服务器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># vi /etc/pacman.d/mirrorlist</span><br></pre></td></tr></table></figure>
+<p>将 <code>China</code> 相关行移到列表的最前端，可以使用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># China</span><br><span class="line">Server = http://mirrors.tuna.tsinghua.edu.cn/...</span><br><span class="line">Server = http://mirrors.aliyun.com/...</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>How To</p>
+<p>输入 <code>/China</code>，回车，然后输入 <code>2dd</code>，不断按 <code>k</code>，将光标移到列表最前端的空格，输入 <code>p</code>，接下来按 <code>j</code> 将光标移到 <code>Server = ...</code> 这一行，输入 <code>yyp</code></p>
+<p>…</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># pacstrap /mnt base linux linux-firmware</span><br></pre></td></tr></table></figure>
+<h2 id="2-5-nbsp-nbsp-nbsp-nbsp-配置系统"><a href="#2-5-nbsp-nbsp-nbsp-nbsp-配置系统" class="headerlink" title="2.5&nbsp;&nbsp;&nbsp;&nbsp;配置系统"></a>2.5&nbsp;&nbsp;&nbsp;&nbsp;配置系统</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># genfstab -U /mnt &gt;&gt; /mnt/etc/fstab</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># arch-chroot /mnt</span><br></pre></td></tr></table></figure>
+<p>为新系统安装必要的工具</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># pacman -Syyu vim netctl wpa_supplicant dhcpcd dialog man-db man-pages texinfo</span><br></pre></td></tr></table></figure>
+<p>…</p>
+<p>安装 Bootloader</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># pacman -Syyu grub efibootmgr os-prober</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># os-prober</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB</span><br></pre></td></tr></table></figure>
+<p>挂载 Windows 启动分区，我的机器上是 <code>/dev/nvme0n1p1</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># mkdir /mnt2</span><br><span class="line"># mount /dev/nvme0n1p1 /mnt2</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># grub-mkconfig -o /boot/grub/grub.cfg</span><br></pre></td></tr></table></figure>
+<h2 id="2-x-nbsp-nbsp-nbsp-nbsp-重启"><a href="#2-x-nbsp-nbsp-nbsp-nbsp-重启" class="headerlink" title="2.x&nbsp;&nbsp;&nbsp;&nbsp;重启"></a>2.x&nbsp;&nbsp;&nbsp;&nbsp;重启</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># exit</span><br><span class="line"># reboot</span><br></pre></td></tr></table></figure>
+<p>如果重启时进入了 Windows 或者 Arch Linux Live CD，在 UEFI 中更改启动顺序，将 <code>GRUB</code> 置于第一位</p>
+<h1 id="3-nbsp-nbsp-nbsp-nbsp-其他"><a href="#3-nbsp-nbsp-nbsp-nbsp-其他" class="headerlink" title="3&nbsp;&nbsp;&nbsp;&nbsp;其他"></a>3&nbsp;&nbsp;&nbsp;&nbsp;其他</h1><p>如果系统哪里配置不正确（比如忘记安装 netctl），可以通过 Live CD，不需要进行分区、格式化、生成分区表等工作，将各个分区挂载，然后 <code>arch-chroot</code> 进入，进行修复后再重启即可</p>
+<p>不要怕，其实很简单</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p>[1] <a href="https://wiki.archlinux.org/index.php/Installation_guide" target="_blank" rel="noopener">Arch Linux | Installation Guide</a></p>
+<p>[2] <a href="https://wiki.archlinux.org/index.php/Dual_boot_with_Windows#UEFI_systems" target="_blank" rel="noopener">Arch Linux | Dual Boot with Windows</a></p>
+<p>[3] <a href="https://wiki.archlinux.org/index.php/Netctl" target="_blank" rel="noopener">Arch Linux | netctl</a></p>
+<p>[] <a href="https://www.youtube.com/watch?v=C3D_qzw94v8" target="_blank" rel="noopener">YouTube - Arch Linux Install (UEFI) and Dual Boot with Windows 10 | A Step by Step Guide | 2020 Tutorial</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/03/29/soft-eng-container-demystifying-containers-part-i-kernel-space/" rel="prev" title="【译】揭开容器的神秘面纱 | 第一部分：内核空间">
+      <i class="fa fa-chevron-left"></i> 【译】揭开容器的神秘面纱 | 第一部分：内核空间
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-nbsp-nbsp-nbsp-nbsp-开始安装之前"><span class="nav-text">1    开始安装之前</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-nbsp-nbsp-nbsp-nbsp-我的系统"><span class="nav-text">1.1    我的系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-nbsp-nbsp-nbsp-nbsp-准备工作"><span class="nav-text">1.2    准备工作</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-nbsp-nbsp-nbsp-nbsp-安装-Arch-Linux"><span class="nav-text">2    安装 Arch Linux</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-nbsp-nbsp-nbsp-nbsp-联网"><span class="nav-text">2.1    联网</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-nbsp-nbsp-nbsp-nbsp-更新系统时钟"><span class="nav-text">2.2    更新系统时钟</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-nbsp-nbsp-nbsp-nbsp-格式化分区"><span class="nav-text">2.3    格式化分区</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-nbsp-nbsp-nbsp-nbsp-安装基本包和内核"><span class="nav-text">2.4    安装基本包和内核</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-5-nbsp-nbsp-nbsp-nbsp-配置系统"><span class="nav-text">2.5    配置系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-x-nbsp-nbsp-nbsp-nbsp-重启"><span class="nav-text">2.x    重启</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-nbsp-nbsp-nbsp-nbsp-其他"><span class="nav-text">3    其他</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-text">参考</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Han Qi</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">226</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">73</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">36</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Han Qi</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://muse.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.7.2
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>

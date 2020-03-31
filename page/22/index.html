@@ -165,6 +165,287 @@
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/12/LeetCode-226：Invert-Binary-Tree/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/12/12/LeetCode-226：Invert-Binary-Tree/" class="post-title-link" itemprop="url">LeetCode 226：Invert Binary Tree</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2018-12-12 20:02:39 / 修改时间：20:28:12" itemprop="dateCreated datePublished" datetime="2018-12-12T20:02:39+08:00">2018-12-12</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithms/" itemprop="url" rel="index"><span itemprop="name">Algorithms</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithms/OJ/" itemprop="url" rel="index"><span itemprop="name">OJ</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithms/OJ/LeetCode/" itemprop="url" rel="index"><span itemprop="name">LeetCode</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>今天在一个公众号上面看到了一个故事：2015 年，<a href="https://brew.sh/" target="_blank" rel="noopener">Homebrew</a> 的作者 Max Howell 去面试 Google，据 Max Howell 称，他因为不会一道翻转二叉树被谷歌拒了。下面是大佬的原推：</p>
+<img src="/2018/12/12/LeetCode-226：Invert-Binary-Tree/original-tweet.png">
+<p>好奇的我去 LeetCode 上搜了一下，还真的有这道题，题目描述是这样的：</p>
+<p>翻转一棵二叉树。</p>
+<p><strong>样例：</strong></p>
+<p>输入：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">     4</span><br><span class="line">   /   \</span><br><span class="line">  2     7</span><br><span class="line"> / \   / \</span><br><span class="line">1   3 6   9</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">     4</span><br><span class="line">   /   \</span><br><span class="line">  7     2</span><br><span class="line"> / \   / \</span><br><span class="line">9   6 3   1</span><br></pre></td></tr></table></figure>
+<p>我的代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * public class TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode left;</span></span><br><span class="line"><span class="comment"> *     TreeNode right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) &#123; val = x; &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> TreeNode <span class="title">invertTree</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (root == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (isLeaf(root)) &#123;</span><br><span class="line">            <span class="keyword">return</span> root;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 注意这里</span></span><br><span class="line">        TreeNode tmp = root.left;</span><br><span class="line">        root.left = invertTree(root.right);</span><br><span class="line">        root.right = invertTree(tmp);</span><br><span class="line">        <span class="keyword">return</span> root;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">isLeaf</span><span class="params">(TreeNode x)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> x.left == <span class="keyword">null</span> &amp;&amp; x.right == <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>需要注意</strong>的是 <code>TreeNode tmp = root.left</code> 这条语句，直接像下面这样写的话，你就<font color="red"><b>凉</b></font>了：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">root.left = invertTree(root.right);</span><br><span class="line">root.right = invertTree(root.left);</span><br></pre></td></tr></table></figure>
+<p>输出是这样的：<code>[4,7,7,9,9,9,9]</code>，因为这里是引用，实际上就变成了树的两棵子树都是 <code>root.right</code>。（初学链表时搞不清楚指针的交换顺序也会写出这样的 Bug）</p>
+<p>所以，面试之前先自问一下有没有大佬牛逼，如果没有，就老老实实地刷几遍 LeetCode 或者 LintCode，毕竟这么牛逼的大佬都会因为写不出一道简单的算法题被拒。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/08/fp-haskell-intro/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/12/08/fp-haskell-intro/" class="post-title-link" itemprop="url">Haskell 入门</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2018-12-08 14:49:32 / 修改时间：19:56:32" itemprop="dateCreated datePublished" datetime="2018-12-08T14:49:32+08:00">2018-12-08</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/FP/" itemprop="url" rel="index"><span itemprop="name">FP</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/FP/Haskell/" itemprop="url" rel="index"><span itemprop="name">Haskell</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>函数调用在 Haskell 中拥有最高的优先级，所以 <code>succ 9 * 10</code> 的结果为 100，而不是所期望的 91</p>
+<p>Haskell 中 <code>if</code> 语句（实际上是一个表达式）的 <code>else</code> 不可省略：<code>if-then-else</code>，也就是说，必须返回一个值</p>
+<p>编写一些简单的函数（抽象），将其组合，形成更高级的抽象</p>
+<p>有两个参数的函数可以使用中缀形式：<code>div 9 3</code> 等价于 <code>9 `div` 3</code>，注意使用<strong>反引号</strong>将函数名括起来和参数的顺序</p>
+<p>变量的值不可修改！！！（更像数学中的变量，而不是编程中的变量），但可以对变量重新赋值</p>
+<p>Haskell 中<strong>不允许</strong>首字母大写的函数</p>
+<p>常量定义：<code>let &lt;var_name&gt; = &lt;value&gt;</code> 或 <code>&lt;var_name&gt; = &lt;value&gt;</code>，注意 <code>&lt;var_name&gt;</code> 首字母<strong>小写</strong>！</p>
+<h1 id="List"><a href="#List" class="headerlink" title="List"></a>List</h1><p><strong>单类型</strong>数据数据结构</p>
+<p>空 List：<code>[]</code></p>
+<h2 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h2><p>列表连接：<code>&lt;list1&gt; ++ &lt;list2&gt;</code></p>
+<p>字符串实际上是字符数组，所以可以使用 <code>&quot;hello&quot; ++ &quot; &quot; ++ &quot;world&quot;</code></p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">ghci</span>&gt; str1 = ['h', 'e', 'l', 'l', 'o']</span><br><span class="line"><span class="title">ghci</span>&gt; str2 = ['w', 'o', 'r', 'l', 'd']</span><br><span class="line"><span class="title">ghci</span>&gt; str1 ++ <span class="string">" "</span> ++ str2</span><br><span class="line"><span class="string">"hello world"</span></span><br></pre></td></tr></table></figure>
+<p>可以使用 <code>：</code> 将一个元素连接到 List 的头部（Lisp 的 <code>cons &lt;elem&gt; &lt;list&gt;</code>），<code>[1, 2, 3]</code> 实际上是 <code>1：2：3：[]</code> 的语法糖</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">ghci</span>&gt; 'h':'e':'l':'l':'o':[]</span><br><span class="line"><span class="string">"hello"</span></span><br></pre></td></tr></table></figure>
+<p>通过下标访问：<code>!!</code>，下标从 0 开始，超出范围会报错</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">ghci</span>&gt; [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>] !! <span class="number">3</span></span><br><span class="line"><span class="number">4</span></span><br></pre></td></tr></table></figure>
+<h3 id="比较大小"><a href="#比较大小" class="headerlink" title="比较大小"></a>比较大小</h3><p>当 List 中装有<strong>可比较</strong>的元素时，可以使用关系运算符比较列表的大小。从第一个元素开始比较如果能够决定结果，直接返回，否则继续向后比较。</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">ghci</span>&gt; [<span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>] &gt; [<span class="number">2</span>, <span class="number">1</span>, <span class="number">0</span>]</span><br><span class="line"><span class="type">True</span></span><br><span class="line"><span class="title">ghci</span>&gt; [<span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>] &gt; [<span class="number">2</span>, <span class="number">10</span>, <span class="number">100</span>]</span><br><span class="line"><span class="type">True</span></span><br><span class="line"><span class="title">ghci</span>&gt; [<span class="number">3</span>, <span class="number">4</span>, <span class="number">2</span>] &gt; [<span class="number">3</span>, <span class="number">4</span>]</span><br><span class="line"><span class="type">True</span></span><br><span class="line"><span class="title">ghci</span>&gt; [<span class="number">3</span>, <span class="number">4</span>, <span class="number">2</span>] &gt; [<span class="number">2</span>, <span class="number">4</span>]</span><br><span class="line"><span class="type">True</span></span><br><span class="line"><span class="title">ghci</span>&gt; [<span class="number">3</span>, <span class="number">4</span>, <span class="number">2</span>] == [<span class="number">3</span>, <span class="number">4</span>, <span class="number">2</span>]</span><br><span class="line"><span class="type">True</span></span><br></pre></td></tr></table></figure>
+<h3 id="其他常用函数"><a href="#其他常用函数" class="headerlink" title="其他常用函数"></a>其他常用函数</h3><p><code>head</code>：返回 List 的首个元素（Lisp 的 <code>car</code>）</p>
+<p><code>tail</code>：返回 List 的去除首个元素的部分（Lisp 的 <code>cdr</code>）</p>
+<p><code>last</code>：返回 List 的最后一个元素</p>
+<p><code>init</code>：返回 List 去除最后一个元素的部分</p>
+<p>注意：对空 List 使用这些函数会在运行期产生异常</p>
+<p><code>length</code></p>
+<p><code>null</code>：检查一个列表是否为空</p>
+<ul>
+<li>避免使用 <code>xs == []</code></li>
+</ul>
+<p><code>reverse</code>：将 List 反转</p>
+<p><code>take &lt;count&gt; &lt;list&gt;</code>：取出列表的前 count 个元素</p>
+<ul>
+<li>也可以使用中缀形式：<code>3 `take` [1, 2, 3, 4, 5, 6]</code></li>
+<li>如果 <code>count == 0</code>，那么返回 <code>[]</code></li>
+<li>如果 <code>count &gt;= length</code>，那么返回原 List</li>
+</ul>
+<p><code>drop &lt;count&gt; &lt;list&gt;</code>：删除 List 的前 count 个元素，与 <code>take</code> 大体相同</p>
+<p><code>maximum</code> 和 <code>minimum</code></p>
+<p><code>sum</code> 和 <code>product</code></p>
+<p><code>elem</code>：判断一个元素是否在 List 中，通常以中缀形式使用</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/07/algorithms-approx-algo/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/12/07/algorithms-approx-algo/" class="post-title-link" itemprop="url">近似算法</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2018-12-07 00:00:00" itemprop="dateCreated datePublished" datetime="2018-12-07T00:00:00+08:00">2018-12-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-05-17 16:51:16" itemprop="dateModified" datetime="2019-05-17T16:51:16+08:00">2019-05-17</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法-Algorithms/" itemprop="url" rel="index"><span itemprop="name">算法 (Algorithms)</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>很多优化问题是 NP 难的，相应的决策问题是 NP 完备的，而我们并不总是需要精确的答案，所以可以使用高效的渐进算法。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2018/12/07/algorithms-approx-algo/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/06/others-bit-op-tricks/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -984,272 +1265,6 @@ C_i &= A_i B_i \overline{C_{i-1}} + A_i \overline{B_i} C_{i-1}
   
   
 
-        
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/04/algorithms-np-completeness/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RHANQTL">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/12/04/algorithms-np-completeness/" class="post-title-link" itemprop="url">未命名</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2018-12-04 04:21:29" itemprop="dateCreated datePublished" datetime="2018-12-04T04:21:29+08:00">2018-12-04</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-05-17 16:55:42" itemprop="dateModified" datetime="2019-05-17T16:55:42+08:00">2019-05-17</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="NP-完备性"><a href="#NP-完备性" class="headerlink" title="NP 完备性"></a>NP 完备性</h1>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2018/12/04/algorithms-np-completeness/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/04/algorithms-red-black-tree/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RHANQTL">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/12/04/algorithms-red-black-tree/" class="post-title-link" itemprop="url">红黑树</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2018-12-04 03:22:31" itemprop="dateCreated datePublished" datetime="2018-12-04T03:22:31+08:00">2018-12-04</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-05-17 16:56:49" itemprop="dateModified" datetime="2019-05-17T16:56:49+08:00">2019-05-17</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法-Algorithms/" itemprop="url" rel="index"><span itemprop="name">算法 (Algorithms)</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法-Algorithms/树-Tree/" itemprop="url" rel="index"><span itemprop="name">树 (Tree)</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <a id="more"></a>
-<h1 id="什么是红黑树？"><a href="#什么是红黑树？" class="headerlink" title="什么是红黑树？"></a>什么是红黑树？</h1><p>红黑树首先是一棵二叉搜索树，具有几乎完美的平衡性质</p>
-<h2 id="叙述性定义"><a href="#叙述性定义" class="headerlink" title="叙述性定义"></a>叙述性定义</h2><p>红黑树是这样一棵<strong>二叉搜索树</strong>：</p>
-<ul>
-<li>根结点为黑色</li>
-<li>每个内部结点要么是黑色，要么是红色</li>
-<li>叶结点（NIL）为黑色</li>
-<li>颜色约束：红色结点不能有红色子结点（换言之，红色结点只能有黑色子结点）</li>
-<li>黑色高度约束：从某结点出发到其所有后代叶结点的<strong>简单路径</strong>上，均包含相同数目的黑色结点</li>
-</ul>
-<h2 id="递归定义"><a href="#递归定义" class="headerlink" title="递归定义"></a>递归定义</h2><ul>
-<li>ARB（Almost-RB）树：除根结点为红色之外，满足 RB 树其他约束</li>
-<li>定义 RB$_0$ 为空树（或外部结点），以 $h$ 表示树的<strong>黑高度</strong></li>
-<li>RB$_{h+1}$：子树可以是 RB$_h$ 或 ARB$_{h+1}$</li>
-<li>ARB$_{h+1}$：子树均为 RB$_h$</li>
-</ul>
-<h1 id="为什么要使用红黑树？"><a href="#为什么要使用红黑树？" class="headerlink" title="为什么要使用红黑树？"></a>为什么要使用红黑树？</h1><h2 id="C-中的-map"><a href="#C-中的-map" class="headerlink" title="C++ 中的 map"></a>C++ 中的 <code>map</code></h2><p>我们知道 <code>HashMap</code> 的平均时间复杂度为 O(1)（可以参考《算法导论》的相关分析），<code>map</code> 的平均时间复杂度为 $O(\lg n)$ 的，实践上是不是 <code>HashMap</code> 一定优于 <code>map</code> 呢？这里面有几个因素要考虑：</p>
-<ol>
-<li><code>HashMap</code> 内存效率比 <code>map</code> 差，这是显而易见的；</li>
-<li><code>map</code> 的查找效率实践上是非常高的，如在 1M 数据中查找一个元素，仅需要 20次 比较；</li>
-<li><code>map</code> 的查找效率比 <code>HashMap</code> 稳定，hash 最坏的情况为 $O(n)$（个人观点：无论使用什么 hash 函数，总能够找到最坏情况的键序列，虽然可以使用全域哈希的方法，但也并不是完全能够避免最坏情况，而且 hash 函数一不小心就会…，相比之下，红黑树的 $O(\lg n)$ 很稳，而且在可以接受的范围内）；</li>
-<li><code>HashMap</code> 查找时候要算 hash，这个最坏时间复杂度是 $O(m)$（M是key字符串的长度），如果你的 key 非常非常非常非常非常非常……长，基于比较的 <code>map</code> 通常只使用头几个字符进行比较，而 <code>HashMap</code> 要 $O(M)$ 地算出 hash；</li>
-<li>内存布局会影响内存局部性，对性能会有影响。</li>
-</ol>
-<h1 id="红黑树的操作-1"><a href="#红黑树的操作-1" class="headerlink" title="红黑树的操作$^{[1]}$"></a>红黑树的操作$^{[1]}$</h1><h2 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h2><p>有 4 种基本情况（完整的图示见附录 A）：</p>
-<img src="/2018/12/04/algorithms-red-black-tree/insertion-cases.png">
-<h3 id="第一种情况：重新着色"><a href="#第一种情况：重新着色" class="headerlink" title="第一种情况：重新着色"></a>第一种情况：重新着色</h3><img src="/2018/12/04/algorithms-red-black-tree/insertion-case1.png">
-<h3 id="第二种情况"><a href="#第二种情况" class="headerlink" title="第二种情况"></a>第二种情况</h3><img src="/2018/12/04/algorithms-red-black-tree/insertion-case2.png">
-<h3 id="第三种情况"><a href="#第三种情况" class="headerlink" title="第三种情况"></a>第三种情况</h3><img src="/2018/12/04/algorithms-red-black-tree/insertion-case3.png">
-<h3 id="第四种情况"><a href="#第四种情况" class="headerlink" title="第四种情况"></a>第四种情况</h3><p>这种情况最简单，因为既满足了颜色约束又没有破坏黑高度约束，所以无需调整。</p>
-<h2 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h2><p>这里会介绍两种视角，命令式视角：参考 <a href="https://www.amazon.cn/dp/B00AK7BYJY/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1544318297&amp;sr=1-1&amp;keywords=%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA" target="_blank" rel="noopener">《算法导论》</a>、<a href="https://www.amazon.cn/dp/B009OCFQ0O/ref=sr_1_1?ie=UTF8&amp;qid=1544252889&amp;sr=8-1&amp;keywords=%E7%AE%97%E6%B3%95" target="_blank" rel="noopener">《算法（第 4 版）》</a>、<a href="https://www.amazon.com/Computer-Algorithms-Introduction-Design-Analysis/dp/0201612445" target="_blank" rel="noopener">《Computer Algorithms: Introduction to Design And Analysis》</a>（以下简称《Computer Algorithms》），函数式视角（模式匹配）：参考刘新宇老师的<a href="https://www.amazon.cn/dp/B01N9JOTF6/ref=sr_1_1?ie=UTF8&amp;qid=1544252865&amp;sr=8-1&amp;keywords=%E7%AE%97%E6%B3%95%E6%96%B0%E8%A7%A3" target="_blank" rel="noopener">《算法新解》</a></p>
-<h2 id="命令式视角"><a href="#命令式视角" class="headerlink" title="命令式视角"></a>命令式视角</h2><h2 id="函数式视角：模式匹配"><a href="#函数式视角：模式匹配" class="headerlink" title="函数式视角：模式匹配"></a>函数式视角：模式匹配</h2><h1 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h1><h1 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h1><h1 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h1><h2 id="附录-A：红黑树插入、删除所有情况图示"><a href="#附录-A：红黑树插入、删除所有情况图示" class="headerlink" title="附录 A：红黑树插入、删除所有情况图示"></a>附录 A：红黑树插入、删除所有情况图示</h2><h2 id="附录-B：红黑树插入、删除实现代码"><a href="#附录-B：红黑树插入、删除实现代码" class="headerlink" title="附录 B：红黑树插入、删除实现代码"></a>附录 B：红黑树插入、删除实现代码</h2><h2 id="附录：参考"><a href="#附录：参考" class="headerlink" title="附录：参考"></a>附录：参考</h2><p>[1] Cormen, Thomas H.；Leiserson, Charles E.；Rivest, Ronald L.；Stein, Clifford. “红黑树”.《算法导论》（第 3 版）. P179</p>
-<h2 id="附录：更多资料"><a href="#附录：更多资料" class="headerlink" title="附录：更多资料"></a>附录：更多资料</h2><ul>
-<li><a href="https://www.cs.tufts.edu/comp/150FP/archive/chris-okasaki/redblack99.pdf" target="_blank" rel="noopener">纯函数式数据结构：红黑树</a></li>
-<li><a href="https://en.wikipedia.org/wiki/Red%E2%80%93black_tree" target="_blank" rel="noopener">Wikipedia：Red-Black Tree</a></li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/23/algorithms-dag-scc/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RHANQTL">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/11/23/algorithms-dag-scc/" class="post-title-link" itemprop="url">图遍历算法的应用 —— DAG 和 SCC</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2018-11-23 12:00:00" itemprop="dateCreated datePublished" datetime="2018-11-23T12:00:00+08:00">2018-11-23</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-05-17 16:49:30" itemprop="dateModified" datetime="2019-05-17T16:49:30+08:00">2019-05-17</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法-Algorithms/" itemprop="url" rel="index"><span itemprop="name">算法 (Algorithms)</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>这篇文章讲图片里算法的两个应用场景 —— 有向无环图（DAG）和强连通分量（SCC）</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2018/11/23/algorithms-dag-scc/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1320,12 +1335,12 @@ C_i &= A_i B_i \overline{C_{i-1}} + A_i \overline{B_i} C_{i-1}
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">223</span>
+          <span class="site-state-item-count">226</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
-        <span class="site-state-item-count">75</span>
+        <span class="site-state-item-count">73</span>
         <span class="site-state-item-name">分类</span>
       </div>
       <div class="site-state-item site-state-tags">

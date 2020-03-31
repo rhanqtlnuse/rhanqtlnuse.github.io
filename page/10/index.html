@@ -165,6 +165,247 @@
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/03/os-intro/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/06/03/os-intro/" class="post-title-link" itemprop="url">操作系统笔记 - 引言</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2019-06-03 17:49:05 / 修改时间：19:08:04" itemprop="dateCreated datePublished" datetime="2019-06-03T17:49:05+08:00">2019-06-03</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/操作系统-Operating-System/" itemprop="url" rel="index"><span itemprop="name">操作系统 (Operating System)</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <a id="more"></a>
+<p>现代操作系统的核心是进程，而由“进程管理”这一话题我们可以比较自然地引申出其他几个重要的部分：</p>
+<ul>
+<li>为了持久化数据，<strong>文件系统</strong></li>
+<li>进程切换，提高 CPU 利用率，涉及到<strong>中断与 I/O</strong></li>
+<li>为了安全，引入了虚拟内存，就涉及到了<strong>内存管理</strong></li>
+</ul>
+<p>这份笔记就按照“文件系统 —— 中断与 I/O —— 内存管理 —— 进程管理”的顺序来组织。</p>
+<h1 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h1><ul>
+<li>文件系统<ul>
+<li><a href="https://blog.rhanqtl.com/2019/06/03/os-file-system-part-1/" target="_blank" rel="noopener">Part I: 文件系统的基本概念以及组织形式</a></li>
+<li><a href="https://blog.rhanqtl.com/2019/06/03/os-file-system-part-2/" target="_blank" rel="noopener">Part II</a></li>
+<li><a href="https://blog.rhanqtl.com/2019/06/03/os-file-system-part-3/" target="_blank" rel="noopener">Part III</a></li>
+</ul>
+</li>
+<li>中断与 I/O</li>
+<li>内存管理</li>
+<li>进程管理</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/02/others-sicp-7a/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/06/02/others-sicp-7a/" class="post-title-link" itemprop="url">Lecture 7a：元循环求值器 I</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2019-06-02 20:17:07 / 修改时间：20:41:23" itemprop="dateCreated datePublished" datetime="2019-06-02T20:17:07+08:00">2019-06-02</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong>Case dispatch</strong></p>
+<ul>
+<li>数值，比如 3，求值结果就是本身</li>
+<li>变量，比如 x，求值结果为环境中对应的值</li>
+<li>‘foo，在 eval 时已经被转换为 <code>(quote foo)</code> 的形式，求值结果为 foo 本身</li>
+<li>lambda 表达式，比如 <code>(lambda (x) (+ x y))</code>，转换为内部表示 <code>(closure ((x) (+ x y)) &lt;env&gt;)</code></li>
+<li>cond 表达式：<code>(cond (p1 e1) (p2 e2) ...)</code></li>
+<li>普通表达式，如 <code>(+ x 3)</code></li>
+</ul>
+<figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">define</span></span> eval</span><br><span class="line">  (<span class="name"><span class="builtin-name">lambda</span></span> (exp env)</span><br><span class="line">    (<span class="name"><span class="builtin-name">cond</span></span> ((<span class="name"><span class="builtin-name">number?</span></span> exp) exp)</span><br><span class="line">          ((<span class="name"><span class="builtin-name">symbol?</span></span> exp) (<span class="name">lookup</span> exp env))</span><br><span class="line">          ((<span class="name"><span class="builtin-name">eq?</span></span> (<span class="name"><span class="builtin-name">car</span></span> exp) <span class="symbol">'quote</span>) (<span class="name"><span class="builtin-name">cadr</span></span> exp))</span><br><span class="line">          ((<span class="name"><span class="builtin-name">eq?</span></span> (<span class="name"><span class="builtin-name">car</span></span> exp) <span class="symbol">'lambda</span>) (<span class="name"><span class="builtin-name">list</span></span> <span class="symbol">'closure</span> (<span class="name"><span class="builtin-name">cdr</span></span> exp) env))</span><br><span class="line">          ((<span class="name"><span class="builtin-name">eq?</span></span> (<span class="name"><span class="builtin-name">car</span></span> exp) <span class="symbol">'cond</span>) (<span class="name">evcond</span> (<span class="name"><span class="builtin-name">cdr</span></span> exp) env))</span><br><span class="line">          (<span class="name"><span class="builtin-name">else</span></span> (<span class="name"><span class="builtin-name">apply</span></span> (<span class="name"><span class="builtin-name">eval</span></span> (<span class="name"><span class="builtin-name">car</span></span> exp) env)</span><br><span class="line">                        (<span class="name">evlist</span> (<span class="name"><span class="builtin-name">cdr</span></span> exp) env))))))</span><br></pre></td></tr></table></figure>
+<p><strong>apply</strong></p>
+<figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">define</span></span> apply</span><br><span class="line">  (<span class="name"><span class="builtin-name">lambda</span></span> (proc args)</span><br><span class="line">    (<span class="name"><span class="builtin-name">cond</span></span> ((<span class="name">primitive?</span> proc)</span><br><span class="line">           (<span class="name">apply-primop</span> proc args))</span><br><span class="line">          ((<span class="name"><span class="builtin-name">eq?</span></span> (<span class="name"><span class="builtin-name">car</span></span> proc) <span class="symbol">'closure</span>)</span><br><span class="line">           (<span class="name"><span class="builtin-name">eval</span></span> (<span class="name">cadadr</span> proc)</span><br><span class="line">                 (<span class="name">bind</span> (<span class="name">caadr</span> proc)</span><br><span class="line">                       args</span><br><span class="line">                       (<span class="name">caddr</span> proc))))</span><br><span class="line">          (<span class="name"><span class="builtin-name">else</span></span> error))))</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/01/theory-of-computation-lambda-calculus/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/06/01/theory-of-computation-lambda-calculus/" class="post-title-link" itemprop="url">λ-演算</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-06-01 21:24:26" itemprop="dateCreated datePublished" datetime="2019-06-01T21:24:26+08:00">2019-06-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-25 14:58:31" itemprop="dateModified" datetime="2020-03-25T14:58:31+08:00">2020-03-25</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/计算理论-Theory-of-Computation/" itemprop="url" rel="index"><span itemprop="name">计算理论 (Theory of Computation)</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/计算理论-Theory-of-Computation/λ-演算-λ-Calculus/" itemprop="url" rel="index"><span itemprop="name">λ-演算 (λ-Calculus)</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>如题</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/06/01/theory-of-computation-lambda-calculus/">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/01/cpp-basic-reference/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -810,221 +1051,6 @@
   
   
 
-        
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/27/others-poj-categories/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RHANQTL">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/05/27/others-poj-categories/" class="post-title-link" itemprop="url">POJ 题目分类</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-05-27 19:27:48" itemprop="dateCreated datePublished" datetime="2019-05-27T19:27:48+08:00">2019-05-27</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-06-01 10:30:08" itemprop="dateModified" datetime="2019-06-01T10:30:08+08:00">2019-06-01</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><strong>声明：</strong>转自 <a href="https://www.cnblogs.com/upstart/p/6274521.html" target="_blank" rel="noopener">POJ 题目分类推荐</a>，有修改</p>
-<h1 id="初级"><a href="#初级" class="headerlink" title="初级"></a>初级</h1><h2 id="基本算法"><a href="#基本算法" class="headerlink" title="基本算法"></a>基本算法</h2><ul>
-<li>枚举：POJ 1753</li>
-<li>贪心：POJ 1328，POJ 2586</li>
-<li>构造：POJ 3295</li>
-<li>模拟：POJ 1068，<a href="https://blog.rhanqtl.com/2019/05/27/poj-2632/" target="_blank" rel="noopener">POJ 2632</a>，POJ 1573，POJ 2996，POJ 2993</li>
-</ul>
-<h1 id="中级"><a href="#中级" class="headerlink" title="中级"></a>中级</h1><h1 id="高级"><a href="#高级" class="headerlink" title="高级"></a>高级</h1>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/23/others-bool/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RHANQTL">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/05/23/others-bool/" class="post-title-link" itemprop="url">JavaScript 中布尔运算带来的启示</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-05-23 20:12:40" itemprop="dateCreated datePublished" datetime="2019-05-23T20:12:40+08:00">2019-05-23</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-11 08:09:52" itemprop="dateModified" datetime="2020-03-11T08:09:52+08:00">2020-03-11</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>今天学 JavaScript 时，布尔运算符的规则给我留下了比较深刻的印象，让我又思考了一下布尔运算和 “短路求值”。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/05/23/others-bool/">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/22/others-xml-json/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RHANQTL">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/05/22/others-xml-json/" class="post-title-link" itemprop="url">XML vs. JSON</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-05-22 19:17:10" itemprop="dateCreated datePublished" datetime="2019-05-22T19:17:10+08:00">2019-05-22</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-25 15:13:42" itemprop="dateModified" datetime="2020-03-25T15:13:42+08:00">2020-03-25</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>本文介绍两种常见的数据格式 —— XML 和 JSON，并进行对比</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/05/22/others-xml-json/">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1095,12 +1121,12 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">223</span>
+          <span class="site-state-item-count">226</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
-        <span class="site-state-item-count">75</span>
+        <span class="site-state-item-count">73</span>
         <span class="site-state-item-name">分类</span>
       </div>
       <div class="site-state-item site-state-tags">

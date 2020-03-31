@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.8.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="如题">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据库 | 思考 SQL 语句">
+<meta property="og:url" content="http://yoursite.com/2020/03/27/database-thinking-sql-statements/index.html">
+<meta property="og:site_name" content="RHANQTL">
+<meta property="og:description" content="如题">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2020/03/27/database-thinking-sql-statements/Users/rhanqtl/AppData/Roaming/Typora/typora-user-images/image-20200327095945897.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/27/database-thinking-sql-statements/Users/rhanqtl/AppData/Roaming/Typora/typora-user-images/image-20200327102449767.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/27/database-thinking-sql-statements/Users/rhanqtl/AppData/Roaming/Typora/typora-user-images/image-20200327102528019.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/27/database-thinking-sql-statements/Users/rhanqtl/AppData/Roaming/Typora/typora-user-images/image-20200327102648661.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/27/database-thinking-sql-statements/Users/rhanqtl/AppData/Roaming/Typora/typora-user-images/image-20200327143427753.png">
+<meta property="og:updated_time" content="2020-03-27T06:52:19.464Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数据库 | 思考 SQL 语句">
+<meta name="twitter:description" content="如题">
+<meta name="twitter:image" content="http://yoursite.com/2020/03/27/database-thinking-sql-statements/Users/rhanqtl/AppData/Roaming/Typora/typora-user-images/image-20200327095945897.png">
+
+<link rel="canonical" href="http://yoursite.com/2020/03/27/database-thinking-sql-statements/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
+  };
+</script>
+
+  <title>数据库 | 思考 SQL 语句 | RHANQTL</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">RHANQTL</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">上下求索</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>站点地图</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/27/database-thinking-sql-statements/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          数据库 | 思考 SQL 语句
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-03-27 00:00:00 / 修改时间：14:52:19" itemprop="dateCreated datePublished" datetime="2020-03-27T00:00:00+08:00">2020-03-27</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/数据库-Database/" itemprop="url" rel="index"><span itemprop="name">数据库 (Database)</span></a>
+                </span>
+            </span>
+
+          
+            <div class="post-description">如题</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="1-nbsp-nbsp-nbsp-nbsp-SQL-的本质"><a href="#1-nbsp-nbsp-nbsp-nbsp-SQL-的本质" class="headerlink" title="1&nbsp;&nbsp;&nbsp;&nbsp;SQL 的本质"></a>1&nbsp;&nbsp;&nbsp;&nbsp;SQL 的本质</h1><h2 id="1-1-nbsp-nbsp-nbsp-nbsp-SQL-语言、数据库和关系模型"><a href="#1-1-nbsp-nbsp-nbsp-nbsp-SQL-语言、数据库和关系模型" class="headerlink" title="1.1&nbsp;&nbsp;&nbsp;&nbsp;SQL 语言、数据库和关系模型"></a>1.1&nbsp;&nbsp;&nbsp;&nbsp;SQL 语言、数据库和关系模型</h2><ul>
+<li>SQL 是一种语言</li>
+<li>数据库的功能主要是存储数据，这些数据符合对现实世界的一部分所建立的特定模型。相应地，数据库必须提供可靠的基础设施，无论何时都能够让多个用户使用同一些数据，且在数据被修改时不破坏数据完整性。要求数据库能够处理来自不同用户的资源争用，并能在事务处理过程中遇到机器故障等极端情况下也保持数据一致性</li>
+<li>关系理论只关心如何根据查询条件取得正确的数据集，关系操作只负责准确无误地找出属于最终数据集的记录，关系理论所研究的是集合，关系理论并不涉及各种统计功能。关系操作适用于理论上无限大的、数学意义上的集合，而当我们使用排序、分组等操作时，这个结果数据集必须是一个有限数据集，已经不再是数学意义上的关系了</li>
+</ul>
+<p><img src="/2020/03/27/database-thinking-sql-statements/Users\rhanqtl\AppData\Roaming\Typora\typora-user-images\image-20200327095945897.png" alt="image-20200327095945897"></p>
+<p>总结：千万别把 SQL 查询的执行过程中真正的关系操作和附加的展示层（presetation layer) 功能混为一谈</p>
+<h2 id="1-2-nbsp-nbsp-nbsp-nbsp-SQL-与优化器"><a href="#1-2-nbsp-nbsp-nbsp-nbsp-SQL-与优化器" class="headerlink" title="1.2&nbsp;&nbsp;&nbsp;&nbsp;SQL 与优化器"></a>1.2&nbsp;&nbsp;&nbsp;&nbsp;SQL 与优化器</h2><p>以关系理论为支柱的优化器主要用于关系操作层</p>
+<p>SQL 应该用来表达“要做什么”而非“如何来做”</p>
+<p>关系理论的数学基础为数据处理提供了非常严谨的逻辑支持，因此 SQL 艺术本应注重减小“非关系操作层”的厚度，即尽量在关系操作层完成大部分处理，否则优化器在“非关系操作层”难以保证返回的结果数据和原始查询执行的结果一样。</p>
+<p>在执行非关系操作时，应专注于那些解决问题所必需的数据，不要画蛇添足（因为有限数据集必须以某种方式进行临时存储，当内存所剩无几的时候，会引发硬盘数据交换等开销很高的活动，而且，索引所指的是磁盘地址，并非临时存储地址，所以数据一旦进行临时存储，就意味着我们向最快的数据访问方式说拜拜了（哈希索引可能例外））</p>
+<h3 id="1-2-1-nbsp-nbsp-nbsp-nbsp-不是经理的员工当中，哪五个人收入最高？"><a href="#1-2-1-nbsp-nbsp-nbsp-nbsp-不是经理的员工当中，哪五个人收入最高？" class="headerlink" title="1.2.1&nbsp;&nbsp;&nbsp;&nbsp;不是经理的员工当中，哪五个人收入最高？"></a>1.2.1&nbsp;&nbsp;&nbsp;&nbsp;不是经理的员工当中，哪五个人收入最高？</h3><blockquote>
+<p>使用 Oracle</p>
+</blockquote>
+<p>如果你像下面这么写，你就掉坑里了：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">SELECT empname, salary</span><br><span class="line">FROM employees</span><br><span class="line">WHERE status != &apos;EXECUTIVE&apos;</span><br><span class="line">  AND ROWNUM &lt;= 5</span><br><span class="line">ORDER BY salary DESC;</span><br></pre></td></tr></table></figure>
+<p>因为在这条语句中虚拟变量 <code>ROWNUM</code> 的值是在<strong>关系操作层</strong>（<code>WHERE</code>）生成的，而我们期望 <code>ROWNUM</code> 应该表示的是在<strong>最终结果集</strong>中的行号。正确的写法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">SELECT empname, salary</span><br><span class="line">FROM (SELECT empname, salary</span><br><span class="line">      FROM employees</span><br><span class="line">      WHERE status != &apos;EXECUTIVE&apos;</span><br><span class="line">      ORDER BY salary DESC)</span><br><span class="line">WHERE ROWNUM &lt;= 5;</span><br></pre></td></tr></table></figure>
+<p>首先找到所有的非经理员工，然后按照 salary 排序，最后才是找到前五条记录</p>
+<blockquote>
+<p><strong>注意</strong>&nbsp;&nbsp;&nbsp;&nbsp;SQL 语句的执行顺序：</p>
+<ol>
+<li>FROM 和 JOIN</li>
+<li>WHERE</li>
+<li>GROUP BY 和 HAVING</li>
+<li>SELECT 和 DISTINCT</li>
+<li>ORDER BY</li>
+<li></li>
+</ol>
+</blockquote>
+<p>这个查询如何用图 1 的方式表示呢？</p>
+<p><img src="/2020/03/27/database-thinking-sql-statements/Users\rhanqtl\AppData\Roaming\Typora\typora-user-images\image-20200327102449767.png" alt="image-20200327102449767"></p>
+<p>错</p>
+<p>正确的理解</p>
+<p><img src="/2020/03/27/database-thinking-sql-statements/Users\rhanqtl\AppData\Roaming\Typora\typora-user-images\image-20200327102528019.png" alt="image-20200327102528019"></p>
+<p><img src="/2020/03/27/database-thinking-sql-statements/Users\rhanqtl\AppData\Roaming\Typora\typora-user-images\image-20200327102648661.png" alt="image-20200327102648661"></p>
+<p>关系操作一旦结束，就再也回不去了</p>
+<p>一旦离开纯关系操作层，查询语句的编写对性能影响重大，因为 SQL 引擎将严格执行它规定的执行路径</p>
+<p>总结：为了取得好的优化效果，应将大部分工作安排在关系层</p>
+<h2 id="1-3-nbsp-nbsp-nbsp-nbsp-优化器的有效范围"><a href="#1-3-nbsp-nbsp-nbsp-nbsp-优化器的有效范围" class="headerlink" title="1.3&nbsp;&nbsp;&nbsp;&nbsp;优化器的有效范围"></a>1.3&nbsp;&nbsp;&nbsp;&nbsp;优化器的有效范围</h2><ul>
+<li>优化器需要借助在数据库中找到的信息，包括普通统计数据和数据定义中重要的声明性信息。如果错误地将反映数据关系的重要语义信息写在触发器甚至应用代码中，优化器就无法利用这些重要信息</li>
+<li>能够进行数学意义上的等价变换，优化效果才能最佳</li>
+<li>优化器考虑整体响应时间（优化处理 + 查询执行），因此对于一些较为复杂的查询，优化器做出的可能并不是最优的选择</li>
+<li>优化器改善的是独立的查询</li>
+</ul>
+<p>总结：如果是若干个小查询，优化器将逐个优化；如果是一个大查询，优化器会将它作为一个整体优化</p>
+<h2 id="1-4-nbsp-nbsp-nbsp-nbsp-掌握-SQL-艺术的五大要素"><a href="#1-4-nbsp-nbsp-nbsp-nbsp-掌握-SQL-艺术的五大要素" class="headerlink" title="1.4&nbsp;&nbsp;&nbsp;&nbsp;掌握 SQL 艺术的五大要素"></a>1.4&nbsp;&nbsp;&nbsp;&nbsp;掌握 SQL 艺术的五大要素</h2><ul>
+<li><p>数据总量：要考虑的最重要因素</p>
+</li>
+<li><p>定义结果集的查询条件：为了定义结果集，必须从几个方面来考虑，包括过滤、主要 SQL 语句，以及庞大的数据量对查询的影响</p>
+</li>
+<li><p>结果集的大小：也可以是 SQL 语句改动的数据量。无论何时，只要查询有可能返回空集时，都应该首先检查那个最大可能导致空结果集的条件，尤其是在该检查执行非常快捷时</p>
+<ul>
+<li>总结：熟练的开发者应该努力使响应时间与返回记录数成比例</li>
+</ul>
+</li>
+<li><p>表的数量：通常来说，现代的 DBMS 都能非常高效地连接很多表，但是在连接大量表时，会产生一些额外的问题</p>
+<ul>
+<li><p>需要连接多个表时，应该质疑设计的正确性</p>
+<p><img src="/2020/03/27/database-thinking-sql-statements/Users\rhanqtl\AppData\Roaming\Typora\typora-user-images\image-20200327143427753.png" alt="image-20200327143427753"></p>
+</li>
+<li><p>对于优化器来说，随着表数量的增加，复杂度将指数增长（1.3 节）</p>
+</li>
+<li><p>设计许多表的复杂查询时，如果可以用多种不同的方式进行连接，选择失误的可能性很高</p>
+</li>
+<li><p>随着查询复杂度的增加，应该把查询拆成一系列独立视图。每个视图代表复杂查询的一部分</p>
+</li>
+<li><p>当视图返回的数据远多于上级查询所需时，放弃使用该视图或者换用一个较简单的视图，通常可使效率大为改善</p>
+</li>
+<li><p>总结：当视图返回不必要的元素时，别把视图内嵌在查询中，而是应将视图分解，将其组成部分加到查询主体中</p>
+</li>
+</ul>
+</li>
+<li><p>并发用户数</p>
+</li>
+</ul>
+<h1 id="2-nbsp-nbsp-nbsp-nbsp-过滤"><a href="#2-nbsp-nbsp-nbsp-nbsp-过滤" class="headerlink" title="2&nbsp;&nbsp;&nbsp;&nbsp;过滤"></a>2&nbsp;&nbsp;&nbsp;&nbsp;过滤</h1><h2 id="2-1-nbsp-nbsp-nbsp-nbsp-过滤条件的含义"><a href="#2-1-nbsp-nbsp-nbsp-nbsp-过滤条件的含义" class="headerlink" title="2.1&nbsp;&nbsp;&nbsp;&nbsp;过滤条件的含义"></a>2.1&nbsp;&nbsp;&nbsp;&nbsp;过滤条件的含义</h2><p>连接条件放在何处应该都一样，然而其运行效率却会因优化器不同而异</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/03/26/database-dealing-with-hierarchical-data/" rel="prev" title="数据库 | 存储层次结构数据">
+      <i class="fa fa-chevron-left"></i> 数据库 | 存储层次结构数据
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/03/29/soft-eng-container-demystifying-containers-part-i-kernel-space/" rel="next" title="【译】揭开容器的神秘面纱 | 第一部分：内核空间">
+      【译】揭开容器的神秘面纱 | 第一部分：内核空间 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-nbsp-nbsp-nbsp-nbsp-SQL-的本质"><span class="nav-text">1    SQL 的本质</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-nbsp-nbsp-nbsp-nbsp-SQL-语言、数据库和关系模型"><span class="nav-text">1.1    SQL 语言、数据库和关系模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-nbsp-nbsp-nbsp-nbsp-SQL-与优化器"><span class="nav-text">1.2    SQL 与优化器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-1-nbsp-nbsp-nbsp-nbsp-不是经理的员工当中，哪五个人收入最高？"><span class="nav-text">1.2.1    不是经理的员工当中，哪五个人收入最高？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-nbsp-nbsp-nbsp-nbsp-优化器的有效范围"><span class="nav-text">1.3    优化器的有效范围</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-nbsp-nbsp-nbsp-nbsp-掌握-SQL-艺术的五大要素"><span class="nav-text">1.4    掌握 SQL 艺术的五大要素</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-nbsp-nbsp-nbsp-nbsp-过滤"><span class="nav-text">2    过滤</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-nbsp-nbsp-nbsp-nbsp-过滤条件的含义"><span class="nav-text">2.1    过滤条件的含义</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Han Qi</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">226</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">73</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">36</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Han Qi</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://muse.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.7.2
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>

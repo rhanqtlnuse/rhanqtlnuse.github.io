@@ -165,6 +165,272 @@
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/04/algorithms-np-completeness/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/12/04/algorithms-np-completeness/" class="post-title-link" itemprop="url">未命名</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2018-12-04 04:21:29" itemprop="dateCreated datePublished" datetime="2018-12-04T04:21:29+08:00">2018-12-04</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-05-17 16:55:42" itemprop="dateModified" datetime="2019-05-17T16:55:42+08:00">2019-05-17</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="NP-完备性"><a href="#NP-完备性" class="headerlink" title="NP 完备性"></a>NP 完备性</h1>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2018/12/04/algorithms-np-completeness/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/04/algorithms-red-black-tree/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/12/04/algorithms-red-black-tree/" class="post-title-link" itemprop="url">红黑树</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2018-12-04 03:22:31" itemprop="dateCreated datePublished" datetime="2018-12-04T03:22:31+08:00">2018-12-04</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-05-17 16:56:49" itemprop="dateModified" datetime="2019-05-17T16:56:49+08:00">2019-05-17</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法-Algorithms/" itemprop="url" rel="index"><span itemprop="name">算法 (Algorithms)</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法-Algorithms/树-Tree/" itemprop="url" rel="index"><span itemprop="name">树 (Tree)</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <a id="more"></a>
+<h1 id="什么是红黑树？"><a href="#什么是红黑树？" class="headerlink" title="什么是红黑树？"></a>什么是红黑树？</h1><p>红黑树首先是一棵二叉搜索树，具有几乎完美的平衡性质</p>
+<h2 id="叙述性定义"><a href="#叙述性定义" class="headerlink" title="叙述性定义"></a>叙述性定义</h2><p>红黑树是这样一棵<strong>二叉搜索树</strong>：</p>
+<ul>
+<li>根结点为黑色</li>
+<li>每个内部结点要么是黑色，要么是红色</li>
+<li>叶结点（NIL）为黑色</li>
+<li>颜色约束：红色结点不能有红色子结点（换言之，红色结点只能有黑色子结点）</li>
+<li>黑色高度约束：从某结点出发到其所有后代叶结点的<strong>简单路径</strong>上，均包含相同数目的黑色结点</li>
+</ul>
+<h2 id="递归定义"><a href="#递归定义" class="headerlink" title="递归定义"></a>递归定义</h2><ul>
+<li>ARB（Almost-RB）树：除根结点为红色之外，满足 RB 树其他约束</li>
+<li>定义 RB$_0$ 为空树（或外部结点），以 $h$ 表示树的<strong>黑高度</strong></li>
+<li>RB$_{h+1}$：子树可以是 RB$_h$ 或 ARB$_{h+1}$</li>
+<li>ARB$_{h+1}$：子树均为 RB$_h$</li>
+</ul>
+<h1 id="为什么要使用红黑树？"><a href="#为什么要使用红黑树？" class="headerlink" title="为什么要使用红黑树？"></a>为什么要使用红黑树？</h1><h2 id="C-中的-map"><a href="#C-中的-map" class="headerlink" title="C++ 中的 map"></a>C++ 中的 <code>map</code></h2><p>我们知道 <code>HashMap</code> 的平均时间复杂度为 O(1)（可以参考《算法导论》的相关分析），<code>map</code> 的平均时间复杂度为 $O(\lg n)$ 的，实践上是不是 <code>HashMap</code> 一定优于 <code>map</code> 呢？这里面有几个因素要考虑：</p>
+<ol>
+<li><code>HashMap</code> 内存效率比 <code>map</code> 差，这是显而易见的；</li>
+<li><code>map</code> 的查找效率实践上是非常高的，如在 1M 数据中查找一个元素，仅需要 20次 比较；</li>
+<li><code>map</code> 的查找效率比 <code>HashMap</code> 稳定，hash 最坏的情况为 $O(n)$（个人观点：无论使用什么 hash 函数，总能够找到最坏情况的键序列，虽然可以使用全域哈希的方法，但也并不是完全能够避免最坏情况，而且 hash 函数一不小心就会…，相比之下，红黑树的 $O(\lg n)$ 很稳，而且在可以接受的范围内）；</li>
+<li><code>HashMap</code> 查找时候要算 hash，这个最坏时间复杂度是 $O(m)$（M是key字符串的长度），如果你的 key 非常非常非常非常非常非常……长，基于比较的 <code>map</code> 通常只使用头几个字符进行比较，而 <code>HashMap</code> 要 $O(M)$ 地算出 hash；</li>
+<li>内存布局会影响内存局部性，对性能会有影响。</li>
+</ol>
+<h1 id="红黑树的操作-1"><a href="#红黑树的操作-1" class="headerlink" title="红黑树的操作$^{[1]}$"></a>红黑树的操作$^{[1]}$</h1><h2 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h2><p>有 4 种基本情况（完整的图示见附录 A）：</p>
+<img src="/2018/12/04/algorithms-red-black-tree/insertion-cases.png">
+<h3 id="第一种情况：重新着色"><a href="#第一种情况：重新着色" class="headerlink" title="第一种情况：重新着色"></a>第一种情况：重新着色</h3><img src="/2018/12/04/algorithms-red-black-tree/insertion-case1.png">
+<h3 id="第二种情况"><a href="#第二种情况" class="headerlink" title="第二种情况"></a>第二种情况</h3><img src="/2018/12/04/algorithms-red-black-tree/insertion-case2.png">
+<h3 id="第三种情况"><a href="#第三种情况" class="headerlink" title="第三种情况"></a>第三种情况</h3><img src="/2018/12/04/algorithms-red-black-tree/insertion-case3.png">
+<h3 id="第四种情况"><a href="#第四种情况" class="headerlink" title="第四种情况"></a>第四种情况</h3><p>这种情况最简单，因为既满足了颜色约束又没有破坏黑高度约束，所以无需调整。</p>
+<h2 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h2><p>这里会介绍两种视角，命令式视角：参考 <a href="https://www.amazon.cn/dp/B00AK7BYJY/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1544318297&amp;sr=1-1&amp;keywords=%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA" target="_blank" rel="noopener">《算法导论》</a>、<a href="https://www.amazon.cn/dp/B009OCFQ0O/ref=sr_1_1?ie=UTF8&amp;qid=1544252889&amp;sr=8-1&amp;keywords=%E7%AE%97%E6%B3%95" target="_blank" rel="noopener">《算法（第 4 版）》</a>、<a href="https://www.amazon.com/Computer-Algorithms-Introduction-Design-Analysis/dp/0201612445" target="_blank" rel="noopener">《Computer Algorithms: Introduction to Design And Analysis》</a>（以下简称《Computer Algorithms》），函数式视角（模式匹配）：参考刘新宇老师的<a href="https://www.amazon.cn/dp/B01N9JOTF6/ref=sr_1_1?ie=UTF8&amp;qid=1544252865&amp;sr=8-1&amp;keywords=%E7%AE%97%E6%B3%95%E6%96%B0%E8%A7%A3" target="_blank" rel="noopener">《算法新解》</a></p>
+<h2 id="命令式视角"><a href="#命令式视角" class="headerlink" title="命令式视角"></a>命令式视角</h2><h2 id="函数式视角：模式匹配"><a href="#函数式视角：模式匹配" class="headerlink" title="函数式视角：模式匹配"></a>函数式视角：模式匹配</h2><h1 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h1><h1 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h1><h1 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h1><h2 id="附录-A：红黑树插入、删除所有情况图示"><a href="#附录-A：红黑树插入、删除所有情况图示" class="headerlink" title="附录 A：红黑树插入、删除所有情况图示"></a>附录 A：红黑树插入、删除所有情况图示</h2><h2 id="附录-B：红黑树插入、删除实现代码"><a href="#附录-B：红黑树插入、删除实现代码" class="headerlink" title="附录 B：红黑树插入、删除实现代码"></a>附录 B：红黑树插入、删除实现代码</h2><h2 id="附录：参考"><a href="#附录：参考" class="headerlink" title="附录：参考"></a>附录：参考</h2><p>[1] Cormen, Thomas H.；Leiserson, Charles E.；Rivest, Ronald L.；Stein, Clifford. “红黑树”.《算法导论》（第 3 版）. P179</p>
+<h2 id="附录：更多资料"><a href="#附录：更多资料" class="headerlink" title="附录：更多资料"></a>附录：更多资料</h2><ul>
+<li><a href="https://www.cs.tufts.edu/comp/150FP/archive/chris-okasaki/redblack99.pdf" target="_blank" rel="noopener">纯函数式数据结构：红黑树</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Red%E2%80%93black_tree" target="_blank" rel="noopener">Wikipedia：Red-Black Tree</a></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/23/algorithms-dag-scc/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/11/23/algorithms-dag-scc/" class="post-title-link" itemprop="url">图遍历算法的应用 —— DAG 和 SCC</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2018-11-23 12:00:00" itemprop="dateCreated datePublished" datetime="2018-11-23T12:00:00+08:00">2018-11-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-05-17 16:49:30" itemprop="dateModified" datetime="2019-05-17T16:49:30+08:00">2019-05-17</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法-Algorithms/" itemprop="url" rel="index"><span itemprop="name">算法 (Algorithms)</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>这篇文章讲图片里算法的两个应用场景 —— 有向无环图（DAG）和强连通分量（SCC）</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2018/11/23/algorithms-dag-scc/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/23/algorithms-searching/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -678,12 +944,12 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">223</span>
+          <span class="site-state-item-count">226</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
-        <span class="site-state-item-count">75</span>
+        <span class="site-state-item-count">73</span>
         <span class="site-state-item-name">分类</span>
       </div>
       <div class="site-state-item site-state-tags">
