@@ -165,6 +165,554 @@
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/18/poj-1753-Flip-Game/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/01/18/poj-1753-Flip-Game/" class="post-title-link" itemprop="url">POJ 1753. Flip Game</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-01-18 10:54:56" itemprop="dateCreated datePublished" datetime="2019-01-18T10:54:56+08:00">2019-01-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-25 15:12:37" itemprop="dateModified" datetime="2020-03-25T15:12:37+08:00">2020-03-25</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>题目链接：<a href="http://poj.org/problem?id=1753" target="_blank" rel="noopener">POJ 1753 - Flip Game</a></p>
+<p>这道题一开始想的是这样的：</p>
+<p>$C^0_{16}+ C^1_{16} + \cdots + C^{16}_{16} = 2^{16}$，对翻转的个数进行枚举，伪代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">procedure solve()</span><br><span class="line">    min &lt;- 17</span><br><span class="line">    possible &lt;- false</span><br><span class="line">    for i &lt;- [0, 16]</span><br><span class="line">        if flip(0, i, 0, min)</span><br><span class="line">            possible &lt;- true</span><br><span class="line">    if possible</span><br><span class="line">        print min</span><br><span class="line">    else</span><br><span class="line">        print &quot;Impossible&quot;</span><br><span class="line">        </span><br><span class="line">function flip(start, remaining, numberOfRounds, min)</span><br><span class="line">    if check()</span><br><span class="line">        min &lt;- min(min, numberOfRounds)</span><br><span class="line">        return true</span><br><span class="line">    else</span><br><span class="line">        if remaining = 0</span><br><span class="line">            return false</span><br><span class="line">        else</span><br><span class="line">            possible &lt;- false</span><br><span class="line">            for i &lt;- [start, 16 - remaining]</span><br><span class="line">                doFlip(start)</span><br><span class="line">                if flip(start + 1, remaining - 1, numberOfRounds + 1, min)</span><br><span class="line">                    possible &lt;- true</span><br><span class="line">                doFlip(start)</span><br><span class="line">            return possible</span><br></pre></td></tr></table></figure>
+<p>这样固然能够求出最后的结果，但是因为有大量的重复计算（比如翻转数为 15 的时候其实可能包含翻转数为 14 时的结果，但是因为并未保存中间结果，所以需要很多重复计算），速度极慢（我的电脑上是 27 s 左右）。另一个问题是，如果能够在翻转数为 i 时达到目标，那么就没有必要计算翻转数为 j 的情况（i &lt; j）。</p>
+<p>换一个角度想，其实这个问题是一个 0-1 选择问题：<strong>翻转/不翻转</strong>当前的棋子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">function solve(start, numberOfRounds)</span><br><span class="line">    if check()</span><br><span class="line">        min &lt;- min(min, numberOfRounds)</span><br><span class="line">    else</span><br><span class="line">        if start &gt;= 16</span><br><span class="line">            return</span><br><span class="line">        // 不翻转</span><br><span class="line">        solve(start + 1, numberOfRounds)</span><br><span class="line">        // 翻转</span><br><span class="line">        doFlip(start)</span><br><span class="line">        solve(start + 1, numberOfRounds + 1)</span><br><span class="line">        // 恢复</span><br><span class="line">        doFlip(start)</span><br></pre></td></tr></table></figure>
+<p>这样避免了许多的重复计算，就快了很多，基本上是几十毫秒就可以计算得出结果。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/14/math-prob-stat-markov/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/01/14/math-prob-stat-markov/" class="post-title-link" itemprop="url">机器学习数学基础 - 概率统计：马尔可夫链</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-01-14 23:05:45" itemprop="dateCreated datePublished" datetime="2019-01-14T23:05:45+08:00">2019-01-14</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-02-14 22:56:59" itemprop="dateModified" datetime="2019-02-14T22:56:59+08:00">2019-02-14</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>马尔可夫链（Markov Chain）是具有马尔可夫性质的随机过程。“马尔可夫链” 是指一个随机变量的序列，这个过程向前移动，马尔可夫性质仅在相邻的时期定义 serial 依赖。它可以用于描述符合这样特征的系统：</p>
+<ul>
+<li>一个事件的链</li>
+<li>对于这些事件，下一步发生什么只取决于系统当前的状态</li>
+</ul>
+<p>对于一个马尔可夫链，我们需要明确两个变量：</p>
+<ul>
+<li>系统的状态空间</li>
+<li>系统的时间参数索引（Time Parameter Index）</li>
+</ul>
+<table>
+    <tr>
+        <th></th>
+        <th>Countable state space</th>
+        <th>Continuous or general state space</th>
+    </tr>
+    <tr>
+        <th>Discrete time</th>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <th>Continuous time</th>
+        <td></td>
+        <td></td>
+    </tr>
+</table>
+
+<p>时间参数通常是离散的</p>
+<p>系统状态的变化称为过渡，与各种状态变化相关的概率称为转移概率。</p>
+<p>这个过程由状态空间，描述特定转换概率的转移矩阵以及跨状态空间的初始状态（或初始分布）标识。</p>
+<p>Markov属性表明系统在下一步（实际上在所有未来步骤中）的<a href="https://en.wikipedia.org/wiki/Conditional_probability_distribution" target="_blank" rel="noopener">条件概率分布</a>仅取决于系统的当前状态，而不是另外取决于前一步骤的系统状态。</p>
+<p>由于系统随机变化，通常无法确定地预测未来某一点马尔可夫链的状态。<a href="https://en.wikipedia.org/wiki/Markov_chain#cite_note-:1-39" target="_blank" rel="noopener">[39]</a>然而，可以预测系统未来的统计特性。<a href="https://en.wikipedia.org/wiki/Markov_chain#cite_note-:1-39" target="_blank" rel="noopener">[39]</a>在许多应用中，重要的是这些统计特性。</p>
+<h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><p>酒鬼步行</p>
+<p>一个著名的马尔可夫链是所谓的“酒鬼步行”问题，在<a href="https://en.wikipedia.org/wiki/Number_line" target="_blank" rel="noopener">数字线上</a><a href="https://en.wikipedia.org/wiki/Random_walk" target="_blank" rel="noopener">随机行走</a>，在每一步，位置可能以相同的概率改变+1或-1。</p>
+<p>即转移矩阵是这样的（假设数字线长为 5）：</p>
+<script type="math/tex; mode=display">\left[\begin{matrix}0 & 0.5 & 0 & 0& 0 \\ 0.5 & 0 & 0.5& 0 & 0 \\ 0 & 0.5 & 0 & 0.5 & 0 \\ 0 & 0& 0.5 & 0 & 0.5 \\ 0 & 0& 0& 0.5 & 0\end{matrix}\right]</script><p>饮食习惯</p>
+<p>另一个例子是只吃葡萄，奶酪或生菜的生物的饮食习惯，其饮食习惯符合以下规则：</p>
+<ul>
+<li>它每天吃一次。</li>
+<li>如果它今天吃奶酪，明天它会以相同的概率吃生菜或葡萄。</li>
+<li>如果它今天吃了葡萄，明天就会吃概率为1/10的葡萄，概率为4/10的奶酪和概率为5/10的生菜。</li>
+<li>如果它今天吃生菜，明天将吃概率为4/10的葡萄或概率为6/10的奶酪。明天不会再吃生菜了。</li>
+</ul>
+<script type="math/tex; mode=display">\left[\begin{matrix}0 & 0.5 & 0.5 \\ 0.4 & 0.1 & 0.5 \\ 0.6 & 0.4 & 0\end{matrix}\right]</script><p>该理论通常仅在下一步的概率分布非常依赖于当前状态时才应用。</p>
+<h1 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h1><ul>
+<li>酒鬼步行、随机游走、赌博</li>
+<li>生死过程、泊松点过程</li>
+<li>非马尔可夫的例子：取硬币问题<ul>
+<li>假设有一个零钱包，包含 5 个 25 美分的硬币，5 个 10 美分，5 个 5 美分，并且一个接一个地从钱包中随机抽取硬币放在桌子上。如果 $X_ {n}$ 表示取出 $n$ 个硬币之后桌子上硬币的总价值，其中 $X_0 = 0$，那么序列 $\{ X_n:n\in\mathbb{N}\}$ 不是马尔可夫过程。</li>
+<li>假设我们取了 6 次硬币，5 枚 5 美分的硬币和 1 枚 25 美分的硬币，那么当前 $X_6 = 0.5$，那么我们下一次取硬币的概率会受到影响：比如以后不能再取面值为 5 美分的硬币，那么我们可以确定 $X_7 \ge 0.6$ 的概率为 1。而如果我们不知道当前已经取出的硬币的情况，我们可能会推断出，当前取了 4 个 10 美分的硬币和 2 个 5 美分的硬币，这样 $X_7 \ge 0.6$ 的概率为 $\dfrac{2}{3}$，与之前的 1 不同，也就是说，<strong>状态之间转移的概率受到了影响</strong>！</li>
+<li>这个场景可以建模为马尔可夫过程，我们可以定义 $X_n$ 表示第 n 次取硬币后桌子上各种硬币的数量，比如，$X_6 = 1, 0, 5$ 表示第 6 次抽取后桌子上有 1 枚 25 美分的硬币，5 枚 5 美分的硬币。这个新模型将由 216（$= 6 \times 6 \times 6$ ）种可能状态表示</li>
+</ul>
+</li>
+</ul>
+<h1 id="马尔可夫性质-2"><a href="#马尔可夫性质-2" class="headerlink" title="马尔可夫性质 $^{[2]}$"></a>马尔可夫性质 $^{[2]}$</h1><p>马尔可夫性质是指随机过程的<em>无记忆性</em>：如果过程的未来状态的条件概率分布只取决于当前状态，而不取决于其之前的事件序列，则随机过程具有马尔可夫性质</p>
+<h3 id="强（Strong）马尔可夫性质"><a href="#强（Strong）马尔可夫性质" class="headerlink" title="强（Strong）马尔可夫性质"></a>强（Strong）马尔可夫性质</h3><p>与马尔可夫性质类似，但“当前”（present）是以 “stopping time” 定义的</p>
+<p>马尔可夫假设：用于描述马尔可夫性质被假设为成立的模型</p>
+<h1 id="正式定义"><a href="#正式定义" class="headerlink" title="正式定义"></a>正式定义</h1><h2 id="离散时间马尔可夫链"><a href="#离散时间马尔可夫链" class="headerlink" title="离散时间马尔可夫链"></a>离散时间马尔可夫链</h2><p>有马尔可夫性质的随机变量序列 $X_1$，$X_2$，$X_3$，$\dots$</p>
+<script type="math/tex; mode=display">\Pr(X_{n+1}=x|X_1=x_1, X2=x_2, \dots, X_n=x_n) = \Pr(X_{n+1}=x|X_n=x_n)</script><p>如果两个条件概率都是良定义的，即</p>
+<script type="math/tex; mode=display">\Pr(X_1=x_1, X_2=x_2, \dots, X_n=x_n) \gt 0</script><p>其中 $X_i$ 的可能值形成一个可数集 S，称为链的状态空间。</p>
+<p>可以用有向图表示，边的权重为转移概率；或者用转移矩阵表示</p>
+<p>每行的和为 1</p>
+<p>初始状态 $\Pr(X_1=x_1)$</p>
+<p>第二步：$\Pr(X_2=x_2|X_1=x_1) = \dfrac{\Pr(X_2=x_2, X_1=x_1)}{\Pr(X_1=x_1)}$</p>
+<p>第二步：$\Pr(X_3=x_3|X_2=x_2) = \dfrac{\Pr(X_3=x_3, X_2=x_2)}{\Pr(X_2=x_2)}$</p>
+<p>第二步：$\Pr(X_4=x_4|X_3=x_3) = \dfrac{\Pr(X_4=x_4, X_3=x_3)}{\Pr(X_3=x_3)}$</p>
+<h3 id="变体"><a href="#变体" class="headerlink" title="变体"></a>变体</h3><ul>
+<li><p>时间齐次马尔可夫链（固定马尔可夫链）</p>
+<script type="math/tex; mode=display">\Pr(X_{n+1}=x|X_n=y) = \Pr(X_n=x|X_{n-1}=y)</script><p>转换的概率与 n 无关</p>
+</li>
+<li><p>有记忆的马尔可夫链（m 阶马尔可夫链）</p>
+<script type="math/tex; mode=display">\Pr(X_{n+1}=x_{n+1}|X_n=x_n, X_{n-1}=x_{n-1}, \dots, X_{n-m+1}=x_{n-m+1})</script><p>可以由这个链 $X_n$ 构建新的链 $Y_n$，其中 $Y_i = (X_i, X_{i-1}, \dots, X_{i-m+1})$</p>
+</li>
+</ul>
+<p>所以这个“与之前的状态无关”到底是哪方面无关？</p>
+<p>假设转移矩阵为 $P$</p>
+<script type="math/tex; mode=display">x^{(n+3)}=x^{(n+2)}P = (x^{(n+1)}P)P = ((x^{(n)}P)P)P = x^{(n)}P^3</script><p>$x^{(n+3)}$ 可以由 $x^{(n)}$ 计算，那么为什么说 $x^{(n+3)}$ 与 $x^{(n)}$ 无关？</p>
+<p>答：这个“无关”用词并不准确，准确地说应该是，$x^{(x+3)}$ 可以仅由 $x^{(x+2)}$ 计算出来</p>
+<h2 id="连续时间马尔可夫链"><a href="#连续时间马尔可夫链" class="headerlink" title="连续时间马尔可夫链"></a>连续时间马尔可夫链</h2><p>连续时间马尔可夫链 $(X_t)_{t \ge 0}$ 由以下三部分定义：</p>
+<ul>
+<li>一个有限或可数的状态空间 S </li>
+<li>转移率矩阵 Q（维度为 |S|），<ul>
+<li>每行的和为 0</li>
+<li>$q_{ij}$ 表示从状态 i 转移到状态 j 的概率</li>
+<li>$q_{ii}$ 是不定的，可以用于保证转移矩阵的每行的和为 0</li>
+</ul>
+</li>
+<li>状态空间上定义的初始概率分布</li>
+</ul>
+<h3 id="三种等价的定义"><a href="#三种等价的定义" class="headerlink" title="三种等价的定义"></a>三种等价的定义</h3><h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p>[1] <a href="https://en.wikipedia.org/wiki/Markov_chain" target="_blank" rel="noopener">Wikipedia：Markov Chain</a></p>
+<p>[2] <a href="https://en.wikipedia.org/wiki/Markov_property" target="_blank" rel="noopener">Wikipedia：Markov Property</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/12/cpp-stl-map/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/01/12/cpp-stl-map/" class="post-title-link" itemprop="url">C++ 学习笔记 - STL：map</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-01-12 09:50:37" itemprop="dateCreated datePublished" datetime="2019-01-12T09:50:37+08:00">2019-01-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-04-30 09:27:46" itemprop="dateModified" datetime="2019-04-30T09:27:46+08:00">2019-04-30</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Programming/" itemprop="url" rel="index"><span itemprop="name">Programming</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Programming/C/" itemprop="url" rel="index"><span itemprop="name">C++</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/11/cpp-basic-construct-destruct/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/01/11/cpp-basic-construct-destruct/" class="post-title-link" itemprop="url">C++ 学习笔记 - 基础篇：类的构造和析构</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-01-11 20:23:31" itemprop="dateCreated datePublished" datetime="2019-01-11T20:23:31+08:00">2019-01-11</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-01-17 19:41:12" itemprop="dateModified" datetime="2019-01-17T19:41:12+08:00">2019-01-17</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Programming-Languages/" itemprop="url" rel="index"><span itemprop="name">Programming Languages</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Programming-Languages/C/" itemprop="url" rel="index"><span itemprop="name">C++</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>在介绍 C++ 的类构造和析构之前，先介绍一个重要的原则：RAII。</p>
+<p>RAII 源于 C++，是 <a href="https://en.wikipedia.org/wiki/Bjarne_Stroustrup" target="_blank" rel="noopener">Bjarne Stroustrup</a> 和 <a href="https://en.wikipedia.org/wiki/Andrew_Koenig_(programmer\" target="_blank" rel="noopener">Andrew Koenig</a>) 在设计 C++ 异常时，为解决资源管理的异常安全性而使用的方法，后来 Bjarne 称之为 RAII。</p>
+<p>RAII 要求，资源的有效期与持有资源的对象的生命期严格绑定，即由对象的构造函数完成资源的分配（获取），同时由析构函数完成资源的释放。在这种要求下，只要对象能正确地析构，就不会出现资源泄露的问题。$^{[1]}$</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/01/11/cpp-basic-construct-destruct/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/11/cpp-basic-friend/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/01/11/cpp-basic-friend/" class="post-title-link" itemprop="url">C++ 学习笔记 - 基础篇：友元</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-01-11 20:06:55" itemprop="dateCreated datePublished" datetime="2019-01-11T20:06:55+08:00">2019-01-11</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-01-28 09:33:14" itemprop="dateModified" datetime="2019-01-28T09:33:14+08:00">2019-01-28</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="友元概述"><a href="#友元概述" class="headerlink" title="友元概述"></a>友元概述</h1><p>在 C++ 中，没有像 Java 中一样统一的 <code>toString()</code> 方法，可是有时我们想要实现类似的功能，想像输出基本类型那样输出一个对象，该怎么做呢？</p>
+<p>友元是 C++ 中一种机制，允许友元直接访问和修改类的私有对象</p>
+<h1 id="友元"><a href="#友元" class="headerlink" title="友元"></a>友元</h1><p>友元关系需要注意以下几点：</p>
+<ul>
+<li>友元关系是单向的</li>
+<li>友元不受类的访问权限的控制</li>
+<li>《代码大全》中也提到，要谨慎使用友元，因为友元机制本身是为了性能对类封装性的破坏，所以需要在安全性和性能两方面进行权衡</li>
+</ul>
+<p>头文件：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> __PERSON_H__</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> __PERSON_H__</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">string</span> firstName;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">string</span> lastName;</span><br><span class="line">    <span class="keyword">unsigned</span> age;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    Person(<span class="built_in">string</span> &amp;firstName, <span class="built_in">string</span> &amp;lastName, <span class="keyword">unsigned</span> age);</span><br><span class="line">    <span class="comment">// 虽然写在 public 下面，但其实并不受到访问权限的控制，放在 private 下也一样</span></span><br><span class="line">    <span class="keyword">friend</span> <span class="built_in">std</span>::ostream &amp; <span class="keyword">operator</span>&lt;&lt;(<span class="built_in">std</span>::ostream &amp;out, Person *p);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"Person.h"</span></span></span><br><span class="line"></span><br><span class="line">Person::Person(<span class="built_in">string</span> &amp;firstName, <span class="built_in">string</span> &amp;lastName, <span class="keyword">unsigned</span> age) &#123;</span><br><span class="line">    <span class="comment">// omitted</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 注意没有 friend 和 Person::</span></span><br><span class="line"><span class="built_in">std</span>::ostream &amp; <span class="keyword">operator</span>&lt;&lt;(<span class="built_in">std</span>::ostream &amp;out, Person &amp;p) &#123;</span><br><span class="line">    out &lt;&lt; <span class="string">"full name: "</span> &lt;&lt; p.firstName &lt;&lt; <span class="string">"-"</span> &lt;&lt; p.lastName &lt;&lt; <span class="string">", age: "</span> &lt;&lt; p.age;</span><br><span class="line">    <span class="keyword">return</span> out;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="友元与继承"><a href="#友元与继承" class="headerlink" title="友元与继承"></a>友元与继承</h1><h1 id="友元的替代方案"><a href="#友元的替代方案" class="headerlink" title="友元的替代方案"></a>友元的替代方案</h1>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/10/algorithms-shortest-path/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/01/10/algorithms-shortest-path/" class="post-title-link" itemprop="url">图论 - 基本算法：最短路径</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-01-10 21:32:35" itemprop="dateCreated datePublished" datetime="2019-01-10T21:32:35+08:00">2019-01-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-05-17 16:58:29" itemprop="dateModified" datetime="2019-05-17T16:58:29+08:00">2019-05-17</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法-Algorithms/" itemprop="url" rel="index"><span itemprop="name">算法 (Algorithms)</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法-Algorithms/图-Graph/" itemprop="url" rel="index"><span itemprop="name">图 (Graph)</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Dijkstra"><a href="#Dijkstra" class="headerlink" title="Dijkstra"></a>Dijkstra</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">procedure Dijkstra(G, s)</span><br><span class="line">    Q &lt;- G.V</span><br><span class="line">    S &lt;- &#123;&#125;</span><br><span class="line">    while Q is not empty</span><br><span class="line">        u &lt;- EXTRA-MIN(Q)</span><br><span class="line">        S &lt;- S + &#123; u &#125;</span><br><span class="line">        for each edge (u, v) in G</span><br><span class="line">            if v.d &gt; u.d + dist(u, v)</span><br><span class="line">                v.d &lt;- u.d + dist(u, v)</span><br><span class="line">                v.pi &lt;- u</span><br></pre></td></tr></table></figure>
+<ul>
+<li>实际上类似于 BFS（邻接 $\rightarrow$ 邻接的邻接 $\rightarrow\cdots$），所以初始化时可以只将与 s 邻接的顶点放入一个<strong>普通队列</strong>，然后按照 BFS 的方式进行最短路径的搜索</li>
+</ul>
+<h1 id="Floyd-Warshall"><a href="#Floyd-Warshall" class="headerlink" title="Floyd-Warshall"></a>Floyd-Warshall</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">for k &lt;- [0, V) do</span><br><span class="line">    for i &lt;- [0, V) do</span><br><span class="line">        for j &lt;- [0, V) do</span><br><span class="line">            if dist[i][j] &gt;= dist[i][k] + dist[k][j] then</span><br><span class="line">                dist[i][j] = dist[i][k] + dist[k][j]</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/10/algorithms-mst/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -525,678 +1073,11 @@
   
   
 
-        
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/04/computer-networks-http/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RHANQTL">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/01/04/computer-networks-http/" class="post-title-link" itemprop="url">计算机网络：HTTP</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2019-01-04 14:19:54 / 修改时间：16:25:21" itemprop="dateCreated datePublished" datetime="2019-01-04T14:19:54+08:00">2019-01-04</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Computer-Networks/" itemprop="url" rel="index"><span itemprop="name">Computer Networks</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><h1 id="HTTP-概述"><a href="#HTTP-概述" class="headerlink" title="HTTP 概述"></a>HTTP 概述</h1><p>HTTP，Hyper Text Transfer Protocol，是在 Web 上进行数据交换的基础，是一种 client-server 协议，请求通常是由像浏览器这样的接收方发起的。像浏览器这样的客户端发出的消息叫做 request，被服务器响应的消息叫 response。</p>
-<p>HTTP 是应用层协议，通过 TCP 或者 TLS（加密的 TCP 连接），但是理论上任何可靠的传输协议都可以使用。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/01/04/computer-networks-http/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/02/soft-eng-test-logical-coverage/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RHANQTL">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/01/02/soft-eng-test-logical-coverage/" class="post-title-link" itemprop="url">软件工程 | 软件测试 | 逻辑覆盖法</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-01-02 10:45:06" itemprop="dateCreated datePublished" datetime="2019-01-02T10:45:06+08:00">2019-01-02</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-25 15:02:33" itemprop="dateModified" datetime="2020-03-25T15:02:33+08:00">2020-03-25</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/软件工程-Software-Engineering/" itemprop="url" rel="index"><span itemprop="name">软件工程 (Software Engineering)</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/软件工程-Software-Engineering/软件测试-Software-Testing/" itemprop="url" rel="index"><span itemprop="name">软件测试 (Software Testing)</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ul>
-<li>语句覆盖：程序中的每个可执行语句至少执行一次</li>
-<li>判定覆盖（分支覆盖）：程序中的每个判定都至少获得一次 “真” 值和一次 “假” 值</li>
-<li>条件覆盖：程序中每个判定包含的每个条件的可能取值都至少满足一次</li>
-<li>判定/条件覆盖：判定覆盖 + 条件覆盖</li>
-<li>组合覆盖：程序中每个判定包含的所有条件的所有取值组合都至少满足一次</li>
-<li>路径覆盖：程序中所有可能的路径都至少执行一次</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/01/02/soft-eng-test-logical-coverage/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/01/cpp-stl-lower-bound-upper-bound/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RHANQTL">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/01/01/cpp-stl-lower-bound-upper-bound/" class="post-title-link" itemprop="url">C++ 学习笔记 - STL：lower_bound() 与 upper_bound()</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-01-01 00:12:20" itemprop="dateCreated datePublished" datetime="2019-01-01T00:12:20+08:00">2019-01-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-01-14 17:47:06" itemprop="dateModified" datetime="2019-01-14T17:47:06+08:00">2019-01-14</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Programming-Languages/" itemprop="url" rel="index"><span itemprop="name">Programming Languages</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Programming-Languages/C/" itemprop="url" rel="index"><span itemprop="name">C++</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>头文件 <code>&lt;algorithm&gt;</code> 中，<code>lower_bound()</code> 和 <code>upper_bound()</code> 主要是用来在一个有序序列中查找一个元素第一次出现的位置和最后一次出现的位置的后一个位置（这个的原因 E.W.D. 论证过，详见参考 [1]）。一看到“有序序列”，自然第一反应就是使用二分查找。但是我们平时的二分查找通常是三个分支：大于 key，小于 key，等于 key。所以需要进行一些小小的修改。</p>
-<h1 id="lower-bound"><a href="#lower-bound" class="headerlink" title="lower_bound()"></a><code>lower_bound()</code></h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">lower_bound</span><span class="params">(<span class="keyword">int</span> *a, <span class="keyword">int</span> size, <span class="keyword">int</span> key)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> first = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> len = size;</span><br><span class="line">    <span class="keyword">int</span> middle, half;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span> (len &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        half = len &gt;&gt; <span class="number">1</span>;</span><br><span class="line">        middle = first + half;</span><br><span class="line">        <span class="keyword">if</span> (a[middle] &lt; key) &#123;</span><br><span class="line">            first = middle + <span class="number">1</span>;</span><br><span class="line">            len = len - half - <span class="number">1</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            len = half;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> first;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="upper-bound"><a href="#upper-bound" class="headerlink" title="upper_bound()"></a><code>upper_bound()</code></h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">upper_bound</span><span class="params">(<span class="keyword">int</span> *a, <span class="keyword">int</span> size, <span class="keyword">int</span> key)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> first = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> len = size;</span><br><span class="line">    <span class="keyword">int</span> half, middle;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span> (len &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        half = len &gt;&gt; <span class="number">1</span>;</span><br><span class="line">        middle = first + half;</span><br><span class="line">        <span class="keyword">if</span> (a[middle] &gt; key) &#123;</span><br><span class="line">            len = half;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            first = middle + <span class="number">1</span>;</span><br><span class="line">            len - len - half - <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> first;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>比较一下这两个方法，几乎是对称的，真的很精巧！</p>
-<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p>[1] <a href="https://www.cs.utexas.edu/users/EWD/transcriptions/EWD08xx/EWD831.html" target="_blank" rel="noopener">EWD831: Why Numbering Should Start At Zero</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/31/c-pointer/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RHANQTL">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/12/31/c-pointer/" class="post-title-link" itemprop="url">C 学习笔记：指针</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2018-12-31 23:07:30" itemprop="dateCreated datePublished" datetime="2018-12-31T23:07:30+08:00">2018-12-31</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-05-04 20:22:55" itemprop="dateModified" datetime="2019-05-04T20:22:55+08:00">2019-05-04</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Programming-Languages/" itemprop="url" rel="index"><span itemprop="name">Programming Languages</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Programming-Languages/C/" itemprop="url" rel="index"><span itemprop="name">C</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><strong>Copyright (c) @rhanqtl</strong></p>
-<p>今天在知乎看到一个有意思的问题：<a href="https://www.zhihu.com/question/56399162/answer/669441812" target="_blank" rel="noopener"><code>char*(*(*a)(void))[20];</code> 这个是个什么意思？</a>，它涉及到 C 中一些比较难懂的内容，所以通过这个问题来复习 C 中的指针。</p>
-<h1 id="指针基础"><a href="#指针基础" class="headerlink" title="指针基础"></a>指针基础</h1><p>我们使用指针来间接地访问变量。</p>
-<p>最基本的：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i = <span class="number">10</span>;</span><br><span class="line"><span class="keyword">int</span> *p = &amp;i;</span><br><span class="line"><span class="comment">// %p 占位符表示以十六进制格式输出指针的值</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"i: %d, p: %p, *p: %d\n"</span>, i, p, *p);</span><br><span class="line">*p = *p + <span class="number">1</span>;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"i: %d, p: %p, *p: %d\n"</span>, i, p, *p);</span><br></pre></td></tr></table></figure>
-<p>输出为：</p>
-<pre>
-    i: 10, p: 0061FF28, *p: 10
-    i: 11, p: 0061FF28, *p: 11
-</pre>
-
-<h2 id="结构体指针"><a href="#结构体指针" class="headerlink" title="结构体指针"></a>结构体指针</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">S</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    <span class="keyword">float</span> f;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">S</span> <span class="title">s</span> = &#123;</span> <span class="number">42</span>, <span class="number">3.14</span> &#125;;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">S</span> *<span class="title">p</span> = &amp;<span class="title">s</span>;</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"%i, %f\n"</span>, (*p).i, (*p).f);</span><br></pre></td></tr></table></figure>
-<p>由于 <code>(*p).member</code> 这样的写法太麻烦，所以 C 使用另一个操作符 <code>-&gt;</code>，减少了字符数，看起来也更简洁：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">printf</span>(<span class="string">"%i, %f\n"</span>, p-&gt;i, p-&gt;f);</span><br></pre></td></tr></table></figure>
-<h2 id="常量指针与指针常量"><a href="#常量指针与指针常量" class="headerlink" title="常量指针与指针常量"></a>常量指针与指针常量</h2><ul>
-<li><p>常量指针：指针将它所指向的值<strong>当作</strong>常量（并不一定真的是常量），指针也可以指向其他的值</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> *cip;</span><br><span class="line"><span class="keyword">int</span> <span class="keyword">const</span> *icp;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> i = <span class="number">42</span>;</span><br><span class="line">cip = &amp;i;</span><br><span class="line">icp = &amp;i;</span><br><span class="line"><span class="comment">// error: assignment of read-only location '*cip' ('*icp')</span></span><br><span class="line">*cip = *cip + <span class="number">1</span>;</span><br><span class="line">*icp = *icp + <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> j = <span class="number">43</span>;</span><br><span class="line"><span class="comment">// OK</span></span><br><span class="line">cip = &amp;j;</span><br><span class="line">icp = &amp;j;</span><br></pre></td></tr></table></figure>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> ci = <span class="number">42</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> *cip = &amp;ci;</span><br><span class="line"><span class="keyword">int</span> <span class="keyword">const</span> *icp = &amp;ci;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>指针常量：可以通过指针修改它所指向的值，但是指针不可以指向其他的值，并且指针必须<strong>定义</strong></p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// error</span></span><br><span class="line"><span class="keyword">int</span> * <span class="keyword">const</span> ipc;</span><br></pre></td></tr></table></figure>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i = <span class="number">42</span>, <span class="keyword">int</span> j = <span class="number">43</span>;</span><br><span class="line"><span class="keyword">int</span> * <span class="keyword">const</span> ipc = &amp;<span class="number">42</span>;</span><br><span class="line">ipc = &amp;<span class="number">42</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h1 id="指针与数组"><a href="#指针与数组" class="headerlink" title="指针与数组"></a>指针与数组</h1><p>说到指针，一个绝对绕不开的话题就是它和数组的关系。</p>
-<p>最基本的，可以通过指针访问数组的元素，比如：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a[<span class="number">10</span>] = &#123; <span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span> &#125;;</span><br><span class="line"><span class="keyword">int</span> *p = a;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d "</span>, *p++);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>输出：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0 1 2 3 4 5 6 7 8 9</span><br></pre></td></tr></table></figure>
-<p>这里有一些需要注意的点：</p>
-<ul>
-<li><p><code>p</code> 的初始化方式，可以是 <code>a</code> 或 <code>&amp;a[0]</code></p>
-</li>
-<li><p><code>*</code> 和 <code>++</code> 的结合顺序：<code>++</code> 先，<code>*</code> 后。来看一个示例：</p>
-<p>对上面的代码做一个小小的改动：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a[<span class="number">10</span>] = &#123; <span class="number">0</span>, <span class="number">11</span>, <span class="number">12</span>, <span class="number">13</span>, <span class="number">14</span>, <span class="number">15</span>, <span class="number">16</span>, <span class="number">17</span>, <span class="number">18</span>, <span class="number">19</span> &#125;;</span><br><span class="line"><span class="keyword">int</span> *p = a;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d "</span>, *(p++));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>输出为：</p>
-<pre>
-    0 11 12 13 14 15 16 17 18 19
-</pre>
-
-<p>再对这段代码做一个小小的改动，让 <code>p</code> 先和 <code>*</code> 结合</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a[<span class="number">10</span>] = &#123; <span class="number">0</span>, <span class="number">11</span>, <span class="number">12</span>, <span class="number">13</span>, <span class="number">14</span>, <span class="number">15</span>, <span class="number">16</span>, <span class="number">17</span>, <span class="number">18</span>, <span class="number">19</span> &#125;;</span><br><span class="line"><span class="keyword">int</span> *p = a;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d "</span>, (*p)++);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>输出为：</p>
-<pre>
-    0 1 2 3 4 5 6 7 8 9
-</pre>
-</li>
-<li><p>指针运算</p>
-<p>我们可以对最初的代码做一些修改：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a[<span class="number">10</span>] = &#123; <span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span> &#125;;</span><br><span class="line"><span class="keyword">int</span> *p = a;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"element: %d, pointer: %p\n"</span>, *p++, p);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>输出为：</p>
-<pre>
-    element: 0, pointer: 0061FF04
-    element: 1, pointer: 0061FF08
-    element: 2, pointer: 0061FF0C
-    element: 3, pointer: 0061FF10
-    element: 4, pointer: 0061FF14
-    element: 5, pointer: 0061FF18
-    element: 6, pointer: 0061FF1C
-    element: 7, pointer: 0061FF20
-    element: 8, pointer: 0061FF24
-    element: 9, pointer: 0061FF28
-</pre>
-
-<p>可以看到，指针的值每次加 4，在我的电脑上，<code>sizeof(int)</code> 为 4，<code>--</code> 也是同样，每次跨越一个元素。那么 <code>+</code> <code>-</code> 呢？示例：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a[<span class="number">10</span>] = &#123; <span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span> &#125;;</span><br><span class="line"><span class="keyword">int</span> *p = &amp;a[<span class="number">1</span>], *q = &amp;a[<span class="number">5</span>];</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"%d\n"</span>, q - p);</span><br></pre></td></tr></table></figure>
-<p>输出为：</p>
-<pre>
-    4
-</pre>
-
-<p>刚好是 <code>a[5]</code> 对于 <code>a[1]</code> 的偏移量。</p>
-<p>所以指针的运算实际上是一种逻辑的操作，实际的增量由编译器计算。GCC 6.3.0 会对指针的 <code>*</code> 和 <code>/</code> 报错。</p>
-</li>
-</ul>
-<h2 id="其他形式"><a href="#其他形式" class="headerlink" title="其他形式"></a>其他形式</h2><p>C 中还有一种寻址的形式。</p>
-<p>考虑如下的代码：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a[] = &#123; <span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span> &#125;;</span><br><span class="line"><span class="keyword">int</span> *p = a;</span><br></pre></td></tr></table></figure>
-<p>如下的几种写法都是等价的：</p>
-<ul>
-<li><code>a[3]</code></li>
-<li><code>*(a + 3)</code></li>
-<li><code>*(p + 3)</code></li>
-<li><code>p[3]</code></li>
-</ul>
-<h2 id="指针和数组的区别"><a href="#指针和数组的区别" class="headerlink" title="指针和数组的区别"></a>指针和数组的区别</h2><p>相信很多人都听过一句话（或者类似的话）：“数组本质上就是不可变的指针”。个人认为，这句话需要增加一个限定条件 —— “在汇编语言层面”。在 C 语言的层次上，数组和指针有诸多的不同：</p>
-<ul>
-<li><p>（非指针常量的）指针可以指向其他的值，而数组不可以</p>
-</li>
-<li><p>对指针使用 <code>sizeof</code> 运算符得到的是机器中一个地址的字节数（32 位系统就是 4，64 位系统就是 8），而对数组使用则会得到数组实际的字节数</p>
-</li>
-<li><p>函数的参数（形参和实参）都是指针</p>
-<ul>
-<li><p>这里有一个小小的问题，即如果函数声明为 <code>void f(int a[4])</code>，是数组还是指针？答案是指针，来看一个示例：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">(<span class="keyword">int</span> a[<span class="number">4</span>])</span> </span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"sizeof(a) = %u\n"</span>, <span class="keyword">sizeof</span>(a));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>使用 GCC 编译会输出警告：</p>
-<pre>
-     warning: 'sizeof' on array function parameter 'a' will return size of 'int *' [-Wsizeof-array-argument]
-     printf("sizeof(a) = %u\n", sizeof(a));
-                                      ^
-</pre>
-
-<p>实际的运行结果也并不是 16，而是 4</p>
-<p>看看汇编代码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">subl    $24, %esp</span><br><span class="line">movl    $4, 4(%esp)		; 注意这里</span><br><span class="line">movl    $LC4, (%esp)</span><br><span class="line">call    _printf</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="动态内存管理"><a href="#动态内存管理" class="headerlink" title="动态内存管理"></a>动态内存管理</h2><p>几个相关的函数在头文件 <code>stdlib.h</code> 中。</p>
-<h3 id="malloc-calloc-和-free-函数"><a href="#malloc-calloc-和-free-函数" class="headerlink" title="malloc calloc 和 free 函数"></a><code>malloc</code> <code>calloc</code> 和 <code>free</code> 函数</h3><p><code>malloc</code> 和 <code>calloc</code> 会分配一块空间，并且返回一个指向这块空间基址的指针，<code>free</code> 则是将这块空间归还。</p>
-<p><code>malloc</code> 和 <code>calloc</code> 的不同点在于 <code>calloc</code> 会将分配的空间中的每个字节清零。</p>
-<ul>
-<li><p>一维数组（n 个元素）</p>
-<ul>
-<li><p>创建</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> *a = (<span class="keyword">int</span> *) <span class="built_in">malloc</span>(n * <span class="keyword">sizeof</span>(<span class="keyword">int</span>));</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>销毁</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">free</span>(a);</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>二维数组（m 行 n 列）</p>
-<ul>
-<li><p>创建</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> **a = (<span class="keyword">int</span> **) <span class="built_in">malloc</span>(m * <span class="keyword">sizeof</span>(<span class="keyword">int</span> *));</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; i++) &#123;</span><br><span class="line">    a[i] = (<span class="keyword">int</span> *) <span class="built_in">malloc</span>(n * <span class="keyword">sizeof</span>(<span class="keyword">int</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>销毁</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; i++) &#123;</span><br><span class="line">    <span class="built_in">free</span>(a[i]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">free</span>(a);</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>更高维的数组依此类推</p>
-</li>
-</ul>
-<h3 id="realloc"><a href="#realloc" class="headerlink" title="realloc"></a><code>realloc</code></h3><p>用于重新分配一块空间。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> *p = (<span class="keyword">int</span> *) <span class="built_in">malloc</span>(<span class="number">32</span> * <span class="keyword">sizeof</span>(<span class="keyword">int</span>));</span><br><span class="line">p = (<span class="keyword">int</span> *) <span class="built_in">realloc</span>()</span><br></pre></td></tr></table></figure>
-<h2 id="指针数组和数组指针"><a href="#指针数组和数组指针" class="headerlink" title="指针数组和数组指针"></a>指针数组和数组指针</h2><ul>
-<li><p>指针数组：顾名思义，指针数组的元素全为指针，一个非常典型的例子就是 <code>main</code> 的参数：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> *argv[])</span> </span>&#123; <span class="comment">/* ... */</span> &#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>数组指针：步长为一个数组的指针</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"> </span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h1 id="函数指针"><a href="#函数指针" class="headerlink" title="函数指针"></a>函数指针</h1><p>指向函数的指针。假设有如下的函数：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">(<span class="keyword">int</span> arg1, <span class="keyword">int</span> arg2)</span> </span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"f()\n"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>那么指向它的函数指针就是：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> (*fp)(<span class="keyword">int</span>, <span class="keyword">int</span>);</span><br></pre></td></tr></table></figure>
-<p>同其他的变量一样，可以直接赋值：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fp = f;</span><br></pre></td></tr></table></figure>
-<p>调用：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">fp();</span><br><span class="line">(*fp)();</span><br></pre></td></tr></table></figure>
-<p>输出为：</p>
-<pre>
-    f()
-    f()
-</pre>
-
-<p>遇到比较复杂的情况，也可以使用 <code>typedef</code> 关键字进行简化：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">typedef</span> <span class="title">void</span> <span class="params">(*FP)</span><span class="params">(<span class="keyword">int</span>, <span class="keyword">int</span>)</span></span>;</span><br></pre></td></tr></table></figure>
-<p>使用：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FP fp = f;</span><br></pre></td></tr></table></figure>
-<h2 id="函数指针数组和函数数组指针"><a href="#函数指针数组和函数数组指针" class="headerlink" title="函数指针数组和函数数组指针"></a>函数指针数组和函数数组指针</h2><h1 id="问题的答案"><a href="#问题的答案" class="headerlink" title="问题的答案"></a>问题的答案</h1><p>复习过上面的知识之后，再来看最初的问题：<code>char *(*(*a)(void))[20]</code> 是什么意思？</p>
-<p>首先，我们知道 <code>char *(*a)(void)</code> 表示 <code>a</code> 指向一个不接收任何参数，并且返回一个 <code>char *</code> 的函数。我们把这个类型定义为 <code>FP</code>：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">char</span> *(*FP)(<span class="keyword">void</span>);</span><br></pre></td></tr></table></figure>
-<p>那么 <code>char *(*(*a)(void))[20]</code> 是不是表示数组指针呢？来探究一下：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">char</span> *<span class="title">doit</span><span class="params">(<span class="keyword">void</span>)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">char</span> *s = <span class="string">"a string"</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"doit()\n"</span>);</span><br><span class="line">    <span class="keyword">return</span> s;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">FP fpa[<span class="number">20</span>] = &#123;</span><br><span class="line">    doit, doit, doit, doit, doit, </span><br><span class="line">    doit, doit, doit, doit, doit, </span><br><span class="line">    doit, doit, doit, doit, doit, </span><br><span class="line">    doit, doit, doit, doit, doit</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">char</span> *(*(*a)(<span class="keyword">void</span>))[<span class="number">20</span>] = &amp;fpa;</span><br></pre></td></tr></table></figure>
-<h1 id="使用指针的注意事项"><a href="#使用指针的注意事项" class="headerlink" title="使用指针的注意事项"></a>使用指针的注意事项</h1><ul>
-<li>注意空指针，对空指针解引用时会产生 Segmentation fault（段错误）</li>
-<li><code>free(p)</code> 后，最好将 <code>p</code> 设为 <code>NULL</code></li>
-<li>由于 C 并不检查数组的越界访问，所以写代码时应该小心，尽可能注意检查</li>
-<li>对于 <code>malloc</code> <code>calloc</code> <code>realloc</code> 分配的内存，要检查是否返回 <code>NULL</code></li>
-<li>注意不要返回局部变量的指针</li>
-</ul>
-<h1 id="延伸阅读"><a href="#延伸阅读" class="headerlink" title="延伸阅读"></a>延伸阅读</h1><p>[1] <a href="http://unixwiz.net/techtips/reading-cdecl.html" target="_blank" rel="noopener">Reading C Type Declarations</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/31/poj-3061-Subsequence/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RHANQTL">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/12/31/poj-3061-Subsequence/" class="post-title-link" itemprop="url">POJ 3061. Subsequence</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2018-12-31 23:00:43" itemprop="dateCreated datePublished" datetime="2018-12-31T23:00:43+08:00">2018-12-31</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-25 15:11:15" itemprop="dateModified" datetime="2020-03-25T15:11:15+08:00">2020-03-25</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Algorithms/" itemprop="url" rel="index"><span itemprop="name">Algorithms</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Algorithms/OJ/" itemprop="url" rel="index"><span itemprop="name">OJ</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Algorithms/OJ/POJ/" itemprop="url" rel="index"><span itemprop="name">POJ</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="Subsequence"><a href="#Subsequence" class="headerlink" title="Subsequence"></a>Subsequence</h1><p><strong>Time Limit:</strong> 1000MS</p>
-<p><strong>Memory Limit:</strong> 65536K</p>
-<h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p>A sequence of N positive integers (10 &lt; N &lt; 100 000), each of them less than or equal 10000, and a positive integer S (S &lt; 100 000 000) are given. Write a program to find the minimal length of the subsequence of consecutive elements of the sequence, the sum of which is greater than or equal to S.</p>
-<h2 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h2><p>The first line is the number of test cases. For each test case the program has to read the numbers N and S, separated by an interval, from the first line. The numbers of the sequence are given in the second line of the test case, separated by intervals. The input will finish with the end of file.</p>
-<h2 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h2><p>For each the case the program has to print the result on separate line of the output file.if no answer, print 0.</p>
-<h2 id="Sample-Input"><a href="#Sample-Input" class="headerlink" title="Sample Input"></a>Sample Input</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">2</span><br><span class="line">10 15</span><br><span class="line">5 1 3 5 10 7 4 9 2 8</span><br><span class="line">5 11</span><br><span class="line">1 2 3 4 5</span><br></pre></td></tr></table></figure>
-<h2 id="Sample-Output"><a href="#Sample-Output" class="headerlink" title="Sample Output"></a>Sample Output</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">2</span><br><span class="line">3</span><br></pre></td></tr></table></figure>
-<h2 id="Source"><a href="#Source" class="headerlink" title="Source"></a>Source</h2><p><a href="http://poj.org/searchproblem?field=source&amp;key=Southeastern+Europe+2006" target="_blank" rel="noopener">Southeastern Europe 2006</a></p>
-<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/30/others-10x-programmer/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RHANQTL">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/12/30/others-10x-programmer/" class="post-title-link" itemprop="url">10x 程序员</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2018-12-30 22:43:52" itemprop="dateCreated datePublished" datetime="2018-12-30T22:43:52+08:00">2018-12-30</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-05-17 16:43:15" itemprop="dateModified" datetime="2019-05-17T16:43:15+08:00">2019-05-17</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>转载自 <a href="http://antirez.com/news/112" target="_blank" rel="noopener"><antirez></antirez></a></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2018/12/30/others-10x-programmer/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/19/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/19/">19</a><span class="page-number current">20</span><a class="page-number" href="/page/21/">21</a><span class="space">&hellip;</span><a class="page-number" href="/page/23/">23</a><a class="extend next" rel="next" href="/page/21/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/19/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/19/">19</a><span class="page-number current">20</span><a class="page-number" href="/page/21/">21</a><span class="space">&hellip;</span><a class="page-number" href="/page/24/">24</a><a class="extend next" rel="next" href="/page/21/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1262,7 +1143,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">226</span>
+          <span class="site-state-item-count">232</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

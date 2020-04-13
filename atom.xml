@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-03-31T05:35:02.901Z</updated>
+  <updated>2020-04-13T10:58:01.852Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,126 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>others-yaml-vs-json</title>
+    <link href="http://yoursite.com/2020/04/13/others-yaml-vs-json/"/>
+    <id>http://yoursite.com/2020/04/13/others-yaml-vs-json/</id>
+    <published>2020-04-13T07:15:07.000Z</published>
+    <updated>2020-04-13T10:58:01.852Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>NLP 中的工具和数据集</title>
+    <link href="http://yoursite.com/2020/04/10/nlp-tools-and-datasets/"/>
+    <id>http://yoursite.com/2020/04/10/nlp-tools-and-datasets/</id>
+    <published>2020-04-10T12:23:00.000Z</published>
+    <updated>2020-04-10T13:35:54.469Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>others-raid</title>
+    <link href="http://yoursite.com/2020/04/05/others-raid/"/>
+    <id>http://yoursite.com/2020/04/05/others-raid/</id>
+    <published>2020-04-05T10:58:47.000Z</published>
+    <updated>2020-04-05T11:44:17.712Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>【译】To Be Explicit</title>
+    <link href="http://yoursite.com/2020/04/05/soft-eng-to-be-explicit/"/>
+    <id>http://yoursite.com/2020/04/05/soft-eng-to-be-explicit/</id>
+    <published>2020-04-04T22:39:48.000Z</published>
+    <updated>2020-04-06T15:10:26.038Z</updated>
+    
+    <summary type="html">
+    
+      关于代码构造的一篇文章，原作者 Martin Fowler
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>howto-verify-a-gpg-signature</title>
+    <link href="http://yoursite.com/2020/04/03/howto-verify-a-gpg-signature/"/>
+    <id>http://yoursite.com/2020/04/03/howto-verify-a-gpg-signature/</id>
+    <published>2020-04-03T00:27:44.000Z</published>
+    <updated>2020-04-03T00:28:21.011Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Linux | 为什么我的服务脚本会挂掉？</title>
+    <link href="http://yoursite.com/2020/04/02/linux-why-was-my-script-killed/"/>
+    <id>http://yoursite.com/2020/04/02/linux-why-was-my-script-killed/</id>
+    <published>2020-04-02T04:53:48.000Z</published>
+    <updated>2020-04-06T11:18:26.022Z</updated>
+    
+    <summary type="html">
+    
+      进程在占用过多的资源时，会被操作系统杀掉，限制进程资源使用
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>Arch Linux + Windows 双系统安装</title>
@@ -53,7 +173,7 @@
     <link href="http://yoursite.com/2020/03/27/database-thinking-sql-statements/"/>
     <id>http://yoursite.com/2020/03/27/database-thinking-sql-statements/</id>
     <published>2020-03-26T16:00:00.000Z</published>
-    <updated>2020-03-27T06:52:19.464Z</updated>
+    <updated>2020-04-01T03:50:46.402Z</updated>
     
     <summary type="html">
     
@@ -145,6 +265,26 @@
   </entry>
   
   <entry>
+    <title>在 Ruby on Rails 项目中使用 Swagger</title>
+    <link href="http://yoursite.com/2020/03/24/using-swagger-with-ruby-on-rails/"/>
+    <id>http://yoursite.com/2020/03/24/using-swagger-with-ruby-on-rails/</id>
+    <published>2020-03-24T06:59:00.000Z</published>
+    <updated>2020-03-25T07:33:33.406Z</updated>
+    
+    <summary type="html">
+    
+      如题
+    
+    </summary>
+    
+    
+      <category term="Ruby on Rails" scheme="http://yoursite.com/tags/Ruby-on-Rails/"/>
+    
+      <category term="Swagger" scheme="http://yoursite.com/tags/Swagger/"/>
+    
+  </entry>
+  
+  <entry>
     <title>在 Ruby on Rails 项目中使用 BDD 工具 Cucumber</title>
     <link href="http://yoursite.com/2020/03/24/using-cucumber-with-ruby-on-rails/"/>
     <id>http://yoursite.com/2020/03/24/using-cucumber-with-ruby-on-rails/</id>
@@ -163,26 +303,6 @@
       <category term="BDD" scheme="http://yoursite.com/tags/BDD/"/>
     
       <category term="Cucumber" scheme="http://yoursite.com/tags/Cucumber/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>在 Ruby on Rails 项目中使用 Swagger</title>
-    <link href="http://yoursite.com/2020/03/24/using-swagger-with-ruby-on-rails/"/>
-    <id>http://yoursite.com/2020/03/24/using-swagger-with-ruby-on-rails/</id>
-    <published>2020-03-24T06:59:00.000Z</published>
-    <updated>2020-03-25T07:33:33.406Z</updated>
-    
-    <summary type="html">
-    
-      如题
-    
-    </summary>
-    
-    
-      <category term="Ruby on Rails" scheme="http://yoursite.com/tags/Ruby-on-Rails/"/>
-    
-      <category term="Swagger" scheme="http://yoursite.com/tags/Swagger/"/>
     
   </entry>
   
@@ -282,120 +402,6 @@
       <category term="数据库 (Database)" scheme="http://yoursite.com/categories/%E6%95%B0%E6%8D%AE%E5%BA%93-Database/"/>
     
       <category term="MySQL" scheme="http://yoursite.com/categories/%E6%95%B0%E6%8D%AE%E5%BA%93-Database/MySQL/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Ruby | Gemfile</title>
-    <link href="http://yoursite.com/2020/03/22/ruby-gemfile/"/>
-    <id>http://yoursite.com/2020/03/22/ruby-gemfile/</id>
-    <published>2020-03-22T04:32:52.000Z</published>
-    <updated>2020-03-25T07:07:29.921Z</updated>
-    
-    <summary type="html">
-    
-      如题
-    
-    </summary>
-    
-      <category term="Ruby" scheme="http://yoursite.com/categories/Ruby/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>manachers-algorithm-linear-time-longest-palindromic-substring</title>
-    <link href="http://yoursite.com/2020/03/22/manachers-algorithm-linear-time-longest-palindromic-substring/"/>
-    <id>http://yoursite.com/2020/03/22/manachers-algorithm-linear-time-longest-palindromic-substring/</id>
-    <published>2020-03-22T01:07:21.000Z</published>
-    <updated>2020-03-22T01:08:03.463Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>使用 Ruby 构建 RESTful API</title>
-    <link href="http://yoursite.com/2020/03/20/building-a-restful-api-with-ruby-on-rails/"/>
-    <id>http://yoursite.com/2020/03/20/building-a-restful-api-with-ruby-on-rails/</id>
-    <published>2020-03-20T11:07:13.000Z</published>
-    <updated>2020-03-24T11:12:25.954Z</updated>
-    
-    <summary type="html">
-    
-      使用 Ruby on Rails + mongoDB
-    
-    </summary>
-    
-      <category term="Ruby" scheme="http://yoursite.com/categories/Ruby/"/>
-    
-    
-      <category term="RESTful API" scheme="http://yoursite.com/tags/RESTful-API/"/>
-    
-      <category term="Ruby" scheme="http://yoursite.com/tags/Ruby/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>MySQL | EXPLAIN</title>
-    <link href="http://yoursite.com/2020/03/20/database-mysql-explain/"/>
-    <id>http://yoursite.com/2020/03/20/database-mysql-explain/</id>
-    <published>2020-03-20T08:20:03.000Z</published>
-    <updated>2020-03-20T08:22:02.131Z</updated>
-    
-    <summary type="html">
-    
-      MySQL 中 EXPLAIN 工具的笔记
-    
-    </summary>
-    
-      <category term="数据库 (Database)" scheme="http://yoursite.com/categories/%E6%95%B0%E6%8D%AE%E5%BA%93-Database/"/>
-    
-      <category term="MySQL" scheme="http://yoursite.com/categories/%E6%95%B0%E6%8D%AE%E5%BA%93-Database/MySQL/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>LeetCode 1250. 检查「好数组」</title>
-    <link href="http://yoursite.com/2020/03/19/leetcode-1250-check-if-it-is-a-good-array/"/>
-    <id>http://yoursite.com/2020/03/19/leetcode-1250-check-if-it-is-a-good-array/</id>
-    <published>2020-03-19T02:03:24.000Z</published>
-    <updated>2020-03-19T11:54:04.194Z</updated>
-    
-    <summary type="html">
-    
-      难度：困难
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>LeetCode 409. 最长回文串</title>
-    <link href="http://yoursite.com/2020/03/19/leetcode-409-longest-palindrome/"/>
-    <id>http://yoursite.com/2020/03/19/leetcode-409-longest-palindrome/</id>
-    <published>2020-03-19T01:23:21.000Z</published>
-    <updated>2020-03-19T01:59:53.315Z</updated>
-    
-    <summary type="html">
-    
-      难度：简单
-    
-    </summary>
     
     
   </entry>

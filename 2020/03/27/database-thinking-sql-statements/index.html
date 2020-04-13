@@ -32,7 +32,15 @@
 <meta property="og:image" content="http://yoursite.com/2020/03/27/database-thinking-sql-statements/Users/rhanqtl/AppData/Roaming/Typora/typora-user-images/image-20200327102528019.png">
 <meta property="og:image" content="http://yoursite.com/2020/03/27/database-thinking-sql-statements/Users/rhanqtl/AppData/Roaming/Typora/typora-user-images/image-20200327102648661.png">
 <meta property="og:image" content="http://yoursite.com/2020/03/27/database-thinking-sql-statements/Users/rhanqtl/AppData/Roaming/Typora/typora-user-images/image-20200327143427753.png">
-<meta property="og:updated_time" content="2020-03-27T06:52:19.464Z">
+<meta property="og:image" content="http://yoursite.com/2020/03/27/database-thinking-sql-statements/bat-mobile.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/27/database-thinking-sql-statements/Users/rhanqtl/AppData/Roaming/Typora/typora-user-images/image-20200401101740410.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/27/database-thinking-sql-statements/Users/rhanqtl/AppData/Roaming/Typora/typora-user-images/image-20200401102251778.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/27/database-thinking-sql-statements/Users/rhanqtl/AppData/Roaming/Typora/typora-user-images/image-20200401102901517.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/27/database-thinking-sql-statements/Users/rhanqtl/AppData/Roaming/Typora/typora-user-images/image-20200401103253849.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/27/database-thinking-sql-statements/Users/rhanqtl/AppData/Roaming/Typora/typora-user-images/image-20200401110757261.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/27/database-thinking-sql-statements/Users/rhanqtl/AppData/Roaming/Typora/typora-user-images/image-20200401113836245.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/27/database-thinking-sql-statements/Users/rhanqtl/AppData/Roaming/Typora/typora-user-images/image-20200401114111012.png">
+<meta property="og:updated_time" content="2020-04-01T03:50:46.402Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据库 | 思考 SQL 语句">
 <meta name="twitter:description" content="如题">
@@ -197,10 +205,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-03-27 00:00:00 / 修改时间：14:52:19" itemprop="dateCreated datePublished" datetime="2020-03-27T00:00:00+08:00">2020-03-27</time>
+              <time title="创建时间：2020-03-27 00:00:00" itemprop="dateCreated datePublished" datetime="2020-03-27T00:00:00+08:00">2020-03-27</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-04-01 11:50:46" itemprop="dateModified" datetime="2020-04-01T11:50:46+08:00">2020-04-01</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -262,6 +276,9 @@
 <p>关系操作一旦结束，就再也回不去了</p>
 <p>一旦离开纯关系操作层，查询语句的编写对性能影响重大，因为 SQL 引擎将严格执行它规定的执行路径</p>
 <p>总结：为了取得好的优化效果，应将大部分工作安排在关系层</p>
+<blockquote>
+<p>关系层的操作符包括：<code>SELECT</code> <code>FROM</code> <code>JOIN</code> <code>WHERE</code></p>
+</blockquote>
 <h2 id="1-3-nbsp-nbsp-nbsp-nbsp-优化器的有效范围"><a href="#1-3-nbsp-nbsp-nbsp-nbsp-优化器的有效范围" class="headerlink" title="1.3&nbsp;&nbsp;&nbsp;&nbsp;优化器的有效范围"></a>1.3&nbsp;&nbsp;&nbsp;&nbsp;优化器的有效范围</h2><ul>
 <li>优化器需要借助在数据库中找到的信息，包括普通统计数据和数据定义中重要的声明性信息。如果错误地将反映数据关系的重要语义信息写在触发器甚至应用代码中，优化器就无法利用这些重要信息</li>
 <li>能够进行数学意义上的等价变换，优化效果才能最佳</li>
@@ -276,7 +293,7 @@
 </li>
 <li><p>结果集的大小：也可以是 SQL 语句改动的数据量。无论何时，只要查询有可能返回空集时，都应该首先检查那个最大可能导致空结果集的条件，尤其是在该检查执行非常快捷时</p>
 <ul>
-<li>总结：熟练的开发者应该努力使响应时间与返回记录数成比例</li>
+<li>总结：熟练的开发者应该努力使响应时间与返回记录数成比例，这符合用户的期望</li>
 </ul>
 </li>
 <li><p>表的数量：通常来说，现代的 DBMS 都能非常高效地连接很多表，但是在连接大量表时，会产生一些额外的问题</p>
@@ -297,9 +314,81 @@
 </ul>
 </li>
 <li><p>并发用户数</p>
+<ul>
+<li>考虑整体时间</li>
+</ul>
 </li>
 </ul>
-<h1 id="2-nbsp-nbsp-nbsp-nbsp-过滤"><a href="#2-nbsp-nbsp-nbsp-nbsp-过滤" class="headerlink" title="2&nbsp;&nbsp;&nbsp;&nbsp;过滤"></a>2&nbsp;&nbsp;&nbsp;&nbsp;过滤</h1><h2 id="2-1-nbsp-nbsp-nbsp-nbsp-过滤条件的含义"><a href="#2-1-nbsp-nbsp-nbsp-nbsp-过滤条件的含义" class="headerlink" title="2.1&nbsp;&nbsp;&nbsp;&nbsp;过滤条件的含义"></a>2.1&nbsp;&nbsp;&nbsp;&nbsp;过滤条件的含义</h2><p>连接条件放在何处应该都一样，然而其运行效率却会因优化器不同而异</p>
+<h1 id="2-nbsp-nbsp-nbsp-nbsp-过滤"><a href="#2-nbsp-nbsp-nbsp-nbsp-过滤" class="headerlink" title="2&nbsp;&nbsp;&nbsp;&nbsp;过滤"></a>2&nbsp;&nbsp;&nbsp;&nbsp;过滤</h1><h2 id="2-1-nbsp-nbsp-nbsp-nbsp-过滤条件的含义"><a href="#2-1-nbsp-nbsp-nbsp-nbsp-过滤条件的含义" class="headerlink" title="2.1&nbsp;&nbsp;&nbsp;&nbsp;过滤条件的含义"></a>2.1&nbsp;&nbsp;&nbsp;&nbsp;过滤条件的含义</h2><p>连接条件放在何处（<code>WHERE</code> 或 <code>JOIN</code>）应该都一样，然而其运行效率却会因优化器不同而异</p>
+<p>条件计算顺序有时会很重要（比如依赖于前面条件的条件）</p>
+<h2 id="2-2-nbsp-nbsp-nbsp-nbsp-过滤条件的好坏"><a href="#2-2-nbsp-nbsp-nbsp-nbsp-过滤条件的好坏" class="headerlink" title="2.2&nbsp;&nbsp;&nbsp;&nbsp;过滤条件的好坏"></a>2.2&nbsp;&nbsp;&nbsp;&nbsp;过滤条件的好坏</h2><p>编写 SQL 语句时，应首先考虑的问题是：</p>
+<ul>
+<li>哪些数据是最终需要的，这些数据来自哪些表？</li>
+<li>哪些输入会传递到 DBMS 引擎？</li>
+<li>哪些过滤条件能滤掉不想要的记录？</li>
+</ul>
+<p>对过滤条件进行排序，把能够尽快减少必须处理的数据量的条件放在前面</p>
+<p><strong>蝙蝠车买主</strong></p>
+<p>customers(<u>customer_id</u>, customer_name, city)</p>
+<p>orders(<u>order_id</u>, customer_id, order_date)</p>
+<p>articles(<u>article_id</u>, article_name, price)</p>
+<p>order_detail(<u>order_id, article_id</u>, quantity)</p>
+<img src="/2020/03/27/database-thinking-sql-statements/bat-mobile.png">
+<div style="text-align: center">表的大小代表数据量</div>
+
+<p>问题：找出居住在 Gotham 市，并在最近 6 个月订购了蝙蝠车（article_name 为 Batmobile）的所有客户</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">SELECT DISTINCT c.customer_name </span><br><span class="line">FROM customers c </span><br><span class="line">     JOIN orders o ON o.customer_id = c.customer_id </span><br><span class="line">     JOIN order_detail od ON o.order_id = od.order_id </span><br><span class="line">     JOIN articles a ON a.article_id = od.article_id </span><br><span class="line">WHERE c.city = &apos;Gotham&apos; </span><br><span class="line">  AND a.article_name = &apos;Batmobile&apos; </span><br><span class="line">  AND o.order_date &gt;= SOMEFUNC  -- SOMEFUNC 指示六个月之前的日期</span><br><span class="line"></span><br><span class="line">SELECT DISTINCT customer_name </span><br><span class="line">FROM customers, orders, articles, order_detail </span><br><span class="line">WHERE customers.city = &apos;Gotham&apos; </span><br><span class="line">  AND customers.customer_id = orders.customer_id </span><br><span class="line">  AND orders.order_id = order_detail.order_id </span><br><span class="line">  AND order_detail.article_id = articles.article_id </span><br><span class="line">  AND articles.article_name = &apos;Batmobile&apos; </span><br><span class="line">  AND orders.order_date &gt;= SOMEFUNC;</span><br></pre></td></tr></table></figure>
+<ol>
+<li><p>第一次 JOIN 时搜索 orders 表，这意味着 customer_id 字段上最好有索引，否则只有通过排序、合并或者扫描 orders 表建立一个哈希表才能保证查询速度</p>
+</li>
+<li><p>对 orders 表，要针对订单日期进行过滤。如果优化器比较聪明，会在 JOIN 之前先过滤掉一些数据；如果优化器不太聪明，就会先 JOIN，再过滤，这时把过滤条件移到 JOIN 条件中有利于提高性能，例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">JOIN orders o </span><br><span class="line">  ON o.customer_id = c.customer_id </span><br><span class="line"> AND o.order_date &gt;= SOMEFUNC</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>即使过滤条件与 JOIN 无关，优化器也会受到过滤条件的影响</p>
+</li>
+<li><p>由于使用了 DISTINCT，最后经过层层筛选的客户名还必须进行排序，以剔除重复项</p>
+</li>
+</ol>
+<p>注意，没有普适的解决方案 —— 甲之蜜糖，乙之砒霜 —— 表连接的方式取决于具体情况，决定因素是待处理数据的特点</p>
+<p>（The Art of SQL 的作者认为）避免在最高层使用 DISTINCT 应该是一条基本规则，原因在于，DISTINCT 可能会掩盖我们“遗漏了连接条件”的错误。发现重复数据容易，但发现数据不准确很难。</p>
+<p>上面的例子中，DISTINCT 不仅会剔除同一个客户的多次购买，也有可能剔除掉名字相同的不同客户的购买，所以应该同时返回具有唯一性的 customer_id 和 customer_name，以保证得到蝙蝠车买家的完整清单。</p>
+<p>避免 DISTINCT 的方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">SELECT c.customer_name </span><br><span class="line">FROM customers c </span><br><span class="line">WHERE c.city = &apos;Gotham&apos;</span><br><span class="line">  AND EXISTS (SELECT null </span><br><span class="line">              FROM orders o, order_detail od, articles a </span><br><span class="line">              WHERE c.customer_id = o.customer_id </span><br><span class="line">                AND o.order_id = od.order_id </span><br><span class="line">                AND od.article_id = a.article_id </span><br><span class="line">                AND o.order_date &gt;= SOMEFUNC </span><br><span class="line">                AND a.article_name = &apos;Batmobile&apos;);</span><br></pre></td></tr></table></figure>
+<p>从逻辑上讲，JOIN 两个或多个表建立了新的关系。最初的查询方案中，（逻辑上）新生成的关系在 customer_name 上并没有唯一性约束，因此查询结果中可能出现同一客户的重复记录。</p>
+<p>使用 DISTINCT 的目的是使每个客户在结果集中只出现一次，而我们知道每个客户在 customers 表中只会出现一次，因此我们可以设定某些过滤条件从单一 customers 表中检索记录（关键的区别）。</p>
+<p>“购买了 Batmobile”是一个存在性的条件，可以用存在性测试</p>
+<p><img src="/2020/03/27/database-thinking-sql-statements/Users\rhanqtl\AppData\Roaming\Typora\typora-user-images\image-20200401101740410.png" alt="image-20200401101740410"></p>
+<p>使用无关（非关联）子查询</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">SELECT customer_name </span><br><span class="line">FROM customers </span><br><span class="line">WHERE city = &apos;Gotham&apos; </span><br><span class="line">  AND customer_id IN (SELECT o.customer_id </span><br><span class="line">                      FROM orders o, order_detail od, articles a </span><br><span class="line">                      WHERE a.article_name = &apos;Batmobile&apos; </span><br><span class="line">                        AND a.article_id = od.article_id </span><br><span class="line">                        AND od.order_id = o.order_id </span><br><span class="line">                        AND o.order_date &gt;= SOMEFUNC);</span><br></pre></td></tr></table></figure>
+<p><img src="/2020/03/27/database-thinking-sql-statements/Users\rhanqtl\AppData\Roaming\Typora\typora-user-images\image-20200401102251778.png" alt="image-20200401102251778"></p>
+<p>新版的查询中执行了隐式的 DISTINCT（IN 会隐式地剔除重复项）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">SELECT customer_name </span><br><span class="line">FROM customers </span><br><span class="line">WHERE city = &apos;Gotham&apos; </span><br><span class="line">  AND customer_id IN (SELECT o.customer_id </span><br><span class="line">                      FROM orders o </span><br><span class="line">                      WHERE o.order_date &gt;= SOMEFUNC </span><br><span class="line">                        AND EXISTS (SELECT null </span><br><span class="line">                                    FROM order_detail od, articles a </span><br><span class="line">                                    WHERE a.article_name = &apos;Batmobile&apos; </span><br><span class="line">                                      AND a.article_id = od.article_id </span><br><span class="line">                                      AND od.order_id = o.order_id);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">SELECT customer_name </span><br><span class="line">FROM customers </span><br><span class="line">WHERE city = &apos;Gotham&apos; </span><br><span class="line">  AND customer_id IN (SELECT o.customer_id </span><br><span class="line">                      FROM orders o </span><br><span class="line">                      WHERE o.order_date &gt;= SOMEFUNC </span><br><span class="line">                        AND o.order_id IN (SELECT od.order_id </span><br><span class="line">                                           FROM order_detail od, articles a </span><br><span class="line">                                           WHERE a.article_name = &apos;Batmobile&apos; </span><br><span class="line">                                             AND a.article_id = od.article_id);</span><br></pre></td></tr></table></figure>
+<p><img src="/2020/03/27/database-thinking-sql-statements/Users\rhanqtl\AppData\Roaming\Typora\typora-user-images\image-20200401102901517.png" alt="image-20200401102901517"></p>
+<blockquote>
+<p>注意：每当对大量记录做存在性检查时，选择 IN 还是 EXISTS 需要斟酌</p>
+</blockquote>
+<p><img src="/2020/03/27/database-thinking-sql-statements/Users\rhanqtl\AppData\Roaming\Typora\typora-user-images\image-20200401103253849.png" alt="image-20200401103253849"></p>
+<ul>
+<li>如果 Gotham 市的客户很少，那么先通过 <code>city = &#39;Gotham&#39;</code> 筛选就能够取得比较好的效果</li>
+<li>如果 Gotham 市的客户很多，但是只有很少一部分客户买了 Batmobile，因此先筛选出购买了 Batmobile 的客户效果就会比较好</li>
+</ul>
+<h2 id="2-3-nbsp-nbsp-nbsp-nbsp-大数据量查询"><a href="#2-3-nbsp-nbsp-nbsp-nbsp-大数据量查询" class="headerlink" title="2.3&nbsp;&nbsp;&nbsp;&nbsp;大数据量查询"></a>2.3&nbsp;&nbsp;&nbsp;&nbsp;大数据量查询</h2><p>越快剔除不需要的数据，查询的后续阶段必须处理的数据量就越少，自然查询的效率就越高</p>
+<p>为了提高查询的效率，可以仅对代码中非共用的表使用 UNION，然后配合筛选条件，把 UNION 语句降级为内嵌视图</p>
+<p>引入一个新的 Schema order_status(<u>order_id, status_date</u>, status)</p>
+<p>问题：找到所有尚未标记为完成状态的订单（假设所有交易都已终止）的订单号、客户名、订单的最后状态，以及设置状态的时间</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">SELECT o.order_id, c.customer_name, os.status, os.status_date </span><br><span class="line">FROM orders o, customers c, order_status os </span><br><span class="line">WHERE o.order_id = os.order_id </span><br><span class="line">  AND NOT EXISTS (SELECT null FROM order_status os2 </span><br><span class="line">                  WHERE os2.status = &apos;Complete&apos; </span><br><span class="line">                    AND os2.order_id = o.order_id)</span><br><span class="line">  AND os.status_date = (SELECT MAX(status_date) FROM order_status </span><br><span class="line">                        WHERE order_id = o.order_id) </span><br><span class="line">  AND o.customer_id = c.customer_id;</span><br></pre></td></tr></table></figure>
+<p><img src="/2020/03/27/database-thinking-sql-statements/Users\rhanqtl\AppData\Roaming\Typora\typora-user-images\image-20200401110757261.png" alt="image-20200401110757261"></p>
+<p>我们想让 orders 和 order_status 的 order_id 相等，优化器不一定能够感知这一点，它可能依然先执行子查询，但在使用子查询的结果之前，还必须将 orders 和 order_status 两个表连接起来</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">SELECT c.customer_name, o.order_id, os,status, os.status_date </span><br><span class="line">FROM customers c, </span><br><span class="line">     orders o, </span><br><span class="line">     order_status os, </span><br><span class="line">     (SELECT order_id, MAX(status_date) last_status_date </span><br><span class="line">      FROM order_status </span><br><span class="line">      GROUP BY order_id) x</span><br><span class="line">WHERE o.order_id = os.order_id </span><br><span class="line">  AND NOT EXISTS (SELECT null FROM order_status </span><br><span class="line">                  WHERE status = &apos;Complete&apos; </span><br><span class="line">                    AND order_id = o.order_id)</span><br><span class="line">  AND os.status_date = x.last_status_date </span><br><span class="line">  AND os.order_id = x.order_id </span><br><span class="line">  AND o.customer_id = c.customer_id;</span><br></pre></td></tr></table></figure>
+<p><img src="/2020/03/27/database-thinking-sql-statements/Users\rhanqtl\AppData\Roaming\Typora\typora-user-images\image-20200401113836245.png" alt="image-20200401113836245"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">SELECT c.customer_name, o.order_id, os,status, os.status_date </span><br><span class="line">FROM customers c, </span><br><span class="line">     orders o, </span><br><span class="line">     order_status os, </span><br><span class="line">     (SELECT order_id, MAX(status_date) last_status_date </span><br><span class="line">      FROM order_status </span><br><span class="line">      GROUP BY order_id) x</span><br><span class="line">WHERE o.order_id = os.order_id </span><br><span class="line">  AND os.status_date = x.last_status_date </span><br><span class="line">  AND os.order_id = x.order_id </span><br><span class="line">  AND os.status != &apos;Complete&apos; </span><br><span class="line">  AND o.customer_id = c.customer_id;</span><br></pre></td></tr></table></figure>
+<p><img src="/2020/03/27/database-thinking-sql-statements/Users\rhanqtl\AppData\Roaming\Typora\typora-user-images\image-20200401114111012.png" alt="image-20200401114111012"></p>
+<p>即使最基本的查询完全相同，优化器在返回大量数据时所选择的路径仍可能与返回少量数据时完全不同</p>
+<blockquote>
+<p>总结：尽早过滤掉不需要的数据</p>
+<p>总结：当查询的结果集很大时，索引未必必要</p>
+</blockquote>
 
     </div>
 
@@ -381,7 +470,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-nbsp-nbsp-nbsp-nbsp-SQL-的本质"><span class="nav-text">1    SQL 的本质</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-nbsp-nbsp-nbsp-nbsp-SQL-语言、数据库和关系模型"><span class="nav-text">1.1    SQL 语言、数据库和关系模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-nbsp-nbsp-nbsp-nbsp-SQL-与优化器"><span class="nav-text">1.2    SQL 与优化器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-1-nbsp-nbsp-nbsp-nbsp-不是经理的员工当中，哪五个人收入最高？"><span class="nav-text">1.2.1    不是经理的员工当中，哪五个人收入最高？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-nbsp-nbsp-nbsp-nbsp-优化器的有效范围"><span class="nav-text">1.3    优化器的有效范围</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-nbsp-nbsp-nbsp-nbsp-掌握-SQL-艺术的五大要素"><span class="nav-text">1.4    掌握 SQL 艺术的五大要素</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-nbsp-nbsp-nbsp-nbsp-过滤"><span class="nav-text">2    过滤</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-nbsp-nbsp-nbsp-nbsp-过滤条件的含义"><span class="nav-text">2.1    过滤条件的含义</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-nbsp-nbsp-nbsp-nbsp-SQL-的本质"><span class="nav-text">1    SQL 的本质</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-nbsp-nbsp-nbsp-nbsp-SQL-语言、数据库和关系模型"><span class="nav-text">1.1    SQL 语言、数据库和关系模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-nbsp-nbsp-nbsp-nbsp-SQL-与优化器"><span class="nav-text">1.2    SQL 与优化器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-1-nbsp-nbsp-nbsp-nbsp-不是经理的员工当中，哪五个人收入最高？"><span class="nav-text">1.2.1    不是经理的员工当中，哪五个人收入最高？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-nbsp-nbsp-nbsp-nbsp-优化器的有效范围"><span class="nav-text">1.3    优化器的有效范围</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-nbsp-nbsp-nbsp-nbsp-掌握-SQL-艺术的五大要素"><span class="nav-text">1.4    掌握 SQL 艺术的五大要素</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-nbsp-nbsp-nbsp-nbsp-过滤"><span class="nav-text">2    过滤</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-nbsp-nbsp-nbsp-nbsp-过滤条件的含义"><span class="nav-text">2.1    过滤条件的含义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-nbsp-nbsp-nbsp-nbsp-过滤条件的好坏"><span class="nav-text">2.2    过滤条件的好坏</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-nbsp-nbsp-nbsp-nbsp-大数据量查询"><span class="nav-text">2.3    大数据量查询</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -395,7 +484,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">226</span>
+          <span class="site-state-item-count">232</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

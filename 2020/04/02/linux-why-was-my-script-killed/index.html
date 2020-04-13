@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.8.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="进程在占用过多的资源时，会被操作系统杀掉，限制进程资源使用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux | 为什么我的服务脚本会挂掉？">
+<meta property="og:url" content="http://yoursite.com/2020/04/02/linux-why-was-my-script-killed/index.html">
+<meta property="og:site_name" content="RHANQTL">
+<meta property="og:description" content="进程在占用过多的资源时，会被操作系统杀掉，限制进程资源使用">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-04-06T11:18:26.022Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux | 为什么我的服务脚本会挂掉？">
+<meta name="twitter:description" content="进程在占用过多的资源时，会被操作系统杀掉，限制进程资源使用">
+
+<link rel="canonical" href="http://yoursite.com/2020/04/02/linux-why-was-my-script-killed/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
+  };
+</script>
+
+  <title>Linux | 为什么我的服务脚本会挂掉？ | RHANQTL</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">RHANQTL</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">上下求索</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>站点地图</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/02/linux-why-was-my-script-killed/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Linux | 为什么我的服务脚本会挂掉？
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-04-02 12:53:48" itemprop="dateCreated datePublished" datetime="2020-04-02T12:53:48+08:00">2020-04-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-04-06 19:18:26" itemprop="dateModified" datetime="2020-04-06T19:18:26+08:00">2020-04-06</time>
+              </span>
+
+          
+            <div class="post-description">进程在占用过多的资源时，会被操作系统杀掉，限制进程资源使用</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="0-nbsp-nbsp-nbsp-nbsp-主机配置"><a href="#0-nbsp-nbsp-nbsp-nbsp-主机配置" class="headerlink" title="0&nbsp;&nbsp;&nbsp;&nbsp;主机配置"></a>0&nbsp;&nbsp;&nbsp;&nbsp;主机配置</h1><p>256 MiB 内存</p>
+<p>10 GiB SSD</p>
+<h1 id="1-nbsp-nbsp-nbsp-nbsp-症状"><a href="#1-nbsp-nbsp-nbsp-nbsp-症状" class="headerlink" title="1&nbsp;&nbsp;&nbsp;&nbsp;症状"></a>1&nbsp;&nbsp;&nbsp;&nbsp;症状</h1><p>传输速率过大的时候，会提示“远程服务器已关闭连接”，再看服务脚本的状态变成了“未启动”</p>
+<h1 id="2-nbsp-nbsp-nbsp-nbsp-猜测"><a href="#2-nbsp-nbsp-nbsp-nbsp-猜测" class="headerlink" title="2&nbsp;&nbsp;&nbsp;&nbsp;猜测"></a>2&nbsp;&nbsp;&nbsp;&nbsp;猜测</h1><p>一开始以为是服务器重启了，但是通过 <code>last reboot</code> 命令发现并没有</p>
+<h1 id="3-nbsp-nbsp-nbsp-nbsp-探索"><a href="#3-nbsp-nbsp-nbsp-nbsp-探索" class="headerlink" title="3&nbsp;&nbsp;&nbsp;&nbsp;探索"></a>3&nbsp;&nbsp;&nbsp;&nbsp;探索</h1><p>如果服务器没有重启，而脚本却显示“未启动”那么可能是运行脚本的进程被杀掉了，但是为什么会被杀掉呢？</p>
+<p>根据 [2] 中的办法，输入如下命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># dmesg | grep -E -i -B100 &apos;killed process&apos; | more</span><br></pre></td></tr></table></figure>
+<p>发现被杀掉的原因是“OOM”，即 Out Of Memory，那么就有两个问题：</p>
+<ul>
+<li>为什么会用这么多的内存呢？</li>
+<li>如何提供更多的内存或者限制内存使用？ </li>
+</ul>
+<h2 id="3-1-nbsp-nbsp-nbsp-nbsp-为什么会用这么多内存？"><a href="#3-1-nbsp-nbsp-nbsp-nbsp-为什么会用这么多内存？" class="headerlink" title="3.1&nbsp;&nbsp;&nbsp;&nbsp;为什么会用这么多内存？"></a>3.1&nbsp;&nbsp;&nbsp;&nbsp;为什么会用这么多内存？</h2><h2 id="3-2-nbsp-nbsp-nbsp-nbsp-使用交换分区-交换文件"><a href="#3-2-nbsp-nbsp-nbsp-nbsp-使用交换分区-交换文件" class="headerlink" title="3.2&nbsp;&nbsp;&nbsp;&nbsp;使用交换分区 / 交换文件"></a>3.2&nbsp;&nbsp;&nbsp;&nbsp;使用交换分区 / 交换文件</h2><p>在没有空闲分区或者没有可用于创建交换分区的磁盘空间的情况下，可以使用交换文件来充当交换分区。</p>
+<p>首先创建所需大小的交换文件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># fallocate -l 1G /swapfile</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><code>fallocate</code> 在某些文件系统上会有问题，可以使用更加可靠但更慢的 <code>dd</code> 代替：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; # dd if=/dev/zero of=/swapfile bs=1G count=1 status=progress</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>设置权限（所有人都有读权限的交换文件有安全隐患）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># chmod 600 /swapfile</span><br></pre></td></tr></table></figure>
+<p>在 <code>/swapfile</code> 上创建交换分区：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># mkswap /swapfile</span><br></pre></td></tr></table></figure>
+<p>激活交换文件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># swapon /swapfile</span><br></pre></td></tr></table></figure>
+<p>最后，在 <code>/etc/fstab</code> 中添加 <code>/swapfile</code> 的条目：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/swapfile none swap defaults 0 0</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>删除交换文件</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; # swapoff /swapfile</span><br><span class="line">&gt; # rm -f /swapfile</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>&gt;</p>
+<blockquote>
+<p>最后删除 <code>/etc/fstab</code> 中的相应条目。</p>
+</blockquote>
+<h2 id="3-3-nbsp-nbsp-nbsp-nbsp-限制资源使用"><a href="#3-3-nbsp-nbsp-nbsp-nbsp-限制资源使用" class="headerlink" title="3.3&nbsp;&nbsp;&nbsp;&nbsp;限制资源使用"></a>3.3&nbsp;&nbsp;&nbsp;&nbsp;限制资源使用</h2><h1 id="4-nbsp-nbsp-nbsp-nbsp-结语"><a href="#4-nbsp-nbsp-nbsp-nbsp-结语" class="headerlink" title="4&nbsp;&nbsp;&nbsp;&nbsp;结语"></a>4&nbsp;&nbsp;&nbsp;&nbsp;结语</h1><p>当然，脚本其实有限速的功能，所以其实设置一下限速就 OK 了。</p>
+<p>（当然，最简单粗暴的办法就是升级服务器……）</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p>[1] <a href="https://www.cyberciti.biz/tips/linux-last-reboot-time-and-date-find-out.html" target="_blank" rel="noopener">Linux Find Out Last System Reboot Time and Date Command</a></p>
+<p>[2] <a href="https://stackoverflow.com/questions/726690/what-killed-my-process-and-why" target="_blank" rel="noopener">What killed my process and why?</a></p>
+<p>[3] <a href="https://www.tecmint.com/set-limits-on-user-processes-using-ulimit-in-linux/" target="_blank" rel="noopener">How to Set Limits on User Running Processes in Linux</a></p>
+<p>[4] <a href="https://wiki.archlinux.org/index.php/Swap#Swap_file" target="_blank" rel="noopener">ArchWiki - Swap#Swap file</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/03/31/linux-archlinux-windows-dual-boot/" rel="prev" title="Arch Linux + Windows 双系统安装">
+      <i class="fa fa-chevron-left"></i> Arch Linux + Windows 双系统安装
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/04/03/howto-verify-a-gpg-signature/" rel="next" title="howto-verify-a-gpg-signature">
+      howto-verify-a-gpg-signature <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0-nbsp-nbsp-nbsp-nbsp-主机配置"><span class="nav-text">0    主机配置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-nbsp-nbsp-nbsp-nbsp-症状"><span class="nav-text">1    症状</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-nbsp-nbsp-nbsp-nbsp-猜测"><span class="nav-text">2    猜测</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-nbsp-nbsp-nbsp-nbsp-探索"><span class="nav-text">3    探索</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-nbsp-nbsp-nbsp-nbsp-为什么会用这么多内存？"><span class="nav-text">3.1    为什么会用这么多内存？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-nbsp-nbsp-nbsp-nbsp-使用交换分区-交换文件"><span class="nav-text">3.2    使用交换分区 / 交换文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-nbsp-nbsp-nbsp-nbsp-限制资源使用"><span class="nav-text">3.3    限制资源使用</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-nbsp-nbsp-nbsp-nbsp-结语"><span class="nav-text">4    结语</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-text">参考</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Han Qi</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">232</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">73</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">36</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Han Qi</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://muse.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.7.2
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>

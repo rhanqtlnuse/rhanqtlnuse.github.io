@@ -28,7 +28,7 @@
 <meta property="og:site_name" content="RHANQTL">
 <meta property="og:description" content="解释 MySQL 中各种索引的含义">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-03-18T07:44:10.625Z">
+<meta property="og:updated_time" content="2020-04-04T17:57:10.236Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="高性能 MySQL | 各种类型的索引">
 <meta name="twitter:description" content="解释 MySQL 中各种索引的含义">
@@ -192,10 +192,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-03-18 14:33:09 / 修改时间：15:44:10" itemprop="dateCreated datePublished" datetime="2020-03-18T14:33:09+08:00">2020-03-18</time>
+              <time title="创建时间：2020-03-18 14:33:09" itemprop="dateCreated datePublished" datetime="2020-03-18T14:33:09+08:00">2020-03-18</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-04-05 01:57:10" itemprop="dateModified" datetime="2020-04-05T01:57:10+08:00">2020-04-05</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -230,15 +236,15 @@
 <p>哈希索引</p>
 <p>全文索引</p>
 <p>空间索引（R-Tree）</p>
-<p>聚簇索引 vs. 非聚簇索引</p>
-<p>主键索引 vs. 二级索引</p>
+<p><strong>聚簇索引 vs. 非聚簇索引</strong></p>
+<p><strong>主键索引 vs. 二级索引（非主键索引）</strong></p>
 <p>InnoDB 的二级索引使用主键作为行指针</p>
-<p>覆盖索引</p>
+<p><strong>覆盖索引</strong></p>
 <p>如果一个索引包含（或者说覆盖）所有需要查询的字段的值，我们就称之为“覆盖索引”</p>
 <p>因为哈希索引、空间索引和全文索引都不存储索引列的值，所以 MySQL 只能使用 B+ 树索引做覆盖索引</p>
 <p>如果查询时被索引覆盖的查询，在 EXPLAIN 的 Extra 列可以看到“Using index”</p>
-<p>重复索引</p>
-<p>冗余索引</p>
+<p><strong>重复索引</strong></p>
+<p><strong>冗余索引</strong></p>
 
     </div>
 
@@ -338,7 +344,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">226</span>
+          <span class="site-state-item-count">232</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

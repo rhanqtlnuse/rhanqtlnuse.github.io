@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.8.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="关于代码构造的一篇文章，原作者 Martin Fowler">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【译】To Be Explicit">
+<meta property="og:url" content="http://yoursite.com/2020/04/05/soft-eng-to-be-explicit/index.html">
+<meta property="og:site_name" content="RHANQTL">
+<meta property="og:description" content="关于代码构造的一篇文章，原作者 Martin Fowler">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-04-06T15:10:26.038Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【译】To Be Explicit">
+<meta name="twitter:description" content="关于代码构造的一篇文章，原作者 Martin Fowler">
+
+<link rel="canonical" href="http://yoursite.com/2020/04/05/soft-eng-to-be-explicit/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
+  };
+</script>
+
+  <title>【译】To Be Explicit | RHANQTL</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">RHANQTL</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">上下求索</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>站点地图</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/05/soft-eng-to-be-explicit/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【译】To Be Explicit
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-04-05 06:39:48" itemprop="dateCreated datePublished" datetime="2020-04-05T06:39:48+08:00">2020-04-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-04-06 23:10:26" itemprop="dateModified" datetime="2020-04-06T23:10:26+08:00">2020-04-06</time>
+              </span>
+
+          
+            <div class="post-description">关于代码构造的一篇文章，原作者 Martin Fowler</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><strong>原作者：<a href="https://martinfowler.com/" target="_blank" rel="noopener">Martin Fowler</a></strong></p>
+<p><a href="https://pdfs.semanticscholar.org/e92a/b9ee2bc15fb92f7547e5c6c7feb3f6b5f445.pdf" target="_blank" rel="noopener">原文链接</a></p>
+<p>对于构造某件事物而言，软件是一个奇怪的媒介。因为几乎没有什么物理因素使你按照某种方式设计，许多设计决策违背了任何形式的客观分析。设计的重要性并不在于软件如何运行，而在于它有多容易变更 (change)。当软件如何运行重要时，易变更性 (ease of change) 会是保证良好性能的最大因素。</p>
+<p>来自可变更性 (changeability) 的驱动力是为什么设计清楚地展示程序做了什么 —— 以及如何做 —— 如此重要的原因。毕竟，在不了解一件事物做了什么的情况下，修改它是很困难的。由此产生的一个有趣的必然结果是，人们通常使用特定的设计，因为这些设计容易变更，但是当他们使得程序难以理解时，效果却会与期望相反。</p>
+<p><strong>属性 (Attribute) 和字典 (Dictionary)</strong></p>
+<p>假设我们想要一个 person 数据结构。我们可以通过设定特定的字段 (field) 来完成这件事，如下面的 Ruby 代码所示。</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span></span></span><br><span class="line">  <span class="comment"># 译者注：自动生成列出的属性的 getter/setter</span></span><br><span class="line">  <span class="comment"># 译者注：前面加 `:` 表示这是一个“符号”，可以理解为不可变的字符串字面量</span></span><br><span class="line">  <span class="keyword">attr_accessor</span> <span class="symbol">:lastName</span>, <span class="symbol">:firstName</span>, <span class="symbol">:numberOfDependents</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">frag1</span></span></span><br><span class="line">  <span class="comment"># 译者注：调用方法时括号不是必须的，这叫“poetry mode”</span></span><br><span class="line">  martin = Person.new</span><br><span class="line">  <span class="comment"># 译者注：实际上是在调用 setter</span></span><br><span class="line">  martin.firstName = <span class="string">"Martin"</span></span><br><span class="line">  martin.lastName = <span class="string">"Fowler"</span></span><br><span class="line">  martin.numberOfDependents = <span class="number">1</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># 译者注：实际上是在调用 getter</span></span><br><span class="line">  print (martin.firstName, <span class="string">" "</span>, </span><br><span class="line">         martin.lastName, <span class="string">" has "</span>,</span><br><span class="line">         martin.numberOfDependents, <span class="string">" dependents"</span>)</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>当然，为了让这种方式能够工作，我们必须在 <code>Person</code> 类中定义变量。就像许多现代语言一样，Ruby 提供了一个“字典”数据结构（也被称为“映射” (map)、“关联数组” (associative array) 或“散列表” (hash table)）。我们可以在 Ruby 中以如下的方式定义 <code>Person</code> 类（这样更慢，但是假设这段代码不是性能攸关 (performance critical) 的）。</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span></span></span><br><span class="line">  <span class="keyword">attr_accessor</span> <span class="symbol">:data</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># 译者注：构造方法</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">initialize</span></span></span><br><span class="line">    <span class="comment"># 译者注：标识符前有“@”表示这是一个成员变量</span></span><br><span class="line">    <span class="comment"># 译者注：&#123;&#125; 表示空的散列表</span></span><br><span class="line">    @data = &#123;&#125;</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">frag2</span></span></span><br><span class="line">  martin = Person.new</span><br><span class="line">  martin.data[<span class="string">"firstName"</span>] = <span class="string">"Martin"</span></span><br><span class="line">  martin.date[<span class="string">"lastName"</span>] = <span class="string">"Fowler"</span></span><br><span class="line">  martin.date[<span class="string">"numberOfDependents"</span>] = <span class="number">1</span></span><br><span class="line"></span><br><span class="line">  print (martin.data[<span class="string">"firstName"</span>], <span class="string">" "</span>, </span><br><span class="line">         martin.data[<span class="string">"lastName"</span>], <span class="string">" has "</span>,</span><br><span class="line">         martin.data[<span class="string">"numberOfDependents"</span>], <span class="string">" dependents"</span>)</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>使用字典相当有吸引力，因为它让你在不变更 <code>Person</code> 类定义的情况下变更存入某个 <code>Person</code> 对象的数据。如果你想增加一个电话号码，可以在不更改原始代码的情况下做到。</p>
+<p>然而，字典并没有使得修改代码更加容易。如果我想要使用 <code>Person</code> 对象，我无法明确其中都有什么。我必须查看整个系统的代码才能知道某人保存了家属 (dependent) 的数量。如果家属的数量在类中显式地声明，我只需看 <code>Person</code> 类的代码就能够了解它都支持什么操作。</p>
+<p>关键的原则是明确 (explicit) 的代码更加容易理解 —— 也使得修改代码更加容易。就像 Kent Beck 所说，明确的代码能够表明作者的意图（译者注：原文是“the explicit code is intention revealing”）。</p>
+<p>这个字典示例规模很小，但是其中的原则对于几乎任何规模的软件设计都成立。</p>
+<p><strong>事件 (Event) 和明确的调用 (Call)</strong></p>
+<p>下面有另一个规模稍微大一点的例子。为了在不同的模块 (module) 之间通信 (communicate)，许多平台都支持“事件”这样的概念。假设我们有一个预定 (reservation) 模块，当预定被取消时，需要获得 person 模块，并向那个人发送一封电子邮件。</p>
+<p>我们可以使用事件完成这件事，如下面的代码所示</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">public delegate void ReservationHandler(IReservation source);</span><br><span class="line"></span><br><span class="line">public class Reservation &#123;</span><br><span class="line">  public String Id;</span><br><span class="line">  public event ReservationHandler Cancelled;</span><br><span class="line">  public Person client &#123;</span><br><span class="line">    get &#123;</span><br><span class="line">      return client;</span><br><span class="line">    &#125;</span><br><span class="line">    set &#123;</span><br><span class="line">      value.AddReservation(this);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  public void Cancel() &#123;</span><br><span class="line">    Cancelled(this);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class Person &#123;</span><br><span class="line">  public String EmailAddress;</span><br><span class="line">  public readonly ArrayList reservations;</span><br><span class="line">  </span><br><span class="line">  public void SendCancellationMessage(Reservation arg) &#123;</span><br><span class="line">    // 发送一条消息</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  public void AddReservation(Reservation arg) &#123;</span><br><span class="line">    // invoke SendCancellationMessage when the cancelled event occurs on arg</span><br><span class="line">    arg.Cancelled += new ReservationHandler(SendCancellationMessage);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们可以定义影响一个预定的有趣的事件，任何在一个事件发生时想要做任何事情的对象都能够创建一个处理器 (handler) 对事件做出响应。这个办法很有吸引力，因为你不需要修改 <code>Reservation</code>  类来在取消一个预定时让某些其他的事情发生。只要其他对象设置了这个事件的处理器，就可以很容易的在这些时候扩展行为。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public class Reservation &#123;</span><br><span class="line">  public String Id;</span><br><span class="line">  public Person client;</span><br><span class="line"></span><br><span class="line">  public void Cancel() &#123;</span><br><span class="line">    client.SendCancellationMessage(this);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然而，使用事件是有代价的 —— 仅仅通过阅读 <code>Cancel</code> 方法的代码，我无法了解在取消预定时发生了什么。为了查明到底发生了什么，我必须得搜索所有对这个事件有 handler 的代码。明确的代码清楚地显示了 <code>Cancel</code> 方法中取消预订的影响，代价就是，当我需要变更行为时，必须修改 <code>Reservation</code> 类的代码。</p>
+<p>我见过一些大量使用时间的代码，问题就是很难确定当你调用方法时程序做了什么。而在调试的时候，这会变得非常难受 —— 行为会突然出现在你意想不到的地方。</p>
+<p>我并不是说你不应该使用事件。事件让你在不变更类的前提下执行行为，在使用无法修改的库类时这会很有用。另外，使用事件的方式不会在事件的触发者和事件的响应者之间建立依赖关系，这使得这种方式很有价值。当两个类在不同的包，并且你不想增加依赖时，这中没有依赖的方式很有用。经典的案例是，当你想要当你想要修改表现层中一个窗口的时候。事件让你在保留领域对象和表现层的至关重要的分离的情况下实现。</p>
+<p>这些因素都暗示应该使用事件，但是当这些都不成立的时候，明确性的缺乏就成了更主要的。因此，在两个应用类 (application class) 能够了解彼此的时候，我不愿意使用事件在他们之间进行通信。</p>
+<p>如你所见，明确性并不总是影响设计决策的最主要因素。在这个例子中，包和依赖因素也都很重要。人们经常低估明确性的价值。有时我会增加依赖让代码更加明确，但是每种情况都有自己的权衡点 —— 设计一贯如此。</p>
+<p><strong>数据驱动 (Data-Driven) 代码和明确的子类 (Subclass)</strong></p>
+<p>最后我们来看一个规模更大一点的例子。考虑使用不同的打折计划 (plan) 的订单打折方案 (scheme)：</p>
+<ul>
+<li>Blue plan: 如果你从特定的一组供应商购买商品，并且金额超过一个阈值的时候，获得 150 美元的折扣</li>
+<li>Red plan: 如果配送到美国某些指定的州，获得 10% 的折扣</li>
+</ul>
+<p>下面的代码展示了明确的版本：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">public class Order &#123;</span><br><span class="line">  public Decimal BaseAmount;</span><br><span class="line">  public String Supplier;</span><br><span class="line">  public String DeliveryState;</span><br><span class="line">  public Discounter Discounter;</span><br><span class="line">  public virtual Decimal Discount &#123;</span><br><span class="line">    get &#123;</span><br><span class="line">      return Discounter.Value(this);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">abstract public class Discounter &#123;</span><br><span class="line">  // 译者注：返回折扣金额</span><br><span class="line">  abstract public Decimal Value(Order order);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class BlueDiscounter : Discounter &#123;</span><br><span class="line">  public readonly IList DiscountedSuppliers = new ArrayList();</span><br><span class="line">  public Decimal Threshold = 500m;</span><br><span class="line"></span><br><span class="line">  public void AddDiscountedSupplier(String arg) &#123;</span><br><span class="line">    DiscountedSuppliers.Add(arg);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  public override Decimal Value(Order order) &#123;</span><br><span class="line">    return (DiscountApplies(order)) ? 150 : 0;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  private Boolean DiscountApplies(Order order) &#123;</span><br><span class="line">    return DiscountedSuppliers.Contains(order.Supplier) &amp;&amp; order.BaseAmount &gt; Threshold;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class RedDiscounter : Discounter &#123;</span><br><span class="line">  public readonly IList DiscountedStates = new ArrayList();</span><br><span class="line"></span><br><span class="line">  public void AddDiscountedState (String arg) &#123;</span><br><span class="line">    DiscountedStates.Add(arg);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  public override Decimal Value(Order order) &#123;</span><br><span class="line">    return (DiscountedStates.Contains(order.DeliveryState)) ? order.BaseAmount * 0.1m : 0;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// to set up a blue order</span><br><span class="line">BlueDiscounter bluePlan = new BlueDiscounter();</span><br><span class="line">bluePlan.AddDiscountedSupplier(&quot;ieee&quot;);</span><br><span class="line">blue = new Order();</span><br><span class="line">blue.Discounter = bluePlan;</span><br><span class="line">blue.BaseAmount = 500;</span><br><span class="line">blue.Supplier = &quot;ieee&quot;;</span><br></pre></td></tr></table></figure>
+<p>订单持有 Discounter 的引用，在代码中明确地写出了 Discounter 的分别对应于 Blue 和 Red 的子类。数据驱动的版本如下所示，其中使用了更泛化 (generic) 的 Discounter，在订单创建时使用数据建立：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line">public class GenericOrder : Order &#123;</span><br><span class="line">  public Discounter Discounter;</span><br><span class="line">  public override Decimal Discount &#123;</span><br><span class="line">    get &#123;</span><br><span class="line">      return Discounter.Value(this);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public enum DiscountType &#123; constant, proportional &#125;;</span><br><span class="line"></span><br><span class="line">public class Discounter &#123;</span><br><span class="line">  public DiscountType Type;</span><br><span class="line">  public IList DiscountedValues;</span><br><span class="line">  public String PropertyNameForInclude;</span><br><span class="line">  public String PropertyNameForCompare;</span><br><span class="line">  public Decimal CompareThreshold;</span><br><span class="line">  public Decimal Amount;</span><br><span class="line">  public Decimal Value(GenericOrder order) &#123;</span><br><span class="line">    if (ShouldApplyDiscount(order)) &#123;</span><br><span class="line">      if (Type == DiscountType.constant)</span><br><span class="line">        return Amount;</span><br><span class="line">      if (Type == DiscountType.proportional)</span><br><span class="line">        return Amount * order.BaseAmount;</span><br><span class="line">      throw new Exception (&quot;Unreachable Code reached&quot;);</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      return 0;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  private Boolean ShouldApplyDiscount(Order order) &#123;</span><br><span class="line">    return PassesContainTest(order) &amp;&amp; PassesCompareTest(order);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  private Boolean PassesContainTest(Order order) &#123;</span><br><span class="line">    return DiscountedValues.Contains(GetPropertyValue(order, PropertyNameForInclude));</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  private Boolean PassesCompareTest(Order order) &#123;</span><br><span class="line">    if (PropertyNameForCompare == null) &#123;</span><br><span class="line">      return true;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      Decimal compareValue = (Decimal) GetPropertyValue(order, PropertyNameForCompare);</span><br><span class="line">      return compareValue &gt; CompareThreshold;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  private Object GetPropertyValue(Order order, String propertyName) &#123;</span><br><span class="line">    FieldInfo fi = typeof(Order).GetField(propertyName);</span><br><span class="line">    if (fi == null)</span><br><span class="line">      throw new Exception(&quot;unable to find field for &quot; + propertyName);</span><br><span class="line">    return fi.GetValue(order);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//to set up a blue order</span><br><span class="line">GenericDiscounter blueDiscounter = new GenericDiscounter();</span><br><span class="line">String[] suppliers = &#123; &quot;ieee&quot; &#125;;</span><br><span class="line">blueDiscounter.DiscountedValues = suppliers;</span><br><span class="line">blueDiscounter.PropertyNameForInclude = &quot;Supplier&quot;;</span><br><span class="line">blueDiscounter.Amount = 150;</span><br><span class="line">blueDiscounter.PropertyNameForCompare = &quot;BaseAmount&quot;;</span><br><span class="line">blueDiscounter.CompareThreshold = 500m;</span><br><span class="line">blueDiscounter.Type = DiscountType.constant;</span><br><span class="line">blue = new Order();</span><br><span class="line">blue.BaseAmount = 500;</span><br><span class="line">blue.Discounter = blueDiscounter;</span><br></pre></td></tr></table></figure>
+<p>通用折扣器的优点是，如果新类符合通用行为，则无需编写代码即可创建新的折扣器。为了说明观点，我们假设他们可以。通用案例总是最佳选择吗？不，再次是因为明确。显式子类更易于阅读，并且更易于理解行为。对于通用案例，您必须查看通用代码和设置代码，很难看到正在发生的事情，对于更复杂的行为则更难。当然，我们可以扩展通用顺序而无需“编程”，但是我认为配置数据是编程的一种形式。调试和测试通常都是困难的，并且由于数据驱动的行为而被忽略。</p>
+<p>// TODO</p>
+<p>在设计中，明确性并不是绝对要求，但是聪明的设计常常因不够明确而变得难以使用。在某些情况下，付出的代价是值得的，但总要考虑一下。在过去的几年中，我倾向于选择更明确的设计，因为我对好的设计的看法已经发展（希望是朝着正确的方向）。</p>
+<blockquote>
+<p><strong>译者注</strong></p>
+<p>总结一下这篇文章的观点。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>明确的代码</th>
+<th>不明确的代码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>优点</strong></td>
+<td>更容易理解<br>效率可能更高</td>
+<td>灵活</td>
+</tr>
+<tr>
+<td><strong>缺点</strong></td>
+<td>不够灵活</td>
+<td>难以理解<br>效率可能更差</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>另外，使用字典表示对象并且键为字符串时，可能会因输错字符串而产生一些意想不到的错误（毕竟不是所有的语言都像 Ruby / Lisp 一样有“符号”这样的数据类型（定义字符串常量似乎也不太现实，）。不过，完备的测试能够解决这个问题）。</p>
+<p>最终还是要根据<strong>具体的需求</strong>选择合适的方法。</p>
+<p>可以看看<a href="https://mp.weixin.qq.com/s/AdtUX9davFH-C60gBypnoA" target="_blank" rel="noopener">这篇文章</a>以及评论。</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/04/03/howto-verify-a-gpg-signature/" rel="prev" title="howto-verify-a-gpg-signature">
+      <i class="fa fa-chevron-left"></i> howto-verify-a-gpg-signature
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/04/05/others-raid/" rel="next" title="others-raid">
+      others-raid <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Han Qi</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">232</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">73</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">36</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Han Qi</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://muse.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.7.2
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>
