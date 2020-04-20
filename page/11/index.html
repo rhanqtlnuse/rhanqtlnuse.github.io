@@ -165,6 +165,511 @@
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/03/os-file-system-part-2/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/06/03/os-file-system-part-2/" class="post-title-link" itemprop="url">操作系统笔记 - 文件系统 (Part II)</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2019-06-03 19:02:05 / 修改时间：19:14:18" itemprop="dateCreated datePublished" datetime="2019-06-03T19:02:05+08:00">2019-06-03</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/操作系统-Operating-System/" itemprop="url" rel="index"><span itemprop="name">操作系统 (Operating System)</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>其实有一个很常见的场景，就是把 U 盘插到电脑上，以 Windows 为例，U 盘使用 FAT32 文件系统，而 Windows 使用 NTFS 文件系统，他们之间是如何实现用户层面的统一的呢？答案就是 VFS。</p>
+<p>其实有一个很常见的场景，就是把 U 盘插到电脑上，以 Windows 为例，U 盘使用 FAT32 文件系统，而 Windows 使用 NTFS 文件系统，他们之间是如何实现用户层面的统一的呢？答案就是 VFS。</p>
+<p>当我们想要从电脑中拷贝一些文件的时候，我们会把 U 盘插到电脑上，然后复制 + 粘贴，等待数据传输完成就好了。那如果现在说，以 Windows 为例，U 盘使用 FAT32 文件系统，而 Windows 使用 NTFS 文件系统，他们之间是如何实现用户层面的统一的呢？答案就是 VFS。</p>
+<h1 id="什么是虚拟文件系统？"><a href="#什么是虚拟文件系统？" class="headerlink" title="什么是虚拟文件系统？"></a>什么是虚拟文件系统？</h1><p>虚拟文件系统（Virtual File System，VFS），是为了屏蔽具体的文件系统实现而产生的抽象层。</p>
+<p>我们平时所称的“文件系统”，仅仅是一个宽泛的概念，实际上有多种具体的实现，比如 Linux 中常用的 ext4、Windows 的 NTFS、U 盘常用的 FAT32，甚至 Hadoop 的 HDFS 也算一种实现。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/03/os-file-system-part-1/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/06/03/os-file-system-part-1/" class="post-title-link" itemprop="url">操作系统笔记 - 文件系统 (Part I)</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2019-06-03 17:50:31 / 修改时间：19:28:14" itemprop="dateCreated datePublished" datetime="2019-06-03T17:50:31+08:00">2019-06-03</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/操作系统-Operating-System/" itemprop="url" rel="index"><span itemprop="name">操作系统 (Operating System)</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>按照自顶向下的方式，首先介绍文件系统的基本概念以及组织形式；然后向底层迈进一步，介绍虚拟文件系统；最后，介绍磁盘以及文件是如何在磁盘上存储的。</p>
+<h1 id="什么是文件？"><a href="#什么是文件？" class="headerlink" title="什么是文件？"></a>什么是文件？</h1><p>简单来说，文件就是比特位/字节的序列。</p>
+<p>根据组织形式，文件分很多种：</p>
+<ul>
+<li><p>流式文件：比特位/字节的序列，比如最常见的文本文件</p>
+</li>
+<li><p>记录式文件：文件中的数据有一定的逻辑结构，比如 ELF 文件、MIDI 文件等等</p>
+<img src="/2019/06/03/os-file-system-part-1/elf-arch.jpg">
+</li>
+</ul>
+<p>在 Linux 中，“文件”是一个很广泛的概念，具体包括以下几种：</p>
+<ul>
+<li>普通文件</li>
+<li>目录文件</li>
+<li>符号链接文件</li>
+<li>设备文件（特殊文件）<ul>
+<li>字符设备文件</li>
+<li>块设备文件</li>
+</ul>
+</li>
+<li>管道文件</li>
+<li>Socket 文件</li>
+</ul>
+<h1 id="什么是目录？"><a href="#什么是目录？" class="headerlink" title="什么是目录？"></a>什么是目录？</h1><h1 id="什么是文件系统？"><a href="#什么是文件系统？" class="headerlink" title="什么是文件系统？"></a>什么是文件系统？</h1><p>文件系统是文件的集合。</p>
+<p>最早的文件系统就是一个集合，只有一层，所有的文件在同一个命名空间中。这带来一些问题：</p>
+<ul>
+<li>最基本的，如果出现了命名冲突怎么办？比如，用户 esr 有一个名叫“main.c”的文件，而用户 rms 也有一个名为“main.c”的文件，该如何区分呢？</li>
+<li>另外，将所有用户的所有文件放在一处，会出现安全性、私密性的问题。</li>
+</ul>
+<p>后来，人们发明了当今使用最广泛的文件系统的层次结构，解决了上面的问题：</p>
+<ul>
+<li>不同文件有不同的命名空间，比如 esr 的“main.c”可以放在 /home/esr/ 目录下，rms 的同名文件可以放在 /home/rms/ 目录下，这样文件的全名实际上分别是 /home/esr/main.c 和 /home/rms/main.c，但是并不总是需要输入全名</li>
+<li>不同的用户有自己的主目录，可以很方便地进行权限管理，增强了安全保障</li>
+</ul>
+<h2 id="绝对路径和相对路径"><a href="#绝对路径和相对路径" class="headerlink" title="绝对路径和相对路径"></a>绝对路径和相对路径</h2><p>在 Linux（UNIX 家族）中，绝对路径就是以“/”开始的路径名，比如上面的“/home/esr/main.c”，相对路径则相反。</p>
+<p>在 Windows 中，绝对路径就是以盘符开始的路径名，比如“C:\Users\esr”，相对路径相反。</p>
+<h3 id="路径分隔符"><a href="#路径分隔符" class="headerlink" title="路径分隔符"></a>路径分隔符</h3><p>细心的人刚才一定注意到了一个问题：Linux（UNIX 家族）和 Windows 用于分隔目录名的符号不相同 —— Linux（UNIX 家族）是“/”，而 Windows 是“\”。</p>
+<p>为什么会有这样的不同呢？</p>
+<blockquote>
+<p><a href="https://link.zhihu.com/?target=https%3A//en.wikipedia.org/wiki/MS-DOS" target="_blank" rel="noopener">MS-DOS</a> 2.0, released 1983, copied the hierarchical file system from Unix and thus used the (forward) <a href="https://link.zhihu.com/?target=https%3A//en.wikipedia.org/wiki/Slash_%2528punctuation%2529" target="_blank" rel="noopener">slash</a>,  but (possibly on the insistence of IBM) added the backslash to allow  paths to be typed at the command line interpreter’s prompt while  retaining compatibility with MS-DOS 1.0 and <a href="https://link.zhihu.com/?target=https%3A//en.wikipedia.org/wiki/CP/M" target="_blank" rel="noopener">CP/M</a> where the slash was the command-line option indicator (typing “DIR/W” gave the “wide” option to the “<a href="https://link.zhihu.com/?target=https%3A//en.wikipedia.org/wiki/DIR_%2528command%2529" target="_blank" rel="noopener">DIR</a>“ command, so some other method was needed if you actually wanted to run a program called W inside a directory called DIR). Except for <a href="https://link.zhihu.com/?target=https%3A//en.wikipedia.org/wiki/COMMAND.COM" target="_blank" rel="noopener">COMMAND.COM</a>, all other parts of the operating system accept both characters in a <a href="https://link.zhihu.com/?target=https%3A//en.wikipedia.org/wiki/Path_%2528computing%2529" target="_blank" rel="noopener">path</a>, but the Microsoft convention remains to use a backslash, and <a href="https://link.zhihu.com/?target=https%3A//en.wikipedia.org/wiki/Application_programming_interface" target="_blank" rel="noopener">APIs</a> that <em>return</em> paths use backslashes. This holds true for MS-DOS and <a href="https://link.zhihu.com/?target=https%3A//en.wikipedia.org/wiki/PC_DOS" target="_blank" rel="noopener">PC DOS</a>, but also all other DOS operating systems like <a href="https://link.zhihu.com/?target=https%3A//en.wikipedia.org/wiki/DR-DOS" target="_blank" rel="noopener">DR-DOS</a>, <a href="https://link.zhihu.com/?target=https%3A//en.wikipedia.org/wiki/PTS-DOS" target="_blank" rel="noopener">PTS-DOS</a>, <a href="https://link.zhihu.com/?target=https%3A//en.wikipedia.org/w/index.php%3Ftitle%3DRxDOS%26action%3Dedit%26redlink%3D1" target="_blank" rel="noopener">RxDOS</a> or <a href="https://link.zhihu.com/?target=https%3A//en.wikipedia.org/wiki/FreeDOS" target="_blank" rel="noopener">FreeDOS</a> as well as to <a href="https://link.zhihu.com/?target=https%3A//en.wikipedia.org/wiki/Concurrent_DOS" target="_blank" rel="noopener">Concurrent DOS</a>, <a href="https://link.zhihu.com/?target=https%3A//en.wikipedia.org/wiki/Multiuser_DOS" target="_blank" rel="noopener">Multiuser DOS</a>, <a href="https://link.zhihu.com/?target=https%3A//en.wikipedia.org/wiki/FlexOS" target="_blank" rel="noopener">FlexOS</a>, <a href="https://link.zhihu.com/?target=https%3A//en.wikipedia.org/wiki/4680_OS" target="_blank" rel="noopener">4680 OS</a>, <a href="https://link.zhihu.com/?target=https%3A//en.wikipedia.org/wiki/4690_OS" target="_blank" rel="noopener">4690 OS</a>, <a href="https://link.zhihu.com/?target=https%3A//en.wikipedia.org/wiki/OS/2" target="_blank" rel="noopener">OS/2</a> and <a href="https://link.zhihu.com/?target=https%3A//en.wikipedia.org/wiki/Windows" target="_blank" rel="noopener">Windows</a>. In some versions of DOS, the option character can be changed from / to - via <a href="https://link.zhihu.com/?target=https%3A//en.wikipedia.org/wiki/SWITCHAR" target="_blank" rel="noopener">SWITCHAR</a>, which allows COMMAND.COM to preserve / in the command name. [1]</p>
+</blockquote>
+<p>概括一下：最早要追溯到第一个 PC 操作系统 CP/M，当时的文件系统还没有“目录”的概念，所以 CP/M 的命令行工具就用 <code>/</code> 作为选项的标志字，DOS 则延续了这一点，这时已经有了目录的概念，DOS 很可能为了跟其区分就用 <code>\</code> 作为路径分隔符，而作为 DOS 继承者的 Windows 自然也就这么延续下来了。</p>
+<h1 id="文件系统的组织形式"><a href="#文件系统的组织形式" class="headerlink" title="文件系统的组织形式"></a>文件系统的组织形式</h1><p>现代最广泛的文件系统组织形式就是层次结构，以 Linux 为例：</p>
+<img src="/2019/06/03/os-file-system-part-1/fhs.jpg">
+<p><a href="">FHS</a></p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p>[1] <a href="https://link.zhihu.com/?target=https%3A//en.wikipedia.org/wiki/Backslash" target="_blank" rel="noopener">Wikipedia - Backslash</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/03/os-intro/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/06/03/os-intro/" class="post-title-link" itemprop="url">操作系统笔记 - 引言</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2019-06-03 17:49:05 / 修改时间：19:08:04" itemprop="dateCreated datePublished" datetime="2019-06-03T17:49:05+08:00">2019-06-03</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/操作系统-Operating-System/" itemprop="url" rel="index"><span itemprop="name">操作系统 (Operating System)</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <a id="more"></a>
+<p>现代操作系统的核心是进程，而由“进程管理”这一话题我们可以比较自然地引申出其他几个重要的部分：</p>
+<ul>
+<li>为了持久化数据，<strong>文件系统</strong></li>
+<li>进程切换，提高 CPU 利用率，涉及到<strong>中断与 I/O</strong></li>
+<li>为了安全，引入了虚拟内存，就涉及到了<strong>内存管理</strong></li>
+</ul>
+<p>这份笔记就按照“文件系统 —— 中断与 I/O —— 内存管理 —— 进程管理”的顺序来组织。</p>
+<h1 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h1><ul>
+<li>文件系统<ul>
+<li><a href="https://blog.rhanqtl.com/2019/06/03/os-file-system-part-1/" target="_blank" rel="noopener">Part I: 文件系统的基本概念以及组织形式</a></li>
+<li><a href="https://blog.rhanqtl.com/2019/06/03/os-file-system-part-2/" target="_blank" rel="noopener">Part II</a></li>
+<li><a href="https://blog.rhanqtl.com/2019/06/03/os-file-system-part-3/" target="_blank" rel="noopener">Part III</a></li>
+</ul>
+</li>
+<li>中断与 I/O</li>
+<li>内存管理</li>
+<li>进程管理</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/02/others-sicp-7a/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/06/02/others-sicp-7a/" class="post-title-link" itemprop="url">Lecture 7a：元循环求值器 I</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2019-06-02 20:17:07 / 修改时间：20:41:23" itemprop="dateCreated datePublished" datetime="2019-06-02T20:17:07+08:00">2019-06-02</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong>Case dispatch</strong></p>
+<ul>
+<li>数值，比如 3，求值结果就是本身</li>
+<li>变量，比如 x，求值结果为环境中对应的值</li>
+<li>‘foo，在 eval 时已经被转换为 <code>(quote foo)</code> 的形式，求值结果为 foo 本身</li>
+<li>lambda 表达式，比如 <code>(lambda (x) (+ x y))</code>，转换为内部表示 <code>(closure ((x) (+ x y)) &lt;env&gt;)</code></li>
+<li>cond 表达式：<code>(cond (p1 e1) (p2 e2) ...)</code></li>
+<li>普通表达式，如 <code>(+ x 3)</code></li>
+</ul>
+<figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">define</span></span> eval</span><br><span class="line">  (<span class="name"><span class="builtin-name">lambda</span></span> (exp env)</span><br><span class="line">    (<span class="name"><span class="builtin-name">cond</span></span> ((<span class="name"><span class="builtin-name">number?</span></span> exp) exp)</span><br><span class="line">          ((<span class="name"><span class="builtin-name">symbol?</span></span> exp) (<span class="name">lookup</span> exp env))</span><br><span class="line">          ((<span class="name"><span class="builtin-name">eq?</span></span> (<span class="name"><span class="builtin-name">car</span></span> exp) <span class="symbol">'quote</span>) (<span class="name"><span class="builtin-name">cadr</span></span> exp))</span><br><span class="line">          ((<span class="name"><span class="builtin-name">eq?</span></span> (<span class="name"><span class="builtin-name">car</span></span> exp) <span class="symbol">'lambda</span>) (<span class="name"><span class="builtin-name">list</span></span> <span class="symbol">'closure</span> (<span class="name"><span class="builtin-name">cdr</span></span> exp) env))</span><br><span class="line">          ((<span class="name"><span class="builtin-name">eq?</span></span> (<span class="name"><span class="builtin-name">car</span></span> exp) <span class="symbol">'cond</span>) (<span class="name">evcond</span> (<span class="name"><span class="builtin-name">cdr</span></span> exp) env))</span><br><span class="line">          (<span class="name"><span class="builtin-name">else</span></span> (<span class="name"><span class="builtin-name">apply</span></span> (<span class="name"><span class="builtin-name">eval</span></span> (<span class="name"><span class="builtin-name">car</span></span> exp) env)</span><br><span class="line">                        (<span class="name">evlist</span> (<span class="name"><span class="builtin-name">cdr</span></span> exp) env))))))</span><br></pre></td></tr></table></figure>
+<p><strong>apply</strong></p>
+<figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">define</span></span> apply</span><br><span class="line">  (<span class="name"><span class="builtin-name">lambda</span></span> (proc args)</span><br><span class="line">    (<span class="name"><span class="builtin-name">cond</span></span> ((<span class="name">primitive?</span> proc)</span><br><span class="line">           (<span class="name">apply-primop</span> proc args))</span><br><span class="line">          ((<span class="name"><span class="builtin-name">eq?</span></span> (<span class="name"><span class="builtin-name">car</span></span> proc) <span class="symbol">'closure</span>)</span><br><span class="line">           (<span class="name"><span class="builtin-name">eval</span></span> (<span class="name">cadadr</span> proc)</span><br><span class="line">                 (<span class="name">bind</span> (<span class="name">caadr</span> proc)</span><br><span class="line">                       args</span><br><span class="line">                       (<span class="name">caddr</span> proc))))</span><br><span class="line">          (<span class="name"><span class="builtin-name">else</span></span> error))))</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/01/theory-of-computation-lambda-calculus/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/06/01/theory-of-computation-lambda-calculus/" class="post-title-link" itemprop="url">λ-演算</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-06-01 21:24:26" itemprop="dateCreated datePublished" datetime="2019-06-01T21:24:26+08:00">2019-06-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-25 14:58:31" itemprop="dateModified" datetime="2020-03-25T14:58:31+08:00">2020-03-25</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/计算理论-Theory-of-Computation/" itemprop="url" rel="index"><span itemprop="name">计算理论 (Theory of Computation)</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/计算理论-Theory-of-Computation/λ-演算-λ-Calculus/" itemprop="url" rel="index"><span itemprop="name">λ-演算 (λ-Calculus)</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>如题</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/06/01/theory-of-computation-lambda-calculus/">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/01/cpp-basic-reference/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/06/01/cpp-basic-reference/" class="post-title-link" itemprop="url">C++ 学习笔记 - 基础篇：引用</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2019-06-01 15:01:46 / 修改时间：15:20:18" itemprop="dateCreated datePublished" datetime="2019-06-01T15:01:46+08:00">2019-06-01</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/程序设计语言-Programming-Languages/" itemprop="url" rel="index"><span itemprop="name">程序设计语言 (Programming Languages)</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/程序设计语言-Programming-Languages/C/" itemprop="url" rel="index"><span itemprop="name">C++</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>本文详细介绍了 C++ 中的引用。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/06/01/cpp-basic-reference/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/30/cpp-resources-houjie/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -575,469 +1080,6 @@
   
   
 
-        
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/27/javascript-intro/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RHANQTL">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/05/27/javascript-intro/" class="post-title-link" itemprop="url">javascript-intro</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-05-27 21:51:47" itemprop="dateCreated datePublished" datetime="2019-05-27T21:51:47+08:00">2019-05-27</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-05-28 17:39:16" itemprop="dateModified" datetime="2019-05-28T17:39:16+08:00">2019-05-28</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/程序设计语言-Programming-Languages/" itemprop="url" rel="index"><span itemprop="name">程序设计语言 (Programming Languages)</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/程序设计语言-Programming-Languages/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="JavaScript-基本语法"><a href="#JavaScript-基本语法" class="headerlink" title="JavaScript 基本语法"></a>JavaScript 基本语法</h1><h2 id="声明提前"><a href="#声明提前" class="headerlink" title="声明提前"></a>声明提前</h2><p>使用 <code>var</code> 关键字声明/定义的变量和函数定义会被提前到代码的最前。</p>
-<h1 id="JavaScript-面向对象"><a href="#JavaScript-面向对象" class="headerlink" title="JavaScript 面向对象"></a>JavaScript 面向对象</h1><h1 id="DOM"><a href="#DOM" class="headerlink" title="DOM"></a>DOM</h1><h2 id="DOM-是什么？"><a href="#DOM-是什么？" class="headerlink" title="DOM 是什么？"></a>DOM 是什么？</h2><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Document_Object_Model/Introduction" target="_blank" rel="noopener">DOM 概述</a></p>
-<p>全称为 Document Object Model，文档对象模型。</p>
-<p>Document 即 HTML、XML 文档，Object 即，模型即关系。</p>
-<p>注意区分节点和元素！</p>
-<h2 id="文档的加载"><a href="#文档的加载" class="headerlink" title="文档的加载"></a>文档的加载</h2><p>浏览器加载文档时，是按照书写顺序执行的，所以如下的代码不能按照期望运行：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">            <span class="comment">// button 为 null</span></span></span><br><span class="line"><span class="javascript">            <span class="keyword">var</span> button = <span class="built_in">document</span>.getElementById(<span class="string">"button-1"</span>);</span></span><br><span class="line"><span class="javascript">            button.onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">                alert(<span class="string">"我是一个按钮"</span>);</span></span><br><span class="line"><span class="undefined">            &#125;    </span></span><br><span class="line"><span class="undefined">        </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">"button-1"</span>&gt;</span>点我<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<img src="/2019/05/27/javascript-intro/dom-text-order.png" title="Chrome 浏览器执行的结果">
-<p>可以为 <code>window.onload</code> 事件绑定一个事件处理器来解决这个问题。另外，我们希望加快页面的加载速度，所以可以将绑定事件的代码写在页面元素的代码之后。</p>
-<p><font color="red"><b>MORE</b></font> 这与声明提前是否冲突？</p>
-<h2 id="DOM-查询"><a href="#DOM-查询" class="headerlink" title="DOM 查询"></a>DOM 查询</h2><p><strong>注意：</strong>根据 DOM 标准，标签间的空白会被当成 Text <u>节点</u>，但是 IE8 及以下不会；而 <code>children</code> 属性则记录了所有的子<u>元素</u></p>
-<p>详见<a href="https://www.w3schools.com/js/js_htmldom_document.asp" target="_blank" rel="noopener">文档</a></p>
-<p><strong>全选练习</strong></p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>全选练习<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"checkbox"</span> <span class="attr">name</span>=<span class="string">"language"</span> <span class="attr">value</span>=<span class="string">"c"</span>/&gt;</span>C</span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"checkbox"</span> <span class="attr">name</span>=<span class="string">"language"</span> <span class="attr">value</span>=<span class="string">"cpp"</span>/&gt;</span>C++</span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"checkbox"</span> <span class="attr">name</span>=<span class="string">"language"</span> <span class="attr">value</span>=<span class="string">"java"</span>/&gt;</span>Java</span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"checkbox"</span> <span class="attr">name</span>=<span class="string">"language"</span> <span class="attr">value</span>=<span class="string">"python"</span>/&gt;</span>Python</span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"checkbox"</span> <span class="attr">name</span>=<span class="string">"language"</span> <span class="attr">value</span>=<span class="string">"haskell"</span>/&gt;</span>Haskell</span><br><span class="line">        <span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">"select-all"</span>&gt;</span>全选<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">"select-none"</span>&gt;</span>全不选<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">"de-select"</span>&gt;</span>反选<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">            <span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">                <span class="keyword">var</span> select_all_button = <span class="built_in">document</span>.getElementById(<span class="string">"select-all"</span>);</span></span><br><span class="line"><span class="javascript">                select_all_button.onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">                    <span class="keyword">var</span> checkboxes = <span class="built_in">document</span>.getElementsByName(<span class="string">"language"</span>);</span></span><br><span class="line"><span class="javascript">                    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; checkboxes.length; i++) &#123;</span></span><br><span class="line"><span class="javascript">                        checkboxes[i].checked = <span class="literal">true</span>;</span></span><br><span class="line"><span class="undefined">                    &#125;</span></span><br><span class="line"><span class="undefined">                &#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">                <span class="keyword">var</span> select_none_button = <span class="built_in">document</span>.getElementById(<span class="string">"select-none"</span>);</span></span><br><span class="line"><span class="javascript">                select_none_button.onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">                    <span class="keyword">var</span> checkboxes = <span class="built_in">document</span>.getElementsByName(<span class="string">"language"</span>);</span></span><br><span class="line"><span class="javascript">                    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; checkboxes.length; i++) &#123;</span></span><br><span class="line"><span class="javascript">                        checkboxes[i].checked = <span class="literal">false</span>;</span></span><br><span class="line"><span class="undefined">                    &#125;</span></span><br><span class="line"><span class="undefined">                &#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">                <span class="keyword">var</span> de_select_button = <span class="built_in">document</span>.getElementById(<span class="string">"de-select"</span>);</span></span><br><span class="line"><span class="javascript">                de_select_button.onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">                    <span class="keyword">var</span> checkboxes = <span class="built_in">document</span>.getElementsByName(<span class="string">"language"</span>);</span></span><br><span class="line"><span class="javascript">                    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; checkboxes.length; i++) &#123;</span></span><br><span class="line"><span class="undefined">                        checkboxes[i].checked = !checkboxes[i].checked;</span></span><br><span class="line"><span class="undefined">                    &#125;</span></span><br><span class="line"><span class="undefined">                &#125;</span></span><br><span class="line"><span class="undefined">            &#125;</span></span><br><span class="line"><span class="undefined">        </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/27/poj-2632/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RHANQTL">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/05/27/poj-2632/" class="post-title-link" itemprop="url">POJ 2632. Crashing Robots</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-05-27 19:31:23" itemprop="dateCreated datePublished" datetime="2019-05-27T19:31:23+08:00">2019-05-27</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-25 15:11:33" itemprop="dateModified" datetime="2020-03-25T15:11:33+08:00">2020-03-25</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><h1 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h1><p>这道题是一道很简单的题，需要注意的就是题目中的坐标是笛卡尔坐标，不能直接转换为数组索引。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/27/others-poj-categories/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RHANQTL">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/05/27/others-poj-categories/" class="post-title-link" itemprop="url">POJ 题目分类</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-05-27 19:27:48" itemprop="dateCreated datePublished" datetime="2019-05-27T19:27:48+08:00">2019-05-27</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-06-01 10:30:08" itemprop="dateModified" datetime="2019-06-01T10:30:08+08:00">2019-06-01</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><strong>声明：</strong>转自 <a href="https://www.cnblogs.com/upstart/p/6274521.html" target="_blank" rel="noopener">POJ 题目分类推荐</a>，有修改</p>
-<h1 id="初级"><a href="#初级" class="headerlink" title="初级"></a>初级</h1><h2 id="基本算法"><a href="#基本算法" class="headerlink" title="基本算法"></a>基本算法</h2><ul>
-<li>枚举：POJ 1753</li>
-<li>贪心：POJ 1328，POJ 2586</li>
-<li>构造：POJ 3295</li>
-<li>模拟：POJ 1068，<a href="https://blog.rhanqtl.com/2019/05/27/poj-2632/" target="_blank" rel="noopener">POJ 2632</a>，POJ 1573，POJ 2996，POJ 2993</li>
-</ul>
-<h1 id="中级"><a href="#中级" class="headerlink" title="中级"></a>中级</h1><h1 id="高级"><a href="#高级" class="headerlink" title="高级"></a>高级</h1>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/23/others-bool/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RHANQTL">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/05/23/others-bool/" class="post-title-link" itemprop="url">JavaScript 中布尔运算带来的启示</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-05-23 20:12:40" itemprop="dateCreated datePublished" datetime="2019-05-23T20:12:40+08:00">2019-05-23</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-11 08:09:52" itemprop="dateModified" datetime="2020-03-11T08:09:52+08:00">2020-03-11</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>今天学 JavaScript 时，布尔运算符的规则给我留下了比较深刻的印象，让我又思考了一下布尔运算和 “短路求值”。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/05/23/others-bool/">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/22/others-xml-json/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RHANQTL">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/05/22/others-xml-json/" class="post-title-link" itemprop="url">XML vs. JSON</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-05-22 19:17:10" itemprop="dateCreated datePublished" datetime="2019-05-22T19:17:10+08:00">2019-05-22</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-25 15:13:42" itemprop="dateModified" datetime="2020-03-25T15:13:42+08:00">2020-03-25</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>本文介绍两种常见的数据格式 —— XML 和 JSON，并进行对比</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/05/22/others-xml-json/">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/20/nlp-word2vec/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RHANQTL">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/05/20/nlp-word2vec/" class="post-title-link" itemprop="url">【译】A Beginner's Guide to Word2Vec and Neural Word Embeddings</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2019-05-20 11:02:24 / 修改时间：14:55:35" itemprop="dateCreated datePublished" datetime="2019-05-20T11:02:24+08:00">2019-05-20</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/自然语言处理-Natural-Language-Processing/" itemprop="url" rel="index"><span itemprop="name">自然语言处理 (Natural Language Processing)</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><strong>声明：</strong>翻译自 <a href="https://skymind.ai/wiki/word2vec" target="_blank" rel="noopener">A Beginner’s Guide to Word2Vec and Neural Word Embeddings</a></p>
-<h1 id="Word2Vec-和神经词嵌入入门指南"><a href="#Word2Vec-和神经词嵌入入门指南" class="headerlink" title="Word2Vec 和神经词嵌入入门指南"></a>Word2Vec 和神经词嵌入入门指南</h1><h2 id="Word2Vec-介绍"><a href="#Word2Vec-介绍" class="headerlink" title="Word2Vec 介绍"></a>Word2Vec 介绍</h2><p>Word2Vec 是一个处理文本的两层神经网络。它的输入是一个文本语料库，输出是一组向量：该语料库中单词的特征向量。虽然 Word2Vec 不是深度神经网络，但它将文本转换为深度神经网络可以理解的数值形式。Deeplearning4j 使用 Spark 和 GPU 为 Java 和 Scala 实现了一个分布式的 Word2Vec。</p>
-<p>Word2Vec 的应用场景并不局限于分析句子。它也可以应用于基因、代码、喜好、播放列表、社交媒体图以及其他可以辨别模式的语言或符号系列 (verbal or symbolic series)。</p>
-<p>为什么？因为单词就像上面提到的其他数据一样只是离散状态，我们只是在寻找这些状态之间的转换概率：它们共同发生 (co-occur) 的可能性。所以 gene2vec，like2vec 和 follower2vec 都是可能的。考虑到这一点，下面的教程会让你了解如何为各种离散和共现状态组创建神经嵌入。</p>
-<p>Word2Vec 的目的和用处是将向量空间中相似单词的向量划分为一组。也就是说，它以数学方式检测相似性。Word2Vec 创建的向量是单词特征 (feature) 的分布式 (distributed) 数字表示，这些特征包括单个单词的上下文等等。它在没有人为干预的情况下这样做（译者注：无监督）。</p>
-<p>有了足够的数据、用法和上下文，Word2Vec 可以根据过去的出现情况对单词的含义进行比较准确的猜测。这些猜测可用于建立单词之间的关联（例如 “男人” 之于 “男孩” 正如 “女人” 之于 “女孩”），或将文档聚类 (cluster) 并按主题对其进行分类。这些聚类可以构成搜索、情感分析和诸如科学研究、法律披露、电子商务和客户关系管理等多个领域的推荐的基础。</p>
-<p>Word2Vec 神经网络的输出是一个词汇表，其中每项都与一个向量相关联，这些向量可以被输入给深度学习网络或仅仅是被查询以检测单词之间的关系。</p>
-<p>测量余弦相似度 (cosine similarity)，完全不相似（相似度为 0）以 90 度角表示，而总相似度为 1 以 0 度角表示，两个向量完全重合 (overlap)；即 “Sweden” 等于 “Sweden”，而 “Norway” 与 “Sweden” 的余弦距离为 0.760124，是 “Sweden” 与其他国家的余弦相似度中最高的。</p>
-<p>以下是使用 Word2Vec 生成的与 “Sweden” 相关联的单词列表，按照接近程度排列：</p>
-<img src="/2019/05/20/nlp-word2vec/sweden_cosine_distance.png">
-<p>斯堪的纳维亚半岛 (Scandinavia) 的几个国家和几个富裕的北欧、日耳曼国家位列前九。</p>
-<h2 id="神经词嵌入"><a href="#神经词嵌入" class="headerlink" title="神经词嵌入"></a>神经词嵌入</h2><p>我们用来表示单词的向量称为神经词嵌入，这些表示很奇怪。一件事描述了另一件事，即使这两件事完全不同。正如 Elvis Costello 所说：“Writing about music is like dancing about architecture”。Word2Vec 将单词 “向量化”，这样就使自然语言成为计算机可读的 —— 我们可以开始对单词进行强大的数学运算来检测它们的相似之处。</p>
-<p>因此，神经词嵌入使用数值表示单词。这是一个简单但不太可能的转换。</p>
-<p>Word2Vec 类似于自动编码器 (autoencoder)，对向量中的每个单词进行编码，但不是通过重建来训练输入单词，而是像受限波尔兹曼机 (restricted Boltzmann machine) 那样，Word2Vec 训练单词与输入语料库中与其相邻的其他单词。</p>
-<p>它以两种方式之一来实现，或者使用上下文来预测目标词（一种称为连续词袋或 CBoW 的方法），或者使用一个词来预测目标上下文，这被称为 skip-gram。我们使用后一种方法，因为它可以在大型数据集上生成更准确的结果。</p>
-<img src="/2019/05/20/nlp-word2vec/word2vec_diagrams.png">
-<p>当分配给单词的特征向量不能用于准确预测该单词的上下文时，算法将调整向量的分量。语料库中每个单词的上下文是发回错误信号以调整特征向量的 “老师”。通过调整向量中的数值，相似（以但词的上下文判定）的词向量会更加接近。</p>
-<p>就像梵高的向日葵画是一幅二维的油画混合物，在 19 世纪 80 年代后期在巴黎的一个三维空间中代表植物物质，因此在向量中排列的 500 个数字可以代表一个单词或一组单词。</p>
-<p>这些数字将每个单词定位为 500 维向量空间中的一个点。超过三维的空间难以想象。（Geoff Hinton 在教人们想象 13 维空间时，建议学生首先描绘三维空间，然后对自己说：“十三，十三，十三。” :)</p>
-<p>一组训练得比较好的单词向量将在该空间中将相似的单词放在彼此靠近的位置。oak、elm 和 birch 这些词可能聚集在一个角落，而 war、conflict 和 strife 则挤在另一个角落里。 </p>
-<p>类似的事物和想法被证明是“接近”的。它们的相对意义已被转化为可测量的距离。质量成为数量，算法可以完成他们的工作。但相似性只是 Word2Vec 可以学习的许多关联的基础。例如，它可以衡量一种语言的单词之间的关系，并将它们映射到另一种语言。</p>
-<img src="/2019/05/20/nlp-word2vec/word2vec_translation.png">
-<p>这些向量是更全面的单词的几何位置的基础。罗马、巴黎、柏林和北京不仅彼此靠近，而且它们在向量空间中与它们首都的距离也是相似的；即 Rome - Italy = Beijing - China。如果你只知道罗马是意大利的首都，并且想知道中国的首都，那么 Rome -Italy + China 将会返回 Beijing。不开玩笑。</p>
-<img src="/2019/05/20/nlp-word2vec/countries_capitals.png">
-<h1 id="有趣的-Word2Vec-结果"><a href="#有趣的-Word2Vec-结果" class="headerlink" title="有趣的 Word2Vec 结果"></a>有趣的 Word2Vec 结果</h1><p>TODO</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1108,7 +1150,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">232</span>
+          <span class="site-state-item-count">238</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1117,7 +1159,7 @@
         <span class="site-state-item-name">分类</span>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">36</span>
+        <span class="site-state-item-count">42</span>
         <span class="site-state-item-name">标签</span>
       </div>
   </nav>
