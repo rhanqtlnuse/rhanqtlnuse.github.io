@@ -33,7 +33,7 @@
 <meta property="og:image" content="https://miro.medium.com/max/443/1*XvGIb1XxF6r9FYHQ3yYPTw.gif">
 <meta property="og:image" content="https://miro.medium.com/max/519/1*e608vZqp7jNIdsarKbeunQ.gif">
 <meta property="og:image" content="https://miro.medium.com/max/480/1*pf9K7VX2M6_1p39JUmOkLQ.gif">
-<meta property="og:updated_time" content="2020-04-20T11:28:08.202Z">
+<meta property="og:updated_time" content="2020-04-20T11:45:32.369Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="理解 PyTorch 中的 `dim` 参数">
 <meta name="twitter:description" content="总结 PyTorch 中 `dim` 参数的含义">
@@ -200,7 +200,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-04-20 17:50:06 / 修改时间：19:28:08" itemprop="dateCreated datePublished" datetime="2020-04-20T17:50:06+08:00">2020-04-20</time>
+              <time title="创建时间：2020-04-20 17:50:06 / 修改时间：19:45:32" itemprop="dateCreated datePublished" datetime="2020-04-20T17:50:06+08:00">2020-04-20</time>
             </span>
 
           
@@ -230,7 +230,7 @@
 <p>可以这样理解 NumPy 中 <code>sum</code> 的 <code>axis</code> 参数：<code>sum</code> 会<strong>折叠</strong>指定的 axis。因此，当它折叠 axis 0（也就是行）时，它变成仅有一行（按列求和）。</p>
 </blockquote>
 <p>她很好地解释了 <code>numpy.sum</code> 上的 <code>axis</code> 参数的功能。但是，当我们引入第三维时，这将变得更加棘手。当我们查看 3 维张量的形状时，我们会注意到新尺寸被放置在了第一个位置，原来的 <code>dim=0</code> 和 <code>dim=1</code> 分别变成了 <code>dim=1</code> 和 <code>dim=2</code>：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt; t = torch.tensor([[[1, 2, 3],</span><br><span class="line">                      [4, 5, 6]],</span><br><span class="line">                     [[1, 2, 3],</span><br><span class="line">                      [4, 5, 6]],</span><br><span class="line">                     [[1, 2, 3],</span><br><span class="line">                      [4, 5, 6]]])</span><br><span class="line">&gt;&gt;&gt; t.shape</span><br><span class="line">torch.Size([3, 2, 3])</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt; t = torch.tensor([[[1, 2, 3],</span><br><span class="line">                      [4, 5, 6]],</span><br><span class="line">                     [[1, 2, 3],</span><br><span class="line">                      [4, 5, 6]],</span><br><span class="line">                     [[1, 2, 3],</span><br><span class="line">                      [4, 5, 6]]])</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt; t.shape</span><br><span class="line">torch.Size([3, 2, 3])</span><br></pre></td></tr></table></figure>
 <p>这个 3D 张量的第一维（dim = 0）是最高维，包含 3 个 2 维张量。因此，为了对其求和，我们必须将其 3 个元素相互折叠：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt; torch.sum(t, dim=0)</span><br><span class="line">tensor([[ 3,  6,  9],</span><br><span class="line">        [12, 15, 18]])</span><br></pre></td></tr></table></figure>
 <p>运作方式如下：</p>
@@ -243,7 +243,14 @@
 <p><img src="https://miro.medium.com/max/480/1*pf9K7VX2M6_1p39JUmOkLQ.gif" alt="img"></p>
 <p>也可以使用 <code>torch.sum</code> 的 <code>keepdim</code> 参数验证一下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; torch.sum(t, dim=0, keepdim=True).shape</span><br><span class="line">torch.Size([1, 2, 3])</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt; torch.sum(t, dim=1, keepdim=True).shape</span><br><span class="line">torch.Size([3, 1, 3])</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt; torch.sum(t, dim=2, keepdim=True).shape</span><br><span class="line">torch.Size([3, 2, 1])</span><br></pre></td></tr></table></figure>
-<h1 id="2-nbsp-nbsp-nbsp-nbsp-torch-cat-中的-dim-参数"><a href="#2-nbsp-nbsp-nbsp-nbsp-torch-cat-中的-dim-参数" class="headerlink" title="2&nbsp;&nbsp;&nbsp;&nbsp;torch.cat 中的 dim 参数"></a>2&nbsp;&nbsp;&nbsp;&nbsp;<code>torch.cat</code> 中的 <code>dim</code> 参数</h1><h1 id="参考文献："><a href="#参考文献：" class="headerlink" title="参考文献："></a>参考文献：</h1><p>[1] Boyan Barakov. <a href="https://towardsdatascience.com/understanding-dimensions-in-pytorch-6edf9972d3be" target="_blank" rel="noopener">Understanding dimensions in PyTorch</a><br>[2] A. Kim, <a href="https://medium.com/@aerinykim/numpy-sum-axis-intuition-6eb94926a5d1" target="_blank" rel="noopener">Numpy Sum Axis Intuition</a></p>
+<h1 id="2-nbsp-nbsp-nbsp-nbsp-torch-cat-中的-dim-参数"><a href="#2-nbsp-nbsp-nbsp-nbsp-torch-cat-中的-dim-参数" class="headerlink" title="2&nbsp;&nbsp;&nbsp;&nbsp;torch.cat 中的 dim 参数"></a>2&nbsp;&nbsp;&nbsp;&nbsp;<code>torch.cat</code> 中的 <code>dim</code> 参数</h1><p><code>torch.cat</code> 用于将若干个 tensor 按照某个维度连接起来。</p>
+<p>与 <code>torch.sum</code> 相反，<code>torch.cat</code> 中的 <code>dim</code> 参数可以理解为<strong>扩张</strong>指定的维度（或者说，拼接的方向）。</p>
+<p>例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; a = torch.tensor([[0, 1, 2, 3, 4],</span><br><span class="line">                      [5, 6, 7, 8, 9]])</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt; b = torch.tensor([[0, 1, 2, 3],</span><br><span class="line">                      [4, 5, 6, 7]])</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt; torch.cat([a, b], dim=1)</span><br><span class="line">tensor([[0, 1, 2, 3, 4, 0, 1, 2, 3],</span><br><span class="line">        [5, 6, 7, 8, 9, 4, 5, 6, 7]])</span><br></pre></td></tr></table></figure>
+<p>而 <code>torch.cat([a, b], dim=0)</code> 则会报错，因为指定 <code>dim=0</code> 意味着希望扩张行（或者说，把 <code>a</code> 和 <code>b</code> 按照一列的方式进行拼接），而 <code>a</code> 和 <code>b</code> 的列不匹配，所以报错。</p>
+<h1 id="3-nbsp-nbsp-nbsp-nbsp-n-gt-3-的情况"><a href="#3-nbsp-nbsp-nbsp-nbsp-n-gt-3-的情况" class="headerlink" title="3&nbsp;&nbsp;&nbsp;&nbsp;$n \gt 3$ 的情况"></a>3&nbsp;&nbsp;&nbsp;&nbsp;$n \gt 3$ 的情况</h1><p>我们给 <code>dim</code> 参数传的值其实就是维度的索引，因此也可以使用 <code>list</code> 那样的负数。</p>
+<p>对于指定的 <code>dim</code> 是否正确的判断还是要依赖于每个维度所表示的含义。</p>
+<h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><p>[1] Boyan Barakov. <a href="https://towardsdatascience.com/understanding-dimensions-in-pytorch-6edf9972d3be" target="_blank" rel="noopener">Understanding dimensions in PyTorch</a><br>[2] A. Kim. <a href="https://medium.com/@aerinykim/numpy-sum-axis-intuition-6eb94926a5d1" target="_blank" rel="noopener">Numpy Sum Axis Intuition</a></p>
 
     </div>
 
@@ -322,7 +329,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-nbsp-nbsp-nbsp-nbsp-torch-sum-中的-dim-参数"><span class="nav-text">1    torch.sum 中的 dim 参数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-nbsp-nbsp-nbsp-nbsp-torch-cat-中的-dim-参数"><span class="nav-text">2    torch.cat 中的 dim 参数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考文献："><span class="nav-text">参考文献：</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-nbsp-nbsp-nbsp-nbsp-torch-sum-中的-dim-参数"><span class="nav-text">1    torch.sum 中的 dim 参数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-nbsp-nbsp-nbsp-nbsp-torch-cat-中的-dim-参数"><span class="nav-text">2    torch.cat 中的 dim 参数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-nbsp-nbsp-nbsp-nbsp-n-gt-3-的情况"><span class="nav-text">3    $n \gt 3$ 的情况</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考文献"><span class="nav-text">参考文献</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
