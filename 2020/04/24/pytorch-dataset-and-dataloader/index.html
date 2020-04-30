@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.8.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="学习 PyTorch 的笔记">
+<meta name="keywords" content="PyTorch">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PyTorch | Dataset 和 DataLoader">
+<meta property="og:url" content="http://yoursite.com/2020/04/24/pytorch-dataset-and-dataloader/index.html">
+<meta property="og:site_name" content="RHANQTL">
+<meta property="og:description" content="学习 PyTorch 的笔记">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-04-24T13:32:20.409Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PyTorch | Dataset 和 DataLoader">
+<meta name="twitter:description" content="学习 PyTorch 的笔记">
+
+<link rel="canonical" href="http://yoursite.com/2020/04/24/pytorch-dataset-and-dataloader/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
+  };
+</script>
+
+  <title>PyTorch | Dataset 和 DataLoader | RHANQTL</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">RHANQTL</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">上下求索</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>站点地图</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/24/pytorch-dataset-and-dataloader/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          PyTorch | Dataset 和 DataLoader
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-04-24 20:44:34 / 修改时间：21:32:20" itemprop="dateCreated datePublished" datetime="2020-04-24T20:44:34+08:00">2020-04-24</time>
+            </span>
+
+          
+            <div class="post-description">学习 PyTorch 的笔记</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="1-nbsp-nbsp-nbsp-nbsp-Dataset"><a href="#1-nbsp-nbsp-nbsp-nbsp-Dataset" class="headerlink" title="1&nbsp;&nbsp;&nbsp;&nbsp;Dataset"></a>1&nbsp;&nbsp;&nbsp;&nbsp;Dataset</h1><p>根据<a href="https://pytorch.org/docs/stable/data.html?highlight=dataset#dataset-types" target="_blank" rel="noopener">官方文档</a>，PyTorch 支持两种数据集：</p>
+<ul>
+<li>map 式</li>
+<li>iterable 式</li>
+</ul>
+<p>具体是这样的：</p>
+<blockquote>
+<p><strong>map 式数据集</strong></p>
+<p>map 式数据集是实现了 <code>__getitem__()</code> 和 <code>__len__()</code> 协议的数据集，它表示从（可能是非整数）索引 / 键到数据样本的映射。例如，当使用 <code>dataset[idx]</code> 访问时，此类数据集可以从磁盘上的某文件夹中读取第 <code>idx</code> 张图片及其对应的标签。</p>
+<p><strong>iterable 式数据集</strong></p>
+<p>iterable 式数据集是实现了 <code>__iter__()</code> 协议的 <code>IterableDataset</code> 的子类的实例，它表示数据样本上的可迭代对象。这种类型的数据集特别适用于随机读取代价高昂甚至不大可能，或是批量 (batch) 大小取决于所获取数据的情况。</p>
+<p>例如，当对 iterable 式数据集调用 <code>iter(dataset)</code> 时，可以返回从数据库、远程服务器读取数据的数据流，甚至是实时生成的日志数据流。</p>
+</blockquote>
+<h2 id="1-1-nbsp-nbsp-nbsp-nbsp-Map-式数据集"><a href="#1-1-nbsp-nbsp-nbsp-nbsp-Map-式数据集" class="headerlink" title="1.1&nbsp;&nbsp;&nbsp;&nbsp;Map 式数据集"></a>1.1&nbsp;&nbsp;&nbsp;&nbsp;Map 式数据集</h2><p><strong>示例 1</strong></p>
+<p><strong>示例 2</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DummyDataset</span><span class="params">(torch.utils.data.Dataset)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, features, labels=None)</span>:</span></span><br><span class="line">        self.features1 = features[<span class="string">"a"</span>]</span><br><span class="line">        self.features2 = features[<span class="string">"b"</span>]</span><br><span class="line">        self.labels = labels</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__len__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> len(self.features1)</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__getitem__</span><span class="params">(self, idx)</span>:</span></span><br><span class="line">        x = &#123;</span><br><span class="line">            <span class="string">"a"</span>: torch.tensor(self.features1[idx], dtype=torch.float),</span><br><span class="line">            <span class="string">"b"</span>: torch.tensor(self.features2[idx], dtype=torch.float)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> (x, self.labels[idx]) <span class="keyword">if</span> self.labels <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span> <span class="keyword">else</span> x</span><br></pre></td></tr></table></figure>
+<p>我们可以看一下生成的 batch 是什么样子的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt;  dataset = DummyDataset(&#123;&quot;a&quot;: [1, 2, 3, 4, 5, 6, 7], </span><br><span class="line">...                          &quot;b&quot;: [8, 9, 10, 11, 12, 13, 14]&#125;, </span><br><span class="line">...                         [0, 1, 0, 1, 0, 0, 1])</span><br><span class="line">&gt;&gt;&gt; loader = DataLoader(dataset, batch_size=2)</span><br><span class="line">&gt;&gt;&gt; for batch in loader:</span><br><span class="line">...     print(batch)</span><br><span class="line">[&#123;&apos;a&apos;: tensor([1., 2.]), &apos;b&apos;: tensor([8., 9.])&#125;, tensor([0, 1])]</span><br><span class="line">[&#123;&apos;a&apos;: tensor([3., 4.]), &apos;b&apos;: tensor([10., 11.])&#125;, tensor([0, 1])]</span><br><span class="line">[&#123;&apos;a&apos;: tensor([5., 6.]), &apos;b&apos;: tensor([12., 13.])&#125;, tensor([0, 0])]</span><br><span class="line">[&#123;&apos;a&apos;: tensor([7.]), &apos;b&apos;: tensor([14.])&#125;, tensor([1])]</span><br></pre></td></tr></table></figure>
+<p>注意到前面特征的 dict 中，一个键直接对应了一个 batch</p>
+<p>在 <code>DummyDataset.__getitem__</code> 中加一条语句：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">f"in DummyDataset.__getitem__: idx = <span class="subst">&#123;idx&#125;</span>"</span>)</span><br></pre></td></tr></table></figure>
+<p>重复上面的流程，得到的输出如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt;  dataset = DummyDataset(&#123;&quot;a&quot;: [1, 2, 3, 4, 5, 6, 7], </span><br><span class="line">...                          &quot;b&quot;: [8, 9, 10, 11, 12, 13, 14]&#125;, </span><br><span class="line">...                         [0, 1, 0, 1, 0, 0, 1])</span><br><span class="line">&gt;&gt;&gt; loader = DataLoader(dataset, batch_size=2)</span><br><span class="line">&gt;&gt;&gt; for batch in loader:</span><br><span class="line">...     print(batch)</span><br><span class="line">in DummyDataset.__getitem__: idx = 0</span><br><span class="line">in DummyDataset.__getitem__: idx = 1</span><br><span class="line">[&#123;&apos;a&apos;: tensor([1., 2.]), &apos;b&apos;: tensor([8., 9.])&#125;, tensor([0, 1])]</span><br><span class="line">in DummyDataset.__getitem__: idx = 2</span><br><span class="line">in DummyDataset.__getitem__: idx = 3</span><br><span class="line">[&#123;&apos;a&apos;: tensor([3., 4.]), &apos;b&apos;: tensor([10., 11.])&#125;, tensor([0, 1])]</span><br><span class="line">in DummyDataset.__getitem__: idx = 4</span><br><span class="line">in DummyDataset.__getitem__: idx = 5</span><br><span class="line">[&#123;&apos;a&apos;: tensor([5., 6.]), &apos;b&apos;: tensor([12., 13.])&#125;, tensor([0, 0])]</span><br><span class="line">in DummyDataset.__getitem__: idx = 6</span><br><span class="line">[&#123;&apos;a&apos;: tensor([7.]), &apos;b&apos;: tensor([14.])&#125;, tensor([1])]</span><br></pre></td></tr></table></figure>
+<h2 id="1-2-nbsp-nbsp-nbsp-nbsp-Iterable-式数据集"><a href="#1-2-nbsp-nbsp-nbsp-nbsp-Iterable-式数据集" class="headerlink" title="1.2&nbsp;&nbsp;&nbsp;&nbsp;Iterable 式数据集"></a>1.2&nbsp;&nbsp;&nbsp;&nbsp;Iterable 式数据集</h2><h1 id="2-nbsp-nbsp-nbsp-nbsp-DataLoader"><a href="#2-nbsp-nbsp-nbsp-nbsp-DataLoader" class="headerlink" title="2&nbsp;&nbsp;&nbsp;&nbsp;DataLoader"></a>2&nbsp;&nbsp;&nbsp;&nbsp;DataLoader</h1>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/PyTorch/" rel="tag"># PyTorch</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/04/20/understanding-dimensions-in-pytorch/" rel="prev" title="理解 PyTorch 中的 `dim` 参数">
+      <i class="fa fa-chevron-left"></i> 理解 PyTorch 中的 `dim` 参数
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/04/25/when-to-use-optional-parameters-and-keyword-parameters/" rel="next" title="可选参数和关键字参数的适用场景">
+      可选参数和关键字参数的适用场景 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-nbsp-nbsp-nbsp-nbsp-Dataset"><span class="nav-text">1    Dataset</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-nbsp-nbsp-nbsp-nbsp-Map-式数据集"><span class="nav-text">1.1    Map 式数据集</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-nbsp-nbsp-nbsp-nbsp-Iterable-式数据集"><span class="nav-text">1.2    Iterable 式数据集</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-nbsp-nbsp-nbsp-nbsp-DataLoader"><span class="nav-text">2    DataLoader</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Han Qi</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">248</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">73</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">45</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Han Qi</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://muse.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.7.2
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>

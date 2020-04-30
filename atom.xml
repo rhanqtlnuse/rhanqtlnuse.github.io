@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-04-20T11:45:32.369Z</updated>
+  <updated>2020-04-30T01:24:50.380Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,194 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>regex-learning</title>
+    <link href="http://yoursite.com/2020/04/30/regex-learning/"/>
+    <id>http://yoursite.com/2020/04/30/regex-learning/</id>
+    <published>2020-04-30T01:22:10.000Z</published>
+    <updated>2020-04-30T01:24:50.380Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>database-sql-learning</title>
+    <link href="http://yoursite.com/2020/04/30/database-sql-learning/"/>
+    <id>http://yoursite.com/2020/04/30/database-sql-learning/</id>
+    <published>2020-04-30T01:06:42.000Z</published>
+    <updated>2020-04-30T01:21:20.433Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>MySQL | 常用函数</title>
+    <link href="http://yoursite.com/2020/04/29/mysql-frequently-used-functions/"/>
+    <id>http://yoursite.com/2020/04/29/mysql-frequently-used-functions/</id>
+    <published>2020-04-29T11:47:20.000Z</published>
+    <updated>2020-04-30T05:09:45.488Z</updated>
+    
+    <summary type="html">
+    
+      总结一些个人经常用到的 MySQL 内置函数
+    
+    </summary>
+    
+    
+      <category term="MySQL" scheme="http://yoursite.com/tags/MySQL/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>常见的命名方式</title>
+    <link href="http://yoursite.com/2020/04/28/others-naming-style/"/>
+    <id>http://yoursite.com/2020/04/28/others-naming-style/</id>
+    <published>2020-04-28T14:04:21.000Z</published>
+    <updated>2020-04-29T14:19:07.655Z</updated>
+    
+    <summary type="html">
+    
+      如题
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>使用 LaTeX 绘制来自 CSV 文件的数据</title>
+    <link href="http://yoursite.com/2020/04/27/latex-inserting-data-from-file-for-plotting/"/>
+    <id>http://yoursite.com/2020/04/27/latex-inserting-data-from-file-for-plotting/</id>
+    <published>2020-04-27T11:26:07.000Z</published>
+    <updated>2020-04-27T12:14:41.531Z</updated>
+    
+    <summary type="html">
+    
+      如题，所有 LaTeX 源码已在 Overleaf 上验证过
+    
+    </summary>
+    
+    
+      <category term="LaTeX" scheme="http://yoursite.com/tags/LaTeX/"/>
+    
+      <category term="TikZ" scheme="http://yoursite.com/tags/TikZ/"/>
+    
+      <category term="PGF" scheme="http://yoursite.com/tags/PGF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>set-up-latex-env</title>
+    <link href="http://yoursite.com/2020/04/26/set-up-latex-env/"/>
+    <id>http://yoursite.com/2020/04/26/set-up-latex-env/</id>
+    <published>2020-04-26T00:32:15.000Z</published>
+    <updated>2020-04-26T00:32:15.159Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>set-up-python-env-using-anaconda</title>
+    <link href="http://yoursite.com/2020/04/25/set-up-python-env-using-anaconda/"/>
+    <id>http://yoursite.com/2020/04/25/set-up-python-env-using-anaconda/</id>
+    <published>2020-04-25T08:53:29.000Z</published>
+    <updated>2020-04-25T09:02:33.807Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>PyTorch 入门</title>
+    <link href="http://yoursite.com/2020/04/25/pytorch-getting-started/"/>
+    <id>http://yoursite.com/2020/04/25/pytorch-getting-started/</id>
+    <published>2020-04-25T02:09:00.000Z</published>
+    <updated>2020-04-25T02:17:36.299Z</updated>
+    
+    <summary type="html">
+    
+      笔记
+    
+    </summary>
+    
+    
+      <category term="PyTorch" scheme="http://yoursite.com/tags/PyTorch/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>可选参数和关键字参数的适用场景</title>
+    <link href="http://yoursite.com/2020/04/25/when-to-use-optional-parameters-and-keyword-parameters/"/>
+    <id>http://yoursite.com/2020/04/25/when-to-use-optional-parameters-and-keyword-parameters/</id>
+    <published>2020-04-25T00:47:42.000Z</published>
+    <updated>2020-04-25T00:55:22.572Z</updated>
+    
+    <summary type="html">
+    
+      如题
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>PyTorch | Dataset 和 DataLoader</title>
+    <link href="http://yoursite.com/2020/04/24/pytorch-dataset-and-dataloader/"/>
+    <id>http://yoursite.com/2020/04/24/pytorch-dataset-and-dataloader/</id>
+    <published>2020-04-24T12:44:34.000Z</published>
+    <updated>2020-04-24T13:32:20.409Z</updated>
+    
+    <summary type="html">
+    
+      学习 PyTorch 的笔记
+    
+    </summary>
+    
+    
+      <category term="PyTorch" scheme="http://yoursite.com/tags/PyTorch/"/>
+    
+  </entry>
   
   <entry>
     <title>理解 PyTorch 中的 `dim` 参数</title>
@@ -78,10 +266,10 @@
   
   <entry>
     <title>【译】torchtext 概览（实用 torchtext 第一部分）</title>
-    <link href="http://yoursite.com/2020/04/15/nlp-tools-a-comprehensive-tutorial-to-torchtext-practical-torchtext-part-1/"/>
-    <id>http://yoursite.com/2020/04/15/nlp-tools-a-comprehensive-tutorial-to-torchtext-practical-torchtext-part-1/</id>
+    <link href="http://yoursite.com/2020/04/15/nlp-tools-a-comprehensive-tutorial-to-torchtext/"/>
+    <id>http://yoursite.com/2020/04/15/nlp-tools-a-comprehensive-tutorial-to-torchtext/</id>
     <published>2020-04-15T08:28:08.000Z</published>
-    <updated>2020-04-17T06:43:01.841Z</updated>
+    <updated>2020-04-18T09:12:47.943Z</updated>
     
     <summary type="html">
     
@@ -106,10 +294,10 @@
   
   <entry>
     <title>【译】torchtext 概览（实用 torchtext 第一部分）</title>
-    <link href="http://yoursite.com/2020/04/15/nlp-tools-a-comprehensive-tutorial-to-torchtext/"/>
-    <id>http://yoursite.com/2020/04/15/nlp-tools-a-comprehensive-tutorial-to-torchtext/</id>
+    <link href="http://yoursite.com/2020/04/15/nlp-tools-a-comprehensive-tutorial-to-torchtext-practical-torchtext-part-1/"/>
+    <id>http://yoursite.com/2020/04/15/nlp-tools-a-comprehensive-tutorial-to-torchtext-practical-torchtext-part-1/</id>
     <published>2020-04-15T08:28:08.000Z</published>
-    <updated>2020-04-18T09:12:47.943Z</updated>
+    <updated>2020-04-17T06:43:01.841Z</updated>
     
     <summary type="html">
     
@@ -235,194 +423,6 @@
     
     </summary>
     
-    
-  </entry>
-  
-  <entry>
-    <title>howto-verify-a-gpg-signature</title>
-    <link href="http://yoursite.com/2020/04/03/howto-verify-a-gpg-signature/"/>
-    <id>http://yoursite.com/2020/04/03/howto-verify-a-gpg-signature/</id>
-    <published>2020-04-03T00:27:44.000Z</published>
-    <updated>2020-04-03T00:28:21.011Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Linux | 为什么我的服务脚本会挂掉？</title>
-    <link href="http://yoursite.com/2020/04/02/linux-why-was-my-script-killed/"/>
-    <id>http://yoursite.com/2020/04/02/linux-why-was-my-script-killed/</id>
-    <published>2020-04-02T04:53:48.000Z</published>
-    <updated>2020-04-06T11:18:26.022Z</updated>
-    
-    <summary type="html">
-    
-      进程在占用过多的资源时，会被操作系统杀掉，限制进程资源使用
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Arch Linux + Windows 双系统安装</title>
-    <link href="http://yoursite.com/2020/03/31/linux-archlinux-windows-dual-boot/"/>
-    <id>http://yoursite.com/2020/03/31/linux-archlinux-windows-dual-boot/</id>
-    <published>2020-03-31T04:27:38.000Z</published>
-    <updated>2020-03-31T05:35:02.901Z</updated>
-    
-    <summary type="html">
-    
-      如题
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>【译】揭开容器的神秘面纱 | 第一部分：内核空间</title>
-    <link href="http://yoursite.com/2020/03/29/soft-eng-container-demystifying-containers-part-i-kernel-space/"/>
-    <id>http://yoursite.com/2020/03/29/soft-eng-container-demystifying-containers-part-i-kernel-space/</id>
-    <published>2020-03-29T02:56:01.000Z</published>
-    <updated>2020-03-29T02:57:56.561Z</updated>
-    
-    <summary type="html">
-    
-      如题
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>数据库 | 思考 SQL 语句</title>
-    <link href="http://yoursite.com/2020/03/27/database-thinking-sql-statements/"/>
-    <id>http://yoursite.com/2020/03/27/database-thinking-sql-statements/</id>
-    <published>2020-03-26T16:00:00.000Z</published>
-    <updated>2020-04-01T03:50:46.402Z</updated>
-    
-    <summary type="html">
-    
-      如题
-    
-    </summary>
-    
-      <category term="数据库 (Database)" scheme="http://yoursite.com/categories/%E6%95%B0%E6%8D%AE%E5%BA%93-Database/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>数据库 | 存储层次结构数据</title>
-    <link href="http://yoursite.com/2020/03/26/database-dealing-with-hierarchical-data/"/>
-    <id>http://yoursite.com/2020/03/26/database-dealing-with-hierarchical-data/</id>
-    <published>2020-03-26T05:37:15.000Z</published>
-    <updated>2020-03-27T01:26:26.099Z</updated>
-    
-    <summary type="html">
-    
-      如题
-    
-    </summary>
-    
-      <category term="数据库 (Database)" scheme="http://yoursite.com/categories/%E6%95%B0%E6%8D%AE%E5%BA%93-Database/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>数据库 | SELECT 语句的执行顺序</title>
-    <link href="http://yoursite.com/2020/03/25/database-select-queries-order-of-execution/"/>
-    <id>http://yoursite.com/2020/03/25/database-select-queries-order-of-execution/</id>
-    <published>2020-03-25T09:47:57.000Z</published>
-    <updated>2020-03-25T10:41:32.358Z</updated>
-    
-    <summary type="html">
-    
-      介绍 SQL 中 SELECT 语句各部分的执行顺序
-    
-    </summary>
-    
-      <category term="数据库 (Database)" scheme="http://yoursite.com/categories/%E6%95%B0%E6%8D%AE%E5%BA%93-Database/"/>
-    
-      <category term="SQL" scheme="http://yoursite.com/categories/%E6%95%B0%E6%8D%AE%E5%BA%93-Database/SQL/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>健身 | 什么是离心收缩、向心收缩和等长收缩？</title>
-    <link href="http://yoursite.com/2020/03/25/work-out-%E7%A6%BB%E5%BF%83%E6%94%B6%E7%BC%A9-%E5%90%91%E5%BF%83%E6%94%B6%E7%BC%A9-%E7%AD%89%E9%95%BF%E6%94%B6%E7%BC%A9/"/>
-    <id>http://yoursite.com/2020/03/25/work-out-离心收缩-向心收缩-等长收缩/</id>
-    <published>2020-03-24T16:00:00.000Z</published>
-    <updated>2020-03-25T06:53:12.854Z</updated>
-    
-    <summary type="html">
-    
-      如题
-    
-    </summary>
-    
-      <category term="健身 (Working Out)" scheme="http://yoursite.com/categories/%E5%81%A5%E8%BA%AB-Working-Out/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>在 Ruby on Rails 项目中使用测试工具 RSpec 和 Autotest</title>
-    <link href="http://yoursite.com/2020/03/24/using-rspec-and-autotest-with-ruby-on-rails/"/>
-    <id>http://yoursite.com/2020/03/24/using-rspec-and-autotest-with-ruby-on-rails/</id>
-    <published>2020-03-24T07:06:00.000Z</published>
-    <updated>2020-03-25T06:57:20.868Z</updated>
-    
-    <summary type="html">
-    
-      如题
-    
-    </summary>
-    
-    
-      <category term="Ruby on Rails" scheme="http://yoursite.com/tags/Ruby-on-Rails/"/>
-    
-      <category term="TDD" scheme="http://yoursite.com/tags/TDD/"/>
-    
-      <category term="RSpec" scheme="http://yoursite.com/tags/RSpec/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>在 Ruby on Rails 项目中使用 BDD 工具 Cucumber</title>
-    <link href="http://yoursite.com/2020/03/24/using-cucumber-with-ruby-on-rails/"/>
-    <id>http://yoursite.com/2020/03/24/using-cucumber-with-ruby-on-rails/</id>
-    <published>2020-03-24T06:59:00.000Z</published>
-    <updated>2020-03-25T06:57:31.375Z</updated>
-    
-    <summary type="html">
-    
-      如题
-    
-    </summary>
-    
-    
-      <category term="Ruby on Rails" scheme="http://yoursite.com/tags/Ruby-on-Rails/"/>
-    
-      <category term="BDD" scheme="http://yoursite.com/tags/BDD/"/>
-    
-      <category term="Cucumber" scheme="http://yoursite.com/tags/Cucumber/"/>
     
   </entry>
   

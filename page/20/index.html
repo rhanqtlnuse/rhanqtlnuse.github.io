@@ -165,7 +165,7 @@
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/01/cpp-basic-type-cast/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/02/linux-programming-toc/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -179,66 +179,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2019/02/01/cpp-basic-type-cast/" class="post-title-link" itemprop="url">C++ 学习笔记 - 基础篇：类型转换</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2019-02-01 21:46:27 / 修改时间：21:46:56" itemprop="dateCreated datePublished" datetime="2019-02-01T21:46:27+08:00">2019-02-01</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p>[1] <a href="https://stackoverflow.com/questions/332030/when-should-static-cast-dynamic-cast-const-cast-and-reinterpret-cast-be-used" target="_blank" rel="noopener">https://stackoverflow.com/questions/332030/when-should-static-cast-dynamic-cast-const-cast-and-reinterpret-cast-be-used</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/01/cpp-basic-dynamic-memory/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RHANQTL">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/02/01/cpp-basic-dynamic-memory/" class="post-title-link" itemprop="url">C++ 学习笔记 - 基础篇：动态内存管理</a>
+            <a href="/2019/04/02/linux-programming-toc/" class="post-title-link" itemprop="url">Linux 程序设计：目录</a>
         </h1>
 
         <div class="post-meta">
@@ -248,14 +189,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2019-02-01 21:37:55" itemprop="dateCreated datePublished" datetime="2019-02-01T21:37:55+08:00">2019-02-01</time>
+              <time title="创建时间：2019-04-02 19:41:23" itemprop="dateCreated datePublished" datetime="2019-04-02T19:41:23+08:00">2019-04-02</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-02-06 22:19:54" itemprop="dateModified" datetime="2019-02-06T22:19:54+08:00">2019-02-06</time>
+                <time title="修改时间：2019-05-06 19:06:06" itemprop="dateModified" datetime="2019-05-06T19:06:06+08:00">2019-05-06</time>
               </span>
 
           
@@ -269,43 +210,19 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="C-中的动态内存管理"><a href="#C-中的动态内存管理" class="headerlink" title="C 中的动态内存管理"></a>C 中的动态内存管理</h1><h2 id="malloc-free"><a href="#malloc-free" class="headerlink" title="malloc/free"></a><code>malloc</code>/<code>free</code></h2><p>头文件 <code>stdlib.h</code> 中</p>
-<ul>
-<li>Allocates/release memory<ol>
-<li>Memory allocated from ‘Heap’</li>
-<li>Returns a void*</li>
-<li>Returns NULL on failure</li>
-<li>Must specify the size required in bytes.</li>
-<li>Allocating array requires manual calculation of space.</li>
-<li>Reallocating larger chunk of memory simple (No copy constructor to worry about)</li>
-<li>They will <strong>NOT</strong> call new/delete</li>
-<li>No way to splice user code into the allocation sequence to help with low memory.</li>
-<li>malloc/free can <strong>NOT</strong> be overridden legally</li>
+          <p>采用自顶向下的方式，从 Shell 开始，一步一步深入，记录自己的学习成果。</p>
+<ol>
+<li><a href="">Linux 程序设计 - 基础篇：基础 Shell 命令</a></li>
+<li><a href="">Linux 程序设计 - 基础篇：<code>grep</code> 命令</a></li>
+<li><a href="">Linux 程序设计 - 基础篇：<code>sed</code> 命令</a></li>
+<li><a href="">Linux 程序设计 - 基础篇：<code>awk</code> 命令</a></li>
+<li><a href="">Linux 程序设计 - 基础篇：编写 Shell 脚本</a></li>
+<li><a href="http://blog.rhanqtl.com/2019/04/02/linux-programming-file-system/" target="_blank" rel="noopener">Linux 程序设计 - 基础篇：文件系统</a></li>
+<li><a href="">Linux 程序设计 - 进阶篇：Linux 系统调用</a></li>
+<li><a href="http://blog.rhanqtl.com/2019/04/02/linux-programming-gcc/" target="_blank" rel="noopener">Linux 程序设计 - 工具篇：GCC</a></li>
+<li><a href="http://blog.rhanqtl.com/2019/04/02/linux-programming-make-makefile/" target="_blank" rel="noopener">Linux 程序设计 - 工具篇：make 和 Makefile</a></li>
+<li><a href="http://blog.rhanqtl.com/2019/04/02/linux-programming-gdb/" target="_blank" rel="noopener">Linux 程序设计 - 工具篇：GDB</a></li>
 </ol>
-</li>
-</ul>
-<h2 id="realloc"><a href="#realloc" class="headerlink" title="realloc"></a><code>realloc</code></h2><h1 id="C-中的动态内存管理-1"><a href="#C-中的动态内存管理-1" class="headerlink" title="C++ 中的动态内存管理"></a>C++ 中的动态内存管理</h1><h2 id="new-delete"><a href="#new-delete" class="headerlink" title="new/delete"></a><code>new</code>/<code>delete</code></h2><ul>
-<li>Allocate/release memory<ol>
-<li>Memory allocated from ‘Free Store’</li>
-<li>Returns a fully typed pointer.</li>
-<li>new (standard version) never returns a NULL (will throw on failure)</li>
-<li>Are called with Type-ID (compiler calculates the size)</li>
-<li>Has a version explicitly to handle arrays.</li>
-<li>Reallocating (to get more space) not handled intuitively (because of copy constructor).</li>
-<li>Whether they call malloc/free is implementation defined.</li>
-<li>Can add a new memory allocator to deal with low memory (set_new_handler)</li>
-<li>operator new/delete can be overridden legally</li>
-<li><strong>constructor/destructor used to initialize/destroy the object</strong></li>
-</ol>
-</li>
-</ul>
-<h2 id="重载-new-delete"><a href="#重载-new-delete" class="headerlink" title="重载 new/delete"></a>重载 <code>new</code>/<code>delete</code></h2><h2 id="智能指针"><a href="#智能指针" class="headerlink" title="智能指针"></a>智能指针</h2><p>Table comparison of the features:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"> Feature                  | new/delete                     | malloc/free                   </span><br><span class="line">--------------------------+--------------------------------+-------------------------------</span><br><span class="line"> Memory allocated from    | &apos;Free Store&apos;                   | &apos;Heap&apos;                        </span><br><span class="line"> Returns                  | Fully typed pointer            | void*                         </span><br><span class="line"> On failure               | Throws (never returns NULL)    | Returns NULL                  </span><br><span class="line"> Required size            | Calculated by compiler         | Must be specified in bytes    </span><br><span class="line"> Handling arrays          | Has an explicit version        | Requires manual calculations  </span><br><span class="line"> Reallocating             | Not handled intuitively        | Simple (no copy constructor)  </span><br><span class="line"> Call of reverse          | Implementation defined         | No                            </span><br><span class="line"> Low memory cases         | Can add a new memory allocator | Not handled by user code      </span><br><span class="line"> Overridable              | Yes                            | No                            </span><br><span class="line"> Use of (con-)/destructor | Yes                            | No</span><br></pre></td></tr></table></figure>
-<p>Technically memory allocated by new comes from the ‘Free Store’ while memory allocated by malloc comes from the ‘Heap’. Whether these two areas are the same is an implementation details, which is another reason that malloc and new can not be mixed.</p>
-<p>The only way I could think that would be beneficial to use <code>malloc</code> would be if you needed to <strong>change the size of your buffer</strong> of data. The <code>new</code> keyword does not have an analogous way like <code>realloc</code>. The <code>realloc</code> function might be able to extend the size of a chunk of memory for you more efficiently.</p>
-<p>It is worth mentioning that you cannot mix <code>new</code>/<code>free</code> and <code>malloc</code>/<code>delete</code>.</p>
-<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p>[1] <a href="https://stackoverflow.com/questions/240212/what-is-the-difference-between-new-delete-and-malloc-free" target="_blank" rel="noopener">https://stackoverflow.com/questions/240212/what-is-the-difference-between-new-delete-and-malloc-free</a></p>
-<p>[2] <a href="https://stackoverflow.com/questions/184537/in-what-cases-do-i-use-malloc-vs-new" target="_blank" rel="noopener">https://stackoverflow.com/questions/184537/in-what-cases-do-i-use-malloc-vs-new</a></p>
 
       
     </div>
@@ -325,7 +242,7 @@
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/28/cpp-basic-inheriant/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/02/linux-programming-shell-script/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -339,7 +256,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2019/01/28/cpp-basic-inheriant/" class="post-title-link" itemprop="url">C++ 学习笔记 - 基础篇：继承</a>
+            <a href="/2019/04/02/linux-programming-shell-script/" class="post-title-link" itemprop="url">Linux 程序设计 - Shell 篇：编写 Shell 脚本</a>
         </h1>
 
         <div class="post-meta">
@@ -349,14 +266,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2019-01-28 09:31:48" itemprop="dateCreated datePublished" datetime="2019-01-28T09:31:48+08:00">2019-01-28</time>
+              <time title="创建时间：2019-04-02 17:49:00" itemprop="dateCreated datePublished" datetime="2019-04-02T17:49:00+08:00">2019-04-02</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-01-29 17:15:04" itemprop="dateModified" datetime="2019-01-29T17:15:04+08:00">2019-01-29</time>
+                <time title="修改时间：2019-05-06 19:00:47" itemprop="dateModified" datetime="2019-05-06T19:00:47+08:00">2019-05-06</time>
               </span>
 
           
@@ -370,462 +287,176 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="综述"><a href="#综述" class="headerlink" title="综述"></a>综述</h1><p>继承是面向对象程序设计中一个重要的特性。</p>
-<h1 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h1><p>cppreference 的定义：任何类类型（以 <em>class-key</em> <code>class</code> 或 <code>struct</code> 声明者）可被声明为<em>派生</em>自一或多个<em>基类</em>，基类自身也可以派生自其基类，这组成继承层级。</p>
-<p>基类的列表提供于类声明语法的 base-clause 。 base-clause 由字符 <code>:</code> 后随一或多个 base-specifier 的逗号分隔列表组成。</p>
-<p>base-specifier 的语法如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">attr(可选) access-specifier(可选) virtual-specifier(可选) class-or-decltype</span><br></pre></td></tr></table></figure>
-<ul>
-<li>attr(C++ 11)：可选的任何数量的属性序列</li>
-<li>access-specifier：private、public、protected 之一<ul>
-<li>缺省：<code>struct</code> 为 <code>public</code>，<code>class</code> 为 <code>private</code></li>
-</ul>
-</li>
-<li>virtual-specifier：<code>virtual</code></li>
-<li>注意是可以使用 <code>decltype</code> 作为类声明符</li>
-</ul>
-<p>virtual-specifier 与 access-specifier 可以任意顺序出现。</p>
-<p>同一类不能指定于直接基类多于一次，但同一类可以既是直接又是间接基类。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Base</span> &#123;</span> &#125;;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Derived</span> :</span> Base, Base &#123; &#125;;</span><br></pre></td></tr></table></figure>
-<img src="/2019/01/28/cpp-basic-inheriant/more-than-once.png">
-<h2 id="虚基类"><a href="#虚基类" class="headerlink" title="虚基类"></a>虚基类</h2><p>对于每个指定为 <code>virtual</code> 的相异基类，最终派生类对象仅含有该类型的一个基类子对象，即使该类在继承层级中出现多次（只要它每次都以 <code>virtual</code> 继承）。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">B</span> &#123;</span> <span class="keyword">int</span> n; &#125;;</span><br><span class="line"><span class="comment">// 顺序是任意的</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">X</span> :</span> <span class="keyword">public</span> <span class="keyword">virtual</span> B &#123;&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Y</span> :</span> <span class="keyword">virtual</span> <span class="keyword">public</span> B &#123;&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Z</span> :</span> <span class="keyword">public</span> B &#123;&#125;;</span><br><span class="line"><span class="comment">// 每个 AA 类型对象拥有一个 X ，一个 Y ，一个 Z 和二个 B ：</span></span><br><span class="line"><span class="comment">// 其一是 Z 的基类，另一者为 X 与 Y 所共享</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">AA</span> :</span> X, Y, Z &#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        X::n = <span class="number">1</span>; <span class="comment">// 修改虚 B 基类子对象的成员</span></span><br><span class="line">        Y::n = <span class="number">2</span>; <span class="comment">// 修改同一虚 B 基类子对象的成员</span></span><br><span class="line">        Z::n = <span class="number">3</span>; <span class="comment">// 修改非虚 B 基类子对象的成员</span></span><br><span class="line"> </span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; X::n &lt;&lt; Y::n &lt;&lt; Z::n &lt;&lt; <span class="string">'\n'</span>; <span class="comment">// 打印 223</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>继承层级有虚基类的例子之一是标准库的 <code>iostream</code> 的继承层级： <a href="https://zh.cppreference.com/w/cpp/io/basic_istream" target="_blank" rel="noopener">std::istream</a> 与 <a href="https://zh.cppreference.com/w/cpp/io/basic_ostream" target="_blank" rel="noopener">std::ostream</a> 从 <a href="https://zh.cppreference.com/w/cpp/io/basic_ios" target="_blank" rel="noopener">std::ios</a> 使用虚继承派生。 <a href="https://zh.cppreference.com/w/cpp/io/basic_iostream" target="_blank" rel="noopener">std::iostream</a> 继承 <a href="https://zh.cppreference.com/w/cpp/io/basic_istream" target="_blank" rel="noopener">std::istream</a> 和 <a href="https://zh.cppreference.com/w/cpp/io/basic_ostream" target="_blank" rel="noopener">std::ostream</a> ，故每个 <a href="https://zh.cppreference.com/w/cpp/io/basic_iostream" target="_blank" rel="noopener">std::iostream</a> 实例含一个 <a href="https://zh.cppreference.com/w/cpp/io/basic_ostream" target="_blank" rel="noopener">std::ostream</a> 子对象、一个 <a href="https://zh.cppreference.com/w/cpp/io/basic_istream" target="_blank" rel="noopener">std::istream</a> 子对象和仅一个 <a href="https://zh.cppreference.com/w/cpp/io/basic_ios" target="_blank" rel="noopener">std::ios</a> 子对象。</p>
-<p>所有虚基类子对象在任何非虚基类子对象前初始化，故只有最终派生类于其<a href="https://zh.cppreference.com/w/cpp/language/initializer_list" target="_blank" rel="noopener">成员初始化器列表</a>调用虚基类的构造函数：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Base</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    Base(<span class="keyword">int</span> n): n(n) &#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Base()"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">X</span> :</span> <span class="keyword">virtual</span> Base &#123;</span><br><span class="line">    X(): Base(<span class="number">1</span>) &#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"X()"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Y</span> :</span> <span class="keyword">virtual</span> Base &#123;</span><br><span class="line">    Y(): Base(<span class="number">2</span>) &#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Y()"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Derived</span> :</span> X, Y &#123;</span><br><span class="line">    Derived(): Base(<span class="number">3</span>), X(), Y() &#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Derived()"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>如果创建一个 <code>Derived</code> 类对象，那么输出的顺序为：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Base()</span><br><span class="line">X()</span><br><span class="line">Y()</span><br><span class="line">Derived()</span><br></pre></td></tr></table></figure>
-<p>即使将成员初始化列表的顺序修改为 <code>Derived(): X(), Y(), Base(3)</code> 或 <code>Derived(): Base(3) { }</code>，输出顺序也相同。</p>
-<p>如果 <code>Derived(): X(), Y() { }</code> 或者 <code>Derived() { }</code>，会报错：</p>
-
-<p><code>Derived</code> 的默认构造函数调用 X 和 Y 的默认构造函数，但这些构造函数不调用 B 的构造函数，因为 B 是虚基类。这是合理的，因为按照虚基类的规定，Derived 只有一个 <code>Base</code> 子对象，所以这个初始化工作应该交给 <code>Derived</code>。</p>
-<h2 id="公有继承"><a href="#公有继承" class="headerlink" title="公有继承"></a>公有继承</h2><p>基类的所有公开成员可作为派生类的公开成员访问，基类的所有受保护成员可作为派生类的受保护成员访问（基类的私有成员决不可访问，除非设为友元）。</p>
-<p>“IS-A” 关系</p>
-<p>派生类应该维护其公开基类的类不变量，不应强化任何其所<a href="https://zh.cppreference.com/w/cpp/language/virtual" target="_blank" rel="noopener">覆写</a>的成员函数的前置条件，或弱化任何其后置条件。</p>
-<h2 id="受保护继承"><a href="#受保护继承" class="headerlink" title="受保护继承"></a>受保护继承</h2><p>基类的所有公开和受保护成员可作为派生类的受保护成员访问（基类的私有成员决不可访问，除非设为友元）。</p>
-<p>受保护继承可用于“受控制的多态”：在派生类的成员中，还有在所有进一步派生类的成员中，派生类是（ IS-A ）基类：到派生类的引用和指针可用于期待到基类的引用和指针处。</p>
-<h2 id="私有继承"><a href="#私有继承" class="headerlink" title="私有继承"></a>私有继承</h2><p>基类的所有公开和受保护成员可作为派生类的私有成员访问（基类的私有成员决不可访问，除非设为友元）。</p>
-<p>私有继承常用于基于策略的设计，因为策略常是空基类，而使用基类可以启用静多态并活用<a href="https://zh.cppreference.com/w/cpp/language/ebo" target="_blank" rel="noopener">空基类优化</a></p>
-<p>私有继承亦可用于实现合成关系（基类子对象是派生类对象的实现细节）。成员使用提供更好的封装，而且通常受到偏好，除非派生类要求访问基类的受保护成员（包含构造函数）、需要覆写基类的虚成员、需要基类构造先于或析构后于某其他基类子对象，需要共享虚基类或需要控制虚基类的构造。实现合成的成员使用亦不可应用于从<a href="https://zh.cppreference.com/w/cpp/language/parameter_pack" target="_blank" rel="noopener">参数包</a>多重继承的情况，或在编译时通过模板元编程确定基类身份的情况。</p>
-<p>同受保护继承，私有继承亦可用于受控制的多态：在派生类的成员内（但不在进一步派生类内），派生类是（ IS-A ）基类。</p>
-<h1 id="虚函数"><a href="#虚函数" class="headerlink" title="虚函数"></a>虚函数</h1><p>虚函数是 C++ 中一个与继承相关的概念。函数声明中带有 <code>virtual</code> 关键字表示函数是虚函数。只有虚函数才能被覆写（Override）。</p>
-<p><code>virtual</code> 指定符指定<strong>非静态</strong>成员函数为虚并支持动态绑定。</p>
-<p>虚函数可以不提供实现（定义）。</p>
-<p>纯虚函数：<code>声明 virtual-specifier(可选) = 0</code></p>
-<p><code>virtual int f() = 0;</code></p>
-<ul>
-<li><p>有纯虚函数的类被称为“抽象类”，不能创建其实例。</p>
-</li>
-<li><p>纯虚函数也可以提供定义（而且若析构函数为纯虚则必须提供），但是必须在类外（因为类声明的语法不允许 <code>= 0</code> 和定义同时出现）：</p>
-</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Abstract</span> &#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">int</span> <span class="title">f</span><span class="params">()</span> </span>= <span class="number">0</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> Abstract::f() &#123;</span><br><span class="line">    <span class="comment">// definition</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>无论纯虚函数是否拥有定义，从抽象类的构造函数或析构函数进行纯虚函数的虚调用属于未定义的行为，如果纯虚函数有定义，可以使用限定名进行非虚调用</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Abstract</span> &#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">int</span> <span class="title">f</span><span class="params">()</span> </span>= <span class="number">0</span>;</span><br><span class="line">    ~Abstract() &#123;</span><br><span class="line">        Abstract::f();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> Abstract::f() &#123;</span><br><span class="line">    <span class="comment">// definition</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h2 id="虚指定符"><a href="#虚指定符" class="headerlink" title="虚指定符"></a>虚指定符</h2><p><code>override</code> 和 <code>final</code>，覆写基类的虚函数，有此指定符的函数为虚函数。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/27/java-basic-thread/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RHANQTL">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/01/27/java-basic-thread/" class="post-title-link" itemprop="url">Java 学习笔记 - 基础篇：多线程</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2019-01-27 02:03:20 / 修改时间：02:03:21" itemprop="dateCreated datePublished" datetime="2019-01-27T02:03:20+08:00">2019-01-27</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/27/java-basic-date/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RHANQTL">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/01/27/java-basic-date/" class="post-title-link" itemprop="url">Java 学习笔记 - 基础篇：日期操作</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-01-27 02:03:07" itemprop="dateCreated datePublished" datetime="2019-01-27T02:03:07+08:00">2019-01-27</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/27/java-basic-enum/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RHANQTL">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/01/27/java-basic-enum/" class="post-title-link" itemprop="url">Java 学习笔记 - 基础篇：枚举类</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-01-27 02:02:37" itemprop="dateCreated datePublished" datetime="2019-01-27T02:02:37+08:00">2019-01-27</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/18/poj-1753-Flip-Game/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RHANQTL">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/01/18/poj-1753-Flip-Game/" class="post-title-link" itemprop="url">POJ 1753. Flip Game</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-01-18 10:54:56" itemprop="dateCreated datePublished" datetime="2019-01-18T10:54:56+08:00">2019-01-18</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-25 15:12:37" itemprop="dateModified" datetime="2020-03-25T15:12:37+08:00">2020-03-25</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>题目链接：<a href="http://poj.org/problem?id=1753" target="_blank" rel="noopener">POJ 1753 - Flip Game</a></p>
-<p>这道题一开始想的是这样的：</p>
-<p>$C^0_{16}+ C^1_{16} + \cdots + C^{16}_{16} = 2^{16}$，对翻转的个数进行枚举，伪代码如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">procedure solve()</span><br><span class="line">    min &lt;- 17</span><br><span class="line">    possible &lt;- false</span><br><span class="line">    for i &lt;- [0, 16]</span><br><span class="line">        if flip(0, i, 0, min)</span><br><span class="line">            possible &lt;- true</span><br><span class="line">    if possible</span><br><span class="line">        print min</span><br><span class="line">    else</span><br><span class="line">        print &quot;Impossible&quot;</span><br><span class="line">        </span><br><span class="line">function flip(start, remaining, numberOfRounds, min)</span><br><span class="line">    if check()</span><br><span class="line">        min &lt;- min(min, numberOfRounds)</span><br><span class="line">        return true</span><br><span class="line">    else</span><br><span class="line">        if remaining = 0</span><br><span class="line">            return false</span><br><span class="line">        else</span><br><span class="line">            possible &lt;- false</span><br><span class="line">            for i &lt;- [start, 16 - remaining]</span><br><span class="line">                doFlip(start)</span><br><span class="line">                if flip(start + 1, remaining - 1, numberOfRounds + 1, min)</span><br><span class="line">                    possible &lt;- true</span><br><span class="line">                doFlip(start)</span><br><span class="line">            return possible</span><br></pre></td></tr></table></figure>
-<p>这样固然能够求出最后的结果，但是因为有大量的重复计算（比如翻转数为 15 的时候其实可能包含翻转数为 14 时的结果，但是因为并未保存中间结果，所以需要很多重复计算），速度极慢（我的电脑上是 27 s 左右）。另一个问题是，如果能够在翻转数为 i 时达到目标，那么就没有必要计算翻转数为 j 的情况（i &lt; j）。</p>
-<p>换一个角度想，其实这个问题是一个 0-1 选择问题：<strong>翻转/不翻转</strong>当前的棋子：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">function solve(start, numberOfRounds)</span><br><span class="line">    if check()</span><br><span class="line">        min &lt;- min(min, numberOfRounds)</span><br><span class="line">    else</span><br><span class="line">        if start &gt;= 16</span><br><span class="line">            return</span><br><span class="line">        // 不翻转</span><br><span class="line">        solve(start + 1, numberOfRounds)</span><br><span class="line">        // 翻转</span><br><span class="line">        doFlip(start)</span><br><span class="line">        solve(start + 1, numberOfRounds + 1)</span><br><span class="line">        // 恢复</span><br><span class="line">        doFlip(start)</span><br></pre></td></tr></table></figure>
-<p>这样避免了许多的重复计算，就快了很多，基本上是几十毫秒就可以计算得出结果。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/14/math-prob-stat-markov/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RHANQTL">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/01/14/math-prob-stat-markov/" class="post-title-link" itemprop="url">机器学习数学基础 - 概率统计：马尔可夫链</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-01-14 23:05:45" itemprop="dateCreated datePublished" datetime="2019-01-14T23:05:45+08:00">2019-01-14</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-02-14 22:56:59" itemprop="dateModified" datetime="2019-02-14T22:56:59+08:00">2019-02-14</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>马尔可夫链（Markov Chain）是具有马尔可夫性质的随机过程。“马尔可夫链” 是指一个随机变量的序列，这个过程向前移动，马尔可夫性质仅在相邻的时期定义 serial 依赖。它可以用于描述符合这样特征的系统：</p>
-<ul>
-<li>一个事件的链</li>
-<li>对于这些事件，下一步发生什么只取决于系统当前的状态</li>
-</ul>
-<p>对于一个马尔可夫链，我们需要明确两个变量：</p>
-<ul>
-<li>系统的状态空间</li>
-<li>系统的时间参数索引（Time Parameter Index）</li>
-</ul>
+          <h1 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h1><p>Shell 中的变量实际上都是<strong>字符串</strong>。</p>
+<h2 id="预定义变量"><a href="#预定义变量" class="headerlink" title="预定义变量"></a>预定义变量</h2><h3 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h3><div class="table-container">
 <table>
-    <tr>
-        <th></th>
-        <th>Countable state space</th>
-        <th>Continuous or general state space</th>
-    </tr>
-    <tr>
-        <th>Discrete time</th>
-        <td></td>
-        <td></td>
-    </tr>
-    <tr>
-        <th>Continuous time</th>
-        <td></td>
-        <td></td>
-    </tr>
+<thead>
+<tr>
+<th>名字</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><font face="Lucida Console">PATH</font></td>
+<td>默认的命令搜索路径</td>
+</tr>
+<tr>
+<td><font face="Lucida Console">UID</font></td>
+<td></td>
+</tr>
+<tr>
+<td><font face="Lucida Console">PWD</font></td>
+<td></td>
+</tr>
+<tr>
+<td><font face="Lucida Console">PS1</font></td>
+<td></td>
+</tr>
+<tr>
+<td><font face="Lucida Console">PS2</font></td>
+<td></td>
+</tr>
+<tr>
+<td><font face="Lucida Console">TERM</font></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+</tr>
+</tbody>
 </table>
-
-<p>时间参数通常是离散的</p>
-<p>系统状态的变化称为过渡，与各种状态变化相关的概率称为转移概率。</p>
-<p>这个过程由状态空间，描述特定转换概率的转移矩阵以及跨状态空间的初始状态（或初始分布）标识。</p>
-<p>Markov属性表明系统在下一步（实际上在所有未来步骤中）的<a href="https://en.wikipedia.org/wiki/Conditional_probability_distribution" target="_blank" rel="noopener">条件概率分布</a>仅取决于系统的当前状态，而不是另外取决于前一步骤的系统状态。</p>
-<p>由于系统随机变化，通常无法确定地预测未来某一点马尔可夫链的状态。<a href="https://en.wikipedia.org/wiki/Markov_chain#cite_note-:1-39" target="_blank" rel="noopener">[39]</a>然而，可以预测系统未来的统计特性。<a href="https://en.wikipedia.org/wiki/Markov_chain#cite_note-:1-39" target="_blank" rel="noopener">[39]</a>在许多应用中，重要的是这些统计特性。</p>
-<h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><p>酒鬼步行</p>
-<p>一个著名的马尔可夫链是所谓的“酒鬼步行”问题，在<a href="https://en.wikipedia.org/wiki/Number_line" target="_blank" rel="noopener">数字线上</a><a href="https://en.wikipedia.org/wiki/Random_walk" target="_blank" rel="noopener">随机行走</a>，在每一步，位置可能以相同的概率改变+1或-1。</p>
-<p>即转移矩阵是这样的（假设数字线长为 5）：</p>
-<script type="math/tex; mode=display">\left[\begin{matrix}0 & 0.5 & 0 & 0& 0 \\ 0.5 & 0 & 0.5& 0 & 0 \\ 0 & 0.5 & 0 & 0.5 & 0 \\ 0 & 0& 0.5 & 0 & 0.5 \\ 0 & 0& 0& 0.5 & 0\end{matrix}\right]</script><p>饮食习惯</p>
-<p>另一个例子是只吃葡萄，奶酪或生菜的生物的饮食习惯，其饮食习惯符合以下规则：</p>
+</div>
+<h3 id="自动变量"><a href="#自动变量" class="headerlink" title="自动变量"></a>自动变量</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>名字</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><font face="Lucida Console">@</font></td>
+<td></td>
+</tr>
+<tr>
+<td><font face="Lucida Console">?</font></td>
+<td></td>
+</tr>
+<tr>
+<td><font face="Lucida Console">!</font></td>
+<td></td>
+</tr>
+<tr>
+<td><font face="Lucida Console">$</font></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="用户定义变量"><a href="#用户定义变量" class="headerlink" title="用户定义变量"></a>用户定义变量</h2><p>格式：<code>&lt;variable name&gt;=&lt;value&gt;</code></p>
+<p><strong>注意：</strong><code>=</code> 两边不能有空格！</p>
+<p>Shell 中，<code>=</code> 有多重含义，可以是赋值（初始化）、也可以是比较，不同的是：</p>
 <ul>
-<li>它每天吃一次。</li>
-<li>如果它今天吃奶酪，明天它会以相同的概率吃生菜或葡萄。</li>
-<li>如果它今天吃了葡萄，明天就会吃概率为1/10的葡萄，概率为4/10的奶酪和概率为5/10的生菜。</li>
-<li>如果它今天吃生菜，明天将吃概率为4/10的葡萄或概率为6/10的奶酪。明天不会再吃生菜了。</li>
-</ul>
-<script type="math/tex; mode=display">\left[\begin{matrix}0 & 0.5 & 0.5 \\ 0.4 & 0.1 & 0.5 \\ 0.6 & 0.4 & 0\end{matrix}\right]</script><p>该理论通常仅在下一步的概率分布非常依赖于当前状态时才应用。</p>
-<h1 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h1><ul>
-<li>酒鬼步行、随机游走、赌博</li>
-<li>生死过程、泊松点过程</li>
-<li>非马尔可夫的例子：取硬币问题<ul>
-<li>假设有一个零钱包，包含 5 个 25 美分的硬币，5 个 10 美分，5 个 5 美分，并且一个接一个地从钱包中随机抽取硬币放在桌子上。如果 $X_ {n}$ 表示取出 $n$ 个硬币之后桌子上硬币的总价值，其中 $X_0 = 0$，那么序列 $\{ X_n:n\in\mathbb{N}\}$ 不是马尔可夫过程。</li>
-<li>假设我们取了 6 次硬币，5 枚 5 美分的硬币和 1 枚 25 美分的硬币，那么当前 $X_6 = 0.5$，那么我们下一次取硬币的概率会受到影响：比如以后不能再取面值为 5 美分的硬币，那么我们可以确定 $X_7 \ge 0.6$ 的概率为 1。而如果我们不知道当前已经取出的硬币的情况，我们可能会推断出，当前取了 4 个 10 美分的硬币和 2 个 5 美分的硬币，这样 $X_7 \ge 0.6$ 的概率为 $\dfrac{2}{3}$，与之前的 1 不同，也就是说，<strong>状态之间转移的概率受到了影响</strong>！</li>
-<li>这个场景可以建模为马尔可夫过程，我们可以定义 $X_n$ 表示第 n 次取硬币后桌子上各种硬币的数量，比如，$X_6 = 1, 0, 5$ 表示第 6 次抽取后桌子上有 1 枚 25 美分的硬币，5 枚 5 美分的硬币。这个新模型将由 216（$= 6 \times 6 \times 6$ ）种可能状态表示</li>
-</ul>
-</li>
-</ul>
-<h1 id="马尔可夫性质-2"><a href="#马尔可夫性质-2" class="headerlink" title="马尔可夫性质 $^{[2]}$"></a>马尔可夫性质 $^{[2]}$</h1><p>马尔可夫性质是指随机过程的<em>无记忆性</em>：如果过程的未来状态的条件概率分布只取决于当前状态，而不取决于其之前的事件序列，则随机过程具有马尔可夫性质</p>
-<h3 id="强（Strong）马尔可夫性质"><a href="#强（Strong）马尔可夫性质" class="headerlink" title="强（Strong）马尔可夫性质"></a>强（Strong）马尔可夫性质</h3><p>与马尔可夫性质类似，但“当前”（present）是以 “stopping time” 定义的</p>
-<p>马尔可夫假设：用于描述马尔可夫性质被假设为成立的模型</p>
-<h1 id="正式定义"><a href="#正式定义" class="headerlink" title="正式定义"></a>正式定义</h1><h2 id="离散时间马尔可夫链"><a href="#离散时间马尔可夫链" class="headerlink" title="离散时间马尔可夫链"></a>离散时间马尔可夫链</h2><p>有马尔可夫性质的随机变量序列 $X_1$，$X_2$，$X_3$，$\dots$</p>
-<script type="math/tex; mode=display">\Pr(X_{n+1}=x|X_1=x_1, X2=x_2, \dots, X_n=x_n) = \Pr(X_{n+1}=x|X_n=x_n)</script><p>如果两个条件概率都是良定义的，即</p>
-<script type="math/tex; mode=display">\Pr(X_1=x_1, X_2=x_2, \dots, X_n=x_n) \gt 0</script><p>其中 $X_i$ 的可能值形成一个可数集 S，称为链的状态空间。</p>
-<p>可以用有向图表示，边的权重为转移概率；或者用转移矩阵表示</p>
-<p>每行的和为 1</p>
-<p>初始状态 $\Pr(X_1=x_1)$</p>
-<p>第二步：$\Pr(X_2=x_2|X_1=x_1) = \dfrac{\Pr(X_2=x_2, X_1=x_1)}{\Pr(X_1=x_1)}$</p>
-<p>第二步：$\Pr(X_3=x_3|X_2=x_2) = \dfrac{\Pr(X_3=x_3, X_2=x_2)}{\Pr(X_2=x_2)}$</p>
-<p>第二步：$\Pr(X_4=x_4|X_3=x_3) = \dfrac{\Pr(X_4=x_4, X_3=x_3)}{\Pr(X_3=x_3)}$</p>
-<h3 id="变体"><a href="#变体" class="headerlink" title="变体"></a>变体</h3><ul>
-<li><p>时间齐次马尔可夫链（固定马尔可夫链）</p>
-<script type="math/tex; mode=display">\Pr(X_{n+1}=x|X_n=y) = \Pr(X_n=x|X_{n-1}=y)</script><p>转换的概率与 n 无关</p>
-</li>
-<li><p>有记忆的马尔可夫链（m 阶马尔可夫链）</p>
-<script type="math/tex; mode=display">\Pr(X_{n+1}=x_{n+1}|X_n=x_n, X_{n-1}=x_{n-1}, \dots, X_{n-m+1}=x_{n-m+1})</script><p>可以由这个链 $X_n$ 构建新的链 $Y_n$，其中 $Y_i = (X_i, X_{i-1}, \dots, X_{i-m+1})$</p>
-</li>
-</ul>
-<p>所以这个“与之前的状态无关”到底是哪方面无关？</p>
-<p>假设转移矩阵为 $P$</p>
-<script type="math/tex; mode=display">x^{(n+3)}=x^{(n+2)}P = (x^{(n+1)}P)P = ((x^{(n)}P)P)P = x^{(n)}P^3</script><p>$x^{(n+3)}$ 可以由 $x^{(n)}$ 计算，那么为什么说 $x^{(n+3)}$ 与 $x^{(n)}$ 无关？</p>
-<p>答：这个“无关”用词并不准确，准确地说应该是，$x^{(x+3)}$ 可以仅由 $x^{(x+2)}$ 计算出来</p>
-<h2 id="连续时间马尔可夫链"><a href="#连续时间马尔可夫链" class="headerlink" title="连续时间马尔可夫链"></a>连续时间马尔可夫链</h2><p>连续时间马尔可夫链 $(X_t)_{t \ge 0}$ 由以下三部分定义：</p>
+<li><p>如果等号两边没有空格：</p>
 <ul>
-<li>一个有限或可数的状态空间 S </li>
-<li>转移率矩阵 Q（维度为 |S|），<ul>
-<li>每行的和为 0</li>
-<li>$q_{ij}$ 表示从状态 i 转移到状态 j 的概率</li>
-<li>$q_{ii}$ 是不定的，可以用于保证转移矩阵的每行的和为 0</li>
+<li><p>左侧是变量，会认为是赋值</p>
+</li>
+<li><p>如果左侧是字符串，就会当成<strong>一个</strong>字符串</p>
+</li>
 </ul>
 </li>
-<li>状态空间上定义的初始概率分布</li>
+<li><p>如果等号两边有空格，就是比较</p>
+</li>
+<li><p>如果只有一边有空格，错误</p>
+</li>
 </ul>
-<h3 id="三种等价的定义"><a href="#三种等价的定义" class="headerlink" title="三种等价的定义"></a>三种等价的定义</h3><h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p>[1] <a href="https://en.wikipedia.org/wiki/Markov_chain" target="_blank" rel="noopener">Wikipedia：Markov Chain</a></p>
-<p>[2] <a href="https://en.wikipedia.org/wiki/Markov_property" target="_blank" rel="noopener">Wikipedia：Markov Property</a></p>
+<p>也可以用 <code>==</code>，两边也<strong>必须有空格</strong></p>
+<ul>
+<li>如果 <code>a==&quot;b&quot;</code>，<code>a</code> 的值为 <code>=&quot;b&quot;</code></li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">命令</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>[n]&lt;word</code></td>
+<td style="text-align:left">重定向标准输入</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>[n]&gt;[\</code></td>
+<td style="text-align:left">]word&lt;/code&gt;</td>
+<td>重定向标准输出</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>[n]&gt;&gt;file</code></td>
+<td style="text-align:left">以追加的方式重定向标准输出</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>[n]&lt;&amp;word</code></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>&amp;&gt;word</code> 或 <code>&gt;&amp;word</code></td>
+<td style="text-align:left">重定向标准输出和标准错误</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>&amp;&gt;&gt;word</code></td>
+<td style="text-align:left">以追加的方式重定向标准输出和标准错误</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>&lt;&lt; tag</code></td>
+<td style="text-align:left">即时文档</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>[n]&lt;&gt;word</code></td>
+<td style="text-align:left">读/写</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h1 id="生成列表"><a href="#生成列表" class="headerlink" title="生成列表"></a>生成列表</h1><p><code>{lower..upper}</code> 或 <code>反引号seq \<lower\> \<upper\>反引号</upper\></lower\></code>，注意：</p>
+<p>A sequence expression takes the form {x..y[..incr]}, where x and y are either integers or single characters, and incr, an optional increment, is an integer. When integers are supplied, the expression expands to each number between x and y, inclusive….When characters are supplied, the expression expands to each character lexicographically between x and y, inclusive. Note that both x and y must be of the same type. When the increment is supplied, it is used as the difference between each term. The default increment is 1 or -1 as appropriate.</p>
+<h1 id="控制结构"><a href="#控制结构" class="headerlink" title="控制结构"></a>控制结构</h1><h2 id="分支"><a href="#分支" class="headerlink" title="分支"></a>分支</h2><p><strong><code>if</code></strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">if bool-expression</span><br><span class="line">then</span><br><span class="line">    # statements</span><br><span class="line">elif bool-expression</span><br><span class="line">then</span><br><span class="line">    # statements</span><br><span class="line">else</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+<p><strong><code>case</code></strong></p>
+<h2 id="循环"><a href="#循环" class="headerlink" title="循环"></a>循环</h2><p><strong><code>for</code></strong></p>
+<p><strong><code>while</code></strong></p>
+<p><strong><code>until</code></strong></p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p>[1] <a href="https://www.gnu.org/software/bash/manual/html_node/Redirections.html" target="_blank" rel="noopener">GNU Shell 教程</a></p>
 
       
     </div>
@@ -845,7 +476,7 @@
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/12/cpp-stl-map/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/02/linux-programming-gdb/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -859,7 +490,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2019/01/12/cpp-stl-map/" class="post-title-link" itemprop="url">C++ 学习笔记 - STL：map</a>
+            <a href="/2019/04/02/linux-programming-gdb/" class="post-title-link" itemprop="url">Linux 程序设计 - 工具篇：GDB</a>
         </h1>
 
         <div class="post-meta">
@@ -869,28 +500,15 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2019-01-12 09:50:37" itemprop="dateCreated datePublished" datetime="2019-01-12T09:50:37+08:00">2019-01-12</time>
+              <time title="创建时间：2019-04-02 16:10:45" itemprop="dateCreated datePublished" datetime="2019-04-02T16:10:45+08:00">2019-04-02</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-04-30 09:27:46" itemprop="dateModified" datetime="2019-04-30T09:27:46+08:00">2019-04-30</time>
+                <time title="修改时间：2019-04-03 17:36:58" itemprop="dateModified" datetime="2019-04-03T17:36:58+08:00">2019-04-03</time>
               </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Programming/" itemprop="url" rel="index"><span itemprop="name">Programming</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Programming/C/" itemprop="url" rel="index"><span itemprop="name">C++</span></a>
-                </span>
-            </span>
 
           
 
@@ -922,7 +540,7 @@
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/11/cpp-basic-construct-destruct/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/02/linux-programming-gcc/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -936,7 +554,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2019/01/11/cpp-basic-construct-destruct/" class="post-title-link" itemprop="url">C++ 学习笔记 - 基础篇：类的构造和析构</a>
+            <a href="/2019/04/02/linux-programming-gcc/" class="post-title-link" itemprop="url">Linux 程序设计 - 工具篇：GCC</a>
         </h1>
 
         <div class="post-meta">
@@ -946,28 +564,15 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2019-01-11 20:23:31" itemprop="dateCreated datePublished" datetime="2019-01-11T20:23:31+08:00">2019-01-11</time>
+              <time title="创建时间：2019-04-02 16:10:40" itemprop="dateCreated datePublished" datetime="2019-04-02T16:10:40+08:00">2019-04-02</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-01-17 19:41:12" itemprop="dateModified" datetime="2019-01-17T19:41:12+08:00">2019-01-17</time>
+                <time title="修改时间：2019-04-03 17:36:44" itemprop="dateModified" datetime="2019-04-03T17:36:44+08:00">2019-04-03</time>
               </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Programming-Languages/" itemprop="url" rel="index"><span itemprop="name">Programming Languages</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Programming-Languages/C/" itemprop="url" rel="index"><span itemprop="name">C++</span></a>
-                </span>
-            </span>
 
           
 
@@ -980,12 +585,555 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>在介绍 C++ 的类构造和析构之前，先介绍一个重要的原则：RAII。</p>
-<p>RAII 源于 C++，是 <a href="https://en.wikipedia.org/wiki/Bjarne_Stroustrup" target="_blank" rel="noopener">Bjarne Stroustrup</a> 和 <a href="https://en.wikipedia.org/wiki/Andrew_Koenig_(programmer\" target="_blank" rel="noopener">Andrew Koenig</a>) 在设计 C++ 异常时，为解决资源管理的异常安全性而使用的方法，后来 Bjarne 称之为 RAII。</p>
-<p>RAII 要求，资源的有效期与持有资源的对象的生命期严格绑定，即由对象的构造函数完成资源的分配（获取），同时由析构函数完成资源的释放。在这种要求下，只要对象能正确地析构，就不会出现资源泄露的问题。$^{[1]}$</p>
+          
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/02/linux-programming-make-makefile/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/04/02/linux-programming-make-makefile/" class="post-title-link" itemprop="url">Linux 程序设计 - 工具篇：make 和 Makefile</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-04-02 16:08:51" itemprop="dateCreated datePublished" datetime="2019-04-02T16:08:51+08:00">2019-04-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-04-03 17:37:12" itemprop="dateModified" datetime="2019-04-03T17:37:12+08:00">2019-04-03</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="什么是-Makefile？"><a href="#什么是-Makefile？" class="headerlink" title="什么是 Makefile？"></a>什么是 Makefile？</h1><h1 id="为什么要使用-Makefile？"><a href="#为什么要使用-Makefile？" class="headerlink" title="为什么要使用 Makefile？"></a>为什么要使用 Makefile？</h1>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2019/01/11/cpp-basic-construct-destruct/#more" rel="contents">
+              <a class="btn" href="/2019/04/02/linux-programming-make-makefile/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/02/linux-programming-file-system/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/04/02/linux-programming-file-system/" class="post-title-link" itemprop="url">Linux 程序设计 - 基础篇：文件系统</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-04-02 15:46:30" itemprop="dateCreated datePublished" datetime="2019-04-02T15:46:30+08:00">2019-04-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-04-03 17:50:53" itemprop="dateModified" datetime="2019-04-03T17:50:53+08:00">2019-04-03</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="硬盘分区"><a href="#硬盘分区" class="headerlink" title="硬盘分区"></a>硬盘分区</h1><h2 id="MBR"><a href="#MBR" class="headerlink" title="MBR"></a>MBR</h2><p>MBR（Master Boot Record，主引导记录）</p>
+<p>MBR 有如下组成部分：</p>
+<ul>
+<li><p>446 字节的程序代码，用于启动 OS</p>
+</li>
+<li><p>64 字节的分区表，最多支持 4 个分区</p>
+<blockquote>
+<p>有时在一些使用 MBR 分区的硬盘中安装双系统，可能会发现无法增加新的主分区，就是因为 MBR 最多支持 4 个主分区。</p>
+</blockquote>
+</li>
+<li><p>2 字节的 “魔数” 0x55AA</p>
+</li>
+</ul>
+<h2 id="GPT"><a href="#GPT" class="headerlink" title="GPT"></a>GPT</h2><p>GPT（GUID Partition Table，全局唯一标识分区表）</p>
+<p>在 GPT 硬盘中，分区表的位置信息存储在 <u>GPT 头</u>（GPT header）中，但是出于兼容性的考虑，硬盘的第一个扇区仍然用作 MBR（叫做保护 MBR（protective MBR）），之后才是 GPT 头，接下来就是分区表本身。</p>
+<p>为了避免分区表损坏，GPT 在硬盘最后保存了分区表的一份副本（Secondary GPT）。</p>
+<p>GPT 分区表的结构如下：</p>
+<img src="/2019/04/02/linux-programming-file-system/gpt-overview.svg.png" title="此例中，每个逻辑块为 512 字节，每个分区的记录为 128 字节。负数表示从最后的块开始倒数，使用 −1 表示最后一个块">
+<p>解释：</p>
+<ul>
+<li>在支持从 GPT 启动的 OS 中，MBR 只有一个标识为 0xEE 的分区，表示这块硬盘使用 GPT 分区表。不能识别 GPT 硬盘的 OS 通常会识别出一个未知类型的分区，并且拒绝对硬盘进行操作，除非用户特别要求删除这个分区。这就避免了错误识别并破坏硬盘中的数据的危险。另外，能够识别 GPT 分区表的操作系统会检查保护 MBR 中的分区表，如果分区类型不是 0xEE 或者 MBR 分区表中有多个项，也会拒绝对硬盘进行操作。</li>
+<li>在使用 64 位 Windows Server 2003 的机器上，最多可以创建 128 个分区，即分区表中保留了 128 个项，其中每个都是 128 字节。（EFI 标准要求分区表最小要有 16,384 字节，即 128 个分区项的大小）</li>
+</ul>
+<h1 id="什么是文件系统？"><a href="#什么是文件系统？" class="headerlink" title="什么是文件系统？"></a>什么是文件系统？</h1><p>文件系统是操作系统中存取和管理文件的部分，给文件提供了命名空间。</p>
+<p>我们先来看一下 “文件” 是什么。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/04/02/linux-programming-file-system/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/27/soft-eng-arch-attribute-driven-design/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/03/27/soft-eng-arch-attribute-driven-design/" class="post-title-link" itemprop="url">软件工程 | 软件架构 | 属性驱动设计</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-03-27 15:59:40" itemprop="dateCreated datePublished" datetime="2019-03-27T15:59:40+08:00">2019-03-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-25 15:07:20" itemprop="dateModified" datetime="2020-03-25T15:07:20+08:00">2020-03-25</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/软件工程-Software-Engineering/" itemprop="url" rel="index"><span itemprop="name">软件工程 (Software Engineering)</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/软件工程-Software-Engineering/软件架构-Software-Architecture/" itemprop="url" rel="index"><span itemprop="name">软件架构 (Software Architecture)</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>如题</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/03/27/soft-eng-arch-attribute-driven-design/">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/27/soft-eng-arch-micro-services/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/03/27/soft-eng-arch-micro-services/" class="post-title-link" itemprop="url">软件工程 | 软件架构 | 微服务架构</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-03-27 14:40:45" itemprop="dateCreated datePublished" datetime="2019-03-27T14:40:45+08:00">2019-03-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-25 15:06:46" itemprop="dateModified" datetime="2020-03-25T15:06:46+08:00">2020-03-25</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/软件工程-Software-Engineering/" itemprop="url" rel="index"><span itemprop="name">软件工程 (Software Engineering)</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/软件工程-Software-Engineering/软件架构-Software-Architecture/" itemprop="url" rel="index"><span itemprop="name">软件架构 (Software Architecture)</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>如题</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/03/27/soft-eng-arch-micro-services/">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/26/c-to-asm/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/03/26/c-to-asm/" class="post-title-link" itemprop="url">从 C 到汇编</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-03-26 15:37:02" itemprop="dateCreated datePublished" datetime="2019-03-26T15:37:02+08:00">2019-03-26</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-04-21 02:25:09" itemprop="dateModified" datetime="2019-04-21T02:25:09+08:00">2019-04-21</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="C-到汇编"><a href="#C-到汇编" class="headerlink" title="C 到汇编"></a>C 到汇编</h1><p>以下均为 <strong>GCC</strong> 的行为！！！</p>
+<h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><h3 id="全局变量"><a href="#全局变量" class="headerlink" title="全局变量"></a>全局变量</h3><ul>
+<li>初始化的全局变量：<code>.data</code></li>
+<li>未初始化的全局变量和<em>初始化为 0 的全局变量</em>：<code>.bss</code><ul>
+<li>这样做只需要在目标代码中放置占位符即可，不需要保存实际的数据，可以节省空间</li>
+</ul>
+</li>
+</ul>
+<h3 id="局部变量"><a href="#局部变量" class="headerlink" title="*局部变量"></a>*局部变量</h3><ul>
+<li>静态局部变量</li>
+<li><p>非静态局部变量</p>
+</li>
+<li><p>第一个局部变量的地址为 <code>-0x8(%ebp)</code>，第二个局部变量的地址为 <code>-0xc(%ebp)</code>，依此类推</p>
+</li>
+</ul>
+<h3 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h3><p>数据对象：</p>
+<p>最典型的数据对象：字符串字面量</p>
+<h2 id="函数调用"><a href="#函数调用" class="headerlink" title="函数调用"></a>函数调用</h2><h3 id="函数调用方式"><a href="#函数调用方式" class="headerlink" title="函数调用方式"></a>函数调用方式</h3><ul>
+<li><p><code>__cdecl</code></p>
+<p><code>__cdecl</code> 是 C Declaration  的缩写，表示 C 语言默认的函数调用方法：所有参数<strong>从右到左</strong>依次入栈，这些参数由<strong>调用者</strong>清除，称为手动清栈。被调用函数<strong>不要求</strong>调用者传递多少参数，调用者传递过多或者过少的参数，甚至完全不同的参数都不会产生编译阶段的错误。<strong>实现可变参数的调用只能用该方法</strong>。</p>
+</li>
+<li><p><code>__stdcall</code></p>
+<p><code>__stdcall</code> 是 Standard Call 的缩写，是 C++ 的标准调用方式：所有参数<strong>从右到左</strong>依次入栈，如果是调用类成员的话，最后一个入栈的是 <code>this</code> 指针。这些堆栈中的参数由<strong>被调用者</strong>在返回后清除，使用的指令是 <code>retn X</code>，X 表示参数占用的字节数，CPU 在 <code>retn</code> 之后自动弹出 X 个字节的堆栈空间，称为自动清栈。函数在编译的时候就<strong>必须确定</strong>参数个数，并且调用者必须严格的控制参数的生成，不能多，不能少，否则返回后会出错。</p>
+</li>
+<li><p><code>__pascal</code></p>
+<p><code>__pascal</code> 是 Pascal 语言（Delphi）的函数调用方式，也可以在 C++ 中使用，参数压栈顺序与前两者<strong>相反</strong>。返回时的清栈方式与 <code>__stdcall</code> 相同。</p>
+</li>
+<li><p><code>__fastcall</code></p>
+<p><code>__fastcall</code> 是编译器指定的快速调用方式。由于大多数的函数参数个数很少，使用堆栈传递比较费时。因此 <code>__fastcall</code> 通常规定将前两个（或若干个）参数由寄存器传递，其余参数还是通过堆栈传递。不同编译器编译的程序规定的寄存器不同，返回方式和 <code>__stdcall</code> 相当。</p>
+</li>
+<li><p><code>__thiscall</code></p>
+<p><code>__thiscall</code> 是为了解决类成员调用中 <code>this</code> 指针传递而规定的。<code>__thiscall</code> 要求把 <code>this</code> 指针放在特定寄存器中，该寄存器由编译器决定。VC 使用 <code>ecx</code>，Borland 的 C++ 编译器使用 <code>eax</code>。返回方式和 <code>__stdcall</code> 相当。</p>
+</li>
+</ul>
+<p><code>__fastcall</code> 和 <code>__thiscall</code> 涉及的寄存器由编译器决定，因此<strong>不能</strong>用作跨编译器的接口。所以 Windows 上的 COM 对象接口都定义为 <code>__stdcall</code> 调用方式。</p>
+<p>C 语言中不加说明<strong>默认</strong>函数为 <code>__cdecl</code> 方式（C 中也只能用这种方式），C++ 也一样，但是默认的调用方式可以在 IDE 环境中设置。</p>
+<p>例子：<code>f(a, b, c);</code>（汇编代码均为示意，并不是合法的）</p>
+<ul>
+<li><p><code>__cdecl</code> 调用约定：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">push c			; 参数按右到左传递</span><br><span class="line">push b</span><br><span class="line">push a</span><br><span class="line">call f			; 此处的函数名只是示例，实际上会有修饰</span><br><span class="line">add  %esp, 0xc	; 调用者平衡堆栈</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>__stdcall</code> 调用约定</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">push c</span><br><span class="line">push b</span><br><span class="line">push a</span><br><span class="line">call f			; 被调用者平衡堆栈</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>__pascal</code> 调用约定</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">push a</span><br><span class="line">push b</span><br><span class="line">push c</span><br><span class="line">call f			; 被调用者平衡堆栈</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="参数传递"><a href="#参数传递" class="headerlink" title="参数传递"></a>参数传递</h3><ul>
+<li>32 位<ul>
+<li>通过寄存器传递时有寄存器顺序约定</li>
+<li>通过栈传递：最后一个参数最先 push，第一个参数最后 push，由于堆栈是由高地址向低地址增长，这样的 push 顺序能够保证第一个参数最靠近被调用函数的栈帧，<em>便于处理变参</em>。</li>
+</ul>
+</li>
+<li>64 位<ul>
+<li>前 6 个参数：rdi, rsi, rdx, rcx, r8, r9</li>
+<li>其余参数通过栈传递，同 32 位，但每个参数按照 <em>8</em> 字节对齐</li>
+</ul>
+</li>
+</ul>
+<h4 id="变参"><a href="#变参" class="headerlink" title="变参"></a>变参</h4><p><code>va_list</code>：变参列表，<code>typedef char * va_list;</code>，也就是字节指针</p>
+<p>三个主要的宏：</p>
+<ul>
+<li><code>va_start(ap, 第一个值)</code>：将变参列表 <code>ap</code> 初始化为第一个匿名参数</li>
+<li><code>va_arg(ap, type)</code>：获取下一个类型为 <code>type</code> 的匿名参数</li>
+<li><code>va_end(ap)</code>：负责结束时的清理工作</li>
+</ul>
+<h3 id="call"><a href="#call" class="headerlink" title="call"></a><code>call</code></h3><p>CPU 执行 <code>call</code> 指令，进行两步操作：</p>
+<ol>
+<li><p>将当前的 IP 或 CS 和 IP 压入栈中</p>
+</li>
+<li><p>转移</p>
+</li>
+</ol>
+<h3 id="准备工作（Prologue）"><a href="#准备工作（Prologue）" class="headerlink" title="准备工作（Prologue）"></a>准备工作（Prologue）</h3><p>C 语言中进入被调用函数之后通常会有如下的代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">push	%ebp</span><br><span class="line">mov		%esp, %ebp</span><br></pre></td></tr></table></figure>
+<p>所以，在调用者的栈帧中，第一项（<code>0x0(%esp)</code>）为其栈帧的栈底指针（<code>%ebp</code>）；而第二项（<code>0x4(%esp)</code>）为返回地址</p>
+<h3 id="返回值"><a href="#返回值" class="headerlink" title="返回值"></a>返回值</h3><p>通常返回值放在 <code>%eax</code> 中</p>
+<h3 id="leave-和-ret"><a href="#leave-和-ret" class="headerlink" title="leave 和 ret"></a><code>leave</code> 和 <code>ret</code></h3><h1 id="更多"><a href="#更多" class="headerlink" title="更多"></a>更多</h1><p>[1] <a href="https://stackoverflow.com/questions/4228261/understanding-the-purpose-of-some-assembly-statements" target="_blank" rel="noopener">Understanding the purpose of some assembly statements</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/25/others-computers/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/03/25/others-computers/" class="post-title-link" itemprop="url">笔记本电脑选购笔记</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-03-25 15:00:00" itemprop="dateCreated datePublished" datetime="2019-03-25T15:00:00+08:00">2019-03-25</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-02-24 22:22:52" itemprop="dateModified" datetime="2020-02-24T22:22:52+08:00">2020-02-24</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>本文记录了选购电脑的一些基本知识</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/03/25/others-computers/">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1009,7 +1157,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/19/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/19/">19</a><span class="page-number current">20</span><a class="page-number" href="/page/21/">21</a><span class="space">&hellip;</span><a class="page-number" href="/page/24/">24</a><a class="extend next" rel="next" href="/page/21/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/19/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/19/">19</a><span class="page-number current">20</span><a class="page-number" href="/page/21/">21</a><span class="space">&hellip;</span><a class="page-number" href="/page/25/">25</a><a class="extend next" rel="next" href="/page/21/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1075,7 +1223,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">238</span>
+          <span class="site-state-item-count">248</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1084,7 +1232,7 @@
         <span class="site-state-item-name">分类</span>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">42</span>
+        <span class="site-state-item-count">45</span>
         <span class="site-state-item-name">标签</span>
       </div>
   </nav>

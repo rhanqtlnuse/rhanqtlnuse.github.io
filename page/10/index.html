@@ -165,7 +165,7 @@
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/18/oo-three-characteristics/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/03/linear-algebra-svd/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -179,7 +179,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2019/06/18/oo-three-characteristics/" class="post-title-link" itemprop="url">面向对象程序设计：浅谈三个基本特性</a>
+            <a href="/2019/07/03/linear-algebra-svd/" class="post-title-link" itemprop="url">线性代数基础：奇异值分解</a>
         </h1>
 
         <div class="post-meta">
@@ -189,86 +189,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2019-06-18 19:20:00" itemprop="dateCreated datePublished" datetime="2019-06-18T19:20:00+08:00">2019-06-18</time>
+              <time title="创建时间：2019-07-03 18:45:18" itemprop="dateCreated datePublished" datetime="2019-07-03T18:45:18+08:00">2019-07-03</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-06-26 20:37:12" itemprop="dateModified" datetime="2019-06-26T20:37:12+08:00">2019-06-26</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>相信很多人在面试的时候都会被问到这样一个问题：面向对象编程有哪些基本特性？说说你的理解。本文就记录一下个人对于这三个特性的理解。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/06/18/oo-three-characteristics/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/11/front-end-vue-intro/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RHANQTL">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/06/11/front-end-vue-intro/" class="post-title-link" itemprop="url">Vue 入门教程</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-06-11 16:37:44" itemprop="dateCreated datePublished" datetime="2019-06-11T16:37:44+08:00">2019-06-11</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-06-26 20:38:11" itemprop="dateModified" datetime="2019-06-26T20:38:11+08:00">2019-06-26</time>
+                <time title="修改时间：2019-07-04 06:33:23" itemprop="dateModified" datetime="2019-07-04T06:33:23+08:00">2019-07-04</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -276,11 +204,11 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/前端-Front-End/" itemprop="url" rel="index"><span itemprop="name">前端 (Front End)</span></a>
+                  <a href="/categories/数学-Mathematics/" itemprop="url" rel="index"><span itemprop="name">数学 (Mathematics)</span></a>
                 </span>
                   ，
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/前端-Front-End/Vue-js/" itemprop="url" rel="index"><span itemprop="name">Vue.js</span></a>
+                  <a href="/categories/数学-Mathematics/线性代数-Linear-Algebra/" itemprop="url" rel="index"><span itemprop="name">线性代数 (Linear Algebra)</span></a>
                 </span>
             </span>
 
@@ -295,10 +223,189 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>最近写一个项目用到 Vue.js，这里记录一下相关的知识。</p>
+          <h1 id="奇异值分解的计算方法"><a href="#奇异值分解的计算方法" class="headerlink" title="奇异值分解的计算方法"></a>奇异值分解的计算方法</h1><p>奇异值分解的一般形式：</p>
+<script type="math/tex; mode=display">
+A_{m \times n} = U_{m \times m}\Sigma_{m \times n} (V_{n \times n})^T</script><p>对于某个矩阵 $A$，奇异值分解的过程如下：</p>
+<ol>
+<li><p>计算 $A^TA$ 的特征值，即解方程</p>
+<script type="math/tex; mode=display">
+(A^TA)v_i = \lambda_i v_i</script></li>
+<li><p>上面的列向量 $v_i$ 拼起来就是 $V​$</p>
+</li>
+<li><p>计算 $U$ 只需要同样的步骤，计算 $AA^T$ 即可</p>
+<script type="math/tex; mode=display">
+(AA^T)u_i = \lambda_iu_i</script></li>
+<li><p>$\Sigma$</p>
+<script type="math/tex; mode=display">
+\sigma_i = \sqrt{\lambda_i}</script></li>
+<li><p>这里的σ就是上面说的奇异值，u就是上面说的左奇异向量。奇异值σ跟特征值类似，在矩阵Σ中也是从大到小排列，而且σ的减少特别的快，在很多情况下，前10%甚至1%的奇异值的和就占了全部的奇异值之和的99%以上了。也就是说，我们也可以用前r大的奇异值来近似描述矩阵，这里定义一下部分奇异值分解：</p>
+</li>
+</ol>
+<p><strong>检验</strong></p>
+<p>我们先对下面的矩阵进行奇异值分解：</p>
+<script type="math/tex; mode=display">
+M = \left[\begin{matrix}
+0 & 1 \\
+1 & 1 \\
+1 & 0
+\end{matrix}\right]</script><ol>
+<li><p>首先计算 $M^TM$</p>
+<script type="math/tex; mode=display">
+\begin{align*}
+M^TM &= \left[\begin{matrix}
+2 & 1 \\
+1 & 2
+\end{matrix}\right] \\
+MM^T &= \left[\begin{matrix}
+1 & 1 & 0 \\
+1 & 2 & 1 \\
+0 & 1 & 1
+\end{matrix}\right]
+\end{align*}</script></li>
+<li><p>计算 $M^TM$ 的特征值、特征向量</p>
+<script type="math/tex; mode=display">
+\begin{align*}
+
+|\lambda E - M^TM| &= \left|\left[\begin{matrix}
+
+\end{matrix}\right] - \left[\begin{matrix}
+\end{matrix}\right]\right| \\
+\\
+&= \left|\begin{matrix}
+\end{matrix}
+\right| \\
+\\
+&= \left|\begin{matrix}
+\end{matrix}\right|\\
+\\
+&= \left|\begin{matrix}
+\end{matrix}\right|\\
+\\
+\end{align*}</script></li>
+<li><p>求得</p>
+</li>
+</ol>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p>[1] <a href="https://www.cnblogs.com/pinard/p/6251584.html" target="_blank" rel="noopener">SVD</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/02/openmp-examples/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/07/02/openmp-examples/" class="post-title-link" itemprop="url">openmp-examples</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2019-07-02 18:02:41 / 修改时间：18:06:03" itemprop="dateCreated datePublished" datetime="2019-07-02T18:02:41+08:00">2019-07-02</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="1-计算圆周率"><a href="#1-计算圆周率" class="headerlink" title="1 计算圆周率"></a>1 计算圆周率</h1><h2 id="1-1-级数展开"><a href="#1-1-级数展开" class="headerlink" title="1.1 级数展开"></a>1.1 级数展开</h2><h2 id="1-2-概率法"><a href="#1-2-概率法" class="headerlink" title="1.2 概率法"></a>1.2 概率法</h2><h1 id="2-计算积分"><a href="#2-计算积分" class="headerlink" title="2 计算积分"></a>2 计算积分</h1>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/02/linux-programming-condition-variable/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/07/02/linux-programming-condition-variable/" class="post-title-link" itemprop="url">linux-programming-condition-variable</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2019-07-02 10:11:24 / 修改时间：10:29:12" itemprop="dateCreated datePublished" datetime="2019-07-02T10:11:24+08:00">2019-07-02</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>条件变量 TODO</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2019/06/11/front-end-vue-intro/#more" rel="contents">
+              <a class="btn" href="/2019/07/02/linux-programming-condition-variable/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -322,7 +429,7 @@
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/09/others-ip-usable/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/01/soft-eng-test-boundary-analysis/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -336,7 +443,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2019/06/09/others-ip-usable/" class="post-title-link" itemprop="url">others-ip-usable</a>
+            <a href="/2019/07/01/soft-eng-test-boundary-analysis/" class="post-title-link" itemprop="url">软件工程 | 软件测试 | 边界值分析</a>
         </h1>
 
         <div class="post-meta">
@@ -346,87 +453,28 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2019-06-09 16:35:56" itemprop="dateCreated datePublished" datetime="2019-06-09T16:35:56+08:00">2019-06-09</time>
+              <time title="创建时间：2019-07-01 16:11:37" itemprop="dateCreated datePublished" datetime="2019-07-01T16:11:37+08:00">2019-07-01</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-06-26 20:40:09" itemprop="dateModified" datetime="2019-06-26T20:40:09+08:00">2019-06-26</time>
+                <time title="修改时间：2020-03-25 15:05:51" itemprop="dateModified" datetime="2020-03-25T15:05:51+08:00">2020-03-25</time>
               </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><a href="https://blog.csdn.net/qq_38401919/article/details/80824432" target="_blank" rel="noopener">https://blog.csdn.net/qq_38401919/article/details/80824432</a></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/06/09/others-ip-usable/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/09/others-tools-traceroute/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RHANQTL">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/06/09/others-tools-traceroute/" class="post-title-link" itemprop="url">others-tools-traceroute</a>
-        </h1>
-
-        <div class="post-meta">
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
+                <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-06-09 14:38:47" itemprop="dateCreated datePublished" datetime="2019-06-09T14:38:47+08:00">2019-06-09</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/软件工程-Software-Engineering/" itemprop="url" rel="index"><span itemprop="name">软件工程 (Software Engineering)</span></a>
                 </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-25 15:14:23" itemprop="dateModified" datetime="2020-03-25T15:14:23+08:00">2020-03-25</time>
-              </span>
+                  ，
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/软件工程-Software-Engineering/软件测试-Software-Testing/" itemprop="url" rel="index"><span itemprop="name">软件测试 (Software Testing)</span></a>
+                </span>
+            </span>
 
           
 
@@ -442,7 +490,7 @@
           <p>如题</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2019/06/09/others-tools-traceroute/">
+              <a class="btn" href="/2019/07/01/soft-eng-test-boundary-analysis/">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -466,7 +514,7 @@
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/04/os-three-easy-pieces/persistence/README/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/01/soft-eng-test-equiv-partition/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -480,121 +528,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2019/06/04/os-three-easy-pieces/persistence/README/" class="post-title-link" itemprop="url">未命名</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2019-06-04 21:31:07 / 修改时间：21:34:46" itemprop="dateCreated datePublished" datetime="2019-06-04T21:31:07+08:00">2019-06-04</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>This homework uses <code>disk.py</code> to familiarize you with how a modern hard<br>drive works. It has a lot of different options, and unlike most of the other<br>simulations, has a graphical animator to show you exactly what happens when<br>the disk is in action. </p>
-<p>[Note: there is also an experimental program, <code>disk-precise.py</code>, included<br>in the download. This version of the simulator uses the python Decimal<br>package for precise floating point computation, thus giving slightly<br>better answers in some corner cases than <code>disk.py</code>. However, it has<br>not been very carefully tested, so use at your own caution.]</p>
-<p>Let’s do a simple example first. To run the simulator and compute some basic<br>seek, rotation, and transfer times, you first have to give a list of requests<br>to the simulator. This can either be done by specifying the exact requests, or<br>by having the simulator generate some randomly.</p>
-<p>We’ll start by specifying a list of requests ourselves. Let’s do a single<br>request first:</p>
-<pre>
-    prompt> disk.py -a 10
-</pre>
-
-<p>At this point you’ll see:</p>
-<pre>
-    ...
-    REQUESTS [br '10']
-</pre>
-
-<p>For the requests above, compute the seek, rotate, and transfer times.<br>Use <code>-c</code> or the graphical mode (<code>-G</code>) to see the answers.</p>
-<p>To be able to compute the seek, rotation, and transfer times for this request,<br>you’ll have to know a little more information about the layout of sectors, the<br>starting position of the disk head, and so forth. To see much of this<br>information, run the simulator in graphical mode (<code>-G</code>):</p>
-<pre>
-    prompt> disk.py -a 10 -G
-</pre>
-
-<p>At this point, a window should appear with our simple disk on it.<br>The disk head is positioned on the outside track, halfway through sector 6.<br>As you can see, sector 10 (our example sector) is on the same track, about a<br>third of the way around. The direction of rotation is counter-clockwise.<br>To run the simulation, press the “s” key while the simulator window is<br>highlighted.</p>
-<p>When the simulation completes, you should be able to see that the disk spent<br>105 time units in rotation and 30 in transfer in order to access sector 10,<br>with no seek time. Press “q” to close the simulator window.</p>
-<p>To calculate this (instead of just running the simulation), you would need to<br>know a few details about the disk. First, the rotational speed is by default<br>set to 1 degree per time unit. Thus, to make a complete revolution, it takes<br>360 time units. Second, transfer begins and ends at the halfway point between<br>sectors. Thus, to read sector 10, the transfer begins halfway between 9 and 10,<br>and ends halfway between 10 and 11.  Finally, in the default disk, there are<br>12 sectors per track, meaning that each sector takes up 30 degrees of the<br>rotational space. Thus, to read a sector, it takes 30 time units (given our<br>default speed of rotation).</p>
-<p>With this information in hand, you now should be able to compute the seek,<br>rotation, and transfer times for accessing sector 10. Because the head starts<br>on the same track as 10, there is no seek time. Because the disk rotates at<br>1 degree / time unit, it takes 105 time units to get to the beginning of sector<br>10, halfway between 9 and 10 (note that it is exactly 90 degrees to the middle<br>of sector 9, and another 15 to the halfway point). Finally, to transfer the<br>sector takes 30 time units.</p>
-<p>Now let’s do a slightly more complex example:</p>
-<pre>
-    prompt> disk.py -a 10,11 -G
-</pre>
-
-<p>In this case, we’re transferring two sectors, 10 and 11. How long will it take?<br>Try guessing before running the simulation!</p>
-<p>As you probably guessed, this simulation takes just 30 time units longer, to<br>transfer the next sector 11. Thus, the seek and rotate times remain the same,<br>but the transfer time for the requests is doubled. You can in fact see these<br>sums across the top of the simulator window; they also get printed out to the<br>console as follows:</p>
-<pre>
-    ...
-    Sector:  10  Seek:  0  Rotate:105  Transfer: 30  Total: 135
-    Sector:  11  Seek:  0  Rotate:  0  Transfer: 30  Total:  30
-    TOTALS      Seek:  0  Rotate:105  Transfer: 60  Total: 165
-</pre>
-
-<p>Now let’s do an example with a seek. Try the following set of requests:</p>
-<pre>
-    prompt> disk.py -a 10,18 -G
-</pre>
-
-<p>To compute how long this will take, you need to know how long a seek will<br>take. The distance between each track is by default 40 distance units, and the<br>default rate of seeking is 1 distance unit per unit time. Thus, a seek from<br>the outer track to the middle track takes 40 time units. </p>
-<p>You’d also have to know the scheduling policy. The default is FIFO, though, so<br>for now you can just compute the request times assuming the processing order<br>matches the list specified via the “-a” flag.</p>
-<p>To compute how long it will take the disk to service these requests, we first<br>compute how long it takes to access sector 10, which we know from above to be<br>135 time units (105 rotating, 30 transferring). Once this request is complete,<br>the disk begins to seek to the middle track where sector 18 lies, taking 40<br>time units. Then the disk rotates to sector 18, and transfers it for 30 time<br>units, thus completing the simulation. But how long does this final rotation<br>take?</p>
-<p>To compute the rotational delay for 18, first figure out how long the disk<br>would take to rotate from the end of the access to sector 10 to the beginning<br>of the access to sector 18, assuming a zero-cost seek. As you can see from the<br>simulator, sector 10 on the outer track is lined up with sector 22 on the middle<br>track, and there are 7 sectors separating 22 from 18 (23, 12, 13, 14, 15, 16,<br>and 17, as the disk spins counter-clockwise). Rotating through 7 sectors takes<br>210 time units (30 per sector). However, the first part of this rotation is<br>actually spent seeking to the middle track, for 40 time units. Thus, the<br>actual rotational delay for accessing sector 18 is 210 minus 40, or 170 time<br>units. Run the simulator to see this for yourself; note that you can run<br>without graphics and with the “-c” flag to just see the results without<br>seeing the graphics.</p>
-<pre>
-    prompt> ./disk.py -a 10,18 -c
-    ...
-    Sector:  10  Seek:  0  Rotate:105  Transfer: 30  Total: 135
-    Sector:  18  Seek: 40  Rotate:170  Transfer: 30  Total: 240
-    TOTALS      Seek: 40  Rotate:275  Transfer: 60  Total: 375
-</pre>
-
-<p>You should now have a basic idea of how the simulator works. The questions<br>below will explore some of the different options, to better help you build a<br>model of how a disk really works.</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/04/os-three-easy-pieces/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RHANQTL">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/06/04/os-three-easy-pieces/" class="post-title-link" itemprop="url">Three Easy Pieces</a>
+            <a href="/2019/07/01/soft-eng-test-equiv-partition/" class="post-title-link" itemprop="url">软件工程 | 软件测试 | 等价类划分</a>
         </h1>
 
         <div class="post-meta">
@@ -604,14 +538,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2019-06-04 19:48:41" itemprop="dateCreated datePublished" datetime="2019-06-04T19:48:41+08:00">2019-06-04</time>
+              <time title="创建时间：2019-07-01 10:25:06" itemprop="dateCreated datePublished" datetime="2019-07-01T10:25:06+08:00">2019-07-01</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-06-26 20:41:55" itemprop="dateModified" datetime="2019-06-26T20:41:55+08:00">2019-06-26</time>
+                <time title="修改时间：2020-03-25 15:04:13" itemprop="dateModified" datetime="2020-03-25T15:04:13+08:00">2020-03-25</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -619,7 +553,11 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/操作系统-Operating-Systems/" itemprop="url" rel="index"><span itemprop="name">操作系统 (Operating Systems)</span></a>
+                  <a href="/categories/软件工程-Software-Engineering/" itemprop="url" rel="index"><span itemprop="name">软件工程 (Software Engineering)</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/软件工程-Software-Engineering/软件测试-Software-Testing/" itemprop="url" rel="index"><span itemprop="name">软件测试 (Software Testing)</span></a>
                 </span>
             </span>
 
@@ -634,10 +572,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>《Operating Systems: Three Easy Pieces》大纲</p>
+          <p>由于软件的输入域非常大，所以通常不能进行穷举测试，我们只能找一些有代表性的进行测试。本文介绍一种方法：等价类划分</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2019/06/04/os-three-easy-pieces/#more" rel="contents">
+              <a class="btn" href="/2019/07/01/soft-eng-test-equiv-partition/">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -661,7 +599,7 @@
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/03/os-interrupt-io-part-1/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/30/soft-eng-test-control-flow-graph/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -675,7 +613,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2019/06/03/os-interrupt-io-part-1/" class="post-title-link" itemprop="url">os-interrupt-io-part-1</a>
+            <a href="/2019/06/30/soft-eng-test-control-flow-graph/" class="post-title-link" itemprop="url">软件工程 | 软件测试 | 控制流图</a>
         </h1>
 
         <div class="post-meta">
@@ -685,14 +623,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2019-06-03 20:14:07" itemprop="dateCreated datePublished" datetime="2019-06-03T20:14:07+08:00">2019-06-03</time>
+              <time title="创建时间：2019-06-30 10:10:57" itemprop="dateCreated datePublished" datetime="2019-06-30T10:10:57+08:00">2019-06-30</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-06-26 20:43:29" itemprop="dateModified" datetime="2019-06-26T20:43:29+08:00">2019-06-26</time>
+                <time title="修改时间：2020-03-25 15:04:56" itemprop="dateModified" datetime="2020-03-25T15:04:56+08:00">2020-03-25</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -700,7 +638,11 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/操作系统-Operating-Systems/" itemprop="url" rel="index"><span itemprop="name">操作系统 (Operating Systems)</span></a>
+                  <a href="/categories/软件工程-Software-Engineering/" itemprop="url" rel="index"><span itemprop="name">软件工程 (Software Engineering)</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/软件工程-Software-Engineering/软件测试-Software-Testing/" itemprop="url" rel="index"><span itemprop="name">软件测试 (Software Testing)</span></a>
                 </span>
             </span>
 
@@ -715,10 +657,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>操作系统笔记：中断 (Part I)</p>
+          <p>控制流图是我们产生测试用例的重要工具，本文介绍如何从代码生成控制流图。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2019/06/03/os-interrupt-io-part-1/#more" rel="contents">
+              <a class="btn" href="/2019/06/30/soft-eng-test-control-flow-graph/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -742,7 +684,7 @@
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/03/os-process-part-1/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/28/openmp-cheatsheet/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -756,7 +698,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2019/06/03/os-process-part-1/" class="post-title-link" itemprop="url">os-process-part-1</a>
+            <a href="/2019/06/28/openmp-cheatsheet/" class="post-title-link" itemprop="url">OpenMP Cheatsheet</a>
         </h1>
 
         <div class="post-meta">
@@ -766,148 +708,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2019-06-03 20:13:45" itemprop="dateCreated datePublished" datetime="2019-06-03T20:13:45+08:00">2019-06-03</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/03/os-memory-part-1/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RHANQTL">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/06/03/os-memory-part-1/" class="post-title-link" itemprop="url">操作系统笔记 - 内存管理 (Part I)</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2019-06-03 19:24:16 / 修改时间：20:03:28" itemprop="dateCreated datePublished" datetime="2019-06-03T19:24:16+08:00">2019-06-03</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/操作系统-Operating-System/" itemprop="url" rel="index"><span itemprop="name">操作系统 (Operating System)</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="计算机体系结构"><a href="#计算机体系结构" class="headerlink" title="计算机体系结构"></a>计算机体系结构</h1>
-<h1 id="存储器层次结构"><a href="#存储器层次结构" class="headerlink" title="存储器层次结构"></a>存储器层次结构</h1><img src="/2019/06/03/os-memory-part-1/hierarchy.jpg">
-<h1 id="虚拟地址空间"><a href="#虚拟地址空间" class="headerlink" title="虚拟地址空间"></a>虚拟地址空间</h1><p>相信很多人在学习计算机组成原理时见过这样一张图：</p>
-
-<p>这其实就是我们标题中的“虚拟地址空间”。</p>
-<p>为什么叫虚拟地址空间呢？当然是因为它并不真实存在。</p>
-<p>我们常说计算机是“32 位”或者“64 位”的，这实际上指的就是虚拟地址的大小。而物理地址的大小并不一定等于虚拟地址的大小，所以需要进行地址转换。</p>
-<h1 id="内存管理"><a href="#内存管理" class="headerlink" title="内存管理"></a>内存管理</h1><p>在开始介绍内存管理策略之前，我们需要先介绍两个基本的概念：内部碎片和外部碎片。</p>
-<h2 id="内部碎片和外部碎片"><a href="#内部碎片和外部碎片" class="headerlink" title="内部碎片和外部碎片"></a>内部碎片和外部碎片</h2><p><strong>内部碎片</strong></p>
-<p><strong>外部碎片</strong></p>
-<h2 id="页式"><a href="#页式" class="headerlink" title="页式"></a>页式</h2><h2 id="段式"><a href="#段式" class="headerlink" title="段式"></a>段式</h2><h2 id="段页式"><a href="#段页式" class="headerlink" title="段页式"></a>段页式</h2><h1 id="MMU"><a href="#MMU" class="headerlink" title="MMU"></a>MMU</h1>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/03/os-file-system-part-3/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RHANQTL">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/06/03/os-file-system-part-3/" class="post-title-link" itemprop="url">操作系统笔记 - 文件系统 (Part III)</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-06-03 19:15:31" itemprop="dateCreated datePublished" datetime="2019-06-03T19:15:31+08:00">2019-06-03</time>
+              <time title="创建时间：2019-06-28 19:03:19" itemprop="dateCreated datePublished" datetime="2019-06-28T19:03:19+08:00">2019-06-28</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-06-04 19:59:21" itemprop="dateModified" datetime="2019-06-04T19:59:21+08:00">2019-06-04</time>
+                <time title="修改时间：2019-07-01 16:21:00" itemprop="dateModified" datetime="2019-07-01T16:21:00+08:00">2019-07-01</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -915,7 +723,11 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/操作系统-Operating-System/" itemprop="url" rel="index"><span itemprop="name">操作系统 (Operating System)</span></a>
+                  <a href="/categories/并行计算-Parallel-Computing/" itemprop="url" rel="index"><span itemprop="name">并行计算 (Parallel Computing)</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/并行计算-Parallel-Computing/OpenMP/" itemprop="url" rel="index"><span itemprop="name">OpenMP</span></a>
                 </span>
             </span>
 
@@ -930,24 +742,270 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <a id="more"></a>
-<h1 id="磁盘"><a href="#磁盘" class="headerlink" title="磁盘"></a>磁盘</h1><h2 id="什么是磁盘？"><a href="#什么是磁盘？" class="headerlink" title="什么是磁盘？"></a>什么是磁盘？</h2><img src="/2019/06/03/os-file-system-part-3/hard-disk-structure.jpg">
-<p>图中的“Track”就是磁道，磁道是由一个个的扇区（sector，512 字节大小的块）组成的。</p>
-<p>为了提高效率，许多文件系统一次读/写 4KB（或者更多），但是只能保证一个扇区的写是原子性的。</p>
-<p>只要知道<strong>（盘面，磁道，扇区）</strong>就可以定位磁盘上的一个存储块。</p>
-<h2 id="磁盘调度"><a href="#磁盘调度" class="headerlink" title="磁盘调度"></a>磁盘调度</h2><h3 id="先来先服务"><a href="#先来先服务" class="headerlink" title="先来先服务"></a>先来先服务</h3><h3 id="最近优先"><a href="#最近优先" class="headerlink" title="最近优先"></a>最近优先</h3><h3 id="电梯调度算法"><a href="#电梯调度算法" class="headerlink" title="电梯调度算法"></a>电梯调度算法</h3><h2 id="RAID"><a href="#RAID" class="headerlink" title="RAID"></a>RAID</h2><p>RAID，Redundant Array of Independent Disks</p>
-<h1 id="索引节点"><a href="#索引节点" class="headerlink" title="索引节点"></a>索引节点</h1><h2 id="什么是索引节点？"><a href="#什么是索引节点？" class="headerlink" title="什么是索引节点？"></a>什么是索引节点？</h2><img src="/2019/06/03/os-file-system-part-3/inode.png">
-<h2 id="为什么要使用索引节点？"><a href="#为什么要使用索引节点？" class="headerlink" title="为什么要使用索引节点？"></a>为什么要使用索引节点？</h2><h2 id="Linux-中的硬链接和软链接"><a href="#Linux-中的硬链接和软链接" class="headerlink" title="Linux 中的硬链接和软链接"></a>Linux 中的硬链接和软链接</h2><p><strong>硬链接</strong></p>
-<ul>
-<li>同一个 i-node，不同名字</li>
-<li>不可跨文件系统</li>
-</ul>
-<p><strong>软链接</strong></p>
-<ul>
-<li>不同 i-node，链接文件中保存被链接文件的名字</li>
-<li>可以跨文件系统</li>
-</ul>
+          <p>OpenMP 的用法速查表</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/06/28/openmp-cheatsheet/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
 
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/27/c-timing/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/06/27/c-timing/" class="post-title-link" itemprop="url">C/C++ 中的计时函数</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-06-27 19:22:00" itemprop="dateCreated datePublished" datetime="2019-06-27T19:22:00+08:00">2019-06-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-06-28 18:31:51" itemprop="dateModified" datetime="2019-06-28T18:31:51+08:00">2019-06-28</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/程序设计语言-Programming-Languages/" itemprop="url" rel="index"><span itemprop="name">程序设计语言 (Programming Languages)</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/C/" itemprop="url" rel="index"><span itemprop="name">C</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/C/C/" itemprop="url" rel="index"><span itemprop="name">C++</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>我们可能经常遇到下面这样的需求：写了一个算法，需要计算运行时间；获取一个时间戳等等。在 Java 中，我们可以使用 <code>System.currentTimeMillis()</code> 和 <code>System.nano()</code>，那么在 C 和 C++ 中如何实现呢？本文介绍三种用于计时的函数。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/06/27/c-timing/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/26/openmp-intro/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/06/26/openmp-intro/" class="post-title-link" itemprop="url">OpenMP 入门教程</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-06-26 20:26:39" itemprop="dateCreated datePublished" datetime="2019-06-26T20:26:39+08:00">2019-06-26</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-07-02 12:46:22" itemprop="dateModified" datetime="2019-07-02T12:46:22+08:00">2019-07-02</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/并行计算-Parallel-Computing/" itemprop="url" rel="index"><span itemprop="name">并行计算 (Parallel Computing)</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/并行计算-Parallel-Computing/OpenMP/" itemprop="url" rel="index"><span itemprop="name">OpenMP</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>OpenMP 是重要的并行计算 API。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/06/26/openmp-intro/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/20/tensorflow-intro/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/06/20/tensorflow-intro/" class="post-title-link" itemprop="url">TensorFlow 入门</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-06-20 15:47:00" itemprop="dateCreated datePublished" datetime="2019-06-20T15:47:00+08:00">2019-06-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-25 15:00:30" itemprop="dateModified" datetime="2020-03-25T15:00:30+08:00">2020-03-25</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/TensorFlow/" itemprop="url" rel="index"><span itemprop="name">TensorFlow</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>如题</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/06/20/tensorflow-intro/">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -966,7 +1024,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/9/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/page/24/">24</a><a class="extend next" rel="next" href="/page/11/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/9/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/page/25/">25</a><a class="extend next" rel="next" href="/page/11/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1032,7 +1090,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">238</span>
+          <span class="site-state-item-count">248</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1041,7 +1099,7 @@
         <span class="site-state-item-name">分类</span>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">42</span>
+        <span class="site-state-item-count">45</span>
         <span class="site-state-item-name">标签</span>
       </div>
   </nav>

@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.8.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="总结一些个人经常用到的 MySQL 内置函数">
+<meta name="keywords" content="MySQL">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL | 常用函数">
+<meta property="og:url" content="http://yoursite.com/2020/04/29/mysql-frequently-used-functions/index.html">
+<meta property="og:site_name" content="RHANQTL">
+<meta property="og:description" content="总结一些个人经常用到的 MySQL 内置函数">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2020/04/29/mysql-frequently-used-functions/over-frame.png">
+<meta property="og:updated_time" content="2020-04-30T05:09:45.488Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MySQL | 常用函数">
+<meta name="twitter:description" content="总结一些个人经常用到的 MySQL 内置函数">
+<meta name="twitter:image" content="http://yoursite.com/2020/04/29/mysql-frequently-used-functions/over-frame.png">
+
+<link rel="canonical" href="http://yoursite.com/2020/04/29/mysql-frequently-used-functions/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
+  };
+</script>
+
+  <title>MySQL | 常用函数 | RHANQTL</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">RHANQTL</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">上下求索</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>站点地图</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/29/mysql-frequently-used-functions/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          MySQL | 常用函数
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-04-29 19:47:20" itemprop="dateCreated datePublished" datetime="2020-04-29T19:47:20+08:00">2020-04-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-04-30 13:09:45" itemprop="dateModified" datetime="2020-04-30T13:09:45+08:00">2020-04-30</time>
+              </span>
+
+          
+            <div class="post-description">总结一些个人经常用到的 MySQL 内置函数</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="1-nbsp-nbsp-nbsp-nbsp-处理-NULL"><a href="#1-nbsp-nbsp-nbsp-nbsp-处理-NULL" class="headerlink" title="1&nbsp;&nbsp;&nbsp;&nbsp;处理 NULL"></a>1&nbsp;&nbsp;&nbsp;&nbsp;处理 <code>NULL</code></h1><p>经常会遇到处理 <code>NULL</code> 的情况（比如 <code>OUTER JOIN</code>）</p>
+<h4 id="IFNULL"><a href="#IFNULL" class="headerlink" title="IFNULL"></a><code>IFNULL</code></h4><pre>
+    IFNULL(<i>expr</i>, <i>alternative</i>)
+</pre>
+
+<p>如果 <code>expr</code> 不为 <code>NULL</code>，使用 <code>expr</code> 的值；否则，使用 <code>alternative</code> 的值。</p>
+<p><strong>例</strong>&nbsp;&nbsp;&nbsp;&nbsp;考虑如下的关系模式</p>
+<pre>
+    salesman(<strong><u>salesman_id</u></strong>, salesman_name)
+        bill(<strong><u>bill_id</u></strong>, <strong>salesman_id</strong>, bill_date, amount)
+</pre>
+
+<p>求所有的销售员在 2020 年 1 月的销售额。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">SELECT s.salesman_id, </span><br><span class="line">       IFNULL(t.total, 0)</span><br><span class="line">  FROM salesman AS s</span><br><span class="line">       LEFT OUTER JOIN (SELECT salesman_id,</span><br><span class="line">                               SUM(amount) AS total</span><br><span class="line">                          FROM bill</span><br><span class="line">                         WHERE bill_date BETWEEN &apos;2020-01-01&apos; AND &apos;2020-01-31&apos;</span><br><span class="line">                         GROUP BY salesman_id) t</span><br><span class="line">       ON s.salesman_id = t.salesman_id;</span><br></pre></td></tr></table></figure>
+<h4 id="COALESCE"><a href="#COALESCE" class="headerlink" title="COALESCE"></a><code>COALESCE</code></h4><pre>
+    COALESCE(<i>expr<sub>1</sub></i>, ...)
+</pre>
+
+<p>使用第一个不为 <code>NULL</code> 的 <code>expr<sub>i</sub></code> 的值作为整个表达式的值，如果全为 <code>NULL</code>，返回 <code>NULL</code>。显然，<code>COALESCE</code> 在处理多个可能为 <code>NULL</code> 的字段时要比 <code>IFNULL</code> 更方便。比如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">IFNULL(a, IFNULL(b, IFNULL(c, 0)))</span><br><span class="line">COALESCE(a, b, c, 0)</span><br></pre></td></tr></table></figure>
+<p>前面的例子用 <code>COALESCE</code> 改写：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">SELECT s.salesman_id, </span><br><span class="line">       COALESCE(t.total, 0)</span><br><span class="line">  FROM salesman AS s</span><br><span class="line">       LEFT OUTER JOIN (SELECT salesman_id,</span><br><span class="line">                               SUM(amount) AS total</span><br><span class="line">                          FROM bill</span><br><span class="line">                         WHERE bill_date BETWEEN &apos;2020-01-01&apos; AND &apos;2020-01-31&apos;</span><br><span class="line">                         GROUP BY salesman_id) t</span><br><span class="line">       ON s.salesman_id = t.salesman_id;</span><br></pre></td></tr></table></figure>
+<p>另外，<code>COALESCE</code> 是标准 SQL 规定的函数，如果可能会移植到其他数据库，最好使用 <code>COALESCE</code>。额外的信息可以参看 [1]。</p>
+<p>除了 <code>IFNULL</code> 和 <code>COALESCE</code> 之外，还可以用各种控制流函数实现（比如 [1] 中提到，<a href="https://www.microsoft.com/en-us/sql-server/sql-server-2019" target="_blank" rel="noopener">MSSQL</a> 中的 <code>COALESCE</code> 实际上就是 <code>CASE</code> 的语法糖），这里就省略了。</p>
+<h1 id="2-nbsp-nbsp-nbsp-nbsp-日期时间相关"><a href="#2-nbsp-nbsp-nbsp-nbsp-日期时间相关" class="headerlink" title="2&nbsp;&nbsp;&nbsp;&nbsp;日期时间相关"></a>2&nbsp;&nbsp;&nbsp;&nbsp;日期时间相关</h1><h4 id="DATEDIFF"><a href="#DATEDIFF" class="headerlink" title="DATEDIFF"></a><code>DATEDIFF</code></h4><h4 id="TIMESTAMPDIFF"><a href="#TIMESTAMPDIFF" class="headerlink" title="TIMESTAMPDIFF"></a><code>TIMESTAMPDIFF</code></h4><p><strong>例</strong>&nbsp;&nbsp;&nbsp;&nbsp;计算两个日期之间相差的精确月份数。</p>
+<h4 id="DATE-ADD"><a href="#DATE-ADD" class="headerlink" title="DATE_ADD"></a><code>DATE_ADD</code></h4><p>这个可以直接用 <code>+</code> 代替。</p>
+<h4 id="DAYOFWEEK"><a href="#DAYOFWEEK" class="headerlink" title="DAYOFWEEK"></a><code>DAYOFWEEK</code></h4><p>计算某个日期是星期几。</p>
+<p><strong>例</strong>&nbsp;&nbsp;&nbsp;&nbsp;计算 2019 年中星期一到星期日出现的次数。</p>
+<ul>
+<li><p>实现方式一：使用<a href="https://dev.mysql.com/doc/connector-net/en/connector-net-tutorials-stored-procedures.html" target="_blank" rel="noopener">存储过程</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE `all_dates_in_2019` (</span><br><span class="line">  PRIMARY KEY(`the_date`),</span><br><span class="line">  /* 不要使用关键字作为列名（虽然合法） */</span><br><span class="line">  `the_date`    DATE    NOT NULL,</span><br><span class="line">  `day_of_week` TINYINT NOT NULL,</span><br><span class="line">) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;</span><br><span class="line"></span><br><span class="line">delimiter //</span><br><span class="line">CREATE PROCEDURE fill_dates(date_start DATE, date_end DATE)</span><br><span class="line">BEGIN</span><br><span class="line">  WHILE date_start &lt;= date_end DO</span><br><span class="line">    INSERT INTO `all_dates_in_2019`(`the_date`, `day_of_week`)</span><br><span class="line">    VALUES (date_start, DAYOFWEEK(date_start));</span><br><span class="line">    SET date_start = DATE_ADD(date_start, INTERVAL 1 DAY);</span><br><span class="line">  END WHILE;</span><br><span class="line">END; //</span><br><span class="line">delimiter ;</span><br><span class="line"></span><br><span class="line">SELECT CASE day_of_week</span><br><span class="line">         WHEN 1 THEN &apos;Mon.&apos;</span><br><span class="line">         WHEN 2 THEN &apos;Tue.&apos;</span><br><span class="line">         WHEN 3 THEN &apos;Wed.&apos;</span><br><span class="line">         WHEN 4 THEN &apos;Thur.&apos;</span><br><span class="line">         WHEN 5 THEN &apos;Fri.&apos;</span><br><span class="line">         WHEN 6 THEN &apos;Sat.&apos;</span><br><span class="line">         ELSE        &apos;Sun.&apos;</span><br><span class="line">       END AS day_of_week,</span><br><span class="line">       COUNT(*) AS cnt</span><br><span class="line">  FROM all_dates_in_2019</span><br><span class="line"> GROUP BY day_of_week;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>实现方式二：使用 MySQL 8.0 新引入的 <a href="https://dev.mysql.com/doc/refman/8.0/en/with.html" target="_blank" rel="noopener"><code>WITH</code> 语句</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">WITH RECURSIVE all_dates_in_2019(the_date, day_of_week) AS</span><br><span class="line">(</span><br><span class="line">  SELECT &apos;2019-01-01&apos;, DAYOFWEEK(&apos;2019-01-03&apos;)</span><br><span class="line">  UNION ALL</span><br><span class="line">  SELECT DATE_ADD(the_date, INTERVAL 1 DAY),</span><br><span class="line">         DAYOFWEEK(DATE_ADD(the_date, INTERVAL 1 DAY))</span><br><span class="line">    FROM all_dates_in_2019</span><br><span class="line">   WHERE the_date &lt; &apos;2019-12-31&apos;</span><br><span class="line">)</span><br><span class="line">SELECT CASE day_of_week</span><br><span class="line">         WHEN 1 THEN &apos;Mon.&apos;</span><br><span class="line">         WHEN 2 THEN &apos;Tue.&apos;</span><br><span class="line">         WHEN 3 THEN &apos;Wed.&apos;</span><br><span class="line">         WHEN 4 THEN &apos;Thur.&apos;</span><br><span class="line">         WHEN 5 THEN &apos;Fri.&apos;</span><br><span class="line">         WHEN 6 THEN &apos;Sat.&apos;</span><br><span class="line">         ELSE        &apos;Sun.&apos;</span><br><span class="line">       END AS day_of_week,</span><br><span class="line">       t.cnt</span><br><span class="line">  FROM (SELECT day_of_week,</span><br><span class="line">               COUNT(*) AS cnt</span><br><span class="line">          FROM all_dates_in_2019</span><br><span class="line">         GROUP BY day_of_week</span><br><span class="line">         ORDER BY day_of_week) t;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>最后的结果应该是：</p>
+<pre>
+    +-------------+-----+
+    | day_of_week | cnt |
+    +-------------+-----+
+    | Mon.        |  52 |
+    | Tue.        |  52 |
+    | Wed.        |  52 |
+    | Thur.       |  52 |
+    | Fri.        |  53 |
+    | Sat.        |  52 |
+    | Sun.        |  52 |
+    +-------------+-----+
+</pre>
+
+<h1 id="3-nbsp-nbsp-nbsp-nbsp-字符串"><a href="#3-nbsp-nbsp-nbsp-nbsp-字符串" class="headerlink" title="3&nbsp;&nbsp;&nbsp;&nbsp;字符串"></a>3&nbsp;&nbsp;&nbsp;&nbsp;字符串</h1><h1 id="4-nbsp-nbsp-nbsp-nbsp-控制流函数"><a href="#4-nbsp-nbsp-nbsp-nbsp-控制流函数" class="headerlink" title="4&nbsp;&nbsp;&nbsp;&nbsp;控制流函数"></a>4&nbsp;&nbsp;&nbsp;&nbsp;控制流函数</h1><h1 id="5-nbsp-nbsp-nbsp-nbsp-窗口函数（Window-Functions）"><a href="#5-nbsp-nbsp-nbsp-nbsp-窗口函数（Window-Functions）" class="headerlink" title="5&nbsp;&nbsp;&nbsp;&nbsp;窗口函数（Window Functions）"></a>5&nbsp;&nbsp;&nbsp;&nbsp;窗口函数（Window Functions）</h1><p>MySQL 从 8.0 版本开始支持窗口函数。所谓“窗口”，其实就是分组。</p>
+<p>窗口函数对一组查询行执行类似聚合的操作。但是，不同于聚合操作将每个分组“聚合”为单个结果行，窗口函数为分组中的<em>每个行</em> 都生成结果（即结果集的大小不会因窗口操作而变化）。</p>
+<blockquote>
+<p><strong>术语</strong></p>
+<ul>
+<li>发生函数求值的行称为<em>当前行</em></li>
+<li>与发生函数求值的当前行相关的查询行构成当前行的<em>窗口</em></li>
+</ul>
+</blockquote>
+<p>查询中的每个窗口操作都通过包含 <code>OVER</code> 子句来表示，语法如下：</p>
+<pre>
+    OVER (
+      [PARTITION BY <i>partitioning-criteria</i>
+          [ORDER BY <i>ordering-criteria</i>
+           [<i>frame-spec</i>]
+    )
+</pre>
+
+
+<ul>
+<li><code>PARTITION BY</code> 子句决定如何分组：如果未指定，它将整个查询行集视为一个分区；否则，根据 <code>PARTITION BY</code> 指定的表达式进行分组，函数会在跨越分区边界时重新初始化；</li>
+<li><code>ORDER BY</code> 子句决定<em>分组内</em> 的顺序，注意不要与 <code>SELECT</code> 的 <code>ORDER BY</code> 子句混淆</li>
+</ul>
+<p>Window functions are permitted only in the select list and <code>ORDER BY</code> clause.</p>
+<p>在 MySQL 中，很多聚集函数也可以作为窗口函数使用。MySQL 也提供了一些只作为窗口函数使用的非聚集函数。</p>
+<p>出于复用的目的，可以使用 <code>WINDOW <i>window_name</i> AS (…)</code> 子句定义一个窗口，然后在 <code>OVER</code> 中引用（不是所有数据库都支持）</p>
+<h4 id="ROW-NUMBER-RANK-DENSE-RANK"><a href="#ROW-NUMBER-RANK-DENSE-RANK" class="headerlink" title="ROW_NUMBER / RANK / DENSE_RANK"></a><code>ROW_NUMBER</code> / <code>RANK</code> / <code>DENSE_RANK</code></h4><p>这三个函数都是按分区为结果集中的每一行分配一个排名（rank），不同之处在于：</p>
+<ul>
+<li><code>ROW_NUMBER</code> 给相同的值分配不同的排名<ul>
+<li>有 <code>ROW_NUMBER</code> 时 <code>DISTINCT</code> 不会生效，因为 <code>ROW_NUMBER</code> 在应用 <code>DISTINCT</code> 之前就已经在整个分区上生成唯一值</li>
+</ul>
+</li>
+<li><code>RANK</code> 给相同的值分配相同的排名（即，并列的项排名相同），而且排名<em>不一定连续</em></li>
+<li><code>DENSE_RANK</code> 类似 <code>RANK</code>，但排名是连续的</li>
+</ul>
+<p>比如有序列 <code>[a, a, b]</code>，<code>ROW_NUMBER</code> 的结果是 <code>[1, 2, 3]</code>，<code>RANK</code> 的结果是 <code>[1, 1, 3]</code>，<code>DENSE_RANK</code> 的结果是 <code>[1, 1, 2]</code></p>
+<blockquote>
+<p><strong>记忆</strong></p>
+<ul>
+<li><code>ROW_NUMBER</code> 顾名思义 —— 行号，不同的行就应该有不同的行号</li>
+<li><code>RANK</code> 类似于体育的排名，会出现并列的情况</li>
+<li><code>DENSE_RANK</code> 看名字也能了解大概 —— <code>DENSE</code> 有“稠密”的意思，因此它会给出连续的排名</li>
+</ul>
+</blockquote>
+<p><strong>例</strong></p>
+<h1 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h1><h4 id="OVER-子句的完整文法"><a href="#OVER-子句的完整文法" class="headerlink" title="OVER 子句的完整文法"></a><code>OVER</code> 子句的完整文法</h4><pre>
+    <i>over-clause</i> ::= 
+      OVER ([<i>partition-clause</i>]
+            [<i>order-clause</i>]
+            [<i>frame-clause</i>])<br>
+    <i>partition-spec</i> ::= 
+      <i>expr</i>
+      | <i>expr</i>, <i>partition-spec</i><br>
+    <i>order-spec</i> ::= 
+      <i>expr</i> [<u>ASC</u>|DESC]
+      | <i>expr</i> [<u>ASC</u>|DESC], <i>order-spec</i><br>
+    <i>frame-spec</i> ::= <i>frame-units</i> <i>frame_extent</i><br>
+    <i>frame-units</i> ::= ROWS | RANGE<br>
+    <i>frame_extent</i> ::= frame_start | frame_between<br>
+    <i>frame_between</i> :: = BETWEEN frame_start AND frame_end<br>
+    <i>frame_start, frame_end</i> ::=
+      CURRENT ROW
+      | UNBOUNDED PRECEDING
+      | UNBOUNDED FOLLOWING
+      | <i>expr</i> PRECEDING
+      | <i>expr</i> FOLLOWING
+</pre>
+
+<img src="/2020/04/29/mysql-frequently-used-functions/over-frame.png">
+<h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><p>[1] <a href="https://stackoverflow.com/questions/18528468/what-is-the-difference-bewteen-ifnull-and-coalesce-in-mysql" target="_blank" rel="noopener">What is the difference bewteen <code>IFNULL</code> and <code>COALESCE</code> in MySQL?</a></p>
+<p>[x] <a href="https://dev.mysql.com/doc/refman/8.0/en/window-functions-usage.html" target="_blank" rel="noopener">MySQL 8.0 Reference Manual - 12.21.2 Window Function Concepts and Syntax</a></p>
+<p>[x] <a href="https://dev.mysql.com/doc/refman/8.0/en/window-functions-frames.html" target="_blank" rel="noopener">MySQL 8.0 Reference Manual - 12.21.3 Window Function Frame Specification</a></p>
+<p>[x] <a href="https://blog.jooq.org/2014/08/12/the-difference-between-row_number-rank-and-dense_rank/" target="_blank" rel="noopener">The Difference Between <code>ROW_NUMBER()</code>, <code>RANK()</code>, and <code>DENSE_RANK()</code></a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/MySQL/" rel="tag"># MySQL</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/04/28/others-naming-style/" rel="prev" title="常见的命名方式">
+      <i class="fa fa-chevron-left"></i> 常见的命名方式
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/04/30/database-sql-learning/" rel="next" title="database-sql-learning">
+      database-sql-learning <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-nbsp-nbsp-nbsp-nbsp-处理-NULL"><span class="nav-text">1    处理 NULL</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#IFNULL"><span class="nav-text">IFNULL</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#COALESCE"><span class="nav-text">COALESCE</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-nbsp-nbsp-nbsp-nbsp-日期时间相关"><span class="nav-text">2    日期时间相关</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#DATEDIFF"><span class="nav-text">DATEDIFF</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#TIMESTAMPDIFF"><span class="nav-text">TIMESTAMPDIFF</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DATE-ADD"><span class="nav-text">DATE_ADD</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DAYOFWEEK"><span class="nav-text">DAYOFWEEK</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-nbsp-nbsp-nbsp-nbsp-字符串"><span class="nav-text">3    字符串</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-nbsp-nbsp-nbsp-nbsp-控制流函数"><span class="nav-text">4    控制流函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-nbsp-nbsp-nbsp-nbsp-窗口函数（Window-Functions）"><span class="nav-text">5    窗口函数（Window Functions）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ROW-NUMBER-RANK-DENSE-RANK"><span class="nav-text">ROW_NUMBER / RANK / DENSE_RANK</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#附录"><span class="nav-text">附录</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#OVER-子句的完整文法"><span class="nav-text">OVER 子句的完整文法</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考文献"><span class="nav-text">参考文献</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Han Qi</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">248</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">73</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">45</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Han Qi</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://muse.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.7.2
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>

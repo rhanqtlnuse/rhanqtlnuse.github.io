@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="激活函数是神经网络重要的组成部分，本文整理了一些常见的激活函数。">
+  <meta name="description" content="激活函数是神经网络的重要组成部分，本文整理了一些常见的激活函数。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="机器学习 - 神经网络篇：常用激活函数">
 <meta property="og:url" content="http://yoursite.com/2019/05/07/ml-nn-basic-activation-func/index.html">
 <meta property="og:site_name" content="RHANQTL">
-<meta property="og:description" content="激活函数是神经网络重要的组成部分，本文整理了一些常见的激活函数。">
+<meta property="og:description" content="激活函数是神经网络的重要组成部分，本文整理了一些常见的激活函数。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/2019/05/07/ml-nn-basic-activation-func/sigmoid.png">
 <meta property="og:image" content="http://yoursite.com/2019/05/07/ml-nn-basic-activation-func/tanh.png">
@@ -34,10 +34,10 @@
 <meta property="og:image" content="http://yoursite.com/2019/05/07/ml-nn-basic-activation-func/approx.png">
 <meta property="og:image" content="http://yoursite.com/2019/05/07/ml-nn-basic-activation-func/maxout-structure.png">
 <meta property="og:image" content="http://yoursite.com/2019/05/07/ml-nn-basic-activation-func/softplus.png">
-<meta property="og:updated_time" content="2019-05-19T03:06:58.294Z">
+<meta property="og:updated_time" content="2020-04-23T03:49:13.308Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器学习 - 神经网络篇：常用激活函数">
-<meta name="twitter:description" content="激活函数是神经网络重要的组成部分，本文整理了一些常见的激活函数。">
+<meta name="twitter:description" content="激活函数是神经网络的重要组成部分，本文整理了一些常见的激活函数。">
 <meta name="twitter:image" content="http://yoursite.com/2019/05/07/ml-nn-basic-activation-func/sigmoid.png">
 
 <link rel="canonical" href="http://yoursite.com/2019/05/07/ml-nn-basic-activation-func/">
@@ -207,7 +207,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-05-19 11:06:58" itemprop="dateModified" datetime="2019-05-19T11:06:58+08:00">2019-05-19</time>
+                <time title="修改时间：2020-04-23 11:49:13" itemprop="dateModified" datetime="2020-04-23T11:49:13+08:00">2020-04-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -220,6 +220,7 @@
             </span>
 
           
+            <div class="post-description">激活函数是神经网络的重要组成部分，本文整理了一些常见的激活函数。</div>
 
         </div>
       </header>
@@ -230,10 +231,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>激活函数是神经网络重要的组成部分，本文整理了一些常见的激活函数。</p>
-<a id="more"></a>
-<h1 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h1><p><strong>饱和函数 &amp; 非饱和函数</strong></p>
-<p>非饱和（Non-Saturating）：当且仅当 $(|\lim_{z\rightarrow -\infty} f(z)| = +\infty)  \vee (|\lim_{z\rightarrow +\infty} f(z)| = +\infty)$ 时，称 $f$ 是非饱和的</p>
+        <h1 id="1-nbsp-nbsp-nbsp-nbsp-基本概念"><a href="#1-nbsp-nbsp-nbsp-nbsp-基本概念" class="headerlink" title="1&nbsp;&nbsp;&nbsp;&nbsp;基本概念"></a>1&nbsp;&nbsp;&nbsp;&nbsp;基本概念</h1><p><strong>饱和函数 &amp; 非饱和函数</strong></p>
+<p>非饱和（Non-Saturating）：当且仅当</p>
+<script type="math/tex; mode=display">
+(|\lim_{z\rightarrow -\infty} f(z)| = +\infty)  \vee (|\lim_{z\rightarrow +\infty} f(z)| = +\infty)</script><p>时，称 $f$ 是非饱和的</p>
 <p>饱和（Saturating）：当 $f$ 不是非饱和函数时，称 $f$ 是饱和的</p>
 <blockquote>
 <p>在“饱和函数”的语境中，“饱和”意味着在某个特定的点之后，函数值已经非常接近最大值，函数输入的任何进一步增加将不再导致其输出（有意义地）增加。此时的函数是被“全部填满”的，所以称作“饱和”。</p>
@@ -241,26 +242,36 @@
 <p>二者的区别在于饱和激活函数会压缩输入。[3]</p>
 <p><strong>凸函数 &amp; 凹函数</strong></p>
 <p>凸函数：如果函数 $f$ 满足</p>
-<script type="math/tex; mode=display">f(tx_1 + (1 - t)x_2) \le tf(x_1) + (1-t)f(x_2)​</script><p>则称其是凸函数。其中，$x_1, x_2 \in C$，$t \in [0, 1]$</p>
+<script type="math/tex; mode=display">
+f(tx_1 + (1 - t)x_2) \le tf(x_1) + (1-t)f(x_2)</script><p>则称其是凸函数。其中，$x_1, x_2 \in C$，$t \in [0, 1]$</p>
 <p>如果对于任意的 $t\in(0, 1)$ 有</p>
-<script type="math/tex; mode=display">f(tx_1 + (1 - t)x_2) \lt tf(x_1) + (1-t)f(x_2)</script><p>则称函数 $f$ 是严格凸的。</p>
+<script type="math/tex; mode=display">
+f(tx_1 + (1 - t)x_2) \lt tf(x_1) + (1-t)f(x_2)</script><p>则称函数 $f$ 是严格凸的。</p>
 <p><strong>VC 维</strong></p>
-<h1 id="Sigmoid"><a href="#Sigmoid" class="headerlink" title="Sigmoid"></a>Sigmoid</h1><script type="math/tex; mode=display">\sigma(x) = \dfrac{1}{1 + e^{-x}}</script><p>梯度：</p>
+<h1 id="2-nbsp-nbsp-nbsp-nbsp-激活函数"><a href="#2-nbsp-nbsp-nbsp-nbsp-激活函数" class="headerlink" title="2&nbsp;&nbsp;&nbsp;&nbsp;激活函数"></a>2&nbsp;&nbsp;&nbsp;&nbsp;激活函数</h1><h2 id="2-1-nbsp-nbsp-nbsp-nbsp-Sigmoid"><a href="#2-1-nbsp-nbsp-nbsp-nbsp-Sigmoid" class="headerlink" title="2.1&nbsp;&nbsp;&nbsp;&nbsp;Sigmoid"></a>2.1&nbsp;&nbsp;&nbsp;&nbsp;Sigmoid</h2><script type="math/tex; mode=display">
+\sigma(x) = \dfrac{1}{1 + e^{-x}}</script><p>梯度：</p>
 <script type="math/tex; mode=display">\begin{align}\nabla_x \sigma(x) &= \dfrac{e^{-x}}{(1 + e^{-x})^2} \\ &= \dfrac{1}{1 + e^{-x}}\dfrac{e^{-x}}{1 + e^{-x}} \\&= \sigma(x)(1 - \sigma(x))\end{align}</script><img src="/2019/05/07/ml-nn-basic-activation-func/sigmoid.png">
 <ul>
 <li>非 zero-centered</li>
 <li>饱和激活函数：$f(x)\in(0, 1)$</li>
 </ul>
-<h1 id="tanh"><a href="#tanh" class="headerlink" title="tanh"></a>tanh</h1><script type="math/tex; mode=display">\tanh(x) = \dfrac{e^x-e^{-x}}{e^x+e^{-x}}​</script><p>梯度：</p>
+<h2 id="2-2-nbsp-nbsp-nbsp-nbsp-tanh"><a href="#2-2-nbsp-nbsp-nbsp-nbsp-tanh" class="headerlink" title="2.2&nbsp;&nbsp;&nbsp;&nbsp;tanh"></a>2.2&nbsp;&nbsp;&nbsp;&nbsp;tanh</h2><script type="math/tex; mode=display">
+\tanh(x) = \dfrac{e^x-e^{-x}}{e^x+e^{-x}}</script><p>梯度：</p>
 <script type="math/tex; mode=display">\begin{align}\nabla_x\tanh(x) &= \dfrac{(e^x-e^{-x})'(e^x+e^{-x}) - (e^x-e^{-x})(e^x+e^{-x})'}{(e^x+e^{-x})^2} \\&= \dfrac{(e^x+e^{-x})(e^x+e^{-x}) - (e^x-e^{-x})(e^x-e^{-x})}{(e^x+e^{-x})^2} \\&= \dfrac{(e^x+e^{-x})^2 - (e^x-e^{-x})^2}{(e^x+e^{-x})^2} \\&= 1 -\left(\dfrac{e^x-e^{-x}}{e^x+e^{-x}}\right)^2 \\&= 1 - (\tanh(x))^2\end{align}</script><img src="/2019/05/07/ml-nn-basic-activation-func/tanh.png">
 <ul>
 <li>zero-centered</li>
 <li>饱和激活函数：$f(x)\in(-1, 1)$</li>
 </ul>
-<h1 id="ReLU"><a href="#ReLU" class="headerlink" title="ReLU"></a>ReLU</h1><p>全称为“Rectified Linear Unit”</p>
-<script type="math/tex; mode=display">f(x) = \begin{cases}x & \text{if}\ x \ge 0 \\ 0 & \text{if}\ x \lt 0 \end{cases}​</script><p>或者：</p>
-<script type="math/tex; mode=display">f(x) = \max(0, x)</script><p>梯度：</p>
-<script type="math/tex; mode=display">\nabla_x f(x) = \mathbb{1}\{x \gt 0\}​</script><img src="/2019/05/07/ml-nn-basic-activation-func/relu.png">
+<h2 id="2-3-nbsp-nbsp-nbsp-nbsp-ReLU"><a href="#2-3-nbsp-nbsp-nbsp-nbsp-ReLU" class="headerlink" title="2.3&nbsp;&nbsp;&nbsp;&nbsp;ReLU"></a>2.3&nbsp;&nbsp;&nbsp;&nbsp;ReLU</h2><p>全称为“Rectified Linear Unit”</p>
+<script type="math/tex; mode=display">
+f(x) = \begin{cases}
+  x, & \text{if}\ x \ge 0 \\
+  0, & \text{otherwise}
+\end{cases}</script><p>或者：</p>
+<script type="math/tex; mode=display">
+f(x) = \max(0, x)</script><p>梯度：</p>
+<script type="math/tex; mode=display">
+\nabla_x f(x) = \mathbb{1}\{x \gt 0\}</script><img src="/2019/05/07/ml-nn-basic-activation-func/relu.png">
 <ul>
 <li>节省计算量</li>
 <li>CNN 中常用</li>
@@ -289,7 +300,7 @@
 <p>发生了什么？R 的输入的分布相对较小的变化（均值变化仅仅为 -0.2）就导致 R 的行为存在质的差异。我们越过了零边界，R 现在几乎总是关闭的。问题就在于<em>关闭的 ReLU 无法更新其输入参数</em>，因此 dead（dead = 始终关闭）ReLU 就会保持 dead 的状态。</p>
 <p>站在数学的角度来看，这是因为 ReLU 函数</p>
 <script type="math/tex; mode=display">f(x) = \max(0, x)</script><p>的梯度为：</p>
-<script type="math/tex; mode=display">\nabla_x f(x) = \mathbb{1}\{x \gt 0\}​</script><p>所以当且仅当 ReLU 单元在前向传播期间关闭了 gate 时，它在反向传播期间也会关闭 gate。Dead ReLU 很可能会保持 dead 的状态。</p>
+<script type="math/tex; mode=display">\nabla_x f(x) = \mathbb{1}\{x \gt 0\}</script><p>所以当且仅当 ReLU 单元在前向传播期间关闭了 gate 时，它在反向传播期间也会关闭 gate。Dead ReLU 很可能会保持 dead 的状态。</p>
 <p>当然，还有机会恢复一些 ReLU gate。回想一下，影响 R 的输入的分布的许多“上游”参数仍然通过图中的其他路径进行了更新。例如，R 的“兄弟”包括那些打开的并且仍然向后传递梯度的 ReLU 单元。这些对 R 的上游参数的更新可能将 R 的输入的分布的大部分移回到正区域中。细节有点复杂：注意到，例如在仿射层中，直接向 R 提供输入的行向量在 R 打开之前是不可更新的。因此，只有通过对<em>先前</em> 线性变换层的更新才能恢复完全（fully）dead 的 ReLU。特别地，如果线性变换是没有参数共享的典型仿射，则 100％ 无法在第一个隐藏层恢复死亡的 ReLU。</p>
 <p>希望你能明白为什么较大的学习率可能成为罪魁祸首。从 SGD 步骤更新的平均幅度越大，可能将 R 输入的整个分布推向负区域的风险就越大。</p>
 <p>最后，与我的例子不同的是，你可以分阶段完成此操作，其中一个 SGD 步骤将部分分布从正区域推出，随后的 SGD 步骤将推出其余的分布。通常，你可以将 R 的输入的分布视为一种随机游走。如果采取相对较大的步骤，你可能会遇到 dead ReLU。</p>
@@ -305,7 +316,7 @@
 <h3 id="Randomized-Leaky-ReLU-RReLU"><a href="#Randomized-Leaky-ReLU-RReLU" class="headerlink" title="Randomized Leaky ReLU (RReLU)"></a>Randomized Leaky ReLU (RReLU)</h3><p>最早是在 Kaggle 全美数据科学大赛（NDSB）中被首先提出并使用的。</p>
 <p>其中，$\lambda \sim U(l, u)$，其中，$l, u \in [0, 1)$</p>
 <h3 id="Noisy-ReLU"><a href="#Noisy-ReLU" class="headerlink" title="Noisy ReLU"></a>Noisy ReLU</h3><p>Noisy ReLU 是 ReLU 在考虑高斯噪声的基础上进行改进的变种激活函数。对于神经元的输入值 $x$，Noisy ReLU 加上了一定程度的正态分布的不确定性，即</p>
-<script type="math/tex; mode=display">f(x) = \max(0, x + Y)​</script><p>其中，随机变量 $Y \sim \mathbb{N}(0, \sigma(x))$。目前，噪声线性整流函数在受限玻尔兹曼机（Restricted Boltzmann Machine）在计算机图形学的应用中取得了比较好的成果。</p>
+<script type="math/tex; mode=display">f(x) = \max(0, x + Y)</script><p>其中，随机变量 $Y \sim \mathbb{N}(0, \sigma(x))$。目前，噪声线性整流函数在受限玻尔兹曼机（Restricted Boltzmann Machine）在计算机图形学的应用中取得了比较好的成果。</p>
 <p>相比于传统的神经网络激活函数，诸如 Sigmoid 和 tanh 等双曲函数，ReLU 有以下几方面的优势：</p>
 <ul>
 <li><p>仿生物学原理：相关大脑方面的研究表明生物神经元的信息编码通常比较分散和稀疏。通常情况下，大脑中在同一时间大概只有 1% - 4% 的神经元处于活跃状态。使用线性修正以及正则化（regularization）可以对机器神经网络中神经元的活跃度（即输出为正值）进行调试；相比之下，Sigmoid 在输入为 0 时达到 $\dfrac{1}{2}$，即已经是半饱和的稳定状态，不够符合实际生物学对模拟神经网络的期望。不过需要指出的是，一般情况下，在一个使用 ReLU 的神经网络中大概有 50% 的神经元处于激活态</p>
@@ -315,9 +326,10 @@
 <li><p>简化计算过程：没有了其他复杂激活函数中诸如指数函数的影响；同时活跃度的分散性使得神经网络整体计算成本下降</p>
 </li>
 </ul>
-<h1 id="ELU"><a href="#ELU" class="headerlink" title="ELU"></a>ELU</h1><p>全称为“Exponential Linear Unit”</p>
-<script type="math/tex; mode=display">f(x) = \begin{cases} x & \text{if}\ x \ge 0 \\ \alpha(\exp(x) - 1) & \text{if}\ x \lt 0\end{cases}</script><p>具有 ReLU 的优势，且输出均值接近零，实际上 PReLU 和 LeakyReLU 都有这一优点。有负数饱和区域，从而对噪声有一些鲁棒性。可以看做是介于 ReLU 和 LeakyReLU 之间的一个东西。当然，这个函数也需要计算 exp，从而计算量上更大一些。</p>
-<h1 id="Maxout"><a href="#Maxout" class="headerlink" title="Maxout"></a>Maxout</h1><p>原始论文：Ian J. Goodfellow et al. Sep 20, 2013. “Maxout Networks”. International Conference on Machine Learning (ICML). <a href="https://arxiv.org/pdf/1302.4389.pdf" target="_blank" rel="noopener">https://arxiv.org/pdf/1302.4389.pdf</a></p>
+<h2 id="2-3-5-nbsp-nbsp-nbsp-nbsp-ELU"><a href="#2-3-5-nbsp-nbsp-nbsp-nbsp-ELU" class="headerlink" title="2.3.5&nbsp;&nbsp;&nbsp;&nbsp;ELU"></a>2.3.5&nbsp;&nbsp;&nbsp;&nbsp;ELU</h2><p>全称为“Exponential Linear Unit”</p>
+<script type="math/tex; mode=display">
+f(x) = \begin{cases} x & \text{if}\ x \ge 0 \\ \alpha(\exp(x) - 1) & \text{if}\ x \lt 0\end{cases}</script><p>具有 ReLU 的优势，且输出均值接近零，实际上 PReLU 和 LeakyReLU 都有这一优点。有负数饱和区域，从而对噪声有一些鲁棒性。可以看做是介于 ReLU 和 LeakyReLU 之间的一个东西。当然，这个函数也需要计算 exp，从而计算量上更大一些。</p>
+<h2 id="2-4-nbsp-nbsp-nbsp-nbsp-Maxout"><a href="#2-4-nbsp-nbsp-nbsp-nbsp-Maxout" class="headerlink" title="2.4&nbsp;&nbsp;&nbsp;&nbsp;Maxout"></a>2.4&nbsp;&nbsp;&nbsp;&nbsp;Maxout</h2><p>原始论文：Ian J. Goodfellow et al. Sep 20, 2013. “Maxout Networks”. International Conference on Machine Learning (ICML). <a href="https://arxiv.org/pdf/1302.4389.pdf" target="_blank" rel="noopener">https://arxiv.org/pdf/1302.4389.pdf</a></p>
 <p>Maxout 可以看成是 ReLU 家族的一个推广，它依据这样一个事实：任何一个凸函数，都可以由分段线性函数进行逼近近似，以 sigmoid 为例：</p>
 <img src="/2019/05/07/ml-nn-basic-activation-func/approx.png">
 <p>Maxout 网络会取分段线性函数的最大值作为下一层的输入，图示：</p>
@@ -326,15 +338,15 @@
 <script type="math/tex; mode=display">\begin{align}z_1 &= w_1x + b_1 \\ z_2 &= w_2x + b_2  \\ z_3 &= w_3x + b_3  \\ z_4 &= w_4x + b_4  \\ z_5 &= w_5x + b_5 \end{align}</script><p>下一层神经元的输入即为 $\max_{i\in[1, 5]} z_i$</p>
 <p>线性函数 $f(x) = wx + b$ 的 $w$ 和 $b$ 是可学习的参数。</p>
 <p>缺点在于增加了参数量（$k$ 倍）。</p>
-<h1 id="不太常用的激活函数"><a href="#不太常用的激活函数" class="headerlink" title="不太常用的激活函数"></a>不太常用的激活函数</h1><h2 id="softplus"><a href="#softplus" class="headerlink" title="softplus"></a>softplus</h2><script type="math/tex; mode=display">f(x) = \log(1 + \exp(x))</script><p>图像：</p>
+<h2 id="2-5-nbsp-nbsp-nbsp-nbsp-不太常用的激活函数"><a href="#2-5-nbsp-nbsp-nbsp-nbsp-不太常用的激活函数" class="headerlink" title="2.5&nbsp;&nbsp;&nbsp;&nbsp;不太常用的激活函数"></a>2.5&nbsp;&nbsp;&nbsp;&nbsp;不太常用的激活函数</h2><h3 id="2-5-1-nbsp-nbsp-nbsp-nbsp-softplus"><a href="#2-5-1-nbsp-nbsp-nbsp-nbsp-softplus" class="headerlink" title="2.5.1&nbsp;&nbsp;&nbsp;&nbsp;softplus"></a>2.5.1&nbsp;&nbsp;&nbsp;&nbsp;softplus</h3><script type="math/tex; mode=display">f(x) = \log(1 + \exp(x))</script><p>图像：</p>
 <img src="/2019/05/07/ml-nn-basic-activation-func/softplus.png">
 <p>可以看到与 ReLU 十分接近，不太推荐</p>
-<h1 id="为什么不使用-sin、cos-作为激活函数？"><a href="#为什么不使用-sin、cos-作为激活函数？" class="headerlink" title="为什么不使用 sin、cos 作为激活函数？"></a>为什么不使用 sin、cos 作为激活函数？</h1><p>sin、cos 是极其常见的非线性函数，为什么不用他们作为激活函数呢？原因在于</p>
+<h1 id="3-nbsp-nbsp-nbsp-nbsp-为什么不使用-sin、cos-作为激活函数？"><a href="#3-nbsp-nbsp-nbsp-nbsp-为什么不使用-sin、cos-作为激活函数？" class="headerlink" title="3&nbsp;&nbsp;&nbsp;&nbsp;为什么不使用 sin、cos 作为激活函数？"></a>3&nbsp;&nbsp;&nbsp;&nbsp;为什么不使用 sin、cos 作为激活函数？</h1><p>sin、cos 是极其常见的非线性函数，为什么不用他们作为激活函数呢？原因在于</p>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p>[1] ReLU 的几个变种参考自：<a href="https://zh.wikipedia.org/wiki/%E7%BA%BF%E6%80%A7%E6%95%B4%E6%B5%81%E5%87%BD%E6%95%B0" target="_blank" rel="noopener">维基百科 - 线性整流函数</a>，相应的性质分析参考自：<a href="https://www.cnblogs.com/makefile/p/activation-function.html" target="_blank" rel="noopener">ReLU 家族分析</a></p>
 <p>[2] 关于 Dead ReLU 的问题参考自：<a href="https://www.quora.com/What-is-the-dying-ReLU-problem-in-neural-networks" target="_blank" rel="noopener">Quora - What is the “dying ReLU” problem in neural networks?</a></p>
 <p>[3] 饱和函数和不饱和函数的定义参考自：<a href="https://stats.stackexchange.com/questions/174295/what-does-the-term-saturating-nonlinearities-mean" target="_blank" rel="noopener">StackExchange - What does the term saturating nonlinearities mean?</a></p>
 <p>[4] 关于使用 sin 作为激活函数的问题参考自：<a href="https://zhuanlan.zhihu.com/p/42160421" target="_blank" rel="noopener">知乎 - 神经网络的激活函数能不能用 sin？</a> 和 <a href="https://www.zhihu.com/question/52797000" target="_blank" rel="noopener">为什么神经网络的激活函数不使用 sin 类的？</a></p>
-<h1 id="延伸阅读"><a href="#延伸阅读" class="headerlink" title="延伸阅读"></a>延伸阅读</h1><p>[1] 关于神经网络中激活函数的作用，请参见如下的知乎问题：<a href="https://www.zhihu.com/question/22334626" target="_blank" rel="noopener">神经网络激励函数的作用是什么？有没有形象的解释？</a></p>
+<p>[1] 关于神经网络中激活函数的作用，请参见如下的知乎问题：<a href="https://www.zhihu.com/question/22334626" target="_blank" rel="noopener">神经网络激励函数的作用是什么？有没有形象的解释？</a></p>
 <p>[2] 看过上面的解释之后，可能会产生疑问：ReLU 作为分段线性函数，是否与其他的非线性激活函数一样强大？可以看这个知乎问题：<a href="https://www.zhihu.com/question/58304333" target="_blank" rel="noopener">ReLU 是分段线性函数，非线性映射能力足以拟合任意函数吗？</a></p>
 <p>[3] <a href="https://www.jiqizhixin.com/articles/2017-10-10-3" target="_blank" rel="noopener">机器之心 - 26 种神经网络激活函数可视化</a></p>
 <p>[4] <a href="https://blog.csdn.net/tianyaleixiaowu/article/details/80775295" target="_blank" rel="noopener">这篇博客</a>分析了一些激活函数的优缺点</p>
@@ -419,7 +431,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#基本概念"><span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Sigmoid"><span class="nav-text">Sigmoid</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#tanh"><span class="nav-text">tanh</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ReLU"><span class="nav-text">ReLU</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Dead-ReLU-问题"><span class="nav-text">Dead ReLU 问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#变种"><span class="nav-text">变种</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#LeakyReLU-LReLU"><span class="nav-text">LeakyReLU (LReLU)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Parametric-ReLU-PReLU"><span class="nav-text">Parametric ReLU (PReLU)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Randomized-Leaky-ReLU-RReLU"><span class="nav-text">Randomized Leaky ReLU (RReLU)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Noisy-ReLU"><span class="nav-text">Noisy ReLU</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ELU"><span class="nav-text">ELU</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Maxout"><span class="nav-text">Maxout</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#不太常用的激活函数"><span class="nav-text">不太常用的激活函数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#softplus"><span class="nav-text">softplus</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#为什么不使用-sin、cos-作为激活函数？"><span class="nav-text">为什么不使用 sin、cos 作为激活函数？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-text">参考资料</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#延伸阅读"><span class="nav-text">延伸阅读</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-nbsp-nbsp-nbsp-nbsp-基本概念"><span class="nav-text">1    基本概念</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-nbsp-nbsp-nbsp-nbsp-激活函数"><span class="nav-text">2    激活函数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-nbsp-nbsp-nbsp-nbsp-Sigmoid"><span class="nav-text">2.1    Sigmoid</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-nbsp-nbsp-nbsp-nbsp-tanh"><span class="nav-text">2.2    tanh</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-nbsp-nbsp-nbsp-nbsp-ReLU"><span class="nav-text">2.3    ReLU</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dead-ReLU-问题"><span class="nav-text">Dead ReLU 问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#变种"><span class="nav-text">变种</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#LeakyReLU-LReLU"><span class="nav-text">LeakyReLU (LReLU)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Parametric-ReLU-PReLU"><span class="nav-text">Parametric ReLU (PReLU)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Randomized-Leaky-ReLU-RReLU"><span class="nav-text">Randomized Leaky ReLU (RReLU)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Noisy-ReLU"><span class="nav-text">Noisy ReLU</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-5-nbsp-nbsp-nbsp-nbsp-ELU"><span class="nav-text">2.3.5    ELU</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-nbsp-nbsp-nbsp-nbsp-Maxout"><span class="nav-text">2.4    Maxout</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-5-nbsp-nbsp-nbsp-nbsp-不太常用的激活函数"><span class="nav-text">2.5    不太常用的激活函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-5-1-nbsp-nbsp-nbsp-nbsp-softplus"><span class="nav-text">2.5.1    softplus</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-nbsp-nbsp-nbsp-nbsp-为什么不使用-sin、cos-作为激活函数？"><span class="nav-text">3    为什么不使用 sin、cos 作为激活函数？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-text">参考资料</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -433,7 +445,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">238</span>
+          <span class="site-state-item-count">248</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -442,7 +454,7 @@
         <span class="site-state-item-name">分类</span>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">42</span>
+        <span class="site-state-item-count">45</span>
         <span class="site-state-item-name">标签</span>
       </div>
   </nav>
