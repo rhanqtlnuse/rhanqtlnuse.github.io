@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.8.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="摘要">
+<meta property="og:type" content="article">
+<meta property="og:title" content="程序设计方法学：表驱动法">
+<meta property="og:url" content="http://yoursite.com/2019/11/20/soft-eng-cons-table-driven/index.html">
+<meta property="og:site_name" content="RHANQTL">
+<meta property="og:description" content="摘要">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2019/11/20/soft-eng-cons-table-driven/index-table.png">
+<meta property="og:image" content="http://yoursite.com/2019/11/20/soft-eng-cons-table-driven/ladder.png">
+<meta property="og:image" content="http://yoursite.com/2019/11/20/soft-eng-cons-table-driven/Users/hanqi/AppData/Roaming/Typora/typora-user-images/1574214100948.png">
+<meta property="og:image" content="http://yoursite.com/2019/11/20/soft-eng-cons-table-driven/cdf.png">
+<meta property="og:image" content="http://yoursite.com/2019/11/20/soft-eng-cons-table-driven/cdf-2.png">
+<meta property="og:image" content="http://yoursite.com/2019/11/20/soft-eng-cons-table-driven/cdf-3.png">
+<meta property="og:image" content="http://yoursite.com/2019/11/20/soft-eng-cons-table-driven/cdf-alias.png">
+<meta property="og:updated_time" content="2019-11-20T02:38:20.210Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="程序设计方法学：表驱动法">
+<meta name="twitter:description" content="摘要">
+<meta name="twitter:image" content="http://yoursite.com/2019/11/20/soft-eng-cons-table-driven/index-table.png">
+
+<link rel="canonical" href="http://yoursite.com/2019/11/20/soft-eng-cons-table-driven/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
+  };
+</script>
+
+  <title>程序设计方法学：表驱动法 | RHANQTL</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">RHANQTL</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">上下求索</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>站点地图</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/20/soft-eng-cons-table-driven/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          程序设计方法学：表驱动法
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2019-11-20 09:59:35 / 修改时间：10:38:20" itemprop="dateCreated datePublished" datetime="2019-11-20T09:59:35+08:00">2019-11-20</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Programming/" itemprop="url" rel="index"><span itemprop="name">Programming</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Programming/Methodology/" itemprop="url" rel="index"><span itemprop="name">Methodology</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><strong>摘要</strong></p>
+<a id="more"></a>
+<h1 id="0-导言"><a href="#0-导言" class="headerlink" title="0    导言"></a>0    导言</h1><p>表驱动法是一种编程模式，将<strong>数据/动作</strong>组织成一张查找表，从表中查找信息而不使用逻辑语句。适用于复杂的逻辑。另一个好处是可以将复杂逻辑从代码中独立出来，便于单独维护。</p>
+<p>一般有以下 3 种方法：</p>
+<ul>
+<li>直接访问</li>
+<li>索引访问</li>
+<li>阶梯访问</li>
+</ul>
+<h1 id="1-直接访问"><a href="#1-直接访问" class="headerlink" title="1    直接访问"></a>1    直接访问</h1><p>通过索引值（如下标）可以直接从表中找到对应的条⽬</p>
+<p><strong>例 1</strong>（确定各月天数）</p>
+<p>笨拙的做法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">switch</span> (month) &#123;</span><br><span class="line">    <span class="keyword">case</span> JAN:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">31</span>;</span><br><span class="line">    <span class="keyword">case</span> FEB:</span><br><span class="line">        <span class="keyword">return</span> isLeapYear(year) ? <span class="number">29</span> : <span class="number">28</span>;</span><br><span class="line">    <span class="keyword">case</span> MAR:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">31</span>;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    <span class="keyword">case</span> DEC:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">31</span>;</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> Exception(<span class="string">"Invalid month"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>优雅的做法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[] daysPerMonth = <span class="keyword">new</span> <span class="keyword">int</span>[] &#123;</span><br><span class="line">    <span class="number">31</span>, <span class="number">28</span>, <span class="number">31</span>, <span class="number">30</span>, <span class="number">31</span>, <span class="number">30</span>, <span class="number">31</span>, <span class="number">31</span>, <span class="number">30</span>, <span class="number">31</span>, <span class="number">30</span>, <span class="number">31</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">if</span> (isLeapYear(year) &amp;&amp; month == <span class="number">2</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> daysPerMonth[month - <span class="number">1</span>] + <span class="number">1</span>;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> daysPerMonth[month - <span class="number">1</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="2-索引访问"><a href="#2-索引访问" class="headerlink" title="2    索引访问"></a>2    索引访问</h1><p>间接访问</p>
+<p>当无法直接从表中查询需要的条⽬时，就需要借助其他办法先获取表键值</p>
+<p><strong>例 1</strong>    假设你经营着⼀家商店，有⼤约 100 种商品。再假设每种商品都有⼀个 4 位数字的物品编号，其范围是 0000 到 9999。</p>
+<p>如果想用编号作为键值直接查询⼀张描述商品信息的表，那么就要生成⼀个具有 10000 条记录的访问表。</p>
+<p>使用索引访问技术（索引表）：</p>
+<img src="/2019/11/20/soft-eng-cons-table-driven/index-table.png" title="间接索引表">
+<ul>
+<li>只有被经营的商品才有查找表项，其余的 ID 对应的索引为空</li>
+<li>极大节省空间！<ul>
+<li>假设一个整数占 4 个字节，商品信息描述平均占 20 个字节</li>
+<li>第一种方式要分配 200, 000 字节的空间，而第二种方式最少只需要分配 10000 × 4 + 100 × 20 = 42, 000 字节的空间</li>
+</ul>
+</li>
+<li>即使⽤了索引以后没有节省内存空间，操作位于索引中的记录有时也要⽐操作位于主表中的记录更⽅便更廉价</li>
+</ul>
+<h1 id="3-阶梯访问"><a href="#3-阶梯访问" class="headerlink" title="3    阶梯访问"></a>3    阶梯访问</h1><p>阶梯访问方法不像索引结构那样直接，但是它要⽐索引访问⽅法节省空间！</p>
+<p>基本想法：通过确定每项命中的阶梯层次确定其归类</p>
+<img src="/2019/11/20/soft-eng-cons-table-driven/ladder.png">
+<p><strong>例 1</strong>（成绩等级评定）</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:right">分值区间</th>
+<th style="text-align:left">等级</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">>= 90.0%</td>
+<td style="text-align:left">A</td>
+</tr>
+<tr>
+<td style="text-align:right">\&lt; 90.0%</td>
+<td style="text-align:left">B</td>
+</tr>
+<tr>
+<td style="text-align:right">\&lt; 75.0%</td>
+<td style="text-align:left">C</td>
+</tr>
+<tr>
+<td style="text-align:right">\&lt; 65.0%</td>
+<td style="text-align:left">D</td>
+</tr>
+<tr>
+<td style="text-align:right">\&lt; 50.0%</td>
+<td style="text-align:left">F</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>笨拙的做法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (score &lt; <span class="number">0.50</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'F'</span>;</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (score &lt; <span class="number">0.65</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'D'</span>;</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (score &lt; <span class="number">0.75</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'C'</span>;</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (score &lt; <span class="number">0.90</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'B'</span>;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'A'</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>优雅的做法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 注意最后一个元素</span></span><br><span class="line"><span class="keyword">int</span>[] threshold = <span class="keyword">new</span> <span class="keyword">int</span>[] &#123; <span class="number">0.50</span>, <span class="number">0.65</span>, <span class="number">0.75</span>, <span class="number">0.90</span>, <span class="number">1.01</span> &#125;;</span><br><span class="line"><span class="keyword">char</span>[] grade = <span class="keyword">new</span> <span class="keyword">char</span>[] &#123;<span class="string">'F'</span>, <span class="string">'D'</span>, <span class="string">'C'</span>, <span class="string">'B'</span>, <span class="string">'A'</span>&#125;;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; threshold.length; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (score &lt; threshold[i]) &#123;</span><br><span class="line">        <span class="keyword">return</span> grade[i];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>看上去似乎并没有减少多少代码，但是后一种方法由如下的优点：<ul>
+<li>易于修改。想要增加新的等级时只需要修改数据即可，无需修改逻辑<ul>
+<li>还可以把数据放在文件、数据库等介质中</li>
+</ul>
+</li>
+<li>有序列表，可以使用<strong>二分查找</strong></li>
+</ul>
+</li>
+</ul>
+<p><strong>例 2</strong>（计算交税金额）</p>
+<p><img src="/2019/11/20/soft-eng-cons-table-driven/Users\hanqi\AppData\Roaming\Typora\typora-user-images\1574214100948.png" alt="1574214100948"></p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>收入</th>
+<th>税（= 可变 + 固定）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&lt;= 10000</td>
+<td>收入 * 0.10</td>
+</tr>
+<tr>
+<td>(10000, 20000]</td>
+<td>（收入 - 10000）* 0.12 + 1000</td>
+</tr>
+<tr>
+<td>(20000, 30000]</td>
+<td>（收入 - 20000）* 0.15 + 2200</td>
+</tr>
+<tr>
+<td>(30000, 40000]</td>
+<td>（收入 - 30000）* 0.18 + 3700</td>
+</tr>
+<tr>
+<td>&gt; 40000</td>
+<td>（收入 - 40000）* 0.20 + 5500</td>
+</tr>
+</tbody>
+</table>
+</div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">double</span>[] rates = &#123; <span class="number">0.10</span>, <span class="number">0.12</span>, <span class="number">0.15</span>, <span class="number">0.18</span>, <span class="number">0.20</span> &#125;;</span><br><span class="line"><span class="keyword">int</span>[] thresholds = &#123; <span class="number">10000</span>, <span class="number">20000</span>, <span class="number">30000</span>, <span class="number">40000</span> &#125;;</span><br><span class="line"><span class="keyword">int</span>[] fixed = &#123; <span class="number">0</span>, <span class="number">1000</span>, <span class="number">2200</span>, <span class="number">3700</span>, <span class="number">5500</span> &#125;;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">calculateTax</span><span class="params">(<span class="keyword">double</span> income)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (income &lt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> InvalidArgumentException(<span class="string">"income should be &gt;= 0"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (i &lt; thresholds.length &amp;&amp; income &gt; thresholds[i]) &#123;</span><br><span class="line">        i++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> fixed[i] + (income - thresholds[i]) * rates[i];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="示例：CDF"><a href="#示例：CDF" class="headerlink" title="示例：CDF"></a>示例：CDF</h2><img src="/2019/11/20/soft-eng-cons-table-driven/cdf.png" title="上图是概率密度，下图是累计概率密度（CDF）">
+<ul>
+<li>生成一个 0 到 1 之间的随机数 A</li>
+<li>将 A 与 CDF(i) 进行比较<ul>
+<li>如果 A &lt; CDF(i)，停止比较，返回 i</li>
+<li>否则继续</li>
+</ul>
+</li>
+<li>最坏情况下需要 n 次比较</li>
+</ul>
+<p>使用<strong>别名方法</strong>！</p>
+<img src="/2019/11/20/soft-eng-cons-table-driven/cdf-2.png" title="希望得到 4 个面积为单位 1 的正方形，所以将每个概率密度乘 4">
+<img src="/2019/11/20/soft-eng-cons-table-driven/cdf-3.png" title="割补之后的图形，面积变为 4 倍，但是每种颜色的比例（概率）没变">
+<img src="/2019/11/20/soft-eng-cons-table-driven/cdf-alias.png">
+<ul>
+<li>生成一个 1 到 4 之间的数 A</li>
+<li>生成一个 0 到 1 之间的数 B</li>
+<li>将 B 与 Prob(A) 进行比较<ul>
+<li>如果 B &gt; Prob(A)，返回别名（Alias(A)）</li>
+<li>否则返回 A</li>
+</ul>
+</li>
+</ul>
+<h1 id="4-参考"><a href="#4-参考" class="headerlink" title="4    参考"></a>4    参考</h1><p>[1]  Steve McConnell. <a href="https://book.douban.com/subject/1477390/" target="_blank" rel="noopener">《代码大全》（第 2 版）</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/11/15/concurrency-monitor/" rel="prev" title="并发程序设计：管程">
+      <i class="fa fa-chevron-left"></i> 并发程序设计：管程
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/11/23/algorithms-sorting/" rel="next" title="排序问题和排序算法">
+      排序问题和排序算法 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0-导言"><span class="nav-text">0    导言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-直接访问"><span class="nav-text">1    直接访问</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-索引访问"><span class="nav-text">2    索引访问</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-阶梯访问"><span class="nav-text">3    阶梯访问</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#示例：CDF"><span class="nav-text">示例：CDF</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-参考"><span class="nav-text">4    参考</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Han Qi</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">254</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">74</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">45</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Han Qi</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://muse.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.7.2
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>

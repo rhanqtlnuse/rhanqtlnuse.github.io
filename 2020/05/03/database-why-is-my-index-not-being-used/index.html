@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.8.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="分析索引未被使用的常见原因">
+<meta property="og:type" content="article">
+<meta property="og:title" content="查询未使用索引的常见原因">
+<meta property="og:url" content="http://yoursite.com/2020/05/03/database-why-is-my-index-not-being-used/index.html">
+<meta property="og:site_name" content="RHANQTL">
+<meta property="og:description" content="分析索引未被使用的常见原因">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-05-03T13:20:01.495Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="查询未使用索引的常见原因">
+<meta name="twitter:description" content="分析索引未被使用的常见原因">
+
+<link rel="canonical" href="http://yoursite.com/2020/05/03/database-why-is-my-index-not-being-used/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
+  };
+</script>
+
+  <title>查询未使用索引的常见原因 | RHANQTL</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">RHANQTL</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">上下求索</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>站点地图</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/03/database-why-is-my-index-not-being-used/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          查询未使用索引的常见原因
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-05-03 20:25:25 / 修改时间：21:20:01" itemprop="dateCreated datePublished" datetime="2020-05-03T20:25:25+08:00">2020-05-03</time>
+            </span>
+
+          
+            <div class="post-description">分析索引未被使用的常见原因</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="1-nbsp-nbsp-nbsp-nbsp-索引的工作方式"><a href="#1-nbsp-nbsp-nbsp-nbsp-索引的工作方式" class="headerlink" title="1&nbsp;&nbsp;&nbsp;&nbsp;索引的工作方式"></a>1&nbsp;&nbsp;&nbsp;&nbsp;索引的工作方式</h1><p>索引的基本工作原理看上去很简单（针对非索引覆盖扫描的情况）：</p>
+<ol>
+<li>在索引中找到记录</li>
+<li>基于索引中的信息，找到记录所在的物理块</li>
+</ol>
+<p>看起来不错，但是我们必须知道，尽管“在索引中查找记录”通常是比较快的，但是依然相对复杂，它常常涉及多个<strong>随机页面读取</strong>。</p>
+<p>“随机页面读取”是什么意思？我们对磁盘的访问基本上可以分为两种方式：</p>
+<ul>
+<li><p>顺序的：下一个数据块紧接在前一个之后读取，因此不需要移动磁盘头</p>
+</li>
+<li><p>随机的：从磁盘上随机的位置读取下一个块，这需要磁头移动（寻道）和旋转，因此速度较慢（请考虑：磁盘技术规范中的平均寻道时间） </p>
+</li>
+</ul>
+<p>因此，即使在最佳情况下，索引扫描也需要（从磁盘）进行：</p>
+<ol>
+<li>找到索引的物理位置</li>
+<li>从索引中读取页面</li>
+<li>找到表的物理位置</li>
+<li>从表中读取页面</li>
+</ol>
+<p>当然，磁盘缓存和 / 或共享缓冲区可以帮助解决此问题，但是它仍然是“很多”操作。</p>
+<p>另一方面，顺序扫描的最佳情况比较简单：</p>
+<ul>
+<li>找到表的物理位置</li>
+<li>从表中读取页面</li>
+</ul>
+<p>更简单。</p>
+<p>这可能意味着如果表小于 2 页，数据库根本不应该使用索引！实际上，它可能要复杂一些，所以最简单的方法就是对其进行测试：</p>
+<h1 id="2-nbsp-nbsp-nbsp-nbsp-常见问题"><a href="#2-nbsp-nbsp-nbsp-nbsp-常见问题" class="headerlink" title="2&nbsp;&nbsp;&nbsp;&nbsp;常见问题"></a>2&nbsp;&nbsp;&nbsp;&nbsp;常见问题</h1><blockquote>
+<p>可以使用 <code>EXPLAIN</code>、<code>EXPLAIN ANALYZE</code> 查看执行计划</p>
+</blockquote>
+<p><strong>状态信息过时</strong></p>
+<p><strong>优化器认为全表扫描比索引扫描更快</strong></p>
+<p>如果</p>
+<ul>
+<li>表相对较小，或者</li>
+<li>要索引的字段有很多重复项（即索引列的可选择性（selectivity）不高）</li>
+</ul>
+<p>则可能会发生这种情况</p>
+<p><strong>设置的索引与实际过滤字段的方式不兼容</strong></p>
+<p>这种情况有几种变体：</p>
+<ul>
+<li><p>不符合索引的工作方式，即，不是最左前缀匹配。（当然有些数据库支持跳跃式扫描）</p>
+</li>
+<li><p>大小写问题，这跟校对集（collation）有关。定义索引</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CREATE INDEX idx_faults_name USING BTREE ON faults (`fault_name`);</span><br></pre></td></tr></table></figure>
+<p>而查询却是这样：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT *</span><br><span class="line">  FROM faults</span><br><span class="line"> WHERE UPPER(fault_name) LIKE &apos;CAR%&apos;;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>注意：</strong>这样的查询是很糟糕的，因为在字段上应用函数之后会导致无法使用索引</p>
+</blockquote>
+<p>如果你的校对方式是大小写敏感的，就不会使用索引，如下定义索引可以修复这个问题：</p>
+</li>
+</ul>
+<p><strong>对于一个有索引的列作出函数查询</strong></p>
+<p>比如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT whatever</span><br><span class="line">  FROM some_table</span><br><span class="line"> WHERE f(indexed_column) = some_value;</span><br></pre></td></tr></table></figure>
+<p>这个函数可能会修改记录的顺序，因此优化器不会冒险使用索引。</p>
+<p>还有另外的一种情况就是隐式类型转换。</p>
+<p><strong>注意：</strong>如果要对字段使用函数，可能意味着该字段的粒度不符合原子性需求，即，设计连 1NF 都不符合！</p>
+<h1 id="3-nbsp-nbsp-nbsp-nbsp-结论"><a href="#3-nbsp-nbsp-nbsp-nbsp-结论" class="headerlink" title="3&nbsp;&nbsp;&nbsp;&nbsp;结论"></a>3&nbsp;&nbsp;&nbsp;&nbsp;结论</h1><p>归根到底，不使用索引的通常原因就是“不能使用索引，使用索引会返回不正确的结果”或者“不该使用索引，如果使用了索引反而会变慢”。</p>
+<h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><p>[1] <a href="https://www.postgresonline.com/journal/archives/78-Why-is-my-index-not-being-used.html" target="_blank" rel="noopener">Why is my index not being used</a></p>
+<p>[2] <a href="https://federico-razzoli.com/case-sensitivity-in-mysql-and-mariadb-queries" target="_blank" rel="noopener">Case sensitivity in MySQL and MariaDB queries</a></p>
+<p>[3] <a href="https://www.depesz.com/2010/09/09/why-is-my-index-not-being-used/" target="_blank" rel="noopener">depesz.com - Why is my index not being used?</a></p>
+<p>[4] <a href="">The Art of SQL</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/05/02/poetry-辛弃疾-青玉案-元夕/" rel="prev" title="辛弃疾《青玉案·元夕》">
+      <i class="fa fa-chevron-left"></i> 辛弃疾《青玉案·元夕》
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/05/15/mit-missing-semester-2-shell-tools/" rel="next" title="【译】MIT Missing Semester | 2. Shell 工具">
+      【译】MIT Missing Semester | 2. Shell 工具 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-nbsp-nbsp-nbsp-nbsp-索引的工作方式"><span class="nav-text">1    索引的工作方式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-nbsp-nbsp-nbsp-nbsp-常见问题"><span class="nav-text">2    常见问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-nbsp-nbsp-nbsp-nbsp-结论"><span class="nav-text">3    结论</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考文献"><span class="nav-text">参考文献</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Han Qi</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">254</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">74</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">45</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Han Qi</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://muse.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.7.2
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>

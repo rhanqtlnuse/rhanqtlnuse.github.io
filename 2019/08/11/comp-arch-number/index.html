@@ -32,7 +32,7 @@
 <meta property="og:image" content="http://yoursite.com/2019/08/11/comp-arch-number/Users/hanqi/AppData/Roaming/Typora/typora-user-images/1567690668197.png">
 <meta property="og:image" content="http://yoursite.com/2019/08/11/comp-arch-number/Users/hanqi/AppData/Roaming/Typora/typora-user-images/1567690844458.png">
 <meta property="og:image" content="http://yoursite.com/2019/08/11/comp-arch-number/Users/hanqi/AppData/Roaming/Typora/typora-user-images/1567691005402.png">
-<meta property="og:updated_time" content="2019-09-15T20:50:20.109Z">
+<meta property="og:updated_time" content="2020-05-06T11:53:17.745Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数的机器级表示">
 <meta name="twitter:description" content="介绍了整数和浮点数在计算机内部是如何表示的。">
@@ -205,7 +205,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-09-16 04:50:20" itemprop="dateModified" datetime="2019-09-16T04:50:20+08:00">2019-09-16</time>
+                <time title="修改时间：2020-05-06 19:53:17" itemprop="dateModified" datetime="2020-05-06T19:53:17+08:00">2020-05-06</time>
               </span>
 
           
@@ -488,7 +488,7 @@ $$
 
 规定（以短浮点数为例）
 
-- $E = 0​$
+- $E = 0$
 
   - $M = 0$，真值为 0，所以 0 有两种表示：
 
@@ -499,21 +499,21 @@ $$
     </pre>
 
 <ul>
-<li>$M \ne 0​$，为非规格化数，真值为 $(-1)^s \times \underline{0}.M \times 2 ^{\underline{-126}}​$</li>
+<li>$M \ne 0$，为非规格化数，真值为 $(-1)^s \times \underline{0}.M \times 2 ^{\underline{-126}}$</li>
 </ul>
 <ul>
-<li><p>$1 \le E \le 254​$，真值为 $(-1)^s \times \underline{1}.M \times 2^{E - 127}​$</p>
+<li><p>$1 \le E \le 254$，真值为 $(-1)^s \times \underline{1}.M \times 2^{E - 127}$</p>
 </li>
 <li><p>$E = 255$</p>
 <ul>
-<li><p>$M = 0​$，为无穷，正负看符号位</p>
+<li><p>$M = 0$，为无穷，正负看符号位</p>
 <pre>
          s E         M
    +Inf: 0 1111 1111 0000 0000 0000 0000 0000 000
    -Inf: 1 1111 1111 0000 0000 0000 0000 0000 000
 </pre>
 </li>
-<li><p>$M \ne 0​$，为 NaN (Not a Number)，所以 NaN 有多个位模式</p>
+<li><p>$M \ne 0$，为 NaN (Not a Number)，所以 NaN 有多个位模式</p>
 </li>
 </ul>
 </li>
@@ -636,12 +636,12 @@ $$
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">248</span>
+          <span class="site-state-item-count">254</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
-        <span class="site-state-item-count">73</span>
+        <span class="site-state-item-count">74</span>
         <span class="site-state-item-name">分类</span>
       </div>
       <div class="site-state-item site-state-tags">

@@ -28,7 +28,7 @@
 <meta property="og:site_name" content="RHANQTL">
 <meta property="og:description" content="解释 MySQL 中各种索引的含义">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-04-04T17:57:10.236Z">
+<meta property="og:updated_time" content="2020-05-03T02:17:44.305Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="高性能 MySQL | 各种类型的索引">
 <meta name="twitter:description" content="解释 MySQL 中各种索引的含义">
@@ -200,7 +200,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-04-05 01:57:10" itemprop="dateModified" datetime="2020-04-05T01:57:10+08:00">2020-04-05</time>
+                <time title="修改时间：2020-05-03 10:17:44" itemprop="dateModified" datetime="2020-05-03T10:17:44+08:00">2020-05-03</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -232,11 +232,12 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>B+ 树索引</p>
+        <h1 id="1-nbsp-nbsp-nbsp-nbsp-索引类型"><a href="#1-nbsp-nbsp-nbsp-nbsp-索引类型" class="headerlink" title="1&nbsp;&nbsp;&nbsp;&nbsp;索引类型"></a>1&nbsp;&nbsp;&nbsp;&nbsp;索引类型</h1><p>B+ 树索引</p>
 <p>哈希索引</p>
 <p>全文索引</p>
 <p>空间索引（R-Tree）</p>
-<p><strong>聚簇索引 vs. 非聚簇索引</strong></p>
+<p>位图索引（Bitmap Index）： Oracle<br>• 位图联结索引（Bitmap join index） :Oracle<br>• 函数索引（function-based index）  </p>
+<h1 id="2-nbsp-nbsp-nbsp-nbsp-相关名词"><a href="#2-nbsp-nbsp-nbsp-nbsp-相关名词" class="headerlink" title="2&nbsp;&nbsp;&nbsp;&nbsp;相关名词"></a>2&nbsp;&nbsp;&nbsp;&nbsp;相关名词</h1><p><strong>聚簇索引 vs. 非聚簇索引</strong></p>
 <p><strong>主键索引 vs. 二级索引（非主键索引）</strong></p>
 <p>InnoDB 的二级索引使用主键作为行指针</p>
 <p><strong>覆盖索引</strong></p>
@@ -331,6 +332,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-nbsp-nbsp-nbsp-nbsp-索引类型"><span class="nav-text">1    索引类型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-nbsp-nbsp-nbsp-nbsp-相关名词"><span class="nav-text">2    相关名词</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -344,12 +346,12 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">248</span>
+          <span class="site-state-item-count">254</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
-        <span class="site-state-item-count">73</span>
+        <span class="site-state-item-count">74</span>
         <span class="site-state-item-name">分类</span>
       </div>
       <div class="site-state-item site-state-tags">

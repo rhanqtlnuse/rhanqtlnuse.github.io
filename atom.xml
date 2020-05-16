@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-04-30T01:24:50.380Z</updated>
+  <updated>2020-05-15T13:21:44.899Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,11 +17,123 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>【译】MIT Missing Semester | 2. Shell 工具</title>
+    <link href="http://yoursite.com/2020/05/15/mit-missing-semester-2-shell-tools/"/>
+    <id>http://yoursite.com/2020/05/15/mit-missing-semester-2-shell-tools/</id>
+    <published>2020-05-15T12:22:35.000Z</published>
+    <updated>2020-05-15T13:21:44.899Z</updated>
+    
+    <summary type="html">
+    
+      MIT Missing Semester 第 2 讲 Lecture Notes 的中文翻译
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>查询未使用索引的常见原因</title>
+    <link href="http://yoursite.com/2020/05/03/database-why-is-my-index-not-being-used/"/>
+    <id>http://yoursite.com/2020/05/03/database-why-is-my-index-not-being-used/</id>
+    <published>2020-05-03T12:25:25.000Z</published>
+    <updated>2020-05-03T13:20:01.495Z</updated>
+    
+    <summary type="html">
+    
+      分析索引未被使用的常见原因
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>辛弃疾《青玉案·元夕》</title>
+    <link href="http://yoursite.com/2020/05/02/poetry-%E8%BE%9B%E5%BC%83%E7%96%BE-%E9%9D%92%E7%8E%89%E6%A1%88-%E5%85%83%E5%A4%95/"/>
+    <id>http://yoursite.com/2020/05/02/poetry-辛弃疾-青玉案-元夕/</id>
+    <published>2020-05-02T10:02:13.000Z</published>
+    <updated>2020-05-02T10:04:24.969Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>用 SQL 进行存在性检查</title>
+    <link href="http://yoursite.com/2020/05/02/database-sql-existence-check/"/>
+    <id>http://yoursite.com/2020/05/02/database-sql-existence-check/</id>
+    <published>2020-05-02T03:54:38.000Z</published>
+    <updated>2020-05-02T07:31:29.138Z</updated>
+    
+    <summary type="html">
+    
+      如题
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>how-to-use-italic-and-bold-fonts-properly</title>
+    <link href="http://yoursite.com/2020/05/01/how-to-use-italic-and-bold-fonts-properly/"/>
+    <id>http://yoursite.com/2020/05/01/how-to-use-italic-and-bold-fonts-properly/</id>
+    <published>2020-05-01T14:28:57.000Z</published>
+    <updated>2020-05-01T14:45:38.724Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>防御式编程 vs. 进攻式编程</title>
+    <link href="http://yoursite.com/2020/05/01/soft-eng-cons-defensive-vs-offensive-programming/"/>
+    <id>http://yoursite.com/2020/05/01/soft-eng-cons-defensive-vs-offensive-programming/</id>
+    <published>2020-05-01T03:50:42.000Z</published>
+    <updated>2020-05-01T04:06:11.985Z</updated>
+    
+    <summary type="html">
+    
+      介绍防御式编程和进攻式编程两种代码构造技术，并进行对比
+    
+    </summary>
+    
+      <category term="软件工程 (Software Engineering)" scheme="http://yoursite.com/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B-Software-Engineering/"/>
+    
+      <category term="软件构造 (Software Construction)" scheme="http://yoursite.com/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B-Software-Engineering/%E8%BD%AF%E4%BB%B6%E6%9E%84%E9%80%A0-Software-Construction/"/>
+    
+    
+  </entry>
+  
+  <entry>
     <title>regex-learning</title>
     <link href="http://yoursite.com/2020/04/30/regex-learning/"/>
     <id>http://yoursite.com/2020/04/30/regex-learning/</id>
     <published>2020-04-30T01:22:10.000Z</published>
-    <updated>2020-04-30T01:24:50.380Z</updated>
+    <updated>2020-05-01T14:47:23.374Z</updated>
     
     <summary type="html">
     
@@ -43,7 +155,7 @@
     <link href="http://yoursite.com/2020/04/30/database-sql-learning/"/>
     <id>http://yoursite.com/2020/04/30/database-sql-learning/</id>
     <published>2020-04-30T01:06:42.000Z</published>
-    <updated>2020-04-30T01:21:20.433Z</updated>
+    <updated>2020-04-30T08:54:41.381Z</updated>
     
     <summary type="html">
     
@@ -65,7 +177,7 @@
     <link href="http://yoursite.com/2020/04/29/mysql-frequently-used-functions/"/>
     <id>http://yoursite.com/2020/04/29/mysql-frequently-used-functions/</id>
     <published>2020-04-29T11:47:20.000Z</published>
-    <updated>2020-04-30T05:09:45.488Z</updated>
+    <updated>2020-05-08T03:04:48.855Z</updated>
     
     <summary type="html">
     
@@ -266,34 +378,6 @@
   
   <entry>
     <title>【译】torchtext 概览（实用 torchtext 第一部分）</title>
-    <link href="http://yoursite.com/2020/04/15/nlp-tools-a-comprehensive-tutorial-to-torchtext/"/>
-    <id>http://yoursite.com/2020/04/15/nlp-tools-a-comprehensive-tutorial-to-torchtext/</id>
-    <published>2020-04-15T08:28:08.000Z</published>
-    <updated>2020-04-18T09:12:47.943Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-    
-      <category term="NLP" scheme="http://yoursite.com/tags/NLP/"/>
-    
-      <category term="数据预处理 (Data Preprocessing)" scheme="http://yoursite.com/tags/%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86-Data-Preprocessing/"/>
-    
-      <category term="torchtext" scheme="http://yoursite.com/tags/torchtext/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【译】torchtext 概览（实用 torchtext 第一部分）</title>
     <link href="http://yoursite.com/2020/04/15/nlp-tools-a-comprehensive-tutorial-to-torchtext-practical-torchtext-part-1/"/>
     <id>http://yoursite.com/2020/04/15/nlp-tools-a-comprehensive-tutorial-to-torchtext-practical-torchtext-part-1/</id>
     <published>2020-04-15T08:28:08.000Z</published>
@@ -317,112 +401,6 @@
       <category term="数据预处理 (Data Preprocessing)" scheme="http://yoursite.com/tags/%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86-Data-Preprocessing/"/>
     
       <category term="torchtext" scheme="http://yoursite.com/tags/torchtext/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>PyCharm 中将文件上传到远程服务器</title>
-    <link href="http://yoursite.com/2020/04/15/tools-pycharm-upload-files-to-remote-server/"/>
-    <id>http://yoursite.com/2020/04/15/tools-pycharm-upload-files-to-remote-server/</id>
-    <published>2020-04-15T07:46:27.000Z</published>
-    <updated>2020-04-15T07:57:28.324Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-    
-      <category term="PyCharm" scheme="http://yoursite.com/tags/PyCharm/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>others-yaml-vs-json</title>
-    <link href="http://yoursite.com/2020/04/13/others-yaml-vs-json/"/>
-    <id>http://yoursite.com/2020/04/13/others-yaml-vs-json/</id>
-    <published>2020-04-13T07:15:07.000Z</published>
-    <updated>2020-04-13T10:58:01.852Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>NLP 中的工具和数据集</title>
-    <link href="http://yoursite.com/2020/04/10/nlp-tools-and-datasets/"/>
-    <id>http://yoursite.com/2020/04/10/nlp-tools-and-datasets/</id>
-    <published>2020-04-10T12:23:00.000Z</published>
-    <updated>2020-04-15T13:34:51.536Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>others-raid</title>
-    <link href="http://yoursite.com/2020/04/05/others-raid/"/>
-    <id>http://yoursite.com/2020/04/05/others-raid/</id>
-    <published>2020-04-05T10:58:47.000Z</published>
-    <updated>2020-04-05T11:44:17.712Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>【译】To Be Explicit</title>
-    <link href="http://yoursite.com/2020/04/05/soft-eng-to-be-explicit/"/>
-    <id>http://yoursite.com/2020/04/05/soft-eng-to-be-explicit/</id>
-    <published>2020-04-04T22:39:48.000Z</published>
-    <updated>2020-04-06T15:10:26.038Z</updated>
-    
-    <summary type="html">
-    
-      关于代码构造的一篇文章，原作者 Martin Fowler
-    
-    </summary>
-    
     
   </entry>
   

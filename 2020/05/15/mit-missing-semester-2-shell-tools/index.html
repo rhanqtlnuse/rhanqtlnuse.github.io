@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.8.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="MIT Missing Semester 第 2 讲 Lecture Notes 的中文翻译">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【译】MIT Missing Semester | 2. Shell 工具">
+<meta property="og:url" content="http://yoursite.com/2020/05/15/mit-missing-semester-2-shell-tools/index.html">
+<meta property="og:site_name" content="RHANQTL">
+<meta property="og:description" content="MIT Missing Semester 第 2 讲 Lecture Notes 的中文翻译">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-05-15T13:21:44.899Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【译】MIT Missing Semester | 2. Shell 工具">
+<meta name="twitter:description" content="MIT Missing Semester 第 2 讲 Lecture Notes 的中文翻译">
+
+<link rel="canonical" href="http://yoursite.com/2020/05/15/mit-missing-semester-2-shell-tools/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
+  };
+</script>
+
+  <title>【译】MIT Missing Semester | 2. Shell 工具 | RHANQTL</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">RHANQTL</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">上下求索</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>站点地图</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/15/mit-missing-semester-2-shell-tools/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【译】MIT Missing Semester | 2. Shell 工具
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-05-15 20:22:35 / 修改时间：21:21:44" itemprop="dateCreated datePublished" datetime="2020-05-15T20:22:35+08:00">2020-05-15</time>
+            </span>
+
+          
+            <div class="post-description">MIT Missing Semester 第 2 讲 Lecture Notes 的中文翻译</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>在本讲中，我们将会展示一些 Bash 脚本编程的基础知识和许多 Shell 工具（涵盖了一些在命令行模式中最常见的任务）。</p>
+<h1 id="Shell-脚本编程"><a href="#Shell-脚本编程" class="headerlink" title="Shell 脚本编程"></a>Shell 脚本编程</h1><p>目前为止，我们已经看到如何在 Shell 中执行命令以及用管道将若干个命令连接起来。然而，在许多场景下你可能会想要执行一系列的命令，并在其中使用条件和循环这样的控制流表达式。</p>
+<p>就复杂度而言，Shell 脚本是 Shell 命令的下一步。大多数 Shell 有它们自己的脚本编程语言（有变量和控制流）和语法（syntax）。Shell 脚本编程与其他的脚本编程语言的区别在于，Shell 脚本编程为执行 Shell 相关的任务进行了优化。因此，创建命令流水线、将结果保存到文件或者是从标准输入中读取在 Shell 脚本编程中是基本（primitive）操作，这样就使 Shell 脚本比通用（general purpose）的脚本编程语言更易用。在本节中，我们会集中于最常见的 Bash 脚本编程。</p>
+<p>在 Bash 中，给变量赋值的语法为 <code>foo=bar</code>，读取变量值的语法为 <script type="math/tex">foo</script>。注意：<code>foo = bar</code> 不会正常运行，因为它会被解释为以 <code>=</code> 和 <code>bar</code> 为参数调用 <code>foo</code>。通常来说，Shell 脚本中的空格会用于分隔参数，初学者通常会对此感到困惑，因此记得经常检查这一点。</p>
+<p>Bash 中的字符串可以由 <code>&#39;</code> 和 <code>&quot;</code> 两个定界符定义，但是二者并不等价。由 <code>&#39;</code> 定界的字符串是字面量，不会进行变量值替换，而由 <code>&quot;</code> 定界的字符串会进行变量替换。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">foo=bar</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"<span class="variable">$foo</span>"</span></span><br><span class="line"><span class="comment"># 打印 bar</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">'$foo'</span></span><br><span class="line"><span class="comment"># 打印 $foo</span></span><br></pre></td></tr></table></figure>
+<p>如大多数编程语言一样，Bash 支持 <code>if</code> <code>case</code> <code>while</code> <code>for</code> 控制流。同样，Bash 也有接收参数（argument）并用这些参数进行操作的函数。下面的例子展示了创建一个目录并 <code>cd</code> 进入其中的函数的例子。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">mcd</span></span> () &#123;</span><br><span class="line">    mkdir -p <span class="string">"<span class="variable">$1</span>"</span></span><br><span class="line">    <span class="built_in">cd</span> <span class="string">"<span class="variable">$1</span>"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里，<code>$1</code> 是脚本 / 函数的第一个参数。不像其他脚本编程语言，Bash 使用许多特殊的变量来引用参数、错误码和其他相关的变量。下面列出了一部分，更完整的列表可以从<a href="https://www.tldp.org/LDP/abs/html/special-chars.html" target="_blank" rel="noopener">这里</a>找到。</p>
+<ul>
+<li><code>$0</code> - 脚本的名字</li>
+<li><code>$1</code> 到 <code>$9</code> - 脚本的参数，<code>$1</code> 表示第一个参数，以此类推</li>
+<li><code>$@</code> - 所有的参数</li>
+<li><code>$#</code> - 参数的个数 <sup><a href="#fn_1" id="reffn_1">1</a></sup></li>
+<li><code>$?</code> - 前一个命令的返回代码（return code）</li>
+<li>$$$$ - 当前脚本的进程标识号</li>
+<li><code>!!</code> - 完整的前一个命令，包括参数。常见的用途是执行一个仅由于权限问题而失败的命令，你可以便捷地加上 <code>sudo</code> 重新执行它 <code>sudo !!</code></li>
+<li><code>$_</code> - 前一个命令的最后一个参数。如果你在使用交互式 Shell，你可以通过输入 <code>Esc</code> 加上 <code>.</code> 快速地得到这个值</li>
+</ul>
+<blockquote id="fn_1">
+<sup>1</sup>. 译者注：在英文中，<code>#</code> 这个符号常常会用来表示某种事物的个数<a href="#reffn_1" title="Jump back to footnote [1] in the text."> &#8617;</a>
+</blockquote>
+<p>命令通常会将输出写至 <code>STDOUT</code>、将错误写至 <code>STDERR</code>，并以对 Bash 更加友好的方式返回一个返回码来报告错误。返回码或者退出状态（exit status）是脚本 / 命令指示执行如何进行的方式。值 0 通常表示一切 OK，其他的值表示有错误发生。</p>
+<p>退出码可以配合 <code>&amp;&amp;</code>（与运算符）和 <code>||</code>（或运算符）实现命令的条件执行。几条命令可以写在一行中，用分号 <code>;</code> 分隔。<code>true</code> 程序总是会返回 0，<code>false</code> 命令总是会返回 1。让我们来看一些例子：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">false</span> || <span class="built_in">echo</span> <span class="string">"Oops, fail"</span></span><br><span class="line"><span class="comment"># Oops, fail</span></span><br><span class="line"></span><br><span class="line"><span class="literal">true</span> || <span class="built_in">echo</span> <span class="string">"Will not be printed"</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"></span><br><span class="line"><span class="literal">true</span> &amp;&amp; <span class="built_in">echo</span> <span class="string">"Things went well"</span></span><br><span class="line"><span class="comment"># Things went well</span></span><br><span class="line"></span><br><span class="line"><span class="literal">false</span> &amp;&amp; <span class="built_in">echo</span> <span class="string">"Will not be printed"</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"></span><br><span class="line"><span class="literal">false</span> ; <span class="built_in">echo</span> <span class="string">"This will always run"</span></span><br><span class="line"><span class="comment"># This will always run</span></span><br></pre></td></tr></table></figure>
+<p>另一种常见的模式是将命令的输出赋值给一个变量。这可以通过过命令替换（command substitution）实现。对于 <script type="math/tex">(CMD)</script>，Bash 会执行 <code>CMD</code> 并且得到命令的输出，将其原地替换。例如，如果你写了 <code>for file in $(ls)</code>，Shell 会首先调用 <code>ls</code>，然后遍历这些值。一个相似但是知道的人比较少的特性是进程替换（process substitution），<code>&lt;(CMD)</code> 会执行 <code>CMD</code>，然后将输出写入一个临时文件，并且将 <code>&lt;()</code> 替换为这个文件的名字。当命令希望通过文件而不是标准输入传递值时，这个特性很有用。例如，<code>diff &lt;(ls foo) &lt;(ls bar)</code> 会显示 <code>foo</code> 和 <code>bar</code> 两个目录中文件的不同。</p>
+<p>由于内容比较多，我们来看一个例子。在这个例子中，脚本遍历我们提供的参数，并用 <code>grep</code> 查找字符串 <code>foobar</code>，在没找到时，追加（append）一条注释 <code># foobar</code> 到对应的文件中：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 日期会被替换</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"于 <span class="variable">$(date)</span> 运行程序"</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"运行程序 <span class="variable">$0</span>，有 <span class="variable">$#</span> 个参数，进程号（PID）为 $$"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> file <span class="keyword">in</span> <span class="variable">$@</span>; <span class="keyword">do</span></span><br><span class="line">    grep foobar <span class="variable">$file</span> &gt; /dev/null 2&gt; /dev/null</span><br><span class="line">    <span class="comment"># 如果没有找到模式串，grep 的退出状态为 1</span></span><br><span class="line">    <span class="comment"># 我们将标准输出和标准错误重定向至空寄存器，因为我们并不关心它们</span></span><br><span class="line">    <span class="keyword">if</span> [[ $? -ne 0 ]]; <span class="keyword">then</span></span><br><span class="line">        <span class="built_in">echo</span> <span class="string">"文件 <span class="variable">$file</span> 不包含字符串 foobar，给它加上一个"</span></span><br><span class="line">        <span class="built_in">echo</span> <span class="string">"# foobar"</span> &gt;&gt; <span class="string">"<span class="variable">$file</span>"</span></span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+<p>在比较中，我们测试 <code>$?</code> 是否等于 0，Bash 实现了许多这种类型的比较，你可以在 <a href="http://man7.org/linux/man-pages/man1/test.1.html" target="_blank" rel="noopener"><code>test</code></a> 的手册页中找到详细的列表。在 Bash 中进行比较时，尽量用双方括号 <code>[[]]</code> 而不是单方括号 <code>[]</code>，因为尽管 <code>sh</code> 不支持这种方式，但是出错的几率更低。更详细的解释可以在<a href="http://mywiki.wooledge.org/BashFAQ/031" target="_blank" rel="noopener">这里</a>找到。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/05/03/database-why-is-my-index-not-being-used/" rel="prev" title="查询未使用索引的常见原因">
+      <i class="fa fa-chevron-left"></i> 查询未使用索引的常见原因
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Shell-脚本编程"><span class="nav-text">Shell 脚本编程</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Han Qi</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">254</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">74</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">45</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Han Qi</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://muse.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.7.2
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>

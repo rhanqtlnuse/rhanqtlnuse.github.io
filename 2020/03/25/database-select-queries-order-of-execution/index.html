@@ -20,17 +20,17 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="介绍 SQL 中 SELECT 语句各部分的执行顺序">
+  <meta name="description" content="介绍 SQL 标准规定的 SELECT 语句各部分的执行顺序">
 <meta property="og:type" content="article">
-<meta property="og:title" content="数据库 | SELECT 语句的执行顺序">
+<meta property="og:title" content="数据库 | SELECT 语句各部分的执行顺序">
 <meta property="og:url" content="http://yoursite.com/2020/03/25/database-select-queries-order-of-execution/index.html">
 <meta property="og:site_name" content="RHANQTL">
-<meta property="og:description" content="介绍 SQL 中 SELECT 语句各部分的执行顺序">
+<meta property="og:description" content="介绍 SQL 标准规定的 SELECT 语句各部分的执行顺序">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-03-25T10:41:32.358Z">
+<meta property="og:updated_time" content="2020-05-01T05:17:21.710Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="数据库 | SELECT 语句的执行顺序">
-<meta name="twitter:description" content="介绍 SQL 中 SELECT 语句各部分的执行顺序">
+<meta name="twitter:title" content="数据库 | SELECT 语句各部分的执行顺序">
+<meta name="twitter:description" content="介绍 SQL 标准规定的 SELECT 语句各部分的执行顺序">
 
 <link rel="canonical" href="http://yoursite.com/2020/03/25/database-select-queries-order-of-execution/">
 
@@ -44,7 +44,7 @@
   };
 </script>
 
-  <title>数据库 | SELECT 语句的执行顺序 | RHANQTL</title>
+  <title>数据库 | SELECT 语句各部分的执行顺序 | RHANQTL</title>
   
 
 
@@ -182,7 +182,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          数据库 | SELECT 语句的执行顺序
+          数据库 | SELECT 语句各部分的执行顺序
         </h1>
 
         <div class="post-meta">
@@ -191,10 +191,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-03-25 17:47:57 / 修改时间：18:41:32" itemprop="dateCreated datePublished" datetime="2020-03-25T17:47:57+08:00">2020-03-25</time>
+              <time title="创建时间：2020-03-25 17:47:57" itemprop="dateCreated datePublished" datetime="2020-03-25T17:47:57+08:00">2020-03-25</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-05-01 13:17:21" itemprop="dateModified" datetime="2020-05-01T13:17:21+08:00">2020-05-01</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -210,7 +216,7 @@
             </span>
 
           
-            <div class="post-description">介绍 SQL 中 SELECT 语句各部分的执行顺序</div>
+            <div class="post-description">介绍 SQL 标准规定的 SELECT 语句各部分的执行顺序</div>
 
         </div>
       </header>
@@ -221,35 +227,39 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>其中，SELECT 语句的执行顺序：</p>
-<ol>
-<li><code>FROM</code> 和 <code>JOIN</code><ul>
-<li>包括其中的子查询</li>
-<li>可能会产生临时表</li>
-</ul>
-</li>
-<li><code>WHERE</code><ul>
-<li>只能访问 <code>FROM</code> 子句中所有的表所包含的列</li>
+        <p>了解 SQL 语句的执行顺序很重要。一方面，了解了这个顺序之后，就能够理解某些查询为什么不能返回预期的结果；另一方面，能够对 SQL 语句进行优化。</p>
+<p><strong>注意：</strong>实际上，SQL 语句的执行顺序并不总是如下文那样。现代数据库中的一些优化技巧可能会改变实际的执行顺序（想想看，如果条件是 <code>WHERE false</code>，就根本不需要从表中获取数据，如果遵守标准的执行顺序，连接两个巨大的表，就会浪费相当多的资源），但是，它们最终必须返回<em>与以默认执行顺序运行查询相同</em> 的结果。</p>
+<h1 id="1-nbsp-nbsp-nbsp-nbsp-FROM-和-JOIN"><a href="#1-nbsp-nbsp-nbsp-nbsp-FROM-和-JOIN" class="headerlink" title="1&nbsp;&nbsp;&nbsp;&nbsp;FROM 和 JOIN"></a>1&nbsp;&nbsp;&nbsp;&nbsp;<code>FROM</code> 和 <code>JOIN</code></h1><p>包括其中的子查询</p>
+<p>可能会产生临时表，因此最好在可能的大型连接之前限制或预聚合表，否则可能会占用大量内存，甚至使用外存</p>
+<p>很多情况下，优化器会选择先看 <code>WHERE</code> 子句，看看有没有哪些部分能够直接忽略（通常情况下是借助于索引），比如</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">SELECT count(*)</span><br><span class="line">  FROM pings</span><br><span class="line">       JOIN signups</span><br><span class="line">       ON pings.cookie = signups.cookie</span><br><span class="line"> WHERE pings.url LIKE &apos;%/blog%&apos;  -- 可以过滤掉一部分元组，不会影响结果</span><br></pre></td></tr></table></figure>
+<p>但是如果像下面这样的查询，就没法执行预过滤：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">SELECT count(*)</span><br><span class="line">  FROM first_names</span><br><span class="line">       JOIN last_names</span><br><span class="line">       ON first_names.id = last_names.id</span><br><span class="line"> WHERE first_names.name || last_names.name LIKE &apos;%a%&apos;  -- || 用于连接字符串</span><br></pre></td></tr></table></figure>
+<h1 id="2-nbsp-nbsp-nbsp-nbsp-WHERE"><a href="#2-nbsp-nbsp-nbsp-nbsp-WHERE" class="headerlink" title="2&nbsp;&nbsp;&nbsp;&nbsp;WHERE"></a>2&nbsp;&nbsp;&nbsp;&nbsp;<code>WHERE</code></h1><ul>
+<li><em>只能</em> 访问 <code>FROM</code> 子句中的表和这些表中包含的列</li>
 <li>在大多数数据库中，此时还不能使用在 <code>SELECT</code> 子句中定义的别名，因为这些别名可能包含依赖于未执行的部分的表达式</li>
+<li>不能在 <code>WHERE</code> 子句中使用聚合函数，因为此时聚合函数还未求值</li>
 </ul>
-</li>
-<li><code>GROUP BY</code><ul>
+<h4 id="3-nbsp-nbsp-nbsp-nbsp-GROUP-BY"><a href="#3-nbsp-nbsp-nbsp-nbsp-GROUP-BY" class="headerlink" title="3&nbsp;&nbsp;&nbsp;&nbsp;GROUP BY"></a>3&nbsp;&nbsp;&nbsp;&nbsp;<code>GROUP BY</code></h4><ul>
+<li>特别注意这时的数据集已经被 <code>WHERE</code> 过滤了</li>
 <li>分组的结果的行数与指定分组列中不同值的个数相同。这其实隐含地表明，应当只在需要进行聚合查询时才使用 <code>GROUP BY</code>，否则就会丢失信息</li>
+<li>从现在开始可以使用聚合函数</li>
 </ul>
-</li>
-<li><code>HAVING</code><ul>
+<h4 id="4-nbsp-nbsp-nbsp-nbsp-HAVING"><a href="#4-nbsp-nbsp-nbsp-nbsp-HAVING" class="headerlink" title="4&nbsp;&nbsp;&nbsp;&nbsp;HAVING"></a>4&nbsp;&nbsp;&nbsp;&nbsp;<code>HAVING</code></h4><ul>
 <li>与 <code>WHERE</code> 子句类似，大多数数据库也不允许在 <code>HAVING</code> 子句中使用 <code>SELECT</code> 中的别名</li>
+<li><em>只能</em> 针对整个分组设定条件，而不能单独过滤分组中的某一行</li>
 </ul>
-</li>
-<li><code>SELECT</code></li>
-<li><code>DISTINCT</code></li>
-<li><code>ORDER BY</code><ul>
-<li>因为 SELECT 已经执行过，所以现在可以使用 SELECT 子句中定义的别名了</li>
+<h4 id="5-nbsp-nbsp-nbsp-nbsp-窗口函数"><a href="#5-nbsp-nbsp-nbsp-nbsp-窗口函数" class="headerlink" title="5&nbsp;&nbsp;&nbsp;&nbsp;窗口函数"></a>5&nbsp;&nbsp;&nbsp;&nbsp;窗口函数</h4><ul>
+<li>只能在 <code>SELECT</code> 和 <code>ORDER BY</code> 子句中使用</li>
 </ul>
-</li>
-<li><code>LIMIT</code> 和 <code>OFFSET</code></li>
-</ol>
-<p>以 [1] 中提供的关系为例：</p>
+<h4 id="6-nbsp-nbsp-nbsp-nbsp-SELECT"><a href="#6-nbsp-nbsp-nbsp-nbsp-SELECT" class="headerlink" title="6&nbsp;&nbsp;&nbsp;&nbsp;SELECT"></a>6&nbsp;&nbsp;&nbsp;&nbsp;<code>SELECT</code></h4><ul>
+<li>注意此处的聚合函数仅仅是对在分组阶段<em>已经完成求值</em> 的聚合的引用</li>
+</ul>
+<h4 id="7-nbsp-nbsp-nbsp-nbsp-DISTINCT"><a href="#7-nbsp-nbsp-nbsp-nbsp-DISTINCT" class="headerlink" title="7&nbsp;&nbsp;&nbsp;&nbsp;DISTINCT"></a>7&nbsp;&nbsp;&nbsp;&nbsp;<code>DISTINCT</code></h4><h4 id="8-nbsp-nbsp-nbsp-nbsp-UNION"><a href="#8-nbsp-nbsp-nbsp-nbsp-UNION" class="headerlink" title="8&nbsp;&nbsp;&nbsp;&nbsp;UNION"></a>8&nbsp;&nbsp;&nbsp;&nbsp;<code>UNION</code></h4><h4 id="9-nbsp-nbsp-nbsp-nbsp-ORDER-BY"><a href="#9-nbsp-nbsp-nbsp-nbsp-ORDER-BY" class="headerlink" title="9&nbsp;&nbsp;&nbsp;&nbsp;ORDER BY"></a>9&nbsp;&nbsp;&nbsp;&nbsp;<code>ORDER BY</code></h4><ul>
+<li>因为 <code>SELECT</code> 已经执行过，所以现在可以使用 <code>SELECT</code> 子句中定义的别名了</li>
+<li>注意当有 <code>DISTINCT</code> 时，不要使用非结果列作为排序标准，否则结果集的顺序是未定义的</li>
+</ul>
+<h4 id="10-nbsp-nbsp-nbsp-nbsp-LIMIT-和-OFFSET"><a href="#10-nbsp-nbsp-nbsp-nbsp-LIMIT-和-OFFSET" class="headerlink" title="10&nbsp;&nbsp;&nbsp;&nbsp;LIMIT 和 OFFSET"></a>10&nbsp;&nbsp;&nbsp;&nbsp;<code>LIMIT</code> 和 <code>OFFSET</code></h4><p>以 [1] 中提供的关系为例：</p>
 <p><strong>Movies</strong></p>
 <div class="table-container">
 <table>
@@ -464,6 +474,8 @@
 </table>
 </div>
 <h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p>[1] <a href="https://sqlbolt.com/lesson/select_queries_order_of_execution" target="_blank" rel="noopener">SQLBolt | SQL Lesson 12: Order of execution of a Query</a></p>
+<p>[2] <a href="https://www.eversql.com/sql-order-of-operations-sql-query-order-of-execution/" target="_blank" rel="noopener">SQL Order of Operations – In Which Order MySQL Executes Queries?</a></p>
+<p>[3] <a href="https://www.sisense.com/blog/sql-query-order-of-operations/" target="_blank" rel="noopener">SQL Query Order of Execution</a></p>
 
     </div>
 
@@ -545,7 +557,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-text">参考</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-nbsp-nbsp-nbsp-nbsp-FROM-和-JOIN"><span class="nav-text">1    FROM 和 JOIN</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-nbsp-nbsp-nbsp-nbsp-WHERE"><span class="nav-text">2    WHERE</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-nbsp-nbsp-nbsp-nbsp-GROUP-BY"><span class="nav-text">3    GROUP BY</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-nbsp-nbsp-nbsp-nbsp-HAVING"><span class="nav-text">4    HAVING</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-nbsp-nbsp-nbsp-nbsp-窗口函数"><span class="nav-text">5    窗口函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-nbsp-nbsp-nbsp-nbsp-SELECT"><span class="nav-text">6    SELECT</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-nbsp-nbsp-nbsp-nbsp-DISTINCT"><span class="nav-text">7    DISTINCT</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-nbsp-nbsp-nbsp-nbsp-UNION"><span class="nav-text">8    UNION</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-nbsp-nbsp-nbsp-nbsp-ORDER-BY"><span class="nav-text">9    ORDER BY</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-nbsp-nbsp-nbsp-nbsp-LIMIT-和-OFFSET"><span class="nav-text">10    LIMIT 和 OFFSET</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-text">参考</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -559,12 +571,12 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">248</span>
+          <span class="site-state-item-count">254</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
-        <span class="site-state-item-count">73</span>
+        <span class="site-state-item-count">74</span>
         <span class="site-state-item-name">分类</span>
       </div>
       <div class="site-state-item site-state-tags">
