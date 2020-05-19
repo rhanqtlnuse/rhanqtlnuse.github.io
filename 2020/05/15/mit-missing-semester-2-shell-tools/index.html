@@ -27,7 +27,7 @@
 <meta property="og:site_name" content="RHANQTL">
 <meta property="og:description" content="MIT Missing Semester 第 2 讲 Lecture Notes 的中文翻译">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-05-15T13:21:44.899Z">
+<meta property="og:updated_time" content="2020-05-19T05:25:24.889Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【译】MIT Missing Semester | 2. Shell 工具">
 <meta name="twitter:description" content="MIT Missing Semester 第 2 讲 Lecture Notes 的中文翻译">
@@ -191,10 +191,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-05-15 20:22:35 / 修改时间：21:21:44" itemprop="dateCreated datePublished" datetime="2020-05-15T20:22:35+08:00">2020-05-15</time>
+              <time title="创建时间：2020-05-15 20:22:35" itemprop="dateCreated datePublished" datetime="2020-05-15T20:22:35+08:00">2020-05-15</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-05-19 13:25:24" itemprop="dateModified" datetime="2020-05-19T13:25:24+08:00">2020-05-19</time>
+              </span>
 
           
             <div class="post-description">MIT Missing Semester 第 2 讲 Lecture Notes 的中文翻译</div>
@@ -208,7 +214,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>在本讲中，我们将会展示一些 Bash 脚本编程的基础知识和许多 Shell 工具（涵盖了一些在命令行模式中最常见的任务）。</p>
+        <p><a href="https://missing.csail.mit.edu/2020/shell-tools/" target="_blank" rel="noopener">https://missing.csail.mit.edu/2020/shell-tools/</a></p>
+<p>在本讲中，我们将会展示一些 Bash 脚本编程的基础知识和许多 Shell 工具（涵盖了一些在命令行模式中最常见的任务）。</p>
 <h1 id="Shell-脚本编程"><a href="#Shell-脚本编程" class="headerlink" title="Shell 脚本编程"></a>Shell 脚本编程</h1><p>目前为止，我们已经看到如何在 Shell 中执行命令以及用管道将若干个命令连接起来。然而，在许多场景下你可能会想要执行一系列的命令，并在其中使用条件和循环这样的控制流表达式。</p>
 <p>就复杂度而言，Shell 脚本是 Shell 命令的下一步。大多数 Shell 有它们自己的脚本编程语言（有变量和控制流）和语法（syntax）。Shell 脚本编程与其他的脚本编程语言的区别在于，Shell 脚本编程为执行 Shell 相关的任务进行了优化。因此，创建命令流水线、将结果保存到文件或者是从标准输入中读取在 Shell 脚本编程中是基本（primitive）操作，这样就使 Shell 脚本比通用（general purpose）的脚本编程语言更易用。在本节中，我们会集中于最常见的 Bash 脚本编程。</p>
 <p>在 Bash 中，给变量赋值的语法为 <code>foo=bar</code>，读取变量值的语法为 <script type="math/tex">foo</script>。注意：<code>foo = bar</code> 不会正常运行，因为它会被解释为以 <code>=</code> 和 <code>bar</code> 为参数调用 <code>foo</code>。通常来说，Shell 脚本中的空格会用于分隔参数，初学者通常会对此感到困惑，因此记得经常检查这一点。</p>
@@ -237,6 +244,68 @@
 <p>由于内容比较多，我们来看一个例子。在这个例子中，脚本遍历我们提供的参数，并用 <code>grep</code> 查找字符串 <code>foobar</code>，在没找到时，追加（append）一条注释 <code># foobar</code> 到对应的文件中：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 日期会被替换</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"于 <span class="variable">$(date)</span> 运行程序"</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"运行程序 <span class="variable">$0</span>，有 <span class="variable">$#</span> 个参数，进程号（PID）为 $$"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> file <span class="keyword">in</span> <span class="variable">$@</span>; <span class="keyword">do</span></span><br><span class="line">    grep foobar <span class="variable">$file</span> &gt; /dev/null 2&gt; /dev/null</span><br><span class="line">    <span class="comment"># 如果没有找到模式串，grep 的退出状态为 1</span></span><br><span class="line">    <span class="comment"># 我们将标准输出和标准错误重定向至空寄存器，因为我们并不关心它们</span></span><br><span class="line">    <span class="keyword">if</span> [[ $? -ne 0 ]]; <span class="keyword">then</span></span><br><span class="line">        <span class="built_in">echo</span> <span class="string">"文件 <span class="variable">$file</span> 不包含字符串 foobar，给它加上一个"</span></span><br><span class="line">        <span class="built_in">echo</span> <span class="string">"# foobar"</span> &gt;&gt; <span class="string">"<span class="variable">$file</span>"</span></span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
 <p>在比较中，我们测试 <code>$?</code> 是否等于 0，Bash 实现了许多这种类型的比较，你可以在 <a href="http://man7.org/linux/man-pages/man1/test.1.html" target="_blank" rel="noopener"><code>test</code></a> 的手册页中找到详细的列表。在 Bash 中进行比较时，尽量用双方括号 <code>[[]]</code> 而不是单方括号 <code>[]</code>，因为尽管 <code>sh</code> 不支持这种方式，但是出错的几率更低。更详细的解释可以在<a href="http://mywiki.wooledge.org/BashFAQ/031" target="_blank" rel="noopener">这里</a>找到。</p>
+<p>运行脚本时，你可能常常会想要提供一些相似的参数，Bash 为此提供了简化的方法：通过执行文件名展开（filename expansion）来展开表达式。这些技巧通常被称为 Shell globbing。</p>
+<ul>
+<li><p>通配符（wildcard）- 你可以使用 <code>?</code> 匹配一个任意字符，用 <code>*</code> 匹配任意数量的任意字符。例如，给定文件 <code>foo</code> <code>foo1</code> <code>foo2</code> <code>foo10</code> <code>bar</code>，命令 <code>rm foo?</code> 会删除文件 <code>foo1</code> 和 <code>foo2</code>，而命令 <code>rm foo*</code> 会删除 <code>bar</code> 以外的所有文件</p>
+</li>
+<li><p>花括号（curly braces）- 如果你想要执行一系列的命令，并且命令中有相同的子串，那么可以使用花括号来自动展开它们。当你想要移动或是转换文件时，这个功能很方便：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">convert image.&#123;png,jpg&#125;</span><br><span class="line"><span class="comment"># 会展开成</span></span><br><span class="line">convert image.png image.jpg</span><br><span class="line"></span><br><span class="line">cp /path/to/project/&#123;foo,bar,baz&#125;.sh /newpath</span><br><span class="line"><span class="comment"># 会展开成</span></span><br><span class="line">cp /path/to/project/foo.sh /path/to/project/bar.sh /path/to/project/baz.sh /newpath</span><br><span class="line"></span><br><span class="line"><span class="comment"># 上述的两个 Globbing 方法可以一起用</span></span><br><span class="line">mv *&#123;.py,.sh&#125; folder</span><br><span class="line"><span class="comment"># 将会移动所有的 .py 和 .sh 文件</span></span><br><span class="line"></span><br><span class="line">mkdir foo bar</span><br><span class="line"><span class="comment"># 会创建文件 foo/a、foo/b、...、foo/h、bar/a、bar/b、...、/bar/h</span></span><br><span class="line">touch &#123;foo,bar&#125;/&#123;a..h&#125;</span><br><span class="line">touch foo/x bar/y</span><br><span class="line"></span><br><span class="line"><span class="comment"># 显示目录 foo 和 bar 中文件的不同之处</span></span><br><span class="line">diff &lt;(ls foo) &lt;(ls bar)</span><br><span class="line"><span class="comment"># 输出：</span></span><br><span class="line"><span class="comment"># &lt; x</span></span><br><span class="line"><span class="comment"># --</span></span><br><span class="line"><span class="comment"># &gt; y</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>有时 Shell 脚本写起来可能会比较吊诡（tricky）、不直观，你可以使用一些工具（比如，<a href="https://github.com/koalaman/shellcheck" target="_blank" rel="noopener">shellcheck</a>）帮助你找到 sh/bash 脚本中的错误。</p>
+<p>需要注意的是，脚本并不一定非要用 Bash 写。下面就是一个逆序输出其参数的 Python 脚本：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/local/bin/python</span></span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">for</span> arg <span class="keyword">in</span> reversed(sys.argv[<span class="number">1</span>:]):</span><br><span class="line">    print(arg)</span><br></pre></td></tr></table></figure>
+<p>由于我们在脚本的第一行用 Shebang 注明了使用 Python 解释器，所以 Shell 不会使用 sh/bash 之类的解释器。用 <code>env</code> 命令写 Shebang 是一个好习惯，因为这样无论所需的命令（比如上例中的 <code>python</code>）在哪，Shell 都能够帮我们自动解析，这种做法能够提高脚本的可移植性。在解析位置时，<code>env</code> 会用到我们第一讲介绍的 <code>PATH</code> 环境变量。对于上面的例子，shebang 可以写成 <code>#!/usr/bin/env python</code>。</p>
+<p>下面是 shell 函数和脚本之间的一些不同点，你应当牢记它们：</p>
+<ul>
+<li>函数和 shell 必须是同一种语言，而脚本可以用任何语言编写。这就是为什么脚本中包含 shebang 很重要。</li>
+<li>函数只在它们的定义被读取时加载一次，而脚本在每次执行时都会加载。这一点让函数的加载会稍稍快一点，但是如果你更改了函数的定义，就必须重新加载。</li>
+<li>函数在当前的 shell 环境中执行，而脚本在它们自己的进程中执行。因此，函数能够修改环境变量（比如，修改当前目录），而脚本不能。脚本的环境变量是那些用 <code>export</code> 导出的，并且是值传递。</li>
+<li>跟其他的编程语言一样，函数是一种强大的构造，能够实现 shell 代码的模块化、代码重用和清晰。通常 shell 脚本会包含自己的函数定义。</li>
+</ul>
+<h1 id="Shell-工具"><a href="#Shell-工具" class="headerlink" title="Shell 工具"></a>Shell 工具</h1><h3 id="查找如何使用命令"><a href="#查找如何使用命令" class="headerlink" title="查找如何使用命令"></a>查找如何使用命令</h3><p>现在，你可能想知道如何找到命令在别名部分（aliasing section）的标志（flag）（比如 <code>ls -l</code> <code>mv -i</code> <code>mkdir -p</code>）。更一般地，你如何了解任何一个命令的功能及其选项？你应该会去 google，但是 UNIX  毕竟诞生在 StackOverflow 之前，所以它们有获取这些信息的内置方法。</p>
+<p>如我们在 shell 这一讲里看到的，首先应该想到的方法是用 <code>-h</code> 或 <code>--help</code> 标志来调用命令。要想获取更详细的信息，可以使用 <a href="http://man7.org/linux/man-pages/man1/man.1.html" target="_blank" rel="noopener"><code>man</code></a> 命令（<code>manual</code> 的缩写），它会给你显示指定命令的手册页（manual page，在 UNIX 中叫做 manpage）。例如，<code>man rm</code> 会输出 <code>rm</code> 的行为以及它所允许的不同的选项（包括前面提到的 <code>-i</code>）。事实上，我目前为止给出的命令的链接是对应命令的 Linux 手册页的在线版本。即使是非原生的命令也会有手册页，如果开发者有写并且将其作为安装过程的一部分的话。对于交互式工具（比如基于 ncurse），通常可以在程序中使用 <code>:help</code> 或 <code>?</code> 来获取命令的帮助。</p>
+<p>有时，手册页可能描述得过于详细，并且很难解释对于常见用例中使用的标志/语法。<a href="https://tldr.sh/" target="_blank" rel="noopener">TLDR 页面</a>是一个很好的补充解决方案，其重点是给出命令的示例使用案例，以便你可以快速确定要使用的选项。例如，我发现自己参考 <code>tar</code> 和 <code>ffmpeg</code> 的 tldr 页面的频率要高于手册页。</p>
+<h3 id="查找文件"><a href="#查找文件" class="headerlink" title="查找文件"></a>查找文件</h3><p>每个程序员都会面临的最常见的重复性任务之一就是查找文件或目录。所有 UNIX-like 的系统都带有 <code>find</code>，这是一个查找文件的好工具。<code>find</code> 将递归搜索符合某些条件的文件。一些例子：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 找到所有名为 src 的目录</span></span><br><span class="line">find . -name src -<span class="built_in">type</span> d</span><br><span class="line"><span class="comment"># 找到所有路径中包含 test 目录的 .py 文件</span></span><br><span class="line">find . -path <span class="string">'**/test/**/*.py'</span> -<span class="built_in">type</span> f</span><br><span class="line"><span class="comment"># 找到所有前一天修改的文件</span></span><br><span class="line">find . -mtime -1</span><br><span class="line"><span class="comment"># 找到所有大小在 500K 到 10M 之间的压缩文件</span></span><br><span class="line">find . -size +500k -size -10M -name <span class="string">'*.tar.gz'</span></span><br></pre></td></tr></table></figure>
+<p>除了列出文件之外，<code>find</code> 还可以对与你的查询匹配的文件执行操作。此属性对于简化可能非常单调的任务非常有用。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 删除所有扩展名为 .tmp 的文件</span></span><br><span class="line">find . -name <span class="string">'*.tmp'</span> -<span class="built_in">exec</span> rm &#123;&#125; \;</span><br><span class="line"><span class="comment"># 找到所有的 PNG 文件并将它们转换为 JPG 文件</span></span><br><span class="line">find . -name <span class="string">'*.png'</span> -<span class="built_in">exec</span> convert &#123;&#125; &#123;.&#125;.jpg \;</span><br></pre></td></tr></table></figure>
+<p>尽管 <code>find</code> 无处不在，但记住它的语法有时仍然很棘手。例如，要找到与某个模式 <code>PATTERN</code> 匹配的文件，你必须执行 <code>find -name &#39;*PATTERN*&#39;</code>（如果希望模式匹配不区分大小写，则执行 <code>-iname</code>）。你可以为这些场景构建别名，但是作为 shell 哲学的一部分，使用替代方案是比较好的。请记住，shell 的最佳特性之一就是你只是在调用程序，因此你可以找到（甚至自己编写）某些程序的替代品。例如，<code>fd</code> 是 <code>find</code> 的一种简单、快速且用户友好的替代方案。它提供了一些不错的默认值，例如彩色输出、默认正则表达式匹配、Unicode 支持，而且我认为它的语法更直观。查找模式 <code>PATTERN</code> 的语法为 <code>fd PATTERN</code>。</p>
+<p>大多数人都认为 <code>find</code> 和 <code>fd</code> 很好，但是有些人可能想知道每次查找文件的效率与编译某种索引或数据库以快速搜索相比是否有效。这就是 <code>locate</code> 的目的。<code>locate</code> 依赖于使用 <code>updatedb</code> 更新的数据库。在大多数系统中，<code>updatedb</code> 每天通过 <code>cron</code> 更新。因此，两者之间的权衡是速度与新鲜度。此外，<code>find</code> 和类似工具还可以使用诸如文件大小、修改时间或文件权限之类的属性来查找文件，而 <code>locate</code> 仅能使用名称。在<a href="https://unix.stackexchange.com/questions/60205/locate-vs-find-usage-pros-and-cons-of-each-other" target="_blank" rel="noopener">这里</a>可以找到更深入的比较。</p>
+<h3 id="查找代码"><a href="#查找代码" class="headerlink" title="查找代码"></a>查找代码</h3><p>查找文件很有用，但通常情况下，你会关注文件中的内容。一种常见情况是希望搜索包含某种模式的所有文件，以及这些模式在这些文件中的位置。为了实现这一点，大多数 UNIX-like 的系统都提供了 <code>grep</code>，这是一个用于匹配输入文本中的模式的通用工具。它是一个非常有用的 shell 工具，我们将在 data wrangling 这一讲中更详细地介绍它。</p>
+<p><code>grep</code> 有很多标志，使其成为非常通用的工具。我经常使用的一些命令是：<code>-C</code> 用于获取匹配行的上下文（context），以及 <code>-v</code> 用于反转（invert）匹配项，即打印所有与模式不匹配的行。例如，<code>grep -C 5</code> 将打印匹配行的前后 5 行。当涉及到快速解析许多文件时，使用 <code>-R</code>，它将递归地进入目录并查找匹配字符串的文本文件。</p>
+<p>但是 <code>grep -R</code> 可以通过多种方式进行改进，例如忽略 <code>.git</code> 文件夹、使用多 CPU 支持等等。因此，不乏开发出的替代品，包括 <code>ack</code>，<code>ag</code> 和 <code>rg</code>。它们都很棒，但是基本上满足的是相同的需求。就目前而言，因为 ripgrep（<code>rg</code>）的快速和直观，我一直在使用它。一些例子：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 找到所有使用了 requests 库的 Python 文件</span></span><br><span class="line">rg -t py <span class="string">'import requests'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 找到所有没有 shebang 行的文件（包括隐藏文件）</span></span><br><span class="line">rg -u --files-without-match <span class="string">"^#!"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 找到所有包含 foo 的行，同时打印后面的 5 行</span></span><br><span class="line">rg foo -A 5</span><br><span class="line"></span><br><span class="line"><span class="comment"># 打印匹配的统计数据（匹配的行数和文件数）</span></span><br><span class="line">rg --stats PATTERN</span><br></pre></td></tr></table></figure>
+<p>请注意，与 <code>find</code> / <code>fd</code> 一样，重要的是知道使用这些工具可以快速地解决你的问题，而到底使用哪个工具并不那么重要。</p>
+<h3 id="查找-Shell-命令"><a href="#查找-Shell-命令" class="headerlink" title="查找 Shell 命令"></a>查找 Shell 命令</h3><p>到目前为止，我们已经看到了如何查找文件和代码，但是随着你在 Shell 中花费越来越多的时间，你可能希望查找你在某个时刻键入的特定命令。首先要知道的是，按 ↑ 键能够返回上一条命令，如果继续按该键，你就能龟速浏览 Shell 历史记录。</p>
+<p><code>history</code> 命令会把你的 Shell 历史记录打印到标准输出中。如果要在结果中搜索，可以将输出通过管道传递到 <code>grep</code> 并搜索模式。<code>history | grep find</code> 将打印带有子字符串“find”的命令。</p>
+<p>在大多数 Shell 中，你可以使用 <code>Ctrl + R</code> 在历史记录中进行后向搜索。按下 <code>Ctrl + R</code> 后，你可以输入想要在历史记录中匹配的子字符串。继续按下该组合键，你将循环浏览历史记录中的匹配。在 <a href="https://github.com/zsh-users/zsh-history-substring-search" target="_blank" rel="noopener">zsh</a> 中，这也可以通过 ↑ / ↓ 键实现。<a href="https://github.com/junegunn/fzf/wiki/Configuring-shell-key-bindings#ctrl-r" target="_blank" rel="noopener">fzf</a> 绑定是 <code>Ctrl + R</code> 的一个不错的补充。<code>fzf</code> 是通用模糊（fuzzy）查找器，可以与许多命令一起使用。这里用于模糊匹配你的历史记录，并以方便且直观的方式呈现结果。</p>
+<p>另一个我非常喜欢的与历史相关的技巧是基于历史的自动建议（history-based auto-suggestions）。最初由 <a href="https://fishshell.com/" target="_blank" rel="noopener">fish</a> shell 引入，此功能能够根据你最近输入的与当前的 shell 命令有公共前缀的命令自动补全当前的命令。<code>zsh</code> 支持这种功能，这是一个很棒的技巧。</p>
+<p>最后，要记住的一点是，有前导空格的命令不会加入到历史记录中，这一点在你输入带有密码或其他敏感信息的命令时很有用。如果你忘记了添加前导空格，可以随时通过编辑 <code>.bash_history</code> 或 <code>.zhistory</code> 手动删除条目。</p>
+<h3 id="目录导航"><a href="#目录导航" class="headerlink" title="目录导航"></a>目录导航</h3><p>到目前为止，我们一直假定你已经在执行这些操作所需的位置，但是如何快速浏览目录呢？你可以通过许多简单的方法来执行此操作，例如编写 shell 别名（alias）、用 <a href="http://man7.org/linux/man-pages/man1/ln.1.html" target="_blank" rel="noopener"><code>ln -s</code></a> 创建符号链接，不过实际上到目前为止，开发人员已经找到了非常聪明和精巧的解决方案。</p>
+<p>与本课程的主题一样，你通常希望针对常见情况进行优化。可以使用 <code>fasd</code> 之类的工具来查找频繁和 / 或最新的文件和目录。<a href="https://github.com/clvv/fasd" target="_blank" rel="noopener"><code>fasd</code></a> 可以根据频率（<a href="https://developer.mozilla.org/en/The_Places_frecency_algorithm" target="_blank" rel="noopener"><em>frecency</em></a>）（即频率和新近度）对文件和目录进行排名。最直接的用法是 autojump，它添加了 <code>z</code> 命令，你可以使用该命令使用最新目录的子字符串快速进行 <code>cd</code>。例如，如果你经常进入 <code>/home/user/files/cool_project</code>，你可以用 <code>z cool</code> 跳到那里。</p>
+<p>也有更复杂的支持快速获得目录结构概览的工具，比如 <code>tree</code>、<code>broot</code> 以及成熟的文件管理器，比如 <code>nnn</code> 或 <code>ranger</code>。</p>
+<h1 id="练习题"><a href="#练习题" class="headerlink" title="练习题"></a>练习题</h1><ol>
+<li><p>查看 <code>man ls</code> 并编写一个实现如下功能的 <code>ls</code> 命令</p>
+<ul>
+<li>列出所有文件，包括隐藏文件</li>
+<li>以人类可读（human readable）的格式列出文件大小（例如 454279954 显示为 454M）</li>
+<li>文件按新近度排序</li>
+<li>输出为彩色</li>
+</ul>
+<p>示例输出如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">-rw-r--r--   1 user group 1.1M Jan 14 09:53 baz</span><br><span class="line">drwxr-xr-x   5 user group  160 Jan 14 09:53 .</span><br><span class="line">-rw-r--r--   1 user group  514 Jan 14 06:42 bar</span><br><span class="line">-rw-r--r--   1 user group 106M Jan 13 12:12 foo</span><br><span class="line">drwx------+ 47 user group 1.5K Jan 12 18:08 ..</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编写执行以下操作的 bash 函数 <code>marco</code> 和 <code>polo</code>：每当执行 <code>marco</code> 时，都应以某种方式保存当前的工作目录，接下来在执行 <code>polo</code> 时，无论你位于哪个目录，<code>polo</code> 都应将你 <code>cd</code> 回执行 <code>marco</code> 时所在的目录。为了便于调试，你可以将代码编写在文件 <code>marco.sh</code> 中，并通过执行 <code>source marco.sh</code>（或 <code>. macro.sh</code>）将定义（重新）加载到 Shell 中。</p>
+</li>
+<li><p>假设你有一条很少失败的命令。为了对其进行调试，你需要捕获其输出，但是运行失败可能很耗时。编写一个 bash 脚本，该脚本将运行以下脚本，直到其失败，并将其标准输出和标准错误流捕获到文件中，并在最后打印所有内容。如果你还可以报告脚本失败花费了多少次运行，你将获得加分。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/usr/bin/env bash</span></span><br><span class="line"></span><br><span class="line">n=$(( RANDOM % 100 ))</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [[ n -eq 42 ]]; <span class="keyword">then</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">"Something went wrong"</span></span><br><span class="line">  &gt;&amp;2 <span class="built_in">echo</span> <span class="string">"The error was using magic numbers"</span></span><br><span class="line">  <span class="built_in">exit</span> 1</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"Everything went according to plan"</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>正如我们在这一讲所介绍的，<code>find</code> 的 <code>-exec</code> 支持对搜索到的文件执行操作。但是，如果我们想对<strong>所有</strong>文件做些什么，例如创建一个 <code>zip</code> 文件，该怎么办？到目前为止，我们已经知道命令会从参数和 STDIN 中获取输入，用管道符连接命令时，前一个命令的 STDOUT 会连接到后一个命令的 STDIN。但是某些命令（例如 <code>tar</code>）是从参数中获取输入的，为了解决这种“断开连接”的问题，你可以使用 <code>xargs</code> 命令，该命令将使用 STDIN 作为参数来执行命令。例如 <code>ls | xargs rm</code> 将删除当前目录中的文件。你的任务是编写一个命令，该命令以递归方式查找文件夹中的所有 <code>HTML</code> 文件，并把它们打包成一个 <code>zip</code> 文件。请注意，即使文件中有空格，你的命令也应该起作用（提示：了解一下 <code>xargs</code> 命令的 <code>-d</code> 标志）</p>
+</li>
+<li><p>（高级）编写命令或脚本以递归查找目录中最近修改的文件。更进一步，你可以按新近度列出所有文件吗？</p>
+</li>
+</ol>
 
     </div>
 
@@ -315,7 +384,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Shell-脚本编程"><span class="nav-text">Shell 脚本编程</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Shell-脚本编程"><span class="nav-text">Shell 脚本编程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Shell-工具"><span class="nav-text">Shell 工具</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#查找如何使用命令"><span class="nav-text">查找如何使用命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查找文件"><span class="nav-text">查找文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查找代码"><span class="nav-text">查找代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查找-Shell-命令"><span class="nav-text">查找 Shell 命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#目录导航"><span class="nav-text">目录导航</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#练习题"><span class="nav-text">练习题</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
