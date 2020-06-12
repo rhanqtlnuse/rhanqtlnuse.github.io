@@ -20,21 +20,21 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="CV 中最经典的深度学习工具。">
+  <meta name="description" content="计算机视觉中最经典的工作之一">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CNN">
 <meta property="og:url" content="http://yoursite.com/2019/05/09/ml-dl-cnn/index.html">
 <meta property="og:site_name" content="RHANQTL">
-<meta property="og:description" content="CV 中最经典的深度学习工具。">
+<meta property="og:description" content="计算机视觉中最经典的工作之一">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/2019/05/09/ml-dl-cnn/no_padding_no_strides.gif">
 <meta property="og:image" content="http://yoursite.com/2019/05/09/ml-dl-cnn/padding_no_strides.gif">
 <meta property="og:image" content="http://yoursite.com/2019/05/09/ml-dl-cnn/no_padding_strides.gif">
 <meta property="og:image" content="http://yoursite.com/2019/05/09/ml-dl-cnn/padding_strides.gif">
-<meta property="og:updated_time" content="2019-05-17T09:29:47.479Z">
+<meta property="og:updated_time" content="2020-06-11T03:24:17.384Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CNN">
-<meta name="twitter:description" content="CV 中最经典的深度学习工具。">
+<meta name="twitter:description" content="计算机视觉中最经典的工作之一">
 <meta name="twitter:image" content="http://yoursite.com/2019/05/09/ml-dl-cnn/no_padding_no_strides.gif">
 
 <link rel="canonical" href="http://yoursite.com/2019/05/09/ml-dl-cnn/">
@@ -204,7 +204,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-05-17 17:29:47" itemprop="dateModified" datetime="2019-05-17T17:29:47+08:00">2019-05-17</time>
+                <time title="修改时间：2020-06-11 11:24:17" itemprop="dateModified" datetime="2020-06-11T11:24:17+08:00">2020-06-11</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -221,6 +221,7 @@
             </span>
 
           
+            <div class="post-description">计算机视觉中最经典的工作之一</div>
 
         </div>
       </header>
@@ -231,27 +232,43 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>CV 中最经典的深度学习工具。</p>
-<a id="more"></a>
-<h1 id="卷积"><a href="#卷积" class="headerlink" title="卷积"></a>卷积</h1><p>卷积后输出的大小如何计算呢？我们一步一步地探究。</p>
-<ol>
-<li><p>$padding = 0$，$stride = 1$</p>
+        <h1 id="1-nbsp-nbsp-nbsp-nbsp-卷积（Convolution）"><a href="#1-nbsp-nbsp-nbsp-nbsp-卷积（Convolution）" class="headerlink" title="1&nbsp;&nbsp;&nbsp;&nbsp;卷积（Convolution）"></a>1&nbsp;&nbsp;&nbsp;&nbsp;卷积（Convolution）</h1><h2 id="1-1-nbsp-nbsp-nbsp-nbsp-卷积是什么？"><a href="#1-1-nbsp-nbsp-nbsp-nbsp-卷积是什么？" class="headerlink" title="1.1&nbsp;&nbsp;&nbsp;&nbsp;卷积是什么？"></a>1.1&nbsp;&nbsp;&nbsp;&nbsp;卷积是什么？</h2><p>卷积是一种数学运算，详细的解释可以参见参考文献 [1]。在 CNN 中，卷积</p>
+<h2 id="1-2-nbsp-nbsp-nbsp-nbsp-为什么要进行卷积运算？"><a href="#1-2-nbsp-nbsp-nbsp-nbsp-为什么要进行卷积运算？" class="headerlink" title="1.2&nbsp;&nbsp;&nbsp;&nbsp;为什么要进行卷积运算？"></a>1.2&nbsp;&nbsp;&nbsp;&nbsp;为什么要进行卷积运算？</h2><h2 id="1-3-nbsp-nbsp-nbsp-nbsp-如何做卷积？"><a href="#1-3-nbsp-nbsp-nbsp-nbsp-如何做卷积？" class="headerlink" title="1.3&nbsp;&nbsp;&nbsp;&nbsp;如何做卷积？"></a>1.3&nbsp;&nbsp;&nbsp;&nbsp;如何做卷积？</h2><p>卷积后输出的大小如何计算呢？我们一步一步地探究。</p>
+<p><strong>padding = 0，stride = 1</strong></p>
 <img src="/2019/05/09/ml-dl-cnn/no_padding_no_strides.gif">
 <p>可以很容易地得出公式：</p>
-<script type="math/tex; mode=display">\begin{align}height_{out} &= height_{n} - height_{kernel} + 1 \\ width_{out} &= width_{n} - width_{kernel} + 1\end{align}​</script></li>
-<li><p>$padding \gt 0$，$stride = 1$</p>
+<script type="math/tex; mode=display">\begin{align}height_{out} &= height_{n} - height_{kernel} + 1 \\ width_{out} &= width_{n} - width_{kernel} + 1\end{align}</script><p><strong>padding &gt; 0，stride = 1</strong></p>
 <img src="/2019/05/09/ml-dl-cnn/padding_no_strides.gif">
 <p>这个也很容易得出公式：</p>
-<script type="math/tex; mode=display">\begin{align}height_{out} &= height_{n} - height_{kernel} + 2 * padding + 1 \\ width_{out} &= width_{n} - width_{kernel} + 2 * padding + 1\end{align}</script></li>
-<li><p>$padding = 0​$，$stride \gt 1​$</p>
+<script type="math/tex; mode=display">\begin{align}height_{out} &= height_{n} - height_{kernel} + 2 * padding + 1 \\ width_{out} &= width_{n} - width_{kernel} + 2 * padding + 1\end{align}</script><p><strong>padding = 0，stride &gt; 1​</strong></p>
 <img src="/2019/05/09/ml-dl-cnn/no_padding_strides.gif" title="步长为 2 的情况">
-<p>相当于走了 $stride = 1$ 时的 $1 / stride$</p>
+<p>相当于走了 stride = 1 时的 1 / stride</p>
 <p>总结公式为：</p>
-<script type="math/tex; mode=display">\begin{align}height_{out} &=\left\lfloor\dfrac{height_{n} - height_{kernel}}{stride}\right\rfloor + 1\\ width_{out} &= \left\lfloor\dfrac{width_{n} - width_{kernel}}{stride}\right\rfloor + 1\end{align}</script></li>
-<li><p>最后，我们来看 $padding \gt 0​$，$stride \gt 1​$ 的情况：</p>
+<script type="math/tex; mode=display">\begin{align}height_{out} &=\left\lfloor\dfrac{height_{n} - height_{kernel}}{stride}\right\rfloor + 1\\ width_{out} &= \left\lfloor\dfrac{width_{n} - width_{kernel}}{stride}\right\rfloor + 1\end{align}</script><p><strong>padding &gt; 0，stride &gt; 1</strong></p>
 <img src="/2019/05/09/ml-dl-cnn/padding_strides.gif">
-<script type="math/tex; mode=display">\begin{align}height_{out} &=\left\lfloor\dfrac{height_{n} - height_{kernel} + 2*padding}{stride}\right\rfloor + 1\\ width_{out} &= \left\lfloor\dfrac{width_{n} - width_{kernel} + 2*padding}{stride}\right\rfloor + 1\end{align}</script></li>
-</ol>
+<script type="math/tex; mode=display">\begin{align}height_{out} &=\left\lfloor\dfrac{height_{n} - height_{kernel} + 2*padding}{stride}\right\rfloor + 1\\ width_{out} &= \left\lfloor\dfrac{width_{n} - width_{kernel} + 2*padding}{stride}\right\rfloor + 1\end{align}</script><h1 id="2-nbsp-nbsp-nbsp-nbsp-池化（Pooling）"><a href="#2-nbsp-nbsp-nbsp-nbsp-池化（Pooling）" class="headerlink" title="2&nbsp;&nbsp;&nbsp;&nbsp;池化（Pooling）"></a>2&nbsp;&nbsp;&nbsp;&nbsp;池化（Pooling）</h1><h2 id="2-1-nbsp-nbsp-nbsp-nbsp-什么是池化？"><a href="#2-1-nbsp-nbsp-nbsp-nbsp-什么是池化？" class="headerlink" title="2.1&nbsp;&nbsp;&nbsp;&nbsp;什么是池化？"></a>2.1&nbsp;&nbsp;&nbsp;&nbsp;什么是池化？</h2><h2 id="2-2-nbsp-nbsp-nbsp-nbsp-为什么要进行池化运算？"><a href="#2-2-nbsp-nbsp-nbsp-nbsp-为什么要进行池化运算？" class="headerlink" title="2.2&nbsp;&nbsp;&nbsp;&nbsp;为什么要进行池化运算？"></a>2.2&nbsp;&nbsp;&nbsp;&nbsp;为什么要进行池化运算？</h2><p>出现的原因：图像深度学习中图像尺寸过大，引入池化以减小参数矩阵的尺寸，从而==减少==最后全连层中的==参数数量== —— 根本目的为了==防止过拟合==。</p>
+<p>在图像识别领域，池化还能提供==平移和旋转不变性==。若对某个区域做了池化，即使图像平移 / 旋转几个像素，得到的输出值也基本一样，因为每次最大值运算得到的结果总是一样的。</p>
+<p>常出现的场合：卷积层后一般会跟上一个池化层</p>
+<p>实际上是一种<a href="https://en.wikipedia.org/wiki/Downsampling_(signal_processing" target="_blank" rel="noopener">降采样</a>)的方式。</p>
+<p>（2）invariance(不变性)，这种不变性包括translation(平移)，rotation(旋转)，scale(尺度)。</p>
+<p>Pooling 层说到底还是一个特征选择，信息过滤的过程。也就是说我们损失了一部分信息，这是一个和计算性能的一个妥协，随着运算速度的不断提高，我认为这个妥协会越来越小。</p>
+<h2 id="2-3-nbsp-nbsp-nbsp-nbsp-如何做卷积？"><a href="#2-3-nbsp-nbsp-nbsp-nbsp-如何做卷积？" class="headerlink" title="2.3&nbsp;&nbsp;&nbsp;&nbsp;如何做卷积？"></a>2.3&nbsp;&nbsp;&nbsp;&nbsp;如何做卷积？</h2><p>目前主要有两种（平均法、最大法），其中最大值池化是使用最多的方式，而全局池化的方式就是：把特征图全局平均一下输出一个值，也就是把 W * H * D 的一个张量变成 1 * 1 * D 的张量</p>
+<p>形态</p>
+<ul>
+<li>1D 用于一维数据</li>
+<li>2D 一般用于二维图像数据</li>
+<li>3D 带时间序列数据的图像数据</li>
+</ul>
+<p>当 map 中的信息都应该有所贡献的时候用平均池化，例如图像分割中常用 global avgpool 来获取全局上下文关系，再例如 224 * 224 图像分类将最后的 7 * 7 map 进行 avgpool 而不是 maxpool，是因为网络深层的高级语义信息一般来说都能帮助分类器分类。反之为了减少无用信息的影响时用 maxpool，比如网络浅层常常见到 maxpool，因为开始几层对图像而言包含较多的无关信息。另外 avgpool 与 maxpool 输出值会有不同的幅度区间，有些时候会遇到 maxpool 输出值幅度波动大，此时可以加一些归一化操作。二者的具体使用场景只有在具体任务上观察，实际效果炼丹后才知道。</p>
+<h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><p>[1]</p>
+<p>[2] <a href="https://www.zhihu.com/question/22298352/answer/637156871" target="_blank" rel="noopener">知乎问题 - 如何通俗易懂地理解卷积？</a></p>
+<p>[1] <a href="https://zhuanlan.zhihu.com/p/58381421" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/58381421</a></p>
+<p>[2] <a href="https://www.zhihu.com/question/284156420/answer/479161935" target="_blank" rel="noopener">https://www.zhihu.com/question/284156420/answer/479161935</a></p>
+<p>[3] <a href="https://www.reddit.com/r/MachineLearning/comments/2lmo0l/ama_geoffrey_hinton/clyj4jv/" target="_blank" rel="noopener">https://www.reddit.com/r/MachineLearning/comments/2lmo0l/ama_geoffrey_hinton/clyj4jv/</a></p>
+<p>[4] <a href="https://www.zhihu.com/question/49376084/answer/796306348" target="_blank" rel="noopener">https://www.zhihu.com/question/49376084/answer/796306348</a></p>
+<p>[5] <a href="https://ujjwalkarn.me/2016/08/11/intuitive-explanation-convnets/" target="_blank" rel="noopener">https://ujjwalkarn.me/2016/08/11/intuitive-explanation-convnets/</a></p>
+<p>[6] <a href="https://zhuanlan.zhihu.com/p/27908027" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/27908027</a></p>
+<p>[7] <a href="https://zhuanlan.zhihu.com/p/137782049" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/137782049</a></p>
 
     </div>
 
@@ -333,7 +350,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#卷积"><span class="nav-text">卷积</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-nbsp-nbsp-nbsp-nbsp-卷积（Convolution）"><span class="nav-text">1    卷积（Convolution）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-nbsp-nbsp-nbsp-nbsp-卷积是什么？"><span class="nav-text">1.1    卷积是什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-nbsp-nbsp-nbsp-nbsp-为什么要进行卷积运算？"><span class="nav-text">1.2    为什么要进行卷积运算？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-nbsp-nbsp-nbsp-nbsp-如何做卷积？"><span class="nav-text">1.3    如何做卷积？</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-nbsp-nbsp-nbsp-nbsp-池化（Pooling）"><span class="nav-text">2    池化（Pooling）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-nbsp-nbsp-nbsp-nbsp-什么是池化？"><span class="nav-text">2.1    什么是池化？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-nbsp-nbsp-nbsp-nbsp-为什么要进行池化运算？"><span class="nav-text">2.2    为什么要进行池化运算？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-nbsp-nbsp-nbsp-nbsp-如何做卷积？"><span class="nav-text">2.3    如何做卷积？</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考文献"><span class="nav-text">参考文献</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -347,16 +364,16 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">254</span>
+          <span class="site-state-item-count">258</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
-        <span class="site-state-item-count">74</span>
+        <span class="site-state-item-count">76</span>
         <span class="site-state-item-name">分类</span>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">45</span>
+        <span class="site-state-item-count">46</span>
         <span class="site-state-item-name">标签</span>
       </div>
   </nav>

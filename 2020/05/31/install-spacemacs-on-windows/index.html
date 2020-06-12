@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.8.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="0&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;前置条件你的系统中应该有 Git。 1&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;安装 Emacs从清华大学开源镜像站下载 Emacs 的 Windows 版本。截止到 2020 年 5 月，最新的版本是 26.3，因此进入 emacs-26 这个目录，找到前缀为 emacs-26.3 的文件。 你会发现有 8 个文件： 12345678ema">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在 Windows 上安装 Spacemacs">
+<meta property="og:url" content="http://yoursite.com/2020/05/31/install-spacemacs-on-windows/index.html">
+<meta property="og:site_name" content="RHANQTL">
+<meta property="og:description" content="0&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;前置条件你的系统中应该有 Git。 1&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;安装 Emacs从清华大学开源镜像站下载 Emacs 的 Windows 版本。截止到 2020 年 5 月，最新的版本是 26.3，因此进入 emacs-26 这个目录，找到前缀为 emacs-26.3 的文件。 你会发现有 8 个文件： 12345678ema">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-05-31T16:34:23.245Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="在 Windows 上安装 Spacemacs">
+<meta name="twitter:description" content="0&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;前置条件你的系统中应该有 Git。 1&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;安装 Emacs从清华大学开源镜像站下载 Emacs 的 Windows 版本。截止到 2020 年 5 月，最新的版本是 26.3，因此进入 emacs-26 这个目录，找到前缀为 emacs-26.3 的文件。 你会发现有 8 个文件： 12345678ema">
+
+<link rel="canonical" href="http://yoursite.com/2020/05/31/install-spacemacs-on-windows/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
+  };
+</script>
+
+  <title>在 Windows 上安装 Spacemacs | RHANQTL</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">RHANQTL</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">上下求索</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>站点地图</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/31/install-spacemacs-on-windows/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          在 Windows 上安装 Spacemacs
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-05-31 23:53:26" itemprop="dateCreated datePublished" datetime="2020-05-31T23:53:26+08:00">2020-05-31</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-06-01 00:34:23" itemprop="dateModified" datetime="2020-06-01T00:34:23+08:00">2020-06-01</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="0-nbsp-nbsp-nbsp-nbsp-前置条件"><a href="#0-nbsp-nbsp-nbsp-nbsp-前置条件" class="headerlink" title="0&nbsp;&nbsp;&nbsp;&nbsp;前置条件"></a>0&nbsp;&nbsp;&nbsp;&nbsp;前置条件</h1><p>你的系统中应该有 <a href="https://git-scm.com/" target="_blank" rel="noopener">Git</a>。</p>
+<h1 id="1-nbsp-nbsp-nbsp-nbsp-安装-Emacs"><a href="#1-nbsp-nbsp-nbsp-nbsp-安装-Emacs" class="headerlink" title="1&nbsp;&nbsp;&nbsp;&nbsp;安装 Emacs"></a>1&nbsp;&nbsp;&nbsp;&nbsp;安装 Emacs</h1><p>从<a href="https://mirrors.tuna.tsinghua.edu.cn/gnu/emacs/windows/" target="_blank" rel="noopener">清华大学开源镜像站</a>下载 Emacs 的 Windows 版本。截止到 2020 年 5 月，最新的版本是 26.3，因此进入 <a href="https://mirrors.tuna.tsinghua.edu.cn/gnu/emacs/windows/emacs-26/" target="_blank" rel="noopener"><code>emacs-26</code></a> 这个目录，找到前缀为 <code>emacs-26.3</code> 的文件。</p>
+<p>你会发现有 8 个文件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">emacs-26.3-i686-no-deps.zip</span><br><span class="line">emacs-26.3-i686-no-deps.zip.sig</span><br><span class="line">emacs-26.3-i686.zip</span><br><span class="line">emacs-26.3-i686.zip.sig</span><br><span class="line">emacs-26.3-x86_64-no-deps.zip</span><br><span class="line">emacs-26.3-x86_64-no-deps.zip.sig</span><br><span class="line">emacs-26.3-x86_64.zip</span><br><span class="line">emacs-26.3-x86_64.zip.sig</span><br></pre></td></tr></table></figure>
+<p><code>i686</code> 和 <code>x86_64</code> 是架构，简单地说就是 <code>i686</code> 是 32 位的，<code>x86_64</code> 是 64 位的，根据自己电脑的情况自行选择。</p>
+<p>有 <code>.sig</code> 后缀的文件是 <a href="https://en.wikipedia.org/wiki/Pretty_Good_Privacy" target="_blank" rel="noopener">PGP 签名</a>（PGP signature），用于验证文件的完整性。可以使用 GNU 的 <a href="https://www.gnupg.org/" target="_blank" rel="noopener">GnuPG</a> 验证。</p>
+<p>根据官方的说法，有 <code>no-deps</code> 字样的文件和没有 <code>no-deps</code> 字样的文件的区别在于，后者包含大量可选的 Emacs 依赖项，Emacs 的许多可选功能会使用这些依赖项。这些可选的功能包括：</p>
+<ul>
+<li>显示多种类型（PNG、JPEG、GIF、TIFF、SVG）的内联图像</li>
+<li>SSL / TLS 安全的网络通信（HTTPS，IMAPS 等）</li>
+<li>HTML 和 XML 解析（内置的 EWW 浏览器需要）</li>
+<li>内置的压缩文本的解压缩</li>
+</ul>
+<p>如果你不需要这些依赖项，则可以下载有 <code>no-deps</code> 字样的版本。</p>
+<p>下载你需要的文件，将其解压到某个位置，文中以 <code>C:\Program Files\Emacs-26.3</code> 为例。</p>
+<h1 id="2-nbsp-nbsp-nbsp-nbsp-安装-Spacemacs"><a href="#2-nbsp-nbsp-nbsp-nbsp-安装-Spacemacs" class="headerlink" title="2&nbsp;&nbsp;&nbsp;&nbsp;安装 Spacemacs"></a>2&nbsp;&nbsp;&nbsp;&nbsp;安装 Spacemacs</h1><p><a href="https://www.spacemacs.org/" target="_blank" rel="noopener">Spacemacs 官网地址</a></p>
+<p>首先，你需要设置一个用户环境变量 <code>HOME</code>，指向主目录，通常是 <code>C:\Users\&lt;你的用户名&gt;</code>（设置系统环境变量也可以，但是考虑到可能存在多用户，所以还是设置用户变量）。</p>
+<p>打开新的 Powershell 窗口（如果用的是 Windows Terminal，必须打开新的窗口），运行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/syl20bnr/spacemacs $HOME\.emacs.d</span><br></pre></td></tr></table></figure>
+<p>在运行 Emacs 之前，还需要配置一下源，根据清华大学开源镜像站<a href="https://mirrors.tuna.tsinghua.edu.cn/help/elpa/" target="_blank" rel="noopener">帮助页面</a>的“Spacemacs 用户”部分配置。</p>
+<p>启动 Emacs 根目录下的子目录 <code>bin</code> 中的 <code>runemacs.exe</code>，可以看到 <code>[S P A C E M A C S]</code> 字样。成功！</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/05/15/mit-missing-semester-2-shell-tools/" rel="prev" title="【译】MIT Missing Semester | 2. Shell 工具">
+      <i class="fa fa-chevron-left"></i> 【译】MIT Missing Semester | 2. Shell 工具
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/06/01/scala-accessors/" rel="next" title="Scala 中的访问器">
+      Scala 中的访问器 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0-nbsp-nbsp-nbsp-nbsp-前置条件"><span class="nav-text">0    前置条件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-nbsp-nbsp-nbsp-nbsp-安装-Emacs"><span class="nav-text">1    安装 Emacs</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-nbsp-nbsp-nbsp-nbsp-安装-Spacemacs"><span class="nav-text">2    安装 Spacemacs</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Han Qi</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">258</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">76</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">46</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Han Qi</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://muse.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.7.2
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>
