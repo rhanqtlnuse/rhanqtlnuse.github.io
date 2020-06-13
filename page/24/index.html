@@ -165,6 +165,88 @@
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/01/cpp-stl-lower-bound-upper-bound/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/01/01/cpp-stl-lower-bound-upper-bound/" class="post-title-link" itemprop="url">C++ 学习笔记 - STL：lower_bound() 与 upper_bound()</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-01-01 00:12:20" itemprop="dateCreated datePublished" datetime="2019-01-01T00:12:20+08:00">2019-01-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-01-14 17:47:06" itemprop="dateModified" datetime="2019-01-14T17:47:06+08:00">2019-01-14</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Programming-Languages/" itemprop="url" rel="index"><span itemprop="name">Programming Languages</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Programming-Languages/C/" itemprop="url" rel="index"><span itemprop="name">C++</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>头文件 <code>&lt;algorithm&gt;</code> 中，<code>lower_bound()</code> 和 <code>upper_bound()</code> 主要是用来在一个有序序列中查找一个元素第一次出现的位置和最后一次出现的位置的后一个位置（这个的原因 E.W.D. 论证过，详见参考 [1]）。一看到“有序序列”，自然第一反应就是使用二分查找。但是我们平时的二分查找通常是三个分支：大于 key，小于 key，等于 key。所以需要进行一些小小的修改。</p>
+<h1 id="lower-bound"><a href="#lower-bound" class="headerlink" title="lower_bound()"></a><code>lower_bound()</code></h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">lower_bound</span><span class="params">(<span class="keyword">int</span> *a, <span class="keyword">int</span> size, <span class="keyword">int</span> key)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> first = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> len = size;</span><br><span class="line">    <span class="keyword">int</span> middle, half;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span> (len &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        half = len &gt;&gt; <span class="number">1</span>;</span><br><span class="line">        middle = first + half;</span><br><span class="line">        <span class="keyword">if</span> (a[middle] &lt; key) &#123;</span><br><span class="line">            first = middle + <span class="number">1</span>;</span><br><span class="line">            len = len - half - <span class="number">1</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            len = half;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> first;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="upper-bound"><a href="#upper-bound" class="headerlink" title="upper_bound()"></a><code>upper_bound()</code></h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">upper_bound</span><span class="params">(<span class="keyword">int</span> *a, <span class="keyword">int</span> size, <span class="keyword">int</span> key)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> first = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> len = size;</span><br><span class="line">    <span class="keyword">int</span> half, middle;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span> (len &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        half = len &gt;&gt; <span class="number">1</span>;</span><br><span class="line">        middle = first + half;</span><br><span class="line">        <span class="keyword">if</span> (a[middle] &gt; key) &#123;</span><br><span class="line">            len = half;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            first = middle + <span class="number">1</span>;</span><br><span class="line">            len - len - half - <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> first;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>比较一下这两个方法，几乎是对称的，真的很精巧！</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p>[1] <a href="https://www.cs.utexas.edu/users/EWD/transcriptions/EWD08xx/EWD831.html" target="_blank" rel="noopener">EWD831: Why Numbering Should Start At Zero</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/31/c-pointer/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1090,99 +1172,6 @@
   
   
 
-        
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/17/algorithms-dp/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RHANQTL">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/12/17/algorithms-dp/" class="post-title-link" itemprop="url">动态规划入门</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2018-12-17 10:25:06" itemprop="dateCreated datePublished" datetime="2018-12-17T10:25:06+08:00">2018-12-17</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-05-17 16:52:50" itemprop="dateModified" datetime="2019-05-17T16:52:50+08:00">2019-05-17</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法-Algorithms/" itemprop="url" rel="index"><span itemprop="name">算法 (Algorithms)</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法-Algorithms/动态规划-Dynamic-Programming/" itemprop="url" rel="index"><span itemprop="name">动态规划 (Dynamic Programming)</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <a id="more"></a>
-<p>Dynamic Programming，其中的 “Programming” 并不是 “编程” 的意思，而是 “规划” 的意思。</p>
-<p>动态规划是分治法（Divide and Conquer）的延伸。简单来说就是由于子问题一而再、再而三地出现（recurrence），所以使用表格来记录中间结果，以空间换时间。</p>
-<p>动态规划的过程，就是反复进行 “读取数据 $\rightarrow$ 计算数据 $\rightarrow$ 存储数据”</p>
-<p>需要做的决策：</p>
-<ul>
-<li>计算顺序</li>
-<li>状态空间（总共有哪些问题）</li>
-<li>初始值、计算范围</li>
-</ul>
-<p>主要有两种方式：自顶向下、自底向上</p>
-<p>动态规划的问题有两类：</p>
-<ul>
-<li>计数问题</li>
-<li>极值问题</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1253,7 +1242,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">259</span>
+          <span class="site-state-item-count">260</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

@@ -165,6 +165,149 @@
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/26/c-to-asm/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/03/26/c-to-asm/" class="post-title-link" itemprop="url">从 C 到汇编</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-03-26 15:37:02" itemprop="dateCreated datePublished" datetime="2019-03-26T15:37:02+08:00">2019-03-26</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-04-21 02:25:09" itemprop="dateModified" datetime="2019-04-21T02:25:09+08:00">2019-04-21</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="C-到汇编"><a href="#C-到汇编" class="headerlink" title="C 到汇编"></a>C 到汇编</h1><p>以下均为 <strong>GCC</strong> 的行为！！！</p>
+<h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><h3 id="全局变量"><a href="#全局变量" class="headerlink" title="全局变量"></a>全局变量</h3><ul>
+<li>初始化的全局变量：<code>.data</code></li>
+<li>未初始化的全局变量和<em>初始化为 0 的全局变量</em>：<code>.bss</code><ul>
+<li>这样做只需要在目标代码中放置占位符即可，不需要保存实际的数据，可以节省空间</li>
+</ul>
+</li>
+</ul>
+<h3 id="局部变量"><a href="#局部变量" class="headerlink" title="*局部变量"></a>*局部变量</h3><ul>
+<li>静态局部变量</li>
+<li><p>非静态局部变量</p>
+</li>
+<li><p>第一个局部变量的地址为 <code>-0x8(%ebp)</code>，第二个局部变量的地址为 <code>-0xc(%ebp)</code>，依此类推</p>
+</li>
+</ul>
+<h3 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h3><p>数据对象：</p>
+<p>最典型的数据对象：字符串字面量</p>
+<h2 id="函数调用"><a href="#函数调用" class="headerlink" title="函数调用"></a>函数调用</h2><h3 id="函数调用方式"><a href="#函数调用方式" class="headerlink" title="函数调用方式"></a>函数调用方式</h3><ul>
+<li><p><code>__cdecl</code></p>
+<p><code>__cdecl</code> 是 C Declaration  的缩写，表示 C 语言默认的函数调用方法：所有参数<strong>从右到左</strong>依次入栈，这些参数由<strong>调用者</strong>清除，称为手动清栈。被调用函数<strong>不要求</strong>调用者传递多少参数，调用者传递过多或者过少的参数，甚至完全不同的参数都不会产生编译阶段的错误。<strong>实现可变参数的调用只能用该方法</strong>。</p>
+</li>
+<li><p><code>__stdcall</code></p>
+<p><code>__stdcall</code> 是 Standard Call 的缩写，是 C++ 的标准调用方式：所有参数<strong>从右到左</strong>依次入栈，如果是调用类成员的话，最后一个入栈的是 <code>this</code> 指针。这些堆栈中的参数由<strong>被调用者</strong>在返回后清除，使用的指令是 <code>retn X</code>，X 表示参数占用的字节数，CPU 在 <code>retn</code> 之后自动弹出 X 个字节的堆栈空间，称为自动清栈。函数在编译的时候就<strong>必须确定</strong>参数个数，并且调用者必须严格的控制参数的生成，不能多，不能少，否则返回后会出错。</p>
+</li>
+<li><p><code>__pascal</code></p>
+<p><code>__pascal</code> 是 Pascal 语言（Delphi）的函数调用方式，也可以在 C++ 中使用，参数压栈顺序与前两者<strong>相反</strong>。返回时的清栈方式与 <code>__stdcall</code> 相同。</p>
+</li>
+<li><p><code>__fastcall</code></p>
+<p><code>__fastcall</code> 是编译器指定的快速调用方式。由于大多数的函数参数个数很少，使用堆栈传递比较费时。因此 <code>__fastcall</code> 通常规定将前两个（或若干个）参数由寄存器传递，其余参数还是通过堆栈传递。不同编译器编译的程序规定的寄存器不同，返回方式和 <code>__stdcall</code> 相当。</p>
+</li>
+<li><p><code>__thiscall</code></p>
+<p><code>__thiscall</code> 是为了解决类成员调用中 <code>this</code> 指针传递而规定的。<code>__thiscall</code> 要求把 <code>this</code> 指针放在特定寄存器中，该寄存器由编译器决定。VC 使用 <code>ecx</code>，Borland 的 C++ 编译器使用 <code>eax</code>。返回方式和 <code>__stdcall</code> 相当。</p>
+</li>
+</ul>
+<p><code>__fastcall</code> 和 <code>__thiscall</code> 涉及的寄存器由编译器决定，因此<strong>不能</strong>用作跨编译器的接口。所以 Windows 上的 COM 对象接口都定义为 <code>__stdcall</code> 调用方式。</p>
+<p>C 语言中不加说明<strong>默认</strong>函数为 <code>__cdecl</code> 方式（C 中也只能用这种方式），C++ 也一样，但是默认的调用方式可以在 IDE 环境中设置。</p>
+<p>例子：<code>f(a, b, c);</code>（汇编代码均为示意，并不是合法的）</p>
+<ul>
+<li><p><code>__cdecl</code> 调用约定：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">push c			; 参数按右到左传递</span><br><span class="line">push b</span><br><span class="line">push a</span><br><span class="line">call f			; 此处的函数名只是示例，实际上会有修饰</span><br><span class="line">add  %esp, 0xc	; 调用者平衡堆栈</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>__stdcall</code> 调用约定</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">push c</span><br><span class="line">push b</span><br><span class="line">push a</span><br><span class="line">call f			; 被调用者平衡堆栈</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>__pascal</code> 调用约定</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">push a</span><br><span class="line">push b</span><br><span class="line">push c</span><br><span class="line">call f			; 被调用者平衡堆栈</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="参数传递"><a href="#参数传递" class="headerlink" title="参数传递"></a>参数传递</h3><ul>
+<li>32 位<ul>
+<li>通过寄存器传递时有寄存器顺序约定</li>
+<li>通过栈传递：最后一个参数最先 push，第一个参数最后 push，由于堆栈是由高地址向低地址增长，这样的 push 顺序能够保证第一个参数最靠近被调用函数的栈帧，<em>便于处理变参</em>。</li>
+</ul>
+</li>
+<li>64 位<ul>
+<li>前 6 个参数：rdi, rsi, rdx, rcx, r8, r9</li>
+<li>其余参数通过栈传递，同 32 位，但每个参数按照 <em>8</em> 字节对齐</li>
+</ul>
+</li>
+</ul>
+<h4 id="变参"><a href="#变参" class="headerlink" title="变参"></a>变参</h4><p><code>va_list</code>：变参列表，<code>typedef char * va_list;</code>，也就是字节指针</p>
+<p>三个主要的宏：</p>
+<ul>
+<li><code>va_start(ap, 第一个值)</code>：将变参列表 <code>ap</code> 初始化为第一个匿名参数</li>
+<li><code>va_arg(ap, type)</code>：获取下一个类型为 <code>type</code> 的匿名参数</li>
+<li><code>va_end(ap)</code>：负责结束时的清理工作</li>
+</ul>
+<h3 id="call"><a href="#call" class="headerlink" title="call"></a><code>call</code></h3><p>CPU 执行 <code>call</code> 指令，进行两步操作：</p>
+<ol>
+<li><p>将当前的 IP 或 CS 和 IP 压入栈中</p>
+</li>
+<li><p>转移</p>
+</li>
+</ol>
+<h3 id="准备工作（Prologue）"><a href="#准备工作（Prologue）" class="headerlink" title="准备工作（Prologue）"></a>准备工作（Prologue）</h3><p>C 语言中进入被调用函数之后通常会有如下的代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">push	%ebp</span><br><span class="line">mov		%esp, %ebp</span><br></pre></td></tr></table></figure>
+<p>所以，在调用者的栈帧中，第一项（<code>0x0(%esp)</code>）为其栈帧的栈底指针（<code>%ebp</code>）；而第二项（<code>0x4(%esp)</code>）为返回地址</p>
+<h3 id="返回值"><a href="#返回值" class="headerlink" title="返回值"></a>返回值</h3><p>通常返回值放在 <code>%eax</code> 中</p>
+<h3 id="leave-和-ret"><a href="#leave-和-ret" class="headerlink" title="leave 和 ret"></a><code>leave</code> 和 <code>ret</code></h3><h1 id="更多"><a href="#更多" class="headerlink" title="更多"></a>更多</h1><p>[1] <a href="https://stackoverflow.com/questions/4228261/understanding-the-purpose-of-some-assembly-statements" target="_blank" rel="noopener">Understanding the purpose of some assembly statements</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/25/others-computers/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -913,83 +1056,6 @@
   
   
 
-        
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/12/cpp-stl-map/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RHANQTL">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/01/12/cpp-stl-map/" class="post-title-link" itemprop="url">C++ 学习笔记 - STL：map</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-01-12 09:50:37" itemprop="dateCreated datePublished" datetime="2019-01-12T09:50:37+08:00">2019-01-12</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-04-30 09:27:46" itemprop="dateModified" datetime="2019-04-30T09:27:46+08:00">2019-04-30</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Programming/" itemprop="url" rel="index"><span itemprop="name">Programming</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Programming/C/" itemprop="url" rel="index"><span itemprop="name">C++</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1060,7 +1126,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">259</span>
+          <span class="site-state-item-count">260</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

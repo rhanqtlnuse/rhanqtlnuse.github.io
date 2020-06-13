@@ -165,6 +165,110 @@
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/05/others-raid/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/04/05/others-raid/" class="post-title-link" itemprop="url">others-raid</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-04-05 18:58:47 / 修改时间：19:44:17" itemprop="dateCreated datePublished" datetime="2020-04-05T18:58:47+08:00">2020-04-05</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>从可靠性 (reliability)、可用性 (availability)、性能 (performance) 和容量 (capacity) 四个方面考量。</p>
+<h1 id="1-nbsp-nbsp-nbsp-nbsp-标准级别"><a href="#1-nbsp-nbsp-nbsp-nbsp-标准级别" class="headerlink" title="1&nbsp;&nbsp;&nbsp;&nbsp;标准级别"></a>1&nbsp;&nbsp;&nbsp;&nbsp;标准级别</h1><p><strong>RAID 0</strong></p>
+<p>将数据分块存放在不同的硬盘上，没有备份和校验</p>
+<ul>
+<li>可靠性：差，如果硬盘组中的任何一块硬盘损坏，数据就会丢失<ul>
+<li>平均失效 (failure) 率比同等的单块硬盘还要差。可以计算一下，假设单块硬盘损坏导致数据丢失的概率是 0.02，那么两块硬盘组成的 RAID 0 因硬盘损坏而导致数据丢失的概率是 2 <em> 0.02 </em> 0.98 + 0.02 * 0.02 = 0.0396</li>
+</ul>
+</li>
+<li>可用性</li>
+<li>性能：吞吐量 = 单块硬盘吞吐量 * N（N 为硬盘数量）<ul>
+<li>硬盘可以并行读 / 写</li>
+</ul>
+</li>
+<li>容量：100%</li>
+</ul>
+<p><strong>RAID 1</strong></p>
+<p>将相同的数据存放在多块硬盘上，没有分块和校验</p>
+<ul>
+<li>可靠性：只要有一块硬盘正常运转，就可以取得数据</li>
+<li>可用性</li>
+<li>性能<ul>
+<li>如果控制器 / 软件经过优化，吞吐量能够与 RAID 0 相当（大多数 RAID 1 实现的实际读吞吐量都比最快的硬盘慢，写吞吐量总是比最快的硬盘慢（要写多个硬盘，时间取决于最慢的那一块））</li>
+<li>读 / 写请求可以进行广播，并由寻道时间、旋转时间较短的那块硬盘先响应</li>
+</ul>
+</li>
+<li>容量：50%</li>
+</ul>
+<p><strong>RAID 2</strong></p>
+<p>位级别的分块和相应的专用 Hamming 码校验位（已经成为历史）</p>
+<p><strong>RAID 3</strong></p>
+<p>字节级别的分块和相应的专用校验位</p>
+<p><strong>RAID 4</strong></p>
+<p>块级别的分块和专用的校验位</p>
+<p><strong>RAID 5</strong></p>
+<p>块级别的分布和分布式的校验位</p>
+<p>不同于 RAID 4，校验信息分布在各个硬盘上</p>
+<p>如果单块硬盘出现失效，后续的读能够根据分布式校验位计算出来，因而不会有数据丢失</p>
+<p>至少需要三块硬盘</p>
+<p><strong>RAID 6</strong></p>
+<p>块级别的分布和分布式的双份校验位</p>
+<p>至少需要四块硬盘</p>
+<h1 id="2-nbsp-nbsp-nbsp-nbsp-嵌套（混合）RAID"><a href="#2-nbsp-nbsp-nbsp-nbsp-嵌套（混合）RAID" class="headerlink" title="2&nbsp;&nbsp;&nbsp;&nbsp;嵌套（混合）RAID"></a>2&nbsp;&nbsp;&nbsp;&nbsp;嵌套（混合）RAID</h1><h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p>[1] <a href="">RAID</a></p>
+<p>[2] <a href="">Disk mirroring</a></p>
+<p>[] <a href="">Data striping</a></p>
+<p>[3] <a href="">Standard RAID levels</a></p>
+<p>[] <a href="">Nested RAID levels</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/05/soft-eng-to-be-explicit/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -824,78 +928,6 @@
   
   
 
-        
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/24/using-rspec-and-autotest-with-ruby-on-rails/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RHANQTL">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/03/24/using-rspec-and-autotest-with-ruby-on-rails/" class="post-title-link" itemprop="url">在 Ruby on Rails 项目中使用测试工具 RSpec 和 Autotest</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-03-24 15:06:00" itemprop="dateCreated datePublished" datetime="2020-03-24T15:06:00+08:00">2020-03-24</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-25 14:57:20" itemprop="dateModified" datetime="2020-03-25T14:57:20+08:00">2020-03-25</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>如题</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/03/24/using-rspec-and-autotest-with-ruby-on-rails/">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -966,7 +998,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">259</span>
+          <span class="site-state-item-count">260</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

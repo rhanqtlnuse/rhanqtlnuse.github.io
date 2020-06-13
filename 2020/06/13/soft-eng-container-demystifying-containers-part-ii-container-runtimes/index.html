@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.8.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="翻译自 Demystifying Containers – Part II: Container Runtimes">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【译】揭开容器的神秘面纱 | 第二部分：容器运行时">
+<meta property="og:url" content="http://yoursite.com/2020/06/13/soft-eng-container-demystifying-containers-part-ii-container-runtimes/index.html">
+<meta property="og:site_name" content="RHANQTL">
+<meta property="og:description" content="翻译自 Demystifying Containers – Part II: Container Runtimes">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2020/06/13/soft-eng-container-demystifying-containers-part-ii-container-runtimes/cncf-landscape.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/13/soft-eng-container-demystifying-containers-part-ii-container-runtimes/cncf-oci-logo.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/13/soft-eng-container-demystifying-containers-part-ii-container-runtimes/runc-logo.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/13/soft-eng-container-demystifying-containers-part-ii-container-runtimes/crio-logo.png">
+<meta property="og:updated_time" content="2020-06-13T19:47:06.987Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【译】揭开容器的神秘面纱 | 第二部分：容器运行时">
+<meta name="twitter:description" content="翻译自 Demystifying Containers – Part II: Container Runtimes">
+<meta name="twitter:image" content="http://yoursite.com/2020/06/13/soft-eng-container-demystifying-containers-part-ii-container-runtimes/cncf-landscape.png">
+
+<link rel="canonical" href="http://yoursite.com/2020/06/13/soft-eng-container-demystifying-containers-part-ii-container-runtimes/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
+  };
+</script>
+
+  <title>【译】揭开容器的神秘面纱 | 第二部分：容器运行时 | RHANQTL</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">RHANQTL</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">上下求索</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>站点地图</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/13/soft-eng-container-demystifying-containers-part-ii-container-runtimes/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【译】揭开容器的神秘面纱 | 第二部分：容器运行时
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-06-13 08:42:18" itemprop="dateCreated datePublished" datetime="2020-06-13T08:42:18+08:00">2020-06-13</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-06-14 03:47:06" itemprop="dateModified" datetime="2020-06-14T03:47:06+08:00">2020-06-14</time>
+              </span>
+
+          
+            <div class="post-description">翻译自 Demystifying Containers – Part II: Container Runtimes</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>第二篇博客文章（和演讲）主要针对容器运行时，我们将从它们的历史渊源入手，然后再深入研究两个专用项目：runc 和 CRI-O。首先，我们将从较低级别的运行时 runc 开始，为容器运行时如何在幕后工作打下良好的基础。之后，我们将利用更高级的运行时 CRI-O 在不运行 Kubernetes 的情况下来运行 Kubernetes 本地工作负载。</p>
+<h1 id="1-nbsp-nbsp-nbsp-nbsp-绪论"><a href="#1-nbsp-nbsp-nbsp-nbsp-绪论" class="headerlink" title="1&nbsp;&nbsp;&nbsp;&nbsp;绪论"></a>1&nbsp;&nbsp;&nbsp;&nbsp;绪论</h1><p>在本系列的前一部分，我们讨论了 Linux 内核命名空间和其他相关的一切来建立关于容器和它们的基本隔离技术的基础。现在，我们想要更加深入一点，回答这个问题：如何真正地运行容器？我们会在省略 Kubernetes 特性和安全相关的话题（这些在后面的文章和演讲会覆盖）的情况下完成这件事。</p>
+<h1 id="2-nbsp-nbsp-nbsp-nbsp-什么是容器运行时？"><a href="#2-nbsp-nbsp-nbsp-nbsp-什么是容器运行时？" class="headerlink" title="2&nbsp;&nbsp;&nbsp;&nbsp;什么是容器运行时？"></a>2&nbsp;&nbsp;&nbsp;&nbsp;什么是容器运行时？</h1><p>在 UNIX 世界中，应用程序及其必需或不必需的用例是引起争议的主题。主要的 <a href="https://en.wikipedia.org/wiki/Unix_philosophy" target="_blank" rel="noopener">UNIX 哲学</a>传播了极简主义和模块化软件部分，这些部分应该很好地融合在一个完整的系统中。遵循这些哲学方面的好例子是 <a href="https://en.wikipedia.org/wiki/Pipeline_(Unix" target="_blank" rel="noopener">UNIX 管道</a>)之类的功能或 <a href="https://www.vim.org/" target="_blank" rel="noopener">Vim</a> 之类的文本编辑器。这些工具可以最大程度地解决一项专用任务，并且在此方面取得了巨大成功。另一方面，像 systemd 或 cmake 之类的项目没有采用相同的方法，而是随着时间的推移实现了更丰富的功能集。最后，对于诸如“初始化系统应该是什么样的？”或“构建系统应该做什么？”之类的问题的答案，我们有多种观点和看法。如果这些多观点的观点与历史事件混杂在一起，那么回答一个简单的问题可能需要更多的解释。</p>
+<p>现在，欢迎来到容器的世界！</p>
+<p>许多应用程序可以运行容器，而每个应用程序对容器运行时应该做什么和支持什么都有不同的见解。例如，systemd 能够通过 <a href="https://www.freedesktop.org/software/systemd/man/systemd-nspawn.html" target="_blank" rel="noopener">systemd-nspawn</a> 运行容器，并且 <a href="https://nixos.org/" target="_blank" rel="noopener">NixOS</a> 还集成了<a href="https://nixos.org/nixos/manual/#ch-containers" target="_blank" rel="noopener">容器管理</a>功能。更不用说所有其他现有容器运行时，例如 CRI-O、Kata Containers、Firecracker、gVisor、containerd、LXC、runc 和 Nabla Containers 等。它们中的许多现在已成为<a href="https://www.cncf.io/" target="_blank" rel="noopener">云原生计算基金会</a>（Cloud Native Computing Foundation，CNCF）及其庞大领域的一部分，而有人可能会问：“为什么存在这么多容器运行时？”。</p>
+<img src="/2020/06/13/soft-eng-container-demystifying-containers-part-ii-container-runtimes/cncf-landscape.png">
+<p>照旧，我们应该从历史的起点开始。</p>
+<h1 id="3-nbsp-nbsp-nbsp-nbsp-简史"><a href="#3-nbsp-nbsp-nbsp-nbsp-简史" class="headerlink" title="3&nbsp;&nbsp;&nbsp;&nbsp;简史"></a>3&nbsp;&nbsp;&nbsp;&nbsp;简史</h1><p>在 cgroup 于 2008 年发明之后，一个名为 Linux 容器（LXC）的项目出现在公众的视野，这将彻底改变容器世界。LXC 结合了 cgroup 和命名空间技术，为运行的应用程序提供了隔离的环境。你可能知道我们有时生活在平行世界中 —— Google 于 2007 年启动了自己的容器化项目，名为“让我为您控制一切”（Let Me Contain That For You，LMCTFY），该项目主要与 LXC 处于同一级别。借助 LMCTFY，Google 尝试提供一种稳定的、由 API 驱动的配置，而用户无需了解 cgroup 及其内部细节。</p>
+<p>现在回首 2013 年，我们发现有一个在现有 LXC 堆栈之上构建的名为 Docker 的工具。Docker 的一项发明是，用户现在可以将容器打包成映像，以在机器之间移动它们。正如他们在<a href="https://github.com/moby/moby/blob/0db56e6c519b19ec16c6fbd12e3cee7dfa6018c5/README.md" target="_blank" rel="noopener">《标准容器宣言》</a>中指出的那样，Docker 是第一个试图使容器成为标准软件单元的工具。</p>
+<p>几年后，他们开始研究 <a href="https://github.com/docker/libcontainer" target="_blank" rel="noopener">libcontainer</a>，这是一种基于 Go 的生成和管理容器的本地方法。LMCTFY 在那段时间也被抛弃了，而 LMCTFY 的核心概念和主要好处被移植到了 libcontainer 和 Docker 中。</p>
+<p>现在，让我们回到 Kubernetes 等项目刚刚发布 1.0 版本的 2015 年。在那段时间里有很多东西在进行：CNCF 是 <a href="https://www.linuxfoundation.org/" target="_blank" rel="noopener">Linux 基金会</a>的一部分，旨在促进容器的发展。<a href="https://www.opencontainers.org/" target="_blank" rel="noopener">开放容器倡议</a>（Open Container Initiative，OCI）也在 2015 年成立，是围绕容器生态系统的开放治理结构。</p>
+<img src="/2020/06/13/soft-eng-container-demystifying-containers-part-ii-container-runtimes/cncf-oci-logo.png">
+<p>OCI 的主要目标是围绕容器格式和运行时创建开放的行业标准。就流行程度而言，我们现在处于容器与经典虚拟机（VM）并存的状态。需要规范容器的运行方式，从而产生了 <a href="https://github.com/opencontainers/runtime-spec" target="_blank" rel="noopener">OCI 运行时规范</a>。运行时开发人员现在应该能够拥有定义良好的 API 来开发其容器运行时。在此期间，libcontainer 项目捐赠给了 OCI，与此同时诞生了一个名为 runc 的新工具。使用 runc，现在可以直接与 libcontainer 进行交互，解释 OCI 运行时规范并从中运行容器。</p>
+<p>截至目前，runc 是容器生态系统中最受欢迎的项目之一，并且还用于许多其他项目中，例如 containerd（由 Docker 使用）、CRI-O 和 <a href="https://podman.io/" target="_blank" rel="noopener">podman</a>。其他项目也采用了 OCI 运行时规范。例如，Kata Containers 使构建和运行安全的容器 —— 包括感觉和性能类似容器的轻量级虚拟机 —— 成为可能，但使用硬件虚拟化技术作为第二层防御提供了更强的工作负载隔离。</p>
+<p>让我们深入研究 OCI 运行时规范，以更好地了解容器运行时如何在后台运行。</p>
+<h1 id="4-nbsp-nbsp-nbsp-nbsp-运行容器"><a href="#4-nbsp-nbsp-nbsp-nbsp-运行容器" class="headerlink" title="4&nbsp;&nbsp;&nbsp;&nbsp;运行容器"></a>4&nbsp;&nbsp;&nbsp;&nbsp;运行容器</h1><h2 id="4-1-nbsp-nbsp-nbsp-nbsp-runc"><a href="#4-1-nbsp-nbsp-nbsp-nbsp-runc" class="headerlink" title="4.1&nbsp;&nbsp;&nbsp;&nbsp;runc"></a>4.1&nbsp;&nbsp;&nbsp;&nbsp;runc</h2><img src="/2020/06/13/soft-eng-container-demystifying-containers-part-ii-container-runtimes/runc-logo.png">
+<p>OCI 运行时规范提供了有关容器的配置、执行环境和整个生命周期的信息。配置主要是一个 JSON 文件，其中包含所有必需的信息，以支持在不同的目标平台（例如 Linux、Windows 或虚拟机）上创建容器。</p>
+<p>使用 runc 可以轻松生成示例规范：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; runc spec</span><br><span class="line">&gt; cat config.json</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"ociVersion"</span>: <span class="string">"1.0.0"</span>,</span><br><span class="line">  <span class="attr">"process"</span>: &#123;</span><br><span class="line">    <span class="attr">"terminal"</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">"user"</span>: &#123; <span class="attr">"uid"</span>: <span class="number">0</span>, <span class="attr">"gid"</span>: <span class="number">0</span> &#125;,</span><br><span class="line">    <span class="attr">"args"</span>: [<span class="string">"sh"</span>],</span><br><span class="line">    <span class="attr">"env"</span>: [</span><br><span class="line">      <span class="string">"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"</span>,</span><br><span class="line">      <span class="string">"TERM=xterm"</span></span><br><span class="line">    ],</span><br><span class="line">    <span class="attr">"cwd"</span>: <span class="string">"/"</span>,</span><br><span class="line">    <span class="attr">"capabilities"</span>: &#123;</span><br><span class="line">      <span class="attr">"bounding"</span>: [<span class="string">"CAP_AUDIT_WRITE"</span>, <span class="string">"CAP_KILL"</span>, <span class="string">"CAP_NET_BIND_SERVICE"</span>],</span><br><span class="line">      [...]</span><br><span class="line">    &#125;,</span><br><span class="line">    "rlimits": [ &#123; "type": "RLIMIT_NOFILE", "hard": 1024, "soft": 1024 &#125; ],</span><br><span class="line">    "noNewPrivileges": true</span><br><span class="line">  &#125;,</span><br><span class="line">  "root": &#123; "path": "rootfs", "readonly": true &#125;,</span><br><span class="line">  "hostname": "runc",</span><br><span class="line">  "mounts": [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">"destination"</span>: <span class="string">"/proc"</span>,</span><br><span class="line">      <span class="attr">"type"</span>: <span class="string">"proc"</span>,</span><br><span class="line">      <span class="attr">"source"</span>: <span class="string">"proc"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    [...]</span><br><span class="line">  ],</span><br><span class="line">  "linux": &#123;</span><br><span class="line">    "resources": &#123; "devices": [ &#123; "allow": false, "access": "rwm" &#125; ] &#125;,</span><br><span class="line">    "namespaces": [</span><br><span class="line">      &#123; "type": "pid" &#125;,</span><br><span class="line">      &#123; "type": "network" &#125;,</span><br><span class="line">      &#123; "type": "ipc" &#125;,</span><br><span class="line">      &#123; "type": "uts" &#125;,</span><br><span class="line">      &#123; <span class="attr">"type"</span>: <span class="string">"mount"</span> &#125;</span><br><span class="line">    ],</span><br><span class="line">    "maskedPaths": [</span><br><span class="line">      "/proc/kcore",</span><br><span class="line">      [...]</span><br><span class="line">    ],</span><br><span class="line">    "readonlyPaths": [</span><br><span class="line">      "/proc/asound",</span><br><span class="line">      [...]</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>该文件主要包含 runc 运行容器所需的所有的必要信息。例如，我们具有有关运行进程、已定义的环境变量、用户和组 ID、所需的挂载点以及要设置的 Linux 命名空间的属性。运行容器仍然缺少一件事：我们需要一个适当的根文件系统（rootfs）。在过去的博客文章中，我们已经了解了如何从现有容器镜像中获取它：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; skopeo copy docker://opensuse/tumbleweed:latest oci:tumbleweed:latest</span><br><span class="line">[output removed]</span><br><span class="line">&gt; sudo umoci unpack --image tumbleweed:latest bundle</span><br><span class="line">[output removed]</span><br></pre></td></tr></table></figure>
+<p>有趣的是，解压缩后的容器映像已经包含了运行包所需的运行时规范：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; sudo chown -R $(id -u) bundle</span><br><span class="line">&gt; cat bundle/config.json</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"ociVersion"</span>: <span class="string">"1.0.0"</span>,</span><br><span class="line">  <span class="attr">"process"</span>: &#123;</span><br><span class="line">    <span class="attr">"terminal"</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">"user"</span>: &#123; <span class="attr">"uid"</span>: <span class="number">0</span>, <span class="attr">"gid"</span>: <span class="number">0</span> &#125;,</span><br><span class="line">    <span class="attr">"args"</span>: [<span class="string">"/bin/bash"</span>],</span><br><span class="line">    <span class="attr">"env"</span>: [</span><br><span class="line">      <span class="string">"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"</span>,</span><br><span class="line">      <span class="string">"TERM=xterm"</span>,</span><br><span class="line">      <span class="string">"HOME=/root"</span></span><br><span class="line">    ],</span><br><span class="line">    <span class="attr">"cwd"</span>: <span class="string">"/"</span>,</span><br><span class="line">    "capabilities": &#123; [...] &#125;,</span><br><span class="line">    "rlimits": [...]</span><br><span class="line">  &#125;,</span><br><span class="line">  "root": &#123; "path": "rootfs" &#125;,</span><br><span class="line">  "hostname": "mrsdalloway",</span><br><span class="line">  "mounts": [...],</span><br><span class="line">  "annotations": &#123;</span><br><span class="line">    "org.opencontainers.image.title": "openSUSE Tumbleweed Base Container",</span><br><span class="line">    "org.opencontainers.image.url": "https://www.opensuse.org/",</span><br><span class="line">    "org.opencontainers.image.vendor": "openSUSE Project",</span><br><span class="line">    "org.opencontainers.image.version": "20190517.6.190",</span><br><span class="line">    [...]</span><br><span class="line">  &#125;,</span><br><span class="line">  "linux": &#123;</span><br><span class="line">    "resources": &#123; "devices": [ &#123; "allow": false, "access": "rwm" &#125; ] &#125;,</span><br><span class="line">    "namespaces": [</span><br><span class="line">      &#123; "type": "pid" &#125;,</span><br><span class="line">      &#123; "type": "network" &#125;,</span><br><span class="line">      &#123; "type": "ipc" &#125;,</span><br><span class="line">      &#123; "type": "uts" &#125;,</span><br><span class="line">      &#123; <span class="attr">"type"</span>: <span class="string">"mount"</span> &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>除了运行 <code>runc spec</code> 后我们已经知道的常规字段外，这个文件中还包含一些注释（annotation）。这些可用于将任意元数据添加到容器，高层运行时可利用这些元数据向规范添加其他信息。</p>
+<p>让我们使用 runc 从捆绑包中创建一个新容器。在实际调用 runc 之前，我们必须设置一个接收终端以便与容器进行交互。为此，我们可以使用 runc 存储库中包含的 <a href="https://github.com/opencontainers/runc/blob/master/contrib/cmd/recvtty/recvtty.go" target="_blank" rel="noopener">recvtty</a> 工具：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; go get github.com/opencontainers/runc/contrib/cmd/recvtty</span><br><span class="line">&gt; recvtty tty.sock</span><br></pre></td></tr></table></figure>
+<p>在另一个终端中，我们现在通过指定包和终端套接字来调用 <code>runc create</code>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; sudo runc create -b bundle --console-socket $(pwd)/tty.sock container</span><br></pre></td></tr></table></figure>
+<p>没有进一步的输出，那么现在发生了什么？似乎我们已经创建了一个处于 <code>created</code> 状态的新容器：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; sudo runc list</span><br><span class="line">ID          PID         STATUS      BUNDLE      CREATED                          OWNER</span><br><span class="line">container   29772       created     /bundle     2019-05-21T08:35:51.382141418Z   root</span><br></pre></td></tr></table></figure>
+<p>容器看起来并没有正在运行，但是其中运行着什么呢？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; sudo runc ps container</span><br><span class="line">UID        PID  PPID  C STIME TTY          TIME CMD</span><br><span class="line">root     29772     1  0 10:35 ?        00:00:00 runc init</span><br></pre></td></tr></table></figure>
+<p><code>runc init</code> 命令使用所有必需的命名空间设置新环境并启动新的初始过程。主进程 <code>/bin/bash</code> 尚未在容器内运行，但我们仍然能够在容器内执行其他进程：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; sudo runc exec -t container echo &quot;Hello, world!&quot;</span><br><span class="line">&gt; Hello, world!</span><br></pre></td></tr></table></figure>
+<p>容器的 <code>created</code> 状态为诸如建立网络这样的工作提供了一个很好的环境。为了在容器中实际执行某项操作，我们必须使其进入运行状态。这可以通过 <code>runc start</code> 来完成：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; sudo runc start container</span><br></pre></td></tr></table></figure>
+<p>在运行 <code>recvtty</code> 进程的终端中，现在应该弹出一个新的 bash shell 会话：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mrsdalloway:/ $</span><br><span class="line">mrsdalloway:/ $ ps aux</span><br><span class="line">ps aux</span><br><span class="line">USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND</span><br><span class="line">root         1  0.0  0.0   5156  4504 pts/0    Ss   10:28   0:00 /bin/bash</span><br><span class="line">root        29  0.0  0.0   6528  3372 pts/0    R+   10:32   0:00 ps aux</span><br></pre></td></tr></table></figure>
+<p>很好，容器看起来正在运行。我们现在能够用 <code>runc</code> 来检查容器的状态：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; sudo runc list</span><br><span class="line">ID          PID         STATUS      BUNDLE      CREATED                          OWNER</span><br><span class="line">container   4985        running     /bundle     2019-05-20T12:14:14.232015447Z   root</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; sudo runc ps container</span><br><span class="line">UID        PID  PPID  C STIME TTY          TIME CMD</span><br><span class="line">root      6521  6511  0 14:25 pts/0    00:00:00 /bin/bash</span><br></pre></td></tr></table></figure>
+<p><code>runc init</code> 进程已经消失，现在容器中仅存在实际的 <code>/bin/bash</code> 进程。我们还可以对容器进行一些基本的生命周期管理：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; sudo runc pause container</span><br></pre></td></tr></table></figure>
+<p>现在应该不可能在 <code>recvtty</code> 会话中从正在运行的容器中获取任何输出。要恢复容器，只需调用：</p>
+<p>我们之前尝试键入的所有内容现在都应在已恢复的容器终端中弹出。如果我们需要有关容器的更多信息，例如 CPU 和内存使用率，则可以通过 <code>runc events</code> API 检索它们：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; sudo runc events container</span><br><span class="line">&#123;...&#125;</span><br></pre></td></tr></table></figure>
+<p>输出有点难以理解，因此让我们重新格式化并剥离一些字段：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"type"</span>: <span class="string">"stats"</span>,</span><br><span class="line">  <span class="attr">"id"</span>: <span class="string">"container"</span>,</span><br><span class="line">  <span class="attr">"data"</span>: &#123;</span><br><span class="line">    <span class="attr">"cpu"</span>: &#123;</span><br><span class="line">      <span class="attr">"usage"</span>: &#123;</span><br><span class="line">        <span class="attr">"total"</span>: <span class="number">31442016</span>,</span><br><span class="line">        <span class="attr">"percpu"</span>: [ <span class="number">5133429</span>, <span class="number">5848165</span>, <span class="number">827530</span>, ... ],</span><br><span class="line">        <span class="attr">"kernel"</span>: <span class="number">20000000</span>,</span><br><span class="line">        <span class="attr">"user"</span>: <span class="number">0</span></span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="attr">"throttling"</span>: &#123;&#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">"memory"</span>: &#123;</span><br><span class="line">      <span class="attr">"usage"</span>: &#123;</span><br><span class="line">        <span class="attr">"limit"</span>: <span class="number">9223372036854771712</span>,</span><br><span class="line">        <span class="attr">"usage"</span>: <span class="number">1875968</span>,</span><br><span class="line">        <span class="attr">"max"</span>: <span class="number">6500352</span>,</span><br><span class="line">        <span class="attr">"failcnt"</span>: <span class="number">0</span></span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="attr">"swap"</span>: &#123; <span class="attr">"limit"</span>: <span class="number">0</span>, <span class="attr">"failcnt"</span>: <span class="number">0</span> &#125;,</span><br><span class="line">      <span class="attr">"kernel"</span>: &#123;</span><br><span class="line">        <span class="attr">"limit"</span>: <span class="number">9223372036854771712</span>,</span><br><span class="line">        <span class="attr">"usage"</span>: <span class="number">311296</span>,</span><br><span class="line">        <span class="attr">"max"</span>: <span class="number">901120</span>,</span><br><span class="line">        <span class="attr">"failcnt"</span>: <span class="number">0</span></span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="attr">"kernelTCP"</span>: &#123; <span class="attr">"limit"</span>: <span class="number">9223372036854771712</span>, <span class="attr">"failcnt"</span>: <span class="number">0</span> &#125;,</span><br><span class="line">      <span class="attr">"raw"</span>: &#123;</span><br><span class="line">        <span class="attr">"active_anon"</span>: <span class="number">1564672</span>,</span><br><span class="line">        [...]</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    "pids": &#123; "current": 1 &#125;,</span><br><span class="line">    "blkio": &#123;&#125;,</span><br><span class="line">    "hugetlb": &#123; "1GB": &#123; "failcnt": 0 &#125;, "2MB": &#123; "failcnt": 0 &#125; &#125;,</span><br><span class="line">    "intel_rdt": &#123;&#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们可以看到我们能够检索有关容器的详细运行时信息。</p>
+<p>要停止容器，我们只需退出 <code>recvtty</code> 会话即可。之后可以使用 <code>runc delete</code> 删除容器：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt; sudo runc list</span><br><span class="line">ID          PID         STATUS      BUNDLE      CREATED                         OWNER</span><br><span class="line">container   0           stopped     /bundle     2019-05-21T10:28:32.765888075Z  root</span><br><span class="line">&gt; sudo runc delete container</span><br><span class="line">&gt; sudo runc list</span><br><span class="line">ID          PID         STATUS      BUNDLE      CREATED     OWNER</span><br></pre></td></tr></table></figure>
+<p>处于 <code>stopped</code> 状态的容器无法再次运行，因此必须从新状态重新创建它们。如前所述，提取的包中除了 rootfs 之外还包含必要的 <code>config.json</code> 文件，<code>runc</code> 将使用该文件来设置容器。例如，我们可以通过执行以下命令来修改容器的初始运行命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; cd bundle</span><br><span class="line">&gt; jq &apos;.process.args = [&quot;echo&quot;, &quot;Hello, world!&quot;]&apos; config.json | sponge config.json</span><br><span class="line">&gt; sudo runc run container</span><br><span class="line">&gt; Hello, world!</span><br></pre></td></tr></table></figure>
+<p>通过编辑 rootfs 或 <code>config.json</code>，我们几乎拥有所有自由。因此，我们可以拆除容器和主机之间的 PID 命名空间隔离：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt; jq &apos;.process.args = [&quot;ps&quot;, &quot;a&quot;] | del(.linux.namespaces[0])&apos; config.json | sponge config.json</span><br><span class="line">&gt; sudo runc run container</span><br><span class="line">16583 ?        S+     0:00 sudo runc run container</span><br><span class="line">16584 ?        Sl+    0:00 runc run container</span><br><span class="line">16594 pts/0    Rs+    0:00 ps a</span><br><span class="line">[output truncated]</span><br></pre></td></tr></table></figure>
+<p>最后，runc 是一个相当低级的运行时，不正确的配置和使用会导致严重的安全问题。确实，runc 对seccomp、Security-Enhanced Linux（SELinux）和 AppArmor 等安全性增强功能具有本地支持，但这些功能应被更高级别的运行时使用，以确保在生产中正确使用。还值得一提的是，可以通过 runc 在无根模式下运行容器，以进一步加强部署的安全性。我们还将在以后的博客文章中介绍这些主题，但就目前而言，在这些级别上就足够了。</p>
+<p>仅使用 runc 运行容器的另一个缺点是，我们必须手动设置与主机的网络才能连接到 Internet 或其他容器。为此，我们可以在实际启动容器之前使用<a href="https://github.com/opencontainers/runtime-spec/blob/master/config.md#posix-platform-hooks" target="_blank" rel="noopener">运行时规范钩子</a>功能设置默认桥。</p>
+<p>但是，为什么不将这项工作也留给更高级别的运行时呢？让我们继续前进。</p>
+<h2 id="4-2-nbsp-nbsp-nbsp-nbsp-Kubernetes-容器运行时接口"><a href="#4-2-nbsp-nbsp-nbsp-nbsp-Kubernetes-容器运行时接口" class="headerlink" title="4.2&nbsp;&nbsp;&nbsp;&nbsp;Kubernetes 容器运行时接口"></a>4.2&nbsp;&nbsp;&nbsp;&nbsp;Kubernetes 容器运行时接口</h2><p>早在 2016 年，Kubernetes 项目就宣布了容器运行时接口（CRI）的实现，该接口为容器运行时提供了与 Kubernetes 一起使用的标准API。该界面使用户可以轻松地在集群中交换运行时。</p>
+<p>API 如何工作？每个 Kubernetes 集群的最底端运行一个名为 kubelet 的软件，其主要任务是保持容器工作负载的运行和健康。kubelet 在启动时连接到一个有预定义 API 的 <a href="https://www.grpc.io/" target="_blank" rel="noopener">gRPC</a> 服务器。例如，API 的一些服务定义如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// Runtime service defines the public APIs for remote container runtimes</span><br><span class="line">service RuntimeService &#123;</span><br><span class="line">    rpc CreateContainer (...) returns (...) &#123;&#125;</span><br><span class="line">    rpc ListContainers  (...) returns (...) &#123;&#125;</span><br><span class="line">    rpc RemoveContainer (...) returns (...) &#123;&#125;</span><br><span class="line">    rpc StartContainer  (...) returns (...) &#123;&#125;</span><br><span class="line">    rpc StopContainer   (...) returns (...) &#123;&#125;</span><br></pre></td></tr></table></figure>
+<p>这似乎与我们已经在管理容器生命周期的 runc 中所做的差不多。如果进一步看一下 API，我们将看到：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">    rpc ListPodSandbox  (...) returns (...) &#123;&#125;</span><br><span class="line">    rpc RemovePodSandbox(...) returns (...) &#123;&#125;</span><br><span class="line">    rpc RunPodSandbox   (...) returns (...) &#123;&#125;</span><br><span class="line">    rpc StopPodSandbox  (...) returns (...) &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>“sandbox”是什么意思？容器应该已经是某种沙箱了，对吗？是的，但是在 Kubernetes 的世界里，<a href="https://kubernetes.io/docs/concepts/workloads/pods/pod" target="_blank" rel="noopener">Pods</a> 中可以包含多个容器，而此抽象层级必须映射到一个简单的容器列表中。因此，每次创建 Kubernetes Pod 都要从设置所谓的 PodSandbox 开始。Pod 内部运行的每个容器都附加到此沙箱，因而内部的容器可以共享公共资源，例如其网络接口。单独的 runc 并不能提供此类功能，因此我们必须使用更高级别的运行时来实现我们的目标。</p>
+<h2 id="4-3-nbsp-nbsp-nbsp-nbsp-CRI-O"><a href="#4-3-nbsp-nbsp-nbsp-nbsp-CRI-O" class="headerlink" title="4.3&nbsp;&nbsp;&nbsp;&nbsp;CRI-O"></a>4.3&nbsp;&nbsp;&nbsp;&nbsp;CRI-O</h2><img src="/2020/06/13/soft-eng-container-demystifying-containers-part-ii-container-runtimes/crio-logo.png">
+<p>CRI-O 是更高级别的容器运行时，它是专门为与 Kubernetes CRI 一起使用而编写的。该名称源自“容器运行时接口”和“开放容器倡议”的组合。这不是很简单吗？2016 年，CRI-O 最初是作为 Kubernetes 孵化器项目开始的，那时它还叫做“开放容器倡议守护程序（OCI Daemon，OCID）”。版本 1.0.0 于一年后发布，并从那天开始与 Kubernetes 遵循同样的发布周期。例如，这意味着 Kubernetes 版本 1.15 可以与 CRI-O 1.15 一起安全使用，以此类推。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/06/08/aiops-everything-you-need-to-know-about-aiops/" rel="prev" title="【译】Everything You Need to Know About AIOps">
+      <i class="fa fa-chevron-left"></i> 【译】Everything You Need to Know About AIOps
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-nbsp-nbsp-nbsp-nbsp-绪论"><span class="nav-text">1    绪论</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-nbsp-nbsp-nbsp-nbsp-什么是容器运行时？"><span class="nav-text">2    什么是容器运行时？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-nbsp-nbsp-nbsp-nbsp-简史"><span class="nav-text">3    简史</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-nbsp-nbsp-nbsp-nbsp-运行容器"><span class="nav-text">4    运行容器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-nbsp-nbsp-nbsp-nbsp-runc"><span class="nav-text">4.1    runc</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-nbsp-nbsp-nbsp-nbsp-Kubernetes-容器运行时接口"><span class="nav-text">4.2    Kubernetes 容器运行时接口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-3-nbsp-nbsp-nbsp-nbsp-CRI-O"><span class="nav-text">4.3    CRI-O</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Han Qi</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">260</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">76</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">46</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Han Qi</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://muse.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.7.2
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>
