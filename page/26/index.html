@@ -165,6 +165,93 @@
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/04/markdown-latex/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/12/04/markdown-latex/" class="post-title-link" itemprop="url">Markdown 内嵌 Latex 数学公式相关</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2018-12-04 21:03:50" itemprop="dateCreated datePublished" datetime="2018-12-04T21:03:50+08:00">2018-12-04</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2018-12-06 20:35:26" itemprop="dateModified" datetime="2018-12-06T20:35:26+08:00">2018-12-06</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Markdown 中通常使用 <script type="math/tex">...</script>（行内公式）或 $$$…$$$（行间公式）或 <code>\[...\]</code> 来标明 Latex 的使用</p>
+<h1 id="符号"><a href="#符号" class="headerlink" title="符号"></a>符号</h1><p>上标：<code>^{}</code>，当为单个符号时可省略 <code>{}</code></p>
+<p>下标：<code>_{}</code>，当为单个符号时可省略 <code>{}</code></p>
+<p>求和：<code>\sum</code></p>
+<ul>
+<li>默认情况下是上标/下标的形式，可以使用 <code>\limits</code> 来变成上/下<ul>
+<li>默认情况：<code>\sum_{i=0}^n i</code>：$\sum_{i=0}^n i$</li>
+<li>使用 <code>\limits</code>：<code>\sum \limits_{i=0}^n i</code>：$\sum \limits_{i=0}^n i$</li>
+</ul>
+</li>
+</ul>
+<p>点</p>
+<ul>
+<li><code>\cdot</code>：$\cdot$</li>
+<li><code>\cdots</code>：$\cdots$</li>
+<li><code>\vdots</code>：$\vdots$</li>
+</ul>
+<h2 id="希腊字母"><a href="#希腊字母" class="headerlink" title="希腊字母"></a>希腊字母</h2><h2 id="集合运算"><a href="#集合运算" class="headerlink" title="集合运算"></a>集合运算</h2><h2 id="分式"><a href="#分式" class="headerlink" title="分式"></a>分式</h2><p><code>\dfrac</code></p>
+<p><code>\frac</code></p>
+<h1 id="矩阵"><a href="#矩阵" class="headerlink" title="矩阵"></a>矩阵</h1><p>\begin{matrix}…\end{matrix}</p>
+<p>矩阵一行的元素使用 <code>&amp;</code> 分隔，使用 <code>\\</code> 换行</p>
+<p>示例：<script type="math/tex">\begin{matrix} 1 & 2 \\ 3 & 4 \end{matrix}</script>：$\begin{matrix} 1 &amp; 2 \\ 3 &amp; 4 \end{matrix}$</p>
+<p>带括号：使用 <code>\left...\right</code></p>
+<h1 id="公式对齐"><a href="#公式对齐" class="headerlink" title="公式对齐"></a>公式对齐</h1>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/04/others-resources/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1114,7 +1201,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">258</span>
+          <span class="site-state-item-count">259</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
