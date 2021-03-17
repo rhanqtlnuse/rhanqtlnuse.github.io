@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.8.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="翻译自 freeCodeCamp，原题目为 A Thorough Introduction to Distributed Systems">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【译】透彻的分布式系统简介">
+<meta property="og:url" content="http://yoursite.com/2020/06/22/a-thorough-introduction-to-distributed-systems/index.html">
+<meta property="og:site_name" content="RHANQTL">
+<meta property="og:description" content="翻译自 freeCodeCamp，原题目为 A Thorough Introduction to Distributed Systems">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2020/06/22/a-thorough-introduction-to-distributed-systems/a-traditional-task.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/22/a-thorough-introduction-to-distributed-systems/distributed-1.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/22/a-thorough-introduction-to-distributed-systems/comparison.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/22/a-thorough-introduction-to-distributed-systems/sharding.png">
+<meta property="og:updated_time" content="2020-06-23T06:08:16.176Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【译】透彻的分布式系统简介">
+<meta name="twitter:description" content="翻译自 freeCodeCamp，原题目为 A Thorough Introduction to Distributed Systems">
+<meta name="twitter:image" content="http://yoursite.com/2020/06/22/a-thorough-introduction-to-distributed-systems/a-traditional-task.png">
+
+<link rel="canonical" href="http://yoursite.com/2020/06/22/a-thorough-introduction-to-distributed-systems/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
+  };
+</script>
+
+  <title>【译】透彻的分布式系统简介 | RHANQTL</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">RHANQTL</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">上下求索</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>站点地图</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/22/a-thorough-introduction-to-distributed-systems/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【译】透彻的分布式系统简介
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-06-22 12:00:16" itemprop="dateCreated datePublished" datetime="2020-06-22T12:00:16+08:00">2020-06-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-06-23 14:08:16" itemprop="dateModified" datetime="2020-06-23T14:08:16+08:00">2020-06-23</time>
+              </span>
+
+          
+            <div class="post-description">翻译自 freeCodeCamp，原题目为 A Thorough Introduction to Distributed Systems</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>原文地址：<a href="https://www.freecodecamp.org/news/a-thorough-introduction-to-distributed-systems-3b91562c9b3c/" target="_blank" rel="noopener">传送门</a></p>
+<p>随着技术的不断发展，分布式系统得到了越来越广泛的应用，它是计算机科学中一个庞杂的研究领域。</p>
+<p>本文旨在向你大致介绍分布式系统，在不涉及细节的情况下让你对分布式系统的不同类别有一些基本的认识。</p>
+<h1 id="1-nbsp-nbsp-nbsp-nbsp-什么是分布式系统？"><a href="#1-nbsp-nbsp-nbsp-nbsp-什么是分布式系统？" class="headerlink" title="1&nbsp;&nbsp;&nbsp;&nbsp;什么是分布式系统？"></a>1&nbsp;&nbsp;&nbsp;&nbsp;什么是分布式系统？</h1><p>最简单的定义：分布式系统是一组一起工作的计算机，但是从终端用户的角度看好像只有一台机器一样。</p>
+<p>这些机器有共享的状态、并发地运转并且能够在不影响整个系统的情况下出现故障。</p>
+<p>我建议我们通过一个将系统进行分布的示例逐步展开，以便你可以更好地了解这一切：</p>
+<img src="/2020/06/22/a-thorough-introduction-to-distributed-systems/a-traditional-task.png" title="传统的程序架构">
+<p>我们从一个数据库开始！传统的数据库存储在单机的文件系统上，当你要读 / 写数据时，直接跟机器通信即可。</p>
+<p>为了将数据库系统分布，我们需要让这个数据库在多台机器上同时运行。用户必须能够与他选中的某台机器通信，同时还不能分辨出他并不是在跟单机通信 —— 如果他插入了向 1 号结点插入一条记录，3 号节点必须能够返回那条记录。</p>
+<img src="/2020/06/22/a-thorough-introduction-to-distributed-systems/distributed-1.png" title="可认为是分布式的架构">
+<h1 id="2-nbsp-nbsp-nbsp-nbsp-为什么将系统分布？"><a href="#2-nbsp-nbsp-nbsp-nbsp-为什么将系统分布？" class="headerlink" title="2&nbsp;&nbsp;&nbsp;&nbsp;为什么将系统分布？"></a>2&nbsp;&nbsp;&nbsp;&nbsp;为什么将系统分布？</h1><p>系统总是根据需要分布。事实上，管理分布式系统是一个复杂的话题，充满了各种各样的坑。部署、维护和调试分布式系统是很令人头疼的。所以为啥要构建分布式系统呢？</p>
+<p>分布式系统能够让你进行水平伸缩（scale horizontally）。回到前面单数据库的例子，处理更多流量的唯一方法就是升级硬件，这叫做垂直伸缩（scale vertically）。</p>
+<p>如果你能够通过垂直伸缩解决问题的时候，当然一切安好，但是在某个时间点之后，你会发现，即使最好的硬件也不能够应付大量的流量，更别提根本用最好的硬件根本不现实的问题了。</p>
+<p>水平伸缩仅仅意味着增加更多的计算机，而不是升级单机的硬件。</p>
+<img src="/2020/06/22/a-thorough-introduction-to-distributed-systems/comparison.png" title="水平伸缩在特定的阈值之后成本更低">
+<p>在特定的阈值之后，水平伸缩的成本比垂直伸缩更低，当然这不是构建分布式系统的主要原因。</p>
+<p>垂直伸缩所能达到的性能收到硬件能力的限制。人们已经证明了这些能力不足以应对技术公司面对的中到大型的工作负载。</p>
+<p>水平伸缩最棒的地方在于，伸缩没有上限 —— 当性能降级时，简单地增加另一台机器就行，理论上来讲可以达到无限。</p>
+<p>易于伸缩不是分布式系统的唯一好处。容错性（fault tolerance）和低时延（low latency）也同样很重要。</p>
+<p>容错性 —— 一个分布在两个数据中心、有 10 台机器的集群比单机有更好的容错能力。即使一个数据中心被一把火烧了，你的应用也依然能够工作。</p>
+<p>低时延 —— 网络分组在世界上旅行的时间受限于光速。比如，在纽约和悉尼之间的光纤电缆中，一个请求最短的往返时间（round-trip time）是 160 毫秒。分布式系统让你在两个城市都有结点，从而使得流量去往最接近的结点。然而，为了使分布式系统正常运转，你的软件必须经过特定的设计，能够同时运行在多台计算机上并且处理发生的问题。事实证明这并非易事。</p>
+<h1 id="3-nbsp-nbsp-nbsp-nbsp-伸缩我们的数据库"><a href="#3-nbsp-nbsp-nbsp-nbsp-伸缩我们的数据库" class="headerlink" title="3&nbsp;&nbsp;&nbsp;&nbsp;伸缩我们的数据库"></a>3&nbsp;&nbsp;&nbsp;&nbsp;伸缩我们的数据库</h1><p>想象一下，我们的 Web 应用程序非常流行。再想象一下，我们的数据库现在每秒会收到两倍于其处理能力的查询量。你的应用程序将立即开始性能下降，这将引起用户的注意。</p>
+<p>让我们共同努力，扩大数据库规模，以满足我们的高要求。</p>
+<p>在典型的 Web 应用程序中，与插入新信息或修改旧信息相比，通常读取信息的频率要高得多。</p>
+<p>有一种方法可以提高读取性能，即所谓的“主从复制”（primary-replica replication）策略。其中，你会创建两个新数据库服务器，它们会与主数据库服务器同步。问题是你<strong>只能</strong>从这些新实例中<strong>读取</strong>。</p>
+<p>每当你要插入或修改信息时，你都得与主数据库通信。然后，它会异步地将更改通知给副本，它们也将其保存。</p>
+<p>恭喜，你现在可以执行 3 倍的读取查询！这不是很好吗？</p>
+<h2 id="陷阱"><a href="#陷阱" class="headerlink" title="陷阱"></a>陷阱</h2><p>知道了！我们忽略了关系数据库的 ACID 保证中的 C（代表一致性，consistency）。 你会发现，现在存在一种可能性，我们可以将新记录插入数据库中，然后立即对其发出读取查询，而没有任何东西返回，好像它不存在一样！</p>
+<p>从主数据库向副本数据库传播新信息不会立即发生。实际上存在一个时间窗口，在其中你会获取过时的信息。如果不是这样（译者注：异步地将更新通知给副本数据库），你的写入性能将受到影响，因为它必须同步地等待数据被传播。</p>
+<p>分布式系统需要进行一些折衷。如果要充分扩展规模，则必须解决这一特定问题。</p>
+<h1 id="4-nbsp-nbsp-nbsp-nbsp-继续伸缩"><a href="#4-nbsp-nbsp-nbsp-nbsp-继续伸缩" class="headerlink" title="4&nbsp;&nbsp;&nbsp;&nbsp;继续伸缩"></a>4&nbsp;&nbsp;&nbsp;&nbsp;继续伸缩</h1><p>使用副本数据库的方法，我们可以在一定程度上横向扩展读取流量。很棒，但是我们在写入流量方面遇到了麻烦 —— 它仍然全部发生在一个服务器上！</p>
+<p>我们在这里没有太多选择。我们只需要将写入流量分流到多个服务器上，因为一台服务器无法处理。</p>
+<p>一种方法是采用多主复制（multi-primary replication）策略。在其中，你有多个支持读取和写入的主结点，而不是只能从其中读取的副本。不幸的是，由于现在会出现冲突（例如，插入两个具有相同 ID 的记录），因此系统会很快变得非常复杂。</p>
+<p>让我们继续使用另一种称为分片（sharding，也称为分区（partitioning））的技术。 通过分片，你可以将服务器拆分为多个较小的服务器，称为分片（shard）。这些分片都保存着不同的记录 —— 你需要创建一份规则，确定哪种记录进入哪个分片。创建规则以使数据以均匀的方式传播非常重要。</p>
+<p>一种可能的方法是根据一些关于记录的信息（例如，名称为 A 到 D 的用户）来定义范围。</p>
+<img src="/2020/06/22/a-thorough-introduction-to-distributed-systems/sharding.png">
+<p>分片键应非常谨慎地选择，因为基于任意列，负载并不总是相等的（例如，更多人的名字以 C 而不是 Z 开头）。收到比其他请求更多请求的分片称为热点（hot spot），必须避免。一旦拆分，重新聚集数据的代价将变得异常高昂，并可能导致大量停机，就像 <a href="https://mashable.com/2010/10/05/foursquare-downtime-post-mortem/#qyp__Q9UDkqW" target="_blank" rel="noopener">FourSquare 臭名昭著的 11 个小时停机</a>一样。</p>
+<p>为了使我们的示例保持简单，假设我们的客户端（Rails 应用程序）知道每个记录要使用哪个数据库。另外值得注意的是，存在很多分片策略，这里仅仅是一个用以说明这一概念简单的示例。</p>
+<p>现在，我们已经赢得了很多东西 —— 我们可以将写入流量增加 N 倍，其中 N 是分片数。这几乎让我们没有限制 —— 想象一下通过这种分区我们可以获得多细的粒度。</p>
+<h2 id="陷阱-1"><a href="#陷阱-1" class="headerlink" title="陷阱"></a>陷阱</h2><p>软件工程中的每件事或多或少都是一个折衷，这也不例外。分片并不是一件容易的事，最好在真正需要之前避免使用。</p>
+<p>现在，通过分区键之外的键进行查询变得极其低效（它们需要遍历所有分片）。SQL <code>JOIN</code> 查询甚至更糟，复杂的查询实际上变得不可用。</p>
+<h1 id="5-nbsp-nbsp-nbsp-nbsp-去中心化-vs-分布式"><a href="#5-nbsp-nbsp-nbsp-nbsp-去中心化-vs-分布式" class="headerlink" title="5&nbsp;&nbsp;&nbsp;&nbsp;去中心化 vs. 分布式"></a>5&nbsp;&nbsp;&nbsp;&nbsp;去中心化 vs. 分布式</h1><p>在进一步深入之前，我想对两个术语进行区分。</p>
+<p>尽管这两个词听起来很相似，并且在逻辑上可以断言它们表示相同的事物，但它们之间的差异会产生重大的技术和政治影响。</p>
+<p>从技术意义上讲，去中心化仍然是分布式的，但是整个去中心化系统并不由一个参与者拥有。没有公司可以拥有去中心化的系统，否则它就不再是去中心化系统了。</p>
+<p>这意味着我们今天将要讨论的大多数系统都可以被视为分布式中心化系统 —— 这就是它们的本质。</p>
+<p>如果考虑一下，创建去中心化的系统将更加困难，因为那样你就需要处理一些参与者不怀好意的情况。对于普通的分布式系统，情况并非如此，因为你知道自己拥有所有节点。</p>
+<p>注意：关于这个定义已经有很多<a href="https://github.com/WebOfTrustInfo/rebooting-the-web-of-trust/issues/50#issuecomment-154995201" target="_blank" rel="noopener">争论</a>，并且可能会与其他定义（peer-to-peer（p2p）、联邦式）混淆。<a href="https://ethereum.stackexchange.com/a/7829" target="_blank" rel="noopener">在早期文献中，对它的定义也有所不同。</a>无论如何，我给你提供的定义是，在区块链和加密货币普及后，我觉得使用最广泛的。</p>
+<h2 id="5-1-nbsp-nbsp-nbsp-nbsp-分布式系统类别"><a href="#5-1-nbsp-nbsp-nbsp-nbsp-分布式系统类别" class="headerlink" title="5.1&nbsp;&nbsp;&nbsp;&nbsp;分布式系统类别"></a>5.1&nbsp;&nbsp;&nbsp;&nbsp;分布式系统类别</h2><p>现在，我们将研究几个分布式系统类别，并列出它们最大的公开生产用途。请记住，文中展示的大多数此类数据已过时，并且在你阅读本文时，可能会大大增加。</p>
+<h2 id="5-2-nbsp-nbsp-nbsp-nbsp-分布式数据存储"><a href="#5-2-nbsp-nbsp-nbsp-nbsp-分布式数据存储" class="headerlink" title="5.2&nbsp;&nbsp;&nbsp;&nbsp;分布式数据存储"></a>5.2&nbsp;&nbsp;&nbsp;&nbsp;分布式数据存储</h2><p>分布式数据存储（data store）被最广泛地使用，并被认为是分布式数据库。大多数分布式数据库是 NoSQL 非关系数据库，限于键值语义。它们以一致性或可用性为代价提供了令人难以置信的性能和可伸缩性。</p>
+<blockquote>
+<p>已知的规模：据了解，在 2015 年，<a href="http://cassandra.apache.org/" target="_blank" rel="noopener">Apple 已经使用 75000 个 Apache Cassandra 结点存储了超过 10 PB 的数据</a>。</p>
+</blockquote>
+<p>要介绍分布式数据存储，我们必须先了解一下 CAP 定理。</p>
+<h2 id="5-3-nbsp-nbsp-nbsp-nbsp-CAP-定理"><a href="#5-3-nbsp-nbsp-nbsp-nbsp-CAP-定理" class="headerlink" title="5.3&nbsp;&nbsp;&nbsp;&nbsp;CAP 定理"></a>5.3&nbsp;&nbsp;&nbsp;&nbsp;CAP 定理</h2>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/06/19/go-goroutine-with-channel/" rel="prev" title="Go 语言中的 channel">
+      <i class="fa fa-chevron-left"></i> Go 语言中的 channel
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/06/29/rfc-6749-oauth-2-0-authorization-framework-zh-cn/" rel="next" title="【译】RFC 6749：OAuth 2.0 授权框架">
+      【译】RFC 6749：OAuth 2.0 授权框架 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-nbsp-nbsp-nbsp-nbsp-什么是分布式系统？"><span class="nav-text">1    什么是分布式系统？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-nbsp-nbsp-nbsp-nbsp-为什么将系统分布？"><span class="nav-text">2    为什么将系统分布？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-nbsp-nbsp-nbsp-nbsp-伸缩我们的数据库"><span class="nav-text">3    伸缩我们的数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#陷阱"><span class="nav-text">陷阱</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-nbsp-nbsp-nbsp-nbsp-继续伸缩"><span class="nav-text">4    继续伸缩</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#陷阱-1"><span class="nav-text">陷阱</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-nbsp-nbsp-nbsp-nbsp-去中心化-vs-分布式"><span class="nav-text">5    去中心化 vs. 分布式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#5-1-nbsp-nbsp-nbsp-nbsp-分布式系统类别"><span class="nav-text">5.1    分布式系统类别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-2-nbsp-nbsp-nbsp-nbsp-分布式数据存储"><span class="nav-text">5.2    分布式数据存储</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-3-nbsp-nbsp-nbsp-nbsp-CAP-定理"><span class="nav-text">5.3    CAP 定理</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Han Qi</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">275</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">76</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">48</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Han Qi</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://muse.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.7.2
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>

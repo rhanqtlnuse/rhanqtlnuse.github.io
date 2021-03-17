@@ -36,7 +36,7 @@
 <meta property="og:image" content="http://yoursite.com/2020/03/29/soft-eng-container-demystifying-containers-part-i-kernel-space/api-setns.png">
 <meta property="og:image" content="http://yoursite.com/2020/03/29/soft-eng-container-demystifying-containers-part-i-kernel-space/pid-namespace.png">
 <meta property="og:image" content="http://yoursite.com/2020/03/29/soft-eng-container-demystifying-containers-part-i-kernel-space/net-namespace.png">
-<meta property="og:updated_time" content="2020-06-13T00:33:06.371Z">
+<meta property="og:updated_time" content="2020-06-17T17:44:05.712Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【译】揭开容器的神秘面纱 | 第一部分：内核空间">
 <meta name="twitter:description" content="翻译自 Demystifying Containers - Part I: Kernel Space">
@@ -209,7 +209,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-06-13 08:33:06" itemprop="dateModified" datetime="2020-06-13T08:33:06+08:00">2020-06-13</time>
+                <time title="修改时间：2020-06-18 01:44:05" itemprop="dateModified" datetime="2020-06-18T01:44:05+08:00">2020-06-18</time>
               </span>
 
           
@@ -229,7 +229,6 @@
 <p>结合历史背景的简单示例将指导你从最基本的 Linux 环境开始，直到制作安全的容器，这些容器非常适合当今和未来的编排（orchestration）世界。最后，理解 Linux 内核、容器工具、运行时、通过软件定义的网络和编排软件（比如，Kubernetes）中的特性是如何设计的以及这些特性是如何运转的会容易地多。</p>
 <hr>
 <p>第一篇博文（和讲座）会讨论 Linux 内核相关的话题，这些话题会给你提供深入理解容器的必要的基础。我们会了解 UNIX、Linux 的历史，并讨论 <code>chroot</code>、名称空间（namespace）和 cgroup 之类的解决方案，并结合我们自己的示例。除此之外，我们将分析（peel）一些容器以了解我们以后要谈论的主题。</p>
-<p>[TOC]</p>
 <h1 id="1-nbsp-nbsp-nbsp-nbsp-引言"><a href="#1-nbsp-nbsp-nbsp-nbsp-引言" class="headerlink" title="1&nbsp;&nbsp;&nbsp;&nbsp;引言"></a>1&nbsp;&nbsp;&nbsp;&nbsp;引言</h1><p>在今天，说到容器，大多数人都会想到下面的大蓝鲸或是蓝色背景的舵轮。</p>
 <img src="/2020/03/29/soft-eng-container-demystifying-containers-part-i-kernel-space/kubernetes-and-docker.png">
 <p>让我们先把这些想法放在一边，问问自己：到底什么是容器？如果读读 Kubernetes 的文档，我们只能找到关于<a href="https://kubernetes.io/docs/concepts/overview/what-is-kubernetes/#why-containers" target="_blank" rel="noopener">为什么要使用容器</a>的解释和许多对 <a href="https://kubernetes.io/docs/concepts/containers/images/" target="_blank" rel="noopener">Docker 的引用</a>。Docker 本身将容器解释为<a href="https://www.docker.com/resources/what-container" target="_blank" rel="noopener">“标准的软件单元”（a standard unit of software）</a>。它们的解释仅仅是提供了总体概述，并没能揭示底层的“魔法”。最终，人们会倾向于把容器当作廉价的虚拟机（virtual machine），但这种想象并不符合实际情况。无法精确地定义什么是容器不是完全没有道理的 —— 因为“容器”一词根本没有任何含义。容器编排生态系统中的“pod”一词也是如此。</p>
@@ -457,7 +456,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">260</span>
+          <span class="site-state-item-count">275</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -466,7 +465,7 @@
         <span class="site-state-item-name">分类</span>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">46</span>
+        <span class="site-state-item-count">48</span>
         <span class="site-state-item-name">标签</span>
       </div>
   </nav>
@@ -491,7 +490,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2020</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

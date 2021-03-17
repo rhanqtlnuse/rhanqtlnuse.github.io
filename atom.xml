@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-06-13T19:47:06.987Z</updated>
+  <updated>2021-03-17T03:40:57.335Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,11 +17,255 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>算法题解题技巧：二分查找</title>
+    <link href="http://yoursite.com/2021/03/16/algo-binary-search/"/>
+    <id>http://yoursite.com/2021/03/16/algo-binary-search/</id>
+    <published>2021-03-16T02:18:34.000Z</published>
+    <updated>2021-03-17T03:40:57.335Z</updated>
+    
+    <summary type="html">
+    
+      本文总结了二分查找的几种实现方式和应用场景之一：最小值最大化
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>算法题解题技巧：滑动窗口</title>
+    <link href="http://yoursite.com/2021/03/16/algo-sliding-window/"/>
+    <id>http://yoursite.com/2021/03/16/algo-sliding-window/</id>
+    <published>2021-03-16T02:18:34.000Z</published>
+    <updated>2021-03-17T03:40:53.959Z</updated>
+    
+    <summary type="html">
+    
+      本文总结了使用滑动窗口解决算法题的基本思路，展示了一些例子
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>中文转数值</title>
+    <link href="http://yoursite.com/2021/03/13/chinese-to-number/"/>
+    <id>http://yoursite.com/2021/03/13/chinese-to-number/</id>
+    <published>2021-03-13T13:36:57.000Z</published>
+    <updated>2021-03-13T14:22:05.522Z</updated>
+    
+    <summary type="html">
+    
+      微软的一道面试题
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>短 URL 系统设计</title>
+    <link href="http://yoursite.com/2021/02/07/url-shortening/"/>
+    <id>http://yoursite.com/2021/02/07/url-shortening/</id>
+    <published>2021-02-07T01:40:56.000Z</published>
+    <updated>2021-02-07T06:22:42.413Z</updated>
+    
+    <summary type="html">
+    
+      设计一个类似 TinyURL 的短 URL 系统
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>LeetCode 1402：做菜的顺序</title>
+    <link href="http://yoursite.com/2020/07/19/leetcode-1402/"/>
+    <id>http://yoursite.com/2020/07/19/leetcode-1402/</id>
+    <published>2020-07-19T13:42:08.000Z</published>
+    <updated>2020-07-19T14:08:35.707Z</updated>
+    
+    <summary type="html">
+    
+      如题
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>LeetCode 338：</title>
+    <link href="http://yoursite.com/2020/07/17/leetcode-338/"/>
+    <id>http://yoursite.com/2020/07/17/leetcode-338/</id>
+    <published>2020-07-17T14:05:00.000Z</published>
+    <updated>2020-07-17T14:27:05.463Z</updated>
+    
+    <summary type="html">
+    
+      如题
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>LeetCode 1387：</title>
+    <link href="http://yoursite.com/2020/07/16/leetcode-1387/"/>
+    <id>http://yoursite.com/2020/07/16/leetcode-1387/</id>
+    <published>2020-07-16T13:56:23.000Z</published>
+    <updated>2020-07-16T14:21:52.608Z</updated>
+    
+    <summary type="html">
+    
+      如题
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>LeetCode 990：等式方程的可满足性</title>
+    <link href="http://yoursite.com/2020/07/15/leetcode-990/"/>
+    <id>http://yoursite.com/2020/07/15/leetcode-990/</id>
+    <published>2020-07-15T14:20:35.000Z</published>
+    <updated>2020-07-15T14:36:43.968Z</updated>
+    
+    <summary type="html">
+    
+      如题
+    
+    </summary>
+    
+    
+      <category term="并查集" scheme="http://yoursite.com/tags/%E5%B9%B6%E6%9F%A5%E9%9B%86/"/>
+    
+      <category term="图" scheme="http://yoursite.com/tags/%E5%9B%BE/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>LeetCode 174：地下城游戏</title>
+    <link href="http://yoursite.com/2020/07/12/leetcode-174/"/>
+    <id>http://yoursite.com/2020/07/12/leetcode-174/</id>
+    <published>2020-07-12T12:33:00.000Z</published>
+    <updated>2020-07-12T12:43:16.726Z</updated>
+    
+    <summary type="html">
+    
+      如题
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>基于角色的访问控制</title>
+    <link href="http://yoursite.com/2020/07/05/role-based-access-control/"/>
+    <id>http://yoursite.com/2020/07/05/role-based-access-control/</id>
+    <published>2020-07-05T08:45:40.000Z</published>
+    <updated>2020-07-05T09:12:24.480Z</updated>
+    
+    <summary type="html">
+    
+      Role-Based Access Control, RBAC
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>jQuery</title>
+    <link href="http://yoursite.com/2020/07/01/jquery/"/>
+    <id>http://yoursite.com/2020/07/01/jquery/</id>
+    <published>2020-07-01T07:04:44.000Z</published>
+    <updated>2020-07-01T08:08:13.073Z</updated>
+    
+    <summary type="html">
+    
+      jQuery 笔记
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>【译】RFC 6749：OAuth 2.0 授权框架</title>
+    <link href="http://yoursite.com/2020/06/29/rfc-6749-oauth-2-0-authorization-framework-zh-cn/"/>
+    <id>http://yoursite.com/2020/06/29/rfc-6749-oauth-2-0-authorization-framework-zh-cn/</id>
+    <published>2020-06-29T14:53:36.000Z</published>
+    <updated>2020-07-01T01:18:31.456Z</updated>
+    
+    <summary type="html">
+    
+      翻译自《RFC 6749：The OAuth 2.0 Authorization Framework》
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>【译】透彻的分布式系统简介</title>
+    <link href="http://yoursite.com/2020/06/22/a-thorough-introduction-to-distributed-systems/"/>
+    <id>http://yoursite.com/2020/06/22/a-thorough-introduction-to-distributed-systems/</id>
+    <published>2020-06-22T04:00:16.000Z</published>
+    <updated>2020-06-23T06:08:16.176Z</updated>
+    
+    <summary type="html">
+    
+      翻译自 freeCodeCamp，原题目为 A Thorough Introduction to Distributed Systems
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Go 语言中的 channel</title>
+    <link href="http://yoursite.com/2020/06/19/go-goroutine-with-channel/"/>
+    <id>http://yoursite.com/2020/06/19/go-goroutine-with-channel/</id>
+    <published>2020-06-18T16:33:28.000Z</published>
+    <updated>2020-06-18T19:27:00.552Z</updated>
+    
+    <summary type="html">
+    
+      笔记
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>海量数据处理</title>
+    <link href="http://yoursite.com/2020/06/16/large-volume-processing/"/>
+    <id>http://yoursite.com/2020/06/16/large-volume-processing/</id>
+    <published>2020-06-16T07:02:36.000Z</published>
+    <updated>2020-06-16T08:09:02.404Z</updated>
+    
+    <summary type="html">
+    
+      对 https://frank-lam.github.io/fullstack-tutorial/#/%E6%B5%B7%E9%87%8F%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86 的补充笔记
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
     <title>【译】揭开容器的神秘面纱 | 第二部分：容器运行时</title>
     <link href="http://yoursite.com/2020/06/13/soft-eng-container-demystifying-containers-part-ii-container-runtimes/"/>
     <id>http://yoursite.com/2020/06/13/soft-eng-container-demystifying-containers-part-ii-container-runtimes/</id>
     <published>2020-06-13T00:42:18.000Z</published>
-    <updated>2020-06-13T19:47:06.987Z</updated>
+    <updated>2020-06-13T23:45:01.586Z</updated>
     
     <summary type="html">
     
@@ -101,294 +345,6 @@
     
     </summary>
     
-    
-  </entry>
-  
-  <entry>
-    <title>在 Windows 上安装 Spacemacs</title>
-    <link href="http://yoursite.com/2020/05/31/install-spacemacs-on-windows/"/>
-    <id>http://yoursite.com/2020/05/31/install-spacemacs-on-windows/</id>
-    <published>2020-05-31T15:53:26.000Z</published>
-    <updated>2020-05-31T16:34:23.245Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>【译】MIT Missing Semester | 2. Shell 工具</title>
-    <link href="http://yoursite.com/2020/05/15/mit-missing-semester-2-shell-tools/"/>
-    <id>http://yoursite.com/2020/05/15/mit-missing-semester-2-shell-tools/</id>
-    <published>2020-05-15T12:22:35.000Z</published>
-    <updated>2020-05-19T05:25:24.889Z</updated>
-    
-    <summary type="html">
-    
-      MIT Missing Semester 第 2 讲 Lecture Notes 的中文翻译
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>查询未使用索引的常见原因</title>
-    <link href="http://yoursite.com/2020/05/03/database-why-is-my-index-not-being-used/"/>
-    <id>http://yoursite.com/2020/05/03/database-why-is-my-index-not-being-used/</id>
-    <published>2020-05-03T12:25:25.000Z</published>
-    <updated>2020-05-03T13:20:01.495Z</updated>
-    
-    <summary type="html">
-    
-      分析索引未被使用的常见原因
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>辛弃疾《青玉案·元夕》</title>
-    <link href="http://yoursite.com/2020/05/02/poetry-%E8%BE%9B%E5%BC%83%E7%96%BE-%E9%9D%92%E7%8E%89%E6%A1%88-%E5%85%83%E5%A4%95/"/>
-    <id>http://yoursite.com/2020/05/02/poetry-辛弃疾-青玉案-元夕/</id>
-    <published>2020-05-02T10:02:13.000Z</published>
-    <updated>2020-05-02T10:04:24.969Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>用 SQL 进行存在性检查</title>
-    <link href="http://yoursite.com/2020/05/02/database-sql-existence-check/"/>
-    <id>http://yoursite.com/2020/05/02/database-sql-existence-check/</id>
-    <published>2020-05-02T03:54:38.000Z</published>
-    <updated>2020-05-02T07:31:29.138Z</updated>
-    
-    <summary type="html">
-    
-      如题
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>how-to-use-italic-and-bold-fonts-properly</title>
-    <link href="http://yoursite.com/2020/05/01/how-to-use-italic-and-bold-fonts-properly/"/>
-    <id>http://yoursite.com/2020/05/01/how-to-use-italic-and-bold-fonts-properly/</id>
-    <published>2020-05-01T14:28:57.000Z</published>
-    <updated>2020-05-01T14:45:38.724Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>防御式编程 vs. 进攻式编程</title>
-    <link href="http://yoursite.com/2020/05/01/soft-eng-cons-defensive-vs-offensive-programming/"/>
-    <id>http://yoursite.com/2020/05/01/soft-eng-cons-defensive-vs-offensive-programming/</id>
-    <published>2020-05-01T03:50:42.000Z</published>
-    <updated>2020-05-01T04:06:11.985Z</updated>
-    
-    <summary type="html">
-    
-      介绍防御式编程和进攻式编程两种代码构造技术，并进行对比
-    
-    </summary>
-    
-      <category term="软件工程 (Software Engineering)" scheme="http://yoursite.com/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B-Software-Engineering/"/>
-    
-      <category term="软件构造 (Software Construction)" scheme="http://yoursite.com/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B-Software-Engineering/%E8%BD%AF%E4%BB%B6%E6%9E%84%E9%80%A0-Software-Construction/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>regex-learning</title>
-    <link href="http://yoursite.com/2020/04/30/regex-learning/"/>
-    <id>http://yoursite.com/2020/04/30/regex-learning/</id>
-    <published>2020-04-30T01:22:10.000Z</published>
-    <updated>2020-05-01T14:47:23.374Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>database-sql-learning</title>
-    <link href="http://yoursite.com/2020/04/30/database-sql-learning/"/>
-    <id>http://yoursite.com/2020/04/30/database-sql-learning/</id>
-    <published>2020-04-30T01:06:42.000Z</published>
-    <updated>2020-04-30T08:54:41.381Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>MySQL | 常用函数</title>
-    <link href="http://yoursite.com/2020/04/29/mysql-frequently-used-functions/"/>
-    <id>http://yoursite.com/2020/04/29/mysql-frequently-used-functions/</id>
-    <published>2020-04-29T11:47:20.000Z</published>
-    <updated>2020-05-08T03:04:48.855Z</updated>
-    
-    <summary type="html">
-    
-      总结一些个人经常用到的 MySQL 内置函数
-    
-    </summary>
-    
-    
-      <category term="MySQL" scheme="http://yoursite.com/tags/MySQL/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>常见的命名方式</title>
-    <link href="http://yoursite.com/2020/04/28/others-naming-style/"/>
-    <id>http://yoursite.com/2020/04/28/others-naming-style/</id>
-    <published>2020-04-28T14:04:21.000Z</published>
-    <updated>2020-04-29T14:19:07.655Z</updated>
-    
-    <summary type="html">
-    
-      如题
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>使用 LaTeX 绘制来自 CSV 文件的数据</title>
-    <link href="http://yoursite.com/2020/04/27/latex-inserting-data-from-file-for-plotting/"/>
-    <id>http://yoursite.com/2020/04/27/latex-inserting-data-from-file-for-plotting/</id>
-    <published>2020-04-27T11:26:07.000Z</published>
-    <updated>2020-04-27T12:14:41.531Z</updated>
-    
-    <summary type="html">
-    
-      如题，所有 LaTeX 源码已在 Overleaf 上验证过
-    
-    </summary>
-    
-    
-      <category term="LaTeX" scheme="http://yoursite.com/tags/LaTeX/"/>
-    
-      <category term="TikZ" scheme="http://yoursite.com/tags/TikZ/"/>
-    
-      <category term="PGF" scheme="http://yoursite.com/tags/PGF/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>set-up-latex-env</title>
-    <link href="http://yoursite.com/2020/04/26/set-up-latex-env/"/>
-    <id>http://yoursite.com/2020/04/26/set-up-latex-env/</id>
-    <published>2020-04-26T00:32:15.000Z</published>
-    <updated>2020-04-26T00:32:15.159Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>set-up-python-env-using-anaconda</title>
-    <link href="http://yoursite.com/2020/04/25/set-up-python-env-using-anaconda/"/>
-    <id>http://yoursite.com/2020/04/25/set-up-python-env-using-anaconda/</id>
-    <published>2020-04-25T08:53:29.000Z</published>
-    <updated>2020-04-25T09:02:33.807Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>PyTorch 入门</title>
-    <link href="http://yoursite.com/2020/04/25/pytorch-getting-started/"/>
-    <id>http://yoursite.com/2020/04/25/pytorch-getting-started/</id>
-    <published>2020-04-25T02:09:00.000Z</published>
-    <updated>2020-04-25T02:17:36.299Z</updated>
-    
-    <summary type="html">
-    
-      笔记
-    
-    </summary>
-    
-    
-      <category term="PyTorch" scheme="http://yoursite.com/tags/PyTorch/"/>
     
   </entry>
   

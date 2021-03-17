@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.8.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="Role-Based Access Control, RBAC">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于角色的访问控制">
+<meta property="og:url" content="http://yoursite.com/2020/07/05/role-based-access-control/index.html">
+<meta property="og:site_name" content="RHANQTL">
+<meta property="og:description" content="Role-Based Access Control, RBAC">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2020/07/05/role-based-access-control/rbac0-uml.jpg">
+<meta property="og:updated_time" content="2020-07-05T09:12:24.480Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="基于角色的访问控制">
+<meta name="twitter:description" content="Role-Based Access Control, RBAC">
+<meta name="twitter:image" content="http://yoursite.com/2020/07/05/role-based-access-control/rbac0-uml.jpg">
+
+<link rel="canonical" href="http://yoursite.com/2020/07/05/role-based-access-control/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
+  };
+</script>
+
+  <title>基于角色的访问控制 | RHANQTL</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">RHANQTL</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">上下求索</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>站点地图</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/05/role-based-access-control/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          基于角色的访问控制
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-07-05 16:45:40 / 修改时间：17:12:24" itemprop="dateCreated datePublished" datetime="2020-07-05T16:45:40+08:00">2020-07-05</time>
+            </span>
+
+          
+            <div class="post-description">Role-Based Access Control, RBAC</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="1-nbsp-nbsp-nbsp-nbsp-什么是-RBAC？"><a href="#1-nbsp-nbsp-nbsp-nbsp-什么是-RBAC？" class="headerlink" title="1&nbsp;&nbsp;&nbsp;&nbsp;什么是 RBAC？"></a>1&nbsp;&nbsp;&nbsp;&nbsp;什么是 RBAC？</h1><h2 id="1-1-nbsp-nbsp-nbsp-nbsp-绪论"><a href="#1-1-nbsp-nbsp-nbsp-nbsp-绪论" class="headerlink" title="1.1&nbsp;&nbsp;&nbsp;&nbsp;绪论"></a>1.1&nbsp;&nbsp;&nbsp;&nbsp;绪论</h2><p>RBAC 认为权限认证的过程可以抽象概括为：判断“<em>Who</em> 是否可以对 <em>What</em> 进行 <em>How</em> 的访问操作”这个逻辑表达式的值是否为真的求解过程，即将权限问题转换为 Who、What、How 的问题，三者构成了访问权限三元组。</p>
+<p>RBAC 支持公认的安全原则：最小特权原则、责任分离原则和数据抽象原则。</p>
+<ul>
+<li>最小特权原则：在 RBAC 模型中可以通过限制分配给角色权限的多少和大小来实现，分配给某用户对应的角色的权限只要不超过该用户完成其任务的需要就可以了；</li>
+<li>责任分离原则：在 RBAC 模型中可以通过在完成敏感任务过程中分配两个责任上互相约束的两个角色来实现。例如，在清查账目时，可以设置财务管理员和会计两个角色参加；</li>
+<li>数据抽象原则：借助于抽象许可权这样的概念实现的。例如，在账目管理活动中，可以使用信用、借方等抽象许可权，而不是使用操作系统提供的读、写、执行等具体的许可权。</li>
+</ul>
+<p>RBAC 并不强迫实现这些原则，安全管理员可以允许配置 RBAC 模型使它不支持这些原则。因此，RBAC 支持数据抽象的程度与 RBAC 模型的实现细节有关。</p>
+<p>在 20 世纪 90 年代期间，大量的专家学者和专门研究单位对 RBAC 的概念进行了深入研究，先后提出了许多类型的 RBAC 模型，其中以美国 George Mason 大学信息安全技术实验室提出的 RBAC96 模型最具有系统性，得到普遍的公认。</p>
+<p>RBAC96 是一个模型族，其中包括 RBAC0 ~ 3 四个概念性模型：</p>
+<ul>
+<li>基本模型 RBAC0 定义了完全支持 RBAC 概念的任何系统的最低需求；</li>
+<li>RBAC1 和 RBAC2 两者都包含 RBAC0，但各自都增加了独立的特点，它们被称为高级模型；<ul>
+<li>RBAC1 中增加了角色分级的概念，一个角色可以从另一个角色继承许可权；</li>
+<li>RBAC2 中增加了一些限制，强调在 RBAC 的不同组件中在配置方面的一些限制；</li>
+</ul>
+</li>
+<li>RBAC3 称为统一模型，它包含了 RBAC1 和 RBAC2（因此也把 RBAC0 包括在内）</li>
+</ul>
+<p>这些模型构成了 RBAC96 模型族。</p>
+<h2 id="1-2-nbsp-nbsp-nbsp-nbsp-RBAC-模型简述"><a href="#1-2-nbsp-nbsp-nbsp-nbsp-RBAC-模型简述" class="headerlink" title="1.2&nbsp;&nbsp;&nbsp;&nbsp;RBAC 模型简述"></a>1.2&nbsp;&nbsp;&nbsp;&nbsp;RBAC 模型简述</h2><h3 id="1-2-1-nbsp-nbsp-nbsp-nbsp-RBAC0"><a href="#1-2-1-nbsp-nbsp-nbsp-nbsp-RBAC0" class="headerlink" title="1.2.1&nbsp;&nbsp;&nbsp;&nbsp;RBAC0"></a>1.2.1&nbsp;&nbsp;&nbsp;&nbsp;RBAC0</h3><p>如前所述，RBAC0 是权限管理的核心部分，定义了能构成一个 RBAC 控制系统的最小的元素集合。RBAC0 模型中包括用户（user）、角色（role）和许可权（permission）三类实体集合。</p>
+<img src="/2020/07/05/role-based-access-control/rbac0-uml.jpg">
+
+<p>每个角色至少具备一种权限，每个用户至少扮演一个角色；可以对两个完全不同的角色分配完全相同的访问权限；会话由用户控制，一个用户可以创建会话并激活多个用户角色，从而获取相应的访问权限，用户可以在会话中更改激活角色，用户可以主动结束一个会话。</p>
+<p>用户和角色是<strong>多对多</strong>的关系：</p>
+<ul>
+<li>一个用户在不同的场景下可以拥有不同的角色；</li>
+<li>一个角色可以分配给多个用户</li>
+</ul>
+<h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><p><strong>为什么设计成“用户 - 角色 - 权限”这样的形式？</strong></p>
+<p>个人理解，主要是为了复用和灵活性。</p>
+<p>先看用户 - 角色这部分。如果二者合在一起，那么在授权时需要对每个用户都指定一遍权限，而将二者分离，在角色这一端定义权限，在进行授权时只需要指定角色就好了，相同的有相同权限的用户可以扮演相同的角色（复用）。另外，将二者分离，一个用户就可以有多个角色，甚至可以动态地更改。</p>
+<p>用户 - 权限这部分类似。</p>
+<h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/07/01/jquery/" rel="prev" title="jQuery">
+      <i class="fa fa-chevron-left"></i> jQuery
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/07/12/leetcode-174/" rel="next" title="LeetCode 174：地下城游戏">
+      LeetCode 174：地下城游戏 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-nbsp-nbsp-nbsp-nbsp-什么是-RBAC？"><span class="nav-text">1    什么是 RBAC？</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-nbsp-nbsp-nbsp-nbsp-绪论"><span class="nav-text">1.1    绪论</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-nbsp-nbsp-nbsp-nbsp-RBAC-模型简述"><span class="nav-text">1.2    RBAC 模型简述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-1-nbsp-nbsp-nbsp-nbsp-RBAC0"><span class="nav-text">1.2.1    RBAC0</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#问题"><span class="nav-text">问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考文献"><span class="nav-text">参考文献</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Han Qi</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">275</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">76</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">48</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Han Qi</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://muse.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.7.2
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>

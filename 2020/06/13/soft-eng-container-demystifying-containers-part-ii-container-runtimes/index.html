@@ -31,7 +31,7 @@
 <meta property="og:image" content="http://yoursite.com/2020/06/13/soft-eng-container-demystifying-containers-part-ii-container-runtimes/cncf-oci-logo.png">
 <meta property="og:image" content="http://yoursite.com/2020/06/13/soft-eng-container-demystifying-containers-part-ii-container-runtimes/runc-logo.png">
 <meta property="og:image" content="http://yoursite.com/2020/06/13/soft-eng-container-demystifying-containers-part-ii-container-runtimes/crio-logo.png">
-<meta property="og:updated_time" content="2020-06-13T19:47:06.987Z">
+<meta property="og:updated_time" content="2020-06-13T23:45:01.586Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【译】揭开容器的神秘面纱 | 第二部分：容器运行时">
 <meta name="twitter:description" content="翻译自 Demystifying Containers – Part II: Container Runtimes">
@@ -204,7 +204,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-06-14 03:47:06" itemprop="dateModified" datetime="2020-06-14T03:47:06+08:00">2020-06-14</time>
+                <time title="修改时间：2020-06-14 07:45:01" itemprop="dateModified" datetime="2020-06-14T07:45:01+08:00">2020-06-14</time>
               </span>
 
           
@@ -219,7 +219,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>第二篇博客文章（和演讲）主要针对容器运行时，我们将从它们的历史渊源入手，然后再深入研究两个专用项目：runc 和 CRI-O。首先，我们将从较低级别的运行时 runc 开始，为容器运行时如何在幕后工作打下良好的基础。之后，我们将利用更高级的运行时 CRI-O 在不运行 Kubernetes 的情况下来运行 Kubernetes 本地工作负载。</p>
+        <p><a href="https://medium.com/@saschagrunert/demystifying-containers-part-ii-container-runtimes-e363aa378f25" target="_blank" rel="noopener">原文地址</a></p>
+<p>本系列博文和对应的讲座旨在从历史的角度给你提供一个关于容器的实用的视角。我们一起会逐层地（layer by layer）发现新型的云架构：从 Linux 内核的级别开始，直至编写我们自己的安全云原生（cloud native）应用。</p>
+<p>结合历史背景的简单示例将指导你从最基本的 Linux 环境开始，直到制作安全的容器，这些容器非常适合当今和未来的编排（orchestration）世界。最后，理解 Linux 内核、容器工具、运行时、通过软件定义的网络和编排软件（比如，Kubernetes）中的特性是如何设计的以及这些特性是如何运转的会容易地多。</p>
+<hr>
+<p>第二篇博文（和演讲）主要针对容器运行时，我们将从它们的历史渊源入手，然后再深入研究两个专用项目：runc 和 CRI-O。首先，我们将从较低级别的运行时 runc 开始，为容器运行时如何在幕后工作打下良好的基础。之后，我们将利用更高级的运行时 CRI-O 在不运行 Kubernetes 的情况下来运行 Kubernetes 本地工作负载。</p>
 <h1 id="1-nbsp-nbsp-nbsp-nbsp-绪论"><a href="#1-nbsp-nbsp-nbsp-nbsp-绪论" class="headerlink" title="1&nbsp;&nbsp;&nbsp;&nbsp;绪论"></a>1&nbsp;&nbsp;&nbsp;&nbsp;绪论</h1><p>在本系列的前一部分，我们讨论了 Linux 内核命名空间和其他相关的一切来建立关于容器和它们的基本隔离技术的基础。现在，我们想要更加深入一点，回答这个问题：如何真正地运行容器？我们会在省略 Kubernetes 特性和安全相关的话题（这些在后面的文章和演讲会覆盖）的情况下完成这件事。</p>
 <h1 id="2-nbsp-nbsp-nbsp-nbsp-什么是容器运行时？"><a href="#2-nbsp-nbsp-nbsp-nbsp-什么是容器运行时？" class="headerlink" title="2&nbsp;&nbsp;&nbsp;&nbsp;什么是容器运行时？"></a>2&nbsp;&nbsp;&nbsp;&nbsp;什么是容器运行时？</h1><p>在 UNIX 世界中，应用程序及其必需或不必需的用例是引起争议的主题。主要的 <a href="https://en.wikipedia.org/wiki/Unix_philosophy" target="_blank" rel="noopener">UNIX 哲学</a>传播了极简主义和模块化软件部分，这些部分应该很好地融合在一个完整的系统中。遵循这些哲学方面的好例子是 <a href="https://en.wikipedia.org/wiki/Pipeline_(Unix" target="_blank" rel="noopener">UNIX 管道</a>)之类的功能或 <a href="https://www.vim.org/" target="_blank" rel="noopener">Vim</a> 之类的文本编辑器。这些工具可以最大程度地解决一项专用任务，并且在此方面取得了巨大成功。另一方面，像 systemd 或 cmake 之类的项目没有采用相同的方法，而是随着时间的推移实现了更丰富的功能集。最后，对于诸如“初始化系统应该是什么样的？”或“构建系统应该做什么？”之类的问题的答案，我们有多种观点和看法。如果这些多观点的观点与历史事件混杂在一起，那么回答一个简单的问题可能需要更多的解释。</p>
 <p>现在，欢迎来到容器的世界！</p>
@@ -287,6 +291,50 @@
 <p>“sandbox”是什么意思？容器应该已经是某种沙箱了，对吗？是的，但是在 Kubernetes 的世界里，<a href="https://kubernetes.io/docs/concepts/workloads/pods/pod" target="_blank" rel="noopener">Pods</a> 中可以包含多个容器，而此抽象层级必须映射到一个简单的容器列表中。因此，每次创建 Kubernetes Pod 都要从设置所谓的 PodSandbox 开始。Pod 内部运行的每个容器都附加到此沙箱，因而内部的容器可以共享公共资源，例如其网络接口。单独的 runc 并不能提供此类功能，因此我们必须使用更高级别的运行时来实现我们的目标。</p>
 <h2 id="4-3-nbsp-nbsp-nbsp-nbsp-CRI-O"><a href="#4-3-nbsp-nbsp-nbsp-nbsp-CRI-O" class="headerlink" title="4.3&nbsp;&nbsp;&nbsp;&nbsp;CRI-O"></a>4.3&nbsp;&nbsp;&nbsp;&nbsp;CRI-O</h2><img src="/2020/06/13/soft-eng-container-demystifying-containers-part-ii-container-runtimes/crio-logo.png">
 <p>CRI-O 是更高级别的容器运行时，它是专门为与 Kubernetes CRI 一起使用而编写的。该名称源自“容器运行时接口”和“开放容器倡议”的组合。这不是很简单吗？2016 年，CRI-O 最初是作为 Kubernetes 孵化器项目开始的，那时它还叫做“开放容器倡议守护程序（OCI Daemon，OCID）”。版本 1.0.0 于一年后发布，并从那天开始与 Kubernetes 遵循同样的发布周期。例如，这意味着 Kubernetes 版本 1.15 可以与 CRI-O 1.15 一起安全使用，以此类推。</p>
+<p>CRI-O 的实现遵循 UNIX 的主要哲学，在运行 Kubernetes 内可用于生产就绪的工作负载时，它往往是 Docker 或容器化的轻量级替代方案。它并不是一个面向开发人员的、可以在命令行中使用的工具。CRI-O 只有一项主要任务：满足 Kubernetes CRI。为此，它利用 runc 在后面进行基本的容器管理，而 gRPC 服务器在前端提供了API。两者之间的所有操作均由 CRI-O 本身或核心库（例如<a href="https://github.com/containers/storage" target="_blank" rel="noopener">容器/存储</a>或<a href="https://github.com/containers/image" target="_blank" rel="noopener">容器/映像</a>）完成。但最后并不意味着我们不能尝试它，所以让我们尝试一下。</p>
+<p>我准备了一个名为“crio-playground”的容器映像，以高效地开始使用 CRI-O。该镜像包含所有必需的工具、示例文件和在后台运行的有效 CRI-O 实例。要启动运行 crio-playground 的特权容器，只需执行以下命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; sudo podman run --privileged -h crio-playground -it saschagrunert/crio-playground</span><br><span class="line">crio-playground:~ $</span><br></pre></td></tr></table></figure>
+<p>从现在开始，我们将使用名为 <code>crictl</code> 的工具与 CRI-O 及其容器运行时接口实现进行接口。<code>crictl</code> 允许我们使用 CRI API 请求的 YAML 表示形式将其发送到 CRI-O。例如，我们可以创建一个新的 PodSandbox，其中的 <code>sandbox.yml</code> 位于操场的当前工作目录中：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">metadata:</span></span><br><span class="line"><span class="attr">  name:</span> <span class="string">sandbox</span></span><br><span class="line"><span class="attr">  namespace:</span> <span class="string">default</span></span><br><span class="line"><span class="attr">dns_config:</span></span><br><span class="line"><span class="attr">  servers:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="number">8.8</span><span class="number">.8</span><span class="number">.8</span></span><br></pre></td></tr></table></figure>
+<p>为了在正在运行的 crio-playground 容器中创建沙箱，我们现在执行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">crio-playground:~ $ crictl runp sandbox.yml</span><br><span class="line">5f2b94f74b28c092021ad8eeae4903ada4b1ef306adf5eaa0e985672363d6336</span><br></pre></td></tr></table></figure>
+<p>让我们将沙箱的 ID 存储为 <code>$POD_ID</code> 环境变量，以备日后使用：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">crio-playground:~ $ export POD_ID=5f2b94f74b28c092021ad8eeae4903ada4b1ef306adf5eaa0e985672363d6336</span><br></pre></td></tr></table></figure>
+<p>如果现在运行 <code>crictl pods</code>，我们可以看到我们终于启动并运行了一个 PodSandbox：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">crio-playground:~ $ crictl pods</span><br><span class="line">POD ID              CREATED             STATE               NAME                NAMESPACE           ATTEMPT</span><br><span class="line">5f2b94f74b28c       43 seconds ago      Ready               sandbox             default             0</span><br></pre></td></tr></table></figure>
+<p>但是我们沙箱中有什么？我们当然可以使用 <code>runc</code> 进一步检查沙箱：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">crio-playground:~ $ runc list</span><br><span class="line">ID                                                                 PID         STATUS      BUNDLE                                                                                                             CREATED                          OWNER</span><br><span class="line">5f2b94f74b28c092021ad8eeae4903ada4b1ef306adf5eaa0e985672363d6336   80          running     /run/containers/storage/vfs-containers/5f2b94f74b28c092021ad8eeae4903ada4b1ef306adf5eaa0e985672363d6336/userdata   2019-05-23T13:43:38.798531426Z   root</span><br></pre></td></tr></table></figure>
+<p>沙盒似乎在 <code>/run/containers</code> 下的专用包中运行。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">crio-playground:~ $ runc ps $POD_ID</span><br><span class="line">UID        PID  PPID  C STIME TTY          TIME CMD</span><br><span class="line">root        80    68  0 13:43 ?        00:00:00 /pause</span><br></pre></td></tr></table></figure>
+<p>有趣的是，沙箱中只有一个进程在运行，称为 <code>pause</code>。如 <a href="https://github.com/kubernetes/kubernetes/blob/4665303/build/pause/pause.c" target="_blank" rel="noopener"><code>pause</code> 的源代码</a>所示，此过程的主要任务是保持环境运行并对传入的信号做出反应。在我们实际在该沙箱中创建工作负载之前，我们必须先拉取想要运行的映像。一个简单的示例是运行网络服务器，因此让我们通过调用以下命令来检索 nginx 镜像：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">crio-playground:~ $ crictl pull nginx:alpine</span><br><span class="line">Image is up to date for docker.io/library/nginx@sha256:0fd68ec4b64b8dbb2bef1f1a5de9d47b658afd3635dc9c45bf0cbeac46e72101</span><br></pre></td></tr></table></figure>
+<p>现在，像在沙箱中一样，在YAML中创建一个非常简单的容器定义：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">metadata:</span></span><br><span class="line"><span class="attr">  name:</span> <span class="string">container</span></span><br><span class="line"><span class="attr">image:</span></span><br><span class="line"><span class="attr">  image:</span> <span class="attr">nginx:alpine</span></span><br></pre></td></tr></table></figure>
+<p>现在，让我们启动容器。为此，我们必须提供沙箱的哈希以及沙箱和容器的 YAML 定义：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">crio-playground:~ $ crictl create $POD_ID container.yml sandbox.yml</span><br><span class="line">b205eb2c6abec3e7ade72e0cea09d827968a4c1089483cab06bdf0f4ee82ff0c</span><br></pre></td></tr></table></figure>
+<p>似乎可以工作！让我们将容器标识符存储为 <code>$CONTAINER_ID</code>，以备日后重用：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">crio-playground:~ $ export CONTAINER_ID=b205eb2c6abec3e7ade72e0cea09d827968a4c1089483cab06bdf0f4ee82ff0c</span><br></pre></td></tr></table></figure>
+<p>如果现在在牢记 CRI API 的情况下检查两个正在运行的容器的状态，您会期望什么？正确，容器应处于 <code>created</code> 状态：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">crio-playground:~ $ runc list</span><br><span class="line">ID                                                                 PID         STATUS      BUNDLE                                                                                                             CREATED                          OWNER</span><br><span class="line">5f2b94f74b28c092021ad8eeae4903ada4b1ef306adf5eaa0e985672363d6336   80          running     /run/containers/storage/vfs-containers/5f2b94f74b28c092021ad8eeae4903ada4b1ef306adf5eaa0e985672363d6336/userdata   2019-05-23T13:43:38.798531426Z   root</span><br><span class="line">b205eb2c6abec3e7ade72e0cea09d827968a4c1089483cab06bdf0f4ee82ff0c   343         created     /run/containers/storage/vfs-containers/b205eb2c6abec3e7ade72e0cea09d827968a4c1089483cab06bdf0f4ee82ff0c/userdata   2019-05-23T14:08:53.701174406Z   root</span><br></pre></td></tr></table></figure>
+<p>并且，就像我们之前的 runc 示例一样，容器在 <code>runc init</code> 中等待：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">crio-playground:~ $ runc ps $CONTAINER_ID</span><br><span class="line">UID        PID  PPID  C STIME TTY          TIME CMD</span><br><span class="line">root       343   331  0 14:08 ?        00:00:00 /usr/sbin/runc init</span><br></pre></td></tr></table></figure>
+<p><code>crictl</code> 也显示该容器正处于 <code>created</code> 状态：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">crio-playground:~ $ crictl ps -a</span><br><span class="line">CONTAINER ID        IMAGE               CREATED             STATE               NAME                ATTEMPT             POD ID</span><br><span class="line">b205eb2c6abec       nginx:alpine        13 minutes ago      Created             container           0                   5f2b94f74b28c</span><br></pre></td></tr></table></figure>
+<p>现在我们必须启动工作负载才能使其进入 <code>running</code> 状态：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">crio-playground:~ $ crictl start $CONTAINER_ID</span><br><span class="line">b205eb2c6abec3e7ade72e0cea09d827968a4c1089483cab06bdf0f4ee82ff0c</span><br></pre></td></tr></table></figure>
+<p>这也应该成功。让我们验证所有进程是否正常运行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">crio-playground:~ $ crictl ps</span><br><span class="line">CONTAINER ID        IMAGE               CREATED             STATE               NAME                ATTEMPT             POD ID</span><br><span class="line">b205eb2c6abec       nginx:alpine        15 minutes ago      Running             container           0                   5f2b94f74b28c</span><br></pre></td></tr></table></figure>
+<p>现在，在容器内应运行 nginx Web 服务器：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">crio-playground:~ $ runc ps $CONTAINER_ID</span><br><span class="line">UID        PID  PPID  C STIME TTY          TIME CMD</span><br><span class="line">root       343   331  0 14:08 ?        00:00:00 nginx: master process nginx -g daemon off;</span><br><span class="line">100        466   343  0 14:24 ?        00:00:00 nginx: worker process</span><br></pre></td></tr></table></figure>
+<p>但是现在如何到达 Web 服务器的内容呢？我们没有为容器公开任何端口或其他高级配置，因此应该与主机完全隔离。解决方案在于容器网络。因为我们在 crio-playground 中使用桥接网络配置，所以我们可以简单地访问容器的网络地址。为了获得这些，我们可以 <code>exec</code> 到容器中并列出网络接口：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">crio-playground:~ $ crictl exec $CONTAINER_ID ip addr</span><br><span class="line">1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN qlen 1000</span><br><span class="line">    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00</span><br><span class="line">    inet 127.0.0.1/8 scope host lo</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">    inet6 ::1/128 scope host</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">3: eth0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc noqueue state UP</span><br><span class="line">    link/ether 16:04:8c:44:00:59 brd ff:ff:ff:ff:ff:ff</span><br><span class="line">    inet 172.0.0.2/16 scope global eth0</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">    inet6 fe80::1404:8cff:fe44:59/64 scope link</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br></pre></td></tr></table></figure>
+<p>现在只需查询 <code>eth0</code> 的 <code>inet</code> 地址即可：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">crio-playground:~ $ curl 172.0.0.2</span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;title&gt;Welcome to nginx!&lt;/title&gt;</span><br><span class="line">[output truncated]</span><br></pre></td></tr></table></figure>
+<p>太好了，它有效！我们成功运行了 Kubernetes 工作负载，而没有运行 Kubernetes！</p>
+<p>关于网络插件或容器网络接口（CNI）的 Kubernetes 总体故事值得另一篇博客文章，但这是一个不同的故事，我们就从这里着迷。</p>
+<h1 id="5-nbsp-nbsp-nbsp-nbsp-结论"><a href="#5-nbsp-nbsp-nbsp-nbsp-结论" class="headerlink" title="5&nbsp;&nbsp;&nbsp;&nbsp;结论"></a>5&nbsp;&nbsp;&nbsp;&nbsp;结论</h1><p>以上就是有关容器解密的博客系列这一部分的总结。我们发现了容器运行时的简要历史，并有机会使用低级运行时 runc 以及高级别运行时 CRI-O 运行容器。我非常建议你仔细查看 OCI 运行时规范，并在 crio-playground 环境中测试不同的配置。可以肯定的是，当我们谈论与容器相关的主题（例如安全性或网络性）时，将来我们会再次看到 CRI-O。除此之外，我们将有机会探索 Podman、buildah 或 Skopeo 等不同的工具，这些工具可提供更高级的容器管理解决方案。我真的希望您喜欢阅读，并将继续我对本系列后续部分的探索。随意在网上可以找到我的任何地方给我留言。敬请关注！</p>
+<hr>
+<p>你可以在 <a href="https://github.com/saschagrunert/demystifying-containers" target="_blank" rel="noopener">GitHub</a> 上找到有关本系列的所有必要资源。</p>
 
     </div>
 
@@ -305,7 +353,10 @@
     <a href="/2020/06/08/aiops-everything-you-need-to-know-about-aiops/" rel="prev" title="【译】Everything You Need to Know About AIOps">
       <i class="fa fa-chevron-left"></i> 【译】Everything You Need to Know About AIOps
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2020/06/16/large-volume-processing/" rel="next" title="海量数据处理">
+      海量数据处理 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -365,7 +416,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-nbsp-nbsp-nbsp-nbsp-绪论"><span class="nav-text">1    绪论</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-nbsp-nbsp-nbsp-nbsp-什么是容器运行时？"><span class="nav-text">2    什么是容器运行时？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-nbsp-nbsp-nbsp-nbsp-简史"><span class="nav-text">3    简史</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-nbsp-nbsp-nbsp-nbsp-运行容器"><span class="nav-text">4    运行容器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-nbsp-nbsp-nbsp-nbsp-runc"><span class="nav-text">4.1    runc</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-nbsp-nbsp-nbsp-nbsp-Kubernetes-容器运行时接口"><span class="nav-text">4.2    Kubernetes 容器运行时接口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-3-nbsp-nbsp-nbsp-nbsp-CRI-O"><span class="nav-text">4.3    CRI-O</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-nbsp-nbsp-nbsp-nbsp-绪论"><span class="nav-text">1    绪论</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-nbsp-nbsp-nbsp-nbsp-什么是容器运行时？"><span class="nav-text">2    什么是容器运行时？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-nbsp-nbsp-nbsp-nbsp-简史"><span class="nav-text">3    简史</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-nbsp-nbsp-nbsp-nbsp-运行容器"><span class="nav-text">4    运行容器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-nbsp-nbsp-nbsp-nbsp-runc"><span class="nav-text">4.1    runc</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-nbsp-nbsp-nbsp-nbsp-Kubernetes-容器运行时接口"><span class="nav-text">4.2    Kubernetes 容器运行时接口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-3-nbsp-nbsp-nbsp-nbsp-CRI-O"><span class="nav-text">4.3    CRI-O</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-nbsp-nbsp-nbsp-nbsp-结论"><span class="nav-text">5    结论</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -379,7 +430,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">260</span>
+          <span class="site-state-item-count">275</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -388,7 +439,7 @@
         <span class="site-state-item-name">分类</span>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">46</span>
+        <span class="site-state-item-count">48</span>
         <span class="site-state-item-name">标签</span>
       </div>
   </nav>
@@ -413,7 +464,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2020</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

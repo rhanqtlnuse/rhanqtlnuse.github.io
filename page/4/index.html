@@ -165,7 +165,7 @@
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/05/others-raid/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/28/others-naming-style/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -179,111 +179,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2020/04/05/others-raid/" class="post-title-link" itemprop="url">others-raid</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-04-05 18:58:47 / 修改时间：19:44:17" itemprop="dateCreated datePublished" datetime="2020-04-05T18:58:47+08:00">2020-04-05</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>从可靠性 (reliability)、可用性 (availability)、性能 (performance) 和容量 (capacity) 四个方面考量。</p>
-<h1 id="1-nbsp-nbsp-nbsp-nbsp-标准级别"><a href="#1-nbsp-nbsp-nbsp-nbsp-标准级别" class="headerlink" title="1&nbsp;&nbsp;&nbsp;&nbsp;标准级别"></a>1&nbsp;&nbsp;&nbsp;&nbsp;标准级别</h1><p><strong>RAID 0</strong></p>
-<p>将数据分块存放在不同的硬盘上，没有备份和校验</p>
-<ul>
-<li>可靠性：差，如果硬盘组中的任何一块硬盘损坏，数据就会丢失<ul>
-<li>平均失效 (failure) 率比同等的单块硬盘还要差。可以计算一下，假设单块硬盘损坏导致数据丢失的概率是 0.02，那么两块硬盘组成的 RAID 0 因硬盘损坏而导致数据丢失的概率是 2 <em> 0.02 </em> 0.98 + 0.02 * 0.02 = 0.0396</li>
-</ul>
-</li>
-<li>可用性</li>
-<li>性能：吞吐量 = 单块硬盘吞吐量 * N（N 为硬盘数量）<ul>
-<li>硬盘可以并行读 / 写</li>
-</ul>
-</li>
-<li>容量：100%</li>
-</ul>
-<p><strong>RAID 1</strong></p>
-<p>将相同的数据存放在多块硬盘上，没有分块和校验</p>
-<ul>
-<li>可靠性：只要有一块硬盘正常运转，就可以取得数据</li>
-<li>可用性</li>
-<li>性能<ul>
-<li>如果控制器 / 软件经过优化，吞吐量能够与 RAID 0 相当（大多数 RAID 1 实现的实际读吞吐量都比最快的硬盘慢，写吞吐量总是比最快的硬盘慢（要写多个硬盘，时间取决于最慢的那一块））</li>
-<li>读 / 写请求可以进行广播，并由寻道时间、旋转时间较短的那块硬盘先响应</li>
-</ul>
-</li>
-<li>容量：50%</li>
-</ul>
-<p><strong>RAID 2</strong></p>
-<p>位级别的分块和相应的专用 Hamming 码校验位（已经成为历史）</p>
-<p><strong>RAID 3</strong></p>
-<p>字节级别的分块和相应的专用校验位</p>
-<p><strong>RAID 4</strong></p>
-<p>块级别的分块和专用的校验位</p>
-<p><strong>RAID 5</strong></p>
-<p>块级别的分布和分布式的校验位</p>
-<p>不同于 RAID 4，校验信息分布在各个硬盘上</p>
-<p>如果单块硬盘出现失效，后续的读能够根据分布式校验位计算出来，因而不会有数据丢失</p>
-<p>至少需要三块硬盘</p>
-<p><strong>RAID 6</strong></p>
-<p>块级别的分布和分布式的双份校验位</p>
-<p>至少需要四块硬盘</p>
-<h1 id="2-nbsp-nbsp-nbsp-nbsp-嵌套（混合）RAID"><a href="#2-nbsp-nbsp-nbsp-nbsp-嵌套（混合）RAID" class="headerlink" title="2&nbsp;&nbsp;&nbsp;&nbsp;嵌套（混合）RAID"></a>2&nbsp;&nbsp;&nbsp;&nbsp;嵌套（混合）RAID</h1><h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p>[1] <a href="">RAID</a></p>
-<p>[2] <a href="">Disk mirroring</a></p>
-<p>[] <a href="">Data striping</a></p>
-<p>[3] <a href="">Standard RAID levels</a></p>
-<p>[] <a href="">Nested RAID levels</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/05/soft-eng-to-be-explicit/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RHANQTL">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/04/05/soft-eng-to-be-explicit/" class="post-title-link" itemprop="url">【译】To Be Explicit</a>
+            <a href="/2020/04/28/others-naming-style/" class="post-title-link" itemprop="url">常见的命名方式</a>
         </h1>
 
         <div class="post-meta">
@@ -293,14 +189,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-04-05 06:39:48" itemprop="dateCreated datePublished" datetime="2020-04-05T06:39:48+08:00">2020-04-05</time>
+              <time title="创建时间：2020-04-28 22:04:21" itemprop="dateCreated datePublished" datetime="2020-04-28T22:04:21+08:00">2020-04-28</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-04-06 23:10:26" itemprop="dateModified" datetime="2020-04-06T23:10:26+08:00">2020-04-06</time>
+                <time title="修改时间：2020-04-29 22:19:07" itemprop="dateModified" datetime="2020-04-29T22:19:07+08:00">2020-04-29</time>
               </span>
 
           
@@ -314,10 +210,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>关于代码构造的一篇文章，原作者 Martin Fowler</p>
+          <p>如题</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/04/05/soft-eng-to-be-explicit/">
+              <a class="btn" href="/2020/04/28/others-naming-style/">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -341,7 +237,7 @@
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/03/howto-verify-a-gpg-signature/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/27/latex-inserting-data-from-file-for-plotting/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -355,7 +251,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2020/04/03/howto-verify-a-gpg-signature/" class="post-title-link" itemprop="url">howto-verify-a-gpg-signature</a>
+            <a href="/2020/04/27/latex-inserting-data-from-file-for-plotting/" class="post-title-link" itemprop="url">使用 LaTeX 绘制来自 CSV 文件的数据</a>
         </h1>
 
         <div class="post-meta">
@@ -366,7 +262,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-04-03 08:27:44 / 修改时间：08:28:21" itemprop="dateCreated datePublished" datetime="2020-04-03T08:27:44+08:00">2020-04-03</time>
+              <time title="创建时间：2020-04-27 19:26:07 / 修改时间：20:14:41" itemprop="dateCreated datePublished" datetime="2020-04-27T19:26:07+08:00">2020-04-27</time>
             </span>
 
           
@@ -380,75 +276,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><a href="https://www.wikihow.com/Verify-a-GPG-Signature" target="_blank" rel="noopener">How to Verify a GPG Signature</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/02/linux-why-was-my-script-killed/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RHANQTL">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/04/02/linux-why-was-my-script-killed/" class="post-title-link" itemprop="url">Linux | 为什么我的服务脚本会挂掉？</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-04-02 12:53:48" itemprop="dateCreated datePublished" datetime="2020-04-02T12:53:48+08:00">2020-04-02</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-04-06 19:18:26" itemprop="dateModified" datetime="2020-04-06T19:18:26+08:00">2020-04-06</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>进程在占用过多的资源时，会被操作系统杀掉，限制进程资源使用</p>
+          <p>如题，所有 LaTeX 源码已在 Overleaf 上验证过</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/04/02/linux-why-was-my-script-killed/">
+              <a class="btn" href="/2020/04/27/latex-inserting-data-from-file-for-plotting/">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -472,7 +303,7 @@
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/31/linux-archlinux-windows-dual-boot/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/26/set-up-latex-env/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -486,7 +317,64 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2020/03/31/linux-archlinux-windows-dual-boot/" class="post-title-link" itemprop="url">Arch Linux + Windows 双系统安装</a>
+            <a href="/2020/04/26/set-up-latex-env/" class="post-title-link" itemprop="url">set-up-latex-env</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-04-26 08:32:15" itemprop="dateCreated datePublished" datetime="2020-04-26T08:32:15+08:00">2020-04-26</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/25/set-up-python-env-using-anaconda/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/04/25/set-up-python-env-using-anaconda/" class="post-title-link" itemprop="url">set-up-python-env-using-anaconda</a>
         </h1>
 
         <div class="post-meta">
@@ -497,7 +385,141 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-03-31 12:27:38 / 修改时间：13:35:02" itemprop="dateCreated datePublished" datetime="2020-03-31T12:27:38+08:00">2020-03-31</time>
+              <time title="创建时间：2020-04-25 16:53:29 / 修改时间：17:02:33" itemprop="dateCreated datePublished" datetime="2020-04-25T16:53:29+08:00">2020-04-25</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>环境 Windows</p>
+<p>从 <a href="https://www.anaconda.com/products/individual" target="_blank" rel="noopener">Anaconda 官网</a> 或者<a href="https://mirrors.tuna.tsinghua.edu.cn/anaconda/archive" target="_blank" rel="noopener">清华镜像站</a>下载 Anaconda 安装包</p>
+<p>按照安装包的指示安装 Anaconda</p>
+<p>假设将 Anaconda 安装在了 <code>C:\SDK\anaconda3</code>，那么在 PowerShell 中运行命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ C:\SDK\anaconda3\Scripts\conda.exe init powershell</span><br></pre></td></tr></table></figure>
+<p>将 PowerShell 重启，应该能够在原来的命令提示符前看到一个 <code>(base)</code>，说明可以从 PowerShell 运行 Anaconda 的命令了，验证一下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ python --version</span><br><span class="line">Python 3.7.6</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>输出的 Python 版本可能不同</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/25/pytorch-getting-started/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/04/25/pytorch-getting-started/" class="post-title-link" itemprop="url">PyTorch 入门</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-04-25 10:09:00 / 修改时间：10:17:36" itemprop="dateCreated datePublished" datetime="2020-04-25T10:09:00+08:00">2020-04-25</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>笔记</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/04/25/pytorch-getting-started/">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/25/when-to-use-optional-parameters-and-keyword-parameters/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/04/25/when-to-use-optional-parameters-and-keyword-parameters/" class="post-title-link" itemprop="url">可选参数和关键字参数的适用场景</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-04-25 08:47:42 / 修改时间：08:55:22" itemprop="dateCreated datePublished" datetime="2020-04-25T08:47:42+08:00">2020-04-25</time>
             </span>
 
           
@@ -514,7 +536,7 @@
           <p>如题</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/03/31/linux-archlinux-windows-dual-boot/">
+              <a class="btn" href="/2020/04/25/when-to-use-optional-parameters-and-keyword-parameters/">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -538,7 +560,7 @@
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/29/soft-eng-container-demystifying-containers-part-i-kernel-space/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/24/pytorch-dataset-and-dataloader/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -552,326 +574,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2020/03/29/soft-eng-container-demystifying-containers-part-i-kernel-space/" class="post-title-link" itemprop="url">【译】揭开容器的神秘面纱 | 第一部分：内核空间</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-03-29 10:56:01" itemprop="dateCreated datePublished" datetime="2020-03-29T10:56:01+08:00">2020-03-29</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-06-13 08:33:06" itemprop="dateModified" datetime="2020-06-13T08:33:06+08:00">2020-06-13</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>翻译自 Demystifying Containers - Part I: Kernel Space</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/03/29/soft-eng-container-demystifying-containers-part-i-kernel-space/">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/27/database-thinking-sql-statements/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RHANQTL">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/03/27/database-thinking-sql-statements/" class="post-title-link" itemprop="url">数据库 | 思考 SQL 语句</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-03-27 00:00:00" itemprop="dateCreated datePublished" datetime="2020-03-27T00:00:00+08:00">2020-03-27</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-04-01 11:50:46" itemprop="dateModified" datetime="2020-04-01T11:50:46+08:00">2020-04-01</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/数据库-Database/" itemprop="url" rel="index"><span itemprop="name">数据库 (Database)</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>如题</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/03/27/database-thinking-sql-statements/">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/26/database-dealing-with-hierarchical-data/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RHANQTL">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/03/26/database-dealing-with-hierarchical-data/" class="post-title-link" itemprop="url">数据库 | 存储层次结构数据</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-03-26 13:37:15" itemprop="dateCreated datePublished" datetime="2020-03-26T13:37:15+08:00">2020-03-26</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-27 09:26:26" itemprop="dateModified" datetime="2020-03-27T09:26:26+08:00">2020-03-27</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/数据库-Database/" itemprop="url" rel="index"><span itemprop="name">数据库 (Database)</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>如题</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/03/26/database-dealing-with-hierarchical-data/">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/25/database-select-queries-order-of-execution/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RHANQTL">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/03/25/database-select-queries-order-of-execution/" class="post-title-link" itemprop="url">数据库 | SELECT 语句各部分的执行顺序</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-03-25 17:47:57" itemprop="dateCreated datePublished" datetime="2020-03-25T17:47:57+08:00">2020-03-25</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-05-01 13:17:21" itemprop="dateModified" datetime="2020-05-01T13:17:21+08:00">2020-05-01</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/数据库-Database/" itemprop="url" rel="index"><span itemprop="name">数据库 (Database)</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/数据库-Database/SQL/" itemprop="url" rel="index"><span itemprop="name">SQL</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>介绍 SQL 标准规定的 SELECT 语句各部分的执行顺序</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/03/25/database-select-queries-order-of-execution/">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/25/work-out-离心收缩-向心收缩-等长收缩/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RHANQTL">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/03/25/work-out-离心收缩-向心收缩-等长收缩/" class="post-title-link" itemprop="url">健身 | 什么是离心收缩、向心收缩和等长收缩？</a>
+            <a href="/2020/04/24/pytorch-dataset-and-dataloader/" class="post-title-link" itemprop="url">PyTorch | Dataset 和 DataLoader</a>
         </h1>
 
         <div class="post-meta">
@@ -882,16 +585,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-03-25 00:00:00 / 修改时间：14:53:12" itemprop="dateCreated datePublished" datetime="2020-03-25T00:00:00+08:00">2020-03-25</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/健身-Working-Out/" itemprop="url" rel="index"><span itemprop="name">健身 (Working Out)</span></a>
-                </span>
+              <time title="创建时间：2020-04-24 20:44:34 / 修改时间：21:32:20" itemprop="dateCreated datePublished" datetime="2020-04-24T20:44:34+08:00">2020-04-24</time>
             </span>
 
           
@@ -905,10 +599,225 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>如题</p>
+          <p>学习 PyTorch 的笔记</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/03/25/work-out-离心收缩-向心收缩-等长收缩/">
+              <a class="btn" href="/2020/04/24/pytorch-dataset-and-dataloader/">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/20/understanding-dimensions-in-pytorch/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/04/20/understanding-dimensions-in-pytorch/" class="post-title-link" itemprop="url">理解 PyTorch 中的 `dim` 参数</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-04-20 17:50:06 / 修改时间：19:45:32" itemprop="dateCreated datePublished" datetime="2020-04-20T17:50:06+08:00">2020-04-20</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>总结 PyTorch 中 `dim` 参数的含义</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/04/20/understanding-dimensions-in-pytorch/">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/17/python-pandas/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/04/17/python-pandas/" class="post-title-link" itemprop="url">Pandas | 如何判断一个值是否在 DataFrame 的指定列中？</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-04-17 19:34:14" itemprop="dateCreated datePublished" datetime="2020-04-17T19:34:14+08:00">2020-04-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-04-18 17:13:11" itemprop="dateModified" datetime="2020-04-18T17:13:11+08:00">2020-04-18</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><code>in</code> of a Series checks whether the value is in the index:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">11</span>]: s = pd.Series(list(<span class="string">'abc'</span>))</span><br><span class="line"></span><br><span class="line">In [<span class="number">12</span>]: s</span><br><span class="line">Out[<span class="number">12</span>]: </span><br><span class="line"><span class="number">0</span>    a</span><br><span class="line"><span class="number">1</span>    b</span><br><span class="line"><span class="number">2</span>    c</span><br><span class="line">dtype: object</span><br><span class="line"></span><br><span class="line">In [<span class="number">13</span>]: <span class="number">1</span> <span class="keyword">in</span> s</span><br><span class="line">Out[<span class="number">13</span>]: <span class="keyword">True</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">14</span>]: <span class="string">'a'</span> <span class="keyword">in</span> s</span><br><span class="line">Out[<span class="number">14</span>]: <span class="keyword">False</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>@LeiHuang a Series is a key-value datastructure (I guess so is a DataFrame which acts the same here), also the <code>in</code> can be <em>very</em> efficient on an Index, it’s <code>O(1)</code>, whereas on an array it’ll be <code>O(n)</code>. But you’re right this is something that you do find oneself doing occasionally… my claim is generally there’s a better way/alternative…</p>
+</blockquote>
+<p>One option is to see if it’s in <a href="http://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.unique.html" target="_blank" rel="noopener">unique</a> values:</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">21</span>]: s.unique()</span><br><span class="line">Out[<span class="number">21</span>]: array([<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>], dtype=object)</span><br><span class="line"></span><br><span class="line">In [<span class="number">22</span>]: <span class="string">'a'</span> <span class="keyword">in</span> s.unique()</span><br><span class="line">Out[<span class="number">22</span>]: <span class="keyword">True</span></span><br></pre></td></tr></table></figure>
+<p>or a python set:</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">23</span>]: set(s)</span><br><span class="line">Out[<span class="number">23</span>]: &#123;<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>&#125;</span><br><span class="line"></span><br><span class="line">In [<span class="number">24</span>]: <span class="string">'a'</span> <span class="keyword">in</span> set(s)</span><br><span class="line">Out[<span class="number">24</span>]: <span class="keyword">True</span></span><br></pre></td></tr></table></figure>
+<p>As pointed out by @DSM, it may be more efficient (especially if you’re just doing this for one value) to just use in directly on the values:</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">31</span>]: s.values</span><br><span class="line">Out[<span class="number">31</span>]: array([<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>], dtype=object)</span><br><span class="line"></span><br><span class="line">In [<span class="number">32</span>]: <span class="string">'a'</span> <span class="keyword">in</span> s.values</span><br><span class="line">Out[<span class="number">32</span>]: <span class="keyword">True</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">2</span>]: s = pd.Series(list(<span class="string">'abc'</span>))</span><br><span class="line"></span><br><span class="line">In [<span class="number">3</span>]: s</span><br><span class="line">Out[<span class="number">3</span>]: </span><br><span class="line"><span class="number">0</span>    a</span><br><span class="line"><span class="number">1</span>    b</span><br><span class="line"><span class="number">2</span>    c</span><br><span class="line">dtype: object</span><br><span class="line"></span><br><span class="line">In [<span class="number">3</span>]: s.isin([<span class="string">'a'</span>])</span><br><span class="line">Out[<span class="number">3</span>]: </span><br><span class="line"><span class="number">0</span>    <span class="keyword">True</span></span><br><span class="line"><span class="number">1</span>    <span class="keyword">False</span></span><br><span class="line"><span class="number">2</span>    <span class="keyword">False</span></span><br><span class="line">dtype: bool</span><br><span class="line"></span><br><span class="line">In [<span class="number">4</span>]: s[s.isin([<span class="string">'a'</span>])].empty</span><br><span class="line">Out[<span class="number">4</span>]: <span class="keyword">False</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">5</span>]: s[s.isin([<span class="string">'z'</span>])].empty</span><br><span class="line">Out[<span class="number">5</span>]: <span class="keyword">True</span></span><br></pre></td></tr></table></figure>
+<p>But this approach can be more flexible if you need to match multiple values at once for a DataFrame (see <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.isin.html" target="_blank" rel="noopener">DataFrame.isin</a>)</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>df = DataFrame(&#123;<span class="string">'A'</span>: [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], <span class="string">'B'</span>: [<span class="number">1</span>, <span class="number">4</span>, <span class="number">7</span>]&#125;)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>df.isin(&#123;<span class="string">'A'</span>: [<span class="number">1</span>, <span class="number">3</span>], <span class="string">'B'</span>: [<span class="number">4</span>, <span class="number">7</span>, <span class="number">12</span>]&#125;)</span><br><span class="line">       A      B</span><br><span class="line"><span class="number">0</span>   <span class="keyword">True</span>  <span class="keyword">False</span>  <span class="comment"># Note that B didn't match 1 here.</span></span><br><span class="line"><span class="number">1</span>  <span class="keyword">False</span>   <span class="keyword">True</span></span><br><span class="line"><span class="number">2</span>   <span class="keyword">True</span>   <span class="keyword">True</span></span><br></pre></td></tr></table></figure>
+<p>conditionally update </p>
+<p><a href="https://gist.github.com/pierdom/cab3e44641442cf2c69dc1ead59df0ff" target="_blank" rel="noopener">https://gist.github.com/pierdom/cab3e44641442cf2c69dc1ead59df0ff</a></p>
+<p>JOIN</p>
+<p><a href="https://blog.csdn.net/zutsoft/article/details/51498026" target="_blank" rel="noopener">https://blog.csdn.net/zutsoft/article/details/51498026</a></p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://stackoverflow.com/questions/21319929/how-to-determine-whether-a-pandas-column-contains-a-particular-value" target="_blank" rel="noopener">https://stackoverflow.com/questions/21319929/how-to-determine-whether-a-pandas-column-contains-a-particular-value</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/17/nlp-tools-language-modeling-tutorial-in-torchtext-practical-torchtext-part-2/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/04/17/nlp-tools-language-modeling-tutorial-in-torchtext-practical-torchtext-part-2/" class="post-title-link" itemprop="url">【译】使用 torchtext 进行语言建模（实用 torchtext 第二部分）</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-04-17 14:43:48 / 修改时间：23:58:20" itemprop="dateCreated datePublished" datetime="2020-04-17T14:43:48+08:00">2020-04-17</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>讲解如何使用 torchtext 训练语言模型以及在训练实际的模型时可能会使用到的 torchtext 的一些更实用的功能</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/04/17/nlp-tools-language-modeling-tutorial-in-torchtext-practical-torchtext-part-2/">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -932,7 +841,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/26/">26</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/28/">28</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -998,7 +907,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">260</span>
+          <span class="site-state-item-count">275</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1007,7 +916,7 @@
         <span class="site-state-item-name">分类</span>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">46</span>
+        <span class="site-state-item-count">48</span>
         <span class="site-state-item-name">标签</span>
       </div>
   </nav>
@@ -1032,7 +941,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2020</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
