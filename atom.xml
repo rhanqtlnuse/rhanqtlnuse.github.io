@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2021-04-15T04:38:55.283Z</updated>
+  <updated>2021-04-15T04:47:02.276Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -21,11 +21,11 @@
     <link href="http://yoursite.com/2021/04/15/simplex/"/>
     <id>http://yoursite.com/2021/04/15/simplex/</id>
     <published>2021-04-15T03:45:48.000Z</published>
-    <updated>2021-04-15T04:38:55.283Z</updated>
+    <updated>2021-04-15T04:47:02.276Z</updated>
     
     <summary type="html">
     
-      线性规划的经典解法单纯形法
+      线性规划的经典解法 —— 单纯形法
     
     </summary>
     
