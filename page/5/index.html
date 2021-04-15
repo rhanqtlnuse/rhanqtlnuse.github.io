@@ -165,6 +165,155 @@
   
   
   <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/17/python-pandas/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/04/17/python-pandas/" class="post-title-link" itemprop="url">Pandas | 如何判断一个值是否在 DataFrame 的指定列中？</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-04-17 19:34:14" itemprop="dateCreated datePublished" datetime="2020-04-17T19:34:14+08:00">2020-04-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-04-18 17:13:11" itemprop="dateModified" datetime="2020-04-18T17:13:11+08:00">2020-04-18</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><code>in</code> of a Series checks whether the value is in the index:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">11</span>]: s = pd.Series(list(<span class="string">'abc'</span>))</span><br><span class="line"></span><br><span class="line">In [<span class="number">12</span>]: s</span><br><span class="line">Out[<span class="number">12</span>]: </span><br><span class="line"><span class="number">0</span>    a</span><br><span class="line"><span class="number">1</span>    b</span><br><span class="line"><span class="number">2</span>    c</span><br><span class="line">dtype: object</span><br><span class="line"></span><br><span class="line">In [<span class="number">13</span>]: <span class="number">1</span> <span class="keyword">in</span> s</span><br><span class="line">Out[<span class="number">13</span>]: <span class="keyword">True</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">14</span>]: <span class="string">'a'</span> <span class="keyword">in</span> s</span><br><span class="line">Out[<span class="number">14</span>]: <span class="keyword">False</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>@LeiHuang a Series is a key-value datastructure (I guess so is a DataFrame which acts the same here), also the <code>in</code> can be <em>very</em> efficient on an Index, it’s <code>O(1)</code>, whereas on an array it’ll be <code>O(n)</code>. But you’re right this is something that you do find oneself doing occasionally… my claim is generally there’s a better way/alternative…</p>
+</blockquote>
+<p>One option is to see if it’s in <a href="http://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.unique.html" target="_blank" rel="noopener">unique</a> values:</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">21</span>]: s.unique()</span><br><span class="line">Out[<span class="number">21</span>]: array([<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>], dtype=object)</span><br><span class="line"></span><br><span class="line">In [<span class="number">22</span>]: <span class="string">'a'</span> <span class="keyword">in</span> s.unique()</span><br><span class="line">Out[<span class="number">22</span>]: <span class="keyword">True</span></span><br></pre></td></tr></table></figure>
+<p>or a python set:</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">23</span>]: set(s)</span><br><span class="line">Out[<span class="number">23</span>]: &#123;<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>&#125;</span><br><span class="line"></span><br><span class="line">In [<span class="number">24</span>]: <span class="string">'a'</span> <span class="keyword">in</span> set(s)</span><br><span class="line">Out[<span class="number">24</span>]: <span class="keyword">True</span></span><br></pre></td></tr></table></figure>
+<p>As pointed out by @DSM, it may be more efficient (especially if you’re just doing this for one value) to just use in directly on the values:</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">31</span>]: s.values</span><br><span class="line">Out[<span class="number">31</span>]: array([<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>], dtype=object)</span><br><span class="line"></span><br><span class="line">In [<span class="number">32</span>]: <span class="string">'a'</span> <span class="keyword">in</span> s.values</span><br><span class="line">Out[<span class="number">32</span>]: <span class="keyword">True</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">2</span>]: s = pd.Series(list(<span class="string">'abc'</span>))</span><br><span class="line"></span><br><span class="line">In [<span class="number">3</span>]: s</span><br><span class="line">Out[<span class="number">3</span>]: </span><br><span class="line"><span class="number">0</span>    a</span><br><span class="line"><span class="number">1</span>    b</span><br><span class="line"><span class="number">2</span>    c</span><br><span class="line">dtype: object</span><br><span class="line"></span><br><span class="line">In [<span class="number">3</span>]: s.isin([<span class="string">'a'</span>])</span><br><span class="line">Out[<span class="number">3</span>]: </span><br><span class="line"><span class="number">0</span>    <span class="keyword">True</span></span><br><span class="line"><span class="number">1</span>    <span class="keyword">False</span></span><br><span class="line"><span class="number">2</span>    <span class="keyword">False</span></span><br><span class="line">dtype: bool</span><br><span class="line"></span><br><span class="line">In [<span class="number">4</span>]: s[s.isin([<span class="string">'a'</span>])].empty</span><br><span class="line">Out[<span class="number">4</span>]: <span class="keyword">False</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">5</span>]: s[s.isin([<span class="string">'z'</span>])].empty</span><br><span class="line">Out[<span class="number">5</span>]: <span class="keyword">True</span></span><br></pre></td></tr></table></figure>
+<p>But this approach can be more flexible if you need to match multiple values at once for a DataFrame (see <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.isin.html" target="_blank" rel="noopener">DataFrame.isin</a>)</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>df = DataFrame(&#123;<span class="string">'A'</span>: [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], <span class="string">'B'</span>: [<span class="number">1</span>, <span class="number">4</span>, <span class="number">7</span>]&#125;)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>df.isin(&#123;<span class="string">'A'</span>: [<span class="number">1</span>, <span class="number">3</span>], <span class="string">'B'</span>: [<span class="number">4</span>, <span class="number">7</span>, <span class="number">12</span>]&#125;)</span><br><span class="line">       A      B</span><br><span class="line"><span class="number">0</span>   <span class="keyword">True</span>  <span class="keyword">False</span>  <span class="comment"># Note that B didn't match 1 here.</span></span><br><span class="line"><span class="number">1</span>  <span class="keyword">False</span>   <span class="keyword">True</span></span><br><span class="line"><span class="number">2</span>   <span class="keyword">True</span>   <span class="keyword">True</span></span><br></pre></td></tr></table></figure>
+<p>conditionally update </p>
+<p><a href="https://gist.github.com/pierdom/cab3e44641442cf2c69dc1ead59df0ff" target="_blank" rel="noopener">https://gist.github.com/pierdom/cab3e44641442cf2c69dc1ead59df0ff</a></p>
+<p>JOIN</p>
+<p><a href="https://blog.csdn.net/zutsoft/article/details/51498026" target="_blank" rel="noopener">https://blog.csdn.net/zutsoft/article/details/51498026</a></p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://stackoverflow.com/questions/21319929/how-to-determine-whether-a-pandas-column-contains-a-particular-value" target="_blank" rel="noopener">https://stackoverflow.com/questions/21319929/how-to-determine-whether-a-pandas-column-contains-a-particular-value</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/17/nlp-tools-language-modeling-tutorial-in-torchtext-practical-torchtext-part-2/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Han Qi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RHANQTL">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/04/17/nlp-tools-language-modeling-tutorial-in-torchtext-practical-torchtext-part-2/" class="post-title-link" itemprop="url">【译】使用 torchtext 进行语言建模（实用 torchtext 第二部分）</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-04-17 14:43:48 / 修改时间：23:58:20" itemprop="dateCreated datePublished" datetime="2020-04-17T14:43:48+08:00">2020-04-17</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>讲解如何使用 torchtext 训练语言模型以及在训练实际的模型时可能会使用到的 torchtext 的一些更实用的功能</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/04/17/nlp-tools-language-modeling-tutorial-in-torchtext-practical-torchtext-part-2/">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/15/nlp-tools-a-comprehensive-tutorial-to-torchtext-practical-torchtext-part-1/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1034,144 +1183,6 @@
   
   
 
-        
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/02/linux-why-was-my-script-killed/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RHANQTL">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/04/02/linux-why-was-my-script-killed/" class="post-title-link" itemprop="url">Linux | 为什么我的服务脚本会挂掉？</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-04-02 12:53:48" itemprop="dateCreated datePublished" datetime="2020-04-02T12:53:48+08:00">2020-04-02</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-04-06 19:18:26" itemprop="dateModified" datetime="2020-04-06T19:18:26+08:00">2020-04-06</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>进程在占用过多的资源时，会被操作系统杀掉，限制进程资源使用</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/04/02/linux-why-was-my-script-killed/">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope="" itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/31/linux-archlinux-windows-dual-boot/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Han Qi">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RHANQTL">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/03/31/linux-archlinux-windows-dual-boot/" class="post-title-link" itemprop="url">Arch Linux + Windows 双系统安装</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-03-31 12:27:38 / 修改时间：13:35:02" itemprop="dateCreated datePublished" datetime="2020-03-31T12:27:38+08:00">2020-03-31</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>如题</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/03/31/linux-archlinux-windows-dual-boot/">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1242,7 +1253,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">275</span>
+          <span class="site-state-item-count">277</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1251,7 +1262,7 @@
         <span class="site-state-item-name">分类</span>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">48</span>
+        <span class="site-state-item-count">50</span>
         <span class="site-state-item-name">标签</span>
       </div>
   </nav>
